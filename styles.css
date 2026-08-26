@@ -1725,56 +1725,6 @@ video {
     padding: 3px 7px !important;
 }
 
-/* ─── Top Live Status Announcement Bar ─────────────────────────── */
-.top-status-bar {
-    background: linear-gradient(90deg, #090c15 0%, #151928 50%, #090c15 100%);
-    color: #e2d9c8;
-    font-size: 0.76rem;
-    padding: 6px 16px;
-    border-bottom: 1px solid rgba(201, 168, 76, 0.25);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: 'Inter', sans-serif;
-    position: relative;
-    z-index: 1001;
-}
-.top-status-left {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 500;
-}
-.live-pulse-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #10b981;
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-    animation: livePulse 2s infinite;
-}
-@keyframes livePulse {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-}
-.top-status-right {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-.top-status-right a {
-    color: #c9a84c;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.2s;
-}
-.top-status-right a:hover {
-    color: #ffd700;
-    text-decoration: underline;
-}
-
 /* ─── Interactive BMI & Weight Loss Calculator Section ───────── */
 .bmi-calculator-section {
     padding: 80px 0;
@@ -2044,12 +1994,6 @@ video {
         grid-template-columns: 1fr;
         padding: 20px;
         gap: 20px;
-    }
-    .top-status-bar {
-        font-size: 0.7rem;
-        flex-direction: column;
-        gap: 4px;
-        text-align: center;
     }
     .floating-quick-dock {
         bottom: 12px;
