@@ -664,7 +664,7 @@
     </div>
 
     <!-- Floating Quick Action Dock -->
-    <div class="floating-quick-dock">
+    <div class="floating-quick-dock" id="floatingQuickDock">
         <a href="tel:+919284517427" class="dock-item dock-call" title="Call Clinic">
             <i class="fas fa-phone-alt"></i> <span>Call 9284517427</span>
         </a>
@@ -674,7 +674,7 @@
         <a href="face-scanner.html" class="dock-item dock-scan" title="AI Face &amp; Scalp Scanner">
             <i class="fas fa-camera"></i> <span>✦ AI Scanner</span>
         </a>
-        <a href="contact.html" class="dock-item" title="Book Consultation">
+        <a href="contact.html" class="dock-item dock-book" title="Book Consultation">
             <i class="fas fa-calendar-alt"></i> <span>Book Visit</span>
         </a>
     </div>
@@ -682,6 +682,26 @@
     <script src="script.js" defer></script>
     <script src="mobile-menu.js" defer></script>
     <script src="chatbot.js?v=2.2" defer></script>
+
+    <!-- Smooth Dock Motion on Scroll -->
+    <script>
+        let lastScrollY = window.scrollY;
+        const dockEl = document.getElementById('floatingQuickDock');
+        window.addEventListener('scroll', () => {
+            if (!dockEl) return;
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                // Scrolling down -> gently slide down
+                dockEl.style.transform = 'translate(-50%, 80px)';
+                dockEl.style.opacity = '0.3';
+            } else {
+                // Scrolling up or top -> bring back into view smoothly
+                dockEl.style.transform = 'translate(-50%, 0)';
+                dockEl.style.opacity = '1';
+            }
+            lastScrollY = currentScrollY;
+        }, { passive: true });
+    </script>
 
     <!-- Interactive Calculators Logic -->
     <script>

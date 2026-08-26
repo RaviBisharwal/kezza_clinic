@@ -1937,78 +1937,229 @@ video {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(13, 16, 27, 0.92);
-    border: 1px solid rgba(201, 168, 76, 0.35);
-    backdrop-filter: blur(12px);
-    border-radius: 40px;
-    padding: 8px 14px;
+/* ─── Ultra-Smooth Animated Floating Quick Action Dock ──────────── */
+.floating-quick-dock {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 13, 22, 0.88);
+    border: 1px solid rgba(201, 168, 76, 0.4);
+    backdrop-filter: blur(20px) saturate(190%);
+    -webkit-backdrop-filter: blur(20px) saturate(190%);
+    border-radius: 50px;
+    padding: 7px 12px;
     display: flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.65), 
+                0 0 30px rgba(201, 168, 76, 0.15),
+                inset 0 1px 1px rgba(255, 255, 255, 0.15);
     z-index: 998;
     max-width: 95vw;
-}
-.dock-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 7px 14px;
-    border-radius: 25px;
-    color: #f1ebd8;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 600;
-    white-space: nowrap;
-    transition: all 0.2s;
-}
-.dock-item:hover {
-    background: rgba(201, 168, 76, 0.15);
-    color: #c9a84c;
-}
-.dock-item.dock-call {
-    background: rgba(201, 168, 76, 0.15);
-    color: #c9a84c;
-    border: 1px solid rgba(201, 168, 76, 0.4);
-}
-.dock-item.dock-call:hover {
-    background: #c9a84c;
-    color: #000;
-}
-.dock-item.dock-wa {
-    background: #25d366;
-    color: #000;
-    font-weight: 700;
-}
-.dock-item.dock-wa:hover {
-    background: #20ba5a;
-}
-.dock-item.dock-scan {
-    color: #ffd700;
-    border: 1px solid rgba(255, 215, 0, 0.3);
+    animation: dockEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+               dockAmbientFloat 6s ease-in-out infinite 0.8s;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, bottom 0.3s ease;
+    will-change: transform, opacity;
 }
 
-@media (max-width: 768px) {
-    .bmi-calc-card,
-    .emi-grid {
-        grid-template-columns: 1fr;
-        padding: 20px;
-        gap: 20px;
+/* Subtle Shimmer Sweep on the Dock */
+.floating-quick-dock::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 50px;
+    padding: 1px;
+    background: linear-gradient(120deg, transparent 20%, rgba(201, 168, 76, 0.6) 50%, transparent 80%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    background-size: 200% 100%;
+    animation: borderShimmer 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes borderShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+@keyframes dockEntrance {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 60px) scale(0.9);
     }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+    }
+}
+
+@keyframes dockAmbientFloat {
+    0%, 100% {
+        transform: translate(-50%, 0);
+    }
+    50% {
+        transform: translate(-50%, -6px);
+    }
+}
+
+/* Dock Item Base */
+.dock-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 16px;
+    border-radius: 30px;
+    color: #f3eedf;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dock-item:active {
+    transform: scale(0.92) !important;
+}
+
+/* 1. Call Button Animation */
+.dock-item.dock-call {
+    background: rgba(201, 168, 76, 0.12);
+    color: #e5be59;
+    border: 1px solid rgba(201, 168, 76, 0.35);
+}
+.dock-item.dock-call i {
+    transition: transform 0.3s ease;
+}
+.dock-item.dock-call:hover {
+    background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%);
+    color: #000;
+    border-color: #ffd700;
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+}
+.dock-item.dock-call:hover i {
+    animation: phoneWiggle 0.6s ease infinite;
+}
+
+@keyframes phoneWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(-15deg); }
+    40% { transform: rotate(15deg); }
+    60% { transform: rotate(-10deg); }
+    80% { transform: rotate(10deg); }
+}
+
+/* 2. WhatsApp Button Animation & Pulse */
+.dock-item.dock-wa {
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #ffffff;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+}
+.dock-item.dock-wa::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: skewX(-25deg);
+    animation: waLightSweep 3.5s ease-in-out infinite;
+}
+@keyframes waLightSweep {
+    0%, 60% { left: -100%; }
+    100% { left: 200%; }
+}
+.dock-item.dock-wa:hover {
+    background: linear-gradient(135deg, #28e06c 0%, #15a08e 100%);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.55);
+}
+.dock-item.dock-wa i {
+    font-size: 1.05rem;
+    animation: waIconPulse 2.5s infinite;
+}
+@keyframes waIconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* 3. AI Scanner Button Animation */
+.dock-item.dock-scan {
+    background: rgba(255, 215, 0, 0.08);
+    color: #ffd700;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    position: relative;
+}
+.dock-item.dock-scan:hover {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(201, 168, 76, 0.3) 100%);
+    border-color: #ffd700;
+    color: #fff;
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.35);
+}
+.dock-item.dock-scan i {
+    animation: sparkleSpin 3s ease-in-out infinite;
+}
+@keyframes sparkleSpin {
+    0%, 100% { transform: scale(1) rotate(0deg); color: #ffd700; }
+    50% { transform: scale(1.25) rotate(12deg); color: #fff; }
+}
+
+/* 4. Book Visit Button */
+.dock-item.dock-book {
+    background: rgba(255, 255, 255, 0.05);
+    color: #e8e0d0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.dock-item.dock-book:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(201, 168, 76, 0.5);
+    color: #c9a84c;
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive Mobile Layout */
+@media (max-width: 768px) {
+    .floating-quick-dock {
+        bottom: 14px;
+        padding: 5px 8px;
+        gap: 5px;
+    }
+    .dock-item {
+        padding: 8px 11px;
+        font-size: 0.76rem;
+        gap: 5px;
+    }
+    .dock-item span {
+        display: inline-block;
+        font-size: 0.72rem;
+    }
+    .dock-item.dock-call span {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
     .floating-quick-dock {
         bottom: 12px;
-        padding: 6px 10px;
+        padding: 5px 6px;
         gap: 4px;
     }
     .dock-item {
-        padding: 6px 10px;
-        font-size: 0.74rem;
+        padding: 7px 10px;
+        font-size: 0.72rem;
     }
     .dock-item span {
         display: none;
     }
     .dock-item i {
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
 }
 
