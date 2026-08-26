@@ -8,6 +8,10 @@
 (function () {
     'use strict';
 
+    const CHATBOT_API_BASE = (typeof window !== 'undefined' && window.location.hostname === 'localhost' && window.location.port === '8080')
+        ? 'http://localhost:3001'
+        : (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3001');
+
     // ============================================
     // VERIFIED KEZZA CLINIC LOCATIONS & GOOGLE MAPS (Jaipur & Sikar ONLY)
     // ============================================
@@ -1044,7 +1048,7 @@ Dental: "Dr. Dhiral Vijayvargiya relevant hain. Verified dental number abhi avai
         return DEPARTMENT_ROUTING_TABLE.HAIR_LOSS;
     }
 
-    function buildConsultationWhatsAppMessage(data, routing) {
+    function buildConsultationWhatsAppMessage(data, routing, consultationId = null) {
         let assignedBlock = '';
         if (routing.isTransplant) {
             assignedBlock = `👨‍⚕️ Assigned Team:\nElite Surgical (Sikar)\n\n🏷️ Department:\nHair Transplant Surgery`;
@@ -1061,13 +1065,13 @@ Dental: "Dr. Dhiral Vijayvargiya relevant hain. Verified dental number abhi avai
         const categoryLabel = catConfig.title || (data.category ? data.category.replace('_', ' ') : 'General');
         const treatmentLabel = data.treatment || 'Consultation';
         const detailLabel = data.concernDetails || 'Standard Clinical Assessment';
+        const cidLine = (consultationId || data.consultationId) ? `\n🆔 Consultation ID: ${consultationId || data.consultationId}\n` : '';
 
         return `Hello Kezza Team,
 
 A new consultation enquiry has been received through the Kezza AI website.
 
-📋 CONSULTATION ENQUIRY
-
+📋 CONSULTATION ENQUIRY${cidLine}
 👤 Name: ${data.name || ''}
 🎂 Age: ${data.age || ''}
 📍 Patient Location: ${data.patientLocation || ''}
@@ -2700,6 +2704,7 @@ Please contact the patient for further consultation and appointment confirmation
         const summaryCard = `
 <div class="kezza-appt-summary">
 <strong>📋 Consultation Enquiry Review</strong><br><br>
+🆔 <strong>Consultation ID:</strong> ${escapeHtml(consultationId)}<br>
 👤 <strong>Name:</strong> ${escapeHtml(data.name || '')}<br>
 🎂 <strong>Age:</strong> ${escapeHtml(String(data.age || ''))}<br>
 📍 <strong>Patient Location:</strong> ${escapeHtml(data.patientLocation || '')}<br>
@@ -2716,11 +2721,25 @@ Please contact the patient for further consultation and appointment confirmation
         let apiResult = null;
         try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 3500);
-            const response = await fetch('http://localhost:3001/api/send-consultation', {
+            const timeoutId = setTimeout(() => controller.abort(), 4000);
+            const response = await fetch(`${CHATBOT_API_BASE}/api/consultations`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
+                body: JSON.stringify({
+                    consultation_id: consultationId,
+                    full_name: data.name || '',
+                    age: parseInt(data.age, 10) || 25,
+                    mobile_number: data.phone || '',
+                    patient_city: data.patientLocation || 'Jaipur',
+                    clinic_location: clinicCity,
+                    category: categoryTitle,
+                    treatment: treatmentTitle,
+                    concern: detailTitle,
+                    concern_duration: data.concern_duration || data.duration || 'Not specified',
+                    preferred_date: data.date || null,
+                    preferred_time: data.time || 'Morning (9 AM – 12 PM)',
+                    source: 'AI_CHATBOT'
+                }),
                 signal: controller.signal
             });
             clearTimeout(timeoutId);
@@ -2737,21 +2756,21 @@ Please contact the patient for further consultation and appointment confirmation
             sessionStorage.setItem('kezza_sent_' + consultationId, 'true');
         }
 
-        if (apiResult && apiResult.status === 'SENT') {
+        const waMsg = buildConsultationWhatsAppMessage(data, routing, consultationId);
+        const waUrl = getWhatsAppUrl(routing.phone, waMsg);
+
+        if (apiResult && (apiResult.status === 'SENT' || apiResult.status === 'OK')) {
             const successMsg = (lang === 'hinglish')
-                ? `✅ <strong>Consultation Request Sent Successfully!</strong>\n\n${summaryCard}\n\n${afterHoursNote}Aapki details <strong>${routing.departmentName}</strong> ko automatically transfer kar di gayi hain. Team consultation timings mein aapse WhatsApp / Call par sampark karegi.`
+                ? `✅ <strong>Consultation Request Sent Successfully!</strong>\n\n${summaryCard}\n\n${afterHoursNote}Aapki details <strong>${routing.departmentName}</strong> ko automatically transfer kar di gayi hain. Team consultation timings mein aapse WhatsApp / Call par sampark karegi.\n\n<a href="${waUrl}" target="_blank" class="kezza-whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp par Open Karein</a>`
                 : ((lang === 'hindi')
-                    ? `✅ <strong>Consultation Request सफलतापूर्वक भेज दी गई है!</strong>\n\n${summaryCard}\n\n${afterHoursNote}आपकी details <strong>${routing.departmentName}</strong> को भेज दी गई हैं। Team जल्द ही आपसे संपर्क करेगी।`
-                    : `✅ <strong>Consultation Request Sent Successfully!</strong>\n\n${summaryCard}\n\n${afterHoursNote}Your consultation details have been sent to the <strong>${routing.departmentName}</strong>. Our team will contact you shortly.`);
+                    ? `✅ <strong>Consultation Request सफलतापूर्वक भेज दी गई है!</strong>\n\n${summaryCard}\n\n${afterHoursNote}आपकी details <strong>${routing.departmentName}</strong> को भेज दी गई हैं। Team जल्द ही आपसे संपर्क करेगी।\n\n<a href="${waUrl}" target="_blank" class="kezza-whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp पर Open करें</a>`
+                    : `✅ <strong>Consultation Request Sent Successfully!</strong>\n\n${summaryCard}\n\n${afterHoursNote}Your consultation details have been recorded and sent to the <strong>${routing.departmentName}</strong>. Our team will contact you shortly.\n\n<a href="${waUrl}" target="_blank" class="kezza-whatsapp-btn"><i class="fab fa-whatsapp"></i> Open in WhatsApp</a>`);
 
             return {
                 text: successMsg,
                 quickReplies: ['Thank You 😊', '📍 Clinic Locations', 'Ask Another Question']
             };
         }
-
-        const waMsg = buildConsultationWhatsAppMessage(data, routing);
-        const waUrl = getWhatsAppUrl(routing.phone, waMsg);
 
         try {
             if (typeof window !== 'undefined') {
@@ -2982,7 +3001,7 @@ Please contact the patient for further consultation and appointment confirmation
         const timeoutId  = setTimeout(() => controller.abort(), 1800);
 
         try {
-            const response = await fetch('http://localhost:3001/api/chat', {
+            const response = await fetch(`${CHATBOT_API_BASE}/api/chat`, {
                 method:  'POST',
                 headers: { 'Content-Type': 'application/json' },
                 signal:  controller.signal,
@@ -4351,7 +4370,7 @@ Please guide me on next steps and appointment availability.
                 const controller = new AbortController();
                 const timeout = setTimeout(() => controller.abort(), 6500);
 
-                const response = await fetch('http://localhost:3001/api/analyze-photo', {
+                const response = await fetch(`${CHATBOT_API_BASE}/api/analyze-photo`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({

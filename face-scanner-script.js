@@ -948,48 +948,61 @@
         $('whyText').textContent = why;
         $('whyBlock').style.display = why ? '' : 'none';
 
-        // WhatsApp CTA — direct booking (no payment gate)
+        // Initial WhatsApp fallback URL
         const waMsg = buildWhatsAppMessage(data, doctor);
         const targetPhone = answers.clinicContact || doctor.contact || WHATSAPP_NUM;
-        const waUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(waMsg)}`;
-        btnBookWA.href = waUrl;
+        btnBookWA.href = `https://wa.me/${targetPhone}?text=${encodeURIComponent(waMsg)}`;
 
-        // Save to DB silently in background (for admin records only)
+        // Save to SQL DB & update WhatsApp URL with Consultation ID
         saveAssessmentToDB(data, doctor);
     }
 
-    // ── DB SAVE (silent background — admin records only) ──────────────────────
+    // ── DB SAVE (Saves to SQL database & updates WhatsApp CTA with Consultation ID) ──
     async function saveAssessmentToDB(data, doctor) {
         try {
+            const ageClean = parseInt(answers.q5 || '25', 10) || 25;
             const payload = {
-                patient_name:          answers.q4 || 'Patient',
-                age_group:             answers.q5 || null,
-                city:                  answers.q6 || null,
-                phone:                 answers.q9 || null,
-                concern_type:          answers.q1 || null,
-                duration:              answers.q2 || null,
-                family_history:        answers.q3 || null,
-                clinic_branch:         answers.q7 || 'Jaipur',
+                full_name:             answers.q4 || 'Patient',
+                age:                   ageClean,
+                mobile_number:         answers.q9 || '9999999999',
+                patient_city:          answers.q6 || 'Jaipur',
+                clinic_location:       answers.q7 || 'Jaipur',
+                category:              data.department_key || 'Skin',
+                treatment:             data.treatment_name || data.recommended_consultation || 'Consultation',
+                concern:               data.recommended_consultation || data.possible_concern || answers.q1 || 'Clinical Assessment',
+                concern_duration:      answers.q2 || 'Not specified',
                 preferred_date:        answers.q8Date || null,
-                preferred_time:        answers.q8 || null,
-                detected_concern:      data.recommended_consultation || data.possible_concern || null,
-                recommended_treatment: data.treatment_name || null,
-                assigned_doctor:       doctor.name || null,
-                department_key:        data.department_key || null,
+                preferred_time:        answers.q8 || 'Morning (9 AM – 12 PM)',
+                specialist:            doctor.name || null,
+                department:            data.department_key || 'Skin',
                 photo_base64:          capturedImageBase64 || null,
-                assessment_json:       data
+                photo_analysis:        data,
+                ai_category:           data.department_key || 'SKIN',
+                ai_possible_concern:   data.recommended_consultation || data.possible_concern || null,
+                ai_confidence:         (data.confidence_score ? data.confidence_score / 100 : 0.8),
+                source:                'PHOTO_ANALYSIS'
             };
-            await fetch(`${API_BASE}/api/save-assessment`, {
+
+            const res = await fetch(`${API_BASE}/api/consultations`, {
                 method:  'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body:    JSON.stringify(payload)
             });
+
+            if (res.ok) {
+                const resJson = await res.json();
+                if (resJson.consultation_id) {
+                    const updatedMsg = buildWhatsAppMessage(data, doctor, resJson.consultation_id);
+                    const destPhone = resJson.whatsapp_number || answers.clinicContact || doctor.contact || WHATSAPP_NUM;
+                    btnBookWA.href = `https://wa.me/${destPhone.replace(/\D/g, '')}?text=${encodeURIComponent(updatedMsg)}`;
+                }
+            }
         } catch (err) {
             // Non-critical — user flow unaffected
         }
     }
 
-    function buildWhatsAppMessage(data, doctor) {
+    function buildWhatsAppMessage(data, doctor, consultationId = null) {
         const concern    = data.recommended_consultation || data.possible_concern || 'General Consultation';
         const treatment  = data.treatment_name || concern;
         const name       = answers.q4 || 'Patient';
@@ -1002,9 +1015,10 @@
         const q2Duration = answers.q2 || 'Not specified';
         const q3Family   = answers.q3 || 'Not specified';
         const dateStr    = formatBookingDate(answers.q8Date, 'long');
+        const cidLine    = consultationId ? `\n🆔 *Consultation ID:* ${consultationId}\n` : '\n';
 
         return `🏥 *KEZZA CLINIC — APPOINTMENT REQUEST*
-━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━${cidLine}
 👤 *PATIENT DETAILS*
 • *Name:* ${name}
 • *Age Group:* ${age}

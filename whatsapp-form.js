@@ -122,7 +122,7 @@
             });
         }
 
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const name     = document.getElementById('fullName')?.value.trim()  || '';
@@ -156,28 +156,58 @@
             }
 
             // Route to correct department
-            const toPhone  = DEPT_PHONES[category]  || '919284517427';
-            const deptName = DEPT_LABELS[category]   || 'Kezza Team';
+            const toPhone     = DEPT_PHONES[category] || '919284517427';
+            const deptName    = DEPT_LABELS[category] || 'Kezza Team';
             const clinicLabel = clinic === 'sikar' ? 'Sikar' : 'Jaipur';
 
-            const waMessage = `New Website Enquiry — Kezza Clinic
+            const apiBase = (window.location.hostname === 'localhost' && window.location.port === '8080')
+                ? 'http://localhost:3001'
+                : window.location.origin;
 
-Name: ${name}
-Phone: ${phone}
-Email: ${email}
-Service: ${category}
-Preferred Clinic: ${clinicLabel}
-Message: ${message}
+            let consultationId = null;
+            try {
+                const res = await fetch(`${apiBase}/api/consultations`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        full_name: name,
+                        age: 25,
+                        mobile_number: phone,
+                        patient_city: clinicLabel,
+                        clinic_location: clinicLabel,
+                        category: category,
+                        treatment: category,
+                        concern: message,
+                        concern_duration: 'General enquiry',
+                        notes: `Email: ${email}`,
+                        source: 'WEBSITE_FORM'
+                    })
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    consultationId = data.consultation_id;
+                }
+            } catch (err) {}
 
-Routed to: ${deptName}`;
+            const cidLine = consultationId ? `\n🆔 Consultation ID: ${consultationId}` : '';
+            const waMessage = `🏥 *New Website Enquiry — Kezza Clinic*
+━━━━━━━━━━━━━━━━━━━━━${cidLine}
+👤 *Name:* ${name}
+📱 *Phone:* +91 ${phone}
+📧 *Email:* ${email}
+🏷️ *Service:* ${category}
+🏥 *Preferred Clinic:* ${clinicLabel}
+📝 *Message:* ${message}
+
+👨‍⚕️ *Routed to:* ${deptName}`;
 
             const waUrl = `https://wa.me/${toPhone}?text=${encodeURIComponent(waMessage)}`;
 
             // Open WhatsApp
             window.open(waUrl, '_blank');
 
-            // Show success message inline (not alert)
-            showSuccess(contactForm, `Redirecting you to WhatsApp to connect with the ${deptName}. If it didn't open, <a href="${waUrl}" target="_blank">click here</a>.`);
+            // Show success message inline
+            showSuccess(contactForm, `Redirecting you to WhatsApp to connect with the ${deptName}.${consultationId ? ` (Your Consultation ID is <strong>${consultationId}</strong>)` : ''} If it didn't open, <a href="${waUrl}" target="_blank">click here</a>.`);
 
             // Reset form
             contactForm.reset();

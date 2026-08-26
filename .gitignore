@@ -17,8 +17,9 @@ logs/
 .DS_Store
 Thumbs.db
 
-# ─── Editor ────────────────────────────────────────────────────────────────────
-.vscode/
-.idea/
-*.swp
-*.swo
+# ─── Local Database & Uploads ──────────────────────────────────────────────────
+*.db
+*.db-wal
+*.db-shm
+uploads/photos/*
+!uploads/photos/.gitkeep

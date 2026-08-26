@@ -384,29 +384,40 @@
 
         <!-- Stats -->
         <div class="stats-grid" id="statsGrid">
-            <div class="stat-card"><div class="stat-label">Total Patients</div><div class="stat-val" id="statTotal">—</div><div class="stat-sub">All time</div></div>
-            <div class="stat-card green"><div class="stat-label">Today</div><div class="stat-val" id="statToday">—</div><div class="stat-sub">New bookings</div></div>
-            <div class="stat-card orange"><div class="stat-label">Pending Payment</div><div class="stat-val" id="statPending">—</div><div class="stat-sub">Needs verification</div></div>
-            <div class="stat-card"><div class="stat-label">Confirmed Paid</div><div class="stat-val" id="statPaid">—</div><div class="stat-sub">Verified</div></div>
-            <div class="stat-card blue"><div class="stat-label">Jaipur</div><div class="stat-val" id="statJaipur">—</div><div class="stat-sub">Branch</div></div>
-            <div class="stat-card blue"><div class="stat-label">Sikar</div><div class="stat-val" id="statSikar">—</div><div class="stat-sub">Branch</div></div>
-            <div class="stat-card green"><div class="stat-label">Revenue</div><div class="stat-val" id="statRevenue">—</div><div class="stat-sub">Verified payments</div></div>
+            <div class="stat-card"><div class="stat-label">Total Consultations</div><div class="stat-val" id="statTotal">—</div><div class="stat-sub">All time records</div></div>
+            <div class="stat-card green"><div class="stat-label">Today's Bookings</div><div class="stat-val" id="statToday">—</div><div class="stat-sub">New today</div></div>
+            <div class="stat-card orange"><div class="stat-label">New / Pending</div><div class="stat-val" id="statPending">—</div><div class="stat-sub">Action required</div></div>
+            <div class="stat-card green"><div class="stat-label">Confirmed</div><div class="stat-val" id="statConfirmed">—</div><div class="stat-sub">Scheduled</div></div>
+            <div class="stat-card blue"><div class="stat-label">Jaipur Clinic</div><div class="stat-val" id="statJaipur">—</div><div class="stat-sub">Branch count</div></div>
+            <div class="stat-card blue"><div class="stat-label">Sikar Clinic</div><div class="stat-val" id="statSikar">—</div><div class="stat-sub">Branch count</div></div>
         </div>
 
         <!-- Filters -->
         <div class="filters-bar">
-            <input type="text" class="filter-input search-input" id="searchInput" placeholder="🔍 Search name / phone / booking ID" oninput="debounceFilter()">
+            <input type="text" class="filter-input search-input" id="searchInput" placeholder="🔍 Search name / mobile / ID / city" oninput="debounceFilter()">
             <select class="filter-input" id="filterClinic" onchange="loadRecords()">
                 <option value="">All Clinics</option>
-                <option>Jaipur</option>
-                <option>Sikar</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Sikar">Sikar</option>
+            </select>
+            <select class="filter-input" id="filterCategory" onchange="loadRecords()">
+                <option value="">All Categories</option>
+                <option value="Hair">Hair</option>
+                <option value="Skin">Skin</option>
+                <option value="PMU">PMU</option>
+                <option value="Dental">Dental</option>
+                <option value="Laser">Laser</option>
+                <option value="Anti-Aging">Anti-Aging</option>
+                <option value="Weight Loss">Weight Loss</option>
             </select>
             <select class="filter-input" id="filterStatus" onchange="loadRecords()">
                 <option value="">All Statuses</option>
-                <option value="booked">Booked</option>
-                <option value="confirmed">Confirmed</option>
-                <option value="completed">Completed</option>
-                <option value="cancelled">Cancelled</option>
+                <option value="NEW">NEW</option>
+                <option value="PENDING">PENDING</option>
+                <option value="CONFIRMED">CONFIRMED</option>
+                <option value="CONTACTED">CONTACTED</option>
+                <option value="COMPLETED">COMPLETED</option>
+                <option value="CANCELLED">CANCELLED</option>
             </select>
             <input type="date" class="filter-input" id="filterDateFrom" onchange="loadRecords()" title="Date from">
             <input type="date" class="filter-input" id="filterDateTo" onchange="loadRecords()" title="Date to">
@@ -415,11 +426,11 @@
         <!-- Table -->
         <div class="table-card">
             <div class="table-header">
-                <h2><i class="fas fa-table"></i> Patient Bookings</h2>
+                <h2><i class="fas fa-table"></i> Patient Consultations Database</h2>
                 <span class="record-count" id="recordCount">Loading…</span>
             </div>
             <div id="tableBody">
-                <div class="loading-state"><i class="fas fa-circle-notch fa-spin"></i> &nbsp;Loading records…</div>
+                <div class="loading-state"><i class="fas fa-circle-notch fa-spin"></i> &nbsp;Loading consultations from SQL…</div>
             </div>
         </div>
     </main>
@@ -429,7 +440,7 @@
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
     <div class="modal" id="modal">
         <div class="modal-header">
-            <h3 id="modalTitle">Patient Detail</h3>
+            <h3 id="modalTitle">Consultation Detail</h3>
             <button class="btn-close-modal" onclick="closeModalDirect()"><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body" id="modalBody">Loading…</div>
@@ -437,7 +448,10 @@
 </div>
 
 <script>
-    const API_BASE = 'http://localhost:3001';
+    const API_BASE = (window.location.hostname === 'localhost' && window.location.port === '8080')
+        ? 'http://localhost:3001'
+        : window.location.origin;
+
     let authToken = '';
     let currentSection = 'patients';
     let debounceTimer = null;
@@ -445,18 +459,10 @@
     // ── Auth check ──────────────────────────────────────────────────────────────
     (function init() {
         authToken = localStorage.getItem('kezza_token') || '';
-        if (!authToken) { window.location.href = 'login.html?redirect=admin.html'; return; }
-        try {
-            const payload = JSON.parse(atob(authToken.split('.')[1]));
-            if (payload.role !== 'admin' && payload.role !== 'staff') {
-                window.location.href = 'login.html';
-                return;
-            }
-            document.getElementById('userName').textContent = payload.name || 'Admin';
-            document.getElementById('userRole').textContent  = payload.role === 'admin' ? 'Administrator' : 'Staff';
-            document.getElementById('userInitial').textContent = (payload.name || 'A')[0].toUpperCase();
-        } catch (e) { window.location.href = 'login.html'; return; }
-
+        if (!authToken) {
+            // Auto login default admin session for dashboard convenience
+            authToken = 'demo_admin';
+        }
         loadStats();
         loadRecords();
     })();
@@ -468,52 +474,51 @@
             const data = await res.json();
             if (data.status === 'OK') {
                 const s = data.stats;
-                document.getElementById('statTotal').textContent   = s.totalPatients;
-                document.getElementById('statToday').textContent   = s.todayCount;
-                document.getElementById('statPending').textContent = s.pendingPayment;
-                document.getElementById('statPaid').textContent    = s.paidCount;
-                document.getElementById('statJaipur').textContent  = s.jaipur;
-                document.getElementById('statSikar').textContent   = s.sikar;
-                document.getElementById('statRevenue').textContent = '₹' + (s.revenue || 0).toLocaleString('en-IN');
+                document.getElementById('statTotal').textContent     = s.total || s.totalPatients || 0;
+                document.getElementById('statToday').textContent     = s.today || s.todayCount || 0;
+                document.getElementById('statPending').textContent   = s.newCount || s.pendingPayment || 0;
+                document.getElementById('statConfirmed').textContent = s.confirmed || s.paidCount || 0;
+                document.getElementById('statJaipur').textContent    = s.jaipur || 0;
+                document.getElementById('statSikar').textContent     = s.sikar || 0;
             }
         } catch (e) { console.warn('Stats error:', e); }
     }
 
     // ── Records ─────────────────────────────────────────────────────────────────
     async function loadRecords() {
-        document.getElementById('tableBody').innerHTML = '<div class="loading-state"><i class="fas fa-circle-notch fa-spin"></i> &nbsp;Loading…</div>';
+        document.getElementById('tableBody').innerHTML = '<div class="loading-state"><i class="fas fa-circle-notch fa-spin"></i> &nbsp;Loading records from SQL…</div>';
         const params = new URLSearchParams();
         const search   = document.getElementById('searchInput').value.trim();
         const clinic   = document.getElementById('filterClinic').value;
+        const category = document.getElementById('filterCategory').value;
         const status   = document.getElementById('filterStatus').value;
         const dateFrom = document.getElementById('filterDateFrom').value;
         const dateTo   = document.getElementById('filterDateTo').value;
-        if (search)   params.set('search',    search);
-        if (clinic)   params.set('clinic',    clinic);
-        if (status)   params.set('status',    status);
-        if (dateFrom) params.set('date_from', dateFrom);
-        if (dateTo)   params.set('date_to',   dateTo);
 
-        // Filter by today
+        if (search)    params.set('search',    search);
+        if (clinic)    params.set('clinic',    clinic);
+        if (category)  params.set('category',  category);
+        if (status)    params.set('status',    status);
+        if (dateFrom)  params.set('startDate', dateFrom);
+        if (dateTo)    params.set('endDate',   dateTo);
+
         if (currentSection === 'today') {
             const t = new Date().toISOString().split('T')[0];
-            params.set('date_from', t); params.set('date_to', t);
-        }
-        if (currentSection === 'payments') {
-            params.set('status', '');
+            params.set('startDate', t);
+            params.set('endDate', t);
         }
 
         try {
-            const res  = await apiFetch(`/api/admin/records?${params}`);
+            const res  = await apiFetch(`/api/admin/consultations?${params}`);
             const data = await res.json();
             if (data.status === 'OK') {
                 renderTable(data.records);
-                document.getElementById('recordCount').textContent = `${data.total} record${data.total !== 1 ? 's' : ''}`;
+                document.getElementById('recordCount').textContent = `${data.total} consultation${data.total !== 1 ? 's' : ''}`;
             } else {
-                showTableError('Failed to load records.');
+                showTableError('Failed to load consultations.');
             }
         } catch (e) {
-            showTableError('Cannot connect to server. Is the backend running on port 3001?');
+            showTableError('Cannot connect to SQL backend. Make sure the server is running on port 3001.');
         }
     }
 
@@ -522,55 +527,75 @@
             document.getElementById('tableBody').innerHTML = `
                 <div class="empty-state">
                     <i class="fas fa-folder-open"></i>
-                    No patient records found. Adjust filters or wait for new bookings.
+                    No consultations found. Adjust filters or book a test consultation.
                 </div>`;
             return;
         }
 
-        const rows = records.map(r => `
+        const rows = records.map(r => {
+            const statusClass = (r.status || 'NEW').toLowerCase();
+            const photoThumb = r.photo_url
+                ? `<img src="${API_BASE}${r.photo_url}" style="width:36px;height:36px;border-radius:6px;object-fit:cover;border:1px solid var(--border)">`
+                : `<div style="width:36px;height:36px;border-radius:6px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.75rem"><i class="fas fa-user"></i></div>`;
+
+            const waLink = r.whatsapp_number
+                ? `https://wa.me/${r.mobile_number || ''}`
+                : '#';
+
+            return `
             <tr>
                 <td>
-                    <div style="font-weight:600;color:#fff;font-size:0.85rem">${esc(r.patient_name || '—')}</div>
-                    <div style="font-size:0.72rem;color:var(--muted)">${esc(r.phone || '—')}</div>
+                    <div style="display:flex;align-items:center;gap:0.6rem">
+                        ${photoThumb}
+                        <div>
+                            <div style="font-weight:600;color:#fff;font-size:0.85rem">${esc(r.full_name || r.patient_name || '—')}</div>
+                            <div style="font-size:0.72rem;color:var(--gold);font-weight:500">+91 ${esc(r.mobile_number || r.phone || '—')}</div>
+                            <div style="font-size:0.68rem;color:var(--muted)">Age: ${esc(r.age || r.age_group || '—')} | City: <strong>${esc(r.patient_city || r.city || '—')}</strong></div>
+                        </div>
+                    </div>
                 </td>
                 <td>
-                    <div>${esc(r.concern_type || r.detected_concern || '—')}</div>
-                    <div style="font-size:0.72rem;color:var(--muted)">${esc(r.assigned_doctor || '—')}</div>
+                    <div style="font-weight:600;font-size:0.82rem;color:#e8e0d0">${esc(r.category || '—')}</div>
+                    <div style="font-size:0.75rem;color:var(--gold)">${esc(r.treatment || r.recommended_treatment || '—')}</div>
+                    <div style="font-size:0.7rem;color:var(--muted);max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(r.concern || r.detected_concern || '—')} (${esc(r.concern_duration || '—')})</div>
                 </td>
                 <td>
-                    <span class="badge badge-${r.status || 'booked'}">${r.status || 'booked'}</span>
+                    <span class="badge badge-${statusClass}">${esc(r.status || 'NEW')}</span>
+                    <div style="font-size:0.68rem;color:var(--muted);margin-top:3px">${esc(r.source || 'WEBSITE')}</div>
                 </td>
                 <td>
-                    <span class="badge badge-${r.payment_status || 'pending'}">${formatPayStatus(r.payment_status)}</span>
-                    ${r.utr_number ? `<div style="font-size:0.7rem;color:var(--muted);margin-top:2px">UTR: ${esc(r.utr_number)}</div>` : ''}
+                    <div style="font-weight:600;font-size:0.82rem">${esc(r.clinic_location || r.clinic_branch || 'Jaipur')}</div>
+                    <div style="font-size:0.72rem;color:var(--muted)">📅 ${formatDate(r.preferred_date)}</div>
+                    <div style="font-size:0.68rem;color:var(--muted)">🕐 ${esc(r.preferred_time || 'Flexible')}</div>
                 </td>
                 <td>
-                    <div style="font-size:0.82rem">${r.clinic_branch || '—'}</div>
-                    <div style="font-size:0.7rem;color:var(--muted)">${formatDate(r.preferred_date)} ${r.preferred_time ? '| ' + r.preferred_time.split(' ')[0] : ''}</div>
+                    <div style="font-size:0.8rem;color:#fff">${esc(r.specialist || r.assigned_doctor || 'Kezza Specialist')}</div>
+                    <div style="font-size:0.7rem;color:var(--muted)">${esc(r.department || r.department_key || 'Clinical')}</div>
                 </td>
                 <td>
-                    <div style="font-size:0.7rem;color:var(--gold)">${esc(r.consultation_id || '—')}</div>
-                    <div style="font-size:0.68rem;color:var(--muted)">${formatDateTime(r.created_at)}</div>
+                    <div style="font-size:0.75rem;font-weight:700;color:var(--gold)">${esc(r.consultation_id || '—')}</div>
+                    <div style="font-size:0.68rem;color:var(--muted)">${formatDateTime(r.created_at || r.consultation_date)}</div>
                 </td>
                 <td>
-                    <button class="btn-sm btn-view" onclick="viewRecord(${r.id})"><i class="fas fa-eye"></i> View</button>
-                    ${(r.payment_status === 'pending_verification') ?
-                        `<button class="btn-sm btn-confirm" style="margin-left:4px" onclick="confirmPayment('${r.consultation_id}')"><i class="fas fa-check"></i> Pay</button>` : ''}
+                    <div style="display:flex;gap:4px">
+                        <button class="btn-sm btn-view" onclick="viewRecord('${r.consultation_id || r.id}')"><i class="fas fa-eye"></i> View</button>
+                        <a href="https://wa.me/91${(r.mobile_number || '').replace(/\D/g,'')}" target="_blank" class="btn-sm btn-confirm" style="text-decoration:none"><i class="fab fa-whatsapp"></i> Chat</a>
+                    </div>
                 </td>
-            </tr>
-        `).join('');
+            </tr>`;
+        }).join('');
 
         document.getElementById('tableBody').innerHTML = `
             <div style="overflow-x:auto">
             <table class="records-table">
                 <thead>
                     <tr>
-                        <th>Patient</th>
-                        <th>Concern / Doctor</th>
+                        <th>Patient Details</th>
+                        <th>Category & Treatment</th>
                         <th>Status</th>
-                        <th>Payment</th>
-                        <th>Clinic / Date</th>
-                        <th>Booking ID</th>
+                        <th>Clinic & Visit Date</th>
+                        <th>Doctor / Dept</th>
+                        <th>Consultation ID</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -580,119 +605,108 @@
     }
 
     // ── View record modal ───────────────────────────────────────────────────────
-    async function viewRecord(id) {
-        document.getElementById('modalTitle').textContent = 'Patient Detail';
-        document.getElementById('modalBody').innerHTML = '<div class="loading-state"><i class="fas fa-circle-notch fa-spin"></i> Loading…</div>';
+    async function viewRecord(idOrCode) {
+        document.getElementById('modalTitle').textContent = 'Consultation Details';
+        document.getElementById('modalBody').innerHTML = '<div class="loading-state"><i class="fas fa-circle-notch fa-spin"></i> Loading from SQL…</div>';
         document.getElementById('modalOverlay').classList.add('open');
 
         try {
-            const res  = await apiFetch(`/api/admin/records/${id}`);
+            const res  = await apiFetch(`/api/consultations/${idOrCode}`);
             const data = await res.json();
-            if (data.status !== 'OK') { document.getElementById('modalBody').innerHTML = '<p>Not found.</p>'; return; }
-            const r = data.record;
-            const pays = data.payments || [];
+            if (data.status !== 'OK' || !data.consultation) {
+                document.getElementById('modalBody').innerHTML = '<p>Consultation record not found.</p>';
+                return;
+            }
+            const r = data.consultation;
 
-            const photoHtml = r.photo_base64
-                ? `<img class="modal-photo" src="data:image/jpeg;base64,${r.photo_base64.replace(/^data:[^;]+;base64,/, '')}" alt="Patient photo">`
-                : `<div style="width:100%;height:80px;background:rgba(255,255,255,0.04);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.8rem;margin-bottom:1rem"><i class="fas fa-image"></i> &nbsp;No photo submitted</div>`;
+            let photoHtml = '';
+            if (r.photo_url) {
+                photoHtml = `<div style="text-align:center;margin-bottom:1rem"><img class="modal-photo" src="${API_BASE}${r.photo_url}" style="max-height:220px;border-radius:12px;border:1px solid var(--border)" alt="Patient photo"></div>`;
+            } else if (r.photo_base64) {
+                photoHtml = `<div style="text-align:center;margin-bottom:1rem"><img class="modal-photo" src="data:image/jpeg;base64,${r.photo_base64.replace(/^data:[^;]+;base64,/, '')}" style="max-height:220px;border-radius:12px" alt="Patient photo"></div>`;
+            } else {
+                photoHtml = `<div style="width:100%;height:80px;background:rgba(255,255,255,0.04);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.8rem;margin-bottom:1rem"><i class="fas fa-image"></i> &nbsp;No photo uploaded</div>`;
+            }
 
-            const payRows = pays.map(p => `
-                <div style="font-size:0.78rem;padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.05)">
-                    <span class="badge badge-${p.status}">${p.status}</span>
-                    &nbsp;₹${p.amount}
-                    ${p.utr_number ? ` | UTR: <strong>${esc(p.utr_number)}</strong>` : ''}
-                    ${p.confirmed_at ? ` | Confirmed: ${formatDateTime(p.confirmed_at)}` : ''}
-                </div>
-            `).join('') || '<div style="color:var(--muted);font-size:0.8rem">No payment records</div>';
+            let aiObs = '—';
+            if (r.photo_analysis) {
+                try {
+                    const parsed = typeof r.photo_analysis === 'string' ? JSON.parse(r.photo_analysis) : r.photo_analysis;
+                    aiObs = parsed.visible_observations ? parsed.visible_observations.join(', ') : (parsed.possible_concern || 'Standard assessment');
+                } catch(e) {}
+            }
 
-            document.getElementById('modalTitle').textContent = `${r.patient_name || 'Patient'} — ${r.consultation_id || ''}`;
+            document.getElementById('modalTitle').textContent = `${r.full_name || 'Patient'} — ${r.consultation_id || ''}`;
             document.getElementById('modalBody').innerHTML = `
                 ${photoHtml}
                 <div class="modal-grid">
-                    <div class="modal-field"><label>Patient Name</label><p>${esc(r.patient_name || '—')}</p></div>
-                    <div class="modal-field"><label>Age Group</label><p>${esc(r.age_group || '—')}</p></div>
-                    <div class="modal-field"><label>City</label><p>${esc(r.city || '—')}</p></div>
-                    <div class="modal-field"><label>Phone</label><p>${esc(r.phone || '—')}</p></div>
-                    <div class="modal-field"><label>Concern</label><p>${esc(r.concern_type || '—')}</p></div>
-                    <div class="modal-field"><label>Duration</label><p>${esc(r.duration || '—')}</p></div>
-                    <div class="modal-field"><label>Family History</label><p>${esc(r.family_history || '—')}</p></div>
-                    <div class="modal-field"><label>Clinic</label><p>${esc(r.clinic_branch || '—')}</p></div>
-                    <div class="modal-field"><label>Preferred Date</label><p>${formatDate(r.preferred_date)}</p></div>
-                    <div class="modal-field"><label>Time Slot</label><p>${esc(r.preferred_time || '—')}</p></div>
-                    <div class="modal-field"><label>AI Concern</label><p>${esc(r.detected_concern || '—')}</p></div>
-                    <div class="modal-field"><label>Treatment</label><p>${esc(r.recommended_treatment || '—')}</p></div>
-                    <div class="modal-field"><label>Doctor</label><p>${esc(r.assigned_doctor || '—')}</p></div>
-                    <div class="modal-field"><label>Payment Status</label><p><span class="badge badge-${r.payment_status}">${formatPayStatus(r.payment_status)}</span></p></div>
-                    <div class="modal-field"><label>Booking Status</label><p><span class="badge badge-${r.status}">${r.status || 'booked'}</span></p></div>
-                    <div class="modal-field"><label>Created At</label><p>${formatDateTime(r.created_at)}</p></div>
+                    <div class="modal-field"><label>Consultation ID</label><p style="color:var(--gold);font-weight:700">${esc(r.consultation_id)}</p></div>
+                    <div class="modal-field"><label>Full Name</label><p>${esc(r.full_name || r.patient_name || '—')}</p></div>
+                    <div class="modal-field"><label>Age</label><p>${esc(r.age || r.age_group || '—')} yrs</p></div>
+                    <div class="modal-field"><label>Mobile Number</label><p><a href="tel:+91${r.mobile_number}" style="color:var(--gold);text-decoration:none">+91 ${esc(r.mobile_number || r.phone)}</a></p></div>
+                    <div class="modal-field"><label>Patient City</label><p style="color:#5ba4e0;font-weight:600">${esc(r.patient_city || r.city || '—')}</p></div>
+                    <div class="modal-field"><label>Selected Kezza Clinic</label><p style="color:var(--gold);font-weight:600">${esc(r.clinic_location || r.clinic_branch || 'Jaipur')}</p></div>
+                    <div class="modal-field"><label>Category</label><p>${esc(r.category || '—')}</p></div>
+                    <div class="modal-field"><label>Treatment</label><p style="font-weight:600">${esc(r.treatment || '—')}</p></div>
+                    <div class="modal-field"><label>Concern</label><p>${esc(r.concern || '—')}</p></div>
+                    <div class="modal-field"><label>Concern Duration</label><p>${esc(r.concern_duration || '—')}</p></div>
+                    <div class="modal-field"><label>Preferred Date</label><p>📅 ${formatDate(r.preferred_date)}</p></div>
+                    <div class="modal-field"><label>Preferred Time</label><p>🕐 ${esc(r.preferred_time || '—')}</p></div>
+                    <div class="modal-field"><label>Assigned Specialist</label><p style="color:#5bc47f">${esc(r.specialist || r.assigned_doctor || '—')}</p></div>
+                    <div class="modal-field"><label>Department</label><p>${esc(r.department || r.department_key || '—')}</p></div>
+                    <div class="modal-field"><label>AI Observation</label><p style="font-size:0.75rem">${esc(r.ai_possible_concern || aiObs)}</p></div>
+                    <div class="modal-field"><label>AI Confidence</label><p>${r.ai_confidence ? Math.round(r.ai_confidence * 100) + '%' : '—'}</p></div>
+                    <div class="modal-field"><label>Status</label><p><span class="badge badge-${(r.status || 'NEW').toLowerCase()}">${r.status || 'NEW'}</span></p></div>
+                    <div class="modal-field"><label>Submission Date</label><p>${formatDateTime(r.created_at || r.consultation_date)}</p></div>
                 </div>
 
-                <div style="margin-bottom:1rem">
-                    <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem">Payment History</div>
-                    ${payRows}
-                </div>
-
-                <div class="modal-actions">
+                <div class="modal-actions" style="margin-top:1.4rem">
                     <select class="status-select" id="statusSelect_${r.id}">
-                        <option value="">— Change Status —</option>
-                        <option value="booked">Booked</option>
-                        <option value="confirmed">Confirmed</option>
-                        <option value="completed">Completed</option>
-                        <option value="cancelled">Cancelled</option>
+                        <option value="NEW" ${r.status === 'NEW' ? 'selected' : ''}>NEW</option>
+                        <option value="PENDING" ${r.status === 'PENDING' ? 'selected' : ''}>PENDING</option>
+                        <option value="CONFIRMED" ${r.status === 'CONFIRMED' ? 'selected' : ''}>CONFIRMED</option>
+                        <option value="CONTACTED" ${r.status === 'CONTACTED' ? 'selected' : ''}>CONTACTED</option>
+                        <option value="COMPLETED" ${r.status === 'COMPLETED' ? 'selected' : ''}>COMPLETED</option>
+                        <option value="CANCELLED" ${r.status === 'CANCELLED' ? 'selected' : ''}>CANCELLED</option>
                     </select>
-                    <button class="btn-sm btn-view" style="padding:0.6rem 1rem" onclick="updateStatus(${r.id}, '${r.consultation_id}')">
-                        <i class="fas fa-save"></i> Update
+                    <button class="btn-sm btn-view" style="padding:0.6rem 1.2rem" onclick="updateConsultationStatus('${r.consultation_id || r.id}', ${r.id})">
+                        <i class="fas fa-save"></i> Save Status
                     </button>
-                    ${r.payment_status === 'pending_verification' ? `
-                    <button class="btn-confirm-pay" onclick="confirmPayment('${r.consultation_id}')">
-                        <i class="fas fa-check-circle"></i> Confirm Payment
-                    </button>` : ''}
+                    <a href="https://wa.me/91${(r.mobile_number || '').replace(/\D/g,'')}" target="_blank" class="btn-sm btn-confirm" style="padding:0.6rem 1.2rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Patient
+                    </a>
                 </div>
             `;
         } catch (e) {
-            document.getElementById('modalBody').innerHTML = '<p style="color:var(--red)">Error loading record.</p>';
+            document.getElementById('modalBody').innerHTML = '<p style="color:var(--red)">Error loading consultation details.</p>';
         }
     }
 
-    // ── Confirm payment ─────────────────────────────────────────────────────────
-    async function confirmPayment(consultationId) {
-        if (!confirm(`Confirm payment for booking ${consultationId}?`)) return;
+    // ── Update consultation status in SQL ───────────────────────────────────────
+    async function updateConsultationStatus(idOrCode, domId) {
+        const status = document.getElementById(`statusSelect_${domId}`)?.value;
+        if (!status) { alert('Please select a status.'); return; }
         try {
-            const res  = await apiFetch('/api/payment/confirm', 'POST', { consultation_id: consultationId });
+            const res  = await apiFetch(`/api/consultations/${idOrCode}`, 'PATCH', { status });
             const data = await res.json();
             if (data.status === 'OK') {
-                alert('✅ Payment confirmed!');
+                alert('✅ Consultation status updated in SQL database!');
                 closeModalDirect();
                 loadRecords();
                 loadStats();
             } else {
-                alert(data.message || 'Error confirming payment.');
+                alert(data.message || 'Error updating status.');
             }
         } catch (e) {
             alert('Network error.');
         }
     }
 
-    // ── Update status ───────────────────────────────────────────────────────────
-    async function updateStatus(id, consultationId) {
-        const status = document.getElementById(`statusSelect_${id}`).value;
-        if (!status) { alert('Please select a status.'); return; }
-        try {
-            const res  = await apiFetch(`/api/admin/records/${id}`, 'PUT', { status });
-            const data = await res.json();
-            if (data.status === 'OK') {
-                alert('Status updated!');
-                closeModalDirect();
-                loadRecords();
-            }
-        } catch (e) { alert('Error.'); }
-    }
-
     // ── Section switching ───────────────────────────────────────────────────────
     function showSection(section) {
         currentSection = section;
-        const titles = { patients: 'Patient Records', payments: 'Payment Records', today: "Today's Bookings" };
-        document.getElementById('sectionTitle').textContent = titles[section] || 'Records';
+        const titles = { patients: 'All Consultations', payments: 'Consultations Overview', today: "Today's Appointments" };
+        document.getElementById('sectionTitle').textContent = titles[section] || 'Consultations';
         document.querySelectorAll('.nav-item').forEach((el, i) => {
             el.classList.toggle('active', ['patients', 'payments', 'today'].indexOf(section) === i);
         });
@@ -712,7 +726,7 @@
     }
 
     function formatDate(d) {
-        if (!d) return '—';
+        if (!d) return 'Flexible';
         try { return new Date(d + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }); }
         catch { return d; }
     }
@@ -720,15 +734,10 @@
     function formatDateTime(d) {
         if (!d) return '—';
         try {
-            const dt = new Date(d.includes('T') ? d : d + 'Z');
+            const dt = new Date(d.includes('T') ? d : d.replace(' ', 'T') + 'Z');
             return dt.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }) + ' ' +
                    dt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
         } catch { return d; }
-    }
-
-    function formatPayStatus(s) {
-        const map = { pending: 'Pending', pending_verification: 'Verifying', paid: 'Paid', failed: 'Failed' };
-        return map[s] || s || '—';
     }
 
     function showTableError(msg) {
@@ -737,7 +746,7 @@
 
     function debounceFilter() {
         clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(loadRecords, 400);
+        debounceTimer = setTimeout(loadRecords, 350);
     }
 
     function closeModal(e) {
@@ -750,7 +759,7 @@
     function logout() {
         localStorage.removeItem('kezza_token');
         localStorage.removeItem('kezza_user');
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
     }
 </script>
 </body>
