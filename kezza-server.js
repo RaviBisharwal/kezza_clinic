@@ -2097,12 +2097,12 @@ app.use((err, req, res, _next) => {
 });
 
 // ─── START ────────────────────────────────────────────────────────────────────
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     const hasWA     = !!(process.env.WHATSAPP_TOKEN && (process.env.WHATSAPP_PHONE_NUMBER_ID || process.env.WHATSAPP_PHONE_ID));
     const hasGemini = !!(process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== 'REPLACE_WITH_REAL_GEMINI_KEY');
     const db = require('./db.js');
     log('info', 'SERVER_START', { port: PORT, waMode: hasWA ? 'API' : 'FALLBACK', geminiProxy: hasGemini });
-    console.log(`\n🚀 Kezza Consultation Server → http://localhost:${PORT}`);
+    console.log(`\n🚀 Kezza Consultation Server → http://0.0.0.0:${PORT}`);
     console.log(`📡 WhatsApp: ${hasWA ? '✅ Cloud API (real send)' : '⚠️  FALLBACK mode (wa.me links)'}`);
     console.log(`🤖 Gemini:   ${hasGemini ? '✅ Server-side proxy active' : '⚡ Deterministic Engine (Ultra-Fast)'}`);
     console.log(`🗄️ Database: ✅ SQL Engine Active (${db.getDriver() || 'SQLite/MySQL'})`);
