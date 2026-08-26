@@ -111,8 +111,7 @@
                     <a href="face-scanner.html" class="btn-scanner-hero">✦ Try AI Scanner</a>
                 </div>
                 <div class="hero-video">
-                    <video controls width="600" height="350" style="width: 600px; height: 350px;">
-
+                    <video controls muted playsinline loop preload="auto" width="600" height="350" style="width: 600px; height: 350px;">
                         <source src="video/video 1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -580,13 +579,13 @@
                 </a>
             </div>
             <div class="video-testimonials">
-                <video width="250" height="350" style="width: 250px; height: 350px;" controls>
+                <video width="250" height="350" style="width: 250px; height: 350px;" controls muted playsinline loop preload="metadata">
                     <source src="video/video7.mp4" type="video/mp4">
                 </video>
-                <video width="250" height="350" style="width: 250px; height: 350px;" controls>
+                <video width="250" height="350" style="width: 250px; height: 350px;" controls muted playsinline loop preload="metadata">
                     <source src="video/video2.mp4" type="video/mp4">
                 </video>
-                <video width="250" height="350" style="width: 250px; height: 350px;" controls>
+                <video width="250" height="350" style="width: 250px; height: 350px;" controls muted playsinline loop preload="metadata">
                     <source src="video/video3.mp4" type="video/mp4">
                 </video>
             </div>
@@ -683,24 +682,51 @@
     <script src="mobile-menu.js" defer></script>
     <script src="chatbot.js?v=2.2" defer></script>
 
-    <!-- Smooth Dock Motion on Scroll -->
+    <!-- Auto-Play Videos on Scroll & Auto-Hide Quick Dock -->
     <script>
-        let lastScrollY = window.scrollY;
-        const dockEl = document.getElementById('floatingQuickDock');
-        window.addEventListener('scroll', () => {
-            if (!dockEl) return;
-            const currentScrollY = window.scrollY;
-            if (currentScrollY > lastScrollY && currentScrollY > 200) {
-                // Scrolling down -> gently slide down
-                dockEl.style.transform = 'translate(-50%, 80px)';
-                dockEl.style.opacity = '0.3';
-            } else {
-                // Scrolling up or top -> bring back into view smoothly
-                dockEl.style.transform = 'translate(-50%, 0)';
-                dockEl.style.opacity = '1';
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Auto-Play / Pause Videos when Scrolled into View
+            const allVideos = document.querySelectorAll('video');
+            if ('IntersectionObserver' in window) {
+                const videoObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        const video = entry.target;
+                        if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+                            video.muted = true; // Required by browsers for autoplay
+                            const playPromise = video.play();
+                            if (playPromise !== undefined) {
+                                playPromise.catch(() => {
+                                    // Autoplay prevented by browser, waiting for user touch
+                                });
+                            }
+                        } else {
+                            if (!video.paused) {
+                                video.pause();
+                            }
+                        }
+                    });
+                }, { threshold: [0.1, 0.25, 0.5] });
+
+                allVideos.forEach(v => videoObserver.observe(v));
             }
-            lastScrollY = currentScrollY;
-        }, { passive: true });
+
+            // 2. Auto-Hide Floating Quick Dock during Active Scrolling
+            const dockEl = document.getElementById('floatingQuickDock');
+            let scrollStopTimer = null;
+
+            if (dockEl) {
+                window.addEventListener('scroll', () => {
+                    // Hide immediately while scrolling
+                    dockEl.classList.add('dock-hidden');
+
+                    // Reveal smoothly once scrolling stops for 350ms
+                    clearTimeout(scrollStopTimer);
+                    scrollStopTimer = setTimeout(() => {
+                        dockEl.classList.remove('dock-hidden');
+                    }, 350);
+                }, { passive: true });
+            }
+        });
     </script>
 
     <!-- Interactive Calculators Logic -->

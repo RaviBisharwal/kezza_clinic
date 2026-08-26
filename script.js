@@ -23,9 +23,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Add preload="none" to videos so they don't auto-download
+    // Auto-Play videos automatically on scroll when in viewport
     const videos = document.querySelectorAll('video');
-    videos.forEach(function(video) {
-        video.setAttribute('preload', 'metadata');
-    });
+    if ('IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target;
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+                    video.muted = true;
+                    video.playsInline = true;
+                    const p = video.play();
+                    if (p !== undefined) p.catch(() => {});
+                } else {
+                    if (!video.paused) video.pause();
+                }
+            });
+        }, { threshold: [0.1, 0.25, 0.5] });
+
+        videos.forEach(function(video) {
+            video.muted = true;
+            video.setAttribute('muted', '');
+            video.setAttribute('playsinline', '');
+            videoObserver.observe(video);
+        });
+    }
 });
