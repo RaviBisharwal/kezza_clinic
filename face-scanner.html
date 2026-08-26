@@ -26,6 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="face-scanner-styles.css">
+    <link rel="stylesheet" href="quick-actions.css">
     <link rel="stylesheet" href="chatbot.css?v=2.2">
     <link rel="icon" type="image/png" href="images/logo.png">
 </head>
@@ -758,6 +759,22 @@
         </a>
     </div>
 
+    <!-- Floating Quick Action Dock -->
+    <div class="floating-quick-dock" id="floatingQuickDock">
+        <a href="tel:+919284517427" class="dock-item dock-call" title="Call Clinic">
+            <i class="fas fa-phone-alt"></i> <span>Call 9284517427</span>
+        </a>
+        <a href="https://wa.me/919284517427" target="_blank" class="dock-item dock-wa" title="WhatsApp Doctor Team">
+            <i class="fab fa-whatsapp"></i> <span>WhatsApp Us</span>
+        </a>
+        <a href="face-scanner.html" class="dock-item dock-scan" title="AI Face &amp; Scalp Scanner">
+            <i class="fas fa-camera"></i> <span>✦ AI Scanner</span>
+        </a>
+        <a href="contact.html" class="dock-item dock-book" title="Book Consultation">
+            <i class="fas fa-calendar-alt"></i> <span>Book Visit</span>
+        </a>
+    </div>
+
     <!-- Floating Toast Notification -->
     <div id="scannerToast" class="scanner-toast"></div>
 
@@ -769,6 +786,7 @@
     <script src="mobile-menu.js" defer></script>
     <script src="face-scanner-script.js" defer></script>
     <script src="chatbot.js?v=2.2" defer></script>
+    <script src="quick-actions.js" defer></script>
 </body>
 
 </html>
