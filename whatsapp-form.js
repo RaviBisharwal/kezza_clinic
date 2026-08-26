@@ -1,0 +1,186 @@
+/**
+ * Kezza Clinic — Contact Form WhatsApp Handler
+ * Routes form submission to the correct department WhatsApp based on selected service.
+ * FIXED: Replaced alert() with inline error/success UI; removed Alwar; department-based routing.
+ */
+(function() {
+    'use strict';
+
+    // Verified department routing — must match backend DEPARTMENT_PHONES
+    const DEPT_PHONES = {
+        'hair-services':   '919216063681',
+        'hair-transplant': '918130888129',
+        'skin-services':   '919216063686',
+        'laser-treatments':'919216063686',
+        'prp-treatment':   '919216063681',
+        'weight-loss':     '919057546221',
+        'general-query':   '919284517427'  // Reception fallback
+    };
+
+    const DEPT_LABELS = {
+        'hair-services':   'Hair Team (Dr. Ankit Bhalothia)',
+        'hair-transplant': 'Hair Transplant — Elite Surgical, Sikar',
+        'skin-services':   'Skin Team (Dr. Amrita Makhija)',
+        'laser-treatments':'Skin Team (Dr. Amrita Makhija)',
+        'prp-treatment':   'Hair Team (Dr. Ankit Bhalothia)',
+        'weight-loss':     'Weight Loss Team',
+        'general-query':   'Kezza Reception'
+    };
+
+    function showError(formEl, message) {
+        clearMessages(formEl);
+        const el = document.createElement('div');
+        el.className = 'kezza-form-error';
+        el.setAttribute('role', 'alert');
+        el.innerHTML = `<strong>⚠ Please check your details:</strong> ${message}`;
+        formEl.prepend(el);
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function showSuccess(formEl, message) {
+        clearMessages(formEl);
+        const el = document.createElement('div');
+        el.className = 'kezza-form-success';
+        el.setAttribute('role', 'status');
+        el.innerHTML = `<strong>✅ ${message}</strong>`;
+        formEl.prepend(el);
+    }
+
+    function clearMessages(formEl) {
+        formEl.querySelectorAll('.kezza-form-error, .kezza-form-success').forEach(el => el.remove());
+    }
+
+    function injectFormStyles() {
+        if (document.getElementById('kezza-form-styles')) return;
+        const style = document.createElement('style');
+        style.id = 'kezza-form-styles';
+        style.textContent = `
+            .kezza-form-error, .kezza-form-success {
+                padding: 12px 16px;
+                border-radius: 8px;
+                margin-bottom: 16px;
+                font-size: 14px;
+                font-family: 'Inter', sans-serif;
+                animation: kezza-slide-in 0.3s ease;
+            }
+            .kezza-form-error {
+                background: #fef2f2;
+                border: 1px solid #fecaca;
+                color: #b91c1c;
+            }
+            .kezza-form-success {
+                background: #f0fdf4;
+                border: 1px solid #bbf7d0;
+                color: #15803d;
+            }
+            @keyframes kezza-slide-in {
+                from { opacity: 0; transform: translateY(-6px); }
+                to   { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        injectFormStyles();
+
+        const contactForm = document.getElementById('contactForm');
+        if (!contactForm) return;
+
+        const phoneInput = document.getElementById('phone');
+        if (phoneInput) {
+            phoneInput.setAttribute('maxlength', '10');
+            phoneInput.setAttribute('inputmode', 'numeric');
+            phoneInput.setAttribute('type', 'tel');
+            phoneInput.setAttribute('placeholder', 'Enter 10-digit WhatsApp number');
+
+            // Real-time input filter: digits only
+            phoneInput.addEventListener('input', function() {
+                this.value = this.value.replace(/\D/g, '').slice(0, 10);
+            });
+
+            // Paste protection: extract final 10 digits
+            phoneInput.addEventListener('paste', function(e) {
+                e.preventDefault();
+                const text = (e.clipboardData || window.clipboardData)?.getData('text') || '';
+                const digits = text.replace(/\D/g, '');
+                const normalized = digits.length > 10 ? digits.slice(-10) : digits;
+                this.value = normalized.slice(0, 10);
+            });
+
+            phoneInput.addEventListener('keydown', function(e) {
+                const allowed = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Tab', 'Escape', 'Home', 'End', 'Enter'];
+                if (allowed.includes(e.key) || e.ctrlKey || e.metaKey || e.altKey) return;
+                if (!/^[0-9]$/.test(e.key)) {
+                    e.preventDefault();
+                    return;
+                }
+                const selLen = (this.selectionEnd || 0) - (this.selectionStart || 0);
+                if (this.value.length >= 10 && selLen === 0) {
+                    e.preventDefault();
+                }
+            });
+        }
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name     = document.getElementById('fullName')?.value.trim()  || '';
+            const phone    = document.getElementById('phone')?.value.trim()     || '';
+            const email    = document.getElementById('email')?.value.trim()     || '';
+            const category = document.getElementById('category')?.value         || '';
+            const clinic   = document.getElementById('clinic')?.value           || '';
+            const message  = document.getElementById('message')?.value.trim()   || '';
+
+            // Validation
+            if (!name || !phone || !email || !category || !clinic || !message) {
+                return showError(contactForm, 'All fields are required.');
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                return showError(contactForm, 'Please enter a valid email address.');
+            }
+
+            if (!/^[6-9][0-9]{9}$/.test(phone)) {
+                if (/[^\d]/.test(phone)) {
+                    return showError(contactForm, 'Only numbers are allowed.');
+                }
+                if (phone.length < 10) {
+                    return showError(contactForm, 'Please enter exactly 10 digits.');
+                }
+                if (!/^[6-9]/.test(phone)) {
+                    return showError(contactForm, 'Please enter a valid Indian mobile number starting with 6, 7, 8 or 9.');
+                }
+                return showError(contactForm, 'Please enter a valid 10-digit WhatsApp number.');
+            }
+
+            // Route to correct department
+            const toPhone  = DEPT_PHONES[category]  || '919284517427';
+            const deptName = DEPT_LABELS[category]   || 'Kezza Team';
+            const clinicLabel = clinic === 'sikar' ? 'Sikar' : 'Jaipur';
+
+            const waMessage = `New Website Enquiry — Kezza Clinic
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+Service: ${category}
+Preferred Clinic: ${clinicLabel}
+Message: ${message}
+
+Routed to: ${deptName}`;
+
+            const waUrl = `https://wa.me/${toPhone}?text=${encodeURIComponent(waMessage)}`;
+
+            // Open WhatsApp
+            window.open(waUrl, '_blank');
+
+            // Show success message inline (not alert)
+            showSuccess(contactForm, `Redirecting you to WhatsApp to connect with the ${deptName}. If it didn't open, <a href="${waUrl}" target="_blank">click here</a>.`);
+
+            // Reset form
+            contactForm.reset();
+        });
+    });
+})();

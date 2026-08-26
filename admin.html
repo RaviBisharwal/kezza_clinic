@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard — Kezza Clinic</title>
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --gold:       #c9a84c;
+            --gold-dark:  #a07830;
+            --dark-bg:    #080a10;
+            --sidebar-bg: #0d0f18;
+            --card-bg:    rgba(255,255,255,0.035);
+            --border:     rgba(201,168,76,0.18);
+            --text:       #e8e0d0;
+            --muted:      #888;
+            --green:      #5bc47f;
+            --red:        #e05b5b;
+            --orange:     #e0903a;
+            --blue:       #5ba4e0;
+        }
+
+        html, body { height: 100%; font-family: 'Inter', sans-serif; color: var(--text); background: var(--dark-bg); }
+
+        /* ── Layout ───────────────────────────────────── */
+        .admin-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ── Sidebar ─────────────────────────────────── */
+        .sidebar {
+            width: 240px;
+            min-height: 100vh;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0; bottom: 0; left: 0;
+            z-index: 50;
+            transition: transform 0.3s;
+        }
+        .sidebar-logo {
+            padding: 1.4rem 1.2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; gap: 0.7rem;
+        }
+        .sidebar-logo img { height: 36px; }
+        .sidebar-logo-text { font-size: 0.78rem; font-weight: 600; color: var(--gold); line-height: 1.2; }
+        .sidebar-logo-text span { display: block; font-size: 0.65rem; color: var(--muted); font-weight: 400; }
+
+        .sidebar-nav { flex: 1; padding: 1rem 0; }
+        .nav-item {
+            display: flex; align-items: center; gap: 0.7rem;
+            padding: 0.7rem 1.2rem;
+            color: var(--muted);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        .nav-item:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+        .nav-item.active { color: var(--gold); border-left-color: var(--gold); background: rgba(201,168,76,0.06); }
+        .nav-item i { width: 18px; text-align: center; }
+
+        .sidebar-footer {
+            padding: 1rem 1.2rem;
+            border-top: 1px solid var(--border);
+        }
+        .user-chip {
+            display: flex; align-items: center; gap: 0.6rem;
+            font-size: 0.78rem; margin-bottom: 0.8rem;
+        }
+        .user-avatar {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: linear-gradient(135deg, #c9a84c, #a07830);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.8rem; color: #000;
+        }
+        .btn-logout {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid rgba(224,91,91,0.3);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--red);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-logout:hover { background: rgba(224,91,91,0.1); }
+
+        /* ── Main content ────────────────────────────── */
+        .main-content {
+            margin-left: 240px;
+            flex: 1;
+            padding: 1.8rem;
+            min-height: 100vh;
+        }
+
+        /* ── Topbar ──────────────────────────────────── */
+        .topbar {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 1.8rem;
+        }
+        .topbar h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem; color: #fff;
+        }
+        .topbar-right { display: flex; gap: 0.7rem; align-items: center; }
+        .btn-refresh {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--muted);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem; cursor: pointer;
+            transition: all 0.2s;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .btn-refresh:hover { color: var(--gold); border-color: var(--gold); }
+
+        /* ── Stats cards ─────────────────────────────── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.8rem;
+        }
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--accent, var(--gold));
+        }
+        .stat-card.green { --accent: var(--green); }
+        .stat-card.orange { --accent: var(--orange); }
+        .stat-card.blue { --accent: var(--blue); }
+        .stat-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+        .stat-val { font-size: 1.9rem; font-weight: 800; color: #fff; font-family: 'Playfair Display', serif; }
+        .stat-sub { font-size: 0.72rem; color: var(--muted); margin-top: 0.3rem; }
+
+        /* ── Filters bar ─────────────────────────────── */
+        .filters-bar {
+            display: flex; gap: 0.7rem; flex-wrap: wrap;
+            margin-bottom: 1.2rem; align-items: center;
+        }
+        .filter-input {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.84rem;
+            padding: 0.5rem 0.8rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .filter-input:focus { border-color: rgba(201,168,76,0.5); }
+        .filter-input::placeholder { color: var(--muted); }
+        .search-input { min-width: 200px; }
+
+        /* ── Table ───────────────────────────────────── */
+        .table-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .table-header {
+            padding: 1rem 1.2rem;
+            display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+        .table-header h2 { font-size: 0.9rem; font-weight: 700; color: var(--gold); }
+        .record-count { font-size: 0.78rem; color: var(--muted); }
+
+        .records-table { width: 100%; border-collapse: collapse; }
+        .records-table th {
+            padding: 0.7rem 0.9rem;
+            text-align: left;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            white-space: nowrap;
+        }
+        .records-table td {
+            padding: 0.75rem 0.9rem;
+            font-size: 0.84rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            vertical-align: middle;
+        }
+        .records-table tr:hover td { background: rgba(255,255,255,0.02); }
+        .records-table tr:last-child td { border-bottom: none; }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .badge-pending { background: rgba(224,144,58,0.15); color: var(--orange); }
+        .badge-paid    { background: rgba(91,196,127,0.15); color: var(--green);  }
+        .badge-pending_verification { background: rgba(91,164,224,0.15); color: var(--blue); }
+        .badge-booked    { background: rgba(201,168,76,0.12); color: var(--gold); }
+        .badge-confirmed { background: rgba(91,196,127,0.12); color: var(--green); }
+        .badge-completed { background: rgba(150,150,255,0.12); color: #a0a0ff; }
+        .badge-cancelled { background: rgba(224,91,91,0.12); color: var(--red); }
+
+        /* Action buttons */
+        .btn-sm {
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            cursor: pointer;
+            border: 1px solid;
+            transition: all 0.2s;
+        }
+        .btn-view    { border-color: rgba(201,168,76,0.4); color: var(--gold); background: transparent; }
+        .btn-view:hover { background: rgba(201,168,76,0.1); }
+        .btn-confirm { border-color: rgba(91,196,127,0.4); color: var(--green); background: transparent; }
+        .btn-confirm:hover { background: rgba(91,196,127,0.1); }
+
+        /* ── Detail Modal ─────────────────────────────── */
+        .modal-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(4px);
+            z-index: 200;
+            align-items: center; justify-content: center;
+            padding: 1rem;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal {
+            background: #0f1220;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            width: 100%;
+            max-width: 620px;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: fadeUp 0.3s ease;
+        }
+        @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+        .modal-header {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            position: sticky; top: 0; background: #0f1220; z-index: 1;
+        }
+        .modal-header h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; }
+        .btn-close-modal {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .modal-body { padding: 1.5rem; }
+        .modal-photo {
+            width: 100%; max-height: 200px; object-fit: cover;
+            border-radius: 10px; margin-bottom: 1rem;
+            border: 1px solid var(--border);
+        }
+        .modal-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 0.8rem; margin-bottom: 1rem;
+        }
+        .modal-field { }
+        .modal-field label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.25rem; }
+        .modal-field p { font-size: 0.88rem; color: #fff; font-weight: 500; }
+        .modal-actions { display: flex; gap: 0.7rem; margin-top: 1rem; }
+        .btn-confirm-pay {
+            flex: 1; padding: 0.7rem;
+            border: none; border-radius: 10px;
+            background: linear-gradient(135deg, #5bc47f, #2ea85a);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem; font-weight: 700;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+        }
+        .status-select {
+            flex: 1;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            padding: 0.7rem;
+            outline: none;
+        }
+
+        /* Empty state */
+        .empty-state {
+            padding: 3rem; text-align: center; color: var(--muted);
+        }
+        .empty-state i { font-size: 2.5rem; margin-bottom: 0.8rem; opacity: 0.3; display: block; }
+
+        /* Loading */
+        .loading-state { padding: 3rem; text-align: center; color: var(--muted); }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+            .records-table { font-size: 0.78rem; }
+            .records-table th:nth-child(4),
+            .records-table td:nth-child(4),
+            .records-table th:nth-child(5),
+            .records-table td:nth-child(5) { display: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <img src="images/logo.png" alt="Kezza">
+            <div class="sidebar-logo-text">Kezza Clinic<span>Admin Dashboard</span></div>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-item active" onclick="showSection('patients')"><i class="fas fa-users"></i> All Patients</div>
+            <div class="nav-item" onclick="showSection('payments')"><i class="fas fa-rupee-sign"></i> Payments</div>
+            <div class="nav-item" onclick="showSection('today')"><i class="fas fa-calendar-day"></i> Today's Bookings</div>
+            <div class="nav-item" onclick="window.open('face-scanner.html','_blank')"><i class="fas fa-microscope"></i> AI Scanner</div>
+            <div class="nav-item" onclick="window.location.href='index.html'"><i class="fas fa-globe"></i> View Website</div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-chip">
+                <div class="user-avatar" id="userInitial">A</div>
+                <div>
+                    <div id="userName" style="font-size:0.82rem;font-weight:600">Admin</div>
+                    <div id="userRole" style="font-size:0.7rem;color:var(--gold)">Admin</div>
+                </div>
+            </div>
+            <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Topbar -->
+        <div class="topbar">
+            <h1 id="sectionTitle">Patient Records</h1>
+            <div class="topbar-right">
+                <button class="btn-refresh" onclick="loadRecords()"><i class="fas fa-sync-alt"></i> Refresh</button>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card"><div class="stat-label">Total Patients</div><div class="stat-val" id="statTotal">—</div><div class="stat-sub">All time</div></div>
+            <div class="stat-card green"><div class="stat-label">Today</div><div class="stat-val" id="statToday">—</div><div class="stat-sub">New bookings</div></div>
+            <div class="stat-card orange"><div class="stat-label">Pending Payment</div><div class="stat-val" id="statPending">—</div><div class="stat-sub">Needs verification</div></div>
+            <div class="stat-card"><div class="stat-label">Confirmed Paid</div><div class="stat-val" id="statPaid">—</div><div class="stat-sub">Verified</div></div>
+            <div class="stat-card blue"><div class="stat-label">Jaipur</div><div class="stat-val" id="statJaipur">—</div><div class="stat-sub">Branch</div></div>
+            <div class="stat-card blue"><div class="stat-label">Sikar</div><div class="stat-val" id="statSikar">—</div><div class="stat-sub">Branch</div></div>
+            <div class="stat-card green"><div class="stat-label">Revenue</div><div class="stat-val" id="statRevenue">—</div><div class="stat-sub">Verified payments</div></div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-bar">
+            <input type="text" class="filter-input search-input" id="searchInput" placeholder="🔍 Search name / phone / booking ID" oninput="debounceFilter()">
+            <select class="filter-input" id="filterClinic" onchange="loadRecords()">
+                <option value="">All Clinics</option>
+                <option>Jaipur</option>
+                <option>Sikar</option>
+            </select>
+            <select class="filter-input" id="filterStatus" onchange="loadRecords()">
+                <option value="">All Statuses</option>
+                <option value="booked">Booked</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="completed">Completed</option>
+                <option value="cancelled">Cancelled</option>
+            </select>
+            <input type="date" class="filter-input" id="filterDateFrom" onchange="loadRecords()" title="Date from">
+            <input type="date" class="filter-input" id="filterDateTo" onchange="loadRecords()" title="Date to">
+        </div>
+
+        <!-- Table -->
+        <div class="table-card">
+            <div class="table-header">
+                <h2><i class="fas fa-table"></i> Patient Bookings</h2>
+                <span class="record-count" id="recordCount">Loading…</span>
+            </div>
+            <div id="tableBody">
+                <div class="loading-state"><i class="fas fa-circle-notch fa-spin"></i> &nbsp;Loading records…</div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <h3 id="modalTitle">Patient Detail</h3>
+            <button class="btn-close-modal" onclick="closeModalDirect()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body" id="modalBody">Loading…</div>
+    </div>
+</div>
+
+<script>
+    const API_BASE = 'http://localhost:3001';
+    let authToken = '';
+    let currentSection = 'patients';
+    let debounceTimer = null;
+
+    // ── Auth check ──────────────────────────────────────────────────────────────
+    (function init() {
+        authToken = localStorage.getItem('kezza_token') || '';
+        if (!authToken) { window.location.href = 'login.html?redirect=admin.html'; return; }
+        try {
+            const payload = JSON.parse(atob(authToken.split('.')[1]));
+            if (payload.role !== 'admin' && payload.role !== 'staff') {
+                window.location.href = 'login.html';
+                return;
+            }
+            document.getElementById('userName').textContent = payload.name || 'Admin';
+            document.getElementById('userRole').textContent  = payload.role === 'admin' ? 'Administrator' : 'Staff';
+            document.getElementById('userInitial').textContent = (payload.name || 'A')[0].toUpperCase();
+        } catch (e) { window.location.href = 'login.html'; return; }
+
+        loadStats();
+        loadRecords();
+    })();
+
+    // ── Stats ───────────────────────────────────────────────────────────────────
+    async function loadStats() {
+        try {
+            const res  = await apiFetch('/api/admin/stats');
+            const data = await res.json();
+            if (data.status === 'OK') {
+                const s = data.stats;
+                document.getElementById('statTotal').textContent   = s.totalPatients;
+                document.getElementById('statToday').textContent   = s.todayCount;
+                document.getElementById('statPending').textContent = s.pendingPayment;
+                document.getElementById('statPaid').textContent    = s.paidCount;
+                document.getElementById('statJaipur').textContent  = s.jaipur;
+                document.getElementById('statSikar').textContent   = s.sikar;
+                document.getElementById('statRevenue').textContent = '₹' + (s.revenue || 0).toLocaleString('en-IN');
+            }
+        } catch (e) { console.warn('Stats error:', e); }
+    }
+
+    // ── Records ─────────────────────────────────────────────────────────────────
+    async function loadRecords() {
+        document.getElementById('tableBody').innerHTML = '<div class="loading-state"><i class="fas fa-circle-notch fa-spin"></i> &nbsp;Loading…</div>';
+        const params = new URLSearchParams();
+        const search   = document.getElementById('searchInput').value.trim();
+        const clinic   = document.getElementById('filterClinic').value;
+        const status   = document.getElementById('filterStatus').value;
+        const dateFrom = document.getElementById('filterDateFrom').value;
+        const dateTo   = document.getElementById('filterDateTo').value;
+        if (search)   params.set('search',    search);
+        if (clinic)   params.set('clinic',    clinic);
+        if (status)   params.set('status',    status);
+        if (dateFrom) params.set('date_from', dateFrom);
+        if (dateTo)   params.set('date_to',   dateTo);
+
+        // Filter by today
+        if (currentSection === 'today') {
+            const t = new Date().toISOString().split('T')[0];
+            params.set('date_from', t); params.set('date_to', t);
+        }
+        if (currentSection === 'payments') {
+            params.set('status', '');
+        }
+
+        try {
+            const res  = await apiFetch(`/api/admin/records?${params}`);
+            const data = await res.json();
+            if (data.status === 'OK') {
+                renderTable(data.records);
+                document.getElementById('recordCount').textContent = `${data.total} record${data.total !== 1 ? 's' : ''}`;
+            } else {
+                showTableError('Failed to load records.');
+            }
+        } catch (e) {
+            showTableError('Cannot connect to server. Is the backend running on port 3001?');
+        }
+    }
+
+    function renderTable(records) {
+        if (!records || records.length === 0) {
+            document.getElementById('tableBody').innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-folder-open"></i>
+                    No patient records found. Adjust filters or wait for new bookings.
+                </div>`;
+            return;
+        }
+
+        const rows = records.map(r => `
+            <tr>
+                <td>
+                    <div style="font-weight:600;color:#fff;font-size:0.85rem">${esc(r.patient_name || '—')}</div>
+                    <div style="font-size:0.72rem;color:var(--muted)">${esc(r.phone || '—')}</div>
+                </td>
+                <td>
+                    <div>${esc(r.concern_type || r.detected_concern || '—')}</div>
+                    <div style="font-size:0.72rem;color:var(--muted)">${esc(r.assigned_doctor || '—')}</div>
+                </td>
+                <td>
+                    <span class="badge badge-${r.status || 'booked'}">${r.status || 'booked'}</span>
+                </td>
+                <td>
+                    <span class="badge badge-${r.payment_status || 'pending'}">${formatPayStatus(r.payment_status)}</span>
+                    ${r.utr_number ? `<div style="font-size:0.7rem;color:var(--muted);margin-top:2px">UTR: ${esc(r.utr_number)}</div>` : ''}
+                </td>
+                <td>
+                    <div style="font-size:0.82rem">${r.clinic_branch || '—'}</div>
+                    <div style="font-size:0.7rem;color:var(--muted)">${formatDate(r.preferred_date)} ${r.preferred_time ? '| ' + r.preferred_time.split(' ')[0] : ''}</div>
+                </td>
+                <td>
+                    <div style="font-size:0.7rem;color:var(--gold)">${esc(r.consultation_id || '—')}</div>
+                    <div style="font-size:0.68rem;color:var(--muted)">${formatDateTime(r.created_at)}</div>
+                </td>
+                <td>
+                    <button class="btn-sm btn-view" onclick="viewRecord(${r.id})"><i class="fas fa-eye"></i> View</button>
+                    ${(r.payment_status === 'pending_verification') ?
+                        `<button class="btn-sm btn-confirm" style="margin-left:4px" onclick="confirmPayment('${r.consultation_id}')"><i class="fas fa-check"></i> Pay</button>` : ''}
+                </td>
+            </tr>
+        `).join('');
+
+        document.getElementById('tableBody').innerHTML = `
+            <div style="overflow-x:auto">
+            <table class="records-table">
+                <thead>
+                    <tr>
+                        <th>Patient</th>
+                        <th>Concern / Doctor</th>
+                        <th>Status</th>
+                        <th>Payment</th>
+                        <th>Clinic / Date</th>
+                        <th>Booking ID</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>${rows}</tbody>
+            </table>
+            </div>`;
+    }
+
+    // ── View record modal ───────────────────────────────────────────────────────
+    async function viewRecord(id) {
+        document.getElementById('modalTitle').textContent = 'Patient Detail';
+        document.getElementById('modalBody').innerHTML = '<div class="loading-state"><i class="fas fa-circle-notch fa-spin"></i> Loading…</div>';
+        document.getElementById('modalOverlay').classList.add('open');
+
+        try {
+            const res  = await apiFetch(`/api/admin/records/${id}`);
+            const data = await res.json();
+            if (data.status !== 'OK') { document.getElementById('modalBody').innerHTML = '<p>Not found.</p>'; return; }
+            const r = data.record;
+            const pays = data.payments || [];
+
+            const photoHtml = r.photo_base64
+                ? `<img class="modal-photo" src="data:image/jpeg;base64,${r.photo_base64.replace(/^data:[^;]+;base64,/, '')}" alt="Patient photo">`
+                : `<div style="width:100%;height:80px;background:rgba(255,255,255,0.04);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.8rem;margin-bottom:1rem"><i class="fas fa-image"></i> &nbsp;No photo submitted</div>`;
+
+            const payRows = pays.map(p => `
+                <div style="font-size:0.78rem;padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.05)">
+                    <span class="badge badge-${p.status}">${p.status}</span>
+                    &nbsp;₹${p.amount}
+                    ${p.utr_number ? ` | UTR: <strong>${esc(p.utr_number)}</strong>` : ''}
+                    ${p.confirmed_at ? ` | Confirmed: ${formatDateTime(p.confirmed_at)}` : ''}
+                </div>
+            `).join('') || '<div style="color:var(--muted);font-size:0.8rem">No payment records</div>';
+
+            document.getElementById('modalTitle').textContent = `${r.patient_name || 'Patient'} — ${r.consultation_id || ''}`;
+            document.getElementById('modalBody').innerHTML = `
+                ${photoHtml}
+                <div class="modal-grid">
+                    <div class="modal-field"><label>Patient Name</label><p>${esc(r.patient_name || '—')}</p></div>
+                    <div class="modal-field"><label>Age Group</label><p>${esc(r.age_group || '—')}</p></div>
+                    <div class="modal-field"><label>City</label><p>${esc(r.city || '—')}</p></div>
+                    <div class="modal-field"><label>Phone</label><p>${esc(r.phone || '—')}</p></div>
+                    <div class="modal-field"><label>Concern</label><p>${esc(r.concern_type || '—')}</p></div>
+                    <div class="modal-field"><label>Duration</label><p>${esc(r.duration || '—')}</p></div>
+                    <div class="modal-field"><label>Family History</label><p>${esc(r.family_history || '—')}</p></div>
+                    <div class="modal-field"><label>Clinic</label><p>${esc(r.clinic_branch || '—')}</p></div>
+                    <div class="modal-field"><label>Preferred Date</label><p>${formatDate(r.preferred_date)}</p></div>
+                    <div class="modal-field"><label>Time Slot</label><p>${esc(r.preferred_time || '—')}</p></div>
+                    <div class="modal-field"><label>AI Concern</label><p>${esc(r.detected_concern || '—')}</p></div>
+                    <div class="modal-field"><label>Treatment</label><p>${esc(r.recommended_treatment || '—')}</p></div>
+                    <div class="modal-field"><label>Doctor</label><p>${esc(r.assigned_doctor || '—')}</p></div>
+                    <div class="modal-field"><label>Payment Status</label><p><span class="badge badge-${r.payment_status}">${formatPayStatus(r.payment_status)}</span></p></div>
+                    <div class="modal-field"><label>Booking Status</label><p><span class="badge badge-${r.status}">${r.status || 'booked'}</span></p></div>
+                    <div class="modal-field"><label>Created At</label><p>${formatDateTime(r.created_at)}</p></div>
+                </div>
+
+                <div style="margin-bottom:1rem">
+                    <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.5rem">Payment History</div>
+                    ${payRows}
+                </div>
+
+                <div class="modal-actions">
+                    <select class="status-select" id="statusSelect_${r.id}">
+                        <option value="">— Change Status —</option>
+                        <option value="booked">Booked</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                    <button class="btn-sm btn-view" style="padding:0.6rem 1rem" onclick="updateStatus(${r.id}, '${r.consultation_id}')">
+                        <i class="fas fa-save"></i> Update
+                    </button>
+                    ${r.payment_status === 'pending_verification' ? `
+                    <button class="btn-confirm-pay" onclick="confirmPayment('${r.consultation_id}')">
+                        <i class="fas fa-check-circle"></i> Confirm Payment
+                    </button>` : ''}
+                </div>
+            `;
+        } catch (e) {
+            document.getElementById('modalBody').innerHTML = '<p style="color:var(--red)">Error loading record.</p>';
+        }
+    }
+
+    // ── Confirm payment ─────────────────────────────────────────────────────────
+    async function confirmPayment(consultationId) {
+        if (!confirm(`Confirm payment for booking ${consultationId}?`)) return;
+        try {
+            const res  = await apiFetch('/api/payment/confirm', 'POST', { consultation_id: consultationId });
+            const data = await res.json();
+            if (data.status === 'OK') {
+                alert('✅ Payment confirmed!');
+                closeModalDirect();
+                loadRecords();
+                loadStats();
+            } else {
+                alert(data.message || 'Error confirming payment.');
+            }
+        } catch (e) {
+            alert('Network error.');
+        }
+    }
+
+    // ── Update status ───────────────────────────────────────────────────────────
+    async function updateStatus(id, consultationId) {
+        const status = document.getElementById(`statusSelect_${id}`).value;
+        if (!status) { alert('Please select a status.'); return; }
+        try {
+            const res  = await apiFetch(`/api/admin/records/${id}`, 'PUT', { status });
+            const data = await res.json();
+            if (data.status === 'OK') {
+                alert('Status updated!');
+                closeModalDirect();
+                loadRecords();
+            }
+        } catch (e) { alert('Error.'); }
+    }
+
+    // ── Section switching ───────────────────────────────────────────────────────
+    function showSection(section) {
+        currentSection = section;
+        const titles = { patients: 'Patient Records', payments: 'Payment Records', today: "Today's Bookings" };
+        document.getElementById('sectionTitle').textContent = titles[section] || 'Records';
+        document.querySelectorAll('.nav-item').forEach((el, i) => {
+            el.classList.toggle('active', ['patients', 'payments', 'today'].indexOf(section) === i);
+        });
+        loadRecords();
+    }
+
+    // ── Helpers ─────────────────────────────────────────────────────────────────
+    function apiFetch(path, method = 'GET', body = null) {
+        const opts = { method, headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authToken } };
+        if (body) opts.body = JSON.stringify(body);
+        return fetch(API_BASE + path, opts);
+    }
+
+    function esc(str) {
+        if (!str) return '—';
+        return String(str).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function formatDate(d) {
+        if (!d) return '—';
+        try { return new Date(d + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }); }
+        catch { return d; }
+    }
+
+    function formatDateTime(d) {
+        if (!d) return '—';
+        try {
+            const dt = new Date(d.includes('T') ? d : d + 'Z');
+            return dt.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }) + ' ' +
+                   dt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+        } catch { return d; }
+    }
+
+    function formatPayStatus(s) {
+        const map = { pending: 'Pending', pending_verification: 'Verifying', paid: 'Paid', failed: 'Failed' };
+        return map[s] || s || '—';
+    }
+
+    function showTableError(msg) {
+        document.getElementById('tableBody').innerHTML = `<div class="empty-state"><i class="fas fa-exclamation-triangle"></i>${msg}</div>`;
+    }
+
+    function debounceFilter() {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(loadRecords, 400);
+    }
+
+    function closeModal(e) {
+        if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
+    }
+    function closeModalDirect() {
+        document.getElementById('modalOverlay').classList.remove('open');
+    }
+
+    function logout() {
+        localStorage.removeItem('kezza_token');
+        localStorage.removeItem('kezza_user');
+        window.location.href = 'login.html';
+    }
+</script>
+</body>
+</html>

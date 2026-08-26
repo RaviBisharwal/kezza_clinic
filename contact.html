@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P5C9295R');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Kezza Hair & Skin Clinic | Book Consultation</title>
+        <meta name="description" content="Contact Kezza Hair &amp; Skin Clinic for expert consultation. Book appointments at our Jaipur or Sikar branches. Call +91-92845-17427 or WhatsApp for immediate assistance.">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q4NB5CRMW"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-2Q4NB5CRMW');
+        </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="contact-styles.css">
+    <link rel="stylesheet" href="chatbot.css?v=2.2">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5C9295R"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><img src="images/logo.png" alt="Kezza Clinic"></a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="hair-services.html">Hair Services</a></li>
+                <li><a href="skin-services.html">Skin Services</a></li>
+                <li><a href="permanent-makeup.html">Permanent Makeup</a></li>
+                <li><a href="face-scanner.html" class="nav-scanner-link">✦ AI Scanner</a></li>
+                <li><a href="branches.html">Franchise</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="https://wa.me/919284517427" class="btn-primary">Book Consultation</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section 1: Hero Banner -->
+    <section class="contact-hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Connect With Kezza - Your Journey to Confident Skin & Hair Starts Here</h1>
+                <div class="gold-underline"></div>
+                <p class="hero-subtitle">
+                    Whether you're ready to book a treatment, want to understand the right solution for your skin or hair, or simply have a few questions — our team is here to help you with clarity, care, and guidance.
+                </p>
+                <p class="hero-description">
+                    We aim to respond within 12 hours during working days.
+                </p>
+                <div class="hero-ctas">
+                    <a href="https://wa.me/919284517427" class="btn-gold">Book Consultation</a>
+                    <a href="https://wa.me/919284517427" class="btn-navy">WhatsApp Us</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/keeza-clinic-outside.jpg" alt="Clinic Reception">
+                <div class="floating-particles"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Video Message -->
+    <section class="video-message-section">
+        <div class="container">
+            <h2>You Are in Safe Hands - With Our Doctors</h2>
+        </div>
+    </section>
+
+    <!-- Section 3: Contact Form -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="form-container">
+                    <div class="form-card">
+                        <h2>Book a Consultation or Ask a Question</h2>
+                        <p class="form-subtitle">A member of our team will respond shortly.</p>
+
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">📱 WhatsApp Number *</label>
+                                <input type="tel" id="phone" name="phone" inputmode="numeric" maxlength="10" placeholder="Enter 10-digit WhatsApp number" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="category">Select Category *</label>
+                                <select id="category" name="category" required>
+                                    <option value="">Choose a service...</option>
+                                    <option value="hair-services">Hair Services</option>
+                                    <option value="skin-services">Skin Services</option>
+                                    <option value="laser-treatments">Laser Treatments</option>
+                                    <option value="hair-transplant">Hair Transplant</option>
+                                    <option value="prp-treatment">PRP Treatment</option>
+                                    <option value="general-query">General Query</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="clinic">Preferred Clinic *</label>
+                                <select id="clinic" name="clinic" required>
+                                    <option value="">Choose a location...</option>
+                                    <option value="jaipur">Jaipur</option>
+                                    <option value="sikar">Sikar</option>
+                                </select>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="message">Message / Concern *</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Please describe your concern or question..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="clinic-info">
+                    <div class="info-card">
+                        <div class="info-item">
+                            <div class="info-icon"></div>
+                            <h3>Our Clinic Locations</h3>
+                            <p>We are available across Jaipur and Sikar, making premium hair and skincare accessible wherever you are.</p>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon"></div>
+                            <h3>Phone</h3>
+                            <p>+91-9284517427</p>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon"></div>
+                            <h3>WhatsApp</h3>
+                            <p>+91-9284517427</p>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon"></div>
+                            <h3>Email</h3>
+                            <p>support@kezza.co.in</p>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon"></div>
+                            <h3>Working Hours</h3>
+                            <p>Mon-Sun: 9 AM - 8 PM<br>(We reply fastest on WhatsApp.)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Branch Locator -->
+    <!-- <section class="branch-locator-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Visit Any of Our Multi-City Clinics</h2>
+            </div>
+            <div class="branches-grid">
+                <div class="branch-card">
+                    <img src="images/keeza-clinic-outside.jpg" alt="Jaipur Clinic">
+                    <div class="branch-content">
+                        <h3>Jaipur Kezza Clinic</h3>
+                        <p class="branch-address">Kezza Laser & Cosmetic Surgery Center, Jaipur Karni Bhavan, Plot 101, Khatipura Rd, Parivahan Nagar, Khatipura, Jaipur, Rajasthan 302012</p>
+                        <a href="https://wa.me/919284517427" target="_blank" class="whatsapp-btn">WhatsApp: +91-92845-17427</a>
+                    </div>
+                </div>
+
+                <div class="branch-card">
+                    <img src="images/keeza-clinic-outside.jpg" alt="Sikar Clinic">
+                    <div class="branch-content">
+                        <h3>Sikar Kezza Hair and Skin Clinic</h3>
+                        <p class="branch-address">Kezza Laser Cosmetic Center, Sikar First Floor, Shakambhari Heights, Infront of S.K. Hospital, Silver Jubilee Rd, Sakpura Mohlla, Samrathpura Rural, Sikar, Rajasthan 332001</p>
+                        <a href="https://wa.me/919284517427" target="_blank" class="whatsapp-btn">WhatsApp: +91-92845-17427</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <div id="rajasthanMap" style="width:100%;height:420px;border-radius:8px;"></div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Section 5: Why Contact Us -->
+    <section class="why-contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Reach Out to Kezza?</h2>
+            </div>
+            <div class="why-contact-grid">
+                <div class="why-contact-card">
+                    <div class="card-icon"></div>
+                    <h3>Personalized Diagnosis</h3>
+                    <p>Every skin or hair concern is unique. We provide tailored guidance before recommending any treatment.</p>
+                </div>
+
+                <div class="why-contact-card">
+                    <div class="card-icon"></div>
+                    <h3>Transparent Consultation</h3>
+                    <p>We explain procedures, expected results, costs, downtime, and alternatives before you decide.</p>
+                </div>
+
+                <div class="why-contact-card">
+                    <div class="card-icon"></div>
+                    <h3>Expert Doctors</h3>
+                    <p>Our dermatologists and hair transplant surgeons have years of experience delivering natural, safe, and long-lasting results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Section 7: FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>FAQ — Your Questions Answered</h2>
+            </div>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long does it take to receive a callback?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We usually respond within 1–2 hours during working days.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I upload my scalp or skin photos?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, uploading photos helps our doctors pre-analyze your concern.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Are consultations free?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most initial consultations are free or heavily discounted depending on the city.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How soon can I get an appointment?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Many appointments are available the same day.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Which clinic should I choose?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Choose the clinic closest to you — all follow the same high standard.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Final CTA -->
+    <section class="final-cta-section">
+        <div class="container">
+            <h2>Let's Begin Your Journey Toward Healthy Hair & Glowing Skin</h2>
+            <p>A single message can change everything. Expert guidance is just a click away.</p>
+            <a href="https://wa.me/919284517427" class="btn-appointment">Book Your Appointment Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>About</h3>
+                    <p>Kezza Hair & Skin Clinic is dedicated to providing advanced, evidence-based hair restoration and skin treatments with a premium, patient-centered approach.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="hair-services.html">Hair Services</a></li>
+                        <li><a href="skin-services.html">Skin Services</a></li>
+                        <li><a href="permanent-makeup.html">Permanent Makeup</a></li>
+                        <li><a href="branches.html">Our Branches</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Hair Services</h3>
+                    <ul>
+                        <li><a href="hair-services.html">FUE</a></li>
+                        <li><a href="hair-services.html">DHI</a></li>
+                        <li><a href="hair-services.html">Hairline Reconstruction</a></li>
+                        <li><a href="hair-services.html">PRP</a></li>
+                        <li><a href="hair-services.html">Beard Transplant</a></li>
+                        <li><a href="hair-services.html">Eyebrow Transplant</a></li>
+                    </ul>
+                    <div class="footer-social-icons">
+                        <a href="https://www.instagram.com/kezza_clinic?igsh=b2tkcWNkZnRoYnRh&utm_source=qr" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/kezzaclinic" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://share.google/p4gwQGbHTNyACknkK" target="_blank" title="Google"><i class="fab fa-google"></i></a>
+                        <a href="https://wa.me/919284517427" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p>Phone: +91-9284517427</p>
+                    <p>Email: support@kezza.co.in</p>
+                    <p>WhatsApp: +91-9284517427</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Kezza Clinics. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="contact-script.js"></script>
+    <script src="mobile-menu.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var map = L.map('rajasthanMap').setView([26.9124, 75.7873], 6);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            var branches = [{
+                name: 'Kezza Clinic Jaipur ',
+                coords: [26.8480, 75.8260],
+                address: 'A-7, 1st Floor,Hanuman Nagar, Sirsi Rd, Main, Khatipura, Jaipur, Rajasthan 302021'
+            }, {
+                name: 'Kezza Clinic Sikar',
+                coords: [27.6195, 75.1393],
+                address: 'First Floor, Shakambhari Heights, Infront of S.K. Hospital, Silver Jubilee Rd, Sakpura Mohlla, Samrathpura Rural, Sikar, Rajasthan 332001'
+            } ];
+
+            branches.forEach(function(b) {
+                L.marker(b.coords).addTo(map).bindPopup('<strong>' + b.name + '</strong><br>' + b.address);
+            });
+        });
+    </script>
+
+    <!-- Social Sidebar -->
+    <div class="social-sidebar">
+        <a href="https://www.instagram.com/kezza_clinic?igsh=b2tkcWNkZnRoYnRh&utm_source=qr" target="_blank" class="social-icon instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.facebook.com/kezzaclinic" target="_blank" class="social-icon facebook" title="Facebook">
+            <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://share.google/p4gwQGbHTNyACknkK" target="_blank" class="social-icon google" title="Google">
+            <i class="fab fa-google"></i>
+        </a>
+        <a href="https://wa.me/919284517427" target="_blank" class="social-icon whatsapp" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="whatsapp-form.js" defer></script>
+    <script src="chatbot.js?v=2.2" defer></script>
+</body>
+
+</html>
+
