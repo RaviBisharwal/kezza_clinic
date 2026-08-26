@@ -1725,3 +1725,346 @@ video {
     padding: 3px 7px !important;
 }
 
+/* ─── Top Live Status Announcement Bar ─────────────────────────── */
+.top-status-bar {
+    background: linear-gradient(90deg, #090c15 0%, #151928 50%, #090c15 100%);
+    color: #e2d9c8;
+    font-size: 0.76rem;
+    padding: 6px 16px;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    z-index: 1001;
+}
+.top-status-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+.live-pulse-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: livePulse 2s infinite;
+}
+@keyframes livePulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+.top-status-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.top-status-right a {
+    color: #c9a84c;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+.top-status-right a:hover {
+    color: #ffd700;
+    text-decoration: underline;
+}
+
+/* ─── Interactive BMI & Weight Loss Calculator Section ───────── */
+.bmi-calculator-section {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #090c14 0%, #0e1220 100%);
+    color: #f1ebd8;
+    position: relative;
+    overflow: hidden;
+}
+.bmi-calc-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    border-radius: 20px;
+    padding: 36px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+}
+.bmi-form-group {
+    margin-bottom: 20px;
+}
+.bmi-form-group label {
+    display: block;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: #c9a84c;
+    margin-bottom: 8px;
+}
+.bmi-input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+.bmi-input-box {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.bmi-input-box:focus {
+    border-color: #c9a84c;
+    box-shadow: 0 0 10px rgba(201, 168, 76, 0.2);
+}
+.bmi-target-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+.bmi-target-btn {
+    padding: 9px 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 8px;
+    color: #d1c7b7;
+    font-size: 0.78rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+}
+.bmi-target-btn.active,
+.bmi-target-btn:hover {
+    background: rgba(201, 168, 76, 0.18);
+    border-color: #c9a84c;
+    color: #fff;
+}
+.bmi-result-panel {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.bmi-score-badge {
+    font-size: 2.8rem;
+    font-weight: 800;
+    font-family: 'Playfair Display', serif;
+    color: #c9a84c;
+    line-height: 1;
+    margin: 10px 0;
+}
+.bmi-cat-pill {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.bmi-cat-normal { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; }
+.bmi-cat-overweight { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid #f59e0b; }
+.bmi-cat-obese { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid #ef4444; }
+
+.bmi-recs-box {
+    margin: 16px 0;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    color: #d1c7b7;
+}
+.bmi-recs-box ul {
+    margin: 8px 0 0 18px;
+    padding: 0;
+}
+.bmi-recs-box li {
+    margin-bottom: 4px;
+}
+.btn-bmi-book {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 18px rgba(37, 211, 102, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-bmi-book:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.45);
+}
+
+/* ─── Interactive Treatment Cost & 0% EMI Estimator ──────────── */
+.emi-calculator-section {
+    padding: 80px 0;
+    background: #080a10;
+    color: #f1ebd8;
+}
+.emi-calc-wrap {
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 20px;
+    padding: 34px;
+}
+.emi-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 36px;
+    margin-top: 24px;
+}
+.emi-service-select {
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 0.92rem;
+    margin-bottom: 20px;
+}
+.emi-tenure-pills {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0 20px;
+}
+.emi-tenure-btn {
+    flex: 1;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    border-radius: 8px;
+    color: #d1c7b7;
+    font-weight: 600;
+    font-size: 0.82rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+}
+.emi-tenure-btn.active,
+.emi-tenure-btn:hover {
+    background: rgba(201, 168, 76, 0.2);
+    border-color: #c9a84c;
+    color: #fff;
+}
+.emi-display-card {
+    background: linear-gradient(135deg, rgba(201, 168, 76, 0.08) 0%, rgba(0,0,0,0.5) 100%);
+    border: 1px solid rgba(201, 168, 76, 0.35);
+    border-radius: 14px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.emi-amount-val {
+    font-size: 2.4rem;
+    font-weight: 800;
+    font-family: 'Playfair Display', serif;
+    color: #c9a84c;
+    margin: 6px 0;
+}
+
+/* ─── Floating Quick Action Dock ───────────────────────────────── */
+.floating-quick-dock {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(13, 16, 27, 0.92);
+    border: 1px solid rgba(201, 168, 76, 0.35);
+    backdrop-filter: blur(12px);
+    border-radius: 40px;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    z-index: 998;
+    max-width: 95vw;
+}
+.dock-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 25px;
+    color: #f1ebd8;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+.dock-item:hover {
+    background: rgba(201, 168, 76, 0.15);
+    color: #c9a84c;
+}
+.dock-item.dock-call {
+    background: rgba(201, 168, 76, 0.15);
+    color: #c9a84c;
+    border: 1px solid rgba(201, 168, 76, 0.4);
+}
+.dock-item.dock-call:hover {
+    background: #c9a84c;
+    color: #000;
+}
+.dock-item.dock-wa {
+    background: #25d366;
+    color: #000;
+    font-weight: 700;
+}
+.dock-item.dock-wa:hover {
+    background: #20ba5a;
+}
+.dock-item.dock-scan {
+    color: #ffd700;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .bmi-calc-card,
+    .emi-grid {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 20px;
+    }
+    .top-status-bar {
+        font-size: 0.7rem;
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+    }
+    .floating-quick-dock {
+        bottom: 12px;
+        padding: 6px 10px;
+        gap: 4px;
+    }
+    .dock-item {
+        padding: 6px 10px;
+        font-size: 0.74rem;
+    }
+    .dock-item span {
+        display: none;
+    }
+    .dock-item i {
+        font-size: 1rem;
+    }
+}
+

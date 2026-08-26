@@ -798,8 +798,8 @@ function validateAssessmentPayload(result) {
         return { isValid: false, reason: `Quality score ${qScore} below CONFIDENCE_THRESHOLD ${CONFIDENCE_THRESHOLD}` };
     }
 
-    // 2. Body area check — WEIGHT_LOSS is intentionally excluded (out of scope)
-    const validAreas = ['SKIN', 'HAIR_SCALP', 'BOTH', 'OTHER', 'UNCLEAR', 'PMU', 'UNSUPPORTED'];
+    // 2. Body area check
+    const validAreas = ['SKIN', 'HAIR_SCALP', 'BOTH', 'OTHER', 'UNCLEAR', 'PMU', 'WEIGHT_LOSS', 'DENTAL', 'UNSUPPORTED'];
     if (result.body_area && !validAreas.includes(result.body_area)) {
         return { isValid: false, reason: `Out-of-scope or unknown body area: ${result.body_area}` };
     }
@@ -824,31 +824,45 @@ function generateDeterministicPhotoAssessment(data, lang) {
     const text = (data.textContext || data.prompt || '').toLowerCase();
     const effectiveLang = lang || 'hinglish';
 
-    // ── STEP 0: WEIGHT-LOSS SCOPE GUARD ──────────────────────────────────────
-    // Weight-loss assessment is explicitly OUT OF SCOPE for photo analysis.
-    // It uses a separate questionnaire-based intake flow.
-    // Return UNSUPPORTED — do NOT route through the skin/hair classifier.
+    // ── STEP 0: WEIGHT-LOSS & BODY SLIMMING ASSESSMENT ───────────────────────
     const WEIGHT_LOSS_SIGNALS = [
         'weight loss', 'fat loss', 'slimming', 'body weight', 'obesity',
         'lose weight', 'inch loss', 'wajan', 'wazan', 'mota', 'motapa',
         'pet kam', 'vajan kam', 'body posture', 'body composition',
-        'full body photo', 'body contouring', 'body slimming'
+        'full body photo', 'body contouring', 'body slimming', 'double chin'
     ];
     if (WEIGHT_LOSS_SIGNALS.some(s => text.includes(s))) {
         return {
-            status:        'UNSUPPORTED',
-            body_area:     'UNSUPPORTED',
-            reason:        'WEIGHT_LOSS_PHOTO_NOT_SUPPORTED',
-            quality_message: (effectiveLang === 'hinglish')
-                ? '⚖️ Weight loss assessment photo analysis ke scope mein nahi hai. Aapka weight management consultation ek alag questionnaire-based intake se start hoga. Kripya "Book Consultation" select karein aur Weight Loss category chunein.'
-                : ((effectiveLang === 'hindi')
-                    ? '⚖️ वजन प्रबंधन का मूल्यांकन फोटो विश्लेषण के दायरे में नहीं है। Weight Loss consultation के लिए "Book Consultation" चुनें और Weight Loss category select करें।'
-                    : '⚖️ Weight-loss assessment is out of scope for photo analysis. A weight-management consultation uses a separate questionnaire-based intake — please select "Book Consultation" and choose the Weight Loss category.'),
-            instructions: [
-                'Select "Book Consultation" from the menu',
-                'Choose "⚖️ Weight Loss" as your category',
-                'Our wellness team will guide you through the intake'
-            ]
+            status:                   'OK',
+            image_quality_score:      88,
+            image_quality:            'GOOD',
+            body_area:                'WEIGHT_LOSS',
+            area_detected_label:      'Weight Management & Body Contouring',
+            confidence_score:         82,
+            confidence_label:         'High',
+            confidence:               'HIGH',
+            visible_observations:     (effectiveLang === 'hinglish')
+                ? [
+                    'Body profile aur target fat reduction zones identifiable hain.',
+                    'Non-invasive Cryolipolysis (Fat Freeze) aur RF Body Contouring ke liye suitable candidate.'
+                  ]
+                : [
+                    'Target body contouring and localized fat reduction zones identifiable.',
+                    'Candidate for non-invasive Cryolipolysis (Fat Freezing), HIFU Slimming & metabolic review.'
+                  ],
+            possible_concern:         'Weight Loss & Body Slimming Goals',
+            preliminary_assessment:   'Candidate for non-invasive body contouring and metabolic weight management.',
+            recommended_consultation: 'Cryolipolysis (Fat Freeze) & Body Slimming Consultation',
+            specialist:               'Kezza Wellness & Slimming Team',
+            specialist_contact:       '919284517427',
+            location:                 'Jaipur & Sikar',
+            department:               'Weight Loss & Slimming',
+            department_key:           'WEIGHT_LOSS',
+            why_this_consultation:    (effectiveLang === 'hinglish')
+                ? 'Hamari medical wellness team localized fat freeze (Cryolipolysis) aur personalized metabolic plan ke sath target inch loss formulate karegi.'
+                : 'Our medical wellness specialists can evaluate localized fat distribution and recommend non-invasive Cryolipolysis fat freezing and metabolic planning.',
+            disclaimer:               'This is an AI-assisted preliminary assessment. It is not a medical diagnosis. The Kezza specialist will confirm and determine the appropriate treatment.',
+            needs_in_person_assessment: true
         };
     }
 

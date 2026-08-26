@@ -36,6 +36,18 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5C9295R"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    <!-- Top Live Status Bar -->
+    <div class="top-status-bar">
+        <div class="top-status-left">
+            <span class="live-pulse-dot"></span>
+            <span><strong>Kezza Clinic Live:</strong> Jaipur &amp; Sikar Branches Open Today (9:00 AM – 8:00 PM)</span>
+        </div>
+        <div class="top-status-right">
+            <span><i class="fas fa-phone-alt"></i> Call: <a href="tel:+919284517427">+91 9284517427</a></span>
+            <span><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/919284517427" target="_blank">+91 9284517427</a></span>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -301,6 +313,165 @@
         </div>
     </section>
 
+    <!-- Section: Weight Loss & Body Contouring -->
+    <section class="skin-services-section" style="background: #090c14; padding-top: 50px;">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Non-Surgical Weight Loss &amp; Body Sculpting</h2>
+                <p>Sculpt your body, eliminate stubborn fat, and achieve a defined profile without surgery or downtime.</p>
+            </div>
+            <div class="skin-services-grid">
+                <div class="skin-card">
+                    <img src="images/service2.jpg" alt="Cryolipolysis Fat Freeze">
+                    <h3>Cryolipolysis (Fat Freezing)</h3>
+                    <p>360° targeted fat freezing for belly, love handles &amp; thigh inch reduction.</p>
+                    <a href="https://wa.me/919284517427?text=Hi%20Kezza%20Team%2C%20I%20am%20interested%20in%20Cryolipolysis%20Fat%20Freezing" class="explore-btn" target="_blank">Book Fat Freeze</a>
+                </div>
+                <div class="skin-card">
+                    <img src="images/anti-aging-2.jpg" alt="Double Chin Reduction">
+                    <h3>Double Chin &amp; Jawline Slimming</h3>
+                    <p>Non-invasive HIFU &amp; lipolytic contouring for a sculpted jawline.</p>
+                    <a href="https://wa.me/919284517427?text=Hi%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20Double%20Chin%20Reduction" class="explore-btn" target="_blank">Book Jawline Slimming</a>
+                </div>
+                <div class="skin-card">
+                    <img src="images/hydra-facial.jpg" alt="Body Contouring & Skin Tightening">
+                    <h3>Body Contouring &amp; RF Tightening</h3>
+                    <p>Radiofrequency collagen tightening for post-weight loss skin toning.</p>
+                    <a href="https://wa.me/919284517427?text=Hi%20Kezza%20Team%2C%20I%20am%20interested%20in%20Body%20Contouring" class="explore-btn" target="_blank">Book Body Sculpting</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Feature 1: AI Body & BMI Treatment Calculator -->
+    <section class="bmi-calculator-section" id="bmi-calculator">
+        <div class="container">
+            <div class="section-intro" style="text-align: center; margin-bottom: 40px;">
+                <span style="color: #c9a84c; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">✦ AI Wellness Assessment</span>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #fff; margin: 10px 0;">Interactive BMI &amp; Body Slimming Calculator</h2>
+                <p style="color: #a8a090; max-width: 650px; margin: 0 auto; font-size: 0.95rem;">Calculate your Body Mass Index and discover your personalized non-invasive fat loss and body contouring plan.</p>
+            </div>
+
+            <div class="bmi-calc-card">
+                <!-- Inputs -->
+                <div class="bmi-form-side">
+                    <div class="bmi-form-group">
+                        <label><i class="fas fa-venus-mars"></i> Gender &amp; Age</label>
+                        <div class="bmi-input-row">
+                            <select class="bmi-input-box" id="bmiGender" onchange="calculateKezzaBMI()">
+                                <option value="female">Female</option>
+                                <option value="male">Male</option>
+                            </select>
+                            <input type="number" class="bmi-input-box" id="bmiAge" value="28" min="15" max="90" placeholder="Age (yrs)" oninput="calculateKezzaBMI()">
+                        </div>
+                    </div>
+
+                    <div class="bmi-form-group">
+                        <label><i class="fas fa-ruler-vertical"></i> Height (cm) &amp; Weight (kg)</label>
+                        <div class="bmi-input-row">
+                            <input type="number" class="bmi-input-box" id="bmiHeight" value="168" min="100" max="230" placeholder="Height in cm" oninput="calculateKezzaBMI()">
+                            <input type="number" class="bmi-input-box" id="bmiWeight" value="74" min="30" max="200" placeholder="Weight in kg" oninput="calculateKezzaBMI()">
+                        </div>
+                    </div>
+
+                    <div class="bmi-form-group">
+                        <label><i class="fas fa-crosshairs"></i> Target Fat Reduction Area</label>
+                        <div class="bmi-target-grid" id="bmiTargetGrid">
+                            <button type="button" class="bmi-target-btn active" onclick="setBmiTarget(this, 'Belly Fat / Tummy')">🔥 Belly / Tummy</button>
+                            <button type="button" class="bmi-target-btn" onclick="setBmiTarget(this, 'Double Chin')">✨ Double Chin</button>
+                            <button type="button" class="bmi-target-btn" onclick="setBmiTarget(this, 'Love Handles / Waist')">⚡ Love Handles</button>
+                            <button type="button" class="bmi-target-btn" onclick="setBmiTarget(this, 'Thighs & Hips')">🦵 Thighs / Hips</button>
+                            <button type="button" class="bmi-target-btn" onclick="setBmiTarget(this, 'Arms & Back')">💪 Arms &amp; Back</button>
+                            <button type="button" class="bmi-target-btn" onclick="setBmiTarget(this, 'Full Body Inch Loss')">🌟 Full Body</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="bmi-result-panel">
+                    <div>
+                        <div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: #8c8678;">Calculated Body Mass Index</div>
+                        <div class="bmi-score-badge" id="bmiScoreVal">26.2</div>
+                        <div><span class="bmi-cat-pill bmi-cat-overweight" id="bmiCategoryPill">Overweight</span></div>
+                    </div>
+
+                    <div class="bmi-recs-box">
+                        <div style="font-weight: 700; color: #c9a84c; margin-bottom: 6px;">🩺 Recommended Kezza Protocol:</div>
+                        <div id="bmiRecsText" style="font-size: 0.85rem; color: #d4cbb8;">
+                            • <strong>Cryolipolysis (Fat Freezing):</strong> 2–3 applicator sessions for targeted inch reduction.<br>
+                            • <strong>HIFU Body Sculpting:</strong> Skin tightening &amp; cellular fat breakdown.<br>
+                            • <strong>Metabolic Plan:</strong> Personalized nutrition guidance.
+                        </div>
+                    </div>
+
+                    <a id="btnBmiWhatsApp" href="https://wa.me/919284517427?text=Hi%20Kezza%20Team%2C%20my%20BMI%20is%2026.2%20and%20I%20want%20to%20consult%20for%20Belly%20Fat%20Reduction" target="_blank" class="btn-bmi-book">
+                        <i class="fab fa-whatsapp"></i> Book Weight Loss Consultation (+91 9284517427)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Feature 2: Treatment Cost & 0% EMI Estimator -->
+    <section class="emi-calculator-section" id="emi-calculator">
+        <div class="container">
+            <div class="emi-calc-wrap">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <span style="color: #c9a84c; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">✦ Transparent Pricing</span>
+                        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.1rem; color: #fff; margin-top: 6px;">Treatment Cost &amp; 0% EMI Estimator</h2>
+                        <p style="color: #a8a090; font-size: 0.9rem;">Flexible zero-interest payment options for all procedures across Jaipur &amp; Sikar.</p>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #10b981; font-weight: 600; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; padding: 6px 14px; border-radius: 20px;">
+                        <i class="fas fa-check-circle"></i> 0% Interest EMI Available
+                    </div>
+                </div>
+
+                <div class="emi-grid">
+                    <div>
+                        <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #c9a84c; margin-bottom: 8px;">Select Procedure</label>
+                        <select class="emi-service-select" id="emiServiceSelect" onchange="calculateKezzaEMI()">
+                            <option value="45000" data-name="Sapphire FUE Hair Transplant (2,500 Grafts)">Hair Transplant — Sapphire FUE (2,500 Grafts) [₹45,000]</option>
+                            <option value="65000" data-name="Mega-Session Hair Transplant (4,000 Grafts)">Hair Transplant — Mega Session (4,000 Grafts) [₹65,000]</option>
+                            <option value="15000" data-name="GFC Hair Loss Therapy (3 Sessions)">Hair Loss — GFC Therapy 3 Sessions [₹15,000]</option>
+                            <option value="9000" data-name="HydraFacial Skin Glow (3 Sessions)">Skin — HydraFacial Medical Glow 3 Sessions [₹9,000]</option>
+                            <option value="18000" data-name="Cryolipolysis Fat Freezing (2 Applicators)">Weight Loss — Cryolipolysis Fat Freeze (2 Applicators) [₹18,000]</option>
+                            <option value="32000" data-name="Full Body Cryolipolysis & Slimming (4 Applicators)">Weight Loss — Full Body Cryo Slimming (4 Applicators) [₹32,000]</option>
+                            <option value="16000" data-name="Eyebrow Microblading PMU">Permanent Makeup — Eyebrow Microblading [₹16,000]</option>
+                            <option value="55000" data-name="Clear Dental Aligners">Dental — Invisible Clear Aligners [₹55,000]</option>
+                        </select>
+
+                        <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #c9a84c; margin-bottom: 8px;">Choose EMI Tenure</label>
+                        <div class="emi-tenure-pills">
+                            <button type="button" class="emi-tenure-btn" onclick="setEmiTenure(this, 3)">3 Months</button>
+                            <button type="button" class="emi-tenure-btn active" onclick="setEmiTenure(this, 6)">6 Months</button>
+                            <button type="button" class="emi-tenure-btn" onclick="setEmiTenure(this, 9)">9 Months</button>
+                            <button type="button" class="emi-tenure-btn" onclick="setEmiTenure(this, 12)">12 Months</button>
+                        </div>
+
+                        <div style="font-size: 0.78rem; color: #8c8678; line-height: 1.5;">
+                            ✓ No hidden processing fees<br>
+                            ✓ Instant approval via Aadhaar / Debit / Credit Card<br>
+                            ✓ Consultations available at Jaipur &amp; Sikar
+                        </div>
+                    </div>
+
+                    <div class="emi-display-card">
+                        <div>
+                            <div style="font-size: 0.78rem; text-transform: uppercase; color: #8c8678; letter-spacing: 0.06em;">Estimated Monthly EMI</div>
+                            <div class="emi-amount-val" id="emiMonthlyVal">₹7,500 <span style="font-size: 0.95rem; font-weight: 400; color: #a8a090;">/ month</span></div>
+                            <div style="font-size: 0.82rem; color: #d4cbb8;" id="emiTotalVal">Total Procedure Cost: ₹45,000 (0% Interest)</div>
+                        </div>
+
+                        <a id="btnEmiWhatsApp" href="https://wa.me/919284517427?text=Hi%20Kezza%20Team%2C%20I%20want%20to%20book%20Sapphire%20FUE%20Hair%20Transplant%20on%200%25%20EMI%20(%E2%82%B97%2C500%2Fmonth)" target="_blank" class="btn-bmi-book" style="background: linear-gradient(135deg, #c9a84c 0%, #a07830 100%); color: #000; font-weight: 700;">
+                            <i class="fab fa-whatsapp"></i> Book with 0% EMI (+91 9284517427)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Section 5: Before & After Gallery -->
     <section id="results" class="gallery-section">
         <div class="container">
@@ -504,9 +675,135 @@
         </a>
     </div>
 
+    <!-- Floating Quick Action Dock -->
+    <div class="floating-quick-dock">
+        <a href="tel:+919284517427" class="dock-item dock-call" title="Call Clinic">
+            <i class="fas fa-phone-alt"></i> <span>Call 9284517427</span>
+        </a>
+        <a href="https://wa.me/919284517427" target="_blank" class="dock-item dock-wa" title="WhatsApp Doctor Team">
+            <i class="fab fa-whatsapp"></i> <span>WhatsApp Us</span>
+        </a>
+        <a href="face-scanner.html" class="dock-item dock-scan" title="AI Face &amp; Scalp Scanner">
+            <i class="fas fa-camera"></i> <span>✦ AI Scanner</span>
+        </a>
+        <a href="contact.html" class="dock-item" title="Book Consultation">
+            <i class="fas fa-calendar-alt"></i> <span>Book Visit</span>
+        </a>
+    </div>
+
     <script src="script.js" defer></script>
     <script src="mobile-menu.js" defer></script>
     <script src="chatbot.js?v=2.2" defer></script>
+
+    <!-- Interactive Calculators Logic -->
+    <script>
+        let currentBmiTarget = 'Belly Fat / Tummy';
+        let currentEmiTenure = 6;
+
+        function setBmiTarget(btn, targetName) {
+            document.querySelectorAll('.bmi-target-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentBmiTarget = targetName;
+            calculateKezzaBMI();
+        }
+
+        function calculateKezzaBMI() {
+            const hCm = parseFloat(document.getElementById('bmiHeight').value) || 168;
+            const wKg = parseFloat(document.getElementById('bmiWeight').value) || 74;
+            const gender = document.getElementById('bmiGender').value;
+            const hM = hCm / 100;
+            const bmi = (wKg / (hM * hM)).toFixed(1);
+
+            const scoreEl = document.getElementById('bmiScoreVal');
+            const pillEl = document.getElementById('bmiCategoryPill');
+            const recsEl = document.getElementById('bmiRecsText');
+            const btnEl = document.getElementById('btnBmiWhatsApp');
+
+            if (!scoreEl) return;
+            scoreEl.textContent = bmi;
+
+            let cat = 'Normal Weight';
+            let pillClass = 'bmi-cat-normal';
+            let recs = '';
+
+            if (bmi < 18.5) {
+                cat = 'Underweight';
+                pillClass = 'bmi-cat-normal';
+                recs = `• <strong>Nutritional Profile:</strong> Metabolic & body composition assessment.<br>• <strong>Skin Toning:</strong> RF collagen rejuvenation.`;
+            } else if (bmi <= 24.9) {
+                cat = 'Healthy / Normal';
+                pillClass = 'bmi-cat-normal';
+                recs = `• <strong>Target Area:</strong> ${currentBmiTarget} definition.<br>• <strong>Cryolipolysis (Fat Freeze):</strong> 1–2 sessions for targeted contouring.<br>• <strong>HIFU Ultra-Sculpt:</strong> High-definition sculpting without downtime.`;
+            } else if (bmi <= 29.9) {
+                cat = 'Overweight';
+                pillClass = 'bmi-cat-overweight';
+                recs = `• <strong>Target Area:</strong> ${currentBmiTarget} inch reduction.<br>• <strong>Cryolipolysis 360°:</strong> 2–3 applicator sessions.<br>• <strong>Metabolic Plan:</strong> Non-surgical fat reduction + clinical nutrition.`;
+            } else {
+                cat = 'Class I/II Obesity';
+                pillClass = 'bmi-cat-obese';
+                recs = `• <strong>Comprehensive Program:</strong> Full Body Cryo Slimming (4 sessions).<br>• <strong>Lipolytic Therapy:</strong> Targeted adipose breakdown.<br>• <strong>Doctor Supervision:</strong> Medical wellness plan.`;
+            }
+
+            pillEl.textContent = cat;
+            pillEl.className = 'bmi-cat-pill ' + pillClass;
+            recsEl.innerHTML = recs;
+
+            const waMsg = encodeURIComponent(`Hi Kezza Team,
+I checked my BMI on the Kezza website:
+• BMI: ${bmi} (${cat})
+• Target Area: ${currentBmiTarget}
+• Height: ${hCm} cm | Weight: ${wKg} kg
+
+I would like to book a Weight Loss & Body Contouring consultation.`);
+            btnEl.href = `https://wa.me/919284517427?text=${waMsg}`;
+        }
+
+        function setEmiTenure(btn, months) {
+            document.querySelectorAll('.emi-tenure-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentEmiTenure = months;
+            calculateKezzaEMI();
+        }
+
+        function calculateKezzaEMI() {
+            const selectEl = document.getElementById('emiServiceSelect');
+            const cost = parseInt(selectEl.value, 10) || 45000;
+            const selectedOpt = selectEl.options[selectEl.selectedIndex];
+            const procName = selectedOpt.getAttribute('data-name') || selectedOpt.textContent;
+
+            const monthly = Math.round(cost / currentEmiTenure);
+            const monthlyFormatted = '₹' + monthly.toLocaleString('en-IN');
+            const totalFormatted = '₹' + cost.toLocaleString('en-IN');
+
+            const monthValEl = document.getElementById('emiMonthlyVal');
+            const totalValEl = document.getElementById('emiTotalVal');
+            const btnEl = document.getElementById('btnEmiWhatsApp');
+
+            if (monthValEl) {
+                monthValEl.innerHTML = `${monthlyFormatted} <span style="font-size:0.95rem;font-weight:400;color:#a8a090;">/ month (${currentEmiTenure} mos)</span>`;
+            }
+            if (totalValEl) {
+                totalValEl.textContent = `Total Procedure Cost: ${totalFormatted} (0% Interest • No Extra Fees)`;
+            }
+
+            const waMsg = encodeURIComponent(`Hi Kezza Team,
+I would like to book the following treatment with 0% Interest EMI:
+• Treatment: ${procName}
+• Total Cost: ${totalFormatted}
+• Selected Tenure: ${currentEmiTenure} Months (${monthlyFormatted}/month)
+
+Please assist me with appointment booking and instant EMI approval.`);
+            if (btnEl) {
+                btnEl.href = `https://wa.me/919284517427?text=${waMsg}`;
+            }
+        }
+
+        // Initialize calculators on DOM load
+        document.addEventListener('DOMContentLoaded', () => {
+            calculateKezzaBMI();
+            calculateKezzaEMI();
+        });
+    </script>
 </body>
 
 </html>

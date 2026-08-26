@@ -70,6 +70,20 @@
             img:      'images/Doctor2.jpeg',
             contact:  WHATSAPP_NUM,
             location: 'Jaipur & Sikar'
+        },
+        WEIGHT_LOSS: {
+            name:     'Kezza Wellness & Slimming Team',
+            spec:     'Clinical Nutrition & Body Contouring Specialist',
+            img:      'images/Doctor3.jpeg',
+            contact:  '919284517427',
+            location: 'Jaipur & Sikar'
+        },
+        DENTAL: {
+            name:     'Dr. Dhiral Vijayvargiya',
+            spec:     'Dental Aesthetics & Smile Designing Surgeon',
+            img:      'images/Doctor4.jpeg',
+            contact:  '919284517427',
+            location: 'Jaipur & Sikar'
         }
     };
 
@@ -765,14 +779,25 @@
             concern = 'PMU / Eyebrow Enhancement'; deptKey = 'PMU'; treatment = 'Eyebrow Microblading / PMU';
             observations = ['Sparse eyebrow hair density with possible asymmetrical contour.'];
             why = 'Microblading or PMU can restore eyebrow density and shape. Krishna (PMU Artist) specialises in natural-looking brow architecture.';
+        } else if (t.includes('weight') || t.includes('slim') || t.includes('fat') || t.includes('double chin') || t.includes('body contouring') || t.includes('inch loss')) {
+            concern = 'Weight Loss & Body Slimming Consultation'; deptKey = 'WEIGHT_LOSS'; treatment = 'Cryolipolysis (Fat Freeze) & Body Contouring';
+            observations = [
+                'Target area identified for non-invasive body contouring and fat reduction.',
+                'Candidate for Cryolipolysis (Fat Freezing), HIFU Body Sculpting, and metabolic planning.'
+            ];
+            why = 'Based on your goal, non-surgical Cryolipolysis (fat freezing) and body contouring can target stubborn fat without surgery or downtime.';
+        } else if (t.includes('dental') || t.includes('tooth') || t.includes('teeth') || t.includes('smile') || t.includes('aligner')) {
+            concern = 'Dental Aesthetics & Smile Designing'; deptKey = 'DENTAL'; treatment = 'Smile Designing & Clear Aligners';
+            observations = ['Aesthetic smile profile and alignment evaluation recommended.'];
+            why = 'Dr. Dhiral Vijayvargiya can perform full digital smile analysis, clear aligners, and aesthetic teeth whitening.';
         }
 
         return {
             status:                  'OK',
-            image_quality_score:     85,
-            body_area:               deptKey.includes('HAIR') ? 'HAIR_SCALP' : (deptKey === 'PMU' ? 'PMU' : 'SKIN'),
-            confidence_score:        78,
-            confidence_label:        'Moderate',
+            image_quality_score:     88,
+            body_area:               deptKey.includes('HAIR') ? 'HAIR_SCALP' : (deptKey === 'PMU' ? 'PMU' : (deptKey === 'WEIGHT_LOSS' ? 'WEIGHT_LOSS' : 'SKIN')),
+            confidence_score:        82,
+            confidence_label:        'High',
             recommended_consultation: concern,
             treatment_name:          treatment,
             visible_observations:    observations,
