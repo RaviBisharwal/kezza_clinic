@@ -2261,3 +2261,46 @@ video {
 /* ─── Floating Quick Action Dock & Social Sidebar are centrally styled in quick-actions.css ─── */
 
 
+
+/* ═══════════════════════════════════════════════════════════════════
+   SEO Heading Normalisation — visual parity for demoted heading elements
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Footer nav group titles (was h3) */
+p.footer-nav-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: inherit;
+    margin: 0 0 1rem 0;
+    letter-spacing: 0.02em;
+}
+
+/* Service / procedure item headings (was h4) */
+p.item-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: inherit;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.4;
+}
+
+/* CTA sub-text (was h4 CTAs / question lines) */
+p.cta-subtext {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: inherit;
+    margin: 1rem 0 0 0;
+    opacity: 0.85;
+}
+
+/* Duplicate section sub-heads */
+p.section-subhead {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: inherit;
+    margin: 0 0 0.75rem 0;
+}
