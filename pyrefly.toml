@@ -2,19 +2,23 @@
 # https://pyrefly.dev/docs/configuration
 
 [pyrefly]
-# Only analyse actual Python files — ignore HTML, JS, PHP, CSS, etc.
-include = [
-    "tools/**/*.py",
-]
+# Only scan actual Python source files
+source_paths = ["tools"]
 
-# Exclude everything that isn't Python
-exclude = [
+# Exclude non-Python directories and file types
+project_excludes = [
+    "**/frontend/**",
+    "**/node_modules/**",
+    "**/backend/**",
     "**/*.html",
     "**/*.js",
     "**/*.css",
     "**/*.php",
     "**/*.json",
-    "frontend/**",
-    "node_modules/**",
-    "backend/**",
+    "**/*.toml",
+    "**/*.md",
 ]
+
+# Suppress errors from external/unresolved names in utility scripts
+[pyrefly.errors]
+missing-global-annotation = false

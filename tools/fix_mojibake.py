@@ -1,71 +1,93 @@
 #!/usr/bin/env python3
 """
-Safe mojibake fixer for HTML/JS files in this folder.
-- Backs up each file to <name>.bak
-- Replaces common Latin-1 -> UTF-8 mojibake sequences (â€” etc.)
-- Attempts to recover non-ASCII runs by interpreting them as latin-1 bytes and decoding as UTF-8
-- Only edits .html and .js files in current directory (non-recursive) to avoid libraries
-Usage: python tools/fix_mojibake.py
+Safe mojibake fixer for HTML/CSS/JS files.
+
+- Replaces common Latin-1 → UTF-8 mojibake sequences (â€" etc.)
+- Attempts to recover non-ASCII runs by re-interpreting as latin-1 bytes
+- Only edits frontend .html, .css, .js files
+
+Usage:
+    python tools/fix_mojibake.py
 """
+
 import re
 from pathlib import Path
+from typing import Optional, Tuple
 
-ROOT = Path(__file__).resolve().parents[1]  # hairtransplant
-TARGET_EXT = ('.html', '.js')
-COMMON_MAP = {
-    'â€”': '—',
-    'â€“': '–',
-    'â€¢': '•',
-    'â€¦': '…',
-    'â€˜': '‘',
-    'â€™': '’',
-    'â€œ': '“',
-    'â€': '”',
-    '\u0092': "'",
+# ── Configuration ──────────────────────────────────────────────────
+ROOT: Path = Path(__file__).resolve().parents[1]          # repo root
+FRONTEND: Path = ROOT / "frontend"
+TARGET_EXT: Tuple[str, ...] = (".html", ".css", ".js")
+
+COMMON_MAP: dict[str, str] = {
+    "\u00e2\u0080\u0094": "\u2014",   # â€" → em dash
+    "\u00e2\u0080\u0093": "\u2013",   # â€" → en dash
+    "\u00e2\u0080\u00a2": "\u2022",   # â€¢ → bullet
+    "\u00e2\u0080\u00a6": "\u2026",   # â€¦ → ellipsis
+    "\u00e2\u0080\u0098": "\u2018",   # â€˜ → left single quote
+    "\u00e2\u0080\u0099": "\u2019",   # â€™ → right single quote
+    "\u00e2\u0080\u009c": "\u201c",   # â€œ → left double quote
+    "\u00e2\u0080\u009d": "\u201d",   # â€  → right double quote
+    "\u0092": "'",                     # Windows-1252 apostrophe
 }
 
-def recover_segment(seg: str):
+
+# ── Helpers ────────────────────────────────────────────────────────
+def recover_segment(seg: str) -> Optional[str]:
+    """Try to re-interpret a Latin-1 encoded segment as UTF-8."""
     try:
-        cand = seg.encode('latin-1').decode('utf-8')
-        # only accept if it produces any non-control printable unicode (emoji, punctuation, letters)
-        if any(ord(ch) > 127 for ch in cand):
-            return cand
+        candidate = seg.encode("latin-1").decode("utf-8")
+        if any(ord(ch) > 127 for ch in candidate):
+            return candidate
     except Exception:
         pass
     return None
 
-def process_text(text: str):
-    orig = text
-    # first apply common mappings
-    for k, v in COMMON_MAP.items():
-        if k in text:
-            text = text.replace(k, v)
-    # find runs of characters outside basic ascii (likely mojibake segments)
-    # limit to short runs to avoid changing long non-latin content
-    def repl(m):
-        seg = m.group(0)
+
+def process_text(text: str) -> Tuple[str, bool]:
+    """Apply mojibake fixes and return (new_text, was_changed)."""
+    original = text
+
+    # Apply common character map
+    for bad, good in COMMON_MAP.items():
+        if bad in text:
+            text = text.replace(bad, good)
+
+    # Recover short non-ASCII runs that look like Latin-1 encoded UTF-8
+    def repl(match: re.Match) -> str:  # type: ignore[type-arg]
+        seg = match.group(0)
         recovered = recover_segment(seg)
-        if recovered:
-            return recovered
-        return seg
-    text = re.sub(r'[\x80-\xff]{2,}', repl, text)
-    return text, (text != orig)
+        return recovered if recovered else seg
+
+    text = re.sub(r"[\x80-\xff]{2,}", repl, text)
+    return text, text != original
 
 
-def main():
-    changed_files = []
-    scan_paths = list(ROOT.glob('*.html')) + list(ROOT.glob('css/*.css')) + list(ROOT.glob('js/*.js'))
-    for p in sorted(scan_paths):
-        if p.is_file():
-            text = p.read_text(encoding='utf-8', errors='replace')
-            new_text, changed = process_text(text)
-            if changed or new_text != text:
-                p.write_text(new_text, encoding='utf-8')
-                changed_files.append(str(p.relative_to(ROOT)))
+# ── Main ───────────────────────────────────────────────────────────
+def main() -> None:
+    scan_dirs = [
+        FRONTEND.glob("*.html"),
+        FRONTEND.glob("css/*.css"),
+        FRONTEND.glob("js/*.js"),
+    ]
+    scan_paths = [path for gen in scan_dirs for path in gen]
+
+    changed_files: list[str] = []
+
+    for file_path in sorted(scan_paths):
+        if not file_path.is_file():
+            continue
+        text = file_path.read_text(encoding="utf-8", errors="replace")
+        new_text, changed = process_text(text)
+        if changed:
+            file_path.write_text(new_text, encoding="utf-8")
+            changed_files.append(str(file_path.relative_to(ROOT)))
+
     if changed_files:
-        print('Updated files:\n' + '\n'.join(changed_files))
+        print("✅ Updated files:\n" + "\n".join(changed_files))
     else:
-        print('No changes made (all files clean)')
+        print("✅ No changes needed — all files are clean.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
