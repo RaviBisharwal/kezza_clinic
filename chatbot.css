@@ -1250,3 +1250,449 @@
     border-radius: 4px;
     margin-left: 6px;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   KEZZA AI FACE & HAIR SCANNER PROMO POPUP MODAL
+   Luxury Dark Medical HUD Aesthetic • Teal & Gold Accents
+   ═══════════════════════════════════════════════════════════════ */
+
+.kezza-scanner-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(4, 9, 20, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s;
+    box-sizing: border-box;
+}
+
+.kezza-scanner-modal-backdrop.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.kezza-scanner-modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 860px;
+    background: linear-gradient(145deg, #091326 0%, #0d1b38 50%, #071020 100%);
+    border: 1.5px solid rgba(0, 175, 192, 0.35);
+    border-radius: 26px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.65), 0 0 50px rgba(0, 175, 192, 0.18);
+    display: flex;
+    overflow: hidden;
+    transform: scale(0.92) translateY(16px);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
+}
+
+.kezza-scanner-modal-backdrop.is-visible .kezza-scanner-modal-card {
+    transform: scale(1) translateY(0);
+}
+
+/* Floating Close Button */
+.scanner-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #94a3b8;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.2s ease;
+}
+
+.scanner-modal-close:hover {
+    background: rgba(239, 68, 68, 0.85);
+    border-color: #ef4444;
+    color: #ffffff;
+    transform: rotate(90deg);
+}
+
+/* ── Left Column: High-Tech Scanner HUD Animation ─────────────── */
+.scanner-modal-visual-side {
+    flex: 0 0 38%;
+    background: linear-gradient(180deg, rgba(0, 175, 192, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 36px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.scanner-hud-wrap {
+    position: relative;
+    width: 140px;
+    height: 160px;
+    background: rgba(4, 9, 20, 0.7);
+    border: 1.5px solid rgba(0, 175, 192, 0.45);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 24px;
+    box-shadow: inset 0 0 25px rgba(0, 175, 192, 0.2), 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.scanner-hud-face-svg {
+    width: 100px;
+    height: 120px;
+    display: block;
+}
+
+/* Animated Green/Teal Laser Scan Line */
+.scanner-laser-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2.5px;
+    background: linear-gradient(90deg, transparent, #00AFC0, #5eead4, #00AFC0, transparent);
+    box-shadow: 0 0 12px #00AFC0, 0 0 20px #5eead4;
+    animation: laserScanHud 2.4s ease-in-out infinite;
+    z-index: 5;
+}
+
+@keyframes laserScanHud {
+    0% {
+        top: 6%;
+        opacity: 0.2;
+    }
+    50% {
+        top: 88%;
+        opacity: 1;
+    }
+    100% {
+        top: 6%;
+        opacity: 0.2;
+    }
+}
+
+.scanner-hud-status-badge {
+    position: absolute;
+    bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(9, 19, 38, 0.85);
+    border: 1px solid rgba(0, 175, 192, 0.4);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #5eead4;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.scanner-live-pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 8px #22c55e;
+    animation: pulseDot 1.4s infinite;
+}
+
+@keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.scanner-quick-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.sq-metric-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.76rem;
+    color: #cbd5e1;
+    font-weight: 500;
+}
+
+.sq-metric-item i {
+    color: #22c55e;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+/* ── Right Column: Content & Direct Actions ───────────────────── */
+.scanner-modal-content-side {
+    flex: 1;
+    padding: 34px 36px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.scanner-modal-pill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(201, 168, 76, 0.14);
+    border: 1px solid rgba(201, 168, 76, 0.45);
+    color: #ffd700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+    align-self: flex-start;
+}
+
+.scanner-modal-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.65rem;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 10px 0;
+}
+
+.text-gold {
+    color: #ffd700 !important;
+}
+
+.scanner-modal-subtext {
+    font-size: 0.88rem;
+    color: #94a3b8;
+    line-height: 1.55;
+    margin: 0 0 18px 0;
+}
+
+.scanner-modal-concerns-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+/* 4 Concern Quick Select Pills */
+.scanner-modal-concerns-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.concern-pill-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #94a3b8;
+    padding: 9px 12px;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 550;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
+}
+
+.concern-pill-btn:hover {
+    background: rgba(0, 175, 192, 0.12);
+    border-color: rgba(0, 175, 192, 0.5);
+    color: #ffffff;
+}
+
+.concern-pill-btn.active {
+    background: rgba(0, 175, 192, 0.18);
+    border-color: #00AFC0;
+    color: #5eead4;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(0, 175, 192, 0.25);
+}
+
+.concern-pill-btn i {
+    font-size: 0.85rem;
+    color: #ffd700;
+    flex-shrink: 0;
+}
+
+/* Action Buttons */
+.scanner-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+.btn-scanner-modal-primary {
+    flex: 1;
+    min-width: 200px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%);
+    color: #ffffff !important;
+    padding: 13px 20px;
+    border-radius: 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    box-shadow: 0 6px 20px rgba(0, 175, 192, 0.4);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
+}
+
+.btn-scanner-modal-primary:hover {
+    background: linear-gradient(135deg, #00c7db 0%, #009baa 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0, 175, 192, 0.55);
+}
+
+.scanner-arrow-icon {
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+}
+
+.btn-scanner-modal-primary:hover .scanner-arrow-icon {
+    transform: translateX(4px);
+}
+
+.btn-scanner-modal-chat {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    color: #cbd5e1;
+    padding: 13px 18px;
+    border-radius: 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+}
+
+.btn-scanner-modal-chat:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #ffd700;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Trust Bar / Social Proof */
+.scanner-modal-trust-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    flex-wrap: wrap;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.74rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.trust-item i {
+    font-size: 0.8rem;
+    color: #00AFC0;
+}
+
+/* ── Responsive Rules for Mobile & Tablet ────────────────────── */
+@media (max-width: 768px) {
+    .kezza-scanner-modal-card {
+        flex-direction: column;
+        max-height: 90vh;
+        overflow-y: auto;
+        border-radius: 20px;
+    }
+
+    .scanner-modal-visual-side {
+        padding: 24px 18px 16px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .scanner-hud-wrap {
+        width: 110px;
+        height: 120px;
+        margin-bottom: 12px;
+    }
+
+    .scanner-quick-metrics {
+        display: none; /* Keep mobile modal compact */
+    }
+
+    .scanner-modal-content-side {
+        padding: 22px 18px 20px;
+    }
+
+    .scanner-modal-heading {
+        font-size: 1.35rem;
+    }
+
+    .scanner-modal-concerns-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .concern-pill-btn {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+
+    .scanner-modal-actions {
+        flex-direction: column;
+    }
+
+    .btn-scanner-modal-primary,
+    .btn-scanner-modal-chat {
+        width: 100%;
+    }
+
+    .scanner-modal-trust-bar {
+        justify-content: center;
+        gap: 16px;
+    }
+}
+

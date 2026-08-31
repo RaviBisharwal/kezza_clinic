@@ -5516,6 +5516,192 @@ Please guide me on next steps and appointment availability.
         setInterval(updateBusinessHoursHeaderStatus, 30000);
 
         initSpeechRecognition();
+
+        // ── Initialize AI Scanner Opportunity Modal ──────────────────
+        createScannerPromoModal();
+    }
+
+    // ============================================
+    // KEZZA AI FACE & HAIR SCANNER OPPORTUNITY MODAL
+    // ============================================
+    function createScannerPromoModal() {
+        const currentPath = (typeof window !== 'undefined' && window.location ? window.location.pathname.toLowerCase() : '');
+        if (currentPath.includes('face-scanner') || currentPath.includes('admin') || document.getElementById('kezzaScannerModalBackdrop')) {
+            return;
+        }
+
+        const modalBackdrop = document.createElement('div');
+        modalBackdrop.className = 'kezza-scanner-modal-backdrop';
+        modalBackdrop.id = 'kezzaScannerModalBackdrop';
+        modalBackdrop.setAttribute('aria-hidden', 'true');
+        modalBackdrop.setAttribute('role', 'dialog');
+        modalBackdrop.setAttribute('aria-modal', 'true');
+        modalBackdrop.setAttribute('aria-labelledby', 'scannerModalTitle');
+
+        modalBackdrop.innerHTML = `
+            <div class="kezza-scanner-modal-card" id="kezzaScannerModalCard">
+                <button class="scanner-modal-close" id="kezzaScannerModalClose" aria-label="Close AI Scanner Invitation">✕</button>
+
+                <!-- Left Column: High-Tech Scanner Animation HUD -->
+                <div class="scanner-modal-visual-side">
+                    <div class="scanner-hud-wrap">
+                        <div class="scanner-laser-line"></div>
+                        <div class="scanner-hud-target">
+                            <svg viewBox="0 0 120 140" class="scanner-hud-face-svg">
+                                <ellipse cx="60" cy="70" rx="45" ry="55" fill="none" stroke="rgba(0, 175, 192, 0.4)" stroke-width="2" stroke-dasharray="4 3"/>
+                                <circle cx="60" cy="50" r="18" fill="none" stroke="rgba(201, 168, 76, 0.4)" stroke-width="1.5"/>
+                                <line x1="45" y1="65" x2="75" y2="65" stroke="rgba(0, 175, 192, 0.6)" stroke-width="1.5"/>
+                                <line x1="48" y1="85" x2="72" y2="85" stroke="rgba(0, 175, 192, 0.6)" stroke-width="1.5"/>
+                                <path d="M 20 30 L 20 20 L 30 20" stroke="#00AFC0" stroke-width="2" fill="none"/>
+                                <path d="M 100 30 L 100 20 L 90 20" stroke="#00AFC0" stroke-width="2" fill="none"/>
+                                <path d="M 20 110 L 20 120 L 30 120" stroke="#00AFC0" stroke-width="2" fill="none"/>
+                                <path d="M 100 110 L 100 120 L 90 120" stroke="#00AFC0" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <div class="scanner-hud-status-badge">
+                            <span class="scanner-live-pulse"></span>
+                            <span>AI Vision Live</span>
+                        </div>
+                    </div>
+
+                    <div class="scanner-quick-metrics">
+                        <div class="sq-metric-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Norwood Scalp Scale (Grade 1-7)</span>
+                        </div>
+                        <div class="sq-metric-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Skin Acne, Melasma &amp; Glow Index</span>
+                        </div>
+                        <div class="sq-metric-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Doctor-Verified Treatment Plan</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Content & Actions -->
+                <div class="scanner-modal-content-side">
+                    <div class="scanner-modal-pill-tag">
+                        <i class="fas fa-sparkles"></i> Free Clinical AI Assessment
+                    </div>
+
+                    <h2 id="scannerModalTitle" class="scanner-modal-heading">
+                        Analyze Your Hair &amp; Skin in <span class="text-gold">10 Seconds</span>
+                    </h2>
+
+                    <p class="scanner-modal-subtext">
+                        Get an instant diagnostic report with damage grading, root cause analysis, and customized doctor recommendations.
+                    </p>
+
+                    <div class="scanner-modal-concerns-label">Select Your Concern to Begin:</div>
+                    <div class="scanner-modal-concerns-grid">
+                        <button type="button" class="concern-pill-btn active" data-concern="hair" data-url="face-scanner.html?concern=hair">
+                            <i class="fas fa-dna"></i> Hair Loss / Scalp
+                        </button>
+                        <button type="button" class="concern-pill-btn" data-concern="skin" data-url="face-scanner.html?concern=skin">
+                            <i class="fas fa-spa"></i> Skin &amp; Acne Glow
+                        </button>
+                        <button type="button" class="concern-pill-btn" data-concern="anti_aging" data-url="face-scanner.html?concern=anti_aging">
+                            <i class="fas fa-hourglass-half"></i> Anti-Aging &amp; Wrinkles
+                        </button>
+                        <button type="button" class="concern-pill-btn" data-concern="weight" data-url="weight-loss.html#calculator">
+                            <i class="fas fa-weight"></i> Weight Loss / Body
+                        </button>
+                    </div>
+
+                    <div class="scanner-modal-actions">
+                        <a href="face-scanner.html?concern=hair" class="btn-scanner-modal-primary" id="btnLaunchScannerModal">
+                            <i class="fas fa-camera"></i>
+                            <span>Start Free AI Scan Now</span>
+                            <i class="fas fa-arrow-right scanner-arrow-icon"></i>
+                        </a>
+                        <button type="button" class="btn-scanner-modal-chat" id="btnLaunchScannerChat">
+                            <i class="fas fa-comments"></i>
+                            <span>Ask AI Doctor First</span>
+                        </button>
+                    </div>
+
+                    <div class="scanner-modal-trust-bar">
+                        <div class="trust-item">
+                            <i class="fas fa-shield-alt"></i> 100% Private &amp; Secure
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-star text-gold"></i> 4.9/5 (14,800+ Scans)
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-user-md"></i> Jaipur &amp; Sikar Doctors
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modalBackdrop);
+
+        function showScannerModal() {
+            if (state.isOpen) return;
+            modalBackdrop.classList.add('is-visible');
+            modalBackdrop.setAttribute('aria-hidden', 'false');
+        }
+
+        function hideScannerModal() {
+            modalBackdrop.classList.remove('is-visible');
+            modalBackdrop.setAttribute('aria-hidden', 'true');
+            sessionStorage.setItem('kezza_scanner_modal_closed', 'true');
+        }
+
+        document.getElementById('kezzaScannerModalClose').addEventListener('click', hideScannerModal);
+
+        modalBackdrop.addEventListener('click', function(e) {
+            if (e.target === modalBackdrop) {
+                hideScannerModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modalBackdrop.classList.contains('is-visible')) {
+                hideScannerModal();
+            }
+        });
+
+        const concernButtons = modalBackdrop.querySelectorAll('.concern-pill-btn');
+        const launchBtn = document.getElementById('btnLaunchScannerModal');
+
+        concernButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                concernButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const targetUrl = this.getAttribute('data-url') || 'face-scanner.html';
+                if (launchBtn) {
+                    launchBtn.setAttribute('href', targetUrl);
+                }
+            });
+        });
+
+        const chatLaunchBtn = document.getElementById('btnLaunchScannerChat');
+        if (chatLaunchBtn) {
+            chatLaunchBtn.addEventListener('click', function() {
+                hideScannerModal();
+                openChat();
+            });
+        }
+
+        window.openScannerPromoModal = showScannerModal;
+
+        document.querySelectorAll('[data-open-scanner], .btn-open-scanner-modal').forEach(el => {
+            el.addEventListener('click', function(e) {
+                e.preventDefault();
+                showScannerModal();
+            });
+        });
+
+        const isModalClosedThisSession = sessionStorage.getItem('kezza_scanner_modal_closed') === 'true';
+        if (!isModalClosedThisSession) {
+            setTimeout(() => {
+                showScannerModal();
+            }, 4500);
+        }
     }
 
     function toggleChat() {
