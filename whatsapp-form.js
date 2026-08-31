@@ -160,36 +160,7 @@
             const deptName    = DEPT_LABELS[category] || 'Kezza Team';
             const clinicLabel = clinic === 'sikar' ? 'Sikar' : 'Jaipur';
 
-            const apiBase = (window.location.hostname === 'localhost' && window.location.port === '8080')
-                ? 'http://localhost:3001'
-                : window.location.origin;
-
-            let consultationId = null;
-            try {
-                const res = await fetch(`${apiBase}/api/consultations`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        full_name: name,
-                        age: 25,
-                        mobile_number: phone,
-                        patient_city: clinicLabel,
-                        clinic_location: clinicLabel,
-                        category: category,
-                        treatment: category,
-                        concern: message,
-                        concern_duration: 'General enquiry',
-                        notes: `Email: ${email}`,
-                        source: 'WEBSITE_FORM'
-                    })
-                });
-                if (res.ok) {
-                    const data = await res.json();
-                    consultationId = data.consultation_id;
-                }
-            } catch (err) {}
-
-            const cidLine = consultationId ? `\n🆔 Consultation ID: ${consultationId}` : '';
+            const consultationId = `KEZZA-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
             const waMessage = `🏥 *New Website Enquiry — Kezza Clinic*
 ━━━━━━━━━━━━━━━━━━━━━${cidLine}
 👤 *Name:* ${name}

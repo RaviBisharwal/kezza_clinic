@@ -2733,39 +2733,7 @@ Please contact the patient for further consultation and appointment confirmation
 📱 <strong>WhatsApp:</strong> ${escapeHtml(data.phone || '')}
 </div>`;
 
-        let apiResult = null;
-        try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 4000);
-            const response = await fetch(`${CHATBOT_API_BASE}/api/consultations`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    consultation_id: consultationId,
-                    full_name: data.name || '',
-                    age: parseInt(data.age, 10) || 25,
-                    mobile_number: data.phone || '',
-                    patient_city: data.patientLocation || 'Jaipur',
-                    clinic_location: clinicCity,
-                    category: categoryTitle,
-                    treatment: treatmentTitle,
-                    concern: detailTitle,
-                    concern_duration: data.concern_duration || data.duration || 'Not specified',
-                    preferred_date: data.date || null,
-                    preferred_time: data.time || 'Morning (9 AM – 12 PM)',
-                    source: 'AI_CHATBOT'
-                }),
-                signal: controller.signal
-            });
-            clearTimeout(timeoutId);
-            if (response.ok) {
-                apiResult = await response.json();
-            }
-        } catch (err) {
-            apiResult = null;
-        } finally {
-            state.isSubmitting = false;
-        }
+        state.isSubmitting = false;
 
         if (typeof sessionStorage !== 'undefined') {
             sessionStorage.setItem('kezza_sent_' + consultationId, 'true');
@@ -4397,31 +4365,6 @@ Please guide me on next steps and appointment availability.
                     : '📸 The photo is not clear enough for a reliable preliminary assessment.'
             };
         } else {
-            try {
-                const controller = new AbortController();
-                const timeout = setTimeout(() => controller.abort(), 6500);
-
-                const response = await fetch(`${CHATBOT_API_BASE}/api/analyze-photo`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        image: base64Data,
-                        mimeType: mimeType || 'image/jpeg',
-                        lang: effectiveLang,
-                        textContext: textContext
-                    }),
-                    signal: controller.signal
-                });
-
-                clearTimeout(timeout);
-                if (response.ok) {
-                    result = await response.json();
-                }
-            } catch (err) {
-                console.warn('[KezzaAI] Server photo analysis unreachable, using local assessment:', err);
-            }
-        }
-
         removeTypingIndicator();
 
         if (!result) {

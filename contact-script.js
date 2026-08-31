@@ -162,51 +162,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Dynamic API base URL (supports both localhost and live tunnel)
-            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-            const LARAVEL_API = isLocal 
-                ? 'http://localhost:8000/api'
-                : 'https://stand-eos-atm-seeing.trycloudflare.com/api';
-
             // Show loading state
             const submitBtn = this.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
 
-            fetch(`${LARAVEL_API}/contact`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify({
-                    fullName : formObject.fullName  || formObject.full_name || '',
-                    email    : formObject.email     || '',
-                    phone    : formObject.phone     || '',
-                    service  : formObject.service   || '',
-                    subject  : formObject.subject   || '',
-                    message  : formObject.message   || '',
-                }),
-            })
-            .then(async res => {
-                const data = await res.json();
-                if (!res.ok) {
-                    // Validation errors ya server error
-                    const errMsg = data.message || 'Something went wrong. Please try again.';
-                    showNotification(errMsg, 'error');
-                } else {
-                    showNotification(data.message || 'Thank you! Your message has been sent. We will contact you within 1-2 hours.', 'success');
-                    contactForm.reset();
-                }
-            })
-            .catch(() => {
-                showNotification('Network error — please check your connection and try again.', 'error');
-            })
-            .finally(() => {
+            setTimeout(() => {
+                const fullName = formObject.fullName || formObject.full_name || 'Patient';
+                const email    = formObject.email    || 'Not provided';
+                const phone    = formObject.phone    || 'Not provided';
+                const service  = formObject.service  || 'General Inquiry';
+                const subject  = formObject.subject  || 'Clinic Consultation';
+                const message  = formObject.message  || 'Looking for clinic treatment consultation.';
+
+                const waMessage = `🏥 *KEZZA CLINIC — WEBSITE INQUIRY*
+━━━━━━━━━━━━━━━━━━━━━
+👤 *Name:* ${fullName}
+📱 *Phone:* ${phone}
+📧 *Email:* ${email}
+🏷️ *Service:* ${service}
+📌 *Subject:* ${subject}
+📝 *Message:* ${message}
+━━━━━━━━━━━━━━━━━━━━━
+Source: Kezza Clinic Contact Form`;
+
+                const waUrl = `https://wa.me/919284517427?text=${encodeURIComponent(waMessage)}`;
+                
+                try {
+                    window.open(waUrl, '_blank');
+                } catch (e) {}
+
+                showNotification('Thank you! Your message has been submitted to our clinic specialist team.', 'success');
+                contactForm.reset();
+
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
-            });
+            }, 400);
         });
     }
 });
