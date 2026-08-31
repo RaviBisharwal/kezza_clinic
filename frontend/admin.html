@@ -353,7 +353,7 @@
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-logo">
-            <img src="images/logo.png" alt="Kezza">
+            <img src="images/logo.png" alt="Kezza" width="160" height="60">
             <div class="sidebar-logo-text">Kezza Clinic<span>Admin Dashboard</span></div>
         </div>
         <nav class="sidebar-nav">
@@ -538,7 +538,7 @@
         const rows = records.map(r => {
             const statusClass = (r.status || 'NEW').toLowerCase();
             const photoThumb = r.photo_url
-                ? `<img src="${API_BASE}${r.photo_url}" style="width:36px;height:36px;border-radius:6px;object-fit:cover;border:1px solid var(--border)">`
+                ? `<img src="${API_BASE}${r.photo_url}" style="width:36px;height:36px;border-radius:6px;object-fit:cover;border:1px solid var(--border)" width="600" height="400">`
                 : `<div style="width:36px;height:36px;border-radius:6px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.75rem"><i class="fas fa-user"></i></div>`;
 
             const waLink = r.whatsapp_number
@@ -624,9 +624,9 @@
 
             let photoHtml = '';
             if (r.photo_url) {
-                photoHtml = `<div style="text-align:center;margin-bottom:1rem"><img class="modal-photo" src="${API_BASE}${r.photo_url}" style="max-height:220px;border-radius:12px;border:1px solid var(--border)" alt="Patient photo"></div>`;
+                photoHtml = `<div style="text-align:center;margin-bottom:1rem"><img class="modal-photo" src="${API_BASE}${r.photo_url}" style="max-height:220px;border-radius:12px;border:1px solid var(--border)" alt="Patient photo" width="600" height="400"></div>`;
             } else if (r.photo_base64) {
-                photoHtml = `<div style="text-align:center;margin-bottom:1rem"><img class="modal-photo" src="data:image/jpeg;base64,${r.photo_base64.replace(/^data:[^;]+;base64,/, '')}" style="max-height:220px;border-radius:12px" alt="Patient photo"></div>`;
+                photoHtml = `<div style="text-align:center;margin-bottom:1rem"><img class="modal-photo" src="data:image/jpeg;base64,${r.photo_base64.replace(/^data:[^;]+;base64,/, '')}" style="max-height:220px;border-radius:12px" alt="Patient photo" width="600" height="400"></div>`;
             } else {
                 photoHtml = `<div style="width:100%;height:80px;background:rgba(255,255,255,0.04);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.8rem;margin-bottom:1rem"><i class="fas fa-image"></i> &nbsp;No photo uploaded</div>`;
             }

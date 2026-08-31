@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://kezzaclinic.com/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://kezzaclinic.com/images/hero1.jpg</image:loc>
+      <image:title>Kezza Hair &amp; Skin Clinic - Best Hair Transplant in Rajasthan</image:title>
+    </image:image>
+  </url>
+
+  <!-- About -->
+  <url>
+    <loc>https://kezzaclinic.com/about.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kezzaclinic.com/images/keeza-clinic-outside.jpg</image:loc>
+      <image:title>About Kezza Clinic - Expert Doctors in Jaipur &amp; Sikar</image:title>
+    </image:image>
+  </url>
+
+  <!-- Hair Services -->
+  <url>
+    <loc>https://kezzaclinic.com/hair-services.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kezzaclinic.com/images/fui-hair-1.jpg</image:loc>
+      <image:title>FUE Hair Transplant at Kezza Clinic</image:title>
+    </image:image>
+  </url>
+
+  <!-- Skin Services -->
+  <url>
+    <loc>https://kezzaclinic.com/skin-services.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://kezzaclinic.com/images/hydra-facial.jpg</image:loc>
+      <image:title>Advanced Skin Care at Kezza Clinic</image:title>
+    </image:image>
+  </url>
+
+  <!-- Weight Loss -->
+  <url>
+    <loc>https://kezzaclinic.com/weight-loss.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Permanent Makeup -->
+  <url>
+    <loc>https://kezzaclinic.com/permanent-makeup.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://kezzaclinic.com/images/pm-hero.jpg</image:loc>
+      <image:title>Permanent Makeup PMU at Kezza Clinic Jaipur</image:title>
+    </image:image>
+  </url>
+
+  <!-- AI Face Scanner -->
+  <url>
+    <loc>https://kezzaclinic.com/face-scanner.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Branches -->
+  <url>
+    <loc>https://kezzaclinic.com/branches.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://kezzaclinic.com/contact.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Terms -->
+  <url>
+    <loc>https://kezzaclinic.com/terms.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

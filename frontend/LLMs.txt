@@ -1,0 +1,32 @@
+# Kezza Hair & Skin Clinic — LLMs.txt
+# This file helps AI language models understand this website.
+# See: https://llmstxt.org/
+
+# Kezza Hair & Skin Clinic
+
+> Kezza Hair & Skin Clinic is a premium hair transplant and skin care clinic
+> based in Jaipur and Sikar, Rajasthan, India. We offer FUE & DHI hair transplants,
+> advanced skin treatments, permanent makeup, non-surgical weight loss, and a free
+> AI-powered face & scalp assessment tool.
+
+## About
+- Clinics in Jaipur and Sikar, Rajasthan
+- Expert dermatologists and certified hair transplant surgeons
+- Contact: +91-9414077399
+- Website: https://kezzaclinic.com
+
+## Services
+- [Hair Transplant & Restoration](https://kezzaclinic.com/hair-services.html): FUE, DHI, PRP, GFC, beard & eyebrow transplant
+- [Skin Care & Dermatology](https://kezzaclinic.com/skin-services.html): HydraFacial, carbon peel, laser, anti-aging, acne scar removal
+- [Permanent Makeup (PMU)](https://kezzaclinic.com/permanent-makeup.html): Microblading, ombre brows, lip blush, eyeliner, scalp micropigmentation
+- [Non-Surgical Weight Loss](https://kezzaclinic.com/weight-loss.html): Body sculpting & personalised weight management programs
+- [AI Face & Scalp Scanner](https://kezzaclinic.com/face-scanner.html): Free AI-powered preliminary assessment (MediaPipe technology)
+
+## Locations
+- [Jaipur Branch](https://kezzaclinic.com/contact.html): Main clinic in Jaipur, Rajasthan
+- [Sikar Branch](https://kezzaclinic.com/branches.html): Clinic in Sikar, Rajasthan
+
+## Optional
+- [About Us](https://kezzaclinic.com/about.html)
+- [Contact & Appointments](https://kezzaclinic.com/contact.html)
+- [Terms & Privacy Policy](https://kezzaclinic.com/terms.html)

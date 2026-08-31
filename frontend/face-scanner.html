@@ -11,8 +11,8 @@
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Skin & Hair Assessment — Kezza Hair & Skin Clinic</title>
-    <meta name="description" content="Free AI-powered preliminary skin & hair assessment at Kezza Clinic. Upload or capture a photo, answer a few questions, and get an instant recommendation from our specialist team.">
+    <title>Free AI Face & Scalp Assessment – Kezza Clinic AI Scanner</title>
+    <meta name="description" content="Get a free AI-powered skin & scalp assessment at Kezza Clinic. Our MediaPipe-based scanner analyses your face in 9 steps and matches you with the right specialist.">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q4NB5CRMW"></script>
     <script>
@@ -30,6 +30,58 @@
     <link rel="stylesheet" href="css/services-navigation.css">
     <link rel="stylesheet" href="css/chatbot.css?v=2.2">
     <link rel="icon" type="image/png" href="images/logo.png">
+
+    <!-- ═══ SEO: Canonical ═══════════════════════════════════════════ -->
+    <link rel="canonical" href="https://kezzaclinic.com/face-scanner.html" />
+
+    <!-- ═══ SEO: Open Graph ══════════════════════════════════════════ -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:site_name"   content="Kezza Hair & Skin Clinic" />
+    <meta property="og:url"         content="https://kezzaclinic.com/face-scanner.html" />
+    <meta property="og:title"       content="Free AI Face & Scalp Assessment – Kezza Clinic AI Scanner" />
+    <meta property="og:description" content="Get a free AI-powered skin & scalp assessment at Kezza Clinic. Our MediaPipe-based scanner analyses your face in 9 steps and matches you with the right specialist." />
+    <meta property="og:image"       content="https://kezzaclinic.com/images/keeza-machine.jpg" />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale"      content="en_IN" />
+
+    <!-- ═══ SEO: Twitter Card ════════════════════════════════════════ -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:site"        content="@KezzaClinic" />
+    <meta name="twitter:title"       content="Free AI Face & Scalp Assessment – Kezza Clinic AI Scanner" />
+    <meta name="twitter:description" content="Get a free AI-powered skin & scalp assessment at Kezza Clinic. Our MediaPipe-based scanner analyses your face in 9 steps and matches you with the right specialist." />
+    <meta name="twitter:image"       content="https://kezzaclinic.com/images/keeza-machine.jpg" />
+
+    <!-- ═══ SEO: Structured Data (JSON-LD) ══════════════════════════ -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Kezza AI Face & Scalp Scanner",
+  "url": "https://kezzaclinic.com/face-scanner.html",
+  "description": "Get a free AI-powered skin & scalp assessment at Kezza Clinic. Our MediaPipe-based scanner analyses your face in 9 steps and matches you with the right specialist.",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Web Browser",
+  "author": {
+    "@type": "Organization",
+    "@context": "https://schema.org",
+    "name": "Kezza Hair & Skin Clinic",
+    "url": "https://kezzaclinic.com",
+    "telephone": "+91-9414077399",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Jaipur",
+      "addressRegion": "Rajasthan",
+      "addressCountry": "IN"
+    },
+    "image": "https://kezzaclinic.com/images/keeza-machine.jpg",
+    "sameAs": [
+      "https://www.instagram.com/kezzaclinic",
+      "https://www.facebook.com/kezzaclinic"
+    ]
+  }
+}
+    </script>
 </head>
 
 <body>
@@ -42,7 +94,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html"><img src="images/logo.png" alt="Kezza Clinic"></a>
+                <a href="index.html"><img src="images/logo.png" alt="Kezza Clinic" width="160" height="60"></a>
             </div>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
@@ -244,7 +296,7 @@
                         </div>
                         <!-- Captured photo preview -->
                         <div class="captured-preview" id="capturedPreview">
-                            <img id="capturedImg" src="" alt="Captured photo">
+                            <img id="capturedImg" src="" alt="Captured photo" width="600" height="400">
                             <div class="captured-overlay">
                                 <div class="captured-badge">
                                     <i class="fas fa-check-circle"></i>
@@ -637,7 +689,7 @@
                     <!-- Scan summary row -->
                     <div class="results-summary-row">
                         <div class="captured-thumb">
-                            <img id="resultThumb" src="" alt="Your photo">
+                            <img id="resultThumb" src="" alt="Your photo" width="600" height="400">
                             <div class="thumb-overlay">
                                 <i class="fas fa-check-circle"></i>
                             </div>
@@ -701,7 +753,7 @@
                     <!-- Doctor card -->
                     <div class="doctor-card-result" id="doctorCardResult">
                         <div class="doctor-photo-wrap">
-                            <img id="resultDoctorImg" src="" alt="Doctor">
+                            <img id="resultDoctorImg" src="" alt="Doctor" width="600" height="400">
                         </div>
                         <div class="doctor-details">
                             <div class="doctor-tag">Your Recommended Specialist</div>
