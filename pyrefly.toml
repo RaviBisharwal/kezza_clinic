@@ -1,0 +1,20 @@
+# Pyrefly Python type-checker configuration
+# https://pyrefly.dev/docs/configuration
+
+[pyrefly]
+# Only analyse actual Python files — ignore HTML, JS, PHP, CSS, etc.
+include = [
+    "tools/**/*.py",
+]
+
+# Exclude everything that isn't Python
+exclude = [
+    "**/*.html",
+    "**/*.js",
+    "**/*.css",
+    "**/*.php",
+    "**/*.json",
+    "frontend/**",
+    "node_modules/**",
+    "backend/**",
+]
