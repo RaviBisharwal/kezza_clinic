@@ -9,58 +9,65 @@ A modern, responsive, high-performance static web platform with an integrated **
 The project follows a clean, decoupled frontend architecture designed for simplicity, fast loading speeds, zero server maintenance overhead, and seamless hosting on GitHub Pages, Cloudflare Pages, Vercel, or Netlify.
 
 ```
-kezza_clinic/
+kezza_clinic/                       ← Repository Root
 │
-├── 📄 HTML Pages (Root-Level for Clean Static Routing)
-│   ├── index.html                  # Main Landing Page (Hero, Procedures, Doctors, Testimonials, FAQ)
-│   ├── about.html                  # About Clinic, Founders, Medical Philosophy, Doctor Profiles
-│   ├── hair-services.html          # Hair Restoration (FUE, DHI, Beard, Eyebrow, PRP, GFC)
-│   ├── skin-services.html          # Dermatology & Skin Care (HydraFacial, Carbon Peel, Acne, Glow)
-│   ├── weight-loss.html            # Weight Management, Body Sculpting, BMI Calculator
-│   ├── permanent-makeup.html       # PMU Artistry, Microblading, Lip Blush, Eyebrows
-│   ├── face-scanner.html           # 🤖 AI Face & Scalp Scanner (MediaPipe AI Landmark Tracking)
-│   ├── branches.html               # Franchise & Clinic Locations (Jaipur & Sikar Centers)
-│   ├── contact.html                # Contact Form, Direct Calling, Clinic Locations & Maps
-│   ├── terms.html                  # Privacy Policy, Medical Disclaimer, Clinic Terms
-│   └── admin.html                  # Local Clinic Intake & Dashboard Preview
+├── 📦 server.js                    # Lightweight Express static server (serves /frontend on port 3001)
+├── 📋 package.json                 # Project manifest: name, scripts, express dependency
+├── 📖 README.md                    # Developer onboarding & architecture documentation (this file)
+├── 🔐 .gitignore                   # Ignored files: node_modules, .env, *.bak, *.db, uploads/photos
+├── 🛠️ tools/                       # Developer utility scripts
+│   ├── fix_mojibake.py             # Unicode / character encoding sanitizer
+│   └── update_paths.js             # Batch CSS/JS path integrity updater
 │
-├── 🎨 css/ (Modular Stylesheets)
-│   ├── styles.css                  # Core global stylesheet (Typography, Header, Footer, Colors, Utilities)
-│   ├── about-styles.css            # Styles for About Us & Philosophy sections
-│   ├── branches-styles.css         # Styles for Franchise & Branch locations
-│   ├── chatbot.css                 # 💬 Floating AI Assistant, Chat UI & Laser Scanner Opportunity Modal
-│   ├── contact-styles.css          # Styles for Contact form & interactive map cards
-│   ├── doctors-landscape.css       # 🩺 Doctor Landscape Cards, Verified Badges & Expandable Bio styles
-│   ├── face-scanner-styles.css     # 🔬 Camera HUD, Facial Mesh Guide, Step Questionnaire & Calendar
-│   ├── hair-services-styles.css    # Hair procedures, before/after galleries & pricing cards
-│   ├── permanent-makeup-styles.css # PMU artistry, procedure showcases & FAQ accordion
-│   ├── quick-actions.css           # Floating Quick-Action Bar (Call, WhatsApp, AI Scanner, Book)
-│   ├── services-navigation.css     # 🚀 Header Services Accordion Dropdown (Desktop Hover & Mobile Tap)
-│   ├── skin-services-styles.css    # Skin & laser dermatology procedures layout
-│   └── terms-styles.css            # Legal, privacy policy & terms formatting
-│
-├── ⚡ js/ (JavaScript Logic & Interactive Features)
-│   ├── script.js                   # Main homepage scripts (Lazyload, Video Observer, Doctor Expander)
-│   ├── about-script.js             # About page interactions, doctor bio expansion & shine effects
-│   ├── branches-script.js          # Branch page animations & interactive enquiry form
-│   ├── chatbot.js                  # 💬 Tri-lingual AI Chatbot (Eng/Hindi/Hinglish) + Scanner Modal
-│   ├── contact-script.js           # Client-side contact form validation & instant WhatsApp dispatch
-│   ├── face-scanner-script.js      # 🤖 MediaPipe Face Mesh, 9-Step Assessment, Doctor Matcher & Calendar
-│   ├── hair-services-script.js     # Hair page interactive elements & cost calculator
-│   ├── mobile-menu.js              # Responsive mobile navigation drawer toggle
-│   ├── permanent-makeup-script.js  # PMU gallery tabs & interactive consultation builder
-│   ├── quick-actions.js            # Floating quick action button interactions
-│   ├── services-navigation.js      # 170ms Hover-intent expansion & mobile accordion logic
-│   ├── skin-services-script.js     # Skin page treatment tabs & quiz
-│   ├── terms-script.js             # Table of contents scrollspy & print utilities
-│   └── whatsapp-form.js            # Consultation ID generator & WhatsApp URL formatting helpers
-│
-├── 🖼️ images/                      # High-resolution clinic photos, doctor portraits & procedure assets
-├── 🎬 video/                       # Patient transformation videos and clinic walkthroughs
-├── 📁 uploads/                     # Client-side user upload previews
-└── 🛠️ tools/                       # Developer automation & verification scripts
-    ├── fix_mojibake.py             # Unicode / character encoding sanitizer
-    └── update_paths.js             # Batch path integrity & link updater
+└── 🌐 frontend/                    ← ALL public-facing website files live here
+    │
+    ├── 📄 HTML Pages
+    │   ├── index.html              # Main Landing Page (Hero, Procedures, Doctors, Testimonials, FAQ)
+    │   ├── about.html              # About Clinic, Founders, Medical Philosophy & Expandable Doctors
+    │   ├── hair-services.html      # Hair Restoration (FUE, DHI, Beard, Eyebrow, PRP, GFC)
+    │   ├── skin-services.html      # Dermatology & Skin Care (HydraFacial, Carbon Peel, Acne, Glow)
+    │   ├── weight-loss.html        # Weight Management, Body Sculpting & BMI Calculator
+    │   ├── permanent-makeup.html   # PMU Artistry, Microblading, Lip Blush, Eyebrows & SMP
+    │   ├── face-scanner.html       # 🤖 AI Face & Scalp Scanner (MediaPipe + 9-Step Assessment)
+    │   ├── branches.html           # Franchise & Clinic Locations (Jaipur & Sikar Centers)
+    │   ├── contact.html            # Contact Form, Direct Calling, Clinic Google Maps
+    │   ├── terms.html              # Privacy Policy, Medical Disclaimer, Terms & Conditions
+    │   └── admin.html              # Internal Clinic Intake & Dashboard Preview
+    │
+    ├── 🎨 css/                     # Modular CSS Stylesheets (one per page/feature)
+    │   ├── styles.css              # Core global stylesheet (Typography, Header, Footer, Colors)
+    │   ├── about-styles.css        # About page & founders section styling
+    │   ├── branches-styles.css     # Franchise & clinic location page styling
+    │   ├── chatbot.css             # 💬 Floating AI Assistant & Laser Scanner Promo Modal
+    │   ├── contact-styles.css      # Contact form, map cards & office hours styling
+    │   ├── doctors-landscape.css   # 🩺 Doctor landscape cards, verified badges, expandable bio
+    │   ├── face-scanner-styles.css # 🔬 Camera HUD, Facial Mesh Guide, Step flow & Calendar
+    │   ├── hair-services-styles.css       # Hair procedures, before/after galleries & pricing
+    │   ├── permanent-makeup-styles.css    # PMU artistry, procedure showcases & FAQ accordion
+    │   ├── quick-actions.css       # Floating Quick-Action Bar (Call, WhatsApp, AI Scanner)
+    │   ├── services-navigation.css # 🚀 Header Services Accordion (170ms hover / Mobile tap)
+    │   ├── skin-services-styles.css       # Skin & laser dermatology layout
+    │   └── terms-styles.css        # Legal, privacy policy & terms page formatting
+    │
+    ├── ⚡ js/                      # JavaScript Logic & Interactive Modules (one per page/feature)
+    │   ├── script.js               # Homepage (Lazy loading, Video Observer, Doctor Bio expander)
+    │   ├── about-script.js         # About page interactions, shine effects & bio toggle
+    │   ├── branches-script.js      # Branch page animations & enquiry form
+    │   ├── chatbot.js              # 💬 Tri-lingual Chatbot (Eng/Hindi/Hinglish) + Scanner Modal
+    │   ├── contact-script.js       # Client-side form validation & instant WhatsApp dispatch
+    │   ├── face-scanner-script.js  # 🤖 MediaPipe Face Mesh, 9-Step Assessment, Doctor Matcher
+    │   ├── hair-services-script.js # Hair treatments interactive elements & cost calculator
+    │   ├── mobile-menu.js          # Responsive mobile navigation hamburger toggle
+    │   ├── permanent-makeup-script.js # PMU gallery tabs & interactive consultation builder
+    │   ├── quick-actions.js        # Floating action buttons handler
+    │   ├── services-navigation.js  # 170ms hover-intent auto-expand & mobile accordion logic
+    │   ├── skin-services-script.js # Skin treatment tabs & skin concern quiz
+    │   ├── terms-script.js         # Legal TOC scrollspy & print utilities
+    │   └── whatsapp-form.js        # Consultation ID generator & WhatsApp URL formatting helpers
+    │
+    ├── 🖼️ images/                  # High-res: doctor portraits, clinic photos, logos, badges, procedure images
+    ├── 🎬 video/                   # Clinic walkthrough & patient video testimonials
+    └── 📁 uploads/                 # Client-side image upload preview folder
 ```
 
 ---

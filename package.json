@@ -1,0 +1,14 @@
+{
+  "name": "kezza-clinic-website",
+  "version": "2.0.0",
+  "description": "Kezza Hair & Skin Clinic — Official Frontend Website & AI Face Scanner",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "serve": "npx serve frontend -p 3001"
+  },
+  "dependencies": {
+    "express": "^4.22.2"
+  }
+}
