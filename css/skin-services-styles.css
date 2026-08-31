@@ -355,7 +355,7 @@ h6 {
 
 .video-intro-section {
     padding: 60px 0;
-    background: linear-gradient(rgba(51, 51, 51, 0.88), rgba(44, 44, 44, 0.88)), url('images/hero2.jpg');
+    background: linear-gradient(rgba(51, 51, 51, 0.88), rgba(44, 44, 44, 0.88)), url('../images/hero2.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -554,7 +554,7 @@ h6 {
 
 .hydra-facial-section {
     padding: 60px 0;
-    background: linear-gradient(rgba(232, 248, 245, 0.88), rgba(232, 248, 245, 0.88)), url('images/hydra-facial-2.jpg');
+    background: linear-gradient(rgba(232, 248, 245, 0.88), rgba(232, 248, 245, 0.88)), url('../images/hydra-facial-2.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -566,7 +566,7 @@ h6 {
 
 .acne-treatment-section {
     padding: 60px 0;
-    background: linear-gradient(rgba(213, 243, 237, 0.85), rgba(213, 243, 237, 0.85)), url('images/background2.jpg');
+    background: linear-gradient(rgba(213, 243, 237, 0.85), rgba(213, 243, 237, 0.85)), url('../images/background2.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -738,7 +738,7 @@ h6 {
 
 .pigmentation-section {
     padding: 60px 0;
-    background: linear-gradient(rgba(250, 248, 242, 0.86), rgba(248, 246, 240, 0.86)), url('images/pigmentation-removal.jpg');
+    background: linear-gradient(rgba(250, 248, 242, 0.86), rgba(248, 246, 240, 0.86)), url('../images/pigmentation-removal.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -814,7 +814,7 @@ h6 {
 
 .anti-aging-section {
     padding: 60px 0;
-    background: linear-gradient(rgba(232, 248, 245, 0.87), rgba(213, 243, 237, 0.87)), url('images/hero4.jpg');
+    background: linear-gradient(rgba(232, 248, 245, 0.87), rgba(213, 243, 237, 0.87)), url('../images/hero4.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -838,7 +838,7 @@ h6 {
 
 .stretch-mark-section {
     padding: 60px 0;
-    background: linear-gradient(rgba(248, 246, 240, 0.88), rgba(248, 246, 240, 0.88)), url('images/keeza-inside-clinic.jpg');
+    background: linear-gradient(rgba(248, 246, 240, 0.88), rgba(248, 246, 240, 0.88)), url('../images/keeza-inside-clinic.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -850,7 +850,7 @@ h6 {
 
 .medical-dermatology-section {
     padding: 60px 0;
-    background: linear-gradient(rgba(232, 248, 245, 0.89), rgba(232, 248, 245, 0.89)), url('images/keeza-inside-clinic.jpg');
+    background: linear-gradient(rgba(232, 248, 245, 0.89), rgba(232, 248, 245, 0.89)), url('../images/keeza-inside-clinic.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -903,7 +903,7 @@ h6 {
 
 .transformation-video-section {
     padding: 60px 0;
-    background: linear-gradient(rgba(27, 41, 81, 0.92), rgba(15, 26, 46, 0.92)), url('images/keeza-inside-clinic-2.jpg');
+    background: linear-gradient(rgba(27, 41, 81, 0.92), rgba(15, 26, 46, 0.92)), url('../images/keeza-inside-clinic-2.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -930,7 +930,7 @@ h6 {
 
 .treatment-process-section {
     padding: 60px 0;
-    background: linear-gradient(rgba(213, 243, 237, 0.87), rgba(194, 237, 229, 0.87)), url('images/keeza-inside-clinic-room.jpg');
+    background: linear-gradient(rgba(213, 243, 237, 0.87), rgba(194, 237, 229, 0.87)), url('../images/keeza-inside-clinic-room.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1000,7 +1000,7 @@ h6 {
 
 .faq-section {
     padding: 60px 0;
-    background: linear-gradient(rgba(232, 248, 245, 0.90), rgba(232, 248, 245, 0.90)), url('images/hero4.jpg');
+    background: linear-gradient(rgba(232, 248, 245, 0.90), rgba(232, 248, 245, 0.90)), url('../images/hero4.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1067,7 +1067,7 @@ h6 {
 
 .final-cta-section {
     padding: 60px 0;
-    background: linear-gradient(rgba(26, 188, 156, 0.85), rgba(72, 201, 176, 0.85)), url('images/hero4.jpg');
+    background: linear-gradient(rgba(26, 188, 156, 0.85), rgba(72, 201, 176, 0.85)), url('../images/hero4.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

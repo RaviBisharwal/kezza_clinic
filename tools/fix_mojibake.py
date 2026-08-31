@@ -54,21 +54,18 @@ def process_text(text: str):
 
 def main():
     changed_files = []
-    for p in sorted(ROOT.iterdir()):
-        if p.is_file() and p.suffix in TARGET_EXT:
+    scan_paths = list(ROOT.glob('*.html')) + list(ROOT.glob('css/*.css')) + list(ROOT.glob('js/*.js'))
+    for p in sorted(scan_paths):
+        if p.is_file():
             text = p.read_text(encoding='utf-8', errors='replace')
             new_text, changed = process_text(text)
             if changed or new_text != text:
-                bak = p.with_suffix(p.suffix + '.bak')
-                p.replace(p) if False else None
-                # write backup
                 p.write_text(new_text, encoding='utf-8')
-                bak.write_text(text, encoding='utf-8')
                 changed_files.append(str(p.relative_to(ROOT)))
     if changed_files:
         print('Updated files:\n' + '\n'.join(changed_files))
     else:
-        print('No changes made')
+        print('No changes made (all files clean)')
 
 if __name__ == '__main__':
     main()

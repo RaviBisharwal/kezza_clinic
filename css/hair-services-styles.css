@@ -334,7 +334,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Video Education Section */
 .video-education-section {
     padding: 100px 0;
-    background: linear-gradient(rgba(51, 51, 51, 0.85), rgba(44, 44, 44, 0.85)), url('images/hero1.jpg');
+    background: linear-gradient(rgba(51, 51, 51, 0.85), rgba(44, 44, 44, 0.85)), url('../images/hero1.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -383,7 +383,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .fue-section {
-    background: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('images/background1.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('../images/background1.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -391,7 +391,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .dhi-section {
-    background: linear-gradient(rgba(248, 249, 250, 0.85), rgba(248, 249, 250, 0.85)), url('images/dhi-hair-2.jpg');
+    background: linear-gradient(rgba(248, 249, 250, 0.85), rgba(248, 249, 250, 0.85)), url('../images/dhi-hair-2.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -399,7 +399,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .beard-section {
-    background: linear-gradient(rgba(255, 255, 255, 0.87), rgba(255, 255, 255, 0.87)), url('images/background2.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.87), rgba(255, 255, 255, 0.87)), url('../images/background2.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -407,7 +407,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .eyebrow-section {
-    background: linear-gradient(rgba(250, 248, 242, 0.86), rgba(248, 246, 240, 0.86)), url('images/eyebro.jpg');
+    background: linear-gradient(rgba(250, 248, 242, 0.86), rgba(248, 246, 240, 0.86)), url('../images/eyebro.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -415,7 +415,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .female-hair-section {
-    background: linear-gradient(rgba(249, 247, 244, 0.88), rgba(246, 244, 241, 0.88)), url('images/background3.jpg');
+    background: linear-gradient(rgba(249, 247, 244, 0.88), rgba(246, 244, 241, 0.88)), url('../images/background3.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -533,7 +533,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Hairline Design Section */
 .hairline-design-section {
     padding: 100px 0;
-    background: linear-gradient(rgba(255, 255, 255, 0.89), rgba(255, 255, 255, 0.89)), url('images/background4.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.89), rgba(255, 255, 255, 0.89)), url('../images/background4.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -599,7 +599,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Mini Services Section */
 .mini-services-section {
     padding: 100px 0;
-    background: linear-gradient(rgba(248, 249, 250, 0.87), rgba(248, 249, 250, 0.87)), url('images/hero4.jpg');
+    background: linear-gradient(rgba(248, 249, 250, 0.87), rgba(248, 249, 250, 0.87)), url('../images/hero4.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -719,7 +719,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Non-Surgical Section */
 .non-surgical-section {
     padding: 100px 0;
-    background: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('images/background1.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('../images/background1.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -753,7 +753,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Process Section */
 .process-section {
     padding: 100px 0;
-    background: linear-gradient(rgba(51, 51, 51, 0.88), rgba(44, 44, 44, 0.88)), url('images/fui-hair-2.jpg');
+    background: linear-gradient(rgba(51, 51, 51, 0.88), rgba(44, 44, 44, 0.88)), url('../images/fui-hair-2.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -800,7 +800,7 @@ h1, h2, h3, h4, h5, h6 {
 /* FAQ Section */
 .faq-section {
     padding: 100px 0;
-    background: linear-gradient(rgba(248, 249, 250, 0.89), rgba(248, 249, 250, 0.89)), url('images/background2.jpg');
+    background: linear-gradient(rgba(248, 249, 250, 0.89), rgba(248, 249, 250, 0.89)), url('../images/background2.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -874,7 +874,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Final CTA Section */
 .final-cta-section {
     padding: 100px 0;
-    background: linear-gradient(rgba(26, 188, 156, 0.85), rgba(72, 201, 176, 0.85)), url('images/hero4.jpg');
+    background: linear-gradient(rgba(26, 188, 156, 0.85), rgba(72, 201, 176, 0.85)), url('../images/hero4.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

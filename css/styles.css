@@ -1350,7 +1350,7 @@ video {
 
 .gallery-section {
     padding: 100px 0;
-    background: url('images/hero1.jpg') center/cover;
+    background: url('../images/hero1.jpg') center/cover;
     position: relative;
 }
 
