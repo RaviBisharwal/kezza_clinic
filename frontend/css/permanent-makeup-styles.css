@@ -1109,7 +1109,8 @@ h6 {
     margin-bottom: 40px;
 }
 
-.footer-column h3 {
+.footer-column h3,
+.footer-column .footer-nav-title {
     color: var(--primary);
     font-size: 24px;
     margin-bottom: 20px;
@@ -1405,3 +1406,42 @@ h6 {
     padding: 3px 7px !important;
 }
 
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   SEO Semantic Elements Styling
+   ═══════════════════════════════════════════════════════════════════ */
+.footer-column .footer-nav-title,
+p.footer-nav-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--primary-gold, #D4AF37);
+    letter-spacing: 0.02em;
+}
+
+p.item-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: inherit;
+    line-height: 1.4;
+}
+
+p.cta-subtext {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-top: 0.75rem;
+    opacity: 0.9;
+}
+
+p.section-subhead {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: inherit;
+}

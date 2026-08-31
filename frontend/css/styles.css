@@ -1733,7 +1733,8 @@ video {
     margin-bottom: 40px;
 }
 
-.footer-column h3 {
+.footer-column h3,
+.footer-column .footer-nav-title {
     font-size: 1.2rem;
     margin-bottom: 1rem;
     color: var(--primary);
