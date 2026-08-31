@@ -47,4 +47,63 @@ document.addEventListener('DOMContentLoaded', function() {
             videoObserver.observe(video);
         });
     }
+
+    // ── Interactive Services Category & Tab Switcher ──────────────
+    const categoryCards = document.querySelectorAll('.service-category-card');
+    const viewerTabs = document.querySelectorAll('.viewer-tab-btn');
+    const tabPanels = document.querySelectorAll('.treatment-tab-panel');
+    const servicesViewer = document.getElementById('servicesViewer');
+
+    function switchServiceCategory(catName, shouldScroll = false) {
+        if (!catName) return;
+
+        // 1. Update top category cards
+        categoryCards.forEach(card => {
+            if (card.getAttribute('data-category') === catName) {
+                card.classList.add('active-category');
+            } else {
+                card.classList.remove('active-category');
+            }
+        });
+
+        // 2. Update viewer tab buttons
+        viewerTabs.forEach(tab => {
+            if (tab.getAttribute('data-category') === catName) {
+                tab.classList.add('active');
+            } else {
+                tab.classList.remove('active');
+            }
+        });
+
+        // 3. Update tab panels
+        tabPanels.forEach(panel => {
+            if (panel.getAttribute('data-category') === catName) {
+                panel.classList.add('active');
+            } else {
+                panel.classList.remove('active');
+            }
+        });
+
+        // 4. Smooth scroll to viewer if triggered from category card click
+        if (shouldScroll && servicesViewer) {
+            const yOffset = -90;
+            const y = servicesViewer.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+    }
+
+    categoryCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const cat = this.getAttribute('data-category');
+            switchServiceCategory(cat, true);
+        });
+    });
+
+    viewerTabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const cat = this.getAttribute('data-category');
+            switchServiceCategory(cat, false);
+        });
+    });
 });

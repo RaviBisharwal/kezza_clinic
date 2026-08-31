@@ -712,248 +712,637 @@ video {
 }
 
 
-/* Hair Services Section */
+/* ═══════════════════════════════════════════════════════════════
+   MASTER SERVICES & CLINICAL SPECIALTIES SECTION (4 DEPARTMENTS)
+   ═══════════════════════════════════════════════════════════════ */
 
-.hair-services-section {
-    padding: 100px 0;
-    background: url('images/hero3.jpg') center/cover;
+.services-master-section {
+    padding: 100px 0 80px;
+    background: linear-gradient(180deg, #ffffff 0%, #fcfbf7 50%, #f8f6f0 100%);
     position: relative;
+    overflow: hidden;
 }
 
-.hair-services-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(26, 188, 156, 0.6) 0%, rgba(22, 160, 133, 0.7) 100%);
-    z-index: 1;
-}
-
-.hair-services-section .container {
-    position: relative;
-    z-index: 2;
-}
-
-.section-intro {
-    margin-bottom: 60px;
+.services-section-header {
     text-align: center;
+    max-width: 840px;
+    margin: 0 auto 50px;
 }
 
-.hair-services-section .section-intro h2 {
-    font-size: 42px;
-    color: white;
-    margin-bottom: 20px;
+.section-pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201, 168, 76, 0.12);
+    color: #946808;
+    border: 1px solid rgba(201, 168, 76, 0.35);
+    padding: 6px 18px;
+    border-radius: 30px;
+    font-size: 0.82rem;
     font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
 }
 
-.section-intro h2 {
-    font-size: 42px;
-    color: var(--secondary);
-    margin-bottom: 20px;
+.services-section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.8vw, 2.75rem);
+    color: #1a1a1a;
     font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.25;
 }
 
-.hair-services-section .section-intro p {
-    font-size: 18px;
-    color: rgba(255, 255, 255, 0.95);
-    max-width: 800px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-.section-intro p {
-    font-size: 18px;
-    color: #666;
-    max-width: 800px;
+.services-section-header p {
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.7;
     margin: 0 auto;
-    text-align: center;
 }
 
-.services-grid {
+/* ── 4-Category Master Cards Grid ────────────────────────────── */
+.services-categories-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 45px;
 }
 
-.service-card {
-    background: var(--white);
-    border-radius: 15px;
+.service-category-card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 2px solid #eef0f4;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: all 0.4s ease;
-    animation: slideUp 0.8s ease;
-    transform-style: preserve-3d;
-    perspective: 1000px;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
-}
-
-.service-card:hover {
-    transform: translateY(-15px) rotateX(5deg) scale(1.02);
-    box-shadow: 0 25px 50px rgba(26, 188, 156, 0.3), 0 0 30px rgba(26, 188, 156, 0.1);
-}
-
-.service-card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.service-card:hover img {
-    transform: scale(1.1);
-}
-
-.service-card h3 {
-    font-size: 24px;
-    color: var(--secondary);
-    padding: 20px 25px 10px;
-    text-align: center;
-    font-weight: 600;
-    min-height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.service-card p {
-    color: #666;
-    padding: 0 25px;
-    line-height: 1.6;
-    text-align: center;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 80px;
-}
-
-.service-card .explore-btn {
-    margin: 20px auto;
-}
-
-.explore-btn {
-    display: block;
-    text-align: center;
-    margin: 0 auto 25px;
-    width: fit-content;
-    background: var(--primary);
-    color: var(--white);
-    padding: 12px 28px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.explore-btn:hover {
-    background: var(--secondary);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(51, 51, 51, 0.3);
-}
-
-
-/* Skin Services Section */
-
-.skin-services-section {
-    padding: 100px 0;
-    background: linear-gradient(135deg, #f8f6f0 0%, #faf8f2 100%);
-}
-
-.skin-services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
-}
-
-.skin-card {
-    background: var(--white);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: all 0.4s ease;
     position: relative;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    display: flex;
-    flex-direction: column;
 }
 
-.skin-card:hover {
-    transform: translateY(-15px) rotateY(-5deg) scale(1.02);
-    box-shadow: 0 25px 50px rgba(26, 188, 156, 0.3), 0 0 30px rgba(26, 188, 156, 0.1);
+.service-category-card:hover {
+    transform: translateY(-6px);
+    border-color: #d4af37;
+    box-shadow: 0 16px 40px rgba(212, 175, 55, 0.18);
 }
 
-.skin-card::before {
+.service-category-card.active-category {
+    border-color: #d4af37;
+    background: #ffffff;
+    box-shadow: 0 16px 45px rgba(212, 175, 55, 0.22);
+    transform: translateY(-4px);
+}
+
+.service-category-card.active-category::after {
     content: '';
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, transparent, rgba(26, 188, 156, 0.1));
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    height: 4px;
+    background: linear-gradient(90deg, #d4af37, #f7d566, #d4af37);
 }
 
-.skin-card:hover::before {
-    opacity: 1;
+.service-category-inner {
+    padding: 18px 18px 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
-.skin-card img {
+.category-thumb-wrap {
+    position: relative;
     width: 100%;
-    height: 220px;
+    height: 170px;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.category-thumb-wrap img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     transition: transform 0.4s ease;
 }
 
-.skin-card:hover img {
-    transform: scale(1.1);
+.service-category-card:hover .category-thumb-wrap img {
+    transform: scale(1.06);
 }
 
-.skin-card h3 {
-    font-size: 22px;
-    color: var(--secondary);
-    padding: 20px 25px 10px;
-    text-align: center;
-    font-weight: 600;
-    min-height: 70px;
+.category-count-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(11, 15, 27, 0.82);
+    color: #ffd700;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 215, 0, 0.35);
+}
+
+.category-icon-pill {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.skin-card p {
+.service-category-inner h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.category-desc {
+    font-size: 0.85rem;
     color: #666;
-    padding: 0 25px;
-    line-height: 1.6;
-    text-align: center;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 80px;
+    line-height: 1.55;
+    margin-bottom: 14px;
+    flex-grow: 0;
 }
 
-.skin-card .explore-btn {
-    display: block;
-    margin: 0 auto 25px;
-    width: fit-content;
-    background: var(--primary);
-    color: var(--white);
-    padding: 12px 28px;
+.category-highlights-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    flex-grow: 1;
+}
+
+.category-highlights-list li {
+    font-size: 0.8rem;
+    color: #444;
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    line-height: 1.35;
+}
+
+.category-highlights-list li i {
+    color: #00AFC0;
+    font-size: 0.8rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.btn-view-treatments {
+    width: 100%;
+    background: #f4f6fa;
+    border: 1px solid #e2e6ee;
+    color: #222;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    margin-top: auto;
+}
+
+.service-category-card:hover .btn-view-treatments,
+.service-category-card.active-category .btn-view-treatments {
+    background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+    color: #ffffff;
+    border-color: #b8860b;
+}
+
+.btn-view-treatments .arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+.service-category-card:hover .arrow-icon {
+    transform: translateX(4px);
+}
+
+/* ── Interactive Treatments Expansion Viewer ────────────────── */
+.services-interactive-viewer {
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1.5px solid #e7eaef;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+    padding: 32px 32px 36px;
+    margin-top: 20px;
+    scroll-margin-top: 100px;
+}
+
+.viewer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 24px;
+    border-bottom: 1.5px solid #f0f2f6;
+    margin-bottom: 30px;
+}
+
+.viewer-header-left h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #111827;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.viewer-header-left p {
+    font-size: 0.92rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.viewer-tabs-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    background: #f4f6fa;
+    padding: 6px;
+    border-radius: 40px;
+    border: 1px solid #e5e9f0;
+}
+
+.viewer-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 18px;
     border-radius: 30px;
-    text-decoration: none;
+    border: none;
+    background: transparent;
+    color: #4b5563;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
     font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.viewer-tab-btn:hover {
+    color: #111;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.viewer-tab-btn.active {
+    background: #ffffff;
+    color: #946808;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(201, 168, 76, 0.4);
+    font-weight: 700;
+}
+
+.viewer-tab-btn.active i {
+    color: #d4af37;
+}
+
+/* ── Tab Panels & Subgrids ───────────────────────────────────── */
+.treatment-tab-panel {
+    display: none;
+    animation: viewerFadeIn 0.35s ease forwards;
+}
+
+.treatment-tab-panel.active {
+    display: block;
+}
+
+@keyframes viewerFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.treatments-subgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 35px;
+}
+
+/* ── Individual Treatment Item Card ──────────────────────────── */
+.treatment-item-card {
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #eaedf3;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.treatment-item-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(201, 168, 76, 0.5);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.09);
+}
+
+.treatment-thumb-box {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    overflow: hidden;
+    background: #f0f2f5;
+}
+
+.treatment-thumb-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.treatment-item-card:hover .treatment-thumb-box img {
+    transform: scale(1.06);
+}
+
+.treatment-badge-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(11, 15, 27, 0.85);
+    color: #ffd700;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 11px;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 215, 0, 0.35);
+    letter-spacing: 0.03em;
+}
+
+.treatment-body {
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.treatment-body h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    line-height: 1.35;
+}
+
+.treatment-body p {
+    font-size: 0.86rem;
+    color: #555;
+    line-height: 1.55;
+    margin-bottom: 18px;
+    flex-grow: 1;
+}
+
+.treatment-action-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.btn-book-quick {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #ffffff !important;
+    padding: 9px 14px;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+}
+
+.btn-book-quick:hover {
+    background: linear-gradient(135deg, #28e06c 0%, #15a08e 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+}
+
+.btn-details-link {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #f4f6fa;
+    border: 1px solid #e2e6ee;
+    color: #555 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+}
+
+.btn-details-link:hover {
+    background: #00AFC0;
+    color: #fff !important;
+    border-color: #00AFC0;
+    transform: translateY(-2px);
+}
+
+/* ── Full-Width CTA Banner in Tab Panel ──────────────────────── */
+.tab-page-cta-banner {
+    background: linear-gradient(135deg, #0b1120 0%, #162444 100%);
+    border: 1.5px solid rgba(201, 168, 76, 0.35);
+    border-radius: 18px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.banner-content h4 {
+    font-family: 'Playfair Display', serif;
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.banner-content p {
+    color: #cbd5e1;
+    font-size: 0.86rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.btn-banner-full {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+    color: #000000 !important;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+}
+
+.btn-banner-full:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+    color: #000000 !important;
+}
+
+/* ── Why Kezza Colorized Card Borders & Icons ────────────────── */
+.card-gold { border-top-color: #d4af37 !important; }
+.card-cyan { border-top-color: #00AFC0 !important; }
+.card-emerald { border-top-color: #10b981 !important; }
+.card-purple { border-top-color: #8b5cf6 !important; }
+.card-rose { border-top-color: #f43f5e !important; }
+.card-amber { border-top-color: #f59e0b !important; }
+
+.icon-gold { color: #d4af37; }
+.icon-cyan { color: #00AFC0; }
+.icon-emerald { color: #10b981; }
+.icon-purple { color: #8b5cf6; }
+.icon-rose { color: #f43f5e; }
+.icon-amber { color: #f59e0b; }
+
+/* ── Hero Badges ─────────────────────────────────────────────── */
+.hero-luxury-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 215, 0, 0.15);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    color: #b8860b;
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.hero-luxury-badge i {
+    color: #d4af37;
+}
+
+.hero-subtitle-tag {
+    font-size: 1.1rem;
+    color: #444;
+    font-weight: 500;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.gold-underline {
+    color: #946808;
+    font-weight: 700;
+}
+
+.btn-scanner-hero {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(11, 15, 27, 0.85);
+    color: #ffd700 !important;
+    border: 1.5px solid rgba(212, 175, 55, 0.6);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-decoration: none !important;
     transition: all 0.3s ease;
 }
 
-.skin-card .explore-btn:hover {
-    background: var(--secondary);
+.btn-scanner-hero:hover {
+    background: #0b0f1b;
+    border-color: #ffd700;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(51, 51, 51, 0.3);
+    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
+}
+
+/* ── Responsive Rules for Services Master Section ────────────── */
+@media (max-width: 1100px) {
+    .services-categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .services-interactive-viewer {
+        padding: 20px 16px;
+    }
+    .viewer-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .viewer-tabs-nav {
+        width: 100%;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 4px;
+    }
+    .viewer-tab-btn {
+        padding: 7px 12px;
+        font-size: 0.78rem;
+    }
+    .treatments-subgrid {
+        grid-template-columns: 1fr;
+    }
+    .tab-page-cta-banner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .btn-banner-full {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .services-categories-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 
@@ -1043,70 +1432,8 @@ video {
 }
 
 
-/* Doctors Section */
+/* ─── Doctors Section is centrally styled in doctors-landscape.css ─── */
 
-.doctors-section {
-    padding: 100px 0;
-    background: var(--light-gray);
-}
-
-.doctors-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    gap: 40px;
-}
-
-.doctor-card {
-    display: flex;
-    background: var(--white);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: all 0.3s ease;
-}
-
-.doctor-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-}
-
-.doctor-card img {
-    width: 180px;
-    height: 220px;
-    object-fit: cover;
-}
-
-.doctor-info {
-    padding: 30px;
-    flex: 1;
-}
-
-.doctor-info h3 {
-    font-size: 24px;
-    color: var(--secondary);
-    margin-bottom: 20px;
-    border-bottom: 2px solid var(--primary);
-    padding-bottom: 10px;
-}
-
-.doctor-info ul {
-    list-style: none;
-}
-
-.doctor-info li {
-    color: #666;
-    margin-bottom: 10px;
-    position: relative;
-    padding-left: 20px;
-}
-
-.doctor-info li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--primary);
-    font-weight: bold;
-}
 
 
 /* Testimonials Section */
@@ -1620,17 +1947,6 @@ video {
         flex-direction: column;
         align-items: center;
     }
-    .doctors-grid {
-        grid-template-columns: 1fr;
-    }
-    .doctor-card {
-        flex-direction: column;
-    }
-    .doctor-card img {
-        width: 100%;
-        height: 300px;
-    }
-
     .hero-video video {
         max-width: 100%;
         height: 180px;
@@ -1642,10 +1958,6 @@ video {
     .service-card img,
     .skin-card img {
         height: 180px;
-    }
-    .doctor-card img {
-        width: 100%;
-        height: 200px;
     }
     .map-placeholder img {
         height: 200px;
@@ -1946,242 +2258,6 @@ video {
     margin: 6px 0;
 }
 
-/* ─── Floating Quick Action Dock ───────────────────────────────── */
-/* ─── Ultra-Smooth Animated Floating Quick Action Dock ──────────── */
-.floating-quick-dock {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(11, 15, 27, 0.96);
-    border: 1.5px solid rgba(201, 168, 76, 0.6);
-    backdrop-filter: blur(20px) saturate(200%);
-    -webkit-backdrop-filter: blur(20px) saturate(200%);
-    border-radius: 50px;
-    padding: 7px 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7), 
-                0 0 25px rgba(201, 168, 76, 0.25),
-                inset 0 1px 1px rgba(255, 255, 255, 0.2);
-    z-index: 998;
-    max-width: 95vw;
-    animation: dockEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-               dockAmbientFloat 6s ease-in-out infinite 0.8s;
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
-    will-change: transform, opacity;
-}
+/* ─── Floating Quick Action Dock & Social Sidebar are centrally styled in quick-actions.css ─── */
 
-/* Auto-Hide when scrolling */
-.floating-quick-dock.dock-hidden {
-    transform: translate(-50%, 120px) !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-}
-
-/* Subtle Shimmer Sweep on the Dock */
-.floating-quick-dock::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 50px;
-    padding: 1px;
-    background: linear-gradient(120deg, transparent 20%, rgba(201, 168, 76, 0.7) 50%, transparent 80%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    background-size: 200% 100%;
-    animation: borderShimmer 4s linear infinite;
-    pointer-events: none;
-}
-
-@keyframes borderShimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-}
-
-@keyframes dockEntrance {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, 60px) scale(0.9);
-    }
-    100% {
-        opacity: 1;
-        transform: translate(-50%, 0) scale(1);
-    }
-}
-
-@keyframes dockAmbientFloat {
-    0%, 100% {
-        transform: translate(-50%, 0);
-    }
-    50% {
-        transform: translate(-50%, -6px);
-    }
-}
-
-/* Dock Item Base */
-.dock-item {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 9px 16px;
-    border-radius: 30px;
-    color: #f3eedf;
-    text-decoration: none;
-    font-size: 0.82rem;
-    font-weight: 700;
-    white-space: nowrap;
-    cursor: pointer;
-    overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.dock-item:active {
-    transform: scale(0.92) !important;
-}
-
-/* 1. Call Button Animation */
-.dock-item.dock-call {
-    background: rgba(201, 168, 76, 0.22);
-    color: #ffd700;
-    border: 1.5px solid rgba(201, 168, 76, 0.7);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-}
-.dock-item.dock-call i {
-    transition: transform 0.3s ease;
-}
-.dock-item.dock-call:hover {
-    background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
-    color: #000;
-    border-color: #ffffff;
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 8px 22px rgba(255, 215, 0, 0.5);
-}
-.dock-item.dock-call:hover i {
-    animation: phoneWiggle 0.6s ease infinite;
-}
-
-@keyframes phoneWiggle {
-    0%, 100% { transform: rotate(0deg); }
-    20% { transform: rotate(-15deg); }
-    40% { transform: rotate(15deg); }
-    60% { transform: rotate(-10deg); }
-    80% { transform: rotate(10deg); }
-}
-
-/* 2. WhatsApp Button Animation & Pulse */
-.dock-item.dock-wa {
-    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-    color: #ffffff;
-    font-weight: 700;
-    border: 1.5px solid #25d366;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.45);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
-}
-.dock-item.dock-wa::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%; width: 60%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    transform: skewX(-25deg);
-    animation: waLightSweep 3.5s ease-in-out infinite;
-}
-@keyframes waLightSweep {
-    0%, 60% { left: -100%; }
-    100% { left: 200%; }
-}
-.dock-item.dock-wa:hover {
-    background: linear-gradient(135deg, #28e06c 0%, #15a08e 100%);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
-}
-.dock-item.dock-wa i {
-    font-size: 1.05rem;
-    animation: waIconPulse 2.5s infinite;
-}
-@keyframes waIconPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-}
-
-/* 3. AI Scanner Button Animation */
-.dock-item.dock-scan {
-    background: rgba(255, 215, 0, 0.18);
-    color: #ffe066;
-    border: 1.5px solid rgba(255, 215, 0, 0.65);
-    font-weight: 700;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-}
-.dock-item.dock-scan:hover {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.35) 0%, rgba(201, 168, 76, 0.45) 100%);
-    border-color: #ffd700;
-    color: #fff;
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.45);
-}
-.dock-item.dock-scan i {
-    animation: sparkleSpin 3s ease-in-out infinite;
-}
-@keyframes sparkleSpin {
-    0%, 100% { transform: scale(1) rotate(0deg); color: #ffd700; }
-    50% { transform: scale(1.25) rotate(12deg); color: #fff; }
-}
-
-/* 4. Book Visit Button */
-.dock-item.dock-book {
-    background: rgba(255, 255, 255, 0.15);
-    color: #ffffff;
-    border: 1.5px solid rgba(255, 255, 255, 0.35);
-    font-weight: 700;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-}
-.dock-item.dock-book:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: #ffd700;
-    color: #ffd700;
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-}
-
-/* Responsive Mobile Layout */
-@media (max-width: 768px) {
-    .floating-quick-dock {
-        bottom: 14px;
-        padding: 5px 8px;
-        gap: 5px;
-    }
-    .dock-item {
-        padding: 8px 11px;
-        font-size: 0.76rem;
-        gap: 5px;
-    }
-    .dock-item span {
-        display: inline-block;
-        font-size: 0.72rem;
-    }
-    .dock-item.dock-call span {
-        display: none;
-    }
-}
-
-@media (max-width: 480px) {
-    .floating-quick-dock {
-        bottom: 12px;
-        padding: 5px 6px;
-        gap: 4px;
-    }
-    .dock-item {
-        padding: 7px 10px;
-        font-size: 0.72rem;
-    }
-    .dock-item span {
-        display: none;
-    }
-    .dock-item i {
-        font-size: 1.05rem;
-    }
-}
 

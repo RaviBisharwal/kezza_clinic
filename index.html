@@ -28,7 +28,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="doctors-landscape.css">
     <link rel="stylesheet" href="quick-actions.css">
+    <link rel="stylesheet" href="services-navigation.css">
     <link rel="stylesheet" href="chatbot.css?v=2.2">
 </head>
 
@@ -46,16 +48,95 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="hair-services.html">Hair Services</a></li>
-                <li><a href="skin-services.html">Skin Services</a></li>
-                <li><a href="permanent-makeup.html">Permanent Makeup</a></li>
+                
+                <!-- SERVICES DROPDOWN (WhatsApp Style with Expandable Sub-Branches) -->
+                <li class="nav-item-services-dropdown">
+                    <a href="javascript:void(0)" class="services-nav-toggle" id="servicesNavToggle" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="servicesDropdownMenu">
+                        <span>SERVICES</span> <i class="fas fa-chevron-down nav-arrow"></i>
+                    </a>
+                    <div class="services-dropdown-menu" id="servicesDropdownMenu" role="region" aria-label="Services Menu">
+                        <ul class="services-dropdown-list">
+                            <!-- Category 1: Hair Services -->
+                            <li class="services-cat-item" data-accordion="hair">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subHair">
+                                    <span class="services-cat-title">Hair Services</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subHair">
+                                    <ul class="services-sub-list">
+                                        <li><a href="hair-services.html#hair-transplant" class="services-sub-link">Hair Transplant (HT)</a></li>
+                                        <li><a href="hair-services.html#prp" class="services-sub-link">PRP Therapy</a></li>
+                                        <li><a href="hair-services.html#gfc" class="services-sub-link">GFC Therapy</a></li>
+                                        <li><a href="hair-services.html#white-hair" class="services-sub-link">White Hair Removal</a></li>
+                                        <li><a href="hair-services.html#electrolysis" class="services-sub-link">Electrolysis</a></li>
+                                        <li><a href="hair-services.html#hair-wig" class="services-sub-link">Hair Wig / Hair Replacement</a></li>
+                                        <li><a href="hair-services.html#consultation" class="services-sub-link">Hair Loss Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Category 2: Skin Services -->
+                            <li class="services-cat-item" data-accordion="skin">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subSkin">
+                                    <span class="services-cat-title">Skin Services</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subSkin">
+                                    <ul class="services-sub-list">
+                                        <li><a href="skin-services.html#botox" class="services-sub-link">Botox</a></li>
+                                        <li><a href="skin-services.html#acne" class="services-sub-link">Acne &amp; Acne Scar</a></li>
+                                        <li><a href="skin-services.html#dark-circles" class="services-sub-link">Dark Circle Treatment</a></li>
+                                        <li><a href="skin-services.html#laser" class="services-sub-link">Laser Treatments</a></li>
+                                        <li><a href="skin-services.html#anti-aging" class="services-sub-link">Anti-Aging</a></li>
+                                        <li><a href="skin-services.html#glutathione" class="services-sub-link">Glutathione Therapy</a></li>
+                                        <li><a href="skin-services.html#hydra-facial" class="services-sub-link">Medical Facial</a></li>
+                                        <li><a href="skin-services.html#consultation" class="services-sub-link">Skin Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Category 3: Weight Loss -->
+                            <li class="services-cat-item" data-accordion="weight">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subWeight">
+                                    <span class="services-cat-title">Weight Loss</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subWeight">
+                                    <ul class="services-sub-list">
+                                        <li><a href="weight-loss.html#treatments" class="services-sub-link">Non-Surgical Weight Loss</a></li>
+                                        <li><a href="weight-loss.html#treatments" class="services-sub-link">Body Sculpting (Cryolipolysis)</a></li>
+                                        <li><a href="weight-loss.html#bmi-calc" class="services-sub-link">BMI Assessment</a></li>
+                                        <li><a href="weight-loss.html#consultation" class="services-sub-link">Weight Management Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Category 4: Permanent Makeup (PMU) -->
+                            <li class="services-cat-item" data-accordion="pmu">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subPmu">
+                                    <span class="services-cat-title">Permanent Makeup (PMU)</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subPmu">
+                                    <ul class="services-sub-list">
+                                        <li><a href="permanent-makeup.html#microblading" class="services-sub-link">Eyebrow PMU</a></li>
+                                        <li><a href="permanent-makeup.html#lip-blush" class="services-sub-link">Lip PMU</a></li>
+                                        <li><a href="permanent-makeup.html#eyeliner" class="services-sub-link">Permanent Eyeliner</a></li>
+                                        <li><a href="permanent-makeup.html#consultation" class="services-sub-link">PMU Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
                 <li><a href="face-scanner.html" class="nav-scanner-link">✦ AI Scanner</a></li>
                 <li><a href="branches.html">Franchise</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-cta">
                 <a href="tel:+919284517427" class="btn-nav-call" title="Call Kezza Clinic"><i class="fas fa-phone-alt"></i> <span>9284517427</span></a>
-                <a href="https://wa.me/919284517427" class="btn-primary">Book Consultation</a>
+                <a href="https://wa.me/919284517427" target="_blank" rel="noopener" class="btn-primary">Book Consultation</a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -99,21 +180,24 @@
 
         <div class="hero-container">
             <div class="hero-content">
+                <div class="hero-luxury-badge">
+                    <i class="fas fa-crown"></i> <span>Rajasthan's Premier Hair &amp; Skin Aesthetic Clinic</span>
+                </div>
                 <h1 class="hero-title">
                     Best Hair Transplant Clinic in Rajasthan
                 </h1>
-                <h2 class="hero-title">
-                    Where Science Meets Aesthetics -
-                    <span class="gold-underline">Premium Hair & Skin Care Excellence</span>
+                <h2 class="hero-subtitle-tag">
+                    Where Medical Precision Meets Cosmetic Artistry —
+                    <span class="gold-underline">Unmatched Hair &amp; Skin Care Excellence</span>
                 </h2>
 
                 <div class="hero-ctas">
-                    <a href="contact.html" class="btn-gold">Book Consultation</a>
-                    <a href="https://wa.me/919284517427" class="btn-navy">WhatsApp Us</a>
+                    <a href="contact.html" class="btn-gold"><i class="fas fa-calendar-check"></i> Book Consultation</a>
+                    <a href="https://wa.me/919284517427" class="btn-navy"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
                     <a href="face-scanner.html" class="btn-scanner-hero">✦ Try AI Scanner</a>
                 </div>
                 <div class="hero-video">
-                    <video controls muted playsinline loop preload="auto" width="600" height="350" style="width: 600px; height: 350px;">
+                    <video controls muted playsinline loop preload="metadata" width="600" height="350" style="width: 600px; height: 350px;">
                         <source src="video/video 1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -128,10 +212,10 @@
     <section class="image-gallery-section">
         <div class="container">
             <div class="gallery-grid">
-                <img src="images/fui-hair-1.jpg" alt="Hair Transplant Procedure">
-                <img src="images/mesotherepy.jpg" alt="Modern Clinic Interior">
-                <img src="images/dhi-hair-2.jpg" alt="Medical Equipment">
-                <img src="images/laser-facial-2.jpg" alt="Patient Consultation">
+                <img src="images/fui-hair-1.jpg" alt="Hair Transplant Procedure" loading="lazy" decoding="async">
+                <img src="images/mesotherepy.jpg" alt="Modern Clinic Interior" loading="lazy" decoding="async">
+                <img src="images/dhi-hair-2.jpg" alt="Medical Equipment" loading="lazy" decoding="async">
+                <img src="images/laser-facial-2.jpg" alt="Patient Consultation" loading="lazy" decoding="async">
             </div>
         </div>
     </section>
@@ -144,34 +228,34 @@
                 <p>Your beauty and confidence deserve the assurance of medical excellence and unmatched care.</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
+                <div class="feature-card card-gold">
+                    <div class="feature-icon icon-gold"><i class="fas fa-user-md"></i></div>
                     <h3>Experienced Surgeons</h3>
-                    <p>Our surgeons have performed 10,000+ successful hair and skin procedures with consistent, natural-looking outcomes.</p>
+                    <p>Our surgeons have performed 15,000+ successful hair and skin procedures with consistent, natural-looking outcomes.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
+                <div class="feature-card card-cyan">
+                    <div class="feature-icon icon-cyan"><i class="fas fa-microchip"></i></div>
                     <h3>Advanced Medical Technology</h3>
                     <p>We combine modern tools including micro-motor FUE, DHI implanters, sapphire blades, medical-grade lasers, and FDA-approved devices.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
+                <div class="feature-card card-emerald">
+                    <div class="feature-icon icon-emerald"><i class="fas fa-dna"></i></div>
                     <h3>Personalized Treatment Plans</h3>
                     <p>Every patient receives a detailed diagnosis, scalp analysis, and a customized treatment plan tailored for long-term results.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
+                <div class="feature-card card-purple">
+                    <div class="feature-icon icon-purple"><i class="fas fa-hospital-user"></i></div>
                     <h3>Multi-City Clinics</h3>
-                    <p>Conveniently located in Jaipur & Sikar, making premium care easily accessible.</p>
+                    <p>Conveniently located in Jaipur &amp; Sikar, making premium care easily accessible.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
-                    <h3>100% Safe & Hygienic</h3>
+                <div class="feature-card card-rose">
+                    <div class="feature-icon icon-rose"><i class="fas fa-shield-virus"></i></div>
+                    <h3>100% Safe &amp; Hygienic</h3>
                     <p>International safety standards with sterile environments, disposable instruments, and comprehensive infection control protocols.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon"></div>
-                    <h3>Lifetime Support & Guarantee</h3>
+                <div class="feature-card card-amber">
+                    <div class="feature-icon icon-amber"><i class="fas fa-award"></i></div>
+                    <h3>Lifetime Support &amp; Guarantee</h3>
                     <p>Post-procedure care, follow-up consultations, and satisfaction guarantee ensuring your long-term confidence and results.</p>
                 </div>
             </div>
@@ -206,257 +290,472 @@
         </div>
     </section>
 
-    <!-- Section 3: Hair Services -->
-    <section class="hair-services-section">
+    <!-- Section 3: Master 4-Category Services Section -->
+    <section id="services" class="services-master-section">
         <div class="container">
-            <div class="section-intro">
-                <h2>Our Hair Specialties</h2>
-                <p>From natural-density FUE to precise DHI and refined hairline reconstruction, our team specializes in treatments designed for permanent, natural, and high-density restoration.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <img src="images/fui-hair-1.jpg" alt="FUE Hair Transplant">
-                    <h3>FUE Hair Transplant</h3>
-                    <p>Minimally invasive, no linear scars, natural regrowth with high graft survival.</p>
-                    <a href="hair-services.html" class="explore-btn">Explore</a>
-                </div>
-                <div class="service-card">
-                    <img src="images/dhi-hair-1.jpg" alt="DHI Hair Transplant">
-                    <h3>DHI Hair Transplant</h3>
-                    <p>Implanted using Choi pens for accuracy in direction, angle, and density.</p>
-                    <a href="hair-services.html" class="explore-btn">Explore</a>
-                </div>
-                <div class="service-card">
-                    <img src="images/beard-transplant-1.jpg" alt="Beard Transplant">
-                    <h3>Beard & Moustache Transplant</h3>
-                    <p>Redefine your masculine appearance with precise grooming and sculpting.</p>
-                    <a href="hair-services.html" class="explore-btn">Explore</a>
-                </div>
-                <div class="service-card">
-                    <img src="images/eyebro.jpg" alt="Eyebrow Transplant">
-                    <h3>Eyebrow Transplant</h3>
-                    <p>For fuller, symmetrical, shapely eyebrows using delicate micro-FUE.</p>
-                    <a href="hair-services.html" class="explore-btn">Explore</a>
-                </div>
-                <div class="service-card">
-                    <img src="images/prp-2.jpg" alt="PRP Therapy">
-                    <h3>PRP Therapy</h3>
-                    <p>Improve hair thickness and stimulate growth using platelet-rich plasma.</p>
-                    <a href="hair-services.html" class="explore-btn">Explore</a>
-                </div>
-                <div class="service-card">
-                    <img src="images/female-hair-restoration.jpg" alt="Female Hair Restoration">
-                    <h3>Female Hair Restoration</h3>
-                    <p>Specialized techniques designed for female scalp patterns and density needs.</p>
-                    <a href="hair-services.html" class="explore-btn">Explore</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 4: Skin Services -->
-    <section class="skin-services-section">
-        <div class="container">
-            <div class="section-intro">
-                <h2>Advanced Skin Aesthetic Treatments</h2>
-                <p>Healthy, glowing, youthful skin begins with modern dermatology, scientific care, and personalized treatment protocols.</p>
-            </div>
-            <div class="skin-services-grid">
-                <div class="skin-card">
-                    <img src="images/hydra-facial.jpg" alt="Hydra Facial">
-                    <h3>Hydra Facial</h3>
-                    <p>Deep cleansing, exfoliation, hydration & instant glow.</p>
-                    <a href="skin-services.html" class="explore-btn">Explore</a>
-                </div>
-                <div class="skin-card">
-                    <img src="images/laser-facial.jpg" alt="Laser Hair Removal">
-                    <h3>Laser Hair Removal</h3>
-                    <p>Safe, painless laser technology suitable for all skin types.</p>
-                    <a href="skin-services.html" class="explore-btn">Explore</a>
-                </div>
-                <div class="skin-card">
-                    <img src="images/scar-removal-before.jpg" alt="Acne Treatment">
-                    <h3>Acne & Scar Treatments</h3>
-                    <p>Chemical peels, acne programs, and scar reduction therapies.</p>
-                    <a href="skin-services.html" class="explore-btn">Explore</a>
-                </div>
-                <div class="skin-card">
-                    <img src="images/anti-aging-2.jpg" alt="Anti-Aging">
-                    <h3>Anti-Aging & Botox</h3>
-                    <p>Reduce wrinkles, fine lines, and enhance facial youthfulness.</p>
-                    <a href="skin-services.html" class="explore-btn">Explore</a>
-                </div>
-                <div class="skin-card">
-                    <img src="images/pigmentation-removal.jpg" alt="Pigmentation">
-                    <h3>Pigmentation & Melasma</h3>
-                    <p>Targeted laser + topical treatments for flawless skin clarity.</p>
-                    <a href="skin-services.html" class="explore-btn">Explore</a>
-                </div>
-                <div class="skin-card">
-                    <img src="images/stretch-mark.jpg" alt="Stretch Mark Removal">
-                    <h3>Stretch Mark Removal</h3>
-                    <p>Fractional lasers & collagen-boosting procedures.</p>
-                    <a href="skin-services.html" class="explore-btn">Explore</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section: Weight Loss & Body Contouring -->
-    <section class="skin-services-section" style="background: #090c14; padding-top: 50px;">
-        <div class="container">
-            <div class="section-intro">
-                <h2>Non-Surgical Weight Loss &amp; Body Sculpting</h2>
-                <p>Sculpt your body, eliminate stubborn fat, and achieve a defined profile without surgery or downtime.</p>
-            </div>
-            <div class="skin-services-grid">
-                <div class="skin-card">
-                    <img src="images/service2.jpg" alt="Cryolipolysis Fat Freeze">
-                    <h3>Cryolipolysis (Fat Freezing)</h3>
-                    <p>360° targeted fat freezing for belly, love handles &amp; thigh inch reduction.</p>
-                    <a href="https://wa.me/919284517427?text=Hi%20Kezza%20Team%2C%20I%20am%20interested%20in%20Cryolipolysis%20Fat%20Freezing" class="explore-btn" target="_blank">Book Fat Freeze</a>
-                </div>
-                <div class="skin-card">
-                    <img src="images/anti-aging-2.jpg" alt="Double Chin Reduction">
-                    <h3>Double Chin &amp; Jawline Slimming</h3>
-                    <p>Non-invasive HIFU &amp; lipolytic contouring for a sculpted jawline.</p>
-                    <a href="https://wa.me/919284517427?text=Hi%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20Double%20Chin%20Reduction" class="explore-btn" target="_blank">Book Jawline Slimming</a>
-                </div>
-                <div class="skin-card">
-                    <img src="images/hydra-facial.jpg" alt="Body Contouring & Skin Tightening">
-                    <h3>Body Contouring &amp; RF Tightening</h3>
-                    <p>Radiofrequency collagen tightening for post-weight loss skin toning.</p>
-                    <a href="https://wa.me/919284517427?text=Hi%20Kezza%20Team%2C%20I%20am%20interested%20in%20Body%20Contouring" class="explore-btn" target="_blank">Book Body Sculpting</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Feature 1: AI Body & BMI Treatment Calculator -->
-    <section class="bmi-calculator-section" id="bmi-calculator">
-        <div class="container">
-            <div class="section-intro" style="text-align: center; margin-bottom: 40px;">
-                <span style="color: #c9a84c; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">✦ AI Wellness Assessment</span>
-                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #fff; margin: 10px 0;">Interactive BMI &amp; Body Slimming Calculator</h2>
-                <p style="color: #a8a090; max-width: 650px; margin: 0 auto; font-size: 0.95rem;">Calculate your Body Mass Index and discover your personalized non-invasive fat loss and body contouring plan.</p>
+            <div class="services-section-header">
+                <div class="section-pill-badge"><i class="fas fa-certificate"></i> Clinical Excellence &amp; Aesthetic Mastery</div>
+                <h2>Our Medical &amp; Aesthetic Specialties</h2>
+                <p>Four specialized departments combining board-certified surgical precision, FDA-cleared laser technology, and customized evidence-based protocols for transformative results.</p>
             </div>
 
-            <div class="bmi-calc-card">
-                <!-- Inputs -->
-                <div class="bmi-form-side">
-                    <div class="bmi-form-group">
-                        <label><i class="fas fa-venus-mars"></i> Gender &amp; Age</label>
-                        <div class="bmi-input-row">
-                            <select class="bmi-input-box" id="bmiGender" onchange="calculateKezzaBMI()">
-                                <option value="female">Female</option>
-                                <option value="male">Male</option>
-                            </select>
-                            <input type="number" class="bmi-input-box" id="bmiAge" value="28" min="15" max="90" placeholder="Age (yrs)" oninput="calculateKezzaBMI()">
+            <!-- 4-Category Master Cards Grid with Animated Shimmer Borders -->
+            <div class="services-categories-grid">
+                
+                <!-- Category 1: Hair Services -->
+                <div class="service-category-card active-category" data-category="hair" id="card-hair">
+                    <div class="service-category-inner">
+                        <div class="category-thumb-wrap">
+                            <img src="images/fui-hair-1.jpg" alt="Hair Restoration Services" loading="lazy" decoding="async">
+                            <span class="category-count-badge">7+ Treatments</span>
+                            <span class="category-icon-pill">🧑‍⚕️</span>
                         </div>
-                    </div>
-
-                    <div class="bmi-form-group">
-                        <label><i class="fas fa-ruler-vertical"></i> Height (cm) &amp; Weight (kg)</label>
-                        <div class="bmi-input-row">
-                            <input type="number" class="bmi-input-box" id="bmiHeight" value="168" min="100" max="230" placeholder="Height in cm" oninput="calculateKezzaBMI()">
-                            <input type="number" class="bmi-input-box" id="bmiWeight" value="74" min="30" max="200" placeholder="Weight in kg" oninput="calculateKezzaBMI()">
-                        </div>
-                    </div>
-
-                    <div class="bmi-form-group">
-                        <label><i class="fas fa-crosshairs"></i> Target Fat Reduction Area</label>
-                        <div class="bmi-target-grid" id="bmiTargetGrid">
-                            <button type="button" class="bmi-target-btn active" onclick="setBmiTarget(this, 'Belly Fat / Tummy')">🔥 Belly / Tummy</button>
-                            <button type="button" class="bmi-target-btn" onclick="setBmiTarget(this, 'Double Chin')">✨ Double Chin</button>
-                            <button type="button" class="bmi-target-btn" onclick="setBmiTarget(this, 'Love Handles / Waist')">⚡ Love Handles</button>
-                            <button type="button" class="bmi-target-btn" onclick="setBmiTarget(this, 'Thighs & Hips')">🦵 Thighs / Hips</button>
-                            <button type="button" class="bmi-target-btn" onclick="setBmiTarget(this, 'Arms & Back')">💪 Arms &amp; Back</button>
-                            <button type="button" class="bmi-target-btn" onclick="setBmiTarget(this, 'Full Body Inch Loss')">🌟 Full Body</button>
-                        </div>
+                        <h3>Hair Services <i class="fas fa-chevron-right" style="font-size: 0.85rem; color: #00AFC0;"></i></h3>
+                        <p class="category-desc">Advanced surgical and therapeutic restoration for thinning, receding hairlines, and permanent scalp rejuvenation.</p>
+                        <ul class="category-highlights-list">
+                            <li><i class="fas fa-check-circle"></i> Sapphire FUE &amp; Choi DHI Micro-Grafts</li>
+                            <li><i class="fas fa-check-circle"></i> PRP &amp; GFC Growth Factor Therapy</li>
+                            <li><i class="fas fa-check-circle"></i> Electrolysis &amp; White Hair Removal</li>
+                            <li><i class="fas fa-check-circle"></i> Non-Surgical Hair Systems &amp; Wigs</li>
+                        </ul>
+                        <button class="btn-view-treatments" type="button">
+                            <span>Explore Treatments</span>
+                            <i class="fas fa-arrow-right arrow-icon"></i>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Results -->
-                <div class="bmi-result-panel">
-                    <div>
-                        <div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: #8c8678;">Calculated Body Mass Index</div>
-                        <div class="bmi-score-badge" id="bmiScoreVal">26.2</div>
-                        <div><span class="bmi-cat-pill bmi-cat-overweight" id="bmiCategoryPill">Overweight</span></div>
-                    </div>
-
-                    <div class="bmi-recs-box">
-                        <div style="font-weight: 700; color: #c9a84c; margin-bottom: 6px;">🩺 Recommended Kezza Protocol:</div>
-                        <div id="bmiRecsText" style="font-size: 0.85rem; color: #d4cbb8;">
-                            • <strong>Cryolipolysis (Fat Freezing):</strong> 2–3 applicator sessions for targeted inch reduction.<br>
-                            • <strong>HIFU Body Sculpting:</strong> Skin tightening &amp; cellular fat breakdown.<br>
-                            • <strong>Metabolic Plan:</strong> Personalized nutrition guidance.
+                <!-- Category 2: Skin Services -->
+                <div class="service-category-card" data-category="skin" id="card-skin">
+                    <div class="service-category-inner">
+                        <div class="category-thumb-wrap">
+                            <img src="images/hydra-facial.jpg" alt="Skin Aesthetic Treatments" loading="lazy" decoding="async">
+                            <span class="category-count-badge">8+ Treatments</span>
+                            <span class="category-icon-pill">✨</span>
                         </div>
+                        <h3>Skin Services <i class="fas fa-chevron-right" style="font-size: 0.85rem; color: #00AFC0;"></i></h3>
+                        <p class="category-desc">Dermatologist-led aesthetic care, medical facials, triple-wavelength lasers, and anti-aging skin rejuvenation.</p>
+                        <ul class="category-highlights-list">
+                            <li><i class="fas fa-check-circle"></i> Botox, Fillers &amp; Anti-Aging Rejuvenation</li>
+                            <li><i class="fas fa-check-circle"></i> Acne &amp; Fractional Scar Repair</li>
+                            <li><i class="fas fa-check-circle"></i> Painless Triple Laser Hair Removal</li>
+                            <li><i class="fas fa-check-circle"></i> Medical Hydra Facial &amp; Glutathione Glow</li>
+                        </ul>
+                        <button class="btn-view-treatments" type="button">
+                            <span>Explore Treatments</span>
+                            <i class="fas fa-arrow-right arrow-icon"></i>
+                        </button>
                     </div>
-
-                    <a id="btnBmiWhatsApp" href="https://wa.me/919284517427?text=Hi%20Kezza%20Team%2C%20my%20BMI%20is%2026.2%20and%20I%20want%20to%20consult%20for%20Belly%20Fat%20Reduction" target="_blank" class="btn-bmi-book">
-                        <i class="fab fa-whatsapp"></i> Book Weight Loss Consultation (+91 9284517427)
-                    </a>
                 </div>
+
+                <!-- Category 3: Weight Loss -->
+                <div class="service-category-card" data-category="weight" id="card-weight">
+                    <div class="service-category-inner">
+                        <div class="category-thumb-wrap">
+                            <img src="images/hero3.jpg" alt="Non-Surgical Weight Loss &amp; Body Sculpting" loading="lazy" decoding="async">
+                            <span class="category-count-badge">4+ Programs</span>
+                            <span class="category-icon-pill">⚖️</span>
+                        </div>
+                        <h3>Weight Loss <i class="fas fa-chevron-right" style="font-size: 0.85rem; color: #00AFC0;"></i></h3>
+                        <p class="category-desc">Non-surgical body sculpting, 360° fat freezing (Cryolipolysis), and doctor-supervised clinical BMI slimming plans.</p>
+                        <ul class="category-highlights-list">
+                            <li><i class="fas fa-check-circle"></i> 360° Cryolipolysis (Targeted Fat Freeze)</li>
+                            <li><i class="fas fa-check-circle"></i> HIFU Ultra-Sculpt &amp; RF Body Tightening</li>
+                            <li><i class="fas fa-check-circle"></i> Interactive Body Composition &amp; BMI Score</li>
+                            <li><i class="fas fa-check-circle"></i> Doctor Supervised Weight Management</li>
+                        </ul>
+                        <button class="btn-view-treatments" type="button">
+                            <span>Explore Treatments</span>
+                            <i class="fas fa-arrow-right arrow-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Category 4: Permanent Makeup (PMU) -->
+                <div class="service-category-card" data-category="pmu" id="card-pmu">
+                    <div class="service-category-inner">
+                        <div class="category-thumb-wrap">
+                            <img src="images/pmu.jpg" alt="Permanent Makeup PMU" loading="lazy" decoding="async">
+                            <span class="category-count-badge">3+ PMU Services</span>
+                            <span class="category-icon-pill">💄</span>
+                        </div>
+                        <h3>Permanent Makeup <i class="fas fa-chevron-right" style="font-size: 0.85rem; color: #00AFC0;"></i></h3>
+                        <p class="category-desc">Certified medical-grade micropigmentation, natural 3D eyebrow microblading, and lip blush enhancement.</p>
+                        <ul class="category-highlights-list">
+                            <li><i class="fas fa-check-circle"></i> Eyebrow Microblading &amp; Ombre Brows</li>
+                            <li><i class="fas fa-check-circle"></i> Lip Blush &amp; Dark Lip Neutralization</li>
+                            <li><i class="fas fa-check-circle"></i> Permanent Lash Line &amp; Eyeliner</li>
+                            <li><i class="fas fa-check-circle"></i> Custom Organic Pigment Color Matching</li>
+                        </ul>
+                        <button class="btn-view-treatments" type="button">
+                            <span>Explore Treatments</span>
+                            <i class="fas fa-arrow-right arrow-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </section>
 
-    <!-- Interactive Feature 2: Treatment Cost & 0% EMI Estimator -->
-    <section class="emi-calculator-section" id="emi-calculator">
-        <div class="container">
-            <div class="emi-calc-wrap">
-                <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px;">
-                    <div>
-                        <span style="color: #c9a84c; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">✦ Transparent Pricing</span>
-                        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.1rem; color: #fff; margin-top: 6px;">Treatment Cost &amp; 0% EMI Estimator</h2>
-                        <p style="color: #a8a090; font-size: 0.9rem;">Flexible zero-interest payment options for all procedures across Jaipur &amp; Sikar.</p>
+            <!-- Dynamic Interactive Treatments Expansion Viewer -->
+            <div class="services-interactive-viewer" id="servicesViewer">
+                <div class="viewer-header">
+                    <div class="viewer-header-left">
+                        <h3><i class="fas fa-layer-group" style="color: #00AFC0;"></i> Detailed Clinical Procedures</h3>
+                        <p>Browse individual treatments or click to connect directly with the specialist team.</p>
                     </div>
-                    <div style="font-size: 0.82rem; color: #10b981; font-weight: 600; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; padding: 6px 14px; border-radius: 20px;">
-                        <i class="fas fa-check-circle"></i> 0% Interest EMI Available
+                    <div class="viewer-tabs-nav">
+                        <button class="viewer-tab-btn active" data-category="hair" type="button"><i class="fas fa-user-md"></i> Hair Services</button>
+                        <button class="viewer-tab-btn" data-category="skin" type="button"><i class="fas fa-sparkles"></i> Skin Services</button>
+                        <button class="viewer-tab-btn" data-category="weight" type="button"><i class="fas fa-weight"></i> Weight Loss</button>
+                        <button class="viewer-tab-btn" data-category="pmu" type="button"><i class="fas fa-magic"></i> Permanent Makeup</button>
                     </div>
                 </div>
 
-                <div class="emi-grid">
-                    <div>
-                        <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #c9a84c; margin-bottom: 8px;">Select Procedure</label>
-                        <select class="emi-service-select" id="emiServiceSelect" onchange="calculateKezzaEMI()">
-                            <option value="45000" data-name="Sapphire FUE Hair Transplant (2,500 Grafts)">Hair Transplant — Sapphire FUE (2,500 Grafts) [₹45,000]</option>
-                            <option value="65000" data-name="Mega-Session Hair Transplant (4,000 Grafts)">Hair Transplant — Mega Session (4,000 Grafts) [₹65,000]</option>
-                            <option value="15000" data-name="GFC Hair Loss Therapy (3 Sessions)">Hair Loss — GFC Therapy 3 Sessions [₹15,000]</option>
-                            <option value="9000" data-name="HydraFacial Skin Glow (3 Sessions)">Skin — HydraFacial Medical Glow 3 Sessions [₹9,000]</option>
-                            <option value="18000" data-name="Cryolipolysis Fat Freezing (2 Applicators)">Weight Loss — Cryolipolysis Fat Freeze (2 Applicators) [₹18,000]</option>
-                            <option value="32000" data-name="Full Body Cryolipolysis & Slimming (4 Applicators)">Weight Loss — Full Body Cryo Slimming (4 Applicators) [₹32,000]</option>
-                            <option value="16000" data-name="Eyebrow Microblading PMU">Permanent Makeup — Eyebrow Microblading [₹16,000]</option>
-                            <option value="55000" data-name="Clear Dental Aligners">Dental — Invisible Clear Aligners [₹55,000]</option>
-                        </select>
-
-                        <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #c9a84c; margin-bottom: 8px;">Choose EMI Tenure</label>
-                        <div class="emi-tenure-pills">
-                            <button type="button" class="emi-tenure-btn" onclick="setEmiTenure(this, 3)">3 Months</button>
-                            <button type="button" class="emi-tenure-btn active" onclick="setEmiTenure(this, 6)">6 Months</button>
-                            <button type="button" class="emi-tenure-btn" onclick="setEmiTenure(this, 9)">9 Months</button>
-                            <button type="button" class="emi-tenure-btn" onclick="setEmiTenure(this, 12)">12 Months</button>
+                <!-- 1. Hair Services Tab Panel -->
+                <div class="treatment-tab-panel active" data-category="hair">
+                    <div class="treatments-subgrid">
+                        
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/fui-hair-1.jpg" alt="FUE Hair Transplant" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Sapphire FUE</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>Sapphire FUE Hair Transplant</h4>
+                                <p>Minimally invasive micro-punch extraction with sapphire blade incisions for maximum graft survival and scarless healing.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/918130888129?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20Sapphire%20FUE%20Hair%20Transplant." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="hair-services.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
                         </div>
 
-                        <div style="font-size: 0.78rem; color: #8c8678; line-height: 1.5;">
-                            ✓ No hidden processing fees<br>
-                            ✓ Instant approval via Aadhaar / Debit / Credit Card<br>
-                            ✓ Consultations available at Jaipur &amp; Sikar
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/dhi-hair-1.jpg" alt="DHI Hair Transplant" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Choi DHI</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>DHI Direct Hair Implantation</h4>
+                                <p>Patented Choi implanter pens guarantee precise angle, depth, and extreme natural density without pre-made channel cuts.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/918130888129?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20DHI%20Hair%20Transplant." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="hair-services.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/prp-1.jpg" alt="PRP Therapy" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Platelet Rich</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>PRP Hair Therapy</h4>
+                                <p>Concentrated autologous growth factors directly stimulate dormant hair follicles, reversing thinning and accelerating growth.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919216063681?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20PRP%20Hair%20Therapy." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="hair-services.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/gfc-therepy-2.jpg" alt="GFC Therapy" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Next-Gen GFC</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>GFC (Growth Factor Concentrate)</h4>
+                                <p>Advanced cell-free recombinant growth factors providing up to 5x higher regeneration potency with zero discomfort.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919216063681?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20GFC%20Therapy." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="hair-services.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/micro-motor-fue-extraction.jpeg" alt="White Hair Removal" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Follicle Precision</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>White Hair Removal &amp; Electrolysis</h4>
+                                <p>Permanent follicle-level eradication for grey and unpigmented hair where standard laser treatment is ineffective.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919216063681?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20White%20Hair%20Removal%20and%20Electrolysis." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="hair-services.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/female-hair-restoration.jpg" alt="Hair Replacement &amp; Wigs" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Non-Surgical</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>Hair Replacement &amp; Custom Wigs</h4>
+                                <p>Breathable micro-lace human hair systems and bespoke cranial prosthetics tailored for immediate, natural fullness.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919216063681?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20Hair%20Wig%20and%20Hair%20Replacement." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="hair-services.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="emi-display-card">
-                        <div>
-                            <div style="font-size: 0.78rem; text-transform: uppercase; color: #8c8678; letter-spacing: 0.06em;">Estimated Monthly EMI</div>
-                            <div class="emi-amount-val" id="emiMonthlyVal">₹7,500 <span style="font-size: 0.95rem; font-weight: 400; color: #a8a090;">/ month</span></div>
-                            <div style="font-size: 0.82rem; color: #d4cbb8;" id="emiTotalVal">Total Procedure Cost: ₹45,000 (0% Interest)</div>
+                    <div class="tab-page-cta-banner">
+                        <div class="banner-content">
+                            <h4>Looking for Complete Hair Restoration Solutions?</h4>
+                            <p>Explore full clinical protocols, before &amp; after case studies, graft calculators, and surgeon bios.</p>
                         </div>
-
-                        <a id="btnEmiWhatsApp" href="https://wa.me/919284517427?text=Hi%20Kezza%20Team%2C%20I%20want%20to%20book%20Sapphire%20FUE%20Hair%20Transplant%20on%200%25%20EMI%20(%E2%82%B97%2C500%2Fmonth)" target="_blank" class="btn-bmi-book" style="background: linear-gradient(135deg, #c9a84c 0%, #a07830 100%); color: #000; font-weight: 700;">
-                            <i class="fab fa-whatsapp"></i> Book with 0% EMI (+91 9284517427)
-                        </a>
+                        <a href="hair-services.html" class="btn-banner-full">View All Hair Services <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
+
+                <!-- 2. Skin Services Tab Panel -->
+                <div class="treatment-tab-panel" data-category="skin">
+                    <div class="treatments-subgrid">
+                        
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/hydra-facial.jpg" alt="Medical Hydra Facial" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Medical Glow</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>Medical Hydra Facial</h4>
+                                <p>Multi-step clinical vortex infusion for deep pore extraction, salicylic peeling, and antioxidant serum hydration.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919216063686?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20Hydra%20Facial." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="skin-services.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/anti-aging-2.jpg" alt="Botox &amp; Anti-Aging" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Doctor Injectables</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>Botox &amp; Anti-Aging Therapy</h4>
+                                <p>FDA-approved botulinum neuromodulators and hyaluronic dermal fillers to soften fine lines and restore youthful contours.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919216063686?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20Botox%20and%20Anti-Aging." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="skin-services.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/scar-removal-before.jpg" alt="Acne &amp; Acne Scars" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Scar Repair</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>Acne &amp; Acne Scar Treatments</h4>
+                                <p>Targeted medical chemical peels, subcision, and fractional CO2 laser resurfacing for smooth, blemish-free skin.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919216063686?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20Acne%20and%20Scar%20Treatments." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="skin-services.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/laser-facial.jpg" alt="Laser Hair Removal" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Triple Diode</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>Laser Hair Removal</h4>
+                                <p>Triple-wavelength (755nm + 808nm + 1064nm) laser technology with cooling chill-tip for painless, permanent reduction.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919216063686?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20Laser%20Hair%20Removal." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="skin-services.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/chemical-peel-pigmentation.jpg" alt="Dark Circles &amp; Pigmentation" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Melasma Pro</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>Dark Circles &amp; Pigmentation</h4>
+                                <p>Q-switched Nd:YAG laser toning and specialized under-eye mesotherapy targeting stubborn melasma and hyperpigmentation.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919216063686?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20Dark%20Circles%20and%20Pigmentation." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="skin-services.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/vitamin-c-pigmentation.jpg" alt="Glutathione Skin Brightening" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Cellular Glow</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>Glutathione Skin Brightening</h4>
+                                <p>Pure medical-grade master antioxidant therapy combined with Vitamin C to neutralize free radicals and clarify skin tone.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919216063686?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20Glutathione%20Skin%20Glow." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="skin-services.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="tab-page-cta-banner">
+                        <div class="banner-content">
+                            <h4>Explore Complete Dermatological &amp; Laser Solutions</h4>
+                            <p>Discover personalized skincare regimes, laser packages, and dermatologist consultations.</p>
+                        </div>
+                        <a href="skin-services.html" class="btn-banner-full">View All Skin Services <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 3. Weight Loss Tab Panel -->
+                <div class="treatment-tab-panel" data-category="weight">
+                    <div class="treatments-subgrid">
+                        
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/hero3.jpg" alt="Cryolipolysis Fat Freezing" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">360° Freeze</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>Cryolipolysis (Fat Freezing)</h4>
+                                <p>Non-surgical controlled cooling permanently crystallizes and eliminates stubborn adipose fat cells without needles or downtime.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919057546221?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20Cryolipolysis%20Fat%20Freezing." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="weight-loss.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/mesotherepy.jpg" alt="HIFU Body Sculpting" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Ultra Sculpt</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>HIFU Ultra-Sculpt &amp; RF Tightening</h4>
+                                <p>High-intensity focused ultrasound delivers micro-thermal energy into deep subcutaneous layers to tighten loose skin and contour inches.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919057546221?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20HIFU%20Body%20Sculpting." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="weight-loss.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/hero2.jpg" alt="Clinical BMI &amp; Body Composition" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Diagnostic Scan</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>Clinical BMI Assessment</h4>
+                                <p>Comprehensive bio-impedance body analysis measuring visceral fat, muscle mass, and metabolic rate for customized weight reduction.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919057546221?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20BMI%20Assessment%20and%20Weight%20Loss." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="weight-loss.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/hero4.jpg" alt="Doctor Supervised Weight Management" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Medical Wellness</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>Doctor-Led Weight Management</h4>
+                                <p>Safe, medical non-surgical slimming programs supervised by clinical wellness experts with guaranteed inch loss tracking.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919057546221?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20Weight%20Management." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="weight-loss.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="tab-page-cta-banner">
+                        <div class="banner-content">
+                            <h4>Ready to Transform Your Body Without Surgery?</h4>
+                            <p>Calculate your BMI, estimate treatment plans, and view clinic slimming packages.</p>
+                        </div>
+                        <a href="weight-loss.html" class="btn-banner-full">View Weight Loss Center <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 4. Permanent Makeup Tab Panel -->
+                <div class="treatment-tab-panel" data-category="pmu">
+                    <div class="treatments-subgrid">
+                        
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/pm-eyebro.jpg" alt="Eyebrow Microblading PMU" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">3D Microblading</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>Eyebrow PMU &amp; Microblading</h4>
+                                <p>Delicate hyper-realistic feather strokes and ombre powder shading to sculpt symmetrical, naturally dense eyebrows.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919079161300?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20Eyebrow%20PMU%20and%20Microblading." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="permanent-makeup.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/pm-lip.jpg" alt="Lip Blush PMU" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Lip Blush Tint</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>Lip Blush &amp; Neutralization</h4>
+                                <p>Medical-grade cosmetic tinting to correct dark lip undertones, define lip borders, and provide a fresh, youthful blush tint.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919079161300?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20Lip%20Blush%20and%20Lip%20PMU." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="permanent-makeup.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="treatment-item-card">
+                            <div class="treatment-thumb-box">
+                                <img src="images/pm-eyeliner.jpg" alt="Permanent Eyeliner" loading="lazy" decoding="async">
+                                <span class="treatment-badge-tag">Lash Definition</span>
+                            </div>
+                            <div class="treatment-body">
+                                <h4>Permanent Eyeliner</h4>
+                                <p>Precision lash enhancement and semi-permanent eyeliner for defined, striking eyes that never smudge or fade in water.</p>
+                                <div class="treatment-action-row">
+                                    <a href="https://wa.me/919079161300?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20consult%20for%20Permanent%20Eyeliner." target="_blank" rel="noopener" class="btn-book-quick"><i class="fab fa-whatsapp"></i> Book Consult</a>
+                                    <a href="permanent-makeup.html" class="btn-details-link" title="View Details"><i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="tab-page-cta-banner">
+                        <div class="banner-content">
+                            <h4>Looking for Certified Permanent Makeup Solutions?</h4>
+                            <p>Explore Dr. Krishna Choudhary's PMU portfolio, hygiene standards, and healed patient results.</p>
+                        </div>
+                        <a href="permanent-makeup.html" class="btn-banner-full">View All PMU Services <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -469,51 +768,188 @@
                 <p>Every result represents our dedication to detail, precision, and medical craftsmanship.</p>
             </div>
         </div>
-
-        </div>
     </section>
 
     <!-- Section 6: Meet the Doctors -->
     <section id="doctors" class="doctors-section">
         <div class="container">
             <div class="section-header">
+                <span class="section-subtitle"><i class="fas fa-user-md"></i> MEDICAL LEADERSHIP</span>
                 <h2>Meet Your Specialists</h2>
-                <p>Our expert team ensures every treatment meets the highest standards of safety, precision, and aesthetic perfection.</p>
+                <p>Our specialist doctors and surgeons deliver evidence-based clinical treatments with the highest standards of safety, surgical precision, and natural aesthetic harmony.</p>
             </div>
             <div class="doctors-grid">
+                <!-- Doctor 1: Dr. Ankit Bhalothia -->
                 <div class="doctor-card">
-                    <img src="images/Doctor1.jpeg" alt="Hair Transplant Surgeon">
+                    <div class="doctor-image-wrapper">
+                        <img src="images/Doctor1.jpeg" alt="Dr. Ankit Bhalothia - Aesthetic & Hair Transplant Surgeon" loading="lazy" decoding="async">
+                        <span class="doctor-exp-pill"><i class="fas fa-shield-alt"></i> Specialist Surgeon</span>
+                    </div>
                     <div class="doctor-info">
-                        <h3>Dr. Ankit Bhalothia, Aesthetic & Hair Transplant Surgeon</h3>
-                       <p>Led by specialist Oral and Maxillofacial Surgeon Dr. Ankit Bhalothia practice approaches facial aesthetics and hair transplantation through a lens of total structural harmony. he treats the face as a unified canvas, understanding how the underlying skeletal framework dictates surface beauty.While highly trained in complex oral-facial surgery, their primary clinical dedication lies in the meticulous art of modern hair restoration and facial anti-aging .They specialize in designing bespoke hairlines that perfectly frame individual facial proportions, utilizing advanced follicular techniques to ensure maximum graft survival. From structural jaw contouring to dense hair transplantation, both doctors seamlessly blend surgical authority with cosmetic artistry to deliver exceptionally natural results that never look artificial .</p>
+                        <div class="doctor-header">
+                            <div class="doctor-title-row">
+                                <h3 class="doctor-name">Dr. Ankit Bhalothia</h3>
+                                <span class="doctor-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                            </div>
+                            <span class="doctor-designation">Aesthetic &amp; Hair Transplant Surgeon</span>
+                        </div>
+                        <div class="doctor-meta-tags">
+                            <span class="doctor-meta-tag"><i class="fas fa-user-md"></i> Oral &amp; Maxillofacial Surgeon</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-cut"></i> Micro-Follicular Restoration</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-map-marker-alt"></i> Jaipur &amp; Sikar</span>
+                        </div>
+                        <p class="doctor-story">Led by specialist Oral and Maxillofacial Surgeon Dr. Ankit Bhalothia, our practice approaches facial aesthetics and hair transplantation through a lens of total structural harmony. He treats the face as a unified canvas, understanding how the underlying skeletal framework dictates surface beauty. While highly trained in complex oral-facial surgery, his primary clinical dedication lies in the meticulous art of modern hair restoration and facial anti-aging. Specializing in designing bespoke hairlines that perfectly frame individual facial proportions, utilizing advanced follicular techniques to ensure maximum graft survival.</p>
+                        <div class="doctor-footer">
+                            <span class="doctor-location-badge"><i class="fas fa-clinic-medical"></i> Available at <strong>Jaipur &amp; Sikar</strong></span>
+                            <a href="https://wa.me/919216063681?text=Hello%20Kezza%20Team%2C%20I%20would%20like%20to%20consult%20with%20Dr.%20Ankit%20Bhalothia%20for%20Hair%20Transplant%2FAesthetics." target="_blank" rel="noopener" class="doctor-cta-btn">
+                                <i class="fab fa-whatsapp"></i> <span>Consult Dr. Ankit</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Doctor 2: Dr. Amrita Mukhija -->
                 <div class="doctor-card">
-                    <img src="images/Doctor2.jpeg" alt="Dermatologist">
+                    <div class="doctor-image-wrapper">
+                        <img src="images/Doctor2.jpeg" alt="Dr. Amrita Mukhija - Aesthetic Physician & Skin Specialist" loading="lazy" decoding="async">
+                        <span class="doctor-exp-pill"><i class="fas fa-shield-alt"></i> Skin Specialist</span>
+                    </div>
                     <div class="doctor-info">
-                        <h3>Dr. Amrita Mukhija, Aesthetic Physician and Skin Specialist</h3>
-                        <p>Dr. Amrita Mukhija is an experienced Aesthetic Physician and Skin Specialist with specialized training in dermatology and aesthetic medicine. She offers advanced solutions for a wide range of skin and cosmetic concerns, combining medical expertise with a personalized approach to patient care. Her areas of expertise include laser treatments, injectables, anti-aging procedures, skin rejuvenation, and customized skincare solutions. Known for delivering safe, effective, and natural-looking results, Dr. Mukhija is committed to helping patients achieve healthy, confident, and radiant skin through evidence-based aesthetic treatments.</p>
+                        <div class="doctor-header">
+                            <div class="doctor-title-row">
+                                <h3 class="doctor-name">Dr. Amrita Mukhija</h3>
+                                <span class="doctor-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                            </div>
+                            <span class="doctor-designation">Aesthetic Physician &amp; Skin Specialist</span>
+                        </div>
+                        <div class="doctor-meta-tags">
+                            <span class="doctor-meta-tag"><i class="fas fa-sparkles"></i> Clinical Dermatology &amp; Laser</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-syringe"></i> Anti-Aging &amp; Injectables</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-map-marker-alt"></i> Jaipur &amp; Sikar</span>
+                        </div>
+                        <p class="doctor-story">Dr. Amrita Mukhija is an experienced Aesthetic Physician and Skin Specialist with specialized training in dermatology and aesthetic medicine. She offers advanced solutions for a wide range of skin and cosmetic concerns, combining medical expertise with a personalized approach to patient care. Her areas of expertise include laser treatments, injectables, anti-aging procedures, skin rejuvenation, and customized skincare solutions. Known for delivering safe, effective, and natural-looking results.</p>
+                        <div class="doctor-footer">
+                            <span class="doctor-location-badge"><i class="fas fa-clinic-medical"></i> Available at <strong>Jaipur &amp; Sikar</strong></span>
+                            <a href="https://wa.me/919216063686?text=Hello%20Kezza%20Team%2C%20I%20would%20like%20to%20consult%20with%20Dr.%20Amrita%20Mukhija%20for%20Skin%20Care." target="_blank" rel="noopener" class="doctor-cta-btn">
+                                <i class="fab fa-whatsapp"></i> <span>Consult Dr. Amrita</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Doctor 3: Dr. Neelam Choudhary -->
                 <div class="doctor-card">
-                    <img src="images/Doctor3.jpeg" alt="Dermatologist">
+                    <div class="doctor-image-wrapper">
+                        <img src="images/Doctor3.jpeg" alt="Dr. Neelam Choudhary - Aesthetic Physician & Skin Specialist" loading="lazy" decoding="async">
+                        <span class="doctor-exp-pill"><i class="fas fa-shield-alt"></i> Skin Specialist</span>
+                    </div>
                     <div class="doctor-info">
-                        <h3>Dr. Neelam Choudhary, Aesthetic Physician and Skin Specialist</h3>
-                        <p>Dr. Neelam Choudhary is a dedicated Aesthetic Physician and Skin Specialist with expertise in modern aesthetic and dermatological treatments. She focuses on providing personalized care for a variety of skin concerns, helping patients achieve healthier, clearer, and more youthful-looking skin. Her proficiency includes advanced skin rejuvenation procedures, anti-aging treatments, laser therapies, and customized skincare solutions. With a strong emphasis on patient satisfaction and natural-looking outcomes, Dr. Choudhary is known for delivering safe, effective, and scientifically backed aesthetic care tailored to individual needs.</p>
+                        <div class="doctor-header">
+                            <div class="doctor-title-row">
+                                <h3 class="doctor-name">Dr. Neelam Choudhary</h3>
+                                <span class="doctor-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                            </div>
+                            <span class="doctor-designation">Aesthetic Physician &amp; Skin Specialist</span>
+                        </div>
+                        <div class="doctor-meta-tags">
+                            <span class="doctor-meta-tag"><i class="fas fa-magic"></i> Rejuvenation &amp; Glow</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-heartbeat"></i> Acne &amp; Pigmentation</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-map-marker-alt"></i> Jaipur &amp; Sikar</span>
+                        </div>
+                        <p class="doctor-story">Dr. Neelam Choudhary is a dedicated Aesthetic Physician and Skin Specialist with expertise in modern aesthetic and dermatological treatments. She focuses on providing personalized care for a variety of skin concerns, helping patients achieve healthier, clearer, and more youthful-looking skin. Her proficiency includes advanced skin rejuvenation procedures, anti-aging treatments, laser therapies, and customized skincare solutions with scientifically backed protocols.</p>
+                        <div class="doctor-footer">
+                            <span class="doctor-location-badge"><i class="fas fa-clinic-medical"></i> Available at <strong>Jaipur &amp; Sikar</strong></span>
+                            <a href="https://wa.me/919216063686?text=Hello%20Kezza%20Team%2C%20I%20would%20like%20to%20consult%20with%20Dr.%20Neelam%20Choudhary%20for%20Skin%20Care." target="_blank" rel="noopener" class="doctor-cta-btn">
+                                <i class="fab fa-whatsapp"></i> <span>Consult Dr. Neelam</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Doctor 4: Dr. Dhiral Vijayvargiya -->
                 <div class="doctor-card">
-                    <img src="images/Doctor4.jpeg" alt="Hair Transplant Surgeon">
+                    <div class="doctor-image-wrapper">
+                        <img src="images/Doctor4.jpeg" alt="Dr. Dhiral Vijayvargiya - Oral &amp; Maxillofacial, Aesthetic &amp; Hair Transplant Surgeon" loading="lazy" decoding="async">
+                        <span class="doctor-exp-pill"><i class="fas fa-shield-alt"></i> Maxillofacial Surgeon</span>
+                    </div>
                     <div class="doctor-info">
-                        <h3>Dr. Dhiral Vijayvargiya, Dental, Aesthetic Physician & Hair Transplant Surgeon</h3>
-                        <p>Dr. Dhiral Vijayvargiya is a specialist Oral and Maxillofacial Surgeons who have dedicated their advanced practices to hair transplantation and facial aesthetics. This elite surgical foundation grants doctors an unparalleled mastery of deep facial anatomy, bone structure, and nerve pathways .In a field where safety and precision are paramount, their hospital-grade background serves as the ultimate assurance for patients. They apply this rigorous surgical discipline directly to non-surgical facial rejuvenation and delicate, micro-graft hair transplants .By combining elite clinical expertise with a refined eye for facial symmetry, they consistently achieve dense, natural-looking hairline restorations and balanced cosmetic outcomes .delivers a gold standard of care rooted in absolute safety, structural knowledge, and transformative results .</p>
+                        <div class="doctor-header">
+                            <div class="doctor-title-row">
+                                <h3 class="doctor-name">Dr. Dhiral Vijayvargiya</h3>
+                                <span class="doctor-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                            </div>
+                            <span class="doctor-designation">Oral &amp; Maxillofacial, Aesthetic &amp; Hair Transplant Surgeon</span>
+                        </div>
+                        <div class="doctor-meta-tags">
+                            <span class="doctor-meta-tag"><i class="fas fa-user-md"></i> Maxillofacial Surgery</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-magic"></i> Facial Symmetry &amp; Aesthetics</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-map-marker-alt"></i> Jaipur &amp; Sikar</span>
+                        </div>
+                        <p class="doctor-story">Dr. Dhiral Vijayvargiya is a specialist Oral and Maxillofacial Surgeon who has dedicated his advanced practice to hair transplantation and facial aesthetics. This elite surgical foundation grants an unparalleled mastery of deep facial anatomy, bone structure, and nerve pathways. He applies rigorous hospital-grade surgical discipline directly to non-surgical facial rejuvenation and delicate, micro-graft hair transplants, achieving dense, natural-looking restorations.</p>
+                        <div class="doctor-footer">
+                            <span class="doctor-location-badge"><i class="fas fa-clinic-medical"></i> Available at <strong>Jaipur &amp; Sikar</strong></span>
+                            <a href="https://wa.me/919216063681?text=Hello%20Kezza%20Team%2C%20I%20would%20like%20to%20consult%20with%20Dr.%20Dhiral%20Vijayvargiya%20for%20Hair%20Transplant%2FAesthetics." target="_blank" rel="noopener" class="doctor-cta-btn">
+                                <i class="fab fa-whatsapp"></i> <span>Consult Dr. Dhiral</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Doctor 5: Krishna -->
                 <div class="doctor-card">
-                    <img src="images/Doctor5.jpeg" alt="Dr Krishna portrait">
+                    <div class="doctor-image-wrapper">
+                        <img src="images/Doctor5.jpeg" alt="Krishna - Permanent Makeup (PMU) Artist" loading="lazy" decoding="async">
+                        <span class="doctor-exp-pill"><i class="fas fa-shield-alt"></i> PMU Artist</span>
+                    </div>
                     <div class="doctor-info">
-                        <h3>Krishna, Permanent Makeup (PMU) Artist</h3>
-                        <p>Krishna is a skilled and passionate Permanent Makeup (PMU) Artist dedicated to enhancing natural beauty through precision and artistry. With extensive hands-on experience in PMU and aesthetic enhancement procedures, she specializes in delivering natural-looking results tailored to each individual's unique features and preferences. Known for her attention to detail and patient-centered approach, Krishna focuses on creating beautiful, balanced outcomes while ensuring comfort, safety, and hygiene throughout every procedure. Her commitment to excellence and patient satisfaction has helped her earn the trust and appreciation of numerous patients. With a passion for aesthetic enhancement and confidence-building treatments, Krishna strives to help every patient achieve their desired look while maintaining a natural and elegant appearance.</p>
+                        <div class="doctor-header">
+                            <div class="doctor-title-row">
+                                <h3 class="doctor-name">Krishna</h3>
+                                <span class="doctor-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                            </div>
+                            <span class="doctor-designation">Permanent Makeup (PMU) Artist</span>
+                        </div>
+                        <div class="doctor-meta-tags">
+                            <span class="doctor-meta-tag"><i class="fas fa-eye"></i> Microblading &amp; Eyebrows</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-kiss"></i> Lip Blush &amp; Artistry</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-map-marker-alt"></i> Jaipur &amp; Sikar</span>
+                        </div>
+                        <p class="doctor-story">Krishna is a skilled and passionate Permanent Makeup (PMU) Artist dedicated to enhancing natural beauty through precision and artistry. With extensive hands-on experience in PMU and aesthetic enhancement procedures, she specializes in delivering natural-looking results tailored to each individual's unique features. Known for her meticulous attention to detail and patient-centered approach, ensuring comfort, safety, and hygiene throughout.</p>
+                        <div class="doctor-footer">
+                            <span class="doctor-location-badge"><i class="fas fa-clinic-medical"></i> Available at <strong>Jaipur &amp; Sikar</strong></span>
+                            <a href="https://wa.me/919079161300?text=Hello%20Kezza%20Team%2C%20I%20would%20like%20to%20consult%20with%20Krishna%20for%20Permanent%20Makeup%20(PMU)." target="_blank" rel="noopener" class="doctor-cta-btn">
+                                <i class="fab fa-whatsapp"></i> <span>Consult Krishna</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor 6: Dr. Mandhata Sharma -->
+                <div class="doctor-card">
+                    <div class="doctor-image-wrapper">
+                        <img src="images/Doctor6.jpeg" alt="Dr. Mandhata Sharma - ENT, Rhinoplasty and Head &amp; Neck Surgeon" loading="lazy" decoding="async">
+                        <span class="doctor-exp-pill"><i class="fas fa-medal"></i> Gold Medalist</span>
+                    </div>
+                    <div class="doctor-info">
+                        <div class="doctor-header">
+                            <div class="doctor-title-row">
+                                <h3 class="doctor-name">Dr. Mandhata Sharma</h3>
+                                <span class="doctor-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                            </div>
+                            <span class="doctor-designation">ENT, Rhinoplasty and Head &amp; Neck Surgeon</span>
+                        </div>
+                        <div class="doctor-meta-tags">
+                            <span class="doctor-meta-tag"><i class="fas fa-graduation-cap"></i> MS ENT (MAMC, Delhi)</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-user-md"></i> Rhinoplasty &amp; Endoscopy</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-map-marker-alt"></i> Jaipur</span>
+                        </div>
+                        <p class="doctor-story">Dr. Mandhata Sharma is a highly skilled and accomplished ENT and Head &amp; Neck Surgeon with an MS from Maulana Azad Medical College (MAMC), Delhi. A Gold Medalist, he brings exceptional academic expertise and specialized experience in Rhinoplasty and Endoscopic ENT procedures. Known for precision and patient-centered care, providing personalized treatment tailored to aesthetic and clinical perfection.</p>
+                        <div class="doctor-footer">
+                            <span class="doctor-location-badge"><i class="fas fa-clinic-medical"></i> Available at <strong>Jaipur</strong></span>
+                            <a href="https://wa.me/919284517427?text=Hello%20Kezza%20Team%2C%20I%20would%20like%20to%20consult%20with%20Dr.%20Mandhata%20Sharma%20for%20ENT%20%26%20Rhinoplasty%20in%20Jaipur." target="_blank" rel="noopener" class="doctor-cta-btn">
+                                <i class="fab fa-whatsapp"></i> <span>Consult Dr. Mandhata</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -682,59 +1118,13 @@
 
     <script src="script.js" defer></script>
     <script src="mobile-menu.js" defer></script>
+    <script src="services-navigation.js" defer></script>
     <script src="chatbot.js?v=2.2" defer></script>
-
-    <!-- Auto-Play Videos on Scroll & Auto-Hide Quick Dock -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Auto-Play / Pause Videos when Scrolled into View
-            const allVideos = document.querySelectorAll('video');
-            if ('IntersectionObserver' in window) {
-                const videoObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        const video = entry.target;
-                        if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
-                            video.muted = true; // Required by browsers for autoplay
-                            const playPromise = video.play();
-                            if (playPromise !== undefined) {
-                                playPromise.catch(() => {
-                                    // Autoplay prevented by browser, waiting for user touch
-                                });
-                            }
-                        } else {
-                            if (!video.paused) {
-                                video.pause();
-                            }
-                        }
-                    });
-                }, { threshold: [0.1, 0.25, 0.5] });
-
-                allVideos.forEach(v => videoObserver.observe(v));
-            }
-
-            // 2. Auto-Hide Floating Quick Dock during Active Scrolling
-            const dockEl = document.getElementById('floatingQuickDock');
-            let scrollStopTimer = null;
-
-            if (dockEl) {
-                window.addEventListener('scroll', () => {
-                    // Hide immediately while scrolling
-                    dockEl.classList.add('dock-hidden');
-
-                    // Reveal smoothly once scrolling stops for 350ms
-                    clearTimeout(scrollStopTimer);
-                    scrollStopTimer = setTimeout(() => {
-                        dockEl.classList.remove('dock-hidden');
-                    }, 350);
-                }, { passive: true });
-            }
-        });
-    </script>
+    <script src="quick-actions.js" defer></script>
 
     <!-- Interactive Calculators Logic -->
     <script>
         let currentBmiTarget = 'Belly Fat / Tummy';
-        let currentEmiTenure = 6;
 
         function setBmiTarget(btn, targetName) {
             document.querySelectorAll('.bmi-target-btn').forEach(b => b.classList.remove('active'));
@@ -794,50 +1184,9 @@ I would like to book a Weight Loss & Body Contouring consultation.`);
             btnEl.href = `https://wa.me/919284517427?text=${waMsg}`;
         }
 
-        function setEmiTenure(btn, months) {
-            document.querySelectorAll('.emi-tenure-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentEmiTenure = months;
-            calculateKezzaEMI();
-        }
-
-        function calculateKezzaEMI() {
-            const selectEl = document.getElementById('emiServiceSelect');
-            const cost = parseInt(selectEl.value, 10) || 45000;
-            const selectedOpt = selectEl.options[selectEl.selectedIndex];
-            const procName = selectedOpt.getAttribute('data-name') || selectedOpt.textContent;
-
-            const monthly = Math.round(cost / currentEmiTenure);
-            const monthlyFormatted = '₹' + monthly.toLocaleString('en-IN');
-            const totalFormatted = '₹' + cost.toLocaleString('en-IN');
-
-            const monthValEl = document.getElementById('emiMonthlyVal');
-            const totalValEl = document.getElementById('emiTotalVal');
-            const btnEl = document.getElementById('btnEmiWhatsApp');
-
-            if (monthValEl) {
-                monthValEl.innerHTML = `${monthlyFormatted} <span style="font-size:0.95rem;font-weight:400;color:#a8a090;">/ month (${currentEmiTenure} mos)</span>`;
-            }
-            if (totalValEl) {
-                totalValEl.textContent = `Total Procedure Cost: ${totalFormatted} (0% Interest • No Extra Fees)`;
-            }
-
-            const waMsg = encodeURIComponent(`Hi Kezza Team,
-I would like to book the following treatment with 0% Interest EMI:
-• Treatment: ${procName}
-• Total Cost: ${totalFormatted}
-• Selected Tenure: ${currentEmiTenure} Months (${monthlyFormatted}/month)
-
-Please assist me with appointment booking and instant EMI approval.`);
-            if (btnEl) {
-                btnEl.href = `https://wa.me/919284517427?text=${waMsg}`;
-            }
-        }
-
-        // Initialize calculators on DOM load
+        // Initialize on DOM load
         document.addEventListener('DOMContentLoaded', () => {
             calculateKezzaBMI();
-            calculateKezzaEMI();
         });
     </script>
 </body>

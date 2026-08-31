@@ -162,19 +162,51 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
+            // Dynamic API base URL (supports both localhost and live tunnel)
+            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const LARAVEL_API = isLocal 
+                ? 'http://localhost:8000/api'
+                : 'https://stand-eos-atm-seeing.trycloudflare.com/api';
+
             // Show loading state
             const submitBtn = this.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
-            
-            // Simulate form submission (replace with actual API call)
-            setTimeout(() => {
-                showNotification('Thank you! Your message has been sent successfully. We will contact you within 1-2 hours.', 'success');
-                contactForm.reset();
+
+            fetch(`${LARAVEL_API}/contact`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    fullName : formObject.fullName  || formObject.full_name || '',
+                    email    : formObject.email     || '',
+                    phone    : formObject.phone     || '',
+                    service  : formObject.service   || '',
+                    subject  : formObject.subject   || '',
+                    message  : formObject.message   || '',
+                }),
+            })
+            .then(async res => {
+                const data = await res.json();
+                if (!res.ok) {
+                    // Validation errors ya server error
+                    const errMsg = data.message || 'Something went wrong. Please try again.';
+                    showNotification(errMsg, 'error');
+                } else {
+                    showNotification(data.message || 'Thank you! Your message has been sent. We will contact you within 1-2 hours.', 'success');
+                    contactForm.reset();
+                }
+            })
+            .catch(() => {
+                showNotification('Network error — please check your connection and try again.', 'error');
+            })
+            .finally(() => {
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
-            }, 2000);
+            });
         });
     }
 });

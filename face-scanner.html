@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="face-scanner-styles.css">
     <link rel="stylesheet" href="quick-actions.css">
+    <link rel="stylesheet" href="services-navigation.css">
     <link rel="stylesheet" href="chatbot.css?v=2.2">
     <link rel="icon" type="image/png" href="images/logo.png">
 </head>
@@ -46,16 +47,95 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="hair-services.html">Hair Services</a></li>
-                <li><a href="skin-services.html">Skin Services</a></li>
-                <li><a href="permanent-makeup.html">Permanent Makeup</a></li>
+                
+                <!-- SERVICES DROPDOWN (WhatsApp Style with Expandable Sub-Branches) -->
+                <li class="nav-item-services-dropdown">
+                    <a href="javascript:void(0)" class="services-nav-toggle" id="servicesNavToggle" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="servicesDropdownMenu">
+                        <span>SERVICES</span> <i class="fas fa-chevron-down nav-arrow"></i>
+                    </a>
+                    <div class="services-dropdown-menu" id="servicesDropdownMenu" role="region" aria-label="Services Menu">
+                        <ul class="services-dropdown-list">
+                            <!-- Category 1: Hair Services -->
+                            <li class="services-cat-item" data-accordion="hair">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subHair">
+                                    <span class="services-cat-title">Hair Services</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subHair">
+                                    <ul class="services-sub-list">
+                                        <li><a href="hair-services.html#hair-transplant" class="services-sub-link">Hair Transplant (HT)</a></li>
+                                        <li><a href="hair-services.html#prp" class="services-sub-link">PRP Therapy</a></li>
+                                        <li><a href="hair-services.html#gfc" class="services-sub-link">GFC Therapy</a></li>
+                                        <li><a href="hair-services.html#white-hair" class="services-sub-link">White Hair Removal</a></li>
+                                        <li><a href="hair-services.html#electrolysis" class="services-sub-link">Electrolysis</a></li>
+                                        <li><a href="hair-services.html#hair-wig" class="services-sub-link">Hair Wig / Hair Replacement</a></li>
+                                        <li><a href="hair-services.html#consultation" class="services-sub-link">Hair Loss Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Category 2: Skin Services -->
+                            <li class="services-cat-item" data-accordion="skin">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subSkin">
+                                    <span class="services-cat-title">Skin Services</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subSkin">
+                                    <ul class="services-sub-list">
+                                        <li><a href="skin-services.html#botox" class="services-sub-link">Botox</a></li>
+                                        <li><a href="skin-services.html#acne" class="services-sub-link">Acne &amp; Acne Scar</a></li>
+                                        <li><a href="skin-services.html#dark-circles" class="services-sub-link">Dark Circle Treatment</a></li>
+                                        <li><a href="skin-services.html#laser" class="services-sub-link">Laser Treatments</a></li>
+                                        <li><a href="skin-services.html#anti-aging" class="services-sub-link">Anti-Aging</a></li>
+                                        <li><a href="skin-services.html#glutathione" class="services-sub-link">Glutathione Therapy</a></li>
+                                        <li><a href="skin-services.html#hydra-facial" class="services-sub-link">Medical Facial</a></li>
+                                        <li><a href="skin-services.html#consultation" class="services-sub-link">Skin Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Category 3: Weight Loss -->
+                            <li class="services-cat-item" data-accordion="weight">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subWeight">
+                                    <span class="services-cat-title">Weight Loss</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subWeight">
+                                    <ul class="services-sub-list">
+                                        <li><a href="weight-loss.html#treatments" class="services-sub-link">Non-Surgical Weight Loss</a></li>
+                                        <li><a href="weight-loss.html#treatments" class="services-sub-link">Body Sculpting (Cryolipolysis)</a></li>
+                                        <li><a href="weight-loss.html#bmi-calc" class="services-sub-link">BMI Assessment</a></li>
+                                        <li><a href="weight-loss.html#consultation" class="services-sub-link">Weight Management Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Category 4: Permanent Makeup (PMU) -->
+                            <li class="services-cat-item" data-accordion="pmu">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subPmu">
+                                    <span class="services-cat-title">Permanent Makeup (PMU)</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subPmu">
+                                    <ul class="services-sub-list">
+                                        <li><a href="permanent-makeup.html#microblading" class="services-sub-link">Eyebrow PMU</a></li>
+                                        <li><a href="permanent-makeup.html#lip-blush" class="services-sub-link">Lip PMU</a></li>
+                                        <li><a href="permanent-makeup.html#eyeliner" class="services-sub-link">Permanent Eyeliner</a></li>
+                                        <li><a href="permanent-makeup.html#consultation" class="services-sub-link">PMU Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
                 <li><a href="face-scanner.html" class="active nav-scanner-link">✦ AI Scanner</a></li>
                 <li><a href="branches.html">Franchise</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-cta">
                 <a href="tel:+919284517427" class="btn-nav-call" title="Call Kezza Clinic"><i class="fas fa-phone-alt"></i> <span>9284517427</span></a>
-                <a href="https://wa.me/919284517427" class="btn-primary">Book Consultation</a>
+                <a href="https://wa.me/919284517427" target="_blank" rel="noopener" class="btn-primary">Book Consultation</a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -79,6 +159,11 @@
             <div class="hero-disclaimer">
                 <i class="fas fa-shield-alt"></i>
                 <span>Preliminary screening only — not a medical diagnosis. Verified by Kezza specialists.</span>
+            </div>
+            <div class="hero-actions" style="margin-top: 1.25rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <a href="#step1" class="btn-scanner-gold" id="btnHeroStart" style="padding: 0.75rem 1.6rem; font-size: 0.95rem; font-weight: 700;">
+                    <i class="fas fa-camera"></i> Start AI Scanner Now
+                </a>
             </div>
         </div>
         <div class="scanner-hero-visual">
@@ -234,11 +319,18 @@
             </div>
 
             <div class="questions-wrap">
-                <!-- Progress bar -->
-                <div class="q-progress">
-                    <div class="q-progress-bar" id="qProgressBar" style="width: 11.1%"></div>
+                <!-- Top Navigation & Progress Header -->
+                <div class="q-top-nav-bar">
+                    <button class="q-top-back-btn" id="btnQBack" type="button" title="Go Back">
+                        <i class="fas fa-arrow-left"></i> <span>Back</span>
+                    </button>
+                    <div class="q-top-progress-block">
+                        <div class="q-progress">
+                            <div class="q-progress-bar" id="qProgressBar" style="width: 11.1%"></div>
+                        </div>
+                        <div class="q-counter" id="qCounter">Question 1 of 9</div>
+                    </div>
                 </div>
-                <div class="q-counter" id="qCounter">Question 1 of 9</div>
 
                 <!-- Question cards -->
                 <div class="question-stage" id="questionStage">
@@ -288,9 +380,9 @@
                                 <i class="fas fa-smile-beam"></i>
                                 <span>Double Chin / Facial Fat</span>
                             </button>
-                            <button class="answer-btn" data-q="1" data-val="dental aesthetics smile designing teeth whitening aligners">
-                                <i class="fas fa-tooth"></i>
-                                <span>Dental / Smile Design</span>
+                            <button class="answer-btn" data-q="1" data-val="rhinoplasty nose aesthetics nose reshaping ent">
+                                <i class="fas fa-head-side-mask"></i>
+                                <span>Rhinoplasty / Nose Reshaping</span>
                             </button>
                         </div>
                     </div>
@@ -482,11 +574,8 @@
 
                 </div>
 
-                <!-- Navigation -->
+                <!-- Bottom Action CTA -->
                 <div class="q-nav">
-                    <button class="btn-scanner-secondary" id="btnQBack">
-                        <i class="fas fa-arrow-left"></i> Back
-                    </button>
                     <button class="btn-scanner-gold" id="btnAnalyse" disabled>
                         Next <i class="fas fa-arrow-right"></i>
                     </button>
@@ -521,6 +610,13 @@
                         <div class="load-step" id="ls2"><i class="fas fa-circle"></i> Analysing skin & hair markers</div>
                         <div class="load-step" id="ls3"><i class="fas fa-circle"></i> Matching to Kezza specialists</div>
                         <div class="load-step" id="ls4"><i class="fas fa-circle"></i> Generating your report</div>
+                    </div>
+                    <!-- AI Typing indicator -->
+                    <div class="ai-typing-wrap" id="aiTypingWrap">
+                        <span>AI thinking</span>
+                        <div class="ai-typing-dot"></div>
+                        <div class="ai-typing-dot"></div>
+                        <div class="ai-typing-dot"></div>
                     </div>
                 </div>
 
@@ -560,6 +656,40 @@
                     <div class="observations-block" id="observationsBlock">
                         <h4><i class="fas fa-eye"></i> What We Observed</h4>
                         <ul class="observations-list" id="observationsList"></ul>
+                    </div>
+
+                    <!-- Confidence Score Ring (NEW) -->
+                    <div class="confidence-ring-wrap" id="confidenceRingWrap">
+                        <h4><i class="fas fa-chart-bar"></i> AI Confidence Metrics</h4>
+                        <div class="confidence-ring-row">
+                            <div class="conf-ring-container">
+                                <svg class="conf-ring-svg" width="100" height="100" viewBox="0 0 100 100">
+                                    <circle class="conf-ring-bg" cx="50" cy="50" r="45"/>
+                                    <circle class="conf-ring-fill" id="confRingFill" cx="50" cy="50" r="45"/>
+                                </svg>
+                                <div class="conf-ring-center">
+                                    <span class="conf-score-num" id="confScoreNum">0</span>
+                                    <span class="conf-score-pct">score</span>
+                                </div>
+                            </div>
+                            <div class="conf-stats">
+                                <div class="conf-stat-item">
+                                    <span class="conf-stat-label">Photo Quality</span>
+                                    <div class="conf-stat-bar-wrap"><div class="conf-stat-bar photo" id="statBarPhoto"></div></div>
+                                    <span class="conf-stat-val" id="statValPhoto">—</span>
+                                </div>
+                                <div class="conf-stat-item">
+                                    <span class="conf-stat-label">Concern Match</span>
+                                    <div class="conf-stat-bar-wrap"><div class="conf-stat-bar concern" id="statBarConcern"></div></div>
+                                    <span class="conf-stat-val" id="statValConcern">—</span>
+                                </div>
+                                <div class="conf-stat-item">
+                                    <span class="conf-stat-label">Specialist Match</span>
+                                    <div class="conf-stat-bar-wrap"><div class="conf-stat-bar match" id="statBarMatch"></div></div>
+                                    <span class="conf-stat-val" id="statValMatch">—</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Treatment recommendation -->
@@ -630,6 +760,16 @@
                         <button class="btn-scanner-secondary" id="btnStartOver">
                             <i class="fas fa-redo"></i>
                             Start Over
+                        </button>
+                    </div>
+
+                    <!-- Extra Actions: Share + Download Report (NEW) -->
+                    <div class="results-extra-actions">
+                        <button class="btn-share" id="btnShareResult" title="Share your assessment summary">
+                            <i class="fas fa-share-alt"></i> Share Summary
+                        </button>
+                        <button class="btn-download-report" id="btnDownloadReport" title="Download assessment as text report">
+                            <i class="fas fa-file-download"></i> Download Report
                         </button>
                     </div>
                     <div class="auto-send-notice" id="autoSendNotice">
@@ -744,20 +884,13 @@
         </div>
     </footer>
 
-    <!-- Social Sidebar -->
-    <div class="social-sidebar">
-        <a href="https://www.instagram.com/kezza_clinic?igsh=b2tkcWNkZnRoYnRh&utm_source=qr" target="_blank" class="social-icon instagram" title="Instagram">
-            <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.facebook.com/kezzaclinic" target="_blank" class="social-icon facebook" title="Facebook">
-            <i class="fab fa-facebook"></i>
-        </a>
-        <a href="https://share.google/p4gwQGbHTNyACknkK" target="_blank" class="social-icon google" title="Google">
-            <i class="fab fa-google"></i>
-        </a>
-        <a href="https://wa.me/919284517427" target="_blank" class="social-icon whatsapp" title="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
+    <!-- Floating Toast Notification -->
+    <div id="scannerToast" class="scanner-toast"></div>
+
+    <!-- Session Auto-Save Banner (NEW) -->
+    <div id="sessionSaveBanner" class="session-save-banner">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <span>Progress saved</span>
     </div>
 
     <!-- Floating Quick Action Dock -->
@@ -776,15 +909,13 @@
         </a>
     </div>
 
-    <!-- Floating Toast Notification -->
-    <div id="scannerToast" class="scanner-toast"></div>
-
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
 
     <script src="mobile-menu.js" defer></script>
+    <script src="services-navigation.js" defer></script>
     <script src="face-scanner-script.js" defer></script>
     <script src="chatbot.js?v=2.2" defer></script>
     <script src="quick-actions.js" defer></script>

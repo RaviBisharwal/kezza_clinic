@@ -981,3 +981,24 @@ body {
     padding: 3px 7px !important;
 }
 
+.branch-map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #00AFC0;
+    color: #ffffff !important;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    margin-top: 8px;
+    transition: all 0.25s ease;
+}
+
+.branch-map-btn:hover {
+    background: #008f9c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 175, 192, 0.35);
+}
+

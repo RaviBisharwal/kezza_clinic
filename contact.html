@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="contact-styles.css">
     <link rel="stylesheet" href="quick-actions.css">
+    <link rel="stylesheet" href="services-navigation.css">
     <link rel="stylesheet" href="chatbot.css?v=2.2">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="icon" type="image/png" href="images/logo.png">
@@ -47,16 +48,95 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="hair-services.html">Hair Services</a></li>
-                <li><a href="skin-services.html">Skin Services</a></li>
-                <li><a href="permanent-makeup.html">Permanent Makeup</a></li>
+                
+                <!-- SERVICES DROPDOWN (WhatsApp Style with Expandable Sub-Branches) -->
+                <li class="nav-item-services-dropdown">
+                    <a href="javascript:void(0)" class="services-nav-toggle" id="servicesNavToggle" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="servicesDropdownMenu">
+                        <span>SERVICES</span> <i class="fas fa-chevron-down nav-arrow"></i>
+                    </a>
+                    <div class="services-dropdown-menu" id="servicesDropdownMenu" role="region" aria-label="Services Menu">
+                        <ul class="services-dropdown-list">
+                            <!-- Category 1: Hair Services -->
+                            <li class="services-cat-item" data-accordion="hair">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subHair">
+                                    <span class="services-cat-title">Hair Services</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subHair">
+                                    <ul class="services-sub-list">
+                                        <li><a href="hair-services.html#hair-transplant" class="services-sub-link">Hair Transplant (HT)</a></li>
+                                        <li><a href="hair-services.html#prp" class="services-sub-link">PRP Therapy</a></li>
+                                        <li><a href="hair-services.html#gfc" class="services-sub-link">GFC Therapy</a></li>
+                                        <li><a href="hair-services.html#white-hair" class="services-sub-link">White Hair Removal</a></li>
+                                        <li><a href="hair-services.html#electrolysis" class="services-sub-link">Electrolysis</a></li>
+                                        <li><a href="hair-services.html#hair-wig" class="services-sub-link">Hair Wig / Hair Replacement</a></li>
+                                        <li><a href="hair-services.html#consultation" class="services-sub-link">Hair Loss Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Category 2: Skin Services -->
+                            <li class="services-cat-item" data-accordion="skin">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subSkin">
+                                    <span class="services-cat-title">Skin Services</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subSkin">
+                                    <ul class="services-sub-list">
+                                        <li><a href="skin-services.html#botox" class="services-sub-link">Botox</a></li>
+                                        <li><a href="skin-services.html#acne" class="services-sub-link">Acne &amp; Acne Scar</a></li>
+                                        <li><a href="skin-services.html#dark-circles" class="services-sub-link">Dark Circle Treatment</a></li>
+                                        <li><a href="skin-services.html#laser" class="services-sub-link">Laser Treatments</a></li>
+                                        <li><a href="skin-services.html#anti-aging" class="services-sub-link">Anti-Aging</a></li>
+                                        <li><a href="skin-services.html#glutathione" class="services-sub-link">Glutathione Therapy</a></li>
+                                        <li><a href="skin-services.html#hydra-facial" class="services-sub-link">Medical Facial</a></li>
+                                        <li><a href="skin-services.html#consultation" class="services-sub-link">Skin Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Category 3: Weight Loss -->
+                            <li class="services-cat-item" data-accordion="weight">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subWeight">
+                                    <span class="services-cat-title">Weight Loss</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subWeight">
+                                    <ul class="services-sub-list">
+                                        <li><a href="weight-loss.html#treatments" class="services-sub-link">Non-Surgical Weight Loss</a></li>
+                                        <li><a href="weight-loss.html#treatments" class="services-sub-link">Body Sculpting (Cryolipolysis)</a></li>
+                                        <li><a href="weight-loss.html#bmi-calc" class="services-sub-link">BMI Assessment</a></li>
+                                        <li><a href="weight-loss.html#consultation" class="services-sub-link">Weight Management Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Category 4: Permanent Makeup (PMU) -->
+                            <li class="services-cat-item" data-accordion="pmu">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subPmu">
+                                    <span class="services-cat-title">Permanent Makeup (PMU)</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subPmu">
+                                    <ul class="services-sub-list">
+                                        <li><a href="permanent-makeup.html#microblading" class="services-sub-link">Eyebrow PMU</a></li>
+                                        <li><a href="permanent-makeup.html#lip-blush" class="services-sub-link">Lip PMU</a></li>
+                                        <li><a href="permanent-makeup.html#eyeliner" class="services-sub-link">Permanent Eyeliner</a></li>
+                                        <li><a href="permanent-makeup.html#consultation" class="services-sub-link">PMU Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
                 <li><a href="face-scanner.html" class="nav-scanner-link">✦ AI Scanner</a></li>
                 <li><a href="branches.html">Franchise</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
             <div class="nav-cta">
                 <a href="tel:+919284517427" class="btn-nav-call" title="Call Kezza Clinic"><i class="fas fa-phone-alt"></i> <span>9284517427</span></a>
-                <a href="https://wa.me/919284517427" class="btn-primary">Book Consultation</a>
+                <a href="https://wa.me/919284517427" target="_blank" rel="noopener" class="btn-primary">Book Consultation</a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -159,31 +239,32 @@
                 <div class="clinic-info">
                     <div class="info-card">
                         <div class="info-item">
-                            <div class="info-icon"></div>
+                            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
                             <h3>Our Clinic Locations</h3>
-                            <p>We are available across Jaipur and Sikar, making premium hair and skincare accessible wherever you are.</p>
+                            <p style="margin-bottom: 8px;"><strong>Jaipur Clinic:</strong> Khatipura, Sirsi Road, Jaipur (<a href="https://maps.app.goo.gl/4eUGixic35V777yd8" target="_blank" rel="noopener" style="color: #ffd700; text-decoration: underline; font-weight: 600;">Google Maps</a>)</p>
+                            <p><strong>Sikar Clinic:</strong> Silver Jubilee Rd, Infront of S.K. Hospital, Sikar (<a href="https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6" target="_blank" rel="noopener" style="color: #ffd700; text-decoration: underline; font-weight: 600;">Google Maps</a>)</p>
                         </div>
 
                         <div class="info-item">
-                            <div class="info-icon"></div>
+                            <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
                             <h3>Phone</h3>
-                            <p>+91-9284517427</p>
+                            <p><a href="tel:+919284517427" style="color: inherit; text-decoration: none;">+91-9284517427</a></p>
                         </div>
 
                         <div class="info-item">
-                            <div class="info-icon"></div>
+                            <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
                             <h3>WhatsApp</h3>
-                            <p>+91-9284517427</p>
+                            <p><a href="https://wa.me/919284517427" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">+91-9284517427</a></p>
                         </div>
 
                         <div class="info-item">
-                            <div class="info-icon"></div>
+                            <div class="info-icon"><i class="fas fa-envelope"></i></div>
                             <h3>Email</h3>
-                            <p>support@kezza.co.in</p>
+                            <p><a href="mailto:support@kezza.co.in" style="color: inherit; text-decoration: none;">support@kezza.co.in</a></p>
                         </div>
 
                         <div class="info-item">
-                            <div class="info-icon"></div>
+                            <div class="info-icon"><i class="fas fa-clock"></i></div>
                             <h3>Working Hours</h3>
                             <p>Mon-Sun: 9 AM - 8 PM<br>(We reply fastest on WhatsApp.)</p>
                         </div>
@@ -194,36 +275,47 @@
     </section>
 
     <!-- Section 4: Branch Locator -->
-    <!-- <section class="branch-locator-section">
+    <section class="branch-locator-section">
         <div class="container">
             <div class="section-header">
-                <h2>Visit Any of Our Multi-City Clinics</h2>
+                <h2>Visit Our Multi-City Clinics</h2>
+                <p style="color: #666; font-size: 1.05rem; max-width: 650px; margin: 0 auto;">Locate our flagship Jaipur clinic or our Sikar center for in-person doctor consultation and advanced treatments.</p>
             </div>
             <div class="branches-grid">
                 <div class="branch-card">
-                    <img src="images/keeza-clinic-outside.jpg" alt="Jaipur Clinic">
+                    <img src="images/keeza-clinic-outside.jpg" alt="Jaipur Kezza Clinic">
                     <div class="branch-content">
                         <h3>Jaipur Kezza Clinic</h3>
-                        <p class="branch-address">Kezza Laser & Cosmetic Surgery Center, Jaipur Karni Bhavan, Plot 101, Khatipura Rd, Parivahan Nagar, Khatipura, Jaipur, Rajasthan 302012</p>
-                        <a href="https://wa.me/919284517427" target="_blank" class="whatsapp-btn">WhatsApp: +91-92845-17427</a>
+                        <p class="branch-address"><i class="fas fa-map-marker-alt" style="color: #d4af37;"></i> A-7, 1st Floor, Hanuman Nagar, Sirsi Rd, Main, Khatipura, Jaipur, Rajasthan 302021</p>
+                        <div class="branch-actions">
+                            <a href="https://maps.app.goo.gl/4eUGixic35V777yd8" target="_blank" rel="noopener" class="map-link-btn">
+                                <i class="fas fa-map-marked-alt"></i> View on Google Maps (Jaipur)
+                            </a>
+                            <a href="https://wa.me/919284517427?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20visit%20Jaipur%20Clinic." target="_blank" rel="noopener" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Jaipur
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="branch-card">
-                    <img src="images/keeza-clinic-outside.jpg" alt="Sikar Clinic">
+                    <img src="images/keeza-clinic-outside.jpg" alt="Sikar Kezza Clinic">
                     <div class="branch-content">
-                        <h3>Sikar Kezza Hair and Skin Clinic</h3>
-                        <p class="branch-address">Kezza Laser Cosmetic Center, Sikar First Floor, Shakambhari Heights, Infront of S.K. Hospital, Silver Jubilee Rd, Sakpura Mohlla, Samrathpura Rural, Sikar, Rajasthan 332001</p>
-                        <a href="https://wa.me/919284517427" target="_blank" class="whatsapp-btn">WhatsApp: +91-92845-17427</a>
+                        <h3>Sikar Kezza Clinic</h3>
+                        <p class="branch-address"><i class="fas fa-map-marker-alt" style="color: #d4af37;"></i> First Floor, Shakambhari Heights, Infront of S.K. Hospital, Silver Jubilee Rd, Sakpura Mohlla, Samrathpura Rural, Sikar, Rajasthan 332001</p>
+                        <div class="branch-actions">
+                            <a href="https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6" target="_blank" rel="noopener" class="map-link-btn">
+                                <i class="fas fa-map-marked-alt"></i> View on Google Maps (Sikar)
+                            </a>
+                            <a href="https://wa.me/919284517427?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20visit%20Sikar%20Clinic." target="_blank" rel="noopener" class="whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i> WhatsApp Sikar
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="map-container">
-                <div id="rajasthanMap" style="width:100%;height:420px;border-radius:8px;"></div>
-            </div>
         </div>
-    </section> -->
+    </section>
 
     <!-- Section 5: Why Contact Us -->
     <section class="why-contact-section">
@@ -435,6 +527,8 @@
         </a>
     </div>
 
+    <script src="mobile-menu.js" defer></script>
+    <script src="services-navigation.js" defer></script>
     <script src="whatsapp-form.js" defer></script>
     <script src="chatbot.js?v=2.2" defer></script>
     <script src="quick-actions.js" defer></script>

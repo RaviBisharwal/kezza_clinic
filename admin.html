@@ -296,7 +296,10 @@
             display: grid; grid-template-columns: 1fr 1fr;
             gap: 0.8rem; margin-bottom: 1rem;
         }
-        .modal-field { }
+        .modal-field {
+            display: flex;
+            flex-direction: column;
+        }
         .modal-field label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.25rem; }
         .modal-field p { font-size: 0.88rem; color: #fff; font-weight: 500; }
         .modal-actions { display: flex; gap: 0.7rem; margin-top: 1rem; }
@@ -405,7 +408,7 @@
                 <option value="Hair">Hair</option>
                 <option value="Skin">Skin</option>
                 <option value="PMU">PMU</option>
-                <option value="Dental">Dental</option>
+                <option value="Rhinoplasty">Rhinoplasty</option>
                 <option value="Laser">Laser</option>
                 <option value="Anti-Aging">Anti-Aging</option>
                 <option value="Weight Loss">Weight Loss</option>

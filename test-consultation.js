@@ -6,6 +6,7 @@ const assert = require('assert');
 
 // Mock browser globals for Node.js environment
 global.window = global;
+global.location = { hostname: 'localhost', port: '3001', origin: 'http://localhost:3001' };
 global.localStorage = {
     _data: {},
     getItem(k) { return this._data[k] || null; },
@@ -186,7 +187,7 @@ it('Strictly rejects Alwar and arbitrary cities for clinic location', () => {
 // ---------------------------------------------------------------------
 console.log('\n📋 5. Category & Treatment Validation Tests:');
 
-it('Correctly classifies categories (Hair, Skin, PMU, SMP, Weight Loss, Dental)', () => {
+it('Correctly classifies categories (Hair, Skin, PMU, SMP, Weight Loss, Rhinoplasty)', () => {
     assert.strictEqual(KezzaAI.validateCategory('Hair'), 'hair');
     assert.strictEqual(KezzaAI.validateCategory('Skin'), 'skin');
     assert.strictEqual(KezzaAI.validateCategory('Medical Facial'), 'skin');
@@ -194,7 +195,7 @@ it('Correctly classifies categories (Hair, Skin, PMU, SMP, Weight Loss, Dental)'
     assert.strictEqual(KezzaAI.validateCategory('PMU'), 'pmu');
     assert.strictEqual(KezzaAI.validateCategory('SMP'), 'smp');
     assert.strictEqual(KezzaAI.validateCategory('Weight Loss'), 'weight_loss');
-    assert.strictEqual(KezzaAI.validateCategory('Dental'), 'dental');
+    assert.strictEqual(KezzaAI.validateCategory('Rhinoplasty'), 'rhinoplasty');
 });
 
 it('Validates specific treatments per category', () => {
@@ -477,7 +478,7 @@ const serverContext = {
         'PMU_SPECIALIST': '9079161300',
         'SMP_SPECIALIST': '9079161300',
         'WEIGHT_LOSS': '9079163100',
-        'DENTAL': '9079163100'
+        'ENT_RHINOPLASTY': '9284517427'
     }
 };
 vm.createContext(serverContext);
@@ -1014,7 +1015,7 @@ it('Scenario 22: PMU eyebrow photo -> PMU + Dr. Krishna Choudhary', () => {
     assert.strictEqual(res.body_area, 'PMU');
     assert.strictEqual(res.recommended_consultation, 'PMU / Microblading Consultation');
     assert.strictEqual(res.specialist, 'Dr. Krishna Choudhary');
-    assert.strictEqual(res.specialist_contact, '9079163100');
+    assert.strictEqual(res.specialist_contact, '9079161300');
 });
 
 itAsync('Photo Analysis seamlessly integrates into Consultation Booking Flow with pre-filled context', async () => {

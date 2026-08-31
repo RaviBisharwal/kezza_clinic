@@ -179,7 +179,8 @@ const SEED_DEPARTMENTS = [
     { key: 'PMU', name: 'Permanent Makeup (PMU)', phone: '919079161300', doctor: 'Dr. Krishna Choudhary' },
     { key: 'SMP', name: 'Scalp Micropigmentation', phone: '919079161300', doctor: 'Kezza SMP Team' },
     { key: 'WEIGHT_LOSS', name: 'Weight Loss & Slimming', phone: '919057546221', doctor: 'Kezza Wellness Team' },
-    { key: 'DENTAL', name: 'Dental Aesthetics', phone: '919284517427', doctor: 'Dr. Dhiral Vijayvargiya' }
+    { key: 'FACIAL_AESTHETICS', name: 'Facial Aesthetics & Surgery', phone: '918130888129', doctor: 'Dr. Dhiral Vijayvargiya' },
+    { key: 'ENT_RHINOPLASTY', name: 'ENT & Rhinoplasty', phone: '919284517427', doctor: 'Dr. Mandhata Sharma' }
 ];
 
 // ─── INITIALIZATION ─────────────────────────────────────────────────────────

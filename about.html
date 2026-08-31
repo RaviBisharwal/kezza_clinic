@@ -26,7 +26,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="about-styles.css">
+    <link rel="stylesheet" href="doctors-landscape.css">
     <link rel="stylesheet" href="quick-actions.css">
+    <link rel="stylesheet" href="services-navigation.css">
     <link rel="stylesheet" href="chatbot.css?v=2.2">
     <link rel="icon" type="image/png" href="images/logo.png">
 </head>
@@ -45,16 +47,95 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html" class="active">About</a></li>
-                <li><a href="hair-services.html">Hair Services</a></li>
-                <li><a href="skin-services.html">Skin Services</a></li>
-                <li><a href="permanent-makeup.html">Permanent Makeup</a></li>
+                
+                <!-- SERVICES DROPDOWN (WhatsApp Style with Expandable Sub-Branches) -->
+                <li class="nav-item-services-dropdown">
+                    <a href="javascript:void(0)" class="services-nav-toggle" id="servicesNavToggle" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="servicesDropdownMenu">
+                        <span>SERVICES</span> <i class="fas fa-chevron-down nav-arrow"></i>
+                    </a>
+                    <div class="services-dropdown-menu" id="servicesDropdownMenu" role="region" aria-label="Services Menu">
+                        <ul class="services-dropdown-list">
+                            <!-- Category 1: Hair Services -->
+                            <li class="services-cat-item" data-accordion="hair">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subHair">
+                                    <span class="services-cat-title">Hair Services</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subHair">
+                                    <ul class="services-sub-list">
+                                        <li><a href="hair-services.html#hair-transplant" class="services-sub-link">Hair Transplant (HT)</a></li>
+                                        <li><a href="hair-services.html#prp" class="services-sub-link">PRP Therapy</a></li>
+                                        <li><a href="hair-services.html#gfc" class="services-sub-link">GFC Therapy</a></li>
+                                        <li><a href="hair-services.html#white-hair" class="services-sub-link">White Hair Removal</a></li>
+                                        <li><a href="hair-services.html#electrolysis" class="services-sub-link">Electrolysis</a></li>
+                                        <li><a href="hair-services.html#hair-wig" class="services-sub-link">Hair Wig / Hair Replacement</a></li>
+                                        <li><a href="hair-services.html#consultation" class="services-sub-link">Hair Loss Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Category 2: Skin Services -->
+                            <li class="services-cat-item" data-accordion="skin">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subSkin">
+                                    <span class="services-cat-title">Skin Services</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subSkin">
+                                    <ul class="services-sub-list">
+                                        <li><a href="skin-services.html#botox" class="services-sub-link">Botox</a></li>
+                                        <li><a href="skin-services.html#acne" class="services-sub-link">Acne &amp; Acne Scar</a></li>
+                                        <li><a href="skin-services.html#dark-circles" class="services-sub-link">Dark Circle Treatment</a></li>
+                                        <li><a href="skin-services.html#laser" class="services-sub-link">Laser Treatments</a></li>
+                                        <li><a href="skin-services.html#anti-aging" class="services-sub-link">Anti-Aging</a></li>
+                                        <li><a href="skin-services.html#glutathione" class="services-sub-link">Glutathione Therapy</a></li>
+                                        <li><a href="skin-services.html#hydra-facial" class="services-sub-link">Medical Facial</a></li>
+                                        <li><a href="skin-services.html#consultation" class="services-sub-link">Skin Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Category 3: Weight Loss -->
+                            <li class="services-cat-item" data-accordion="weight">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subWeight">
+                                    <span class="services-cat-title">Weight Loss</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subWeight">
+                                    <ul class="services-sub-list">
+                                        <li><a href="weight-loss.html#treatments" class="services-sub-link">Non-Surgical Weight Loss</a></li>
+                                        <li><a href="weight-loss.html#treatments" class="services-sub-link">Body Sculpting (Cryolipolysis)</a></li>
+                                        <li><a href="weight-loss.html#bmi-calc" class="services-sub-link">BMI Assessment</a></li>
+                                        <li><a href="weight-loss.html#consultation" class="services-sub-link">Weight Management Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Category 4: Permanent Makeup (PMU) -->
+                            <li class="services-cat-item" data-accordion="pmu">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subPmu">
+                                    <span class="services-cat-title">Permanent Makeup (PMU)</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subPmu">
+                                    <ul class="services-sub-list">
+                                        <li><a href="permanent-makeup.html#microblading" class="services-sub-link">Eyebrow PMU</a></li>
+                                        <li><a href="permanent-makeup.html#lip-blush" class="services-sub-link">Lip PMU</a></li>
+                                        <li><a href="permanent-makeup.html#eyeliner" class="services-sub-link">Permanent Eyeliner</a></li>
+                                        <li><a href="permanent-makeup.html#consultation" class="services-sub-link">PMU Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
                 <li><a href="face-scanner.html" class="nav-scanner-link">✦ AI Scanner</a></li>
                 <li><a href="branches.html">Franchise</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-cta">
                 <a href="tel:+919284517427" class="btn-nav-call" title="Call Kezza Clinic"><i class="fas fa-phone-alt"></i> <span>9284517427</span></a>
-                <a href="https://wa.me/919284517427" class="btn-primary">Book Consultation</a>
+                <a href="https://wa.me/919284517427" target="_blank" rel="noopener" class="btn-primary">Book Consultation</a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -156,58 +237,182 @@
     <section class="doctors-section">
         <div class="container">
             <div class="section-header">
+                <span class="section-subtitle"><i class="fas fa-user-md"></i> MEDICAL LEADERSHIP</span>
                 <h2>Meet Our Experts</h2>
-                <p>At Kezza, our doctors are not only skilled clinicians—they are compassionate practitioners driven by results and patient satisfaction.</p>
+                <p>At Kezza, our specialist doctors and surgeons deliver evidence-based clinical treatments with the highest standards of safety, surgical precision, and natural aesthetic harmony.</p>
             </div>
             <div class="doctors-grid">
+                <!-- Doctor 1: Dr. Ankit Bhalothia -->
                 <div class="doctor-card">
-                    <div class="doctor-image">
-                        <img src="images/Doctor1.jpeg" alt="Senior Hair Transplant Surgeon">
+                    <div class="doctor-image-wrapper">
+                        <img src="images/Doctor1.jpeg" alt="Dr. Ankit Bhalothia - Aesthetic & Hair Transplant Surgeon" loading="lazy" decoding="async">
+                        <span class="doctor-exp-pill"><i class="fas fa-shield-alt"></i> Specialist Surgeon</span>
                     </div>
                     <div class="doctor-info">
-                        <h3>Dr. Ankit Bhalothia</h3>
-                        <h4>Aesthetic & Hair Transplant Surgeon</h4>
-                       <p>Led by specialist Oral and Maxillofacial Surgeons Dr. Ankit Bhalothia practice approaches facial aesthetics and hair transplantation through a lens of total structural harmony. he treats the face as a unified canvas, understanding how the underlying skeletal framework dictates surface beauty.While highly trained in complex oral-facial surgery, their primary clinical dedication lies in the meticulous art of modern hair restoration and facial anti-aging .They specialize in designing bespoke hairlines that perfectly frame individual facial proportions, utilizing advanced follicular techniques to ensure maximum graft survival. From structural jaw contouring to dense hair transplantation, both doctors seamlessly blend surgical authority with cosmetic artistry to deliver exceptionally natural results that never look artificial .</p>
+                        <div class="doctor-header">
+                            <div class="doctor-title-row">
+                                <h3 class="doctor-name">Dr. Ankit Bhalothia</h3>
+                                <span class="doctor-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                            </div>
+                            <span class="doctor-designation">Aesthetic &amp; Hair Transplant Surgeon</span>
+                        </div>
+                        <div class="doctor-meta-tags">
+                            <span class="doctor-meta-tag"><i class="fas fa-user-md"></i> Oral &amp; Maxillofacial Surgeon</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-cut"></i> Micro-Follicular Restoration</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-map-marker-alt"></i> Jaipur &amp; Sikar</span>
+                        </div>
+                        <p class="doctor-story">Led by specialist Oral and Maxillofacial Surgeon Dr. Ankit Bhalothia, our practice approaches facial aesthetics and hair transplantation through a lens of total structural harmony. He treats the face as a unified canvas, understanding how the underlying skeletal framework dictates surface beauty. While highly trained in complex oral-facial surgery, his primary clinical dedication lies in the meticulous art of modern hair restoration and facial anti-aging. Specializing in designing bespoke hairlines that perfectly frame individual facial proportions, utilizing advanced follicular techniques to ensure maximum graft survival.</p>
+                        <div class="doctor-footer">
+                            <span class="doctor-location-badge"><i class="fas fa-clinic-medical"></i> Available at <strong>Jaipur &amp; Sikar</strong></span>
+                            <a href="https://wa.me/919216063681?text=Hello%20Kezza%20Team%2C%20I%20would%20like%20to%20consult%20with%20Dr.%20Ankit%20Bhalothia%20for%20Hair%20Transplant%2FAesthetics." target="_blank" rel="noopener" class="doctor-cta-btn">
+                                <i class="fab fa-whatsapp"></i> <span>Consult Dr. Ankit</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Doctor 2: Dr. Amrita Mukhija -->
                 <div class="doctor-card">
-                    <div class="doctor-image">
-                        <img src="images/Doctor2.jpeg" alt="Dermatologist">
+                    <div class="doctor-image-wrapper">
+                        <img src="images/Doctor2.jpeg" alt="Dr. Amrita Mukhija - Aesthetic Physician & Skin Specialist" loading="lazy" decoding="async">
+                        <span class="doctor-exp-pill"><i class="fas fa-shield-alt"></i> Skin Specialist</span>
                     </div>
                     <div class="doctor-info">
-                         <h3>Dr. Amrita Mukhija</h3>
-                         <h4> Aesthetic Physician and Skin Specialist</h4>
-                        <p>Dr. Amrita Mukhija is an experienced Aesthetic Physician and Skin Specialist with specialized training in dermatology and aesthetic medicine. She offers advanced solutions for a wide range of skin and cosmetic concerns, combining medical expertise with a personalized approach to patient care. Her areas of expertise include laser treatments, injectables, anti-aging procedures, skin rejuvenation, and customized skincare solutions. Known for delivering safe, effective, and natural-looking results, Dr. Mukhija is committed to helping patients achieve healthy, confident, and radiant skin through evidence-based aesthetic treatments.</p>
+                        <div class="doctor-header">
+                            <div class="doctor-title-row">
+                                <h3 class="doctor-name">Dr. Amrita Mukhija</h3>
+                                <span class="doctor-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                            </div>
+                            <span class="doctor-designation">Aesthetic Physician &amp; Skin Specialist</span>
+                        </div>
+                        <div class="doctor-meta-tags">
+                            <span class="doctor-meta-tag"><i class="fas fa-sparkles"></i> Clinical Dermatology &amp; Laser</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-syringe"></i> Anti-Aging &amp; Injectables</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-map-marker-alt"></i> Jaipur &amp; Sikar</span>
+                        </div>
+                        <p class="doctor-story">Dr. Amrita Mukhija is an experienced Aesthetic Physician and Skin Specialist with specialized training in dermatology and aesthetic medicine. She offers advanced solutions for a wide range of skin and cosmetic concerns, combining medical expertise with a personalized approach to patient care. Her areas of expertise include laser treatments, injectables, anti-aging procedures, skin rejuvenation, and customized skincare solutions. Known for delivering safe, effective, and natural-looking results.</p>
+                        <div class="doctor-footer">
+                            <span class="doctor-location-badge"><i class="fas fa-clinic-medical"></i> Available at <strong>Jaipur &amp; Sikar</strong></span>
+                            <a href="https://wa.me/919216063686?text=Hello%20Kezza%20Team%2C%20I%20would%20like%20to%20consult%20with%20Dr.%20Amrita%20Mukhija%20for%20Skin%20Care." target="_blank" rel="noopener" class="doctor-cta-btn">
+                                <i class="fab fa-whatsapp"></i> <span>Consult Dr. Amrita</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Doctor 3: Dr. Neelam Choudhary -->
                 <div class="doctor-card">
-                    <div class="doctor-image">
-                        <img src="images/Doctor3.jpeg" alt="Hair Restoration Specialist">
+                    <div class="doctor-image-wrapper">
+                        <img src="images/Doctor3.jpeg" alt="Dr. Neelam Choudhary - Aesthetic Physician & Skin Specialist" loading="lazy" decoding="async">
+                        <span class="doctor-exp-pill"><i class="fas fa-shield-alt"></i> Skin Specialist</span>
                     </div>
                     <div class="doctor-info">
-                        <h3>Dr. Neelam Choudhary </h3>
-                        <h4> Aesthetic Physician and Skin Specialist</h4>
-                        <p>Dr. Neelam Choudhary is a dedicated Aesthetic Physician and Skin Specialist with expertise in modern aesthetic and dermatological treatments. She focuses on providing personalized care for a variety of skin concerns, helping patients achieve healthier, clearer, and more youthful-looking skin. Her proficiency includes advanced skin rejuvenation procedures, anti-aging treatments, laser therapies, and customized skincare solutions. With a strong emphasis on patient satisfaction and natural-looking outcomes, Dr. Choudhary is known for delivering safe, effective, and scientifically backed aesthetic care tailored to individual needs.</p>
+                        <div class="doctor-header">
+                            <div class="doctor-title-row">
+                                <h3 class="doctor-name">Dr. Neelam Choudhary</h3>
+                                <span class="doctor-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                            </div>
+                            <span class="doctor-designation">Aesthetic Physician &amp; Skin Specialist</span>
+                        </div>
+                        <div class="doctor-meta-tags">
+                            <span class="doctor-meta-tag"><i class="fas fa-magic"></i> Rejuvenation &amp; Glow</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-heartbeat"></i> Acne &amp; Pigmentation</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-map-marker-alt"></i> Jaipur &amp; Sikar</span>
+                        </div>
+                        <p class="doctor-story">Dr. Neelam Choudhary is a dedicated Aesthetic Physician and Skin Specialist with expertise in modern aesthetic and dermatological treatments. She focuses on providing personalized care for a variety of skin concerns, helping patients achieve healthier, clearer, and more youthful-looking skin. Her proficiency includes advanced skin rejuvenation procedures, anti-aging treatments, laser therapies, and customized skincare solutions with scientifically backed protocols.</p>
+                        <div class="doctor-footer">
+                            <span class="doctor-location-badge"><i class="fas fa-clinic-medical"></i> Available at <strong>Jaipur &amp; Sikar</strong></span>
+                            <a href="https://wa.me/919216063686?text=Hello%20Kezza%20Team%2C%20I%20would%20like%20to%20consult%20with%20Dr.%20Neelam%20Choudhary%20for%20Skin%20Care." target="_blank" rel="noopener" class="doctor-cta-btn">
+                                <i class="fab fa-whatsapp"></i> <span>Consult Dr. Neelam</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Doctor 4: Dr. Dhiral Vijayvargiya -->
                 <div class="doctor-card">
-                    <div class="doctor-image">
-                        <img src="images/Doctor4.jpeg" alt="Anti-Aging Specialist">
+                    <div class="doctor-image-wrapper">
+                        <img src="images/Doctor4.jpeg" alt="Dr. Dhiral Vijayvargiya - Oral &amp; Maxillofacial, Aesthetic &amp; Hair Transplant Surgeon" loading="lazy" decoding="async">
+                        <span class="doctor-exp-pill"><i class="fas fa-shield-alt"></i> Maxillofacial Surgeon</span>
                     </div>
                     <div class="doctor-info">
-                        <h3>Dr. Dhiral Vijayvargiya</h3>
-                        <h4>Dental, Aesthetic Physician & Hair Transplant Surgeon</h4>
-                        <p>Dr. Dhiral Vijayvargiya is a specialist Oral and Maxillofacial Surgeons who have dedicated their advanced practices to hair transplantation and facial aesthetics. This elite surgical foundation grants doctors an unparalleled mastery of deep facial anatomy, bone structure, and nerve pathways .In a field where safety and precision are paramount, their hospital-grade background serves as the ultimate assurance for patients. They apply this rigorous surgical discipline directly to non-surgical facial rejuvenation and delicate, micro-graft hair transplants .By combining elite clinical expertise with a refined eye for facial symmetry, they consistently achieve dense, natural-looking hairline restorations and balanced cosmetic outcomes .delivers a gold standard of care rooted in absolute safety, structural knowledge, and transformative results .</p>
+                        <div class="doctor-header">
+                            <div class="doctor-title-row">
+                                <h3 class="doctor-name">Dr. Dhiral Vijayvargiya</h3>
+                                <span class="doctor-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                            </div>
+                            <span class="doctor-designation">Oral &amp; Maxillofacial, Aesthetic &amp; Hair Transplant Surgeon</span>
+                        </div>
+                        <div class="doctor-meta-tags">
+                            <span class="doctor-meta-tag"><i class="fas fa-user-md"></i> Maxillofacial Surgery</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-magic"></i> Facial Symmetry &amp; Aesthetics</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-map-marker-alt"></i> Jaipur &amp; Sikar</span>
+                        </div>
+                        <p class="doctor-story">Dr. Dhiral Vijayvargiya is a specialist Oral and Maxillofacial Surgeon who has dedicated his advanced practice to hair transplantation and facial aesthetics. This elite surgical foundation grants an unparalleled mastery of deep facial anatomy, bone structure, and nerve pathways. He applies rigorous hospital-grade surgical discipline directly to non-surgical facial rejuvenation and delicate, micro-graft hair transplants, achieving dense, natural-looking restorations.</p>
+                        <div class="doctor-footer">
+                            <span class="doctor-location-badge"><i class="fas fa-clinic-medical"></i> Available at <strong>Jaipur &amp; Sikar</strong></span>
+                            <a href="https://wa.me/919216063681?text=Hello%20Kezza%20Team%2C%20I%20would%20like%20to%20consult%20with%20Dr.%20Dhiral%20Vijayvargiya%20for%20Hair%20Transplant%2FAesthetics." target="_blank" rel="noopener" class="doctor-cta-btn">
+                                <i class="fab fa-whatsapp"></i> <span>Consult Dr. Dhiral</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Doctor 5: Krishna -->
                 <div class="doctor-card">
-                    <div class="doctor-image">
-                        <img src="images/Doctor5.jpeg" alt="Dr Krishna portrait">
+                    <div class="doctor-image-wrapper">
+                        <img src="images/Doctor5.jpeg" alt="Krishna - Permanent Makeup (PMU) Artist" loading="lazy" decoding="async">
+                        <span class="doctor-exp-pill"><i class="fas fa-shield-alt"></i> PMU Artist</span>
                     </div>
                     <div class="doctor-info">
-                        <h3>Krishna</h3>
-                        <h4>Permanent Makeup (PMU) Artist</h4>
-                       <p>Krishna is a skilled and passionate Permanent Makeup (PMU) Artist dedicated to enhancing natural beauty through precision and artistry. With extensive hands-on experience in PMU and aesthetic enhancement procedures, she specializes in delivering natural-looking results tailored to each individual's unique features and preferences. Known for her attention to detail and patient-centered approach, Krishna focuses on creating beautiful, balanced outcomes while ensuring comfort, safety, and hygiene throughout every procedure. Her commitment to excellence and patient satisfaction has helped her earn the trust and appreciation of numerous patients. With a passion for aesthetic enhancement and confidence-building treatments, Krishna strives to help every patient achieve their desired look while maintaining a natural and elegant appearance.</p>
+                        <div class="doctor-header">
+                            <div class="doctor-title-row">
+                                <h3 class="doctor-name">Krishna</h3>
+                                <span class="doctor-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                            </div>
+                            <span class="doctor-designation">Permanent Makeup (PMU) Artist</span>
+                        </div>
+                        <div class="doctor-meta-tags">
+                            <span class="doctor-meta-tag"><i class="fas fa-eye"></i> Microblading &amp; Eyebrows</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-kiss"></i> Lip Blush &amp; Artistry</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-map-marker-alt"></i> Jaipur &amp; Sikar</span>
+                        </div>
+                        <p class="doctor-story">Krishna is a skilled and passionate Permanent Makeup (PMU) Artist dedicated to enhancing natural beauty through precision and artistry. With extensive hands-on experience in PMU and aesthetic enhancement procedures, she specializes in delivering natural-looking results tailored to each individual's unique features. Known for her meticulous attention to detail and patient-centered approach, ensuring comfort, safety, and hygiene throughout.</p>
+                        <div class="doctor-footer">
+                            <span class="doctor-location-badge"><i class="fas fa-clinic-medical"></i> Available at <strong>Jaipur &amp; Sikar</strong></span>
+                            <a href="https://wa.me/919079161300?text=Hello%20Kezza%20Team%2C%20I%20would%20like%20to%20consult%20with%20Krishna%20for%20Permanent%20Makeup%20(PMU)." target="_blank" rel="noopener" class="doctor-cta-btn">
+                                <i class="fab fa-whatsapp"></i> <span>Consult Krishna</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor 6: Dr. Mandhata Sharma -->
+                <div class="doctor-card">
+                    <div class="doctor-image-wrapper">
+                        <img src="images/Doctor6.jpeg" alt="Dr. Mandhata Sharma - ENT, Rhinoplasty and Head &amp; Neck Surgeon" loading="lazy" decoding="async">
+                        <span class="doctor-exp-pill"><i class="fas fa-medal"></i> Gold Medalist</span>
+                    </div>
+                    <div class="doctor-info">
+                        <div class="doctor-header">
+                            <div class="doctor-title-row">
+                                <h3 class="doctor-name">Dr. Mandhata Sharma</h3>
+                                <span class="doctor-verified-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                            </div>
+                            <span class="doctor-designation">ENT, Rhinoplasty and Head &amp; Neck Surgeon</span>
+                        </div>
+                        <div class="doctor-meta-tags">
+                            <span class="doctor-meta-tag"><i class="fas fa-graduation-cap"></i> MS ENT (MAMC, Delhi)</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-user-md"></i> Rhinoplasty &amp; Endoscopy</span>
+                            <span class="doctor-meta-tag"><i class="fas fa-map-marker-alt"></i> Jaipur</span>
+                        </div>
+                        <p class="doctor-story">Dr. Mandhata Sharma is a highly skilled and accomplished ENT and Head &amp; Neck Surgeon with an MS from Maulana Azad Medical College (MAMC), Delhi. A Gold Medalist, he brings exceptional academic expertise and specialized experience in Rhinoplasty and Endoscopic ENT procedures. Known for precision and patient-centered care, providing personalized treatment tailored to aesthetic and clinical perfection.</p>
+                        <div class="doctor-footer">
+                            <span class="doctor-location-badge"><i class="fas fa-clinic-medical"></i> Available at <strong>Jaipur</strong></span>
+                            <a href="https://wa.me/919284517427?text=Hello%20Kezza%20Team%2C%20I%20would%20like%20to%20consult%20with%20Dr.%20Mandhata%20Sharma%20for%20ENT%20%26%20Rhinoplasty%20in%20Jaipur." target="_blank" rel="noopener" class="doctor-cta-btn">
+                                <i class="fab fa-whatsapp"></i> <span>Consult Dr. Mandhata</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -321,40 +526,46 @@
             </div>
             <div class="reviews-grid">
                 <div class="video-container">
-                    <video width="250" height="350" style="width: 250px; height: 350px;" controls>
-                        <source src="video/video8.m4v" type="video/mp4">
+                    <video width="250" height="350" style="width: 250px; height: 350px; object-fit: cover;" controls preload="metadata" playsinline>
+                        <source src="video/video8.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
                     </video>
-                    <p class="video-caption"></p>
+                    <p class="video-caption">Hair Transplant Patient Review</p>
                 </div>
                 <div class="video-container">
-                    <video width="250" height="350" style="width: 250px; height: 350px;" controls>
-                        <source src="video/video9.m4v" type="video/mp4">
+                    <video width="250" height="350" style="width: 250px; height: 350px; object-fit: cover;" controls preload="metadata" playsinline>
+                        <source src="video/video9.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
                     </video>
-                    <p class="video-caption"></p>
+                    <p class="video-caption">GFC Treatment Experience</p>
                 </div>
                 <div class="video-container">
-                    <video width="250" height="350" style="width: 250px; height: 350px;" controls>
-                        <source src="video/video7.m4v" type="video/mp4">
+                    <video width="250" height="350" style="width: 250px; height: 350px; object-fit: cover;" controls preload="metadata" playsinline>
+                        <source src="video/video7.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
                     </video>
-                    <p class="video-caption"></p>
+                    <p class="video-caption">Skin Care & Glow Review</p>
                 </div>
                 <div class="video-container">
-                    <video width="250" height="350" style="width: 250px; height: 350px;" controls>
-                        <source src="video/video6.m4v" type="video/mp4">
+                    <video width="250" height="350" style="width: 250px; height: 350px; object-fit: cover;" controls preload="metadata" playsinline>
+                        <source src="video/video6.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
                     </video>
-                    <p class="video-caption"></p>
+                    <p class="video-caption">Hair Restoration Feedback</p>
                 </div>
                 <div class="video-container">
-                    <video width="250" height="350" style="width: 250px; height: 350px;" controls>
-                        <source src="video/video5.m4v" type="video/mp4">
+                    <video width="250" height="350" style="width: 250px; height: 350px; object-fit: cover;" controls preload="metadata" playsinline>
+                        <source src="video/video5.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
                     </video>
-                    <p class="video-caption"></p>
+                    <p class="video-caption">Patient Journey & Results</p>
                 </div>
                 <div class="video-container">
-                    <video width="250" height="350" style="width: 250px; height: 350px;" controls>
-                        <source src="video/video4.m4v" type="video/mp4">
+                    <video width="250" height="350" style="width: 250px; height: 350px; object-fit: cover;" controls preload="metadata" playsinline>
+                        <source src="video/video4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
                     </video>
-                    <p class="video-caption"></p>
+                    <p class="video-caption">Kezza Clinic Testimonial</p>
                 </div>
             </div>
         </div>
@@ -499,6 +710,7 @@
 
     <script src="about-script.js"></script>
     <script src="mobile-menu.js"></script>
+    <script src="services-navigation.js" defer></script>
     <script src="chatbot.js?v=2.2" defer></script>
     <script src="quick-actions.js" defer></script>
 </body>

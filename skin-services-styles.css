@@ -233,6 +233,11 @@ h6 {
     align-items: center;
 }
 
+.hero-content {
+    display: flex;
+    flex-direction: column;
+}
+
 .hero-title {
     font-size: 48px;
     line-height: 1.2;

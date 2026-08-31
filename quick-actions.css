@@ -55,7 +55,7 @@
     left: 18px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    z-index: 999 !important;
+    z-index: 990 !important;
     display: flex !important;
     flex-direction: column !important;
     gap: 12px !important;
@@ -154,35 +154,41 @@
 }
 
 
-/* ── 2. FLOATING QUICK ACTION DOCK (Bottom Bar) ───────────────────── */
+/* ── 2. GLOBAL FLOATING ACTION BAR (100% Mathematically Viewport Centered) ── */
 .floating-quick-dock {
     position: fixed !important;
-    bottom: 24px !important;
+    bottom: 20px !important;
     left: 50% !important;
+    right: auto !important;
+    top: auto !important;
     transform: translateX(-50%) !important;
+    margin: 0 !important;
     background: rgba(11, 15, 27, 0.96) !important;
     border: 1.5px solid rgba(201, 168, 76, 0.6) !important;
     backdrop-filter: blur(20px) saturate(200%) !important;
     -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
     border-radius: 50px !important;
-    padding: 7px 12px !important;
+    padding: 7px 14px !important;
     display: flex !important;
     align-items: center !important;
+    justify-content: center !important;
     gap: 8px !important;
     box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7), 
                 0 0 25px rgba(201, 168, 76, 0.25),
                 inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
     z-index: 998 !important;
-    max-width: 95vw !important;
-    animation: dockEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-               dockAmbientFloat 6s ease-in-out infinite 0.8s !important;
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease !important;
+    width: max-content !important;
+    max-width: calc(100vw - 24px) !important;
+    box-sizing: border-box !important;
+    animation: dockEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+               dockAmbientFloat 6s ease-in-out infinite 0.7s !important;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease !important;
     will-change: transform, opacity !important;
 }
 
-/* Auto-Hide when scrolling */
+/* Auto-Hide when active scrolling */
 .floating-quick-dock.dock-hidden {
-    transform: translate(-50%, 120px) !important;
+    transform: translateX(-50%) translateY(120px) !important;
     opacity: 0 !important;
     pointer-events: none !important;
 }
@@ -211,20 +217,20 @@
 @keyframes dockEntrance {
     0% {
         opacity: 0;
-        transform: translate(-50%, 60px) scale(0.9);
+        transform: translateX(-50%) translateY(60px) scale(0.92);
     }
     100% {
         opacity: 1;
-        transform: translate(-50%, 0) scale(1);
+        transform: translateX(-50%) translateY(0) scale(1);
     }
 }
 
 @keyframes dockAmbientFloat {
     0%, 100% {
-        transform: translate(-50%, 0);
+        transform: translateX(-50%) translateY(0);
     }
     50% {
-        transform: translate(-50%, -6px);
+        transform: translateX(-50%) translateY(-5px);
     }
 }
 
@@ -244,14 +250,15 @@
     cursor: pointer !important;
     overflow: hidden !important;
     font-family: 'Inter', sans-serif !important;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    box-sizing: border-box !important;
+    transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
 }
 
 .dock-item:active {
-    transform: scale(0.92) !important;
+    transform: scale(0.94) !important;
 }
 
-/* 1. Call Button Animation */
+/* 1. Call Button */
 .dock-item.dock-call {
     background: rgba(201, 168, 76, 0.22) !important;
     color: #ffd700 !important;
@@ -265,7 +272,7 @@
     background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%) !important;
     color: #000 !important;
     border-color: #ffffff !important;
-    transform: translateY(-3px) scale(1.04) !important;
+    transform: translateY(-2px) scale(1.03) !important;
     box-shadow: 0 8px 22px rgba(255, 215, 0, 0.5) !important;
 }
 .dock-item.dock-call:hover i {
@@ -280,7 +287,7 @@
     80% { transform: rotate(10deg); }
 }
 
-/* 2. WhatsApp Button Animation & Pulse */
+/* 2. WhatsApp Button */
 .dock-item.dock-wa {
     background: linear-gradient(135deg, #25d366 0%, #128c7e 100%) !important;
     color: #ffffff !important;
@@ -303,7 +310,7 @@
 }
 .dock-item.dock-wa:hover {
     background: linear-gradient(135deg, #28e06c 0%, #15a08e 100%) !important;
-    transform: translateY(-3px) scale(1.05);
+    transform: translateY(-2px) scale(1.04);
     box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
 }
 .dock-item.dock-wa i {
@@ -315,7 +322,7 @@
     50% { transform: scale(1.2); }
 }
 
-/* 3. AI Scanner Button Animation */
+/* 3. AI Scanner Button */
 .dock-item.dock-scan {
     background: rgba(255, 215, 0, 0.18) !important;
     color: #ffe066 !important;
@@ -327,7 +334,7 @@
     background: linear-gradient(135deg, rgba(255, 215, 0, 0.35) 0%, rgba(201, 168, 76, 0.45) 100%) !important;
     border-color: #ffd700 !important;
     color: #ffffff !important;
-    transform: translateY(-3px) scale(1.04) !important;
+    transform: translateY(-2px) scale(1.03) !important;
     box-shadow: 0 8px 25px rgba(255, 215, 0, 0.45) !important;
 }
 .dock-item.dock-scan i {
@@ -350,6 +357,57 @@
     background: rgba(255, 255, 255, 0.25) !important;
     border-color: #ffd700 !important;
     color: #ffd700 !important;
-    transform: translateY(-3px) scale(1.04) !important;
+    transform: translateY(-2px) scale(1.03) !important;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ── 3. RESPONSIVE POSITIONING & VIEWPORT SCALING ─────────────────── */
+@media (max-width: 992px) {
+    .floating-quick-dock {
+        bottom: 16px !important;
+        padding: 6px 12px !important;
+        gap: 6px !important;
+        max-width: calc(100vw - 20px) !important;
+    }
+    .dock-item {
+        padding: 8px 13px !important;
+        font-size: 0.78rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-quick-dock {
+        bottom: 14px !important;
+        padding: 5px 10px !important;
+        gap: 5px !important;
+        max-width: calc(100vw - 16px) !important;
+    }
+    .dock-item {
+        padding: 7px 11px !important;
+        font-size: 0.75rem !important;
+        gap: 5px !important;
+    }
+    .dock-item.dock-call span {
+        display: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-quick-dock {
+        bottom: 12px !important;
+        padding: 5px 8px !important;
+        gap: 4px !important;
+        max-width: calc(100vw - 12px) !important;
+    }
+    .dock-item {
+        padding: 7px 10px !important;
+        font-size: 0.72rem !important;
+        gap: 4px !important;
+    }
+    .dock-item span {
+        display: none !important;
+    }
+    .dock-item i {
+        font-size: 1.05rem !important;
+    }
 }

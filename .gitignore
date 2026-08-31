@@ -23,3 +23,6 @@ Thumbs.db
 *.db-shm
 uploads/photos/*
 !uploads/photos/.gitkeep
+video/*_backup.*
+*_backup.*
+*.bak

@@ -8,9 +8,9 @@
 (function () {
     'use strict';
 
-    const CHATBOT_API_BASE = (typeof window !== 'undefined' && window.location.hostname === 'localhost' && window.location.port === '8080')
+    const CHATBOT_API_BASE = (typeof window !== 'undefined' && window.location && window.location.hostname === 'localhost' && window.location.port === '8080')
         ? 'http://localhost:3001'
-        : (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3001');
+        : (typeof window !== 'undefined' && window.location ? window.location.origin : 'http://localhost:3001');
 
     // ============================================
     // VERIFIED KEZZA CLINIC LOCATIONS & GOOGLE MAPS (Jaipur & Sikar ONLY)
@@ -22,7 +22,7 @@
             state: 'Rajasthan',
             address: 'A-7, 1st Floor, Hanuman Nagar, Sirsi Rd, Main, Khatipura, Jaipur, Rajasthan 302021',
             phone: '+91-9284517427',
-            mapsUrl: 'https://maps.app.goo.gl/vBqhXZdd6AMFGeo46',
+            mapsUrl: 'https://maps.app.goo.gl/4eUGixic35V777yd8',
             mapsBtnText: '📍 Open Jaipur Clinic in Google Maps',
             flagship: true
         },
@@ -32,7 +32,7 @@
             state: 'Rajasthan',
             address: 'First Floor, Shakambhari Heights, Infront of S.K. Hospital, Silver Jubilee Rd, Sakpura Mohlla, Samrathpura Rural, Sikar, Rajasthan 332001',
             phone: '+91-9284517427',
-            mapsUrl: 'https://maps.app.goo.gl/LzPZybnxyxgoK8wU6',
+            mapsUrl: 'https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6',
             mapsBtnText: '📍 Open Sikar Clinic in Google Maps',
             flagship: false
         }
@@ -323,13 +323,22 @@
             defaultMsg: 'Hello Dr. Krishna Choudhary PMU Team, I would like to book a PMU / Makeup consultation.'
         },
         dr_dhiral: {
-            id: 'DENTAL',
+            id: 'HAIR_TRANSPLANT_SIKAR',
             name: 'Dr. Dhiral Vijayvargiya',
-            role: 'Dental Specialist',
-            phone: null,
-            buttonTextEn: null,
-            buttonTextHi: null,
-            defaultMsg: null
+            role: 'Maxillofacial & Hair Transplant Surgeon',
+            phone: '8130888129',
+            buttonTextEn: 'Chat with Sikar Hair Transplant Team (8130888129)',
+            buttonTextHi: 'Sikar Hair Transplant Team se Chat Karein (8130888129)',
+            defaultMsg: 'Hello Dr. Dhiral Vijayvargiya Team, I would like to consult regarding Hair Transplant & Facial Aesthetics.'
+        },
+        dr_mandhata: {
+            id: 'ENT_RHINOPLASTY',
+            name: 'Dr. Mandhata Sharma',
+            role: 'ENT & Rhinoplasty Surgeon',
+            phone: '9284517427',
+            buttonTextEn: 'Chat for Rhinoplasty / ENT Consultation',
+            buttonTextHi: 'Rhinoplasty / ENT Consultation ke liye Chat Karein',
+            defaultMsg: 'Hello Kezza Team, I would like to consult with Dr. Mandhata Sharma for Rhinoplasty / ENT.'
         }
     };
 
@@ -364,7 +373,7 @@
         },
         {
             name: 'Dr. Dhiral Vijayvargiya',
-            title: 'Dental, Aesthetic Physician & Hair Transplant Surgeon',
+            title: 'Oral & Maxillofacial, Aesthetic & Hair Transplant Surgeon',
             specialization: 'Oral and Maxillofacial Surgeon with expertise in hair transplantation and facial aesthetics',
             brief: 'Combines elite surgical expertise with refined aesthetic precision for natural results.'
         },
@@ -373,6 +382,12 @@
             title: 'Permanent Makeup (PMU) Artist',
             specialization: 'Permanent makeup including microblading, lip blushing, and cosmetic tattooing',
             brief: 'Skilled PMU artist dedicated to enhancing natural beauty with precision and artistry.'
+        },
+        {
+            name: 'Dr. Mandhata Sharma',
+            title: 'ENT, Rhinoplasty and Head & Neck Surgeon',
+            specialization: 'MS ENT (MAMC, Delhi) — Gold Medalist, specialized in Rhinoplasty, nasal aesthetics and endoscopic procedures',
+            brief: 'Renowned ENT and Rhinoplasty Surgeon with exceptional surgical precision and patient-centered care.'
         }
     ];
 
@@ -413,9 +428,9 @@ CONFIDENCE SYSTEM (internal only — never show to patient):
 ═══════════════════════════════════════
 VERIFIED CLINIC LOCATIONS (Jaipur & Sikar ONLY):
 1. JAIPUR: Kezza Hair & Skin Clinic, Jaipur, Rajasthan
-   Maps: https://maps.app.goo.gl/vBqhXZdd6AMFGeo46
+   Maps: https://maps.app.goo.gl/4eUGixic35V777yd8
 2. SIKAR: Kezza Hair & Skin Clinic, Sikar, Rajasthan
-   Maps: https://maps.app.goo.gl/LzPZybnxyxgoK8wU6
+   Maps: https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6
 DO NOT mention Alwar as a Kezza location.
 ═══════════════════════════════════════
 
@@ -744,40 +759,40 @@ Dental: "Dr. Dhiral Vijayvargiya relevant hain. Verified dental number abhi avai
 
     function getGreetingResponse(lang) {
         const timeInfo = getISTTimeInfo();
-        const quickReplies = ['💬 Enquiry', '🩺 Treatment', '📅 Book Consultation', '👨‍⚕️ Specialists', '📍 Clinic Location'];
+        const quickReplies = ['✦ AI Scanner', '💬 Enquiry', '🩺 Treatment', '📅 Book Consultation', '👨‍⚕️ Specialists', '📍 Clinic Location'];
 
         if (timeInfo.isOpen) {
             if (lang === 'hinglish') {
                 return {
-                    text: `Namaste! 👋 Main <strong>Kezza AI</strong> hoon. How can I help you today?\n\nKezza ke treatments, pricing, Jaipur & Sikar clinic locations, ya consultation booking ke liye options select karein:`,
+                    text: `Namaste! 👋 Main <strong>Kezza AI</strong> hoon. How can I help you today?\n\nAap hamare <a href="face-scanner.html" class="kezza-chat-inline-link"><strong>✦ AI Face &amp; Scalp Scanner</strong></a> se instant photo analysis karwa sakte hain ya options select karein:`,
                     quickReplies: quickReplies
                 };
             }
             if (lang === 'hindi') {
                 return {
-                    text: `नमस्ते! 👋 मैं <strong>Kezza AI</strong> हूँ। आज मैं आपकी क्या मदद कर सकता हूँ?\n\nKezza के treatments, clinic locations (Jaipur & Sikar) या consultation booking के लिए विकल्प चुनें:`,
+                    text: `नमस्ते! 👋 मैं <strong>Kezza AI</strong> हूँ। आज मैं आपकी क्या मदद कर सकता हूँ?\n\nआप हमारे <a href="face-scanner.html" class="kezza-chat-inline-link"><strong>✦ AI Face &amp; Scalp Scanner</strong></a> से तुरंत फोटो एनालिसिस कर सकते हैं या विकल्प चुनें:`,
                     quickReplies: quickReplies
                 };
             }
             return {
-                text: `Hi! 👋 I'm <strong>Kezza AI</strong>. How can I help you today?\n\nI can assist you with treatment information, clinic locations in Jaipur & Sikar, or help you book a consultation:`,
+                text: `Hi! 👋 I'm <strong>Kezza AI</strong>. How can I help you today?\n\nTry our <a href="face-scanner.html" class="kezza-chat-inline-link"><strong>✦ AI Face &amp; Scalp Scanner</strong></a> for instant screening, or choose an option below:`,
                 quickReplies: quickReplies
             };
         } else {
             if (lang === 'hinglish') {
                 return {
-                    text: `Hi! 👋 Main <strong>Kezza AI</strong> hoon. Main aapke questions ke answers de sakta hoon aur consultation request record kar sakta hoon.\n\nHamari consultation team abhi <strong>currently closed</strong> hai aur subah <strong>9:00 AM</strong> se available hogi.`,
+                    text: `Hi! 👋 Main <strong>Kezza AI</strong> hoon. Aap hamare <a href="face-scanner.html" class="kezza-chat-inline-link"><strong>✦ AI Scanner</strong></a> se preliminary assessment le sakte hain.\n\nHamari consultation team abhi <strong>currently closed</strong> hai aur subah <strong>9:00 AM</strong> se available hogi.`,
                     quickReplies: quickReplies
                 };
             }
             if (lang === 'hindi') {
                 return {
-                    text: `नमस्ते! 👋 मैं <strong>Kezza AI</strong> हूँ। मैं आपके सवालों के जवाब दे सकता हूँ और consultation request नोट कर सकता हूँ।\n\nहमारी consultation team अभी <strong>closed</strong> है और सुबह <strong>9:00 AM</strong> से उपलब्ध होगी।`,
+                    text: `नमस्ते! 👋 मैं <strong>Kezza AI</strong> हूँ। आप हमारे <a href="face-scanner.html" class="kezza-chat-inline-link"><strong>✦ AI Scanner</strong></a> से तुरंत फोटो टेस्ट कर सकते हैं।\n\nहमारी consultation team अभी <strong>closed</strong> है और सुबह <strong>9:00 AM</strong> से उपलब्ध होगी।`,
                     quickReplies: quickReplies
                 };
             }
             return {
-                text: `Hi! 👋 I'm <strong>Kezza AI</strong>. I can help with your questions and collect consultation requests.\n\nOur consultation team is <strong>currently closed</strong> and will be available from <strong>9:00 AM</strong>.`,
+                text: `Hi! 👋 I'm <strong>Kezza AI</strong>. Try our <a href="face-scanner.html" class="kezza-chat-inline-link"><strong>✦ AI Scanner</strong></a> for preliminary screening.\n\nOur consultation team is <strong>currently closed</strong> and will be available from <strong>9:00 AM</strong>.`,
                 quickReplies: quickReplies
             };
         }
@@ -937,16 +952,16 @@ Dental: "Dr. Dhiral Vijayvargiya relevant hain. Verified dental number abhi avai
             buttonTextEn: '💬 Send Consultation to SMP Team (9079161300)',
             buttonTextHi: '💬 SMP Team ko WhatsApp par Send karein (9079161300)'
         },
-        DENTAL: {
-            id: 'DENTAL',
-            departmentKey: 'DENTAL',
-            specialistName: 'Dr. Dhiral Vijayvargiya',
-            departmentName: 'Dental (Dr. Dhiral Vijayvargiya)',
-            phone: null,
+        ENT_RHINOPLASTY: {
+            id: 'ENT_RHINOPLASTY',
+            departmentKey: 'ENT_RHINOPLASTY',
+            specialistName: 'Dr. Mandhata Sharma',
+            departmentName: 'ENT & Rhinoplasty Department',
+            phone: '9284517427',
             isTransplant: false,
-            isDental: true,
-            buttonTextEn: null,
-            buttonTextHi: null
+            isDental: false,
+            buttonTextEn: '💬 Consult with Dr. Mandhata Sharma (9284517427)',
+            buttonTextHi: '💬 Dr. Mandhata Sharma se WhatsApp par Baat karein (9284517427)'
         },
         WEIGHT_LOSS: {
             id: 'WEIGHT_LOSS',
@@ -1413,21 +1428,21 @@ Please contact the patient for further consultation and appointment confirmation
             questionHi: 'Aapka primary weight-loss goal kya hai?',
             questionOptions: ['5-10 kg Weight Loss', '10-20 kg Weight Loss', 'Targeted Fat Loss', 'Post-pregnancy Slimming']
         },
-        dental: {
-            id: 'dental',
-            label: '🦷 Dental',
-            title: 'Dental Care',
-            promptEn: 'Which dental concern or treatment would you like to consult about?',
-            promptHi: 'Aap kis dental treatment ya concern ke baare mein consult karna chahte hain?',
+        rhinoplasty: {
+            id: 'rhinoplasty',
+            label: '👃 Rhinoplasty / ENT',
+            title: 'Rhinoplasty & ENT Care',
+            promptEn: 'Which rhinoplasty or ENT treatment would you like to consult about?',
+            promptHi: 'Aap kis rhinoplasty ya ENT treatment ke baare mein consult karna chahte hain?',
             treatments: [
-                'Dental Consultation & Checkup',
-                'Tooth Pain & Teeth Treatment',
-                'Teeth Cleaning & Scaling',
-                'Dental Fillings & Root Canal'
+                'Aesthetic Rhinoplasty (Nose Reshaping)',
+                'Endoscopic ENT Procedures',
+                'Nasal Septum & Symmetry Correction',
+                'ENT & Head-Neck Consultation'
             ],
-            questionEn: 'What is your primary dental concern?',
-            questionHi: 'Aapka primary dental concern kya hai?',
-            questionOptions: ['Tooth Pain / Cavity', 'Teeth Cleaning & Scaling', 'Dental Fillings', 'General Dental Checkup']
+            questionEn: 'What is your primary concern?',
+            questionHi: 'Aapka primary concern kya hai?',
+            questionOptions: ['Nose Reshaping / Aesthetics', 'Breathing / Septum Correction', 'Endoscopic ENT', 'General ENT Consultation']
         }
     };
 
@@ -1472,11 +1487,11 @@ Please contact the patient for further consultation and appointment confirmation
             'Diet & Metabolic Care',
             'Targeted Fat Reduction'
         ],
-        dental: [
-            'Dental Consultation & Checkup',
-            'Tooth Pain & Teeth Treatment',
-            'Teeth Cleaning & Scaling',
-            'Dental Fillings & Root Canal'
+        rhinoplasty: [
+            'Aesthetic Rhinoplasty (Nose Reshaping)',
+            'Endoscopic ENT Procedures',
+            'Nasal Septum & Symmetry Correction',
+            'ENT & Head-Neck Consultation'
         ]
     };
 
@@ -1498,7 +1513,7 @@ Please contact the patient for further consultation and appointment confirmation
             }
         }
 
-        if (norm.includes('dental') || norm.includes('tooth') || norm.includes('teeth') || norm.includes('daant') || norm.includes('dant')) return 'dental';
+        if (norm.includes('rhinoplasty') || norm.includes('nose') || norm.includes('ent') || norm.includes('septum')) return 'rhinoplasty';
         if (norm.includes('anti aging') || norm.includes('anti-aging') || norm.includes('anti-ageing') || norm.includes('antiaging') || norm.includes('wrinkle') || norm.includes('hifu') || norm.includes('fillers') || norm.includes('filler') || norm.includes('face tight') || norm.includes('jhurri') || norm.includes('skin') || norm.includes('acne') || norm.includes('pimple') || norm.includes('dark circle') || norm.includes('medical facial') || norm.includes('medi facial') || norm.includes('glutathione') || norm.includes('botox') || norm.includes('laser')) return 'skin';
         if (norm.includes('pmu') || norm.includes('permanent makeup') || norm.includes('microblading') || norm.includes('lip blush') || norm.includes('lip neutralization') || norm.includes('beauty spot') || norm.includes('permanent eyeliner') || norm.includes('lash enhancement') || norm.includes('ombre brows')) return 'pmu';
         if (norm.includes('scalp micropigmentation') || (norm.includes('smp') && !norm.includes('beard')) || norm.includes('hairline smp') || norm.includes('stretch mark') || norm.includes('scar camouflage') || norm.includes('vitiligo camouflage') || norm.includes('beard micropigmentation') || norm.includes('beard smp')) return 'smp';
@@ -1550,7 +1565,7 @@ Please contact the patient for further consultation and appointment confirmation
         if (lower.includes('stretch mark')) return 'Stretch Mark Camouflage';
         if (lower.includes('scar camouflage') || lower.includes('vitiligo')) return 'Scar Camouflage';
         if (lower.includes('weight') || lower.includes('slimming') || lower.includes('fat')) return 'Medical Weight Loss Management';
-        if (lower.includes('dental') || lower.includes('tooth') || lower.includes('teeth')) return 'Dental Consultation & Checkup';
+        if (lower.includes('rhinoplasty') || lower.includes('nose') || lower.includes('ent') || lower.includes('septum')) return 'Aesthetic Rhinoplasty (Nose Reshaping)';
 
         return null;
     }
@@ -1996,7 +2011,7 @@ Please contact the patient for further consultation and appointment confirmation
                     text: (currentLang === 'hinglish')
                         ? `Aap kis treatment category ke baare mein consult karna chahte hain?`
                         : ((currentLang === 'hindi') ? `आप किस ट्रीटमेंट श्रेणी के बारे में परामर्श चाहते हैं?` : `Which treatment category would you like to consult about?`),
-                    quickReplies: ['💇 Hair', '✨ Skin', '💄 PMU', '🎨 SMP', '⚖️ Weight Loss', '🦷 Dental']
+                    quickReplies: ['💇 Hair', '✨ Skin', '💄 PMU', '🎨 SMP', '⚖️ Weight Loss', '👃 Rhinoplasty']
                 };
 
             case CONSULTATION_STATES.TREATMENT: {
@@ -2165,12 +2180,12 @@ Please contact the patient for further consultation and appointment confirmation
                 specialist = 'Kezza Wellness Team';
                 department = 'WEIGHT_LOSS';
                 phone = '9216063686';
-            } else if (norm.includes('dental') || norm.includes('tooth') || norm.includes('teeth')) {
-                category = 'dental';
-                treatment = 'Dental Consultation & Checkup';
-                specialist = 'Dr. Dhiral Vijayvargiya';
-                department = 'DENTAL';
-                phone = null;
+            } else if (norm.includes('rhinoplasty') || norm.includes('nose') || norm.includes('ent') || norm.includes('septum')) {
+                category = 'rhinoplasty';
+                treatment = 'Aesthetic Rhinoplasty (Nose Reshaping)';
+                specialist = 'Dr. Mandhata Sharma';
+                department = 'ENT_RHINOPLASTY';
+                phone = '9284517427';
             }
         }
 
@@ -2221,12 +2236,12 @@ Please contact the patient for further consultation and appointment confirmation
                 specialist = 'Kezza Wellness Team';
                 department = 'WEIGHT_LOSS';
                 phone = '9216063686';
-            } else if (stateRef.lastCategory === 'dental') {
-                category = 'dental';
-                treatment = 'Dental Consultation & Checkup';
-                specialist = 'Dr. Dhiral Vijayvargiya';
-                department = 'DENTAL';
-                phone = null;
+            } else if (stateRef.lastCategory === 'rhinoplasty') {
+                category = 'rhinoplasty';
+                treatment = 'Aesthetic Rhinoplasty (Nose Reshaping)';
+                specialist = 'Dr. Mandhata Sharma';
+                department = 'ENT_RHINOPLASTY';
+                phone = '9284517427';
             }
         }
 
@@ -2442,7 +2457,7 @@ Please contact the patient for further consultation and appointment confirmation
                         text: (currentLang === 'hinglish')
                             ? `Please consultation ke liye treatment category select karein:`
                             : ((currentLang === 'hindi') ? `कृपया परामर्श के लिए श्रेणी चुनें:` : `Please select a treatment category for your consultation:`),
-                        quickReplies: ['💇 Hair', '✨ Skin', '💄 PMU', '🎨 SMP', '⚖️ Weight Loss', '🦷 Dental']
+                        quickReplies: ['💇 Hair', '✨ Skin', '💄 PMU', '🎨 SMP', '⚖️ Weight Loss', '👃 Rhinoplasty']
                     };
                 }
                 flow.data.category = validCat;
@@ -3042,15 +3057,15 @@ Please contact the patient for further consultation and appointment confirmation
         if (branch === 'jaipur') {
             return {
                 text: (lang === 'hinglish')
-                    ? `📍 <strong>Kezza Jaipur Clinic:</strong><br>Apex Mall, Lal Kothi, Tonk Road, Jaipur, Rajasthan.<br>⏰ Timings: 9:00 AM – 8:00 PM (All 7 Days)<br><br><a href="https://maps.app.goo.gl/vBqhXZdd6AMFGeo46" target="_blank" class="kezza-map-btn"><i class="fas fa-map-marker-alt"></i> View Jaipur Clinic on Google Maps</a>`
-                    : `📍 <strong>Kezza Jaipur Clinic:</strong><br>Apex Mall, Lal Kothi, Tonk Road, Jaipur, Rajasthan.<br>⏰ Timings: 9:00 AM – 8:00 PM (Monday to Sunday)<br><br><a href="https://maps.app.goo.gl/vBqhXZdd6AMFGeo46" target="_blank" class="kezza-map-btn"><i class="fas fa-map-marker-alt"></i> View Jaipur Clinic on Google Maps</a>`,
+                    ? `📍 <strong>Kezza Jaipur Clinic:</strong><br>A-7, 1st Floor, Hanuman Nagar, Sirsi Rd, Main, Khatipura, Jaipur, Rajasthan.<br>⏰ Timings: 9:00 AM – 8:00 PM (All 7 Days)<br><br><a href="https://maps.app.goo.gl/4eUGixic35V777yd8" target="_blank" class="kezza-map-btn"><i class="fas fa-map-marker-alt"></i> View Jaipur Clinic on Google Maps</a>`
+                    : `📍 <strong>Kezza Jaipur Clinic:</strong><br>A-7, 1st Floor, Hanuman Nagar, Sirsi Rd, Main, Khatipura, Jaipur, Rajasthan.<br>⏰ Timings: 9:00 AM – 8:00 PM (Monday to Sunday)<br><br><a href="https://maps.app.goo.gl/4eUGixic35V777yd8" target="_blank" class="kezza-map-btn"><i class="fas fa-map-marker-alt"></i> View Jaipur Clinic on Google Maps</a>`,
                 quickReplies: ['📅 Book at Jaipur', '📍 Sikar Clinic', '💇 View Treatments']
             };
         }
         return {
             text: (lang === 'hinglish')
-                ? `📍 <strong>Kezza Sikar Clinic:</strong><br>Near Piprali Circle, Sikar, Rajasthan.<br>⏰ Timings: 9:00 AM – 8:00 PM (All 7 Days)<br><br><a href="https://maps.app.goo.gl/LzPZybnxyxgoK8wU6" target="_blank" class="kezza-map-btn"><i class="fas fa-map-marker-alt"></i> View Sikar Clinic on Google Maps</a>`
-                : `📍 <strong>Kezza Sikar Clinic:</strong><br>Near Piprali Circle, Sikar, Rajasthan.<br>⏰ Timings: 9:00 AM – 8:00 PM (Monday to Sunday)<br><br><a href="https://maps.app.goo.gl/LzPZybnxyxgoK8wU6" target="_blank" class="kezza-map-btn"><i class="fas fa-map-marker-alt"></i> View Sikar Clinic on Google Maps</a>`,
+                ? `📍 <strong>Kezza Sikar Clinic:</strong><br>First Floor, Shakambhari Heights, Infront of S.K. Hospital, Silver Jubilee Rd, Sikar, Rajasthan.<br>⏰ Timings: 9:00 AM – 8:00 PM (All 7 Days)<br><br><a href="https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6" target="_blank" class="kezza-map-btn"><i class="fas fa-map-marker-alt"></i> View Sikar Clinic on Google Maps</a>`
+                : `📍 <strong>Kezza Sikar Clinic:</strong><br>First Floor, Shakambhari Heights, Infront of S.K. Hospital, Silver Jubilee Rd, Sikar, Rajasthan.<br>⏰ Timings: 9:00 AM – 8:00 PM (Monday to Sunday)<br><br><a href="https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6" target="_blank" class="kezza-map-btn"><i class="fas fa-map-marker-alt"></i> View Sikar Clinic on Google Maps</a>`,
             quickReplies: ['📅 Book at Sikar', '📍 Jaipur Clinic', '💇 View Treatments']
         };
     }
@@ -3058,18 +3073,18 @@ Please contact the patient for further consultation and appointment confirmation
     function renderLocationOverview(lang) {
         if (lang === 'hinglish') {
             return {
-                text: `📍 <strong>Kezza Clinics Locations:</strong>\n\n1. <strong>Jaipur Clinic:</strong> Apex Mall, Lal Kothi, Tonk Road, Jaipur (<a href="https://maps.app.goo.gl/vBqhXZdd6AMFGeo46" target="_blank">Google Maps</a>)\n\n2. <strong>Sikar Clinic:</strong> Near Piprali Circle, Sikar (<a href="https://maps.app.goo.gl/LzPZybnxyxgoK8wU6" target="_blank">Google Maps</a>)\n\n⏰ Timings: 9:00 AM – 8:00 PM (All 7 Days)`,
+                text: `📍 <strong>Kezza Clinics Locations:</strong>\n\n1. <strong>Jaipur Clinic:</strong> Khatipura, Sirsi Road, Jaipur (<a href="https://maps.app.goo.gl/4eUGixic35V777yd8" target="_blank">Google Maps</a>)\n\n2. <strong>Sikar Clinic:</strong> Silver Jubilee Rd, Sikar (<a href="https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6" target="_blank">Google Maps</a>)\n\n⏰ Timings: 9:00 AM – 8:00 PM (All 7 Days)`,
                 quickReplies: ['📍 Jaipur Clinic', '📍 Sikar Clinic', '📅 Book Consultation']
             };
         }
         if (lang === 'hindi') {
             return {
-                text: `📍 <strong>Kezza Clinics के केंद्र:</strong>\n\n1. <strong>जयपुर क्लीनिक:</strong> Apex Mall, Lal Kothi, Tonk Road, Jaipur (<a href="https://maps.app.goo.gl/vBqhXZdd6AMFGeo46" target="_blank">गूगल मैप्स</a>)\n\n2. <strong>सीकर क्लीनिक:</strong> Near Piprali Circle, Sikar (<a href="https://maps.app.goo.gl/LzPZybnxyxgoK8wU6" target="_blank">गूगल मैप्स</a>)\n\n⏰ समय: सुबह 9:00 AM से रात 8:00 PM (सातों दिन)`,
+                text: `📍 <strong>Kezza Clinics के केंद्र:</strong>\n\n1. <strong>जयपुर क्लीनिक:</strong> खातीपुरा, सिरसी रोड, जयपुर (<a href="https://maps.app.goo.gl/4eUGixic35V777yd8" target="_blank">गूगल मैप्स</a>)\n\n2. <strong>सीकर क्लीनिक:</strong> सिल्वर जुबली रोड, सीकर (<a href="https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6" target="_blank">गूगल मैप्स</a>)\n\n⏰ समय: सुबह 9:00 AM से रात 8:00 PM (सातों दिन)`,
                 quickReplies: ['📍 जयपुर क्लीनिक', '📍 सीकर क्लीनिक', '📅 परामर्श बुक करें']
             };
         }
         return {
-            text: `📍 <strong>Kezza Clinic Locations:</strong>\n\n1. <strong>Jaipur Clinic:</strong> Apex Mall, Lal Kothi, Tonk Road, Jaipur (<a href="https://maps.app.goo.gl/vBqhXZdd6AMFGeo46" target="_blank">Google Maps</a>)\n\n2. <strong>Sikar Clinic:</strong> Near Piprali Circle, Sikar (<a href="https://maps.app.goo.gl/LzPZybnxyxgoK8wU6" target="_blank">Google Maps</a>)\n\n⏰ Operating Hours: 9:00 AM – 8:00 PM (All 7 Days)`,
+            text: `📍 <strong>Kezza Clinic Locations:</strong>\n\n1. <strong>Jaipur Clinic:</strong> Khatipura, Sirsi Road, Jaipur (<a href="https://maps.app.goo.gl/4eUGixic35V777yd8" target="_blank">Google Maps</a>)\n\n2. <strong>Sikar Clinic:</strong> Silver Jubilee Rd, Sikar (<a href="https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6" target="_blank">Google Maps</a>)\n\n⏰ Operating Hours: 9:00 AM – 8:00 PM (All 7 Days)`,
             quickReplies: ['📍 Jaipur Clinic', '📍 Sikar Clinic', '📅 Book Consultation']
         };
     }
@@ -3687,8 +3702,23 @@ Please guide me on next steps and appointment availability.
     </div>
 
     <div class="kezza-photo-section">
-        <span class="kezza-photo-label">📊 AI Confidence:</span>
+        <span class="kezza-photo-label">📊 Preliminary Confidence:</span>
         <div class="kezza-photo-val"><strong>${confidenceLabel}</strong></div>
+    </div>
+
+    <div class="kezza-photo-section">
+        <span class="kezza-photo-label">🩺 Recommended Consultation:</span>
+        <div class="kezza-photo-val" style="font-weight:600;color:#0284c7;">${recommendedConsultation}</div>
+    </div>
+
+    <div class="kezza-photo-section">
+        <span class="kezza-photo-label">👨‍⚕️ Recommended Specialist:</span>
+        <div class="kezza-photo-val">${specialist}</div>
+    </div>
+
+    <div class="kezza-photo-section">
+        <span class="kezza-photo-label">📍 Clinic:</span>
+        <div class="kezza-photo-val">${location}</div>
     </div>
 
     <div class="kezza-photo-section">
@@ -3709,10 +3739,11 @@ Please guide me on next steps and appointment availability.
             <strong>📞 Contact:</strong> <a href="tel:+91${escapeHtml(waPhone)}" style="color:${deptColor};font-weight:600;">+91 ${escapeHtml(waPhone)}</a><br>
             <strong>📍 Clinic:</strong> ${location}
         </div>
+        <div style="font-size:12px;color:#64748b;margin-top:8px;">👉 Next Step: Open WhatsApp to confirm slot</div>
         <a href="${waLink}" target="_blank" rel="noopener"
-           style="display:flex;align-items:center;gap:8px;margin-top:12px;padding:10px 14px;background:#25d366;color:#fff;font-weight:700;font-size:13.5px;border-radius:8px;text-decoration:none;justify-content:center;">
+           style="display:flex;align-items:center;gap:8px;margin-top:8px;padding:10px 14px;background:#25d366;color:#fff;font-weight:700;font-size:13.5px;border-radius:8px;text-decoration:none;justify-content:center;">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.478 2 12c0 1.72.44 3.34 1.217 4.752L2.018 22l5.388-1.166A9.952 9.952 0 0012 22c5.523 0 10-4.478 10-10S17.522 2 12 2zm0 18.182a8.181 8.181 0 01-4.296-1.216l-.308-.184-3.198.692.715-3.11-.199-.319A8.183 8.183 0 013.818 12C3.818 7.478 7.478 3.818 12 3.818c4.523 0 8.182 3.66 8.182 8.182 0 4.523-3.659 8.182-8.182 8.182z"/></svg>
-            📩 WhatsApp par Contact Karo — ${escapeHtml(deptLabel)}
+            📩 Open WhatsApp — Contact ${escapeHtml(deptLabel)}
         </a>
     </div>
 
@@ -4108,7 +4139,7 @@ Please guide me on next steps and appointment availability.
                 preliminary_assessment: 'Mild visible concern',
                 assessment_level: 'Low',
                 specialist: 'Dr. Krishna Choudhary',
-                specialist_contact: '9079163100',
+                specialist_contact: '9079161300',
                 location: 'Jaipur & Sikar',
                 department: 'PMU / SMP Department',
                 department_key: 'SMP',
@@ -4176,7 +4207,7 @@ Please guide me on next steps and appointment availability.
                 preliminary_assessment: 'Mild visible concern',
                 assessment_level: 'Low',
                 specialist: 'Dr. Krishna Choudhary',
-                specialist_contact: '9079163100',
+                specialist_contact: '9079161300',
                 location: 'Jaipur & Sikar',
                 department: 'PMU Department',
                 department_key: 'PMU',
@@ -4467,7 +4498,28 @@ Please guide me on next steps and appointment availability.
             return startConsultationFlow(bookingParams.category, bookingParams.treatment, bookingParams.clinic, bookingParams.specialist, lang);
         }
 
-        // 1c. PHOTO ANALYSIS TRIGGERS
+        // 1c. AI SCANNER DIRECT TRIGGER
+        if (
+            lower.includes('scanner') ||
+            lower.includes('face scan') ||
+            lower.includes('scalp scan') ||
+            lower.includes('ai scanner') ||
+            lower.includes('face scanner') ||
+            lower.includes('photo scan') ||
+            lower.includes('photo test') ||
+            lower === '✦ ai scanner' ||
+            lower === 'ai scanner' ||
+            lower === 'launch ai scanner'
+        ) {
+            return {
+                text: (lang === 'hinglish' || lang === 'hindi')
+                    ? `📸 <strong>Kezza AI Skin &amp; Hair Assessment Scanner:</strong><br><br>Aap hamare interactive AI Scanner se real-time camera capture ya photo upload karke instant preliminary assessment aur specialist doctor recommendation pa sakte hain!<br><br><a href="face-scanner.html" class="kezza-scanner-cta-btn"><i class="fas fa-camera"></i> ✦ Launch AI Scanner Now</a>`
+                    : `📸 <strong>Kezza AI Skin &amp; Hair Assessment Scanner:</strong><br><br>Experience our real-time AI face &amp; scalp assessment tool. Upload or capture a photo to get instant preliminary screening and specialist doctor recommendations!<br><br><a href="face-scanner.html" class="kezza-scanner-cta-btn"><i class="fas fa-camera"></i> ✦ Launch AI Scanner Now</a>`,
+                quickReplies: ['📅 Book Consultation', '📍 Clinic Locations', '💬 Enquiry']
+            };
+        }
+
+        // 1d. PHOTO ANALYSIS TRIGGERS
         if (checkPhotoAnalysisTrigger(userText, norm, lower)) {
             return renderPhotoUploadPrompt(lang);
         }
@@ -5301,6 +5353,9 @@ Please guide me on next steps and appointment availability.
                     </div>
                 </div>
                 <div class="kezza-chat-header-actions">
+                    <a href="face-scanner.html" class="kezza-header-scanner-badge" title="Launch AI Face &amp; Scalp Scanner" aria-label="Launch AI Face &amp; Scalp Scanner">
+                        <i class="fas fa-camera"></i> <span>✦ AI Scanner</span>
+                    </a>
                     <button class="kezza-header-btn ${state.voiceEnabled ? 'active' : ''}" id="kezzaSpeakerBtn" aria-label="Toggle voice output" title="Toggle voice speech">
                         <i class="fas fa-volume-up"></i>
                     </button>
@@ -5314,6 +5369,9 @@ Please guide me on next steps and appointment availability.
             <div class="kezza-chat-messages" id="kezzaMessages" role="log" aria-live="polite"></div>
 
             <div class="kezza-chat-input-area">
+                <a href="face-scanner.html" class="kezza-chat-scanner-btn" title="Open AI Face &amp; Scalp Scanner" aria-label="Open AI Face &amp; Scalp Scanner">
+                    <i class="fas fa-camera"></i>
+                </a>
                 <button class="kezza-chat-mic" id="kezzaChatMic" aria-label="Voice input" title="Voice input (Speak in Hindi/English)">
                     <i class="fas fa-microphone"></i>
                 </button>

@@ -200,34 +200,10 @@ body {
     transform: none;
 }
 
-/* ── Social Sidebar (matches site) ────────────────────────── */
+/* ── Social Sidebar (Hidden on dedicated AI scanner tool view) ── */
 .social-sidebar {
-    position: fixed;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 900;
+    display: none !important;
 }
-.social-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: var(--transition);
-}
-.social-icon:hover { transform: scale(1.15); }
-.social-icon.instagram { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
-.social-icon.facebook  { background: #1877f2; }
-.social-icon.google    { background: #4285f4; }
-.social-icon.whatsapp  { background: #25d366; }
 
 /* ── Footer (matches site) ─────────────────────────────────── */
 .footer {
@@ -1757,6 +1733,290 @@ body {
 .scanner-toast i {
     color: #25d366;
     font-size: 1.2rem;
+}
+
+/* ── Session Auto-Save Banner ──────────────────────────────────── */
+.session-save-banner {
+    position: fixed;
+    top: 85px;
+    right: 24px;
+    background: rgba(15, 23, 42, 0.92);
+    border: 1px solid rgba(0, 175, 192, 0.4);
+    color: #e2e8f0;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    z-index: 995;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(12px);
+}
+
+.session-save-banner.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.session-save-banner i {
+    color: #00AFC0;
+    font-size: 0.85rem;
+}
+
+/* ── Question Top Nav & Progress Block ─────────────────────────── */
+.q-top-nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.q-top-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-secondary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.q-top-back-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border-color: var(--gold-400);
+}
+
+.q-top-progress-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    max-width: 320px;
+}
+
+/* ── AI Confidence Score Ring Block ────────────────────────────── */
+.confidence-ring-wrap {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.confidence-ring-wrap h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--gold-400);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.25rem;
+}
+
+.confidence-ring-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.conf-ring-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+}
+
+.conf-ring-svg {
+    transform: rotate(-90deg);
+}
+
+.conf-ring-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.08);
+    stroke-width: 8;
+}
+
+.conf-ring-fill {
+    fill: none;
+    stroke: var(--gold-400);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 283;
+    stroke-dashoffset: 283;
+    transition: stroke-dashoffset 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.conf-ring-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.conf-score-num {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+    font-family: 'Inter', sans-serif;
+}
+
+.conf-score-pct {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: var(--gold-400);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.conf-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: 200px;
+}
+
+.conf-stat-item {
+    display: grid;
+    grid-template-columns: 110px 1fr 40px;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.conf-stat-label {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.conf-stat-bar-wrap {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.conf-stat-bar {
+    height: 100%;
+    border-radius: 10px;
+    width: 0%;
+    transition: width 1s ease;
+}
+
+.conf-stat-bar.photo { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+.conf-stat-bar.concern { background: linear-gradient(90deg, #10b981, #34d399); }
+.conf-stat-bar.match { background: linear-gradient(90deg, #d4a017, #fde047); }
+
+.conf-stat-val {
+    font-size: 0.78rem;
+    color: #ffffff;
+    font-weight: 700;
+    text-align: right;
+}
+
+/* ── Results Extra Actions ─────────────────────────────────────── */
+.results-extra-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-share, .btn-download-report {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-decoration: none;
+}
+
+.btn-share {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+.btn-share:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--gold-400);
+}
+
+.btn-download-report {
+    background: rgba(201, 168, 76, 0.15);
+    border: 1px solid rgba(201, 168, 76, 0.4);
+    color: var(--gold-400);
+}
+
+.btn-download-report:hover {
+    background: rgba(201, 168, 76, 0.25);
+    color: #ffffff;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.quick-date-pills {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.ai-typing-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ai-typing-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold-400);
+    animation: dot-pulse 1.4s infinite ease-in-out;
+}
+
+.summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.severity-text {
+    font-weight: 700;
 }
 
 

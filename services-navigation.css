@@ -1,0 +1,532 @@
+/* ═══════════════════════════════════════════════════════════════════
+   KEZZA HAIR & SKIN CLINIC — ACCORDION SERVICES DROPDOWN
+   Style: Minimal, WhatsApp "Features" Style Narrow Card with Expandable Sub-Branches
+   Accents: Kezza Teal (#00AFC0 / #008F9C) • Gold (#C9A227) • WhatsApp Green (#22C55E)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── 1. GLOBAL NAVBAR REFINEMENTS ────────────────────────────────── */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    z-index: 1000;
+    padding: 10px 0 !important;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04) !important;
+    transition: all 0.25s ease;
+}
+
+.nav-container {
+    max-width: 1380px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-logo img {
+    height: 38px;
+    width: auto;
+    display: block;
+    transition: transform 0.25s ease;
+}
+
+.nav-logo img:hover {
+    transform: scale(1.02);
+}
+
+/* ── 2. NAVBAR MENU & HOME ACTIVE INDICATOR ──────────────────────── */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu > li {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-menu > li > a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: #334155;
+    font-weight: 550;
+    font-size: 0.86rem;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 7px 11px;
+    border-radius: 8px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+}
+
+.nav-menu > li > a:hover {
+    color: #008F9C;
+    background: rgba(0, 175, 192, 0.06);
+}
+
+/* Home / Page Active State with Subtle Animated Pill Underline */
+.nav-menu > li > a.active {
+    color: #008F9C !important;
+    font-weight: 600 !important;
+}
+
+.nav-menu > li > a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2.5px;
+    background: linear-gradient(90deg, #00AFC0 0%, #008F9C 100%);
+    border-radius: 3px;
+    box-shadow: 0 1px 4px rgba(0, 175, 192, 0.45);
+    animation: navActiveIndicatorEntrance 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes navActiveIndicatorEntrance {
+    0% {
+        width: 0px;
+        opacity: 0;
+    }
+    100% {
+        width: 20px;
+        opacity: 1;
+    }
+}
+
+.nav-scanner-link {
+    color: #008F9C !important;
+    font-weight: 600 !important;
+    background: rgba(0, 175, 192, 0.06);
+}
+
+.nav-scanner-link:hover {
+    background: rgba(0, 175, 192, 0.12) !important;
+}
+
+/* ── 3. SERVICES TOGGLE BUTTON ───────────────────────────────────── */
+.nav-item-services-dropdown,
+.nav-item-services-mega {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.services-nav-toggle,
+.services-mega-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #334155;
+    font-weight: 600;
+    font-size: 0.86rem;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 7px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    user-select: none;
+    letter-spacing: 0.02em;
+}
+
+.services-nav-toggle .nav-arrow,
+.services-mega-toggle .nav-arrow {
+    font-size: 0.65rem;
+    color: #00AFC0;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-item-services-dropdown.services-dropdown-open .services-nav-toggle,
+.nav-item-services-dropdown.dropdown-active .services-nav-toggle,
+.nav-item-services-dropdown:hover .services-nav-toggle,
+.nav-item-services-mega.services-mega-open .services-mega-toggle,
+.nav-item-services-mega.mega-active .services-mega-toggle,
+.nav-item-services-mega:hover .services-mega-toggle {
+    color: #008F9C;
+    background: rgba(0, 175, 192, 0.08);
+}
+
+.nav-item-services-dropdown.services-dropdown-open .services-nav-toggle .nav-arrow,
+.nav-item-services-dropdown.dropdown-active .services-nav-toggle .nav-arrow,
+.nav-item-services-dropdown:hover .services-nav-toggle .nav-arrow,
+.nav-item-services-mega.services-mega-open .services-mega-toggle .nav-arrow,
+.nav-item-services-mega.mega-active .services-mega-toggle .nav-arrow,
+.nav-item-services-mega:hover .services-mega-toggle .nav-arrow {
+    transform: rotate(180deg);
+}
+
+/* ── 4. NARROW ROUNDED WHITE DROPDOWN CARD (DESKTOP) ─────────────── */
+.services-dropdown-menu,
+.services-mega-menu {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    width: 320px;
+    min-width: 300px;
+    max-width: 350px;
+    max-height: min(600px, calc(100vh - 90px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 175, 192, 0.3) transparent;
+    padding: 10px 8px;
+    background: #ffffff;
+    border-radius: 22px; /* WhatsApp-style soft 22px rounded card */
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.14), 0 4px 16px rgba(0, 0, 0, 0.04);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s;
+    z-index: 1050;
+    box-sizing: border-box;
+}
+
+.services-dropdown-menu::-webkit-scrollbar {
+    width: 5px;
+}
+.services-dropdown-menu::-webkit-scrollbar-thumb {
+    background: rgba(0, 175, 192, 0.3);
+    border-radius: 6px;
+}
+
+/* Invisible Hover Bridge & Safe Buffer Zone (prevents cursor drift from closing menu) */
+.services-dropdown-menu::before,
+.services-mega-menu::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px;
+    background: transparent;
+    pointer-events: auto;
+    z-index: -1;
+}
+
+.nav-item-services-dropdown.services-dropdown-open .services-dropdown-menu,
+.nav-item-services-dropdown.dropdown-active .services-dropdown-menu,
+.nav-item-services-dropdown:hover .services-dropdown-menu,
+.nav-item-services-mega.services-mega-open .services-mega-menu,
+.nav-item-services-mega.mega-active .services-mega-menu,
+.nav-item-services-mega:hover .services-mega-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(4px);
+}
+
+/* ── 5. ACCORDION CATEGORY ITEMS & SUB-BRANCHES ──────────────────── */
+.services-dropdown-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.services-cat-item {
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100%;
+}
+
+/* Main Category Button */
+.services-cat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 44px;
+    padding: 0 14px;
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.services-cat-title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.92rem;
+    font-weight: 550;
+    color: #1e293b;
+    letter-spacing: -0.01em;
+    transition: color 0.18s ease;
+}
+
+.services-cat-arrow {
+    font-size: 0.68rem;
+    color: #94a3b8;
+    transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), color 0.18s ease;
+    margin-left: 8px;
+    flex-shrink: 0;
+}
+
+.services-cat-header:hover {
+    background: rgba(0, 175, 192, 0.06);
+}
+
+.services-cat-header:hover .services-cat-title {
+    color: #008F9C;
+}
+
+.services-cat-header:hover .services-cat-arrow {
+    color: #008F9C;
+}
+
+/* Active / Expanded Category State */
+.services-cat-item.is-expanded .services-cat-header {
+    background: rgba(0, 175, 192, 0.08);
+}
+
+.services-cat-item.is-expanded .services-cat-title {
+    color: #008F9C;
+    font-weight: 600;
+}
+
+.services-cat-item.is-expanded .services-cat-arrow {
+    transform: rotate(180deg);
+    color: #008F9C;
+}
+
+/* Accordion Sub-Menu (Smooth CSS Grid Row & Opacity Transition) */
+.services-sub-menu {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    overflow: hidden;
+    transition: grid-template-rows 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                padding 0.22s ease;
+    box-sizing: border-box;
+}
+
+.services-cat-item.is-expanded .services-sub-menu {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    padding-top: 3px;
+    padding-bottom: 6px;
+}
+
+.services-sub-list {
+    min-height: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-left: 1.5px solid rgba(0, 175, 192, 0.2);
+    margin-left: 16px;
+}
+
+.services-sub-list li {
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100%;
+}
+
+/* Sub-Item Link */
+.services-sub-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 34px; /* Generous yet compact row height */
+    padding: 0 10px;
+    text-decoration: none;
+    color: #475569;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.835rem;
+    font-weight: 450;
+    letter-spacing: -0.005em;
+    border-radius: 8px;
+    transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.services-sub-link:hover,
+.services-sub-link:focus {
+    background: rgba(0, 175, 192, 0.07);
+    color: #008F9C;
+    font-weight: 500;
+    transform: translateX(3px);
+}
+
+/* ── 6. NAVBAR CTA BUTTONS ───────────────────────────────────────── */
+.nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+/* Call Button */
+.btn-nav-call {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    color: #475569;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-decoration: none;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.btn-nav-call i {
+    color: #00AFC0;
+    font-size: 0.75rem;
+}
+
+.btn-nav-call:hover {
+    color: #008F9C;
+    border-color: rgba(0, 175, 192, 0.35);
+    background: rgba(0, 175, 192, 0.04);
+}
+
+/* Primary Consultation Button */
+.nav-cta .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px;
+    background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.80rem;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 175, 192, 0.25);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-cta .btn-primary:hover {
+    background: linear-gradient(135deg, #008F9C 0%, #007480 100%);
+    box-shadow: 0 4px 14px rgba(0, 175, 192, 0.35);
+    transform: translateY(-1px);
+}
+
+/* ── 7. RESPONSIVE TABLET & MOBILE BEHAVIOR ───────────────────────── */
+@media (max-width: 992px) {
+    .nav-container {
+        padding: 0 16px;
+    }
+
+    .nav-cta .btn-nav-call {
+        display: none;
+    }
+
+    .nav-item-services-dropdown,
+    .nav-item-services-mega {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .services-nav-toggle,
+    .services-mega-toggle {
+        justify-content: space-between;
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 0.92rem;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .services-dropdown-menu,
+    .services-mega-menu {
+        position: static;
+        width: 100%;
+        max-width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transform: none !important;
+        opacity: 0;
+        visibility: hidden;
+        padding: 0 8px;
+        margin: 0;
+        border: none;
+        box-shadow: none;
+        background: #f8fafc;
+        border-radius: 14px;
+        transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, visibility 0.2s;
+    }
+
+    .nav-item-services-dropdown.services-dropdown-open .services-dropdown-menu,
+    .nav-item-services-dropdown.mobile-dropdown-open .services-dropdown-menu,
+    .nav-item-services-mega.services-mega-open .services-mega-menu,
+    .nav-item-services-mega.mobile-mega-open .services-mega-menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        max-height: 600px;
+        padding: 8px;
+        margin-top: 4px;
+        overflow-y: auto;
+    }
+
+    .services-cat-header {
+        height: 42px;
+        padding: 0 12px;
+    }
+
+    .services-cat-title {
+        font-size: 0.88rem;
+    }
+
+    .services-sub-link {
+        height: 32px;
+        font-size: 0.82rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .nav-cta .btn-primary {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+    }
+}

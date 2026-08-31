@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="hair-services-styles.css">
     <link rel="stylesheet" href="quick-actions.css">
+    <link rel="stylesheet" href="services-navigation.css">
     <link rel="stylesheet" href="chatbot.css?v=2.2">
     <link rel="icon" type="image/png" href="images/logo.png">
 </head>
@@ -46,16 +47,95 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="hair-services.html" class="active">Hair Services</a></li>
-                <li><a href="skin-services.html">Skin Services</a></li>
-                <li><a href="permanent-makeup.html">Permanent Makeup</a></li>
+                
+                <!-- SERVICES DROPDOWN (WhatsApp Style with Expandable Sub-Branches) -->
+                <li class="nav-item-services-dropdown">
+                    <a href="javascript:void(0)" class="services-nav-toggle active" id="servicesNavToggle" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="servicesDropdownMenu">
+                        <span>SERVICES</span> <i class="fas fa-chevron-down nav-arrow"></i>
+                    </a>
+                    <div class="services-dropdown-menu" id="servicesDropdownMenu" role="region" aria-label="Services Menu">
+                        <ul class="services-dropdown-list">
+                            <!-- Category 1: Hair Services -->
+                            <li class="services-cat-item is-expanded" data-accordion="hair">
+                                <button type="button" class="services-cat-header" aria-expanded="true" aria-controls="subHair">
+                                    <span class="services-cat-title">Hair Services</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subHair">
+                                    <ul class="services-sub-list">
+                                        <li><a href="hair-services.html#hair-transplant" class="services-sub-link">Hair Transplant (HT)</a></li>
+                                        <li><a href="hair-services.html#prp" class="services-sub-link">PRP Therapy</a></li>
+                                        <li><a href="hair-services.html#gfc" class="services-sub-link">GFC Therapy</a></li>
+                                        <li><a href="hair-services.html#white-hair" class="services-sub-link">White Hair Removal</a></li>
+                                        <li><a href="hair-services.html#electrolysis" class="services-sub-link">Electrolysis</a></li>
+                                        <li><a href="hair-services.html#hair-wig" class="services-sub-link">Hair Wig / Hair Replacement</a></li>
+                                        <li><a href="hair-services.html#consultation" class="services-sub-link">Hair Loss Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Category 2: Skin Services -->
+                            <li class="services-cat-item" data-accordion="skin">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subSkin">
+                                    <span class="services-cat-title">Skin Services</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subSkin">
+                                    <ul class="services-sub-list">
+                                        <li><a href="skin-services.html#botox" class="services-sub-link">Botox</a></li>
+                                        <li><a href="skin-services.html#acne" class="services-sub-link">Acne &amp; Acne Scar</a></li>
+                                        <li><a href="skin-services.html#dark-circles" class="services-sub-link">Dark Circle Treatment</a></li>
+                                        <li><a href="skin-services.html#laser" class="services-sub-link">Laser Treatments</a></li>
+                                        <li><a href="skin-services.html#anti-aging" class="services-sub-link">Anti-Aging</a></li>
+                                        <li><a href="skin-services.html#glutathione" class="services-sub-link">Glutathione Therapy</a></li>
+                                        <li><a href="skin-services.html#hydra-facial" class="services-sub-link">Medical Facial</a></li>
+                                        <li><a href="skin-services.html#consultation" class="services-sub-link">Skin Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Category 3: Weight Loss -->
+                            <li class="services-cat-item" data-accordion="weight">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subWeight">
+                                    <span class="services-cat-title">Weight Loss</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subWeight">
+                                    <ul class="services-sub-list">
+                                        <li><a href="weight-loss.html#treatments" class="services-sub-link">Non-Surgical Weight Loss</a></li>
+                                        <li><a href="weight-loss.html#treatments" class="services-sub-link">Body Sculpting (Cryolipolysis)</a></li>
+                                        <li><a href="weight-loss.html#bmi-calc" class="services-sub-link">BMI Assessment</a></li>
+                                        <li><a href="weight-loss.html#consultation" class="services-sub-link">Weight Management Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <!-- Category 4: Permanent Makeup (PMU) -->
+                            <li class="services-cat-item" data-accordion="pmu">
+                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subPmu">
+                                    <span class="services-cat-title">Permanent Makeup (PMU)</span>
+                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
+                                </button>
+                                <div class="services-sub-menu" id="subPmu">
+                                    <ul class="services-sub-list">
+                                        <li><a href="permanent-makeup.html#microblading" class="services-sub-link">Eyebrow PMU</a></li>
+                                        <li><a href="permanent-makeup.html#lip-blush" class="services-sub-link">Lip PMU</a></li>
+                                        <li><a href="permanent-makeup.html#eyeliner" class="services-sub-link">Permanent Eyeliner</a></li>
+                                        <li><a href="permanent-makeup.html#consultation" class="services-sub-link">PMU Consultation</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
                 <li><a href="face-scanner.html" class="nav-scanner-link">✦ AI Scanner</a></li>
                 <li><a href="branches.html">Franchise</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-cta">
                 <a href="tel:+919284517427" class="btn-nav-call" title="Call Kezza Clinic"><i class="fas fa-phone-alt"></i> <span>9284517427</span></a>
-                <a href="https://wa.me/919284517427" class="btn-primary">Book Consultation</a>
+                <a href="https://wa.me/919284517427" target="_blank" rel="noopener" class="btn-primary">Book Consultation</a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -358,7 +438,6 @@
             </div>
 
         </div>
-        </div>
     </section>
 
     <!-- Section 10: Female Hair Restoration -->
@@ -485,6 +564,288 @@
         </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════════════════════
+         HAIR LOSS SCALE & ANALYSIS SECTION
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="hair-loss-scale-section" id="hairLossScale">
+        <div class="container">
+
+            <!-- Section Header -->
+            <div class="hls-header">
+                <div class="hls-badge">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Clinical Scale</span>
+                </div>
+                <h2>Hair Loss Scale &amp; <span class="hls-gold">Damage Analysis</span></h2>
+                <p>Understanding your stage of hair loss is the first step to the right treatment. Our specialists use the Norwood-Hamilton Scale alongside advanced trichoscopy to pinpoint your condition with precision.</p>
+            </div>
+
+            <!-- Norwood Scale Cards -->
+            <div class="norwood-scale-grid">
+
+                <div class="norwood-card" data-stage="1">
+                    <div class="norwood-visual">
+                        <div class="head-icon">
+                            <svg viewBox="0 0 80 90" class="head-svg">
+                                <ellipse cx="40" cy="38" rx="28" ry="33" fill="#1e3565" stroke="#d4a017" stroke-width="1.5"/>
+                                <rect x="18" y="10" width="44" height="6" rx="3" fill="#22c55e" opacity="0.85"/>
+                                <rect x="14" y="10" width="52" height="4" rx="2" fill="#22c55e" opacity="0.6"/>
+                            </svg>
+                        </div>
+                        <div class="stage-badge healthy">Stage I</div>
+                    </div>
+                    <div class="norwood-info">
+                        <h4>Normal &amp; Healthy</h4>
+                        <p>Full hairline with no visible recession. Hair density is excellent.</p>
+                        <div class="damage-meter">
+                            <div class="meter-label"><span>Damage Level</span><span class="meter-val">5%</span></div>
+                            <div class="meter-bar"><div class="meter-fill" style="width:5%;background:linear-gradient(90deg,#22c55e,#4ade80)"></div></div>
+                        </div>
+                        <div class="treatment-tag tag-green"><i class="fas fa-leaf"></i> Maintenance Care</div>
+                    </div>
+                </div>
+
+                <div class="norwood-card" data-stage="2">
+                    <div class="norwood-visual">
+                        <div class="head-icon">
+                            <svg viewBox="0 0 80 90" class="head-svg">
+                                <ellipse cx="40" cy="38" rx="28" ry="33" fill="#1e3565" stroke="#d4a017" stroke-width="1.5"/>
+                                <rect x="22" y="10" width="36" height="5" rx="3" fill="#a3e635" opacity="0.85"/>
+                                <rect x="16" y="12" width="10" height="4" rx="2" fill="#a3e635" opacity="0.5"/>
+                                <rect x="54" y="12" width="10" height="4" rx="2" fill="#a3e635" opacity="0.5"/>
+                            </svg>
+                        </div>
+                        <div class="stage-badge early">Stage II</div>
+                    </div>
+                    <div class="norwood-info">
+                        <h4>Early Recession</h4>
+                        <p>Slight temples recession. Hairline moves back symmetrically.</p>
+                        <div class="damage-meter">
+                            <div class="meter-label"><span>Damage Level</span><span class="meter-val">20%</span></div>
+                            <div class="meter-bar"><div class="meter-fill" style="width:20%;background:linear-gradient(90deg,#84cc16,#a3e635)"></div></div>
+                        </div>
+                        <div class="treatment-tag tag-lime"><i class="fas fa-seedling"></i> PRP + Vitamins</div>
+                    </div>
+                </div>
+
+                <div class="norwood-card" data-stage="3">
+                    <div class="norwood-visual">
+                        <div class="head-icon">
+                            <svg viewBox="0 0 80 90" class="head-svg">
+                                <ellipse cx="40" cy="38" rx="28" ry="33" fill="#1e3565" stroke="#d4a017" stroke-width="1.5"/>
+                                <rect x="26" y="10" width="28" height="4" rx="2" fill="#facc15" opacity="0.85"/>
+                                <rect x="20" y="15" width="8" height="3" rx="1.5" fill="#facc15" opacity="0.4"/>
+                                <rect x="52" y="15" width="8" height="3" rx="1.5" fill="#facc15" opacity="0.4"/>
+                                <ellipse cx="40" cy="22" rx="8" ry="5" fill="#facc15" opacity="0.2"/>
+                            </svg>
+                        </div>
+                        <div class="stage-badge moderate">Stage III</div>
+                    </div>
+                    <div class="norwood-info">
+                        <h4>Moderate Recession</h4>
+                        <p>Deep temple recession. Crown thinning may begin. Visually noticeable.</p>
+                        <div class="damage-meter">
+                            <div class="meter-label"><span>Damage Level</span><span class="meter-val">40%</span></div>
+                            <div class="meter-bar"><div class="meter-fill" style="width:40%;background:linear-gradient(90deg,#eab308,#facc15)"></div></div>
+                        </div>
+                        <div class="treatment-tag tag-yellow"><i class="fas fa-syringe"></i> PRP + DHI Transplant</div>
+                    </div>
+                </div>
+
+                <div class="norwood-card" data-stage="4">
+                    <div class="norwood-visual">
+                        <div class="head-icon">
+                            <svg viewBox="0 0 80 90" class="head-svg">
+                                <ellipse cx="40" cy="38" rx="28" ry="33" fill="#1e3565" stroke="#d4a017" stroke-width="1.5"/>
+                                <rect x="30" y="10" width="20" height="3" rx="1.5" fill="#fb923c" opacity="0.85"/>
+                                <ellipse cx="40" cy="24" rx="12" ry="8" fill="#fb923c" opacity="0.25"/>
+                                <rect x="22" y="18" width="5" height="2" rx="1" fill="#fb923c" opacity="0.35"/>
+                                <rect x="53" y="18" width="5" height="2" rx="1" fill="#fb923c" opacity="0.35"/>
+                            </svg>
+                        </div>
+                        <div class="stage-badge significant">Stage IV</div>
+                    </div>
+                    <div class="norwood-info">
+                        <h4>Significant Loss</h4>
+                        <p>Front hairline severely receded. Crown bald patch visible. Band of hair separates zones.</p>
+                        <div class="damage-meter">
+                            <div class="meter-label"><span>Damage Level</span><span class="meter-val">60%</span></div>
+                            <div class="meter-bar"><div class="meter-fill" style="width:60%;background:linear-gradient(90deg,#ea580c,#fb923c)"></div></div>
+                        </div>
+                        <div class="treatment-tag tag-orange"><i class="fas fa-cut"></i> FUE Hair Transplant</div>
+                    </div>
+                </div>
+
+                <div class="norwood-card" data-stage="5">
+                    <div class="norwood-visual">
+                        <div class="head-icon">
+                            <svg viewBox="0 0 80 90" class="head-svg">
+                                <ellipse cx="40" cy="38" rx="28" ry="33" fill="#1e3565" stroke="#d4a017" stroke-width="1.5"/>
+                                <rect x="34" y="10" width="12" height="2.5" rx="1.25" fill="#f97316" opacity="0.7"/>
+                                <ellipse cx="40" cy="27" rx="18" ry="12" fill="#f97316" opacity="0.2"/>
+                                <rect x="18" y="20" width="4" height="2" rx="1" fill="#f97316" opacity="0.3"/>
+                                <rect x="58" y="20" width="4" height="2" rx="1" fill="#f97316" opacity="0.3"/>
+                            </svg>
+                        </div>
+                        <div class="stage-badge advanced">Stage V</div>
+                    </div>
+                    <div class="norwood-info">
+                        <h4>Advanced Loss</h4>
+                        <p>Large bald area. Only a narrow band of hair on sides and back remains.</p>
+                        <div class="damage-meter">
+                            <div class="meter-label"><span>Damage Level</span><span class="meter-val">75%</span></div>
+                            <div class="meter-bar"><div class="meter-fill" style="width:75%;background:linear-gradient(90deg,#dc2626,#f97316)"></div></div>
+                        </div>
+                        <div class="treatment-tag tag-red"><i class="fas fa-cut"></i> Advanced FUE + Density</div>
+                    </div>
+                </div>
+
+                <div class="norwood-card" data-stage="7">
+                    <div class="norwood-visual">
+                        <div class="head-icon">
+                            <svg viewBox="0 0 80 90" class="head-svg">
+                                <ellipse cx="40" cy="38" rx="28" ry="33" fill="#1e3565" stroke="#d4a017" stroke-width="1.5"/>
+                                <ellipse cx="40" cy="30" rx="22" ry="17" fill="#ef4444" opacity="0.18"/>
+                                <rect x="18" y="50" width="9" height="5" rx="2.5" fill="#ef4444" opacity="0.5"/>
+                                <rect x="53" y="50" width="9" height="5" rx="2.5" fill="#ef4444" opacity="0.5"/>
+                            </svg>
+                        </div>
+                        <div class="stage-badge severe">Stage VII</div>
+                    </div>
+                    <div class="norwood-info">
+                        <h4>Complete Baldness</h4>
+                        <p>Only a thin rim of hair on the sides. Donor area still viable for large transplant.</p>
+                        <div class="damage-meter">
+                            <div class="meter-label"><span>Damage Level</span><span class="meter-val">95%</span></div>
+                            <div class="meter-bar"><div class="meter-fill" style="width:95%;background:linear-gradient(90deg,#7f1d1d,#ef4444)"></div></div>
+                        </div>
+                        <div class="treatment-tag tag-crimson"><i class="fas fa-microscope"></i> Full Scalp Restoration</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Statistics Row -->
+            <div class="hls-stats-row">
+                <div class="hls-stat-card">
+                    <div class="hls-radial-wrap">
+                        <svg class="hls-radial" viewBox="0 0 90 90">
+                            <circle cx="45" cy="45" r="36" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+                            <circle cx="45" cy="45" r="36" fill="none" stroke="#ef4444" stroke-width="8"
+                                stroke-dasharray="226" stroke-dashoffset="56" stroke-linecap="round"
+                                transform="rotate(-90 45 45)" class="hls-arc-animate"/>
+                        </svg>
+                        <div class="hls-radial-val">75%</div>
+                    </div>
+                    <div class="hls-stat-label">Men affected by age 50</div>
+                    <div class="hls-stat-desc">3 in 4 men experience some degree of hair loss by midlife</div>
+                </div>
+                <div class="hls-stat-card">
+                    <div class="hls-radial-wrap">
+                        <svg class="hls-radial" viewBox="0 0 90 90">
+                            <circle cx="45" cy="45" r="36" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+                            <circle cx="45" cy="45" r="36" fill="none" stroke="#d4a017" stroke-width="8"
+                                stroke-dasharray="226" stroke-dashoffset="113" stroke-linecap="round"
+                                transform="rotate(-90 45 45)" class="hls-arc-animate"/>
+                        </svg>
+                        <div class="hls-radial-val">50%</div>
+                    </div>
+                    <div class="hls-stat-label">Women with thinning hair</div>
+                    <div class="hls-stat-desc">Female pattern hair loss affects 1 in 2 women over 50 years</div>
+                </div>
+                <div class="hls-stat-card">
+                    <div class="hls-radial-wrap">
+                        <svg class="hls-radial" viewBox="0 0 90 90">
+                            <circle cx="45" cy="45" r="36" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+                            <circle cx="45" cy="45" r="36" fill="none" stroke="#22c55e" stroke-width="8"
+                                stroke-dasharray="226" stroke-dashoffset="22" stroke-linecap="round"
+                                transform="rotate(-90 45 45)" class="hls-arc-animate"/>
+                        </svg>
+                        <div class="hls-radial-val">90%</div>
+                    </div>
+                    <div class="hls-stat-label">Cases are Androgenetic</div>
+                    <div class="hls-stat-desc">The vast majority are genetic hair loss — highly treatable</div>
+                </div>
+                <div class="hls-stat-card">
+                    <div class="hls-radial-wrap">
+                        <svg class="hls-radial" viewBox="0 0 90 90">
+                            <circle cx="45" cy="45" r="36" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+                            <circle cx="45" cy="45" r="36" fill="none" stroke="#3b82f6" stroke-width="8"
+                                stroke-dasharray="226" stroke-dashoffset="45" stroke-linecap="round"
+                                transform="rotate(-90 45 45)" class="hls-arc-animate"/>
+                        </svg>
+                        <div class="hls-radial-val">80%</div>
+                    </div>
+                    <div class="hls-stat-label">Success with FUE/DHI</div>
+                    <div class="hls-stat-desc">Patients see significant density improvement after transplant</div>
+                </div>
+            </div>
+
+            <!-- Cause Breakdown Bar Chart -->
+            <div class="hls-causes">
+                <h3><i class="fas fa-dna"></i> Hair Loss Causes — Percentage Breakdown</h3>
+                <div class="cause-bars">
+                    <div class="cause-item">
+                        <div class="cause-name"><i class="fas fa-dna"></i> Androgenetic Alopecia (Genetic)</div>
+                        <div class="cause-bar-wrap">
+                            <div class="cause-bar-fill" data-width="85" style="background:linear-gradient(90deg,#b8860b,#f5c842)"></div>
+                        </div>
+                        <div class="cause-pct">85%</div>
+                    </div>
+                    <div class="cause-item">
+                        <div class="cause-name"><i class="fas fa-brain"></i> Stress (Telogen Effluvium)</div>
+                        <div class="cause-bar-wrap">
+                            <div class="cause-bar-fill" data-width="60" style="background:linear-gradient(90deg,#1d4ed8,#3b82f6)"></div>
+                        </div>
+                        <div class="cause-pct">60%</div>
+                    </div>
+                    <div class="cause-item">
+                        <div class="cause-name"><i class="fas fa-apple-alt"></i> Nutritional Deficiency</div>
+                        <div class="cause-bar-wrap">
+                            <div class="cause-bar-fill" data-width="45" style="background:linear-gradient(90deg,#065f46,#22c55e)"></div>
+                        </div>
+                        <div class="cause-pct">45%</div>
+                    </div>
+                    <div class="cause-item">
+                        <div class="cause-name"><i class="fas fa-shield-virus"></i> Autoimmune (Alopecia Areata)</div>
+                        <div class="cause-bar-wrap">
+                            <div class="cause-bar-fill" data-width="25" style="background:linear-gradient(90deg,#7c2d12,#f97316)"></div>
+                        </div>
+                        <div class="cause-pct">25%</div>
+                    </div>
+                    <div class="cause-item">
+                        <div class="cause-name"><i class="fas fa-pills"></i> Medication Side Effects</div>
+                        <div class="cause-bar-wrap">
+                            <div class="cause-bar-fill" data-width="18" style="background:linear-gradient(90deg,#4c1d95,#a78bfa)"></div>
+                        </div>
+                        <div class="cause-pct">18%</div>
+                    </div>
+                    <div class="cause-item">
+                        <div class="cause-name"><i class="fas fa-thermometer-half"></i> Thyroid &amp; Hormonal</div>
+                        <div class="cause-bar-wrap">
+                            <div class="cause-bar-fill" data-width="35" style="background:linear-gradient(90deg,#be123c,#fb7185)"></div>
+                        </div>
+                        <div class="cause-pct">35%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Block -->
+            <div class="hls-cta-block">
+                <div class="hls-cta-icon"><i class="fas fa-microscope"></i></div>
+                <div class="hls-cta-text">
+                    <h4>Not Sure Which Stage You're At?</h4>
+                    <p>Use our free AI Scanner or book a trichoscopy consultation with our specialists for a precise diagnosis.</p>
+                </div>
+                <div class="hls-cta-actions">
+                    <a href="face-scanner.html" class="btn-hls-scan"><i class="fas fa-camera"></i> Try AI Scanner</a>
+                    <a href="https://wa.me/919284517427" class="btn-hls-wa" target="_blank"><i class="fab fa-whatsapp"></i> Book Consultation</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <!-- Section 13: Final CTA -->
     <section class="final-cta-section">
         <div class="container">
@@ -573,6 +934,7 @@
 
     <script src="hair-services-script.js"></script>
     <script src="mobile-menu.js"></script>
+    <script src="services-navigation.js" defer></script>
     <script src="chatbot.js?v=2.2" defer></script>
     <script src="quick-actions.js" defer></script>
 </body>

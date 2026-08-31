@@ -1150,3 +1150,23 @@ h6 {
     padding: 3px 7px !important;
 }
 
+.map-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #00AFC0;
+    color: #ffffff !important;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    margin-top: 6px;
+    transition: all 0.25s ease;
+}
+
+.map-link-btn:hover {
+    background: #008f9c;
+    transform: translateY(-2px);
+}
+

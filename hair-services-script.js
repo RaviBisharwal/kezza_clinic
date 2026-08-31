@@ -458,3 +458,95 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 console.log('Kezza Hair Services page loaded successfully! 💇‍♂️');
+/* ══════════════════════════════════════════════════════════════
+   HAIR LOSS SCALE SECTION — Scroll-Triggered Animations
+══════════════════════════════════════════════════════════════ */
+(function initHairLossScale() {
+    let animated = false;
+
+    // IntersectionObserver for cards and stat cards
+    const cardObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                cardObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    // Observe Norwood cards with staggered delay
+    document.querySelectorAll('.norwood-card').forEach((card, i) => {
+        card.style.transitionDelay = `${i * 0.08}s`;
+        cardObserver.observe(card);
+    });
+
+    // Observe stat cards with staggered delay
+    document.querySelectorAll('.hls-stat-card').forEach((card, i) => {
+        card.style.transitionDelay = `${i * 0.1}s`;
+        cardObserver.observe(card);
+    });
+
+    // Animate cause bars + damage meters + SVG rings on scroll into view
+    const causesSection = document.querySelector('.hls-causes');
+    if (causesSection) {
+        const causesObserver = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && !animated) {
+                animated = true;
+
+                // Animate cause bar fills
+                document.querySelectorAll('.cause-bar-fill').forEach((bar, i) => {
+                    const w = parseInt(bar.dataset.width || 0, 10);
+                    setTimeout(() => {
+                        bar.style.width = w + '%';
+                    }, i * 120);
+                });
+
+                causesObserver.disconnect();
+            }
+        }, { threshold: 0.25 });
+        causesObserver.observe(causesSection);
+    }
+
+    // Animate damage meter bars when each card comes into view
+    const meterObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const fill = entry.target.querySelector('.meter-fill');
+                if (fill) {
+                    // Already has inline width set, just trigger transition
+                    const w = fill.style.width;
+                    fill.style.width = '0';
+                    setTimeout(() => { fill.style.width = w; }, 80);
+                }
+                meterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.norwood-card').forEach(card => {
+        meterObserver.observe(card);
+    });
+
+    // Animate SVG ring circles (stat cards)
+    const ringObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Animate the circle stroke-dashoffset
+                const circles = entry.target.querySelectorAll('.hls-radial circle:last-child');
+                circles.forEach(circle => {
+                    const targetOffset = circle.getAttribute('stroke-dashoffset');
+                    circle.setAttribute('stroke-dashoffset', '226'); // start at 0
+                    setTimeout(() => {
+                        circle.style.strokeDashoffset = targetOffset;
+                    }, 100);
+                });
+                ringObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.hls-stat-card').forEach(card => {
+        ringObserver.observe(card);
+    });
+
+})();
