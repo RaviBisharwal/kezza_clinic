@@ -21,8 +21,8 @@ Thumbs.db
 *.db
 *.db-wal
 *.db-shm
-uploads/photos/*
-!uploads/photos/.gitkeep
+frontend/uploads/photos/*
+!frontend/uploads/photos/.gitkeep
 video/*_backup.*
 *_backup.*
 *.bak
