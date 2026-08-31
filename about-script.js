@@ -370,6 +370,23 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 600);
         });
     });
+
+    // ── Expandable Doctor Story / Bio Details ─────────────────────
+    document.querySelectorAll('.doctor-card').forEach(card => {
+        const readMoreBtn = card.querySelector('.doctor-read-more-btn');
+        if (readMoreBtn) {
+            readMoreBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const isExpanded = card.classList.toggle('is-expanded');
+                const label = this.querySelector('.read-more-text');
+                if (label) {
+                    label.textContent = isExpanded ? 'Show Less' : '... More Info';
+                }
+                this.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+            });
+        }
+    });
 });
 
 console.log('Kezza Clinic About page loaded successfully! ✨');

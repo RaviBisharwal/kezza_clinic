@@ -233,7 +233,7 @@
     font-size: 0.75rem !important;
 }
 
-/* 3. Short Bio / Clinical Story */
+/* 3. Short Bio / Clinical Story & Interactive Expand Button */
 .doctor-story {
     font-size: 0.82rem !important;
     line-height: 1.55 !important;
@@ -244,6 +244,55 @@
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
     font-family: 'Inter', sans-serif !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.doctor-card.is-expanded .doctor-story {
+    -webkit-line-clamp: unset !important;
+    display: block !important;
+    overflow: visible !important;
+}
+
+.doctor-read-more-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    background: rgba(0, 175, 192, 0.06) !important;
+    border: 1px solid rgba(0, 175, 192, 0.25) !important;
+    border-radius: 6px !important;
+    padding: 3px 9px !important;
+    color: #008f9c !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    font-family: 'Inter', sans-serif !important;
+    transition: all 0.2s ease !important;
+    align-self: flex-start !important;
+    margin-top: 2px !important;
+}
+
+.doctor-read-more-btn:hover {
+    background: rgba(0, 175, 192, 0.14) !important;
+    border-color: #00afc0 !important;
+    color: #006873 !important;
+    transform: translateX(2px) !important;
+}
+
+.doctor-read-more-btn i {
+    font-size: 0.68rem !important;
+    color: #c9a227 !important;
+    transition: transform 0.25s ease !important;
+}
+
+.doctor-card.is-expanded .doctor-read-more-btn {
+    background: rgba(201, 162, 39, 0.1) !important;
+    border-color: rgba(201, 162, 39, 0.35) !important;
+    color: #997813 !important;
+}
+
+.doctor-card.is-expanded .doctor-read-more-btn i {
+    transform: rotate(180deg) !important;
+    color: #997813 !important;
 }
 
 /* 4. Footer CTA & Location */

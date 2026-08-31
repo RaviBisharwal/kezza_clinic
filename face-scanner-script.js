@@ -45,7 +45,7 @@
             spec:     'Aesthetic Physician & Skin Specialist',
             img:      'images/Doctor2.jpeg',
             contact:  '919216063686',
-            location: 'Jaipur & Sikar'
+            location: 'Jaipur'
         },
         ANTI_AGING: {
             name:     'Dr. Amrita Mukhija',
