@@ -15,9 +15,10 @@
 
     // ─── CONFIG ───────────────────────────────────────────────────────────────
     const isLocal       = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    // Kept for Laravel backend integration (local :8000, same-origin in production)
     const LARAVEL_API   = isLocal
         ? 'http://localhost:8000/api'
-        : 'https://stand-eos-atm-seeing.trycloudflare.com/api';
+        : `${window.location.origin}/api`;
     const API_BASE      = (window.location.hostname === 'localhost' && window.location.port === '8080')
         ? 'http://localhost:3001'
         : window.location.origin;
@@ -118,6 +119,7 @@
     const $ = id => document.getElementById(id);
 
     const btnStartCamera  = $('btnStartCamera');
+    const btnSwitchCamera = $('btnSwitchCamera');
     const btnCapture      = $('btnCapture');
     const btnProceed      = $('btnProceed');
     const photoUpload     = $('photoUpload');
@@ -236,11 +238,18 @@
         await faceMesh.send({ image: cameraFeed });
     }
 
+    let currentFacingMode = 'user';
+
     // ─── CAMERA CONTROL ───────────────────────────────────────────────────────
     async function startCamera() {
         try {
+            if (mediaStream) {
+                mediaStream.getTracks().forEach(t => t.stop());
+                mediaStream = null;
+            }
+
             mediaStream = await navigator.mediaDevices.getUserMedia({
-                video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 960 } },
+                video: { facingMode: currentFacingMode, width: { ideal: 1280 }, height: { ideal: 960 } },
                 audio: false
             });
 
@@ -254,6 +263,7 @@
 
             cameraRunning = true;
             btnStartCamera.innerHTML = '<i class="fas fa-video-slash"></i> Stop Camera';
+            if (btnSwitchCamera) btnSwitchCamera.style.display = 'inline-flex';
             btnCapture.disabled = false;
 
             initFaceMesh();
@@ -275,6 +285,12 @@
         }
     }
 
+    async function switchCamera() {
+        if (!cameraRunning) return;
+        currentFacingMode = currentFacingMode === 'user' ? 'environment' : 'user';
+        await startCamera();
+    }
+
     function stopCamera() {
         if (mediaStream) {
             mediaStream.getTracks().forEach(t => t.stop());
@@ -288,6 +304,7 @@
         cameraRunning = false;
         cameraIdle.style.display = 'flex';
         btnStartCamera.innerHTML = '<i class="fas fa-video"></i> Start Camera';
+        if (btnSwitchCamera) btnSwitchCamera.style.display = 'none';
         btnCapture.disabled = true;
     }
 
@@ -308,8 +325,12 @@
 
         const ctx = captureCanvas.getContext('2d');
         ctx.save();
-        ctx.scale(-1, 1);
-        ctx.drawImage(cameraFeed, -captureCanvas.width, 0, captureCanvas.width, captureCanvas.height);
+        if (currentFacingMode === 'user') {
+            ctx.scale(-1, 1);
+            ctx.drawImage(cameraFeed, -captureCanvas.width, 0, captureCanvas.width, captureCanvas.height);
+        } else {
+            ctx.drawImage(cameraFeed, 0, 0, captureCanvas.width, captureCanvas.height);
+        }
         ctx.restore();
 
         capturedImageBase64 = captureCanvas.toDataURL('image/jpeg', 0.88);
@@ -370,6 +391,7 @@
     });
 
     btnCapture.addEventListener('click', captureFromCamera);
+    if (btnSwitchCamera) btnSwitchCamera.addEventListener('click', switchCamera);
 
     btnProceed.addEventListener('click', () => {
         goToStep(2);
@@ -732,11 +754,34 @@
             isPoorQuality: false
         };
 
-        // Execute clinical AI diagnostic assessment engine on client-side
-        setTimeout(() => {
-            const analysisResult = buildLocalFallback(textContext);
-            handleAnalysisResult(analysisResult);
-        }, 1400);
+        const endpoints = [`${LARAVEL_API}/analyze-photo`, API_ENDPOINT].filter(
+            (url, i, arr) => arr.indexOf(url) === i
+        );
+
+        for (const url of endpoints) {
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 8000);
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.status) {
+                        handleAnalysisResult(data);
+                        return;
+                    }
+                }
+            } catch (e) {
+                // Try next endpoint / local fallback
+            }
+        }
+
+        handleAnalysisResult(buildLocalFallback(textContext));
     }
 
     // Local keyword fallback if server is unreachable

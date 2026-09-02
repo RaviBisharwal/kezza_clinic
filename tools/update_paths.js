@@ -1,14 +1,14 @@
 const fs = require('fs');
 
 const cssFiles = [
-  'about-styles.css', 'branches-styles.css', 'chatbot.css', 'contact-styles.css',
+  'about-styles.css', 'branches-styles.css', 'kezza-ai.css', 'contact-styles.css',
   'doctors-landscape.css', 'face-scanner-styles.css', 'hair-services-styles.css',
   'permanent-makeup-styles.css', 'quick-actions.css', 'services-navigation.css',
   'skin-services-styles.css', 'styles.css', 'terms-styles.css'
 ];
 
 const jsFiles = [
-  'about-script.js', 'branches-script.js', 'chatbot.js', 'contact-script.js',
+  'about-script.js', 'branches-script.js', 'kezza-ai.js', 'contact-script.js',
   'face-scanner-script.js', 'hair-services-script.js', 'mobile-menu.js',
   'permanent-makeup-script.js', 'quick-actions.js', 'script.js',
   'services-navigation.js', 'skin-services-script.js', 'terms-script.js', 'whatsapp-form.js'

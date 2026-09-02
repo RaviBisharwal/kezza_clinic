@@ -14,16 +14,18 @@
         'laser-treatments':'919216063686',
         'prp-treatment':   '919216063681',
         'weight-loss':     '919057546221',
+        'permanent-makeup':'919079161300',
         'general-query':   '919284517427'  // Reception fallback
     };
 
     const DEPT_LABELS = {
         'hair-services':   'Hair Team (Dr. Ankit Bhalothia)',
         'hair-transplant': 'Hair Transplant — Elite Surgical, Sikar',
-        'skin-services':   'Skin Team (Dr. Amrita Makhija)',
-        'laser-treatments':'Skin Team (Dr. Amrita Makhija)',
+        'skin-services':   'Skin Team (Dr. Amrita Mukhija)',
+        'laser-treatments':'Skin Team (Dr. Amrita Mukhija)',
         'prp-treatment':   'Hair Team (Dr. Ankit Bhalothia)',
         'weight-loss':     'Weight Loss Team',
+        'permanent-makeup':'PMU Team (Krishna)',
         'general-query':   'Kezza Reception'
     };
 
@@ -37,13 +39,19 @@
         el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
-    function showSuccess(formEl, message) {
+    function showSuccess(formEl, message, waUrl, deptName) {
         clearMessages(formEl);
         const el = document.createElement('div');
         el.className = 'kezza-form-success';
         el.setAttribute('role', 'status');
-        el.innerHTML = `<strong>✅ ${message}</strong>`;
+        el.innerHTML = `
+            <div style="font-size: 15px; margin-bottom: 12px; color: #065f46; font-weight: 600;">✅ ${message}</div>
+            <a href="${waUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: #25D366; color: #ffffff; padding: 12px 24px; border-radius: 30px; font-weight: 700; text-decoration: none; font-size: 15px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); margin-top: 4px; transition: transform 0.2s ease;">
+                <i class="fab fa-whatsapp" style="font-size: 20px;"></i> Open WhatsApp (${deptName || 'Kezza Team'})
+            </a>
+        `;
         formEl.prepend(el);
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     function clearMessages(formEl) {
@@ -122,7 +130,7 @@
             });
         }
 
-        contactForm.addEventListener('submit', async function(e) {
+        contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
             const name     = document.getElementById('fullName')?.value.trim()  || '';
@@ -161,6 +169,7 @@
             const clinicLabel = clinic === 'sikar' ? 'Sikar' : 'Jaipur';
 
             const consultationId = `KEZZA-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+            const cidLine = `\n🆔 *Consultation ID:* ${consultationId}\n`;
             const waMessage = `🏥 *New Website Enquiry — Kezza Clinic*
 ━━━━━━━━━━━━━━━━━━━━━${cidLine}
 👤 *Name:* ${name}
@@ -174,11 +183,18 @@
 
             const waUrl = `https://wa.me/${toPhone}?text=${encodeURIComponent(waMessage)}`;
 
-            // Open WhatsApp
-            window.open(waUrl, '_blank');
+            // Show success message inline with large clickable button
+            showSuccess(contactForm, `Redirecting you to WhatsApp (${deptName}). Consultation ID: <strong>${consultationId}</strong>.`, waUrl, deptName);
 
-            // Show success message inline
-            showSuccess(contactForm, `Redirecting you to WhatsApp to connect with the ${deptName}.${consultationId ? ` (Your Consultation ID is <strong>${consultationId}</strong>)` : ''} If it didn't open, <a href="${waUrl}" target="_blank">click here</a>.`);
+            // Attempt direct window.open, fallback to location.href if popup blocked
+            try {
+                const w = window.open(waUrl, '_blank');
+                if (!w || w.closed || typeof w.closed === 'undefined') {
+                    window.location.href = waUrl;
+                }
+            } catch (err) {
+                window.location.href = waUrl;
+            }
 
             // Reset form
             contactForm.reset();

@@ -23,12 +23,12 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/face-scanner-styles.css">
+    <link rel="stylesheet" href="css/face-scanner-styles.css?v=4.0">
     <link rel="stylesheet" href="css/quick-actions.css">
     <link rel="stylesheet" href="css/services-navigation.css">
-    <link rel="stylesheet" href="css/chatbot.css?v=2.2">
+    <link rel="stylesheet" href="css/kezza-ai.css?v=4.0">
     <link rel="icon" type="image/png" href="images/logo.png">
 
     <!-- ═══ SEO: Canonical ═══════════════════════════════════════════ -->
@@ -325,6 +325,9 @@
                         <button class="btn-scanner-primary" id="btnStartCamera">
                             <i class="fas fa-video"></i>
                             Start Camera
+                        </button>
+                        <button class="btn-scanner-switch" id="btnSwitchCamera" style="display:none;" title="Switch Front/Rear Camera">
+                            <i class="fas fa-sync-alt"></i> Flip
                         </button>
                         <button class="btn-scanner-secondary" id="btnCapture" disabled>
                             <i class="fas fa-circle"></i>
@@ -970,8 +973,8 @@
 
     <script src="js/mobile-menu.js" defer></script>
     <script src="js/services-navigation.js" defer></script>
-    <script src="js/face-scanner-script.js" defer></script>
-    <script src="js/chatbot.js?v=2.2" defer></script>
+    <script src="js/face-scanner-script.js?v=4.0" defer></script>
+    <script src="js/kezza-ai.js?v=5.0" defer></script>
     <script src="js/quick-actions.js" defer></script>
 </body>
 
