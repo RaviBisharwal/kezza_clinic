@@ -26,3 +26,4 @@ uploads/photos/*
 video/*_backup.*
 *_backup.*
 *.bak
+_originals_backup/
