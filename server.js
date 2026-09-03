@@ -27,7 +27,15 @@ app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 // ── Serve all frontend assets from ./frontend/ ─────────────────────
 app.use(express.static(path.join(__dirname, 'frontend'), {
     extensions: ['html'],
-    maxAge:     '1h',
+    setHeaders: (res, filePath) => {
+        if (/\.html?$/i.test(filePath)) {
+            res.setHeader('Cache-Control', 'no-cache');           // HTML always fresh
+        } else if (/\.(jpg|jpeg|png|webp|gif|svg|mp4|webm|woff2?|ico)$/i.test(filePath)) {
+            res.setHeader('Cache-Control', 'public, max-age=31536000, immutable'); // media 1yr
+        } else {
+            res.setHeader('Cache-Control', 'public, max-age=604800'); // css/js 7d
+        }
+    },
 }));
 
 // ── System Prompt for Kezza Hair & Skin Clinic ──────────────────────
