@@ -24,6 +24,49 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({ extended: true, limit: '25mb' }));
 
+// ── Lightweight gzip compression for static text assets (zero-dep) ──
+const zlib = require('zlib');
+app.use((req, res, next) => {
+    const ae = req.headers['accept-encoding'] || '';
+    // gzip on-the-fly: only GET requests for compressible text files
+    if (req.method !== 'GET' || !/\bgzip\b/.test(ae)) return next();
+    if (!/\.(html?|css|js|mjs|json|svg|xml|txt|map|webmanifest)$/i.test(req.path)) return next();
+
+    const rawWrite = res.write.bind(res);
+    const rawEnd   = res.end.bind(res);
+    const chunks   = [];
+    let finished   = false;
+
+    res.write = function (chunk, enc, cb) {
+        if (chunk) chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk, enc));
+        if (typeof cb === 'function') cb();
+        return true;
+    };
+    res.end = function (chunk, enc, cb) {
+        if (finished) return;
+        finished = true;
+        if (typeof chunk === 'function') { cb = chunk; chunk = null; enc = null; }
+        else if (typeof enc === 'function') { cb = enc; enc = null; }
+        if (chunk) chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk, enc));
+        const body = Buffer.concat(chunks);
+
+        // Skip compression for empty / not-200 / already-encoded responses
+        if (res.statusCode !== 200 || body.length === 0 || res.getHeader('Content-Encoding')) {
+            if (body.length) { res.setHeader('Content-Length', body.length); rawWrite(body); }
+            return rawEnd(cb);
+        }
+        zlib.gzip(body, (err, zipped) => {
+            if (err) { res.setHeader('Content-Length', body.length); rawWrite(body); return rawEnd(cb); }
+            res.setHeader('Content-Encoding', 'gzip');
+            res.setHeader('Vary', 'Accept-Encoding');
+            res.setHeader('Content-Length', zipped.length);
+            rawWrite(zipped);
+            rawEnd(cb);
+        });
+    };
+    next();
+});
+
 // ── Serve all frontend assets from ./frontend/ ─────────────────────
 app.use(express.static(path.join(__dirname, 'frontend'), {
     extensions: ['html'],

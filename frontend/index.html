@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="css/quick-actions.css">
     <link rel="stylesheet" href="css/services-navigation.css">
     <link rel="stylesheet" href="css/kezza-ai.css?v=4.0">
+    <link rel="stylesheet" href="css/scroll-3d.css">
 
     <!-- ═══ SEO: Canonical ═══════════════════════════════════════════ -->
     <link rel="canonical" href="https://kezzaclinic.com/" />
@@ -88,6 +89,8 @@
 </head>
 
 <body>
+    <!-- Scroll-driven 3D rotating background -->
+    <div class="scroll3d-bg" aria-hidden="true"><img src="images/logo.png" alt="" width="297" height="200" fetchpriority="low" loading="lazy"></div>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5C9295R"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -1190,7 +1193,19 @@
     <script src="js/script.js" defer></script>
     <script src="js/mobile-menu.js" defer></script>
     <script src="js/services-navigation.js" defer></script>
-    <script src="js/kezza-ai.js?v=5.0" defer></script>
+    <!-- Chat widget: load only on first interaction / idle so it stays off the initial load path -->
+    <script>
+    (function(){
+      var loaded=false, evts=['scroll','mousemove','touchstart','click','keydown'];
+      function load(){ if(loaded) return; loaded=true;
+        evts.forEach(function(e){ window.removeEventListener(e,load); });
+        var sc=document.createElement('script'); sc.src='js/kezza-ai.js?v=5.0'; sc.defer=true;
+        document.body.appendChild(sc);
+      }
+      evts.forEach(function(e){ window.addEventListener(e,load,{passive:true}); });
+      if('requestIdleCallback' in window){ requestIdleCallback(load,{timeout:4000}); } else { setTimeout(load,4000); }
+    })();
+    </script>
     <script src="js/quick-actions.js" defer></script>
 
     <!-- Interactive Calculators Logic -->
@@ -1260,6 +1275,7 @@ I would like to book a Weight Loss & Body Contouring consultation.`);
             calculateKezzaBMI();
         });
     </script>
+    <script src="js/scroll-3d.js" defer></script>
 </body>
 
 </html>
