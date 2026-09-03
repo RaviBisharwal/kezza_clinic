@@ -1,9 +1,5 @@
-/* ═══════════════════════════════════════════════════════════════════
-   KEZZA CLINIC - LANDSCAPE / HORIZONTAL DOCTOR PROFILES REDESIGN
-   Ultra-Luxury Medical Aesthetic Theme • Clean Teal & Gold Accents
-   ═══════════════════════════════════════════════════════════════════ */
 
-/* ── Doctors Section Container ───────────────────────────────────── */
+
 .doctors-section {
     padding: 90px 0 100px;
     background: #f8fafc;
@@ -50,7 +46,6 @@
     margin: 0;
 }
 
-/* ── 2-Column Responsive Landscape Grid ──────────────────────────── */
 .doctors-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -58,7 +53,6 @@
     align-items: stretch;
 }
 
-/* ── Landscape Doctor Card ───────────────────────────────────────── */
 .doctor-card {
     display: flex !important;
     flex-direction: row !important;
@@ -78,7 +72,6 @@
     box-shadow: 0 20px 45px rgba(0, 175, 192, 0.12), 0 6px 18px rgba(201, 168, 76, 0.1) !important;
 }
 
-/* ── Left: Image Container (32-35% Width) ────────────────────────── */
 .doctor-image-wrapper,
 .doctor-card .doctor-image {
     flex: 0 0 34% !important;
@@ -135,7 +128,6 @@
     color: #ffd700 !important;
 }
 
-/* ── Right: Information Area (65-68% Width) ──────────────────────── */
 .doctor-info {
     flex: 1 !important;
     padding: 22px 24px 20px !important;
@@ -363,8 +355,6 @@
     color: #0f172a !important;
     transform: scale(1.15) !important;
 }
-
-/* ── Responsive Tablet & Mobile Media Queries ────────────────────── */
 
 /* Tablet: 1 Wide Landscape Card per Row (Spacious & Clean) */
 @media (max-width: 1080px) and (min-width: 768px) {

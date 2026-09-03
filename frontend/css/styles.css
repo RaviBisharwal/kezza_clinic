@@ -24,7 +24,6 @@ body {
     overflow-x: hidden;
 }
 
-
 /* Social Sidebar - Ultra Visible Luxury Glass */
 
 .social-sidebar {
@@ -122,7 +121,6 @@ body {
     }
 }
 
-
 /* Global Image Constraints */
 
 img {
@@ -130,7 +128,6 @@ img {
     height: auto;
     display: block;
 }
-
 
 /* Prevent oversized images */
 
@@ -156,7 +153,6 @@ h6 {
     margin: 0 auto;
     padding: 0 20px;
 }
-
 
 /* Navigation */
 
@@ -234,7 +230,6 @@ h6 {
     box-shadow: var(--shadow);
 }
 
-
 /* Hero Section */
 
 .hero-section {
@@ -254,7 +249,6 @@ h6 {
     align-items: center;
     min-height: calc(100vh - 200px);
 }
-
 
 /* Image Carousel */
 
@@ -465,7 +459,6 @@ h6 {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-
 /* Video Container Styling */
 
 video {
@@ -479,14 +472,12 @@ video::-webkit-media-controls-panel {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-
 /* Fix video codec issues */
 
 video {
     -webkit-playsinline: true;
     playsinline: true;
 }
-
 
 /* Ensure videos maintain aspect ratio */
 
@@ -536,7 +527,6 @@ video {
     background-size: cover;
     pointer-events: none;
 }
-
 
 /* Image Gallery Section */
 
@@ -588,7 +578,6 @@ video {
         height: 200px;
     }
 }
-
 
 /* Why Kezza Section */
 
@@ -657,7 +646,6 @@ video {
     line-height: 1.6;
 }
 
-
 /* Stats Section */
 
 .stats-section {
@@ -711,11 +699,6 @@ video {
     }
 }
 
-
-/* ═══════════════════════════════════════════════════════════════
-   MASTER SERVICES & CLINICAL SPECIALTIES SECTION (4 DEPARTMENTS)
-   ═══════════════════════════════════════════════════════════════ */
-
 .services-master-section {
     padding: 100px 0 80px;
     background: linear-gradient(180deg, #ffffff 0%, #fcfbf7 50%, #f8f6f0 100%);
@@ -761,7 +744,6 @@ video {
     margin: 0 auto;
 }
 
-/* ── 4-Category Master Cards Grid ────────────────────────────── */
 .services-categories-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -939,7 +921,6 @@ video {
     transform: translateX(4px);
 }
 
-/* ── Interactive Treatments Expansion Viewer ────────────────── */
 .services-interactive-viewer {
     background: #ffffff;
     border-radius: 24px;
@@ -1023,7 +1004,6 @@ video {
     color: #d4af37;
 }
 
-/* ── Tab Panels & Subgrids ───────────────────────────────────── */
 .treatment-tab-panel {
     display: none;
     animation: viewerFadeIn 0.35s ease forwards;
@@ -1051,7 +1031,6 @@ video {
     margin-bottom: 35px;
 }
 
-/* ── Individual Treatment Item Card ──────────────────────────── */
 .treatment-item-card {
     background: #ffffff;
     border-radius: 18px;
@@ -1181,7 +1160,6 @@ video {
     transform: translateY(-2px);
 }
 
-/* ── Full-Width CTA Banner in Tab Panel ──────────────────────── */
 .tab-page-cta-banner {
     background: linear-gradient(135deg, #0b1120 0%, #162444 100%);
     border: 1.5px solid rgba(201, 168, 76, 0.35);
@@ -1232,7 +1210,6 @@ video {
     color: #000000 !important;
 }
 
-/* ── Why Kezza Colorized Card Borders & Icons ────────────────── */
 .card-gold { border-top-color: #d4af37 !important; }
 .card-cyan { border-top-color: #00AFC0 !important; }
 .card-emerald { border-top-color: #10b981 !important; }
@@ -1247,7 +1224,6 @@ video {
 .icon-rose { color: #f43f5e; }
 .icon-amber { color: #f59e0b; }
 
-/* ── Hero Badges ─────────────────────────────────────────────── */
 .hero-luxury-badge {
     display: inline-flex;
     align-items: center;
@@ -1301,7 +1277,6 @@ video {
     box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
 }
 
-/* ── Responsive Rules for Services Master Section ────────────── */
 @media (max-width: 1100px) {
     .services-categories-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1344,7 +1319,6 @@ video {
         grid-template-columns: 1fr;
     }
 }
-
 
 /* Gallery Section */
 
@@ -1430,11 +1404,6 @@ video {
     color: var(--white);
     font-weight: bold;
 }
-
-
-/* ─── Doctors Section is centrally styled in doctors-landscape.css ─── */
-
-
 
 /* Testimonials Section */
 
@@ -1592,7 +1561,6 @@ video {
     }
 }
 
-
 /* Branches Section */
 
 .branches-section {
@@ -1678,7 +1646,6 @@ video {
     box-shadow: var(--shadow);
 }
 
-
 /* Contact CTA Section */
 
 .contact-cta-section {
@@ -1716,7 +1683,6 @@ video {
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
-
 
 /* Footer */
 
@@ -1836,7 +1802,6 @@ video {
     color: var(--primary);
 }
 
-
 /* Animations */
 
 @keyframes fadeInUp {
@@ -1891,7 +1856,6 @@ video {
     }
 }
 
-
 /* Mobile Menu Toggle */
 
 .hamburger {
@@ -1907,7 +1871,6 @@ video {
     background: var(--secondary);
     transition: all 0.3s ease;
 }
-
 
 /* Responsive Design */
 
@@ -1984,7 +1947,7 @@ video {
         grid-template-columns: 1fr;
     }
 }
-/* ── AI Scanner Nav Link ──────────────────────────────────── */
+
 .nav-scanner-link {
     color: #c9972a !important;
     font-weight: 600 !important;
@@ -1994,7 +1957,6 @@ video {
     padding: 4px 10px !important;
 }
 
-/* ── AI Scanner Hero CTA Button ───────────────────────────── */
 .btn-scanner-hero {
     display: inline-flex;
     align-items: center;
@@ -2017,8 +1979,6 @@ video {
     box-shadow: 0 4px 20px rgba(201, 151, 42, 0.2);
 }
 
-
-/* ── NAV OVERFLOW FIX: All 8 items on one line ───────────── */
 .nav-container {
     max-width: 1400px !important;
     padding: 0 14px !important;
@@ -2053,7 +2013,6 @@ video {
     padding: 3px 7px !important;
 }
 
-/* ─── Interactive BMI & Weight Loss Calculator Section ───────── */
 .bmi-calculator-section {
     padding: 80px 0;
     background: linear-gradient(180deg, #090c14 0%, #0e1220 100%);
@@ -2190,7 +2149,6 @@ video {
     box-shadow: 0 6px 25px rgba(37, 211, 102, 0.45);
 }
 
-/* ─── Interactive Treatment Cost & 0% EMI Estimator ──────────── */
 .emi-calculator-section {
     padding: 80px 0;
     background: #080a10;
@@ -2258,14 +2216,6 @@ video {
     color: #c9a84c;
     margin: 6px 0;
 }
-
-/* ─── Floating Quick Action Dock & Social Sidebar are centrally styled in quick-actions.css ─── */
-
-
-
-/* ═══════════════════════════════════════════════════════════════════
-   SEO Heading Normalisation — visual parity for demoted heading elements
-   ═══════════════════════════════════════════════════════════════════ */
 
 /* Footer nav group titles (was h3) */
 p.footer-nav-title {

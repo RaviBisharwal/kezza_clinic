@@ -1,19 +1,5 @@
-/**
- * face-scanner-script.js
- * Kezza AI Face Scanner — Client-Side Logic
- * ─────────────────────────────────────────────────────────────
- * 1. MediaPipe Face Mesh — real-time face detection & landmarks
- * 2. Camera / Upload capture pipeline
- * 3. Follow-up Q&A state machine
- * 4. POST /api/analyze-photo → Gemini Vision (real or fallback)
- * 5. Results renderer — doctor card + WhatsApp CTA
- * ─────────────────────────────────────────────────────────────
- */
-
 (function () {
     'use strict';
-
-    // ─── CONFIG ───────────────────────────────────────────────────────────────
     const isLocal       = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const LARAVEL_API   = isLocal
         ? 'http://localhost:8000/api'
@@ -24,7 +10,6 @@
     const API_ENDPOINT  = `${API_BASE}/api/analyze-photo`;
     const WHATSAPP_NUM  = '919284517427';
 
-    // Doctor map: department_key → { name, spec, img, contact, location }
     const DOCTOR_MAP = {
         HAIR: {
             name:     'Dr. Ankit Bhalothia',
@@ -90,36 +75,30 @@
             location: 'Jaipur'
         }
     };
-
-    // ─── STATE ────────────────────────────────────────────────────────────────
-    let capturedImageBase64 = null;   // full data URL
+    let capturedImageBase64 = null;
     let mediaStream         = null;
     let faceMesh            = null;
     let cameraRunning       = false;
     let faceDetected        = false;
-
-    // ─── AUTO-CAPTURE STATE ───────────────────────────────────────────────────
-    let autoCaptureTimer    = null;   // interval handle for countdown
-    let autoCaptureCount    = 3;      // countdown 3 → 2 → 1 → snap
-    let autoCaptureActive   = false;  // is countdown running?
+    let autoCaptureTimer    = null;
+    let autoCaptureCount    = 3;
+    let autoCaptureActive   = false;
 
     const answers = {
-        q1: null, // Concern
-        q2: null, // Duration
-        q3: null, // Family history
-        q4: null, // Name
-        q5: null, // Age group
-        q6: null, // Location / City
-        q7: null, // Clinic choice
-        q8: null, // Time slot
-        q8Date: null, // Preferred date (YYYY-MM-DD)
-        q9: null, // Mobile number
+        q1: null,
+        q2: null,
+        q3: null,
+        q4: null,
+        q5: null,
+        q6: null,
+        q7: null,
+        q8: null,
+        q8Date: null,
+        q9: null,
         clinicContact: WHATSAPP_NUM
     };
     const TOTAL_QUESTIONS = 9;
     let currentQuestion = 1;
-
-    // ─── DOM REFS ─────────────────────────────────────────────────────────────
     const $ = id => document.getElementById(id);
 
     const btnGetStarted         = $('btnGetStarted');
@@ -161,14 +140,11 @@
     const resultsQualityIssue = $('resultsQualityIssue');
     const resultsMain         = $('resultsMain');
     const resultsError        = $('resultsError');
-
-    // ─── STEP NAVIGATION ──────────────────────────────────────────────────────
     function goToStep(n) {
         [step1, step2, step3].forEach((s, i) => {
             s.classList.toggle('hidden', i + 1 !== n);
         });
 
-        // Update indicator
         document.querySelectorAll('.step-item').forEach((el, i) => {
             const stepNum = i + 1;
             el.classList.toggle('active',    stepNum === n);
@@ -178,14 +154,11 @@
             el.classList.toggle('completed', i + 1 < n);
         });
 
-        // Scroll modal body to top on step change
         const modalBody = document.getElementById('scannerModalBody');
         if (modalBody) {
             modalBody.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
-
-    // ─── MEDIAPIPE FACE MESH ──────────────────────────────────────────────────
     function initFaceMesh() {
         if (faceMesh) return;
         if (typeof FaceMesh === 'undefined') {
@@ -236,7 +209,6 @@
                 }
             }
 
-            // 1. Calculate Face Bounding Box
             let minX = 1, maxX = 0, minY = 1, maxY = 0;
             for (let i = 0; i < landmarks.length; i++) {
                 const lm = landmarks[i];
@@ -249,7 +221,6 @@
             const boxCenterX = (minX + maxX) / 2;
             const boxCenterY = (minY + maxY) / 2;
 
-            // 2. Measure Luminance of Face ROI
             let avgLum = 120;
             try {
                 if (cameraFeed.videoWidth && cameraFeed.videoHeight) {
@@ -273,7 +244,6 @@
                 }
             } catch (e) {}
 
-            // 3. Evaluate Lighting Pill: Too Dark (red) / Ok (amber) / Good (green)
             let lightOk = false;
             if (pillLight) {
                 pillLight.className = 'guidance-pill';
@@ -295,7 +265,6 @@
                 }
             }
 
-            // 4. Evaluate Look Straight Pill: Adjust (amber) / Good (green)
             let poseOk = false;
             let ratio = 1;
             if (pillPose && landmarks[1] && landmarks[33] && landmarks[263]) {
@@ -316,7 +285,6 @@
                 }
             }
 
-            // 5. Evaluate Face Position Pill: Come Closer / Move Back / Centered
             let posOk = false;
             if (pillPos) {
                 pillPos.className = 'guidance-pill';
@@ -339,7 +307,6 @@
                 }
             }
 
-            // 6. Live Biometric Telemetry HUD Bar updates (gives heavy high-tech presence)
             const elAlign = document.getElementById('telemetryAlignment');
             const elLux   = document.getElementById('telemetryLux');
             const elZone  = document.getElementById('telemetryZone');
@@ -367,20 +334,16 @@
             if (elRes && cameraFeed) {
                 elRes.textContent = `${cameraFeed.videoWidth || 1280}x${cameraFeed.videoHeight || 720}`;
             }
-
-            // ── AUTO-CAPTURE: start countdown when all three checks pass ──
             if (lightOk && posOk && poseOk) {
                 if (circularCameraWrapper) circularCameraWrapper.classList.add('all-good');
                 if (btnCapture) {
                     btnCapture.disabled = false;
                     btnCapture.classList.add('pulse-ready');
                 }
-                // Start countdown only if not already running & no photo taken yet
                 if (!autoCaptureActive && !capturedImageBase64) {
                     startAutoCapture();
                 }
             } else {
-                // Face moved / conditions lost — cancel countdown
                 cancelAutoCapture();
                 if (circularCameraWrapper) circularCameraWrapper.classList.remove('all-good');
                 if (btnCapture) {
@@ -425,8 +388,6 @@
         }
         await faceMesh.send({ image: cameraFeed });
     }
-
-    // ─── AUTO-CAPTURE COUNTDOWN ───────────────────────────────────────────────
     const autoCaptureOverlay = document.getElementById('autoCaptureOverlay');
     const autoCaptureNumEl   = document.getElementById('autoCaptureNum');
 
@@ -435,7 +396,6 @@
         autoCaptureActive = true;
         autoCaptureCount  = 3;
 
-        // Show overlay with 3
         if (autoCaptureNumEl) autoCaptureNumEl.textContent = autoCaptureCount;
         if (autoCaptureOverlay) autoCaptureOverlay.style.display = 'flex';
 
@@ -443,7 +403,6 @@
             autoCaptureCount--;
 
             if (autoCaptureCount <= 0) {
-                // Fire capture!
                 clearInterval(autoCaptureTimer);
                 autoCaptureTimer  = null;
                 autoCaptureActive = false;
@@ -463,8 +422,6 @@
         autoCaptureCount  = 3;
         if (autoCaptureOverlay) autoCaptureOverlay.style.display = 'none';
     }
-
-    // ─── CAMERA CONTROL ───────────────────────────────────────────────────────
     async function startCamera() {
         try {
             mediaStream = await navigator.mediaDevices.getUserMedia({
@@ -480,7 +437,7 @@
             meshCanvas.classList.add('active');
 
             cameraRunning = true;
-            if (btnCapture) btnCapture.disabled = true; // disabled until all 3 checks pass
+            if (btnCapture) btnCapture.disabled = true;
 
             initFaceMesh();
 
@@ -511,7 +468,6 @@
         meshCanvas.classList.remove('active');
         scanLine.classList.remove('active');
         cameraRunning = false;
-        // Only show idle state if NO photo was captured
         if (cameraIdle && !capturedImageBase64) cameraIdle.style.display = 'flex';
         if (btnCapture) {
             btnCapture.disabled = true;
@@ -529,8 +485,6 @@
             cameraIdle.style.display = 'flex';
         }
     }
-
-    // ─── CAPTURE PHOTO ────────────────────────────────────────────────────────
     function captureFromCamera() {
         if (!cameraRunning || cameraFeed.readyState < 2) return;
 
@@ -562,8 +516,6 @@
         if (captureSubstate1) captureSubstate1.classList.add('hidden');
         if (captureSubstate2) captureSubstate2.classList.remove('hidden');
     }
-
-    // ─── PHOTO UPLOAD ─────────────────────────────────────────────────────────
     photoUpload.addEventListener('change', function () {
         const file = this.files[0];
         if (!file) return;
@@ -586,8 +538,6 @@
         };
         reader.readAsDataURL(file);
     });
-
-    // ─── SUB-STATE 1 & 2 BUTTON EVENTS — STEP 1 ───────────────────────────────
     if (btnGetStarted) {
         btnGetStarted.addEventListener('click', async () => {
             if (captureSubstate1) captureSubstate1.classList.add('hidden');
@@ -615,8 +565,6 @@
         goToStep(2);
         renderQuestion(1);
     });
-
-    // ─── Q&A STATE MACHINE ────────────────────────────────────────────────────
     function isCurrentQuestionValid() {
         if (currentQuestion === 4) {
             return !!(answers.q4 && answers.q4.length >= 2);
@@ -625,7 +573,6 @@
             return !!(answers.q6 && answers.q6.length >= 2);
         }
         if (currentQuestion === 8) {
-            // Need BOTH date and time slot
             return !!(answers.q8Date && answers.q8);
         }
         if (currentQuestion === 9) {
@@ -651,19 +598,16 @@
                 : '<i class="fas fa-arrow-left"></i> <span>Back</span>';
         }
 
-        // Scroll modal body so steps-indicator stays in view
         const modalBody = document.getElementById('scannerModalBody');
         if (modalBody) {
             modalBody.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Auto-focus inputs on relevant questions
         if (n === 4 && inputName) {
             setTimeout(() => inputName.focus(), 150);
         } else if (n === 6 && inputLocation) {
             setTimeout(() => inputLocation.focus(), 150);
         } else if (n === 8) {
-            // Set min/max dates for Q8 calendar
             const today = new Date();
             const maxDate = new Date(); maxDate.setDate(today.getDate() + 60);
             const datePicker = document.getElementById('consultDate');
@@ -692,20 +636,17 @@
         }
     }
 
-    // Answer button clicks (Questions 1, 2, 3, 5)
     document.querySelectorAll('.answer-btn:not([data-q="8-time"])').forEach(btn => {
         btn.addEventListener('click', function () {
             const q = parseInt(this.dataset.q);
             const val = this.dataset.val;
 
-            // Deselect siblings
             document.querySelectorAll(`.answer-btn[data-q="${q}"]`).forEach(b => b.classList.remove('selected'));
             this.classList.add('selected');
             answers[`q${q}`] = val;
             updateAnalyseBtn();
-            saveSessionToStorage(); // ✨ Auto-save on every answer
+            saveSessionToStorage(); 
 
-            // Smooth auto-advance to next question (not Q8 — needs date too)
             if (currentQuestion < TOTAL_QUESTIONS && currentQuestion !== 8) {
                 setTimeout(() => {
                     renderQuestion(currentQuestion + 1);
@@ -713,8 +654,6 @@
             }
         });
     });
-
-    // ─── DATE HELPERS (Exact Local Date — No Timezone Skew) ───────────────────
     function getLocalDateString(d) {
         const year = d.getFullYear();
         const month = String(d.getMonth() + 1).padStart(2, '0');
@@ -751,7 +690,6 @@
         const disp = document.getElementById('dateDisplay');
         if (disp) disp.textContent = formatBookingDate(dateStr, 'long');
 
-        // Highlight matching pill if applicable
         const todayStr = getLocalDateString(new Date());
         const tmrw = new Date(); tmrw.setDate(tmrw.getDate() + 1);
         const tmrwStr = getLocalDateString(tmrw);
@@ -767,12 +705,11 @@
         updateAnalyseBtn();
     }
 
-    // Q8 date picker input listener
     const consultDateInput = document.getElementById('consultDate');
     const dateDisplay = document.getElementById('dateDisplay');
     if (consultDateInput) {
         const onDateChange = function () {
-            const val = this.value; // YYYY-MM-DD
+            const val = this.value;
             if (!val) return;
             setBookingDateValue(val);
         };
@@ -780,7 +717,6 @@
         consultDateInput.addEventListener('input', onDateChange);
     }
 
-    // Quick date pills
     if ($('qDateToday')) {
         $('qDateToday').addEventListener('click', () => setBookingDateValue(getLocalDateString(new Date())));
     }
@@ -797,7 +733,6 @@
         });
     }
 
-    // Q8 time slot buttons
     document.querySelectorAll('.answer-btn[data-q="8-time"]').forEach(btn => {
         btn.addEventListener('click', function () {
             document.querySelectorAll('.answer-btn[data-q="8-time"]').forEach(b => b.classList.remove('selected'));
@@ -826,7 +761,6 @@
         }
     }
 
-    // Q4: Full Name input handling
     if (inputName) {
         inputName.addEventListener('input', function () {
             const val = this.value.trim();
@@ -853,7 +787,6 @@
         });
     }
 
-    // Q6: Location input handling
     if (inputLocation) {
         inputLocation.addEventListener('input', function () {
             const val = this.value.trim();
@@ -880,7 +813,6 @@
         });
     }
 
-    // Q7: Clinic choice handling
     document.querySelectorAll('.clinic-card-btn').forEach(btn => {
         btn.addEventListener('click', function () {
             document.querySelectorAll('.clinic-card-btn').forEach(b => b.classList.remove('selected'));
@@ -895,7 +827,6 @@
         });
     });
 
-    // Q9: Phone input handling
     if (inputPhone) {
         inputPhone.addEventListener('input', function () {
             this.value = this.value.replace(/\D/g, '').slice(0, 10);
@@ -912,7 +843,6 @@
         });
     }
 
-    // Back button
     btnQBack.addEventListener('click', () => {
         if (currentQuestion > 1) {
             renderQuestion(currentQuestion - 1);
@@ -921,7 +851,6 @@
         }
     });
 
-    // Next / Analyse button
     btnAnalyse.addEventListener('click', () => {
         if (!isCurrentQuestionValid()) return;
 
@@ -932,8 +861,6 @@
             runAnalysis();
         }
     });
-
-    // ─── ANALYSIS PIPELINE ────────────────────────────────────────────────────
     function buildTextContext() {
         const parts = [];
         if (answers.q1) parts.push(`Patient concern: ${answers.q1}`);
@@ -953,10 +880,8 @@
         showResultsState('loading');
         animateLoadingSteps();
 
-        // Build payload
         const textContext = buildTextContext();
 
-        // Clean base64 from memory or sessionStorage
         let imageData = capturedImageBase64 || null;
         if (!imageData) {
             try { imageData = sessionStorage.getItem('kezza_scanner_photo'); } catch(e) {}
@@ -974,7 +899,6 @@
             isPoorQuality: false
         };
 
-        // Deep heavy scan timing: deliberate 4.2s clinical processing so user feels the depth
         setTimeout(async () => {
             try {
                 const res = await fetch('/api/analyze-photo', {
@@ -987,7 +911,6 @@
                 if (data && data.status === 'OK') {
                     handleAnalysisResult(data);
                 } else if (data && (data.status === 'QUALITY_ISSUE' || data.status === 'UNCLEAR')) {
-                    // Fallback smoothly to detailed symptom-based triage
                     const fallbackResult = buildLocalFallback(textContext);
                     if (data.visible_observations && data.visible_observations.length) {
                         fallbackResult.visible_observations = data.visible_observations;
@@ -1005,7 +928,6 @@
         }, 4200);
     }
 
-    // Local keyword fallback if server is unreachable
     function buildLocalFallback(textContext) {
         const t = textContext.toLowerCase();
 
@@ -1075,8 +997,6 @@
             needs_in_person_assessment: true
         };
     }
-
-    // ─── LOADING ANIMATION (HEAVY MULTI-PHASE CLINICAL SCAN) ──────────────────
     function animateLoadingSteps() {
         const steps = ['ls1', 'ls2', 'ls3', 'ls4'];
         const phases = [
@@ -1138,8 +1058,6 @@
             }
         }, 1000);
     }
-
-    // ─── RESULT STATES ────────────────────────────────────────────────────────
     function showResultsState(state, msg = '') {
         resultsLoading.classList.add('hidden');
         resultsQualityIssue.classList.add('hidden');
@@ -1157,8 +1075,6 @@
             if (msg) $('errorMessage').textContent = msg;
         }
     }
-
-    // ─── HANDLE ANALYSIS RESULT ───────────────────────────────────────────────
     function handleAnalysisResult(data) {
         if (!data) {
             showResultsState('error', 'No response received. Please try again.');
@@ -1199,14 +1115,11 @@
     function renderResults(data) {
         showResultsState('main');
 
-        // Thumbnail
         $('resultThumb').src = capturedImageBase64 || '';
 
-        // Concern
         const concern = data.recommended_consultation || data.possible_concern || 'Consultation Recommended';
         $('resultConcern').textContent = concern;
 
-        // Severity badge
         const score = data.confidence_score || 75;
         let severity = 'moderate';
         let severityText = 'Moderate';
@@ -1217,7 +1130,6 @@
         badge.className = `severity-badge ${severity}`;
         $('resultSeverityText').textContent = severityText;
 
-        // Observations
         const observations = data.visible_observations || [];
         const obsList = $('observationsList');
         obsList.innerHTML = '';
@@ -1228,10 +1140,8 @@
         });
         $('observationsBlock').style.display = observations.length ? '' : 'none';
 
-        // Treatment
         $('resultTreatment').textContent = data.treatment_name || concern;
 
-        // Doctor card
         const deptKey = data.department_key || 'SKIN';
         const doctor  = DOCTOR_MAP[deptKey] || DOCTOR_MAP['SKIN'];
 
@@ -1240,39 +1150,31 @@
         $('resultDoctorSpec').textContent = doctor.spec;
         $('resultDoctorLocation').textContent = answers.q7 ? `${answers.q7} Clinic (${doctor.location})` : doctor.location;
 
-        // Patient Summary Data
         if ($('summaryPatientName')) $('summaryPatientName').textContent = answers.q4 || 'Patient';
         if ($('summaryPatientAge')) $('summaryPatientAge').textContent = answers.q5 || 'Not specified';
         if ($('summaryPatientLocation')) $('summaryPatientLocation').textContent = answers.q6 || 'Not specified';
         if ($('summaryPatientClinic')) $('summaryPatientClinic').textContent = answers.q7 ? `${answers.q7} Clinic` : 'Jaipur (Main)';
-        // Show combined date + time slot
         const dateStr = answers.q8Date ? formatBookingDate(answers.q8Date, 'short') : '';
         if ($('summaryPatientTime')) $('summaryPatientTime').textContent = dateStr
             ? `${dateStr} — ${answers.q8 || 'Any time'}`
             : (answers.q8 || 'Any time (flexible)');
         if ($('summaryPatientPhone')) $('summaryPatientPhone').textContent = answers.q9 ? `+91 ${answers.q9}` : 'Not provided';
 
-        // Why text
         const why = data.why_this_consultation || '';
         $('whyText').textContent = why;
         $('whyBlock').style.display = why ? '' : 'none';
 
-        // Initial WhatsApp fallback URL
         const waMsg = buildWhatsAppMessage(data, doctor);
         const targetPhone = answers.clinicContact || doctor.contact || WHATSAPP_NUM;
         btnBookWA.href = `https://wa.me/${targetPhone}?text=${encodeURIComponent(waMsg)}`;
 
-        // ✨ NEW: Render confidence ring + stat bars
+        
         renderConfidenceRing(data);
 
-        // Save to SQL DB & update WhatsApp URL with Consultation ID
         saveAssessmentToDB(data, doctor);
 
-        // Clear localStorage session after successful result
         try { localStorage.removeItem('kezzaScanSession'); } catch(e) {}
     }
-
-    // ── DB SAVE (Saves to SQL database & updates WhatsApp CTA with Consultation ID) ──
     async function saveAssessmentToDB(data, doctor) {
         try {
             const ageClean = parseInt(answers.q5 || '25', 10) || 25;
@@ -1303,7 +1205,6 @@
             const destPhone = answers.clinicContact || doctor.contact || WHATSAPP_NUM;
             btnBookWA.href = `https://wa.me/${destPhone.replace(/\D/g, '')}?text=${encodeURIComponent(updatedMsg)}`;
         } catch (err) {
-            // Non-critical — user flow unaffected
         }
     }
 
@@ -1347,16 +1248,12 @@ _Please confirm my consultation booking at Kezza Clinic._
 
 — Sent via Kezza AI Face Scanner`;
     }
-
-    // ─── FLOATING TOAST NOTIFICATION ─────────────────────────────────────────
-    // ─── CONFIDENCE RING & STAT BARS (NEW FEATURE) ───────────────────────────
     function renderConfidenceRing(data) {
         const score = Math.min(Math.max(data.confidence_score || 75, 0), 100);
         const photoQ = Math.min(Math.max(data.image_quality_score || 80, 0), 100);
         const concernMatch = Math.round(score * 0.95);
         const specialistMatch = Math.round((score + photoQ) / 2 * 0.9);
 
-        // Animate SVG ring (circumference = 2 * π * 45 ≈ 283)
         const ringEl = document.getElementById('confRingFill');
         if (ringEl) {
             const offset = 283 - (283 * score / 100);
@@ -1372,7 +1269,6 @@ _Please confirm my consultation booking at Kezza Clinic._
             setTimeout(() => { ringEl.style.strokeDashoffset = offset; }, 100);
         }
 
-        // Animate score number counter
         const numEl = document.getElementById('confScoreNum');
         if (numEl) {
             let cur = 0;
@@ -1384,7 +1280,6 @@ _Please confirm my consultation booking at Kezza Clinic._
             }, 35);
         }
 
-        // Animate stat bars with staggered delay
         [
             { barId: 'statBarPhoto',   valId: 'statValPhoto',   val: photoQ,          delay: 200 },
             { barId: 'statBarConcern', valId: 'statValConcern', val: concernMatch,     delay: 400 },
@@ -1398,8 +1293,6 @@ _Please confirm my consultation booking at Kezza Clinic._
             }, delay);
         });
     }
-
-    // ─── SESSION AUTO-SAVE TO LOCALSTORAGE (NEW FEATURE) ─────────────────────
     const SESSION_KEY = 'kezzaScanSession';
     const sessionSaveBanner = document.getElementById('sessionSaveBanner');
     let saveBannerTimer = null;
@@ -1427,26 +1320,22 @@ _Please confirm my consultation booking at Kezza Clinic._
             const raw = localStorage.getItem(SESSION_KEY);
             if (!raw) return false;
             const session = JSON.parse(raw);
-            // Only restore if less than 30 minutes old
             if (!session.ts || Date.now() - session.ts > 30 * 60 * 1000) {
                 localStorage.removeItem(SESSION_KEY);
                 return false;
             }
             Object.assign(answers, session.answers);
-            // Restore text inputs
             if (inputName && answers.q4)     inputName.value = answers.q4;
             if (inputLocation && answers.q6) inputLocation.value = answers.q6;
             if (inputPhone && answers.q9)    inputPhone.value = answers.q9;
             if (btnNameNext)     btnNameNext.disabled     = !(answers.q4 && answers.q4.length >= 2);
             if (btnLocationNext) btnLocationNext.disabled = !(answers.q6 && answers.q6.length >= 2);
-            // Restore date
             if (answers.q8Date) {
                 const dp = document.getElementById('consultDate');
                 if (dp) dp.value = answers.q8Date;
                 const dd = document.getElementById('dateDisplay');
                 if (dd) dd.textContent = formatBookingDate(answers.q8Date, 'long');
             }
-            // Restore selected answer buttons
             ['1','2','3','5'].forEach(q => {
                 const val = answers[`q${q}`];
                 if (val) {
@@ -1468,9 +1357,6 @@ _Please confirm my consultation booking at Kezza Clinic._
             return true;
         } catch(e) { return false; }
     }
-
-    // ─── SHARE RESULT (NEW FEATURE) ───────────────────────────────────────────
-    // ─── DOWNLOAD REPORT (NEW FEATURE) ───────────────────────────────────────
     function initShareAndDownload() {
         const btnShare = document.getElementById('btnShareResult');
         const btnDownload = document.getElementById('btnDownloadReport');
@@ -1550,8 +1436,6 @@ _Please confirm my consultation booking at Kezza Clinic._
     }
 
     initShareAndDownload();
-
-    // ─── FLOATING TOAST NOTIFICATION ─────────────────────────────────────────
     function showToast(htmlMsg, durationMs = 2800) {
         const toast = document.getElementById('scannerToast');
         if (!toast) return;
@@ -1565,10 +1449,7 @@ _Please confirm my consultation booking at Kezza Clinic._
             setTimeout(() => { toast.style.display = 'none'; }, 350);
         }, durationMs);
     }
-
-    // ─── RESET CONSULTATION ───────────────────────────────────────────────────
     function resetConsultation() {
-        // Reset state
         capturedImageBase64 = null;
         try { sessionStorage.removeItem('kezza_scanner_photo'); } catch(e) {}
         Object.keys(answers).forEach(k => { answers[k] = null; });
@@ -1582,7 +1463,6 @@ _Please confirm my consultation booking at Kezza Clinic._
         if (btnNameNext) btnNameNext.disabled = true;
         if (btnLocationNext) btnLocationNext.disabled = true;
 
-        // Reset Q8
         const dp = document.getElementById('consultDate');
         if (dp) dp.value = '';
         const dd = document.getElementById('dateDisplay');
@@ -1602,14 +1482,11 @@ _Please confirm my consultation booking at Kezza Clinic._
         document.querySelectorAll('.clinic-card-btn').forEach(b => b.classList.remove('selected'));
 
         goToStep(1);
-        // Scroll modal body to top after reset
         const _mb = document.getElementById('scannerModalBody');
         if (_mb) _mb.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
-    // ─── RETRY / START OVER ───────────────────────────────────────────────────
     $('btnRetakePhoto').addEventListener('click', () => {
-        cancelAutoCapture();           // ← stop any running countdown
+        cancelAutoCapture();
         goToStep(1);
         capturedImageBase64 = null;
         try { sessionStorage.removeItem('kezza_scanner_photo'); } catch(e) {}
@@ -1632,16 +1509,12 @@ _Please confirm my consultation booking at Kezza Clinic._
         closeScannerModal();
         showToast('<i class="fas fa-redo"></i> Consultation restarted.', 2000);
     });
-
-    // ─── WHATSAPP BOOK BUTTON — OPEN + RESET ─────────────────────────────────
     if (btnBookWA) {
         btnBookWA.addEventListener('click', function (e) {
-            e.preventDefault(); // Always handle manually to avoid browser block on _blank
+            e.preventDefault();
 
-            // Build or use existing href
             let url = this.getAttribute('href');
 
-            // If href not yet built, build it on the spot from current data
             if (!url || url === '#') {
                 const deptKey = $('resultConcern')?.dataset?.dept || 'SKIN';
                 const doctor = DOCTOR_MAP[deptKey] || DOCTOR_MAP['SKIN'];
@@ -1655,20 +1528,16 @@ _Please confirm my consultation booking at Kezza Clinic._
                 url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
             }
 
-            // Open WhatsApp in new tab
             window.open(url, '_blank', 'noopener,noreferrer');
 
             showToast('<i class="fab fa-whatsapp"></i> Opening WhatsApp with your appointment details...', 2600);
 
-            // After delay, reset and close modal for next patient
             setTimeout(() => {
                 resetConsultation();
                 closeScannerModal();
             }, 2500);
         });
     }
-
-    // ─── MOBILE NAV (matches other pages) ─────────────────────────────────────
     const hamburger = document.getElementById('hamburger');
     const navMenu   = document.getElementById('navMenu');
     if (hamburger && navMenu) {
@@ -1677,8 +1546,6 @@ _Please confirm my consultation booking at Kezza Clinic._
             hamburger.classList.toggle('active');
         });
     }
-
-    // ─── STICKY HEADER SCROLL EFFECT ─────────────────────────────────────────
     const navbar = document.querySelector('.navbar');
     if (navbar) {
         window.addEventListener('scroll', () => {
@@ -1687,8 +1554,6 @@ _Please confirm my consultation booking at Kezza Clinic._
                 : 'none';
         }, { passive: true });
     }
-
-    // ─── MODAL OPEN / CLOSE ────────────────────────────────────────────────────
     const scannerModalOverlay = document.getElementById('scannerModalOverlay');
     const scannerModal        = document.getElementById('scannerModal');
     const btnCloseScannerModal = document.getElementById('btnCloseScannerModal');
@@ -1697,31 +1562,25 @@ _Please confirm my consultation booking at Kezza Clinic._
     function openScannerModal() {
         if (!scannerModalOverlay) return;
 
-        // Check for a restored session — if not, reset to fresh state
         const _hasSession = restoreSessionFromStorage && answers.q1;
         if (!_hasSession) {
             resetConsultation();
         }
 
-        // Show overlay
         scannerModalOverlay.style.display = 'flex';
         scannerModalOverlay.setAttribute('aria-hidden', 'false');
 
-        // Trigger transition on next frame
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 scannerModalOverlay.classList.add('active');
             });
         });
 
-        // Lock background scroll
         document.body.style.overflow = 'hidden';
         document.body.style.touchAction = 'none';
 
-        // Move focus to close button for accessibility
         setTimeout(() => { if (btnCloseScannerModal) btnCloseScannerModal.focus(); }, 260);
 
-        // Escape key handler
         _escKeyHandler = (e) => { if (e.key === 'Escape') closeScannerModal(); };
         document.addEventListener('keydown', _escKeyHandler);
     }
@@ -1729,34 +1588,27 @@ _Please confirm my consultation booking at Kezza Clinic._
     function closeScannerModal() {
         if (!scannerModalOverlay) return;
 
-        // Stop camera and cancel countdown immediately
         stopCamera();
         cancelAutoCapture();
 
-        // Animate out
         scannerModalOverlay.classList.remove('active');
 
-        // After transition ends, hide overlay
         const _hideOverlay = () => {
             scannerModalOverlay.style.display = 'none';
             scannerModalOverlay.setAttribute('aria-hidden', 'true');
         };
         scannerModal.addEventListener('transitionend', _hideOverlay, { once: true });
-        // Fallback in case transitionend doesn't fire
         setTimeout(_hideOverlay, 320);
 
-        // Restore background scroll
         document.body.style.overflow = '';
         document.body.style.touchAction = '';
 
-        // Remove Escape key handler
         if (_escKeyHandler) {
             document.removeEventListener('keydown', _escKeyHandler);
             _escKeyHandler = null;
         }
     }
 
-    // Backdrop click closes modal (click on overlay but not inside modal)
     if (scannerModalOverlay) {
         scannerModalOverlay.addEventListener('click', (e) => {
             if (e.target === scannerModalOverlay) closeScannerModal();
@@ -1766,24 +1618,19 @@ _Please confirm my consultation booking at Kezza Clinic._
         scannerModal.addEventListener('click', (e) => e.stopPropagation());
     }
 
-    // Close button
     if (btnCloseScannerModal) {
         btnCloseScannerModal.addEventListener('click', closeScannerModal);
     }
 
-    // Expose on window so inline onclick="openScannerModal()" works
     window.openScannerModal  = openScannerModal;
     window.closeScannerModal = closeScannerModal;
 
-    // Mobile keyboard: scroll focused input into view inside modal body
     [inputName, inputLocation, inputPhone].forEach(inp => {
         if (!inp) return;
         inp.addEventListener('focus', () => {
             setTimeout(() => inp.scrollIntoView({ block: 'center', behavior: 'smooth' }), 300);
         });
     });
-
-    // ─── HERO START BUTTON ───────────────────────────────────────────────────
     const btnHeroStart = $('btnHeroStart');
     if (btnHeroStart) {
         btnHeroStart.addEventListener('click', (e) => {
@@ -1791,11 +1638,6 @@ _Please confirm my consultation booking at Kezza Clinic._
             openScannerModal();
         });
     }
-
-    // ─── INIT ─────────────────────────────────────────────────────────────────
-    // Modal starts hidden; no auto-open needed here — openScannerModal() is called
-    // by the hero button and dock button onclick handlers.
-    // Restore previous session data into answers so it's ready when modal opens.
     try {
         const _storedPhoto = sessionStorage.getItem('kezza_scanner_photo');
         if (_storedPhoto) {
@@ -1806,10 +1648,8 @@ _Please confirm my consultation booking at Kezza Clinic._
         }
     } catch(e) {}
 
-    // Pre-load session so it's available when modal first opens
     const _sessionRestored = restoreSessionFromStorage();
     if (_sessionRestored && answers.q1) {
-        // Session exists — show Q step when modal opens
         goToStep(2);
         const qKeys = ['q1','q2','q3','q4','q5','q6','q7','q8','q9'];
         let _lastQ = 1;
@@ -1819,7 +1659,5 @@ _Please confirm my consultation booking at Kezza Clinic._
     } else {
         goToStep(1);
     }
-    console.log('[Kezza AI Scanner] v3.3 - Modal dialog mode, auto-capture, resilient triage.');
-
-})();
+    })();
 

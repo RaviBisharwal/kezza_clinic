@@ -31,10 +31,10 @@
     <link rel="stylesheet" href="css/chatbot.css?v=3.0">
     <link rel="icon" type="image/png" href="images/logo.png">
 
-    <!-- ═══ SEO: Canonical ═══════════════════════════════════════════ -->
+    
     <link rel="canonical" href="https://kezzaclinic.com/face-scanner.html" />
 
-    <!-- ═══ SEO: Open Graph ══════════════════════════════════════════ -->
+    
     <meta property="og:type"        content="website" />
     <meta property="og:site_name"   content="Kezza Hair & Skin Clinic" />
     <meta property="og:url"         content="https://kezzaclinic.com/face-scanner.html" />
@@ -45,14 +45,14 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:locale"      content="en_IN" />
 
-    <!-- ═══ SEO: Twitter Card ════════════════════════════════════════ -->
+    
     <meta name="twitter:card"        content="summary_large_image" />
     <meta name="twitter:site"        content="@KezzaClinic" />
     <meta name="twitter:title"       content="Free AI Skin & Hair Scanner | Kezza Clinic" />
     <meta name="twitter:description" content="Free AI face & scalp assessment at Kezza Clinic. Our MediaPipe scanner analyses your skin in 9 steps and matches you to the right specialist." />
     <meta name="twitter:image"       content="https://kezzaclinic.com/images/keeza-machine.jpg" />
 
-    <!-- ═══ SEO: Structured Data (JSON-LD) ══════════════════════════ -->
+    
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -199,9 +199,7 @@
         </div>
     </nav>
 
-    <!-- ═══════════════════════════════════════════════════════
-         HERO SECTION
-    ═══════════════════════════════════════════════════════ -->
+    
     <section class="scanner-hero">
         <div class="scanner-hero-content">
             <div class="scanner-badge">
@@ -234,9 +232,7 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════
-         AI SCANNER MODAL — overlay wraps all 3 steps
-    ═══════════════════════════════════════════════════════ -->
+    
     <div id="scannerModalOverlay" class="scanner-modal-overlay" aria-hidden="true">
         <div id="scannerModal" class="scanner-modal" role="dialog" aria-modal="true" aria-labelledby="scannerModalTitle">
             <!-- Close Button -->
@@ -244,9 +240,7 @@
 
             <div class="scanner-modal-body" id="scannerModalBody">
 
-    <!-- ═══════════════════════════════════════════════════════
-         STEP INDICATOR
-    ═══════════════════════════════════════════════════════ -->
+    
     <div class="steps-indicator" id="stepsIndicator">
         <div class="step-item active" data-step="1">
             <div class="step-circle">
@@ -273,13 +267,11 @@
         </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════
-         STEP 1: CAPTURE
-    ═══════════════════════════════════════════════════════ -->
+    
     <section class="scanner-section" id="step1">
         <div class="scanner-container">
 
-            <!-- ── SUB-STATE 1: PRE-CAPTURE INSTRUCTIONS (Default) ── -->
+            
             <div class="capture-substate" id="captureSubstate1">
                 <div class="instructions-wrapper">
                     <div class="instructions-header">
@@ -346,7 +338,7 @@
                 </div>
             </div>
 
-            <!-- ── SUB-STATE 2: LIVE CAMERA WITH CIRCULAR GUIDE & GUIDANCE PILLS ── -->
+            
             <div class="capture-substate hidden" id="captureSubstate2">
                 <div class="live-camera-layout">
                     <!-- Top Bar: Status Title + Close X Button -->
@@ -416,7 +408,7 @@
                                 </div>
                             </div>
 
-                            <!-- AUTO-CAPTURE COUNTDOWN OVERLAY -->
+                            
                             <div class="auto-capture-overlay" id="autoCaptureOverlay" style="display:none;">
                                 <div class="auto-capture-ring"></div>
                                 <div class="auto-capture-num" id="autoCaptureNum">3</div>
@@ -424,7 +416,7 @@
                             </div>
                         </div>
 
-                        <!-- Analysis Overlay (Heavy Multi-Spectral Deep Scanning Hologram) -->
+                        
                         <div class="analysis-overlay" id="analysisOverlay">
                             <div class="heavy-scan-loader">
                                 <div class="scan-hologram-wrap">
@@ -449,7 +441,7 @@
                         </div>
                     </div>
 
-                    <!-- Live Biometric Telemetry HUD Bar (Gives that heavy, medical-grade presence) -->
+                    
                     <div class="scanner-telemetry-panel" id="scannerTelemetry">
                         <div class="telemetry-item">
                             <span class="telemetry-label">ALIGNMENT</span>
@@ -495,9 +487,7 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════
-         STEP 2: FOLLOW-UP QUESTIONS
-    ═══════════════════════════════════════════════════════ -->
+    
     <section class="scanner-section hidden" id="step2">
         <div class="scanner-container">
             <div class="section-intro">
@@ -506,7 +496,7 @@
             </div>
 
             <div class="questions-wrap">
-                <!-- Top Navigation & Progress Header -->
+                
                 <div class="q-top-nav-bar">
                     <button class="q-top-back-btn" id="btnQBack" type="button" title="Go Back">
                         <i class="fas fa-arrow-left"></i> <span>Back</span>
@@ -744,7 +734,6 @@
                         <div class="q8-selection-status" id="q8Status"></div>
                     </div>
 
-
                     <!-- Q9: Mobile Number -->
                     <div class="question-card" data-q="9">
                         <div class="q-icon"><i class="fas fa-mobile-alt"></i></div>
@@ -771,10 +760,7 @@
         </div>
     </section>
 
-
-    <!-- ═══════════════════════════════════════════════════════
-         STEP 3: RESULTS
-    ═══════════════════════════════════════════════════════ -->
+    
     <section class="scanner-section hidden" id="step3">
         <div class="scanner-container">
             <div class="section-intro">
@@ -785,7 +771,7 @@
             <!-- Results card -->
             <div class="results-card" id="resultsCard">
 
-                <!-- Loading state (Heavy Deep Clinical Scan) -->
+                
                 <div class="results-loading" id="resultsLoading">
                     <div class="heavy-hologram-spinner">
                         <div class="holo-ring holo-outer"></div>
@@ -798,7 +784,7 @@
                     <h3 class="deep-scan-heading">Neural Diagnostic Analysis in Progress</h3>
                     <p class="deep-scan-subheading">Processing dermal matrix, follicle density &amp; clinical specialist matching</p>
 
-                    <!-- Heavy Progress Meter -->
+                    
                     <div class="heavy-progress-container">
                         <div class="heavy-progress-bar-track">
                             <div class="heavy-progress-bar-fill" id="heavyProgressFill"></div>
@@ -859,7 +845,7 @@
                         <ul class="observations-list" id="observationsList"></ul>
                     </div>
 
-                    <!-- Confidence Score Ring (NEW) -->
+                    
                     <div class="confidence-ring-wrap" id="confidenceRingWrap">
                         <h4><i class="fas fa-chart-bar"></i> AI Confidence Metrics</h4>
                         <div class="confidence-ring-row">
@@ -964,7 +950,7 @@
                         </button>
                     </div>
 
-                    <!-- Extra Actions: Share + Download Report (NEW) -->
+                    
                     <div class="results-extra-actions">
                         <button class="btn-share" id="btnShareResult" title="Share your assessment summary">
                             <i class="fas fa-share-alt"></i> Share Summary
@@ -1003,7 +989,7 @@
         </div>
     </section>
 
-            <!-- hidden canvas + file input live inside modal so they are accessible to JS -->
+            
             <input type="file" id="photoUpload" accept="image/*" capture="user" style="display:none;">
             <canvas id="captureCanvas" style="display:none"></canvas>
 
@@ -1011,9 +997,7 @@
         </div><!-- /#scannerModal -->
     </div><!-- /#scannerModalOverlay -->
 
-    <!-- ═══════════════════════════════════════════════════════
-         HOW IT WORKS SECTION
-    ═══════════════════════════════════════════════════════ -->
+    
     <section class="how-it-works">
         <div class="scanner-container">
             <div class="section-intro">
@@ -1045,9 +1029,7 @@
         </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════
-         FOOTER
-    ═══════════════════════════════════════════════════════ -->
+    
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -1096,7 +1078,7 @@
     <!-- Floating Toast Notification -->
     <div id="scannerToast" class="scanner-toast"></div>
 
-    <!-- Session Auto-Save Banner (NEW) -->
+    
     <div id="sessionSaveBanner" class="session-save-banner">
         <i class="fas fa-cloud-upload-alt"></i>
         <span>Progress saved</span>

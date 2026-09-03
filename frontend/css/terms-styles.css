@@ -27,7 +27,6 @@ body {
     overflow-x: hidden;
 }
 
-
 /* Social Sidebar */
 
 .social-sidebar {
@@ -127,7 +126,6 @@ h6 {
     padding: 0 20px;
 }
 
-
 /* Navigation */
 
 .navbar {
@@ -196,7 +194,6 @@ h6 {
     box-shadow: var(--shadow);
 }
 
-
 /* Terms Hero Section */
 
 .terms-hero-section {
@@ -240,7 +237,6 @@ h6 {
     margin: 0 auto;
     animation: fadeUp 1s ease 0.6s both;
 }
-
 
 /* Main Content */
 
@@ -310,7 +306,6 @@ h6 {
     font-weight: 600;
 }
 
-
 /* Checkmark List */
 
 .checkmark-list {
@@ -334,7 +329,6 @@ h6 {
     font-size: 18px;
 }
 
-
 /* Contact Info */
 
 .contact-info {
@@ -356,7 +350,6 @@ h6 {
     color: var(--text-gray);
 }
 
-
 /* Last Updated */
 
 .last-updated {
@@ -370,7 +363,6 @@ h6 {
     font-style: italic;
     font-size: 14px;
 }
-
 
 /* Footer */
 
@@ -427,7 +419,6 @@ h6 {
     color: var(--white);
 }
 
-
 /* Scroll to Top Button */
 
 .scroll-to-top {
@@ -460,7 +451,6 @@ h6 {
     color: var(--white);
     transform: translateY(-3px);
 }
-
 
 /* Table of Contents (Optional) */
 
@@ -497,7 +487,6 @@ h6 {
 .table-of-contents a:hover {
     color: var(--primary);
 }
-
 
 /* Animations */
 
@@ -542,7 +531,6 @@ h6 {
         width: 80px;
     }
 }
-
 
 /* Responsive Design */
 
@@ -610,7 +598,6 @@ h6 {
     }
 }
 
-
 /* Print Styles */
 
 @media print {
@@ -640,7 +627,7 @@ h6 {
         line-height: 1.6;
     }
 }
-/* ── AI Scanner Nav Link ──────────────────────────────────── */
+
 .nav-scanner-link {
     color: #c9972a !important;
     font-weight: 600 !important;
@@ -650,8 +637,6 @@ h6 {
     padding: 4px 10px !important;
 }
 
-
-/* ── NAV OVERFLOW FIX: All 8 items on one line ───────────── */
 .nav-container {
     max-width: 1400px !important;
     padding: 0 14px !important;
@@ -708,11 +693,6 @@ h6 {
     }
 }
 
-
-
-/* ═══════════════════════════════════════════════════════════════════
-   SEO Semantic Elements Styling
-   ═══════════════════════════════════════════════════════════════════ */
 .footer-column .footer-nav-title,
 p.footer-nav-title {
     font-family: 'Playfair Display', serif;

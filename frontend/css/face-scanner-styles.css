@@ -1,10 +1,5 @@
-/* ═══════════════════════════════════════════════════════════════
-   face-scanner-styles.css
-   Kezza AI Face Scanner — Premium Dark UI
-   Design: Deep Navy + Gold | Glassmorphism | Micro-animations
-═══════════════════════════════════════════════════════════════ */
 
-/* ── CSS Variables ─────────────────────────────────────────── */
+
 :root {
     --navy-900: #060d1f;
     --navy-800: #0b1630;
@@ -38,7 +33,6 @@
     --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ── Reset & Base ──────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -49,7 +43,6 @@ body {
     min-height: 100vh;
 }
 
-/* ── Shared Navbar (matches site) ──────────────────────────── */
 .navbar {
     position: fixed;
     top: 0;
@@ -119,7 +112,6 @@ body {
     transition: var(--transition);
 }
 
-/* ── Shared Utilities ──────────────────────────────────────── */
 .gold-text { color: var(--gold-400); }
 .hidden { display: none !important; }
 
@@ -144,7 +136,6 @@ body {
     margin: 0 auto;
 }
 
-/* ── Shared Buttons ────────────────────────────────────────── */
 .btn-scanner-primary,
 .btn-scanner-secondary,
 .btn-scanner-gold {
@@ -200,12 +191,10 @@ body {
     transform: none;
 }
 
-/* ── Social Sidebar (Hidden on dedicated AI scanner tool view) ── */
 .social-sidebar {
     display: none !important;
 }
 
-/* ── Footer (matches site) ─────────────────────────────────── */
 .footer {
     background: var(--navy-800);
     border-top: 1px solid var(--glass-border);
@@ -240,9 +229,6 @@ body {
     font-size: 0.83rem;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   SCANNER HERO
-══════════════════════════════════════════════════════════════ */
 .scanner-hero {
     min-height: 100vh;
     display: flex;
@@ -301,7 +287,6 @@ body {
 }
 .hero-disclaimer i { color: var(--info); font-size: 0.9rem; margin-top: 2px; flex-shrink: 0; }
 
-/* ── Hero Visual / Orbital ──────────────────────────────────── */
 .scanner-hero-visual {
     flex: 0 0 420px;
     display: flex;
@@ -365,9 +350,6 @@ body {
 @keyframes orbit-float3 { 0%,100% { bottom: 10px; left: 50%; } 25% { bottom: 50%; left: 5%; } 50% { bottom: 90%; left: 50%; } 75% { bottom: 50%; left: 95%; } }
 @keyframes orbit-float4 { 0%,100% { left: 10px; top: 50%; } 25% { left: 50%; top: 10%; } 50% { left: 90%; top: 50%; } 75% { left: 50%; top: 90%; } }
 
-/* ══════════════════════════════════════════════════════════════
-   STEP INDICATOR
-══════════════════════════════════════════════════════════════ */
 .steps-indicator {
     display: flex;
     align-items: center;
@@ -430,12 +412,8 @@ body {
 }
 .step-line.completed { background: linear-gradient(90deg, var(--success), rgba(34,197,94,0.3)); }
 
-/* ══════════════════════════════════════════════════════════════
-   STEP 1 — CAPTURE
-══════════════════════════════════════════════════════════════ */
 #step1 { background: var(--navy-900); }
 
-/* ─── CAPTURE SUB-STATES (STATE 1 & STATE 2) ────────────────────────── */
 .capture-substate {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -443,7 +421,6 @@ body {
     display: none !important;
 }
 
-/* ═══ STATE 1: PRE-CAPTURE INSTRUCTIONS ═══════════════════════════════ */
 .instructions-wrapper {
     max-width: 640px;
     margin: 0 auto;
@@ -595,7 +572,6 @@ body {
     background: rgba(255, 255, 255, 0.05);
 }
 
-/* ═══ STATE 2: LIVE CAMERA WITH CIRCULAR GUIDE & PILLS ════════════════ */
 .live-camera-layout {
     max-width: 480px;
     margin: 0 auto;
@@ -977,7 +953,6 @@ body {
     backdrop-filter: blur(4px);
 }
 
-/* ─── AUTO-CAPTURE COUNTDOWN OVERLAY ─────────────────────────── */
 .auto-capture-overlay {
     position: absolute;
     inset: 0;
@@ -1044,7 +1019,6 @@ body {
     transition: box-shadow 0.3s ease;
 }
 
-/* ─── HEAVY BIOMETRIC HUD RETICLE & TELEMETRY ──────────────────────── */
 .camera-reticle-ring {
     position: absolute;
     width: 360px;
@@ -1151,7 +1125,6 @@ body {
     white-space: nowrap;
 }
 
-/* ─── HEAVY MULTI-PHASE SCANNER OVERLAY & HOLOGRAM ──────────────────── */
 .analysis-overlay {
     position: absolute;
     inset: 0;
@@ -1274,7 +1247,6 @@ body {
     line-height: 1.4;
 }
 
-/* ─── STEP 3 RESULTS LOADING (HEAVY CLINICAL HOLOGRAM) ──────────────── */
 .heavy-hologram-spinner {
     position: relative;
     width: 120px;
@@ -1479,9 +1451,6 @@ body {
 
 #btnProceed { width: 100%; justify-content: center; }
 
-/* ══════════════════════════════════════════════════════════════
-   STEP 2 — QUESTIONS
-══════════════════════════════════════════════════════════════ */
 #step2 {
     background: linear-gradient(180deg, var(--navy-900), var(--navy-800));
 }
@@ -1592,7 +1561,6 @@ body {
 }
 .answer-btn.selected i { color: var(--gold-400); }
 
-/* ── Text Input Questions ─────────────────────────────────── */
 .input-question-wrap {
     width: 100%;
     max-width: 480px;
@@ -1645,7 +1613,6 @@ body {
     font-size: 0.95rem;
 }
 
-/* ── Clinic Choice Grid ───────────────────────────────────── */
 .clinic-choice-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -1732,7 +1699,6 @@ body {
     transform: scale(1.1);
 }
 
-/* ── Phone Input ─────────────────────────────────────────── */
 .q-sub {
     font-size: 0.88rem;
     color: var(--text-secondary);
@@ -1782,7 +1748,6 @@ body {
     gap: 0.4rem;
 }
 
-/* ── Patient Summary Block in Results ────────────────────── */
 .patient-summary-block {
     padding: 1.5rem 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -1874,9 +1839,6 @@ body {
 }
 #btnAnalyse { padding: 0.85rem 2rem; }
 
-/* ══════════════════════════════════════════════════════════════
-   STEP 3 — RESULTS
-══════════════════════════════════════════════════════════════ */
 #step3 { background: var(--navy-900); }
 
 .results-card {
@@ -2195,9 +2157,6 @@ body {
 .results-disclaimer i { color: var(--info); font-size: 0.85rem; margin-top: 2px; flex-shrink: 0; }
 .results-disclaimer strong { color: var(--text-secondary); }
 
-/* ══════════════════════════════════════════════════════════════
-   HOW IT WORKS
-══════════════════════════════════════════════════════════════ */
 .how-it-works {
     background: var(--navy-800);
     padding: 5rem 1.5rem;
@@ -2268,9 +2227,6 @@ body {
     padding: 0 0.5rem;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
     .scanner-hero {
         flex-direction: column;
@@ -2318,8 +2274,6 @@ body {
     .hamburger { display: flex; }
 }
 
-
-/* ── NAV OVERFLOW FIX: All 8 items on one line ───────────── */
 .nav-container {
     max-width: 1400px !important;
     padding: 0 14px !important;
@@ -2354,8 +2308,6 @@ body {
     padding: 3px 7px !important;
 }
 
-
-/* ── Q8 Date Picker Styles ──────────────────────────────────────── */
 .date-picker-wrap {
     margin-bottom: 0.4rem;
     background: rgba(255,255,255,0.04);
@@ -2443,7 +2395,6 @@ body {
     box-shadow: 0 0 12px rgba(201, 168, 76, 0.25);
 }
 
-/* ── Floating Toast Notification ───────────────────────────────── */
 .scanner-toast {
     position: fixed;
     bottom: 30px;
@@ -2479,7 +2430,6 @@ body {
     font-size: 1.2rem;
 }
 
-/* ── Session Auto-Save Banner ──────────────────────────────────── */
 .session-save-banner {
     position: fixed;
     top: 85px;
@@ -2514,7 +2464,6 @@ body {
     font-size: 0.85rem;
 }
 
-/* ── Question Top Nav & Progress Block ─────────────────────────── */
 .q-top-nav-bar {
     display: flex;
     align-items: center;
@@ -2555,7 +2504,6 @@ body {
     max-width: 320px;
 }
 
-/* ── AI Confidence Score Ring Block ────────────────────────────── */
 .confidence-ring-wrap {
     padding: 1.5rem 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -2679,7 +2627,6 @@ body {
     text-align: right;
 }
 
-/* ── Results Extra Actions ─────────────────────────────────────── */
 .results-extra-actions {
     display: flex;
     align-items: center;
@@ -2763,12 +2710,6 @@ body {
     font-weight: 700;
 }
 
-
-
-
-/* ═══════════════════════════════════════════════════════════════════
-   SEO Semantic Elements Styling
-   ═══════════════════════════════════════════════════════════════════ */
 .footer-column .footer-nav-title,
 p.footer-nav-title {
     font-family: 'Playfair Display', serif;
@@ -2803,10 +2744,6 @@ p.section-subhead {
     margin-bottom: 0.75rem;
     color: inherit;
 }
-
-/* ═══════════════════════════════════════════════════════════════════
-   SCANNER MODAL — OVERLAY + CARD
-═══════════════════════════════════════════════════════════════════ */
 
 /* Overlay backdrop */
 .scanner-modal-overlay {
@@ -2926,9 +2863,6 @@ p.section-subhead {
     height: calc(min(72vw, 310px) + 50px);
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   MOBILE — bottom-sheet style (<768px)
-═══════════════════════════════════════════════════════════════════ */
 @media (max-width: 767px) {
     .scanner-modal-overlay { align-items: flex-end; }
     .scanner-modal {

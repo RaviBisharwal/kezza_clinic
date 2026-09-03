@@ -26,7 +26,6 @@ body {
     overflow-x: hidden;
 }
 
-
 /* Social Sidebar - Ultra Visible Luxury Glass */
 
 .social-sidebar {
@@ -140,7 +139,6 @@ h6 {
     padding: 0 20px;
 }
 
-
 /* Navigation */
 
 .navbar {
@@ -208,7 +206,6 @@ h6 {
     transform: translateY(-2px);
     box-shadow: var(--shadow);
 }
-
 
 /* Section 1: About Hero */
 
@@ -280,7 +277,6 @@ h6 {
     pointer-events: none;
 }
 
-
 /* Section 2: Our Story */
 
 .story-section {
@@ -321,7 +317,6 @@ h6 {
     border-radius: 15px;
     box-shadow: var(--shadow);
 }
-
 
 /* Section 3: Video Section 1 */
 
@@ -366,7 +361,6 @@ h6 {
     font-style: italic;
     color: var(--light-gold);
 }
-
 
 /* Section 4: Vision & Values */
 
@@ -441,11 +435,6 @@ h6 {
     line-height: 1.6;
 }
 
-
-/* ─── Doctors Section is centrally styled in doctors-landscape.css ─── */
-
-
-
 /* Section 6: Video Section 2 */
 
 .video-section-2 {
@@ -503,7 +492,6 @@ h6 {
     font-weight: 500;
 }
 
-
 /* Section 7: Technology */
 
 .technology-section {
@@ -558,7 +546,6 @@ h6 {
     padding: 0 25px 25px;
     line-height: 1.6;
 }
-
 
 /* Section 8: Client Reviews */
 
@@ -709,7 +696,6 @@ h6 {
     transform: translateY(-2px);
 }
 
-
 .contact-cta-section {
     padding: 100px 0;
     background: var(--primary-gradient);
@@ -791,7 +777,6 @@ h6 {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
-
 /* Footer */
 
 .footer {
@@ -842,7 +827,6 @@ h6 {
     padding-top: 20px;
     border-top: 1px solid rgba(212, 175, 55, 0.3);
 }
-
 
 /* Animations */
 
@@ -954,7 +938,6 @@ h6 {
     }
 }
 
-
 /* Responsive Design */
 
 @media (max-width: 768px) {
@@ -1036,7 +1019,7 @@ h6 {
         font-size: 32px;
     }
 }
-/* ── AI Scanner Nav Link ──────────────────────────────────── */
+
 .nav-scanner-link {
     color: #c9972a !important;
     font-weight: 600 !important;
@@ -1046,8 +1029,6 @@ h6 {
     padding: 4px 10px !important;
 }
 
-
-/* ── NAV OVERFLOW FIX: All 8 items on one line ───────────── */
 .nav-container {
     max-width: 1400px !important;
     padding: 0 14px !important;
@@ -1082,11 +1063,6 @@ h6 {
     padding: 3px 7px !important;
 }
 
-
-
-/* ═══════════════════════════════════════════════════════════════════
-   SEO Semantic Elements Styling
-   ═══════════════════════════════════════════════════════════════════ */
 .footer-column .footer-nav-title,
 p.footer-nav-title {
     font-family: 'Playfair Display', serif;

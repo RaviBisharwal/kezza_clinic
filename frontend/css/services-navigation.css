@@ -1,10 +1,5 @@
-/* ═══════════════════════════════════════════════════════════════════
-   KEZZA HAIR & SKIN CLINIC — ACCORDION SERVICES DROPDOWN
-   Style: Minimal, WhatsApp "Features" Style Narrow Card with Expandable Sub-Branches
-   Accents: Kezza Teal (#00AFC0 / #008F9C) • Gold (#C9A227) • WhatsApp Green (#22C55E)
-   ═══════════════════════════════════════════════════════════════════ */
 
-/* ── 1. GLOBAL NAVBAR REFINEMENTS ────────────────────────────────── */
+
 .navbar {
     position: fixed;
     top: 0;
@@ -47,7 +42,6 @@
     transform: scale(1.02);
 }
 
-/* ── 2. NAVBAR MENU & HOME ACTIVE INDICATOR ──────────────────────── */
 .nav-menu {
     display: flex;
     list-style: none;
@@ -126,7 +120,6 @@
     background: rgba(0, 175, 192, 0.12) !important;
 }
 
-/* ── 3. SERVICES TOGGLE BUTTON ───────────────────────────────────── */
 .nav-item-services-dropdown,
 .nav-item-services-mega {
     position: relative;
@@ -181,7 +174,6 @@
     transform: rotate(180deg);
 }
 
-/* ── 4. NARROW ROUNDED WHITE DROPDOWN CARD (DESKTOP) ─────────────── */
 .services-dropdown-menu,
 .services-mega-menu {
     position: absolute;
@@ -245,7 +237,6 @@
     transform: translateY(4px);
 }
 
-/* ── 5. ACCORDION CATEGORY ITEMS & SUB-BRANCHES ──────────────────── */
 .services-dropdown-list {
     list-style: none;
     margin: 0;
@@ -391,7 +382,6 @@
     transform: translateX(3px);
 }
 
-/* ── 6. NAVBAR CTA BUTTONS ───────────────────────────────────────── */
 .nav-cta {
     display: flex;
     align-items: center;
@@ -449,7 +439,6 @@
     transform: translateY(-1px);
 }
 
-/* ── 7. RESPONSIVE TABLET & MOBILE BEHAVIOR ───────────────────────── */
 @media (max-width: 992px) {
     .nav-container {
         padding: 0 16px;

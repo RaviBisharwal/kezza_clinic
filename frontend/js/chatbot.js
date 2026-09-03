@@ -1,5 +1,4 @@
 // ============================================
-// KEZZA AI — ULTRA-FAST & LIGHTWEIGHT CONVERSATION & VALIDATION SYSTEM
 // High-Speed Deterministic State Machine, Pre-compiled RegExes & Instant UI
 // Priority: ACCURACY > SAFETY > CORRECT INTENT > CORRECT DATA > SPEED
 // Clinic Locations: Jaipur & Sikar ONLY
@@ -47,7 +46,6 @@
     // BOTOX = SKIN | GLUTATHIONE = SKIN | DARK CIRCLE = SKIN
     // ============================================
     const STRICT_INTENT_TAXONOMY = {
-        // ── SKIN INTENTS (route to: 9216063686) ──────────────────────────
         MEDICAL_FACIAL: {
             category: 'SKIN',
             label: 'Medical Facial',
@@ -111,7 +109,6 @@
             triggers_hi: ['anti aging chahiye', 'anti aging treatment', 'wrinkles hain', 'jhurriya hain', 'face tight karna'],
             defaultMsg: 'Hello Kezza Anti-Aging Team, I would like to book a consultation for anti-aging treatment.'
         },
-        // ── PMU INTENTS (route to: 9079161300) ────────────────────────────
         // PMU = COSMETIC PERMANENT MAKEUP ONLY (eyebrows, lips, eyeliner)
         // NOT: beard, scalp, stretch marks, body
         EYEBROW_PMU: {
@@ -150,7 +147,6 @@
             triggers_hi: ['beauty spot chahiye', 'beauty mark lagwana hai'],
             defaultMsg: 'Hello Dr. Krishna Choudhary PMU Team, I would like to book a consultation for Beauty Spot.'
         },
-        // ── SMP INTENTS (route to: 9079161300 — SMP dept) ─────────────────
         // SMP = SCALP / HAIRLINE micropigmentation ONLY
         SMP: {
             category: 'SMP',
@@ -161,7 +157,6 @@
             triggers_hi: ['scalp micropigmentation chahiye', 'smp karwana hai', 'scalp pigmentation chahiye'],
             defaultMsg: 'Hello Kezza SMP Team, I would like to book a consultation for Scalp Micropigmentation (SMP).'
         },
-        // ── BEARD MICROPIGMENTATION — NOT PMU, NOT SMP ────────────────────
         BEARD_MICROPIGMENTATION: {
             category: 'BEARD_MICROPIGMENTATION',
             label: 'Beard Micropigmentation',
@@ -171,7 +166,6 @@
             triggers_hi: ['beard micropigmentation chahiye', 'beard pigmentation karwana', 'dadhi micropigmentation'],
             defaultMsg: null
         },
-        // ── STRETCH MARK / SCAR CAMOUFLAGE (route to SMP dept) ────────────
         STRETCH_MARK: {
             category: 'SMP',
             label: 'Stretch Mark Camouflage',
@@ -282,7 +276,7 @@
     };
 
     // ============================================
-    // VERIFIED SPECIALIST DIRECTORY (Kezza AI Routing)
+    // VERIFIED SPECIALIST DIRECTORY
     // ============================================
     const SPECIALISTS = {
         dr_ankit: {
@@ -399,7 +393,7 @@
     ];
 
     // ============================================
-    // SYSTEM PROMPT FOR LLM — KEZZA AI PRODUCTION-GRADE PATIENT ASSISTANT
+    // SYSTEM PROMPT
     // ============================================
     const SYSTEM_PROMPT = `
 You are Kezza AI, the official AI patient-assistance chatbot for Kezza Hair & Skin Clinic.
@@ -588,7 +582,6 @@ Beard Micropigmentation: "Beard Micropigmentation PMU se alag category hai. Veri
 Dental: "Dr. Dhiral Vijayvargiya relevant hain. Verified dental number abhi available nahi hai."
 `;
 
-
     // ============================================
     // STATE & CONFIGURATION
     // ============================================
@@ -604,7 +597,7 @@ Dental: "Dr. Dhiral Vijayvargiya relevant hain. Verified dental number abhi avai
         messageCount: 0,
         hasGreeted: false,
         tooltipDismissed: false,
-        apiKey: '', // Deprecated: Gemini key is now server-side only
+        apiKey: '',
         voiceEnabled: (typeof localStorage !== 'undefined') ? localStorage.getItem('kezza_voice_enabled') === 'true' : false,
         isListening: false,
         isProcessing: false, // Prevents duplicate sends
@@ -742,7 +735,7 @@ Dental: "Dr. Dhiral Vijayvargiya relevant hain. Verified dental number abhi avai
         const statusEl = document.getElementById('kezzaHeaderStatus');
         if (!statusEl) return;
 
-        // Kezza AI is always available 24/7.
+        // Service is available 24/7.
         // The green dot never goes offline — only the consultation *team* has business hours.
         // That distinction is communicated in the greeting message, not the header status.
         const timeInfo = getISTTimeInfo();
@@ -750,12 +743,10 @@ Dental: "Dr. Dhiral Vijayvargiya relevant hain. Verified dental number abhi avai
             statusEl.innerHTML = `<span class="kezza-status-dot online"></span> <span><strong>Online</strong> — Consultation team available 9 AM – 8 PM</span>`;
             statusEl.setAttribute('aria-label', 'Online. Consultation team available 9:00 AM to 8:00 PM IST Monday to Saturday');
         } else {
-            // AI is still online; surface the team's next availability as secondary info
             statusEl.innerHTML = `<span class="kezza-status-dot online"></span> <span><strong>Online</strong> — Consultation team available from 9:00 AM</span>`;
-            statusEl.setAttribute('aria-label', 'Online. AI available 24/7. Consultation team available from 9:00 AM IST');
+            statusEl.setAttribute('aria-label', 'Online. Consultation team available from 9:00 AM IST');
         }
     }
-
 
     function getGreetingResponse(lang) {
         const timeInfo = getISTTimeInfo();
@@ -2969,7 +2960,7 @@ Please contact the patient for further consultation and appointment confirmation
     }
 
     // ============================================
-    // FAST & LIGHTWEIGHT GEMINI LLM CALL (With Timeout)
+    // ONLINE QUERY API CALL
     // ============================================
     async function callGeminiAPI(userText) {
         if (state.geminiAvailable === false) return null;
@@ -3064,7 +3055,7 @@ Please contact the patient for further consultation and appointment confirmation
     }
 
     // ============================================
-    // 12c. SMART CAMERA & AI PHOTO VISION ENGINE
+    // 12c. CAMERA & PHOTO UPLOAD ENGINE
     // ============================================
     function checkPhotoAnalysisTrigger(userText, norm, lower) {
         if (!userText || typeof userText !== 'string') return false;
@@ -4637,7 +4628,7 @@ Please guide me on next steps and appointment availability.
             };
         }
 
-        // Call Real Vision AI Backend Endpoint (/api/analyze-photo)
+        // Call Backend Endpoint (/api/analyze-photo)
         if (!result) {
             showTypingIndicator();
             try {
@@ -4667,7 +4658,7 @@ Please guide me on next steps and appointment availability.
 
         removeTypingIndicator();
 
-        // If Vision API is not configured with GEMINI_API_KEY
+        // If service is not configured
         if (result && result.status === 'NO_GEMINI_KEY') {
             const noKeyCard = `
 <div class="kezza-photo-card" style="border-left:4px solid #f59e0b;">
@@ -4760,7 +4751,7 @@ Please guide me on next steps and appointment availability.
             return startConsultationFlow(bookingParams.category, bookingParams.treatment, bookingParams.clinic, bookingParams.specialist, lang);
         }
 
-        // 1c. AI SCANNER DIRECT TRIGGER
+        // 1c. SCANNER DIRECT TRIGGER
         if (
             lower.includes('scanner') ||
             lower.includes('face scan') ||
@@ -4974,8 +4965,6 @@ Please guide me on next steps and appointment availability.
             const pmuBtn = createSpecialistWhatsAppButtonHtml('dr_krishna', taxonomy.defaultMsg, lang);
             const smpPhone = DEPARTMENTS.smp_stretchmark.phone;
             const smpBtn = createWhatsAppButtonHtml('smp_stretchmark', taxonomy.defaultMsg, lang);
-
-            // ── BEARD MICROPIGMENTATION — separate, no auto-PMU route ──────
             if (intentKey === 'BEARD_MICROPIGMENTATION') {
                 state.lastConcern = 'Beard Micropigmentation';
                 if (lang === 'hinglish') {
@@ -4995,8 +4984,6 @@ Please guide me on next steps and appointment availability.
                     quickReplies: ['💬 Contact Kezza Team', '📅 Book Consultation', '🎨 SMP (Scalp Micropigmentation)', '📍 Clinic Locations']
                 };
             }
-
-            // ── SKIN intents: Medical Facial, Botox, Glutathione, Dark Circle, Acne Scar, Skin Pigmentation ──
             if (taxonomy.category === 'SKIN') {
                 state.lastConcern = taxonomy.label;
                 const label = taxonomy.label;
@@ -5017,8 +5004,6 @@ Please guide me on next steps and appointment availability.
                     quickReplies: ['📅 Book Skin Consultation', 'Chat with Skin Team', '📍 Clinic Locations']
                 };
             }
-
-            // ── PMU intents: Eyebrow PMU, Lip PMU, Eyeliner, Beauty Spot ────
             if (taxonomy.category === 'PMU') {
                 state.lastConcern = taxonomy.label;
                 if (lang === 'hinglish') {
@@ -5038,8 +5023,6 @@ Please guide me on next steps and appointment availability.
                     quickReplies: ['📅 Book PMU Consultation', '📍 Clinic Locations']
                 };
             }
-
-            // ── SMP intents: Scalp Micropigmentation, Stretch Marks, Scar Camouflage ──
             if (taxonomy.category === 'SMP') {
                 state.lastConcern = taxonomy.label;
                 if (lang === 'hinglish') {
@@ -5668,7 +5651,6 @@ Please guide me on next steps and appointment availability.
         document.getElementById('kezzaChatMinimize').addEventListener('click', closeChat, { passive: true });
         document.getElementById('kezzaChatSend').addEventListener('click', sendUserMessage);
 
-
         const chatInputEl = document.getElementById('kezzaChatInput');
 
         // Real-time input filter: digits only in WhatsApp state
@@ -5778,13 +5760,10 @@ Please guide me on next steps and appointment availability.
         setInterval(updateBusinessHoursHeaderStatus, 30000);
 
         initSpeechRecognition();
-
-        // ── Initialize AI Scanner Opportunity Modal ──────────────────
         createScannerPromoModal();
     }
 
     // ============================================
-    // KEZZA AI FACE & HAIR SCANNER OPPORTUNITY MODAL
     // ============================================
     function createScannerPromoModal() {
         const currentPath = (typeof window !== 'undefined' && window.location ? window.location.pathname.toLowerCase() : '');
@@ -6044,7 +6023,7 @@ Please guide me on next steps and appointment availability.
                 if (isBooking || strictMatch || state.geminiAvailable === false) {
                     response = await generateLocalResponse(text);
                 } else {
-                    // 3. Fallback to Gemini proxy with 1.8s timeout
+                    // 3. Fallback request with 1.8s timeout
                     response = await callGeminiAPI(text);
                     if (!response) {
                         response = await generateLocalResponse(text);

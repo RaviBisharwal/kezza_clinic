@@ -25,7 +25,6 @@ body {
     overflow-x: hidden;
 }
 
-
 /* Social Sidebar - Ultra Visible Luxury Glass */
 
 .social-sidebar {
@@ -1165,7 +1164,7 @@ h1, h2, h3, h4, h5, h6 {
         padding: 60px 0;
     }
 }
-/* ── AI Scanner Nav Link ──────────────────────────────────── */
+
 .nav-scanner-link {
     color: #c9972a !important;
     font-weight: 600 !important;
@@ -1175,8 +1174,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 4px 10px !important;
 }
 
-
-/* ── NAV OVERFLOW FIX: All 8 items on one line ───────────── */
 .nav-container {
     max-width: 1400px !important;
     padding: 0 14px !important;
@@ -1210,10 +1207,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.76rem !important;
     padding: 3px 7px !important;
 }
-
-/* ═══════════════════════════════════════════════════════════════
-   HAIR LOSS SCALE & NORWOOD CLINICAL ANALYSIS SECTION
-   ═══════════════════════════════════════════════════════════════ */
 
 .hair-loss-scale-section {
     padding: 100px 0 90px;
@@ -1272,7 +1265,6 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
 }
 
-/* ── Norwood Scale Cards Grid ────────────────────────────────── */
 .norwood-scale-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1415,7 +1407,6 @@ h1, h2, h3, h4, h5, h6 {
 .tag-red { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
 .tag-crimson { background: rgba(185, 28, 28, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
 
-/* ── Statistics Row with Radial Gauges (Prevents SVG Blowout) ─ */
 .hls-stats-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1492,7 +1483,6 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.45;
 }
 
-/* ── Cause Breakdown Bar Chart ───────────────────────────────── */
 .hls-causes {
     background: rgba(15, 23, 42, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1576,7 +1566,6 @@ h1, h2, h3, h4, h5, h6 {
     text-align: right;
 }
 
-/* ── CTA Block ───────────────────────────────────────────────── */
 .hls-cta-block {
     background: linear-gradient(135deg, rgba(201, 168, 76, 0.15) 0%, rgba(15, 23, 42, 0.9) 100%);
     border: 1.5px solid rgba(201, 168, 76, 0.45);
@@ -1674,7 +1663,6 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
 }
 
-/* ── Procedure Info Badges ───────────────────────────────────── */
 .procedure-info {
     display: flex;
     align-items: center;
@@ -1701,7 +1689,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.85rem;
 }
 
-/* ── Responsive Rules for Hair Loss Scale ────────────────────── */
 @media (max-width: 992px) {
     .hls-stats-row {
         grid-template-columns: repeat(2, 1fr);
@@ -1739,11 +1726,6 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-
-
-/* ═══════════════════════════════════════════════════════════════════
-   SEO Semantic Elements Styling
-   ═══════════════════════════════════════════════════════════════════ */
 .footer-column .footer-nav-title,
 p.footer-nav-title {
     font-family: 'Playfair Display', serif;

@@ -27,7 +27,6 @@ body {
     overflow-x: hidden;
 }
 
-
 /* Social Sidebar - Ultra Visible Luxury Glass */
 
 .social-sidebar {
@@ -141,7 +140,6 @@ h6 {
     padding: 0 20px;
 }
 
-
 /* Navigation */
 
 .navbar {
@@ -209,7 +207,6 @@ h6 {
     transform: translateY(-2px);
     box-shadow: var(--shadow);
 }
-
 
 /* Section 1: Skin Hero */
 
@@ -350,7 +347,6 @@ h6 {
     pointer-events: none;
 }
 
-
 /* Section 2: Video Introduction */
 
 .video-intro-section {
@@ -405,7 +401,6 @@ h6 {
     margin: 0 auto;
     line-height: 1.8;
 }
-
 
 /* Service Sections Common Styles */
 
@@ -549,7 +544,6 @@ h6 {
     font-size: 14px;
 }
 
-
 /* Section 3: Hydra Facial */
 
 .hydra-facial-section {
@@ -560,7 +554,6 @@ h6 {
     background-attachment: fixed;
     position: relative;
 }
-
 
 /* Section 4: Acne Treatment */
 
@@ -589,7 +582,6 @@ h6 {
     z-index: -1;
     opacity: 0.1;
 }
-
 
 /* Section 5: Laser Hair Removal - 3D Card Between Layout */
 
@@ -733,7 +725,6 @@ h6 {
     }
 }
 
-
 /* Section 6: Pigmentation */
 
 .pigmentation-section {
@@ -809,7 +800,6 @@ h6 {
     line-height: 1.6;
 }
 
-
 /* Section 7: Anti-Aging */
 
 .anti-aging-section {
@@ -833,7 +823,6 @@ h6 {
     pointer-events: none;
 }
 
-
 /* Section 8: Stretch Mark */
 
 .stretch-mark-section {
@@ -844,7 +833,6 @@ h6 {
     background-attachment: fixed;
     position: relative;
 }
-
 
 /* Section 9: Medical Dermatology */
 
@@ -898,7 +886,6 @@ h6 {
     line-height: 1.6;
 }
 
-
 /* Section 10: Transformation Video */
 
 .transformation-video-section {
@@ -924,7 +911,6 @@ h6 {
 .video-container.cinematic:hover {
     animation: goldShimmer 2s ease infinite;
 }
-
 
 /* Section 11: Treatment Process */
 
@@ -995,7 +981,6 @@ h6 {
     margin-bottom: 10px;
 }
 
-
 /* Section 12: FAQs */
 
 .faq-section {
@@ -1062,7 +1047,6 @@ h6 {
     line-height: 1.8;
 }
 
-
 /* Section 13: Final CTA */
 
 .final-cta-section {
@@ -1100,7 +1084,6 @@ h6 {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
-
 
 /* Footer */
 
@@ -1152,7 +1135,6 @@ h6 {
     padding-top: 20px;
     border-top: 1px solid rgba(212, 175, 55, 0.3);
 }
-
 
 /* Animations */
 
@@ -1307,7 +1289,6 @@ h6 {
     }
 }
 
-
 /* Mobile Menu Toggle */
 
 .hamburger {
@@ -1323,7 +1304,6 @@ h6 {
     background: var(--secondary);
     transition: all 0.3s ease;
 }
-
 
 /* Responsive Design */
 
@@ -1420,7 +1400,7 @@ h6 {
         font-size: 28px;
     }
 }
-/* ── AI Scanner Nav Link ──────────────────────────────────── */
+
 .nav-scanner-link {
     color: #c9972a !important;
     font-weight: 600 !important;
@@ -1430,8 +1410,6 @@ h6 {
     padding: 4px 10px !important;
 }
 
-
-/* ── NAV OVERFLOW FIX: All 8 items on one line ───────────── */
 .nav-container {
     max-width: 1400px !important;
     padding: 0 14px !important;
@@ -1466,11 +1444,6 @@ h6 {
     padding: 3px 7px !important;
 }
 
-
-
-/* ═══════════════════════════════════════════════════════════════════
-   SEO Semantic Elements Styling
-   ═══════════════════════════════════════════════════════════════════ */
 .footer-column .footer-nav-title,
 p.footer-nav-title {
     font-family: 'Playfair Display', serif;

@@ -1,9 +1,5 @@
-/* ═══════════════════════════════════════════════════════════════════
-   KEZZA CLINIC - UNIFIED SOCIAL SIDEBAR, HEADER CALL & FLOATING DOCK
-   Luminous White & Gold Luxury Format • Highly Visible • Smooth Animations
-   ═══════════════════════════════════════════════════════════════════ */
 
-/* ── 0. HEADER PHONE CALL BUTTON ──────────────────────────────────── */
+
 .nav-cta {
     display: flex !important;
     align-items: center !important;
@@ -48,8 +44,6 @@
     animation: phoneWiggle 0.6s ease infinite !important;
 }
 
-
-/* ── 1. SOCIAL SIDEBAR (Bright White & Yellow/Gold Format) ────────── */
 .social-sidebar {
     position: fixed !important;
     left: 18px !important;
@@ -153,8 +147,6 @@
     }
 }
 
-
-/* ── 2. GLOBAL FLOATING ACTION BAR (100% Mathematically Viewport Centered) ── */
 .floating-quick-dock {
     position: fixed !important;
     bottom: 20px !important;
@@ -322,7 +314,7 @@
     50% { transform: scale(1.2); }
 }
 
-/* 3. AI Scanner Button */
+/* 3. Scanner Button */
 .dock-item.dock-scan {
     background: rgba(255, 215, 0, 0.18) !important;
     color: #ffe066 !important;
@@ -361,7 +353,6 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* ── 3. RESPONSIVE POSITIONING & VIEWPORT SCALING ─────────────────── */
 @media (max-width: 992px) {
     .floating-quick-dock {
         bottom: 16px !important;

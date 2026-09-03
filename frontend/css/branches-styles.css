@@ -29,7 +29,6 @@ body {
     overflow-x: hidden;
 }
 
-
 /* Social Sidebar */
 
 .social-sidebar {
@@ -111,7 +110,6 @@ body {
         font-size: 18px;
     }
 }
-
 
 /* Navigation */
 
@@ -195,7 +193,6 @@ body {
     transform: translateY(-2px);
     box-shadow: var(--shadow);
 }
-
 
 /* Hero Section */
 
@@ -352,7 +349,6 @@ body {
     animation-delay: 1.5s;
 }
 
-
 /* About Section */
 
 .about-branches-section {
@@ -395,7 +391,6 @@ body {
     line-height: 1.8;
 }
 
-
 /* Branch Sections */
 
 .branch-section {
@@ -407,8 +402,6 @@ body {
     background: var(--primary-gradient);
     color: var(--white);
 }
-
-
 
 .branch-sikar {
     background: var(--primary);
@@ -480,7 +473,6 @@ body {
     margin-bottom: 1.5rem;
     opacity: 0.9;
 }
-
 
 /* Services Overview */
 
@@ -558,7 +550,6 @@ body {
     color: var(--primary);
 }
 
-
 /* Why Choose Section */
 
 .why-choose-branches-section {
@@ -610,7 +601,6 @@ body {
     color: #666;
     line-height: 1.6;
 }
-
 
 /* Contact Branches */
 
@@ -673,7 +663,6 @@ body {
     transform: translateY(-2px);
 }
 
-
 /* Final CTA */
 
 .final-cta-section {
@@ -701,7 +690,6 @@ body {
     justify-content: center;
     flex-wrap: wrap;
 }
-
 
 /* Footer */
 
@@ -753,7 +741,6 @@ body {
     padding-top: 20px;
     border-top: 1px solid rgba(0, 171, 186, 0.3);
 }
-
 
 /* Animations */
 
@@ -816,7 +803,6 @@ body {
     }
 }
 
-
 /* Mobile Menu */
 
 .hamburger {
@@ -832,7 +818,6 @@ body {
     background: var(--secondary);
     transition: all 0.3s ease;
 }
-
 
 /* Responsive Design */
 
@@ -936,7 +921,7 @@ body {
         font-size: 2rem;
     }
 }
-/* ── AI Scanner Nav Link ──────────────────────────────────── */
+
 .nav-scanner-link {
     color: #c9972a !important;
     font-weight: 600 !important;
@@ -946,8 +931,6 @@ body {
     padding: 4px 10px !important;
 }
 
-
-/* ── NAV OVERFLOW FIX: All 8 items on one line ───────────── */
 .nav-container {
     max-width: 1400px !important;
     padding: 0 14px !important;
@@ -1003,11 +986,6 @@ body {
     box-shadow: 0 4px 12px rgba(0, 175, 192, 0.35);
 }
 
-
-
-/* ═══════════════════════════════════════════════════════════════════
-   SEO Semantic Elements Styling
-   ═══════════════════════════════════════════════════════════════════ */
 .footer-column .footer-nav-title,
 p.footer-nav-title {
     font-family: 'Playfair Display', serif;

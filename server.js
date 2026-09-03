@@ -1,18 +1,6 @@
-/**
- * Kezza Clinic — Express Web & AI Vision Server
- * Serves static frontend assets and provides Vision AI photo analysis via Gemini.
- * 
- * Usage:
- *   node server.js
- *   
- * URL: http://localhost:3001
- */
-
 const express = require('express');
 const path    = require('path');
 const fs      = require('fs');
-
-// ── 0. Load .env Configuration ─────────────────────────────────────
 const envPath = path.join(__dirname, '.env');
 if (fs.existsSync(envPath)) {
     try {
@@ -39,18 +27,13 @@ if (fs.existsSync(envPath)) {
 const app  = express();
 const PORT = process.env.PORT || 3001;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || '';
-
-// ── Middleware: Body Parsers for Image Payloads ─────────────────────
 app.use(express.json({ limit: '15mb' }));
 app.use(express.urlencoded({ extended: true, limit: '15mb' }));
-
-// ── API: Real Vision AI Photo Analysis ─────────────────────────────
 app.post('/api/analyze-photo', async (req, res) => {
     try {
         const { image, photo_base64, mimeType = 'image/jpeg', lang = 'hinglish', textContext = '' } = req.body || {};
         const rawImage = image || photo_base64;
 
-        // Check image payload or provide symptom-based clinical triage
         let cleanBase64 = rawImage;
         let detectedMime = mimeType;
 
@@ -118,7 +101,6 @@ app.post('/api/analyze-photo', async (req, res) => {
             cleanBase64 = parts[1];
         }
 
-        // Check if Gemini API key is configured
         if (!GEMINI_API_KEY || GEMINI_API_KEY === 'your_gemini_api_key_here') {
             console.warn('[Vision API] GEMINI_API_KEY not configured, serving full clinical triage fallback');
             const t = (textContext || '').toLowerCase();
@@ -170,7 +152,6 @@ app.post('/api/analyze-photo', async (req, res) => {
             });
         }
 
-        // Vision AI System Instructions
         const systemPrompt = `You are an AI preliminary screening tool for Kezza Hair & Skin Clinic located in Jaipur & Sikar, Rajasthan, India.
 Your task is to analyze the patient's uploaded photo and provide an honest, accurate, non-diagnostic cosmetic screening.
 
@@ -270,7 +251,6 @@ Respond with ONLY valid JSON matching this exact structure:
   "follow_up_questions": ["Question 1", "Question 2"]
 }`;
 
-        // Call Google Gemini Vision API via native fetch
         const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
         const requestBody = {
             contents: [
@@ -339,8 +319,6 @@ Respond with ONLY valid JSON matching this exact structure:
         });
     }
 });
-
-// ── API: Chatbot LLM Conversation Endpoint ────────────────────────
 app.post('/api/chat', async (req, res) => {
     try {
         const { message, history = [] } = req.body || {};
@@ -385,8 +363,6 @@ Keep answers concise, professional, warm, and helpful. Always emphasize consulta
         return res.json({ status: 'ERROR', message: err.message });
     }
 });
-
-// ── Serve all frontend assets from ./frontend/ ─────────────────────
 app.use(express.static(path.join(__dirname, 'frontend'), {
     extensions: ['html'],   // allows /about instead of /about.html
     maxAge:     0,
@@ -396,20 +372,14 @@ app.use(express.static(path.join(__dirname, 'frontend'), {
         res.setHeader('Expires', '0');
     }
 }));
-
-// ── Fallback: root → frontend/index.html ──────────────────────────
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
-
-// ── 404 — serve frontend/index.html for SPA-style navigation ──────
 app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
 app.listen(PORT, () => {
     console.log(`\n✅ Kezza Clinic Website is LIVE at: http://localhost:${PORT}`);
-    console.log(`📁 Serving from: ./frontend/`);
-    console.log(`🤖 Vision AI Endpoint: http://localhost:${PORT}/api/analyze-photo`);
-    console.log(`🔑 Gemini Vision Key: ${GEMINI_API_KEY ? 'CONFIGURED (' + GEMINI_API_KEY.slice(0, 6) + '...)' : 'NOT CONFIGURED (Add to .env)'}\n`);
+    console.log(`📁 Serving from: ./frontend/\n`);
 });

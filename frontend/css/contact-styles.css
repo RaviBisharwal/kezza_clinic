@@ -31,7 +31,6 @@ body {
     overflow-x: hidden;
 }
 
-
 /* Social Sidebar */
 
 .social-sidebar {
@@ -130,7 +129,6 @@ h6 {
     padding: 0 20px;
 }
 
-
 /* Navigation */
 
 .navbar {
@@ -198,7 +196,6 @@ h6 {
     transform: translateY(-2px);
     box-shadow: var(--shadow);
 }
-
 
 /* Section 1: Contact Hero */
 
@@ -317,7 +314,6 @@ h6 {
     pointer-events: none;
 }
 
-
 /* Section 2: Video Message */
 
 .video-message-section {
@@ -368,7 +364,6 @@ h6 {
     margin: 0 auto;
     line-height: 1.8;
 }
-
 
 /* Section 3: Contact Form */
 
@@ -489,7 +484,6 @@ h6 {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-
 /* Clinic Info Card */
 
 .info-card {
@@ -525,7 +519,6 @@ h6 {
     color: var(--white);
     line-height: 1.6;
 }
-
 
 /* Section 4: Branch Locator */
 
@@ -636,7 +629,6 @@ h6 {
     box-shadow: var(--shadow);
 }
 
-
 /* Section 5: Why Contact Us */
 
 .why-contact-section {
@@ -683,7 +675,6 @@ h6 {
     line-height: 1.6;
 }
 
-
 /* Section 6: Patient Experience Video */
 
 .patient-experience-section {
@@ -701,7 +692,6 @@ h6 {
     box-shadow: var(--shadow);
     animation: zoomIn 1s ease;
 }
-
 
 /* Section 7: FAQ */
 
@@ -766,7 +756,6 @@ h6 {
     line-height: 1.8;
 }
 
-
 /* Section 8: Final CTA */
 
 .final-cta-section {
@@ -809,7 +798,6 @@ h6 {
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
-
 
 /* Footer */
 
@@ -861,7 +849,6 @@ h6 {
     padding-top: 20px;
     border-top: 1px solid rgba(212, 175, 55, 0.3);
 }
-
 
 /* Animations */
 
@@ -1021,7 +1008,6 @@ h6 {
     }
 }
 
-
 /* Responsive Design */
 
 @media (max-width: 768px) {
@@ -1105,7 +1091,7 @@ h6 {
         font-size: 28px;
     }
 }
-/* ── AI Scanner Nav Link ──────────────────────────────────── */
+
 .nav-scanner-link {
     color: #c9972a !important;
     font-weight: 600 !important;
@@ -1115,8 +1101,6 @@ h6 {
     padding: 4px 10px !important;
 }
 
-
-/* ── NAV OVERFLOW FIX: All 8 items on one line ───────────── */
 .nav-container {
     max-width: 1400px !important;
     padding: 0 14px !important;
@@ -1171,11 +1155,6 @@ h6 {
     transform: translateY(-2px);
 }
 
-
-
-/* ═══════════════════════════════════════════════════════════════════
-   SEO Semantic Elements Styling
-   ═══════════════════════════════════════════════════════════════════ */
 .footer-column .footer-nav-title,
 p.footer-nav-title {
     font-family: 'Playfair Display', serif;

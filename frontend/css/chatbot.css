@@ -1,9 +1,5 @@
-/* ============================================
-   KEZZA AI — Patient Assistant Chatbot Widget
-   Premium floating chatbot UI
-   ============================================ */
 
-/* ---------- Floating Action Button ---------- */
+
 .kezza-chat-fab {
     position: fixed;
     bottom: 24px;
@@ -51,7 +47,6 @@
     50% { box-shadow: 0 6px 24px rgba(0,171,186,0.45), 0 0 0 14px rgba(0,171,186,0); }
 }
 
-/* ---------- Chat Window ---------- */
 .kezza-chat-window {
     position: fixed;
     bottom: 96px;
@@ -78,7 +73,6 @@
     pointer-events: auto;
 }
 
-/* ---------- Chat Header ---------- */
 .kezza-chat-header {
     background: linear-gradient(135deg, #009aa8 0%, #007a87 100%);
     padding: 12px 14px;
@@ -173,7 +167,6 @@
     50% { transform: scale(1.2); opacity: 0.8; }
 }
 
-/* ---------- Chat Header Controls ---------- */
 .kezza-chat-header-actions {
     display: flex;
     align-items: center;
@@ -267,7 +260,6 @@
     }
 }
 
-/* ---------- Chat Messages Area ---------- */
 .kezza-chat-messages {
     flex: 1;
     overflow-y: auto;
@@ -292,7 +284,6 @@
     border-radius: 10px;
 }
 
-/* ---------- Message Bubbles ---------- */
 .kezza-msg {
     display: flex;
     gap: 8px;
@@ -380,7 +371,6 @@
     to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
-/* ---------- Typing Indicator ---------- */
 .kezza-typing {
     display: flex;
     align-items: center;
@@ -417,7 +407,6 @@
     30% { transform: translateY(-4px); opacity: 1; }
 }
 
-/* ---------- Quick Replies ---------- */
 .kezza-quick-replies {
     display: flex;
     flex-wrap: wrap;
@@ -448,7 +437,6 @@
     box-shadow: 0 4px 12px rgba(0,171,186,0.3);
 }
 
-/* ---------- Chat Input & Voice Controls ---------- */
 .kezza-chat-input-area {
     padding: 12px 14px;
     background: #fff;
@@ -544,7 +532,6 @@
     fill: #fff;
 }
 
-/* ---------- AI Status Indicator in Footer ---------- */
 .kezza-chat-footer-bar {
     display: flex;
     align-items: center;
@@ -568,10 +555,6 @@
     font-size: 10px;
 }
 
-
-
-
-/* ---------- Inline Navigation Links ---------- */
 .kezza-nav-link {
     display: inline-flex;
     align-items: center;
@@ -594,7 +577,6 @@
     border-color: #00abba;
 }
 
-/* ---------- Appointment Form (inline) ---------- */
 .kezza-appt-summary {
     background: #f0fafb;
     border: 1px solid #c8eef0;
@@ -618,7 +600,6 @@
     font-weight: 600;
 }
 
-/* ---------- Consultation Status Indicators ---------- */
 .kezza-status-box {
     display: flex;
     align-items: center;
@@ -669,7 +650,6 @@
     box-shadow: 0 4px 16px rgba(37,211,102,0.35);
 }
 
-/* ---------- Google Maps Button & Location Cards ---------- */
 .kezza-map-btn {
     display: inline-flex;
     align-items: center;
@@ -703,7 +683,6 @@
     line-height: 1.5;
 }
 
-/* ---------- Powered By ---------- */
 .kezza-chat-powered {
     text-align: center;
     font-size: 10px;
@@ -713,7 +692,6 @@
     flex-shrink: 0;
 }
 
-/* ---------- Mobile Responsive ---------- */
 @media (max-width: 480px) {
     .kezza-chat-window {
         bottom: 0;
@@ -773,7 +751,6 @@
     }
 }
 
-
 @media (max-width: 768px) and (min-width: 481px) {
     .kezza-chat-window {
         width: 360px;
@@ -788,7 +765,6 @@
     }
 }
 
-/* ---------- Notification Badge ---------- */
 .kezza-chat-badge {
     position: absolute;
     top: -2px;
@@ -816,7 +792,6 @@
     to { transform: scale(1); }
 }
 
-/* ---------- Welcome Tooltip ---------- */
 .kezza-chat-tooltip {
     position: fixed;
     bottom: 92px;
@@ -878,7 +853,6 @@
     }
 }
 
-/* ---------- Smart Camera & AI Photo Analysis System ---------- */
 .kezza-chat-photo-btn {
     width: 38px;
     height: 38px;
@@ -1164,7 +1138,7 @@
     box-shadow: 0 4px 12px rgba(0, 171, 186, 0.4);
 }
 
-/* Structured AI Photo Analysis Card (Section 12) */
+/* Structured Photo Analysis Card (Section 12) */
 .kezza-photo-card {
     background: #ffffff;
     border: 1.5px solid #a7f3d0;
@@ -1307,11 +1281,6 @@
     margin-left: 6px;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   KEZZA AI FACE & HAIR SCANNER PROMO POPUP MODAL
-   Luxury Dark Medical HUD Aesthetic • Teal & Gold Accents
-   ═══════════════════════════════════════════════════════════════ */
-
 .kezza-scanner-modal-backdrop {
     position: fixed;
     inset: 0;
@@ -1383,7 +1352,6 @@
     transform: rotate(90deg);
 }
 
-/* ── Left Column: High-Tech Scanner HUD Animation ─────────────── */
 .scanner-modal-visual-side {
     flex: 0 0 38%;
     background: linear-gradient(180deg, rgba(0, 175, 192, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%);
@@ -1498,7 +1466,6 @@
     flex-shrink: 0;
 }
 
-/* ── Right Column: Content & Direct Actions ───────────────────── */
 .scanner-modal-content-side {
     flex: 1;
     padding: 34px 36px 30px;
@@ -1694,7 +1661,6 @@
     color: #00AFC0;
 }
 
-/* ── Responsive Rules for Mobile & Tablet ────────────────────── */
 @media (max-width: 768px) {
     .kezza-scanner-modal-card {
         flex-direction: column;
@@ -1752,9 +1718,6 @@
     }
 }
 
-/* ==========================================================================
-   IN-CHAT LIVE CAMERA OVERLAY & FACE GUIDANCE HUD
-   ========================================================================== */
 .kezza-camera-overlay {
     position: fixed;
     inset: 0;
