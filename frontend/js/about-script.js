@@ -378,12 +378,16 @@ document.addEventListener('DOMContentLoaded', function() {
             readMoreBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
+                // Save scroll position so page doesn't jump when card expands
+                const scrollY = window.scrollY;
                 const isExpanded = card.classList.toggle('is-expanded');
                 const label = this.querySelector('.read-more-text');
                 if (label) {
                     label.textContent = isExpanded ? 'Show Less' : '... More Info';
                 }
                 this.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+                // Restore scroll position immediately to prevent page jump
+                window.scrollTo({ top: scrollY, behavior: 'instant' });
             });
         }
     });

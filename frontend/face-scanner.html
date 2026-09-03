@@ -25,10 +25,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/face-scanner-styles.css">
+    <link rel="stylesheet" href="css/face-scanner-styles.css?v=3.2">
     <link rel="stylesheet" href="css/quick-actions.css">
     <link rel="stylesheet" href="css/services-navigation.css">
-    <link rel="stylesheet" href="css/chatbot.css?v=2.2">
+    <link rel="stylesheet" href="css/chatbot.css?v=3.0">
     <link rel="icon" type="image/png" href="images/logo.png">
 
     <!-- ═══ SEO: Canonical ═══════════════════════════════════════════ -->
@@ -215,9 +215,9 @@
                 <span>Preliminary screening only — not a medical diagnosis. Verified by Kezza specialists.</span>
             </div>
             <div class="hero-actions" style="margin-top: 1.25rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
-                <a href="#step1" class="btn-scanner-gold" id="btnHeroStart" style="padding: 0.75rem 1.6rem; font-size: 0.95rem; font-weight: 700;">
+                <button type="button" class="btn-scanner-gold" id="btnHeroStart" onclick="openScannerModal()" style="padding: 0.75rem 1.6rem; font-size: 0.95rem; font-weight: 700; cursor:pointer;">
                     <i class="fas fa-camera"></i> Start AI Scanner Now
-                </a>
+                </button>
             </div>
         </div>
         <div class="scanner-hero-visual">
@@ -233,6 +233,16 @@
             </div>
         </div>
     </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         AI SCANNER MODAL — overlay wraps all 3 steps
+    ═══════════════════════════════════════════════════════ -->
+    <div id="scannerModalOverlay" class="scanner-modal-overlay" aria-hidden="true">
+        <div id="scannerModal" class="scanner-modal" role="dialog" aria-modal="true" aria-labelledby="scannerModalTitle">
+            <!-- Close Button -->
+            <button id="btnCloseScannerModal" class="scanner-modal-close" aria-label="Close scanner">&times;</button>
+
+            <div class="scanner-modal-body" id="scannerModalBody">
 
     <!-- ═══════════════════════════════════════════════════════
          STEP INDICATOR
@@ -268,97 +278,220 @@
     ═══════════════════════════════════════════════════════ -->
     <section class="scanner-section" id="step1">
         <div class="scanner-container">
-            <div class="section-intro">
-                <h2>Step 1: <span class="gold-text">Capture Your Photo</span></h2>
-                <p>Position your face or affected area within the guide, then capture or upload a photo. Use natural lighting for best results.</p>
+
+            <!-- ── SUB-STATE 1: PRE-CAPTURE INSTRUCTIONS (Default) ── -->
+            <div class="capture-substate" id="captureSubstate1">
+                <div class="instructions-wrapper">
+                    <div class="instructions-header">
+                        <span class="instructions-tag">INSTRUCTIONS</span>
+                        <h2 class="instructions-title">Get Ready to Start Skin Analysis</h2>
+                        <p class="instructions-subtitle">Follow these 4 simple steps for an accurate, AI-assisted cosmetic screening</p>
+                    </div>
+
+                    <div class="instructions-grid">
+                        <div class="instruction-card">
+                            <div class="instruction-icon-wrap">
+                                <i class="fas fa-glasses"></i>
+                            </div>
+                            <div class="instruction-content">
+                                <span class="instruction-step-num">01</span>
+                                <p class="instruction-text">Take off your glasses and make sure hair isn't covering your forehead</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction-card">
+                            <div class="instruction-icon-wrap">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div class="instruction-content">
+                                <span class="instruction-step-num">02</span>
+                                <p class="instruction-text">Make sure you're in a well-lit environment</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction-card">
+                            <div class="instruction-icon-wrap">
+                                <i class="fas fa-magic"></i>
+                            </div>
+                            <div class="instruction-content">
+                                <span class="instruction-step-num">03</span>
+                                <p class="instruction-text">Remove makeup/heavy filters for accurate results</p>
+                            </div>
+                        </div>
+
+                        <div class="instruction-card">
+                            <div class="instruction-icon-wrap">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="instruction-content">
+                                <span class="instruction-step-num">04</span>
+                                <p class="instruction-text">Look straight into the camera and keep your face inside the circle</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="instructions-actions">
+                        <button type="button" class="btn-scanner-gold btn-get-started" id="btnGetStarted">
+                            <span>GET STARTED</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+
+                        <div class="divider-or"><span>or</span></div>
+
+                        <label class="btn-upload-alternate" for="photoUpload">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Upload Photo from Device</span>
+                        </label>
+                    </div>
+                </div>
             </div>
 
-            <div class="capture-layout">
-                <!-- Camera viewfinder -->
-                <div class="viewfinder-wrap" id="viewfinderWrap">
-                    <div class="camera-state" id="cameraState">
-                        <!-- Idle state -->
-                        <div class="camera-idle" id="cameraIdle">
-                            <div class="idle-icon"><i class="fas fa-camera"></i></div>
-                            <p>Camera will appear here</p>
-                            <small>Allow camera access when prompted</small>
+            <!-- ── SUB-STATE 2: LIVE CAMERA WITH CIRCULAR GUIDE & GUIDANCE PILLS ── -->
+            <div class="capture-substate hidden" id="captureSubstate2">
+                <div class="live-camera-layout">
+                    <!-- Top Bar: Status Title + Close X Button -->
+                    <div class="camera-top-bar">
+                        <div class="camera-status-title">
+                            <span class="live-dot"></span>
+                            <span>Live Face Guidance</span>
                         </div>
-                        <!-- Live camera feed -->
-                        <video id="cameraFeed" autoplay playsinline muted></video>
-                        <canvas id="meshCanvas"></canvas>
-                        <!-- Face alignment guide -->
-                        <div class="face-guide" id="faceGuide">
-                            <div class="face-oval"></div>
+                        <button type="button" class="btn-close-camera" id="btnCloseCamera" aria-label="Stop camera and return to instructions" title="Return to instructions">
+                            ✕
+                        </button>
+                    </div>
+
+                    <!-- 3 Real-time Status Pills -->
+                    <div class="guidance-pills-bar" id="guidancePillsBar">
+                        <div class="guidance-pill" id="fsPillLighting">
+                            <span class="pill-dot"></span>
+                            <span class="pill-label">Lighting:</span>
+                            <span class="pill-value">Too Dark</span>
+                        </div>
+                        <div class="guidance-pill" id="fsPillPose">
+                            <span class="pill-dot"></span>
+                            <span class="pill-label">Look Straight:</span>
+                            <span class="pill-value">Adjust</span>
+                        </div>
+                        <div class="guidance-pill" id="fsPillPosition">
+                            <span class="pill-dot"></span>
+                            <span class="pill-label">Face Position:</span>
+                            <span class="pill-value">Come Closer</span>
+                        </div>
+                    </div>
+
+                    <!-- Circular Camera Viewfinder Wrap -->
+                    <div class="viewfinder-wrap" id="viewfinderWrap">
+                        <!-- Outer Precision Calibration Reticle -->
+                        <div class="camera-reticle-ring">
+                            <span class="reticle-tick top">0° N</span>
+                            <span class="reticle-tick right">90° E</span>
+                            <span class="reticle-tick bottom">180° S</span>
+                            <span class="reticle-tick left">270° W</span>
+                        </div>
+
+                        <!-- Camera Viewport masked inside circle -->
+                        <div class="circular-camera-wrapper" id="circularCameraWrapper">
+                            <!-- Idle state -->
+                            <div class="camera-idle" id="cameraIdle">
+                                <div class="idle-icon"><i class="fas fa-camera"></i></div>
+                                <p>Starting Camera...</p>
+                                <small>Allow camera permissions when prompted</small>
+                            </div>
+
+                            <!-- Live Feed -->
+                            <video id="cameraFeed" autoplay playsinline muted></video>
+                            <canvas id="meshCanvas"></canvas>
                             <div class="scan-line" id="scanLine"></div>
-                            <div class="corner-tl"></div>
-                            <div class="corner-tr"></div>
-                            <div class="corner-bl"></div>
-                            <div class="corner-br"></div>
-                            <div class="guide-label">Align face within oval</div>
+                            <div class="radar-sweep" id="radarSweep"></div>
+                            <div class="hud-crosshair-center"></div>
+
+                            <!-- Captured photo preview inside circle -->
+                            <div class="captured-preview" id="capturedPreview">
+                                <img id="capturedImg" src="" alt="Captured photo" width="400" height="400">
+                                <div class="captured-overlay">
+                                    <div class="captured-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Photo Captured</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AUTO-CAPTURE COUNTDOWN OVERLAY -->
+                            <div class="auto-capture-overlay" id="autoCaptureOverlay" style="display:none;">
+                                <div class="auto-capture-ring"></div>
+                                <div class="auto-capture-num" id="autoCaptureNum">3</div>
+                                <div class="auto-capture-label">Hold Still</div>
+                            </div>
                         </div>
-                        <!-- Captured photo preview -->
-                        <div class="captured-preview" id="capturedPreview">
-                            <img id="capturedImg" src="" alt="Captured photo" width="600" height="400">
-                            <div class="captured-overlay">
-                                <div class="captured-badge">
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>Photo Captured</span>
+
+                        <!-- Analysis Overlay (Heavy Multi-Spectral Deep Scanning Hologram) -->
+                        <div class="analysis-overlay" id="analysisOverlay">
+                            <div class="heavy-scan-loader">
+                                <div class="scan-hologram-wrap">
+                                    <div class="hologram-circle outer-ring"></div>
+                                    <div class="hologram-circle middle-ring"></div>
+                                    <div class="hologram-circle inner-ring"></div>
+                                    <div class="laser-scanner-beam"></div>
+                                    <i class="fas fa-dna scan-center-icon"></i>
+                                </div>
+                                <div class="scan-progress-bar-wrap">
+                                    <div class="scan-progress-bar" id="scanProgressBar"></div>
+                                </div>
+                                <div class="scan-progress-percent" id="scanProgressPercent">0%</div>
+                                <div class="scan-status-ticker" id="scanStatusTicker">
+                                    [SYS] Initializing Dermal Biometric Engine...
+                                </div>
+                                <div class="scan-telemetry-log" id="scanTelemetryLog">
+                                    <div>⚡ Tracking 468 MediaPipe Facial Coordinates</div>
+                                    <div>🔬 Calibrating Melanin &amp; Follicular Matrix</div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Analysis overlay -->
-                    <div class="analysis-overlay" id="analysisOverlay">
-                        <div class="analysis-spinner">
-                            <div class="spinner-ring"></div>
-                            <div class="spinner-ring ring-delay"></div>
-                            <i class="fas fa-brain analysis-brain"></i>
+                    <!-- Live Biometric Telemetry HUD Bar (Gives that heavy, medical-grade presence) -->
+                    <div class="scanner-telemetry-panel" id="scannerTelemetry">
+                        <div class="telemetry-item">
+                            <span class="telemetry-label">ALIGNMENT</span>
+                            <span class="telemetry-val" id="telemetryAlignment">CALIBRATING</span>
                         </div>
-                        <p class="analysis-text" id="analysisText">Analyzing photo…</p>
+                        <div class="telemetry-item">
+                            <span class="telemetry-label">LUMINANCE</span>
+                            <span class="telemetry-val" id="telemetryLux">135 LUX</span>
+                        </div>
+                        <div class="telemetry-item">
+                            <span class="telemetry-label">TARGET ZONE</span>
+                            <span class="telemetry-val" id="telemetryZone">DERMAL T-ZONE</span>
+                        </div>
+                        <div class="telemetry-item">
+                            <span class="telemetry-label">PRECISION</span>
+                            <span class="telemetry-val" id="telemetryRes">SUB-MILLIMETER</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Controls -->
-                <div class="capture-controls">
-                    <div class="control-group">
-                        <button class="btn-scanner-primary" id="btnStartCamera">
-                            <i class="fas fa-video"></i>
-                            Start Camera
+                    <!-- State 2 Action Controls -->
+                    <div class="capture-controls">
+                        <div class="control-group">
+                            <button type="button" class="btn-scanner-gold" id="btnCapture" disabled>
+                                <i class="fas fa-circle"></i>
+                                <span>Capture Photo</span>
+                            </button>
+                        </div>
+
+                        <div class="state2-subactions">
+                            <label class="btn-upload-subtle" for="photoUpload">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Upload Photo from Device</span>
+                            </label>
+                        </div>
+
+                        <button type="button" class="btn-scanner-gold" id="btnProceed" disabled>
+                            <span>Continue to Questions</span>
+                            <i class="fas fa-arrow-right"></i>
                         </button>
-                        <button class="btn-scanner-secondary" id="btnCapture" disabled>
-                            <i class="fas fa-circle"></i>
-                            Capture Photo
-                        </button>
                     </div>
-
-                    <div class="divider-or"><span>or</span></div>
-
-                    <label class="btn-upload" for="photoUpload">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        Upload Photo from Device
-                        <input type="file" id="photoUpload" accept="image/*" capture="environment">
-                    </label>
-
-                    <div class="photo-tips">
-                        <h4><i class="fas fa-lightbulb"></i> Tips for best results</h4>
-                        <ul>
-                            <li><i class="fas fa-sun"></i> Use bright, natural light</li>
-                            <li><i class="fas fa-ban"></i> Remove filters & heavy editing</li>
-                            <li><i class="fas fa-expand"></i> Show the affected area clearly</li>
-                            <li><i class="fas fa-hand-paper"></i> Hold camera steady</li>
-                        </ul>
-                    </div>
-
-                    <button class="btn-scanner-gold" id="btnProceed" disabled>
-                        Continue to Questions
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
                 </div>
             </div>
-
-            <!-- Hidden canvas for image processing -->
-            <canvas id="captureCanvas" style="display:none"></canvas>
         </div>
     </section>
 
@@ -652,25 +785,39 @@
             <!-- Results card -->
             <div class="results-card" id="resultsCard">
 
-                <!-- Loading state -->
+                <!-- Loading state (Heavy Deep Clinical Scan) -->
                 <div class="results-loading" id="resultsLoading">
-                    <div class="loading-brain">
-                        <div class="brain-pulse"></div>
-                        <i class="fas fa-brain"></i>
+                    <div class="heavy-hologram-spinner">
+                        <div class="holo-ring holo-outer"></div>
+                        <div class="holo-ring holo-mid"></div>
+                        <div class="holo-ring holo-inner"></div>
+                        <div class="holo-laser-sweep"></div>
+                        <div class="holo-core-icon"><i class="fas fa-brain"></i></div>
                     </div>
-                    <h3>AI is analysing your photo…</h3>
+
+                    <h3 class="deep-scan-heading">Neural Diagnostic Analysis in Progress</h3>
+                    <p class="deep-scan-subheading">Processing dermal matrix, follicle density &amp; clinical specialist matching</p>
+
+                    <!-- Heavy Progress Meter -->
+                    <div class="heavy-progress-container">
+                        <div class="heavy-progress-bar-track">
+                            <div class="heavy-progress-bar-fill" id="heavyProgressFill"></div>
+                        </div>
+                        <div class="heavy-progress-meta">
+                            <span class="heavy-progress-phase" id="heavyProgressPhase">Phase 1: Facial Landmark Geometry</span>
+                            <span class="heavy-progress-num" id="heavyProgressNum">15%</span>
+                        </div>
+                    </div>
+
                     <div class="loading-steps" id="loadingSteps">
-                        <div class="load-step active" id="ls1"><i class="fas fa-check-circle"></i> Detecting face zones</div>
-                        <div class="load-step" id="ls2"><i class="fas fa-circle"></i> Analysing skin & hair markers</div>
-                        <div class="load-step" id="ls3"><i class="fas fa-circle"></i> Matching to Kezza specialists</div>
-                        <div class="load-step" id="ls4"><i class="fas fa-circle"></i> Generating your report</div>
+                        <div class="load-step active" id="ls1"><i class="fas fa-check-circle"></i> [PHASE 1] Mapping 468 facial landmark coordinates</div>
+                        <div class="load-step" id="ls2"><i class="fas fa-circle"></i> [PHASE 2] Evaluating dermal texture &amp; scalp follicular density</div>
+                        <div class="load-step" id="ls3"><i class="fas fa-circle"></i> [PHASE 3] Cross-referencing Kezza clinical dermatology registry</div>
+                        <div class="load-step" id="ls4"><i class="fas fa-circle"></i> [PHASE 4] Formulating senior specialist consultation protocol</div>
                     </div>
-                    <!-- AI Typing indicator -->
-                    <div class="ai-typing-wrap" id="aiTypingWrap">
-                        <span>AI thinking</span>
-                        <div class="ai-typing-dot"></div>
-                        <div class="ai-typing-dot"></div>
-                        <div class="ai-typing-dot"></div>
+
+                    <div class="scan-live-telemetry-tag">
+                        <span class="pulse-icon">●</span> AI CLINICAL TRIAGE ENGINE ACTIVE · JAIPUR &amp; SIKAR
                     </div>
                 </div>
 
@@ -807,7 +954,7 @@
 
                     <!-- CTA -->
                     <div class="results-cta">
-                        <a class="btn-whatsapp-cta" id="btnBookWA" href="#" target="_blank" rel="noopener">
+                        <a class="btn-whatsapp-cta" id="btnBookWA" href="#" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-whatsapp"></i>
                             <span>Confirm &amp; Send to WhatsApp</span>
                         </a>
@@ -855,6 +1002,14 @@
             </div>
         </div>
     </section>
+
+            <!-- hidden canvas + file input live inside modal so they are accessible to JS -->
+            <input type="file" id="photoUpload" accept="image/*" capture="user" style="display:none;">
+            <canvas id="captureCanvas" style="display:none"></canvas>
+
+            </div><!-- /.scanner-modal-body -->
+        </div><!-- /#scannerModal -->
+    </div><!-- /#scannerModalOverlay -->
 
     <!-- ═══════════════════════════════════════════════════════
          HOW IT WORKS SECTION
@@ -955,9 +1110,9 @@
         <a  href="https://wa.me/919284517427" target="_blank" class="dock-item dock-wa" title="WhatsApp Doctor Team" rel="noopener noreferrer">
             <i class="fab fa-whatsapp"></i> <span>WhatsApp Us</span>
         </a>
-        <a href="face-scanner.html" class="dock-item dock-scan" title="AI Face &amp; Scalp Scanner">
+        <button type="button" class="dock-item dock-scan" title="AI Face &amp; Scalp Scanner" onclick="openScannerModal()" style="background:none;border:none;cursor:pointer;">
             <i class="fas fa-camera"></i> <span>✦ AI Scanner</span>
-        </a>
+        </button>
         <a href="contact.html" class="dock-item dock-book" title="Book Consultation">
             <i class="fas fa-calendar-alt"></i> <span>Book Visit</span>
         </a>
@@ -970,8 +1125,8 @@
 
     <script src="js/mobile-menu.js" defer></script>
     <script src="js/services-navigation.js" defer></script>
-    <script src="js/face-scanner-script.js" defer></script>
-    <script src="js/chatbot.js?v=2.2" defer></script>
+    <script src="js/face-scanner-script.js?v=3.2" defer></script>
+    <script src="js/chatbot.js?v=3.0" defer></script>
     <script src="js/quick-actions.js" defer></script>
 </body>
 

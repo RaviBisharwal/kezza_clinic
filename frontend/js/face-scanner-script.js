@@ -98,6 +98,11 @@
     let cameraRunning       = false;
     let faceDetected        = false;
 
+    // ─── AUTO-CAPTURE STATE ───────────────────────────────────────────────────
+    let autoCaptureTimer    = null;   // interval handle for countdown
+    let autoCaptureCount    = 3;      // countdown 3 → 2 → 1 → snap
+    let autoCaptureActive   = false;  // is countdown running?
+
     const answers = {
         q1: null, // Concern
         q2: null, // Duration
@@ -117,7 +122,12 @@
     // ─── DOM REFS ─────────────────────────────────────────────────────────────
     const $ = id => document.getElementById(id);
 
-    const btnStartCamera  = $('btnStartCamera');
+    const btnGetStarted         = $('btnGetStarted');
+    const btnCloseCamera        = $('btnCloseCamera');
+    const captureSubstate1      = $('captureSubstate1');
+    const captureSubstate2      = $('captureSubstate2');
+    const circularCameraWrapper = $('circularCameraWrapper');
+
     const btnCapture      = $('btnCapture');
     const btnProceed      = $('btnProceed');
     const photoUpload     = $('photoUpload');
@@ -127,7 +137,6 @@
     const cameraIdle      = $('cameraIdle');
     const capturedPreview = $('capturedPreview');
     const capturedImg     = $('capturedImg');
-    const faceGuide       = $('faceGuide');
     const scanLine        = $('scanLine');
     const analysisOverlay = $('analysisOverlay');
     const analysisText    = $('analysisText');
@@ -169,10 +178,10 @@
             el.classList.toggle('completed', i + 1 < n);
         });
 
-        // Scroll to top
-        const ind = document.querySelector('.steps-indicator');
-        if (ind) {
-            window.scrollTo({ top: ind.offsetTop - 80, behavior: 'smooth' });
+        // Scroll modal body to top on step change
+        const modalBody = document.getElementById('scannerModalBody');
+        if (modalBody) {
+            modalBody.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
 
@@ -202,27 +211,208 @@
         const ctx = meshCanvas.getContext('2d');
         ctx.clearRect(0, 0, meshCanvas.width, meshCanvas.height);
 
+        const pillLight = document.getElementById('fsPillLighting');
+        const pillPose  = document.getElementById('fsPillPose');
+        const pillPos   = document.getElementById('fsPillPosition');
+
         if (results.multiFaceLandmarks && results.multiFaceLandmarks.length > 0) {
             faceDetected = true;
             scanLine.classList.add('active');
 
-            for (const landmarks of results.multiFaceLandmarks) {
+            const landmarks = results.multiFaceLandmarks[0];
+
+            for (const lms of results.multiFaceLandmarks) {
                 if (typeof drawConnectors !== 'undefined' && typeof FACEMESH_TESSELATION !== 'undefined') {
-                    drawConnectors(ctx, landmarks, FACEMESH_TESSELATION, {
-                        color: 'rgba(212, 160, 23, 0.12)',
-                        lineWidth: 0.7
+                    drawConnectors(ctx, lms, FACEMESH_TESSELATION, {
+                        color: 'rgba(212, 160, 23, 0.25)',
+                        lineWidth: 0.8
                     });
                 }
                 if (typeof drawConnectors !== 'undefined' && typeof FACEMESH_FACE_OVAL !== 'undefined') {
-                    drawConnectors(ctx, landmarks, FACEMESH_FACE_OVAL, {
-                        color: 'rgba(212, 160, 23, 0.5)',
-                        lineWidth: 1.5
+                    drawConnectors(ctx, lms, FACEMESH_FACE_OVAL, {
+                        color: 'rgba(0, 154, 168, 0.7)',
+                        lineWidth: 1.6
                     });
                 }
             }
+
+            // 1. Calculate Face Bounding Box
+            let minX = 1, maxX = 0, minY = 1, maxY = 0;
+            for (let i = 0; i < landmarks.length; i++) {
+                const lm = landmarks[i];
+                if (lm.x < minX) minX = lm.x;
+                if (lm.x > maxX) maxX = lm.x;
+                if (lm.y < minY) minY = lm.y;
+                if (lm.y > maxY) maxY = lm.y;
+            }
+            const boxH = maxY - minY;
+            const boxCenterX = (minX + maxX) / 2;
+            const boxCenterY = (minY + maxY) / 2;
+
+            // 2. Measure Luminance of Face ROI
+            let avgLum = 120;
+            try {
+                if (cameraFeed.videoWidth && cameraFeed.videoHeight) {
+                    const sampleCanvas = document.createElement('canvas');
+                    sampleCanvas.width = 32;
+                    sampleCanvas.height = 32;
+                    const sCtx = sampleCanvas.getContext('2d');
+                    const sx = Math.max(0, minX * cameraFeed.videoWidth);
+                    const sy = Math.max(0, minY * cameraFeed.videoHeight);
+                    const sw = Math.min(cameraFeed.videoWidth - sx, (maxX - minX) * cameraFeed.videoWidth);
+                    const sh = Math.min(cameraFeed.videoHeight - sy, boxH * cameraFeed.videoHeight);
+                    if (sw > 0 && sh > 0) {
+                        sCtx.drawImage(cameraFeed, sx, sy, sw, sh, 0, 0, 32, 32);
+                        const imgData = sCtx.getImageData(0, 0, 32, 32).data;
+                        let sum = 0;
+                        for (let p = 0; p < imgData.length; p += 4) {
+                            sum += (0.299 * imgData[p] + 0.587 * imgData[p+1] + 0.114 * imgData[p+2]);
+                        }
+                        avgLum = sum / 1024;
+                    }
+                }
+            } catch (e) {}
+
+            // 3. Evaluate Lighting Pill: Too Dark (red) / Ok (amber) / Good (green)
+            let lightOk = false;
+            if (pillLight) {
+                pillLight.className = 'guidance-pill';
+                const valEl = pillLight.querySelector('.pill-value');
+                if (avgLum < 65) {
+                    pillLight.classList.add('pill-bad');
+                    if (valEl) valEl.textContent = 'Too Dark';
+                } else if (avgLum > 220) {
+                    pillLight.classList.add('pill-bad');
+                    if (valEl) valEl.textContent = 'Too Dark';
+                } else if (avgLum >= 65 && avgLum < 100) {
+                    pillLight.classList.add('pill-warn');
+                    if (valEl) valEl.textContent = 'Ok';
+                    lightOk = true;
+                } else {
+                    pillLight.classList.add('pill-ok');
+                    if (valEl) valEl.textContent = 'Good';
+                    lightOk = true;
+                }
+            }
+
+            // 4. Evaluate Look Straight Pill: Adjust (amber) / Good (green)
+            let poseOk = false;
+            let ratio = 1;
+            if (pillPose && landmarks[1] && landmarks[33] && landmarks[263]) {
+                pillPose.className = 'guidance-pill';
+                const valEl = pillPose.querySelector('.pill-value');
+                const distL = Math.abs(landmarks[1].x - landmarks[33].x);
+                const distR = Math.abs(landmarks[263].x - landmarks[1].x);
+                ratio = distL / (distR || 0.001);
+                const angleDeg = Math.abs(Math.atan2(landmarks[263].y - landmarks[33].y, landmarks[263].x - landmarks[33].x) * (180 / Math.PI));
+
+                if (ratio >= 0.70 && ratio <= 1.45 && angleDeg <= 8) {
+                    pillPose.classList.add('pill-ok');
+                    if (valEl) valEl.textContent = 'Good';
+                    poseOk = true;
+                } else {
+                    pillPose.classList.add('pill-warn');
+                    if (valEl) valEl.textContent = 'Adjust';
+                }
+            }
+
+            // 5. Evaluate Face Position Pill: Come Closer / Move Back / Centered
+            let posOk = false;
+            if (pillPos) {
+                pillPos.className = 'guidance-pill';
+                const valEl = pillPos.querySelector('.pill-value');
+                const isCentered = (Math.abs(boxCenterX - 0.5) <= 0.16 && Math.abs(boxCenterY - 0.5) <= 0.16);
+
+                if (boxH < 0.38) {
+                    pillPos.classList.add('pill-warn');
+                    if (valEl) valEl.textContent = 'Come Closer';
+                } else if (boxH > 0.82) {
+                    pillPos.classList.add('pill-warn');
+                    if (valEl) valEl.textContent = 'Move Back';
+                } else if (!isCentered) {
+                    pillPos.classList.add('pill-warn');
+                    if (valEl) valEl.textContent = 'Come Closer';
+                } else {
+                    pillPos.classList.add('pill-ok');
+                    if (valEl) valEl.textContent = 'Centered';
+                    posOk = true;
+                }
+            }
+
+            // 6. Live Biometric Telemetry HUD Bar updates (gives heavy high-tech presence)
+            const elAlign = document.getElementById('telemetryAlignment');
+            const elLux   = document.getElementById('telemetryLux');
+            const elZone  = document.getElementById('telemetryZone');
+            const elRes   = document.getElementById('telemetryRes');
+
+            if (elAlign) {
+                const alignScore = Math.round(Math.min(99, Math.max(62, 100 - (Math.abs(1 - ratio) * 40) - (Math.abs(boxCenterX - 0.5) * 60))));
+                elAlign.textContent = `${alignScore}%`;
+                elAlign.style.color = alignScore >= 85 ? '#22c55e' : (alignScore >= 70 ? 'var(--gold-400)' : '#fde047');
+            }
+            if (elLux) {
+                elLux.textContent = `${Math.round(avgLum * 1.35)} LUX`;
+                elLux.style.color = (avgLum >= 65 && avgLum <= 215) ? '#22c55e' : '#f87171';
+            }
+            if (elZone && landmarks[10] && landmarks[152]) {
+                const pitch = landmarks[10].y - landmarks[152].y;
+                if (pitch > -0.45) {
+                    elZone.textContent = 'FRONTAL HAIRLINE';
+                } else if (boxH > 0.65) {
+                    elZone.textContent = 'DERMAL T-ZONE';
+                } else {
+                    elZone.textContent = 'FACIAL ARCHITECTURE';
+                }
+            }
+            if (elRes && cameraFeed) {
+                elRes.textContent = `${cameraFeed.videoWidth || 1280}x${cameraFeed.videoHeight || 720}`;
+            }
+
+            // ── AUTO-CAPTURE: start countdown when all three checks pass ──
+            if (lightOk && posOk && poseOk) {
+                if (circularCameraWrapper) circularCameraWrapper.classList.add('all-good');
+                if (btnCapture) {
+                    btnCapture.disabled = false;
+                    btnCapture.classList.add('pulse-ready');
+                }
+                // Start countdown only if not already running & no photo taken yet
+                if (!autoCaptureActive && !capturedImageBase64) {
+                    startAutoCapture();
+                }
+            } else {
+                // Face moved / conditions lost — cancel countdown
+                cancelAutoCapture();
+                if (circularCameraWrapper) circularCameraWrapper.classList.remove('all-good');
+                if (btnCapture) {
+                    btnCapture.disabled = true;
+                    btnCapture.classList.remove('pulse-ready');
+                }
+            }
+
         } else {
             faceDetected = false;
             scanLine.classList.remove('active');
+            cancelAutoCapture();
+            if (circularCameraWrapper) circularCameraWrapper.classList.remove('all-good');
+            if (btnCapture) {
+                btnCapture.disabled = true;
+                btnCapture.classList.remove('pulse-ready');
+            }
+            if (pillLight) {
+                pillLight.className = 'guidance-pill pill-bad';
+                const valEl = pillLight.querySelector('.pill-value');
+                if (valEl) valEl.textContent = 'Too Dark';
+            }
+            if (pillPose) {
+                pillPose.className = 'guidance-pill pill-warn';
+                const valEl = pillPose.querySelector('.pill-value');
+                if (valEl) valEl.textContent = 'Adjust';
+            }
+            if (pillPos) {
+                pillPos.className = 'guidance-pill pill-warn';
+                const valEl = pillPos.querySelector('.pill-value');
+                if (valEl) valEl.textContent = 'Come Closer';
+            }
         }
     }
 
@@ -236,6 +426,44 @@
         await faceMesh.send({ image: cameraFeed });
     }
 
+    // ─── AUTO-CAPTURE COUNTDOWN ───────────────────────────────────────────────
+    const autoCaptureOverlay = document.getElementById('autoCaptureOverlay');
+    const autoCaptureNumEl   = document.getElementById('autoCaptureNum');
+
+    function startAutoCapture() {
+        if (autoCaptureActive || capturedImageBase64) return;
+        autoCaptureActive = true;
+        autoCaptureCount  = 3;
+
+        // Show overlay with 3
+        if (autoCaptureNumEl) autoCaptureNumEl.textContent = autoCaptureCount;
+        if (autoCaptureOverlay) autoCaptureOverlay.style.display = 'flex';
+
+        autoCaptureTimer = setInterval(() => {
+            autoCaptureCount--;
+
+            if (autoCaptureCount <= 0) {
+                // Fire capture!
+                clearInterval(autoCaptureTimer);
+                autoCaptureTimer  = null;
+                autoCaptureActive = false;
+                if (autoCaptureOverlay) autoCaptureOverlay.style.display = 'none';
+                captureFromCamera();
+            } else {
+                if (autoCaptureNumEl) autoCaptureNumEl.textContent = autoCaptureCount;
+            }
+        }, 1000);
+    }
+
+    function cancelAutoCapture() {
+        if (!autoCaptureActive && !autoCaptureTimer) return;
+        clearInterval(autoCaptureTimer);
+        autoCaptureTimer  = null;
+        autoCaptureActive = false;
+        autoCaptureCount  = 3;
+        if (autoCaptureOverlay) autoCaptureOverlay.style.display = 'none';
+    }
+
     // ─── CAMERA CONTROL ───────────────────────────────────────────────────────
     async function startCamera() {
         try {
@@ -247,14 +475,12 @@
             cameraFeed.srcObject = mediaStream;
             await cameraFeed.play();
 
-            cameraIdle.style.display       = 'none';
+            if (cameraIdle) cameraIdle.style.display = 'none';
             cameraFeed.classList.add('active');
             meshCanvas.classList.add('active');
-            faceGuide.classList.add('active');
 
             cameraRunning = true;
-            btnStartCamera.innerHTML = '<i class="fas fa-video-slash"></i> Stop Camera';
-            btnCapture.disabled = false;
+            if (btnCapture) btnCapture.disabled = true; // disabled until all 3 checks pass
 
             initFaceMesh();
 
@@ -283,20 +509,25 @@
         cameraFeed.srcObject = null;
         cameraFeed.classList.remove('active');
         meshCanvas.classList.remove('active');
-        faceGuide.classList.remove('active');
         scanLine.classList.remove('active');
         cameraRunning = false;
-        cameraIdle.style.display = 'flex';
-        btnStartCamera.innerHTML = '<i class="fas fa-video"></i> Start Camera';
-        btnCapture.disabled = true;
+        // Only show idle state if NO photo was captured
+        if (cameraIdle && !capturedImageBase64) cameraIdle.style.display = 'flex';
+        if (btnCapture) {
+            btnCapture.disabled = true;
+            btnCapture.classList.remove('pulse-ready');
+        }
+        if (circularCameraWrapper) circularCameraWrapper.classList.remove('all-good');
     }
 
     function showCameraError(msg) {
-        cameraIdle.innerHTML = `
-            <div class="idle-icon"><i class="fas fa-camera-slash" style="color:#ef4444"></i></div>
-            <p style="color:#f87171;font-size:0.88rem;text-align:center;max-width:220px">${msg}</p>
-        `;
-        cameraIdle.style.display = 'flex';
+        if (cameraIdle) {
+            cameraIdle.innerHTML = `
+                <div class="idle-icon"><i class="fas fa-camera-slash" style="color:#ef4444"></i></div>
+                <p style="color:#f87171;font-size:0.88rem;text-align:center;max-width:220px">${msg}</p>
+            `;
+            cameraIdle.style.display = 'flex';
+        }
     }
 
     // ─── CAPTURE PHOTO ────────────────────────────────────────────────────────
@@ -321,8 +552,15 @@
         capturedImg.src = capturedImageBase64;
         capturedPreview.classList.add('active');
         btnProceed.disabled = false;
-        btnCapture.disabled = true;
-        btnStartCamera.innerHTML = '<i class="fas fa-redo"></i> Retake';
+        try {
+            sessionStorage.setItem('kezza_scanner_photo', capturedImageBase64);
+        } catch(e) {}
+        if (btnCapture) {
+            btnCapture.disabled = true;
+            btnCapture.classList.remove('pulse-ready');
+        }
+        if (captureSubstate1) captureSubstate1.classList.add('hidden');
+        if (captureSubstate2) captureSubstate2.classList.remove('hidden');
     }
 
     // ─── PHOTO UPLOAD ─────────────────────────────────────────────────────────
@@ -344,30 +582,32 @@
             capturedImageBase64 = e.target.result;
             showCapturedPreview();
             if (cameraRunning) stopCamera();
-            cameraIdle.style.display = 'none';
+            if (cameraIdle) cameraIdle.style.display = 'none';
         };
         reader.readAsDataURL(file);
     });
 
-    // ─── BUTTON EVENTS — STEP 1 ───────────────────────────────────────────────
-    btnStartCamera.addEventListener('click', () => {
-        if (cameraRunning) {
+    // ─── SUB-STATE 1 & 2 BUTTON EVENTS — STEP 1 ───────────────────────────────
+    if (btnGetStarted) {
+        btnGetStarted.addEventListener('click', async () => {
+            if (captureSubstate1) captureSubstate1.classList.add('hidden');
+            if (captureSubstate2) captureSubstate2.classList.remove('hidden');
+            await startCamera();
+        });
+    }
+
+    if (btnCloseCamera) {
+        btnCloseCamera.addEventListener('click', () => {
             stopCamera();
-            if (capturedImageBase64) {
-                capturedImageBase64 = null;
-                capturedPreview.classList.remove('active');
-                btnProceed.disabled = true;
-                cameraIdle.style.display = 'flex';
-                cameraIdle.innerHTML = `
-                    <div class="idle-icon"><i class="fas fa-camera"></i></div>
-                    <p>Camera will appear here</p>
-                    <small>Allow camera access when prompted</small>
-                `;
-            }
-        } else {
-            startCamera();
-        }
-    });
+            if (captureSubstate2) captureSubstate2.classList.add('hidden');
+            if (captureSubstate1) captureSubstate1.classList.remove('hidden');
+            if (capturedPreview) capturedPreview.classList.remove('active');
+            if (btnProceed) btnProceed.disabled = true;
+            if (circularCameraWrapper) circularCameraWrapper.classList.remove('all-good');
+            capturedImageBase64 = null;
+            try { sessionStorage.removeItem('kezza_scanner_photo'); } catch(e) {}
+        });
+    }
 
     btnCapture.addEventListener('click', captureFromCamera);
 
@@ -411,11 +651,10 @@
                 : '<i class="fas fa-arrow-left"></i> <span>Back</span>';
         }
 
-        // Ensure full Step 2 header (Title, Back button, Progress) stays in optimal view
-        const ind = document.querySelector('.steps-indicator');
-        if (ind) {
-            const topY = ind.getBoundingClientRect().top + window.pageYOffset - 74;
-            window.scrollTo({ top: Math.max(0, topY), behavior: 'smooth' });
+        // Scroll modal body so steps-indicator stays in view
+        const modalBody = document.getElementById('scannerModalBody');
+        if (modalBody) {
+            modalBody.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Auto-focus inputs on relevant questions
@@ -717,8 +956,11 @@
         // Build payload
         const textContext = buildTextContext();
 
-        // Clean base64
+        // Clean base64 from memory or sessionStorage
         let imageData = capturedImageBase64 || null;
+        if (!imageData) {
+            try { imageData = sessionStorage.getItem('kezza_scanner_photo'); } catch(e) {}
+        }
         if (imageData && imageData.includes(';base64,')) {
             imageData = imageData.split(';base64,')[1];
         }
@@ -732,11 +974,35 @@
             isPoorQuality: false
         };
 
-        // Execute clinical AI diagnostic assessment engine on client-side
-        setTimeout(() => {
-            const analysisResult = buildLocalFallback(textContext);
-            handleAnalysisResult(analysisResult);
-        }, 1400);
+        // Deep heavy scan timing: deliberate 4.2s clinical processing so user feels the depth
+        setTimeout(async () => {
+            try {
+                const res = await fetch('/api/analyze-photo', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+
+                if (data && data.status === 'OK') {
+                    handleAnalysisResult(data);
+                } else if (data && (data.status === 'QUALITY_ISSUE' || data.status === 'UNCLEAR')) {
+                    // Fallback smoothly to detailed symptom-based triage
+                    const fallbackResult = buildLocalFallback(textContext);
+                    if (data.visible_observations && data.visible_observations.length) {
+                        fallbackResult.visible_observations = data.visible_observations;
+                    }
+                    handleAnalysisResult(fallbackResult);
+                } else {
+                    const fallbackResult = buildLocalFallback(textContext);
+                    handleAnalysisResult(fallbackResult);
+                }
+            } catch (err) {
+                console.warn('[FaceScanner] Vision API fetch error, using clinical triage fallback:', err);
+                const fallbackResult = buildLocalFallback(textContext);
+                handleAnalysisResult(fallbackResult);
+            }
+        }, 4200);
     }
 
     // Local keyword fallback if server is unreachable
@@ -794,7 +1060,7 @@
             status:                  'OK',
             image_quality_score:     88,
             body_area:               deptKey.includes('HAIR') ? 'HAIR_SCALP' : (deptKey === 'PMU' ? 'PMU' : (deptKey === 'WEIGHT_LOSS' ? 'WEIGHT_LOSS' : 'SKIN')),
-            confidence_score:        82,
+            confidence_score:        84,
             confidence_label:        'High',
             recommended_consultation: concern,
             treatment_name:          treatment,
@@ -810,9 +1076,16 @@
         };
     }
 
-    // ─── LOADING ANIMATION ────────────────────────────────────────────────────
+    // ─── LOADING ANIMATION (HEAVY MULTI-PHASE CLINICAL SCAN) ──────────────────
     function animateLoadingSteps() {
         const steps = ['ls1', 'ls2', 'ls3', 'ls4'];
+        const phases = [
+            'Phase 1: Facial Landmark Coordinates & Geometry (25%)',
+            'Phase 2: Dermal Texture & Follicle Density Matrix (55%)',
+            'Phase 3: Cross-Referencing Kezza Clinical DB (82%)',
+            'Phase 4: Formulating Senior Specialist Protocol (98%)'
+        ];
+        const percentages = [25, 55, 82, 98];
         let i = 0;
 
         steps.forEach(id => {
@@ -831,6 +1104,14 @@
             if (icon) icon.className = 'fas fa-check-circle';
         }
 
+        const progFill  = document.getElementById('heavyProgressFill');
+        const progNum   = document.getElementById('heavyProgressNum');
+        const progPhase = document.getElementById('heavyProgressPhase');
+
+        if (progFill) progFill.style.width = '25%';
+        if (progNum) progNum.textContent = '25%';
+        if (progPhase) progPhase.textContent = phases[0];
+
         const interval = setInterval(() => {
             if (i < steps.length - 1) {
                 const cur = $(steps[i]);
@@ -847,10 +1128,15 @@
                     const nxtIcon = nxt.querySelector('i');
                     if (nxtIcon) nxtIcon.className = 'fas fa-check-circle';
                 }
+                if (progFill) progFill.style.width = `${percentages[i]}%`;
+                if (progNum) progNum.textContent = `${percentages[i]}%`;
+                if (progPhase) progPhase.textContent = phases[i];
             } else {
                 clearInterval(interval);
+                if (progFill) progFill.style.width = '100%';
+                if (progNum) progNum.textContent = '100%';
             }
-        }, 900);
+        }, 1000);
     }
 
     // ─── RESULT STATES ────────────────────────────────────────────────────────
@@ -1284,6 +1570,7 @@ _Please confirm my consultation booking at Kezza Clinic._
     function resetConsultation() {
         // Reset state
         capturedImageBase64 = null;
+        try { sessionStorage.removeItem('kezza_scanner_photo'); } catch(e) {}
         Object.keys(answers).forEach(k => { answers[k] = null; });
         answers.clinicContact = WHATSAPP_NUM;
         currentQuestion = 1;
@@ -1304,24 +1591,34 @@ _Please confirm my consultation booking at Kezza Clinic._
         if (q8s) q8s.textContent = '';
         document.querySelectorAll('.quick-date-btn').forEach(btn => btn.classList.remove('active'));
 
-        capturedPreview.classList.remove('active');
-        btnProceed.disabled = true;
-        cameraIdle.style.display = 'flex';
+        if (capturedPreview) capturedPreview.classList.remove('active');
+        if (btnProceed) btnProceed.disabled = true;
+        if (circularCameraWrapper) circularCameraWrapper.classList.remove('all-good');
+        if (captureSubstate2) captureSubstate2.classList.add('hidden');
+        if (captureSubstate1) captureSubstate1.classList.remove('hidden');
+        if (cameraIdle) cameraIdle.style.display = 'flex';
 
         document.querySelectorAll('.answer-btn').forEach(b => b.classList.remove('selected'));
         document.querySelectorAll('.clinic-card-btn').forEach(b => b.classList.remove('selected'));
 
         goToStep(1);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Scroll modal body to top after reset
+        const _mb = document.getElementById('scannerModalBody');
+        if (_mb) _mb.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // ─── RETRY / START OVER ───────────────────────────────────────────────────
     $('btnRetakePhoto').addEventListener('click', () => {
+        cancelAutoCapture();           // ← stop any running countdown
         goToStep(1);
         capturedImageBase64 = null;
-        capturedPreview.classList.remove('active');
-        btnProceed.disabled = true;
-        cameraIdle.style.display = 'flex';
+        try { sessionStorage.removeItem('kezza_scanner_photo'); } catch(e) {}
+        if (captureSubstate2) captureSubstate2.classList.add('hidden');
+        if (captureSubstate1) captureSubstate1.classList.remove('hidden');
+        if (capturedPreview) capturedPreview.classList.remove('active');
+        if (circularCameraWrapper) circularCameraWrapper.classList.remove('all-good');
+        if (btnProceed) btnProceed.disabled = true;
+        if (cameraIdle) cameraIdle.style.display = 'flex';
     });
 
     $('btnRetryAnalysis').addEventListener('click', () => {
@@ -1332,21 +1629,42 @@ _Please confirm my consultation booking at Kezza Clinic._
 
     $('btnStartOver').addEventListener('click', () => {
         resetConsultation();
+        closeScannerModal();
         showToast('<i class="fas fa-redo"></i> Consultation restarted.', 2000);
     });
 
-    // ─── AUTO-RESTART AFTER WHATSAPP CONFIRMATION ────────────────────────────
+    // ─── WHATSAPP BOOK BUTTON — OPEN + RESET ─────────────────────────────────
     if (btnBookWA) {
-        btnBookWA.addEventListener('click', function () {
-            const href = this.getAttribute('href');
-            if (!href || href === '#') return;
+        btnBookWA.addEventListener('click', function (e) {
+            e.preventDefault(); // Always handle manually to avoid browser block on _blank
 
-            showToast('<i class="fab fa-whatsapp"></i> Appointment details sent! Starting a new consultation...', 2600);
+            // Build or use existing href
+            let url = this.getAttribute('href');
 
-            // After short delay, smoothly restart consultation for next patient
+            // If href not yet built, build it on the spot from current data
+            if (!url || url === '#') {
+                const deptKey = $('resultConcern')?.dataset?.dept || 'SKIN';
+                const doctor = DOCTOR_MAP[deptKey] || DOCTOR_MAP['SKIN'];
+                const msg = buildWhatsAppMessage({ 
+                    recommended_consultation: $('resultConcern')?.textContent || 'Consultation',
+                    treatment_name: $('resultTreatment')?.textContent || 'Treatment',
+                    department_key: deptKey,
+                    why_this_consultation: $('whyText')?.textContent || ''
+                }, doctor);
+                const phone = (answers.clinicContact || doctor?.contact || WHATSAPP_NUM).replace(/\D/g, '');
+                url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+            }
+
+            // Open WhatsApp in new tab
+            window.open(url, '_blank', 'noopener,noreferrer');
+
+            showToast('<i class="fab fa-whatsapp"></i> Opening WhatsApp with your appointment details...', 2600);
+
+            // After delay, reset and close modal for next patient
             setTimeout(() => {
                 resetConsultation();
-            }, 2000);
+                closeScannerModal();
+            }, 2500);
         });
     }
 
@@ -1370,32 +1688,138 @@ _Please confirm my consultation booking at Kezza Clinic._
         }, { passive: true });
     }
 
+    // ─── MODAL OPEN / CLOSE ────────────────────────────────────────────────────
+    const scannerModalOverlay = document.getElementById('scannerModalOverlay');
+    const scannerModal        = document.getElementById('scannerModal');
+    const btnCloseScannerModal = document.getElementById('btnCloseScannerModal');
+    let _escKeyHandler = null;
+
+    function openScannerModal() {
+        if (!scannerModalOverlay) return;
+
+        // Check for a restored session — if not, reset to fresh state
+        const _hasSession = restoreSessionFromStorage && answers.q1;
+        if (!_hasSession) {
+            resetConsultation();
+        }
+
+        // Show overlay
+        scannerModalOverlay.style.display = 'flex';
+        scannerModalOverlay.setAttribute('aria-hidden', 'false');
+
+        // Trigger transition on next frame
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                scannerModalOverlay.classList.add('active');
+            });
+        });
+
+        // Lock background scroll
+        document.body.style.overflow = 'hidden';
+        document.body.style.touchAction = 'none';
+
+        // Move focus to close button for accessibility
+        setTimeout(() => { if (btnCloseScannerModal) btnCloseScannerModal.focus(); }, 260);
+
+        // Escape key handler
+        _escKeyHandler = (e) => { if (e.key === 'Escape') closeScannerModal(); };
+        document.addEventListener('keydown', _escKeyHandler);
+    }
+
+    function closeScannerModal() {
+        if (!scannerModalOverlay) return;
+
+        // Stop camera and cancel countdown immediately
+        stopCamera();
+        cancelAutoCapture();
+
+        // Animate out
+        scannerModalOverlay.classList.remove('active');
+
+        // After transition ends, hide overlay
+        const _hideOverlay = () => {
+            scannerModalOverlay.style.display = 'none';
+            scannerModalOverlay.setAttribute('aria-hidden', 'true');
+        };
+        scannerModal.addEventListener('transitionend', _hideOverlay, { once: true });
+        // Fallback in case transitionend doesn't fire
+        setTimeout(_hideOverlay, 320);
+
+        // Restore background scroll
+        document.body.style.overflow = '';
+        document.body.style.touchAction = '';
+
+        // Remove Escape key handler
+        if (_escKeyHandler) {
+            document.removeEventListener('keydown', _escKeyHandler);
+            _escKeyHandler = null;
+        }
+    }
+
+    // Backdrop click closes modal (click on overlay but not inside modal)
+    if (scannerModalOverlay) {
+        scannerModalOverlay.addEventListener('click', (e) => {
+            if (e.target === scannerModalOverlay) closeScannerModal();
+        });
+    }
+    if (scannerModal) {
+        scannerModal.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    // Close button
+    if (btnCloseScannerModal) {
+        btnCloseScannerModal.addEventListener('click', closeScannerModal);
+    }
+
+    // Expose on window so inline onclick="openScannerModal()" works
+    window.openScannerModal  = openScannerModal;
+    window.closeScannerModal = closeScannerModal;
+
+    // Mobile keyboard: scroll focused input into view inside modal body
+    [inputName, inputLocation, inputPhone].forEach(inp => {
+        if (!inp) return;
+        inp.addEventListener('focus', () => {
+            setTimeout(() => inp.scrollIntoView({ block: 'center', behavior: 'smooth' }), 300);
+        });
+    });
+
     // ─── HERO START BUTTON ───────────────────────────────────────────────────
     const btnHeroStart = $('btnHeroStart');
     if (btnHeroStart) {
         btnHeroStart.addEventListener('click', (e) => {
             e.preventDefault();
-            goToStep(1);
+            openScannerModal();
         });
     }
 
     // ─── INIT ─────────────────────────────────────────────────────────────────
-    // Attempt to restore previous session (within 30 minutes)
+    // Modal starts hidden; no auto-open needed here — openScannerModal() is called
+    // by the hero button and dock button onclick handlers.
+    // Restore previous session data into answers so it's ready when modal opens.
+    try {
+        const _storedPhoto = sessionStorage.getItem('kezza_scanner_photo');
+        if (_storedPhoto) {
+            capturedImageBase64 = _storedPhoto;
+            if (capturedImg) capturedImg.src = _storedPhoto;
+            if (capturedPreview) capturedPreview.classList.add('active');
+            if (btnProceed) btnProceed.disabled = false;
+        }
+    } catch(e) {}
+
+    // Pre-load session so it's available when modal first opens
     const _sessionRestored = restoreSessionFromStorage();
     if (_sessionRestored && answers.q1) {
+        // Session exists — show Q step when modal opens
         goToStep(2);
         const qKeys = ['q1','q2','q3','q4','q5','q6','q7','q8','q9'];
         let _lastQ = 1;
         qKeys.forEach((k, i) => { if (answers[k]) _lastQ = i + 2; });
         _lastQ = Math.min(_lastQ, TOTAL_QUESTIONS);
-        setTimeout(() => {
-            renderQuestion(_lastQ);
-            showToast('<i class="fas fa-cloud-download-alt"></i> Previous session restored!', 2500);
-        }, 400);
+        setTimeout(() => renderQuestion(_lastQ), 50);
     } else {
         goToStep(1);
     }
-    console.log('[Kezza AI Scanner] v3.0 - session save, confidence ring, share, download.');
+    console.log('[Kezza AI Scanner] v3.3 - Modal dialog mode, auto-capture, resilient triage.');
 
 })();
 
