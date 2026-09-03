@@ -38,22 +38,23 @@ kezza_clinic/                       ← Repository Root
     │   ├── styles.css              # Core global stylesheet (Typography, Header, Footer, Colors)
     │   ├── about-styles.css        # About page & founders section styling
     │   ├── branches-styles.css     # Franchise & clinic location page styling
-    │   ├── chatbot.css             # 💬 Floating AI Assistant & Laser Scanner Promo Modal
+    │   ├── chatbot.css             # Floating AI assistant & scanner promo modal
     │   ├── contact-styles.css      # Contact form, map cards & office hours styling
     │   ├── doctors-landscape.css   # 🩺 Doctor landscape cards, verified badges, expandable bio
     │   ├── face-scanner-styles.css # 🔬 Camera HUD, Facial Mesh Guide, Step flow & Calendar
-    │   ├── hair-services-styles.css       # Hair procedures, before/after galleries & pricing
-    │   ├── permanent-makeup-styles.css    # PMU artistry, procedure showcases & FAQ accordion
-    │   ├── quick-actions.css       # Floating Quick-Action Bar (Call, WhatsApp, AI Scanner)
-    │   ├── services-navigation.css # 🚀 Header Services Accordion (170ms hover / Mobile tap)
-    │   ├── skin-services-styles.css       # Skin & laser dermatology layout
-    │   └── terms-styles.css        # Legal, privacy policy & terms page formatting
+    │   ├── hair-services-styles.css# Hair treatment cards, procedure steps & pricing tables
+    │   ├── permanent-makeup-styles.css # PMU gallery, before-after sliders & service cards
+    │   ├── quick-actions.css       # ⚡ Floating action bar (Call, WhatsApp, AI Scanner, Book)
+    │   ├── services-navigation.css # 📱 WhatsApp-style nested accordion navigation menu
+    │   ├── skin-services-styles.css# Skin treatments, laser procedures & aesthetic dermatology
+    │   ├── terms-styles.css        # Privacy policy, medical disclaimers & clinical terms
+    │   └── weight-loss-styles.css  # Body contouring, slimming programs & consultation forms
     │
     ├── ⚡ js/                      # JavaScript Logic & Interactive Modules (one per page/feature)
     │   ├── script.js               # Homepage (Lazy loading, Video Observer, Doctor Bio expander)
     │   ├── about-script.js         # About page interactions, shine effects & bio toggle
     │   ├── branches-script.js      # Branch page animations & enquiry form
-    │   ├── chatbot.js              # 💬 Tri-lingual Chatbot (Eng/Hindi/Hinglish) + Scanner Modal
+    │   ├── chatbot.js              # Tri-lingual chatbot (Eng/Hindi/Hinglish) + scanner modal
     │   ├── contact-script.js       # Client-side form validation & instant WhatsApp dispatch
     │   ├── face-scanner-script.js  # 🤖 MediaPipe Face Mesh, 9-Step Assessment, Doctor Matcher
     │   ├── hair-services-script.js # Hair treatments interactive elements & cost calculator
@@ -134,19 +135,29 @@ Open **`http://localhost:3001`** in your browser.
 ## 🚀 4. Deployment Guide
 
 ### A. Permanent Hosting on GitHub Pages (Recommended)
+
+> **⚠️ IMPORTANT:** The deployable website lives in the **`frontend/`** subdirectory, **not** the repository root. The root only contains `server.js`, `package.json`, and `README.md`. Deploying the root will serve an empty site.
+
 1. Push your repository to GitHub:
    ```bash
    git push origin main
    ```
 2. Go to **Settings > Pages** in your GitHub repository.
-3. Under **Branch**, select `main` and `/ (root)` folder.
-4. Click **Save**. The website will be live at:
+3. Under **Branch**, select `main`.
+4. Under **Folder**, select **`/frontend`** (not `/root`).
+5. Click **Save**. The website will be live at:
    `https://<YOUR_GITHUB_USERNAME>.github.io/<REPO_NAME>/`
 
-### B. Vercel / Netlify / Cloudflare Pages
+### B. Vercel
 - Set **Framework Preset**: `Other` or `Static HTML`.
 - Set **Build Command**: *(leave empty)*.
-- Set **Output Directory**: `. (root)`.
+- Set **Root Directory**: `frontend`.
+- Set **Output Directory**: `. (current directory / frontend)`.
+
+### C. Netlify / Cloudflare Pages
+- Set **Base directory**: `frontend`.
+- Set **Publish directory**: `frontend`.
+- Set **Build command**: *(leave empty)*.
 
 ---
 
