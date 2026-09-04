@@ -1,5 +1,4 @@
 // ============================================
-// KEZZA AI — ULTRA-FAST & LIGHTWEIGHT CONVERSATION & VALIDATION SYSTEM
 // High-Speed Deterministic State Machine, Pre-compiled RegExes & Instant UI
 // Priority: ACCURACY > SAFETY > CORRECT INTENT > CORRECT DATA > SPEED
 // Clinic Locations: Jaipur & Sikar ONLY
@@ -47,7 +46,6 @@
     // BOTOX = SKIN | GLUTATHIONE = SKIN | DARK CIRCLE = SKIN
     // ============================================
     const STRICT_INTENT_TAXONOMY = {
-        // ── SKIN INTENTS (route to: 9216063686) ──────────────────────────
         MEDICAL_FACIAL: {
             category: 'SKIN',
             label: 'Medical Facial',
@@ -111,7 +109,6 @@
             triggers_hi: ['anti aging chahiye', 'anti aging treatment', 'wrinkles hain', 'jhurriya hain', 'face tight karna'],
             defaultMsg: 'Hello Kezza Anti-Aging Team, I would like to book a consultation for anti-aging treatment.'
         },
-        // ── PMU INTENTS (route to: 9079161300) ────────────────────────────
         // PMU = COSMETIC PERMANENT MAKEUP ONLY (eyebrows, lips, eyeliner)
         // NOT: beard, scalp, stretch marks, body
         EYEBROW_PMU: {
@@ -150,7 +147,6 @@
             triggers_hi: ['beauty spot chahiye', 'beauty mark lagwana hai'],
             defaultMsg: 'Hello Dr. Krishna Choudhary PMU Team, I would like to book a consultation for Beauty Spot.'
         },
-        // ── SMP INTENTS (route to: 9079161300 — SMP dept) ─────────────────
         // SMP = SCALP / HAIRLINE micropigmentation ONLY
         SMP: {
             category: 'SMP',
@@ -161,7 +157,6 @@
             triggers_hi: ['scalp micropigmentation chahiye', 'smp karwana hai', 'scalp pigmentation chahiye'],
             defaultMsg: 'Hello Kezza SMP Team, I would like to book a consultation for Scalp Micropigmentation (SMP).'
         },
-        // ── BEARD MICROPIGMENTATION — NOT PMU, NOT SMP ────────────────────
         BEARD_MICROPIGMENTATION: {
             category: 'BEARD_MICROPIGMENTATION',
             label: 'Beard Micropigmentation',
@@ -171,7 +166,6 @@
             triggers_hi: ['beard micropigmentation chahiye', 'beard pigmentation karwana', 'dadhi micropigmentation'],
             defaultMsg: null
         },
-        // ── STRETCH MARK / SCAR CAMOUFLAGE (route to SMP dept) ────────────
         STRETCH_MARK: {
             category: 'SMP',
             label: 'Stretch Mark Camouflage',
@@ -282,7 +276,7 @@
     };
 
     // ============================================
-    // VERIFIED SPECIALIST DIRECTORY (Kezza AI Routing)
+    // VERIFIED SPECIALIST DIRECTORY
     // ============================================
     const SPECIALISTS = {
         dr_ankit: {
@@ -399,7 +393,7 @@
     ];
 
     // ============================================
-    // SYSTEM PROMPT FOR LLM — KEZZA AI PRODUCTION-GRADE PATIENT ASSISTANT
+    // SYSTEM PROMPT
     // ============================================
     const SYSTEM_PROMPT = `
 You are Kezza AI, the official AI patient-assistance chatbot for Kezza Hair & Skin Clinic.
@@ -588,7 +582,6 @@ Beard Micropigmentation: "Beard Micropigmentation PMU se alag category hai. Veri
 Dental: "Dr. Dhiral Vijayvargiya relevant hain. Verified dental number abhi available nahi hai."
 `;
 
-
     // ============================================
     // STATE & CONFIGURATION
     // ============================================
@@ -604,13 +597,15 @@ Dental: "Dr. Dhiral Vijayvargiya relevant hain. Verified dental number abhi avai
         messageCount: 0,
         hasGreeted: false,
         tooltipDismissed: false,
-        apiKey: '', // Deprecated: Gemini key is now server-side only
+        apiKey: '',
         voiceEnabled: (typeof localStorage !== 'undefined') ? localStorage.getItem('kezza_voice_enabled') === 'true' : false,
         isListening: false,
         isProcessing: false, // Prevents duplicate sends
         chatHistory: [],
         lastPhotoAnalysis: null,
-        photoConsentGiven: false
+        photoConsentGiven: false,
+        // Keeps a submitted booking distinct from an active intake flow.
+        completedConsultation: null
     };
 
     let recognition = null;
@@ -742,7 +737,7 @@ Dental: "Dr. Dhiral Vijayvargiya relevant hain. Verified dental number abhi avai
         const statusEl = document.getElementById('kezzaHeaderStatus');
         if (!statusEl) return;
 
-        // Kezza AI is always available 24/7.
+        // Service is available 24/7.
         // The green dot never goes offline — only the consultation *team* has business hours.
         // That distinction is communicated in the greeting message, not the header status.
         const timeInfo = getISTTimeInfo();
@@ -750,12 +745,10 @@ Dental: "Dr. Dhiral Vijayvargiya relevant hain. Verified dental number abhi avai
             statusEl.innerHTML = `<span class="kezza-status-dot online"></span> <span><strong>Online</strong> — Consultation team available 9 AM – 8 PM</span>`;
             statusEl.setAttribute('aria-label', 'Online. Consultation team available 9:00 AM to 8:00 PM IST Monday to Saturday');
         } else {
-            // AI is still online; surface the team's next availability as secondary info
             statusEl.innerHTML = `<span class="kezza-status-dot online"></span> <span><strong>Online</strong> — Consultation team available from 9:00 AM</span>`;
-            statusEl.setAttribute('aria-label', 'Online. AI available 24/7. Consultation team available from 9:00 AM IST');
+            statusEl.setAttribute('aria-label', 'Online. Consultation team available from 9:00 AM IST');
         }
     }
-
 
     function getGreetingResponse(lang) {
         const timeInfo = getISTTimeInfo();
@@ -2707,6 +2700,34 @@ Please contact the patient for further consultation and appointment confirmation
             phone: data.phone || '',
             department: routing.departmentKey
         };
+        const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzT9bA1OTFH4Ox6k-0ROsNYCxtdbwT8VLVzjAODHl3S3ZAxvxxTMj39uPilgcs4NgvJuQ/exec';
+
+        let apiResult = {
+            status: 'ERROR'
+        };
+
+        try {
+            const response = await fetch(GOOGLE_SHEET_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8'
+                },
+                body: JSON.stringify({
+                    ...payload,
+                    source: 'Chatbot'
+                })
+            });
+
+            apiResult = await response.json();
+
+        } catch (error) {
+            console.error('Google Sheet submission error:', error);
+
+            apiResult = {
+                status: 'ERROR',
+                message: error.message
+            };
+        }
 
         const timeInfo = getISTTimeInfo();
         let afterHoursNote = '';
@@ -2738,6 +2759,9 @@ Please contact the patient for further consultation and appointment confirmation
         if (typeof sessionStorage !== 'undefined') {
             sessionStorage.setItem('kezza_sent_' + consultationId, 'true');
         }
+
+        // Mark this intake complete before showing the final quick replies.
+        state.completedConsultation = { id: consultationId };
 
         const waMsg = buildConsultationWhatsAppMessage(data, routing, consultationId);
         const waUrl = getWhatsAppUrl(routing.phone, waMsg);
@@ -2969,7 +2993,7 @@ Please contact the patient for further consultation and appointment confirmation
     }
 
     // ============================================
-    // FAST & LIGHTWEIGHT GEMINI LLM CALL (With Timeout)
+    // ONLINE QUERY API CALL
     // ============================================
     async function callGeminiAPI(userText) {
         if (state.geminiAvailable === false) return null;
@@ -3064,7 +3088,7 @@ Please contact the patient for further consultation and appointment confirmation
     }
 
     // ============================================
-    // 12c. SMART CAMERA & AI PHOTO VISION ENGINE
+    // 12c. CAMERA & PHOTO UPLOAD ENGINE
     // ============================================
     function checkPhotoAnalysisTrigger(userText, norm, lower) {
         if (!userText || typeof userText !== 'string') return false;
@@ -3115,6 +3139,240 @@ Please contact the patient for further consultation and appointment confirmation
         };
     }
 
+    let cameraFaceMesh = null;
+    let cameraFrameLoop = null;
+    let cameraFacingMode = 'user';
+
+    function loadMediaPipeFaceMesh(cb) {
+        if (typeof FaceMesh !== 'undefined') {
+            if (cb) cb();
+            return;
+        }
+        if (document.getElementById('mediapipeFaceMeshScript')) {
+            setTimeout(() => { if (cb) cb(); }, 500);
+            return;
+        }
+        const s1 = document.createElement('script');
+        s1.id = 'mediapipeCameraUtilsScript';
+        s1.src = 'https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js';
+        s1.crossOrigin = 'anonymous';
+        document.head.appendChild(s1);
+
+        const s2 = document.createElement('script');
+        s2.id = 'mediapipeFaceMeshScript';
+        s2.src = 'https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js';
+        s2.crossOrigin = 'anonymous';
+        s2.onload = () => { if (cb) cb(); };
+        document.head.appendChild(s2);
+    }
+
+    function ensureCameraOverlayDOM(lang) {
+        let overlay = document.getElementById('kezzaCameraOverlay');
+        if (overlay) return overlay;
+
+        overlay = document.createElement('div');
+        overlay.id = 'kezzaCameraOverlay';
+        overlay.className = 'kezza-camera-overlay';
+        overlay.style.display = 'none';
+
+        overlay.innerHTML = `
+            <div class="kezza-camera-modal">
+                <div class="kezza-camera-modal-header">
+                    <div class="kezza-camera-title">
+                        <i class="fas fa-camera"></i>
+                        <span>AI Face &amp; Scalp Scanner</span>
+                    </div>
+                    <button type="button" class="kezza-camera-close-btn" id="kezzaCameraClose" aria-label="Close Camera">✕</button>
+                </div>
+
+                <div class="kezza-camera-viewport">
+                    <video id="kezzaCameraVideo" playsinline autoplay muted></video>
+                    <canvas id="kezzaCameraMeshCanvas"></canvas>
+
+                    <!-- Real-Time Guidance Pills -->
+                    <div class="kezza-camera-pills" id="kezzaCameraPills">
+                        <div class="guidance-pill" id="kezzaPillLighting">
+                            <span class="pill-dot"></span> <span class="pill-text">Lighting: Check</span>
+                        </div>
+                        <div class="guidance-pill" id="kezzaPillPosition">
+                            <span class="pill-dot"></span> <span class="pill-text">Position: Center Face</span>
+                        </div>
+                        <div class="guidance-pill" id="kezzaPillPose">
+                            <span class="pill-dot"></span> <span class="pill-text">Pose: Look Straight</span>
+                        </div>
+                    </div>
+
+                    <!-- Face Guide Oval -->
+                    <div class="kezza-camera-oval" id="kezzaCameraOval"></div>
+
+                    <!-- Guidance Hint -->
+                    <div class="kezza-camera-hint" id="kezzaCameraHint">
+                        Align your face or scalp within the oval guide
+                    </div>
+                </div>
+
+                <div class="kezza-camera-modal-footer">
+                    <button type="button" class="kezza-camera-tool-btn" id="kezzaCameraSwitch" title="Switch Camera">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <button type="button" class="kezza-camera-shutter-btn" id="kezzaCameraCaptureBtn" title="Capture Photo">
+                        <span class="shutter-inner"></span>
+                    </button>
+                    <button type="button" class="kezza-camera-tool-btn" id="kezzaCameraGalleryBtn" title="Choose from Gallery">
+                        <i class="fas fa-images"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+
+        document.getElementById('kezzaCameraClose').addEventListener('click', closeSmartCamera);
+        document.getElementById('kezzaCameraCaptureBtn').addEventListener('click', () => captureCameraSnapshot(lang));
+        document.getElementById('kezzaCameraSwitch').addEventListener('click', () => {
+            cameraFacingMode = (cameraFacingMode === 'user') ? 'environment' : 'user';
+            openSmartCamera(lang);
+        });
+        document.getElementById('kezzaCameraGalleryBtn').addEventListener('click', () => {
+            closeSmartCamera();
+            const photoInput = document.getElementById('kezzaPhotoInput');
+            if (photoInput) photoInput.click();
+        });
+
+        return overlay;
+    }
+
+    function onInChatFaceMeshResults(results) {
+        const video = document.getElementById('kezzaCameraVideo');
+        const meshCanvas = document.getElementById('kezzaCameraMeshCanvas');
+        const pillLight = document.getElementById('kezzaPillLighting');
+        const pillPos   = document.getElementById('kezzaPillPosition');
+        const pillPose  = document.getElementById('kezzaPillPose');
+        const oval      = document.getElementById('kezzaCameraOval');
+        const hint      = document.getElementById('kezzaCameraHint');
+        const capBtn    = document.getElementById('kezzaCameraCaptureBtn');
+
+        if (!video || !meshCanvas) return;
+        const ctx = meshCanvas.getContext('2d');
+        ctx.clearRect(0, 0, meshCanvas.width, meshCanvas.height);
+
+        if (results.multiFaceLandmarks && results.multiFaceLandmarks.length > 0) {
+            const landmarks = results.multiFaceLandmarks[0];
+
+            // 1. Face Bounding Box
+            let minX = 1, maxX = 0, minY = 1, maxY = 0;
+            for (let i = 0; i < landmarks.length; i++) {
+                const lm = landmarks[i];
+                if (lm.x < minX) minX = lm.x;
+                if (lm.x > maxX) maxX = lm.x;
+                if (lm.y < minY) minY = lm.y;
+                if (lm.y > maxY) maxY = lm.y;
+            }
+            const boxH = maxY - minY;
+
+            // 2. Average Luminance of Face
+            let avgLum = 120;
+            try {
+                if (video.videoWidth && video.videoHeight) {
+                    const sampleCanvas = document.createElement('canvas');
+                    sampleCanvas.width = 32;
+                    sampleCanvas.height = 32;
+                    const sCtx = sampleCanvas.getContext('2d');
+                    const sx = Math.max(0, minX * video.videoWidth);
+                    const sy = Math.max(0, minY * video.videoHeight);
+                    const sw = Math.min(video.videoWidth - sx, (maxX - minX) * video.videoWidth);
+                    const sh = Math.min(video.videoHeight - sy, boxH * video.videoHeight);
+                    if (sw > 0 && sh > 0) {
+                        sCtx.drawImage(video, sx, sy, sw, sh, 0, 0, 32, 32);
+                        const data = sCtx.getImageData(0, 0, 32, 32).data;
+                        let sum = 0;
+                        for (let p = 0; p < data.length; p += 4) {
+                            sum += (0.299 * data[p] + 0.587 * data[p+1] + 0.114 * data[p+2]);
+                        }
+                        avgLum = sum / 1024;
+                    }
+                }
+            } catch (e) {}
+
+            // 3. Lighting Pill
+            let lightOk = false;
+            if (pillLight) {
+                pillLight.className = 'guidance-pill';
+                if (avgLum < 65) {
+                    pillLight.classList.add('pill-bad');
+                    pillLight.querySelector('.pill-text').textContent = 'Lighting: Too Dark';
+                } else if (avgLum > 215) {
+                    pillLight.classList.add('pill-bad');
+                    pillLight.querySelector('.pill-text').textContent = 'Lighting: Glare';
+                } else {
+                    pillLight.classList.add('pill-ok');
+                    pillLight.querySelector('.pill-text').textContent = 'Lighting: OK';
+                    lightOk = true;
+                }
+            }
+
+            // 4. Position Pill
+            let posOk = false;
+            if (pillPos) {
+                pillPos.className = 'guidance-pill';
+                if (boxH < 0.35) {
+                    pillPos.classList.add('pill-warn');
+                    pillPos.querySelector('.pill-text').textContent = 'Position: Closer';
+                } else if (boxH > 0.85) {
+                    pillPos.classList.add('pill-warn');
+                    pillPos.querySelector('.pill-text').textContent = 'Position: Step Back';
+                } else {
+                    pillPos.classList.add('pill-ok');
+                    pillPos.querySelector('.pill-text').textContent = 'Position: Good';
+                    posOk = true;
+                }
+            }
+
+            // 5. Pose Pill
+            let poseOk = false;
+            if (pillPose && landmarks[1] && landmarks[33] && landmarks[263]) {
+                pillPose.className = 'guidance-pill';
+                const distL = Math.abs(landmarks[1].x - landmarks[33].x);
+                const distR = Math.abs(landmarks[263].x - landmarks[1].x);
+                const ratio = distL / (distR || 0.001);
+                if (ratio >= 0.60 && ratio <= 1.65) {
+                    pillPose.classList.add('pill-ok');
+                    pillPose.querySelector('.pill-text').textContent = 'Pose: Straight';
+                    poseOk = true;
+                } else {
+                    pillPose.classList.add('pill-warn');
+                    pillPose.querySelector('.pill-text').textContent = 'Pose: Turn Center';
+                }
+            }
+
+            if (lightOk && posOk && poseOk) {
+                if (oval) oval.classList.add('good-alignment');
+                if (hint) hint.textContent = 'Perfect! Ready to capture 📸';
+                if (capBtn) capBtn.classList.add('ready');
+            } else {
+                if (oval) oval.classList.remove('good-alignment');
+                if (hint) hint.textContent = 'Align face or scalp within oval';
+                if (capBtn) capBtn.classList.remove('ready');
+            }
+        } else {
+            if (oval) oval.classList.remove('good-alignment');
+            if (hint) hint.textContent = 'Align face or scalp within oval';
+            if (capBtn) capBtn.classList.remove('ready');
+            if (pillLight) {
+                pillLight.className = 'guidance-pill';
+                pillLight.querySelector('.pill-text').textContent = 'Lighting: Check';
+            }
+            if (pillPos) {
+                pillPos.className = 'guidance-pill';
+                pillPos.querySelector('.pill-text').textContent = 'Position: Center Face';
+            }
+            if (pillPose) {
+                pillPose.className = 'guidance-pill';
+                pillPose.querySelector('.pill-text').textContent = 'Pose: Look Straight';
+            }
+        }
+    }
+
     async function openSmartCamera(lang) {
         const effectiveLang = lang || state.preferredLang || 'hinglish';
         if (typeof document === 'undefined') {
@@ -3123,14 +3381,9 @@ Please contact the patient for further consultation and appointment confirmation
             return;
         }
 
+        ensureCameraOverlayDOM(effectiveLang);
         const overlay = document.getElementById('kezzaCameraOverlay');
-        const video = document.getElementById('kezzaCameraVideo');
-
-        if (!overlay || !video) {
-            const prompt = renderPhotoUploadPrompt(effectiveLang);
-            addBotMessage(prompt.text, prompt.quickReplies);
-            return;
-        }
+        const video   = document.getElementById('kezzaCameraVideo');
 
         if (typeof navigator === 'undefined' || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
             addBotMessage(
@@ -3151,7 +3404,7 @@ Please contact the patient for further consultation and appointment confirmation
             let stream;
             try {
                 stream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } },
+                    video: { facingMode: cameraFacingMode, width: { ideal: 1280 }, height: { ideal: 720 } },
                     audio: false
                 });
             } catch (e1) {
@@ -3162,6 +3415,39 @@ Please contact the patient for further consultation and appointment confirmation
             video.srcObject = stream;
             await video.play();
             overlay.style.display = 'flex';
+
+            // Start client-side face landmark guidance
+            loadMediaPipeFaceMesh(() => {
+                if (typeof FaceMesh === 'undefined') return;
+                if (!cameraFaceMesh) {
+                    cameraFaceMesh = new FaceMesh({
+                        locateFile: file => `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`
+                    });
+                    cameraFaceMesh.setOptions({
+                        maxNumFaces: 1,
+                        refineLandmarks: true,
+                        minDetectionConfidence: 0.65,
+                        minTrackingConfidence: 0.65
+                    });
+                    cameraFaceMesh.onResults(onInChatFaceMeshResults);
+                }
+            });
+
+            if (cameraFrameLoop) clearInterval(cameraFrameLoop);
+            cameraFrameLoop = setInterval(async () => {
+                if (!state.activeCameraStream || !video || video.readyState < 2) return;
+                const meshCanvas = document.getElementById('kezzaCameraMeshCanvas');
+                if (cameraFaceMesh) {
+                    if (meshCanvas && meshCanvas.width !== video.videoWidth) {
+                        meshCanvas.width = video.videoWidth;
+                        meshCanvas.height = video.videoHeight;
+                    }
+                    try {
+                        await cameraFaceMesh.send({ image: video });
+                    } catch (e) {}
+                }
+            }, 120);
+
         } catch (err) {
             console.warn('[KezzaAI] Camera access error:', err);
             closeSmartCamera();
@@ -3175,6 +3461,10 @@ Please contact the patient for further consultation and appointment confirmation
     }
 
     function closeSmartCamera() {
+        if (cameraFrameLoop) {
+            clearInterval(cameraFrameLoop);
+            cameraFrameLoop = null;
+        }
         if (state.activeCameraStream) {
             try {
                 state.activeCameraStream.getTracks().forEach(t => t.stop());
@@ -4362,11 +4652,64 @@ Please guide me on next steps and appointment availability.
                 quality_issue_details: qualityMetrics.isDark ? 'Lighting is too dark.' : 'Image is overexposed.',
                 quality_message: (effectiveLang === 'hinglish')
                     ? '📸 The photo is not clear enough for a reliable preliminary assessment.'
-                    : '📸 The photo is not clear enough for a reliable preliminary assessment.'
+                    : '📸 The photo is not clear enough for a reliable preliminary assessment.',
+                instructions: [
+                    'Use bright, natural daylight',
+                    'Hold camera steady for sharp focus',
+                    'Focus closely on the affected skin or scalp area'
+                ]
             };
-        } else {
+        }
+
+        // Call Backend Endpoint (/api/analyze-photo)
+        if (!result) {
+            showTypingIndicator();
+            try {
+                const response = await fetch(`${CHATBOT_API_BASE}/api/analyze-photo`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        image: base64Data,
+                        mimeType: mimeType || 'image/jpeg',
+                        lang: effectiveLang,
+                        textContext: textContext
+                    })
+                });
+
+                removeTypingIndicator();
+
+                if (response.ok) {
+                    result = await response.json();
+                } else {
+                    console.warn('[KezzaAI] Vision API returned status:', response.status);
+                }
+            } catch (err) {
+                console.warn('[KezzaAI] Vision API network error:', err);
+                removeTypingIndicator();
+            }
+        }
+
         removeTypingIndicator();
 
+        // If service is not configured
+        if (result && result.status === 'NO_GEMINI_KEY') {
+            const noKeyCard = `
+<div class="kezza-photo-card" style="border-left:4px solid #f59e0b;">
+    <div class="kezza-photo-header">📷 AI PHOTO ASSESSMENT</div>
+    <p style="margin:8px 0;font-weight:600;color:#92400e;">Photo Received for Specialist Review</p>
+    <p style="font-size:13px;color:#4b5563;line-height:1.5;">Aapki photo successfully capture ho gayi hai. Kezza Clinic ke senior specialist se direct photo review aur guidance ke liye WhatsApp par connect karein:</p>
+    <div style="margin-top:12px;">
+        <a href="https://wa.me/919284517427?text=${encodeURIComponent('Hello Kezza Clinic, I took a photo for consultation on the website. Please guide me with an appointment.')}" target="_blank" rel="noopener noreferrer" class="kezza-whatsapp-btn"><i class="fab fa-whatsapp"></i> WhatsApp Doctor Team ko Bhejo</a>
+    </div>
+    <div class="kezza-photo-disclaimer" style="margin-top:10px;">
+        ⚠️ <em>${result.disclaimer || 'This is an AI-assisted preliminary assessment based on the uploaded photo. It is not a medical diagnosis.'}</em>
+    </div>
+</div>`;
+            addBotMessage(noKeyCard, ['📅 Book Consultation', '💬 WhatsApp Care Team', '📷 Retake Photo']);
+            return;
+        }
+
+        // Fallback if network failed
         if (!result) {
             result = getLocalPhotoAssessment(textContext, effectiveLang);
         }
@@ -4422,6 +4765,17 @@ Please guide me on next steps and appointment availability.
             return await handleConsultationFlow(userText, lang);
         }
 
+        // Acknowledge the success-card Thank You before intent routing so a completed booking never restarts intake.
+        const isThankYou = /^(thank\s*(you|u)|thanks|thx|shukriya|dhanyavaad|dhanyavad|ty)\b/.test(lower);
+        if (state.completedConsultation && isThankYou) {
+            const id = escapeHtml(state.completedConsultation.id);
+            return {
+                text: (lang === 'hinglish' || lang === 'hindi')
+                    ? `Aapka swagat hai! 😊 Aapki consultation request <strong>${id}</strong> successfully submit ho chuki hai. Humein aapse aur koi details nahi chahiye—hamari team jaldi contact karegi.`
+                    : `You're welcome! 😊 Your consultation request <strong>${id}</strong> has already been submitted. We don't need any further details; our team will contact you shortly.`,
+                quickReplies: ['📍 Clinic Locations', 'Ask Another Question']
+            };
+        }
         // 1a. WhatsApp Care Team Direct Query / Pill Click
         if (lower.includes('whatsapp') || lower.includes('care team') || lower === '💬 whatsapp care team' || lower === 'whatsapp care team') {
             const pa = state.lastPhotoAnalysis;
@@ -4441,7 +4795,7 @@ Please guide me on next steps and appointment availability.
             return startConsultationFlow(bookingParams.category, bookingParams.treatment, bookingParams.clinic, bookingParams.specialist, lang);
         }
 
-        // 1c. AI SCANNER DIRECT TRIGGER
+        // 1c. SCANNER DIRECT TRIGGER
         if (
             lower.includes('scanner') ||
             lower.includes('face scan') ||
@@ -4655,8 +5009,6 @@ Please guide me on next steps and appointment availability.
             const pmuBtn = createSpecialistWhatsAppButtonHtml('dr_krishna', taxonomy.defaultMsg, lang);
             const smpPhone = DEPARTMENTS.smp_stretchmark.phone;
             const smpBtn = createWhatsAppButtonHtml('smp_stretchmark', taxonomy.defaultMsg, lang);
-
-            // ── BEARD MICROPIGMENTATION — separate, no auto-PMU route ──────
             if (intentKey === 'BEARD_MICROPIGMENTATION') {
                 state.lastConcern = 'Beard Micropigmentation';
                 if (lang === 'hinglish') {
@@ -4676,8 +5028,6 @@ Please guide me on next steps and appointment availability.
                     quickReplies: ['💬 Contact Kezza Team', '📅 Book Consultation', '🎨 SMP (Scalp Micropigmentation)', '📍 Clinic Locations']
                 };
             }
-
-            // ── SKIN intents: Medical Facial, Botox, Glutathione, Dark Circle, Acne Scar, Skin Pigmentation ──
             if (taxonomy.category === 'SKIN') {
                 state.lastConcern = taxonomy.label;
                 const label = taxonomy.label;
@@ -4698,8 +5048,6 @@ Please guide me on next steps and appointment availability.
                     quickReplies: ['📅 Book Skin Consultation', 'Chat with Skin Team', '📍 Clinic Locations']
                 };
             }
-
-            // ── PMU intents: Eyebrow PMU, Lip PMU, Eyeliner, Beauty Spot ────
             if (taxonomy.category === 'PMU') {
                 state.lastConcern = taxonomy.label;
                 if (lang === 'hinglish') {
@@ -4719,8 +5067,6 @@ Please guide me on next steps and appointment availability.
                     quickReplies: ['📅 Book PMU Consultation', '📍 Clinic Locations']
                 };
             }
-
-            // ── SMP intents: Scalp Micropigmentation, Stretch Marks, Scar Camouflage ──
             if (taxonomy.category === 'SMP') {
                 state.lastConcern = taxonomy.label;
                 if (lang === 'hinglish') {
@@ -5349,7 +5695,6 @@ Please guide me on next steps and appointment availability.
         document.getElementById('kezzaChatMinimize').addEventListener('click', closeChat, { passive: true });
         document.getElementById('kezzaChatSend').addEventListener('click', sendUserMessage);
 
-
         const chatInputEl = document.getElementById('kezzaChatInput');
 
         // Real-time input filter: digits only in WhatsApp state
@@ -5459,13 +5804,10 @@ Please guide me on next steps and appointment availability.
         setInterval(updateBusinessHoursHeaderStatus, 30000);
 
         initSpeechRecognition();
-
-        // ── Initialize AI Scanner Opportunity Modal ──────────────────
         createScannerPromoModal();
     }
 
     // ============================================
-    // KEZZA AI FACE & HAIR SCANNER OPPORTUNITY MODAL
     // ============================================
     function createScannerPromoModal() {
         const currentPath = (typeof window !== 'undefined' && window.location ? window.location.pathname.toLowerCase() : '');
@@ -5725,7 +6067,7 @@ Please guide me on next steps and appointment availability.
                 if (isBooking || strictMatch || state.geminiAvailable === false) {
                     response = await generateLocalResponse(text);
                 } else {
-                    // 3. Fallback to Gemini proxy with 1.8s timeout
+                    // 3. Fallback request with 1.8s timeout
                     response = await callGeminiAPI(text);
                     if (!response) {
                         response = await generateLocalResponse(text);
