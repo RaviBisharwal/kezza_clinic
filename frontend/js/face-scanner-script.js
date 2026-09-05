@@ -411,7 +411,7 @@
             return !!(answers.q8Date && answers.q8);
         }
         if (currentQuestion === 9) {
-            return !!(answers.q9 && answers.q9.length === 10);
+            return /^[6-9]\d{9}$/.test(answers.q9 || '');
         }
         return !!answers[`q${currentQuestion}`];
     }
@@ -492,7 +492,7 @@
             if (currentQuestion < TOTAL_QUESTIONS && currentQuestion !== 8) {
                 setTimeout(() => {
                     renderQuestion(currentQuestion + 1);
-                }, 220);
+                }, 130);
             }
         });
     });
@@ -674,7 +674,7 @@
 
             setTimeout(() => {
                 renderQuestion(8);
-            }, 220);
+            }, 130);
         });
     });
 
@@ -683,11 +683,20 @@
         inputPhone.addEventListener('input', function () {
             this.value = this.value.replace(/\D/g, '').slice(0, 10);
             answers.q9 = this.value;
+            const hint = document.getElementById('phoneHint');
+            if (hint) {
+                const v = answers.q9;
+                if (!v) hint.textContent = '';
+                else if (v.length < 10) hint.textContent = `${10 - v.length} more digit${v.length === 9 ? '' : 's'}`;
+                else if (!/^[6-9]/.test(v)) hint.textContent = 'Indian mobile numbers start with 6, 7, 8 or 9';
+                else hint.textContent = '✓ Looks good';
+            }
             updateAnalyseBtn();
+            if (/^[6-9]\d{9}$/.test(answers.q9)) saveSessionToStorage();
         });
 
         inputPhone.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' && answers.q9 && answers.q9.length === 10) {
+            if (e.key === 'Enter' && /^[6-9]\d{9}$/.test(answers.q9 || '')) {
                 e.preventDefault();
                 goToStep(3);
                 runAnalysis();
@@ -895,7 +904,7 @@
             } else {
                 clearInterval(interval);
             }
-        }, 900);
+        }, 520);
     }
 
     // ─── RESULT STATES ────────────────────────────────────────────────────────
@@ -1024,8 +1033,11 @@
         // ✨ NEW: Render confidence ring + stat bars
         renderConfidenceRing(data);
 
-        // Save to SQL DB & update WhatsApp URL with Consultation ID
-        saveAssessmentToDB(data, doctor);
+        // Save to SQL DB & update WhatsApp URL with Consultation ID,
+        // then hand the patient over to WhatsApp automatically.
+        Promise.resolve(saveAssessmentToDB(data, doctor)).finally(() => {
+            startWhatsAppAutoRedirect();
+        });
 
         // Clear localStorage session after successful result
         try { localStorage.removeItem('kezzaScanSession'); } catch(e) {}
@@ -1310,6 +1322,45 @@ _Please confirm my consultation booking at Kezza Clinic._
 
     initShareAndDownload();
 
+    // ─── AUTO WHATSAPP HANDOFF AFTER CONFIRM ─────────────────────────────────
+    let waRedirectTimer = null;
+
+    function cancelWhatsAppAutoRedirect() {
+        if (waRedirectTimer) { clearInterval(waRedirectTimer); waRedirectTimer = null; }
+        const note = document.getElementById('waAutoRedirect');
+        if (note) note.remove();
+    }
+
+    function startWhatsAppAutoRedirect() {
+        if (waRedirectTimer) return;
+        if (!btnBookWA) return;
+        const url = btnBookWA.getAttribute('href');
+        if (!url || url === '#') return;
+
+        const note = document.createElement('div');
+        note.id = 'waAutoRedirect';
+        note.style.cssText = 'display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:12px;font-size:.85rem;color:#94a3b8';
+        note.innerHTML = '<span id="waCountText"></span>' +
+            '<button type="button" id="waStayBtn" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;font-size:.8rem;font-weight:600;padding:6px 14px;border-radius:20px;cursor:pointer">Stay &amp; read report</button>';
+        btnBookWA.parentNode.insertBefore(note, btnBookWA.nextSibling);
+
+        const txt = note.querySelector('#waCountText');
+        let left = 5;
+        const tick = () => {
+            if (left <= 0) {
+                cancelWhatsAppAutoRedirect();
+                window.location.href = url;   // navigation, never popup-blocked
+                return;
+            }
+            if (txt) txt.textContent = `Opening WhatsApp in ${left}...`;
+            left--;
+        };
+        tick();
+        waRedirectTimer = setInterval(tick, 1000);
+
+        note.querySelector('#waStayBtn').addEventListener('click', cancelWhatsAppAutoRedirect);
+    }
+
     // ─── FLOATING TOAST NOTIFICATION ─────────────────────────────────────────
     function showToast(htmlMsg, durationMs = 2800) {
         const toast = document.getElementById('scannerToast');
@@ -1327,6 +1378,7 @@ _Please confirm my consultation booking at Kezza Clinic._
 
     // ─── RESET CONSULTATION ───────────────────────────────────────────────────
     function resetConsultation() {
+        cancelWhatsAppAutoRedirect();
         // Reset state
         capturedImageBase64 = null;
         Object.keys(answers).forEach(k => { answers[k] = null; });
@@ -1370,6 +1422,7 @@ _Please confirm my consultation booking at Kezza Clinic._
     });
 
     $('btnRetryAnalysis').addEventListener('click', () => {
+        cancelWhatsAppAutoRedirect();
         showResultsState('loading');
         animateLoadingSteps();
         setTimeout(runAnalysis, 500);
@@ -1385,6 +1438,7 @@ _Please confirm my consultation booking at Kezza Clinic._
         btnBookWA.addEventListener('click', function () {
             const href = this.getAttribute('href');
             if (!href || href === '#') return;
+            cancelWhatsAppAutoRedirect();
 
             showToast('<i class="fab fa-whatsapp"></i> Appointment details sent! Starting a new consultation...', 2600);
 
