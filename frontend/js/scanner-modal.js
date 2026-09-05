@@ -62,18 +62,26 @@
     countdownTimer: null,  // auto-capture countdown handle
     countdownValue: 3,     // seconds before auto-capture
     countdownActive: false,
+    waRedirectTimer: null,
     answers: {
       name: '',
       whatsapp: '',
       age: '',
+      city: '',
+      clinic: '',
+      category: '',
+      categoryLabel: '',
+      treatment: '',
+      duration: '',
+      date: '',
+      time: '',
+      // kept for the AI prompt / lead record, no longer asked in the wizard
       gender: '',
       concern: '',
-      duration: '',
       severity: '',
       symptoms: '',
       allergies: '',
       medicines: '',
-      clinic: 'Jaipur (Flagship)',
       consent: true
     }
   };
@@ -263,121 +271,50 @@
           <div class="ks-stage" id="ksStageDetails">
             <div class="ks-details-wizard">
               <div class="ks-q-tracker-header">
-                <span class="ks-q-subtrack" id="ksQTrackerText">Question 1 of 11</span>
+                <span class="ks-q-subtrack" id="ksQTrackerText">Question 1 of 10</span>
                 <span class="ks-brand-badge"><i class="fas fa-user-doctor"></i> Patient Profile</span>
               </div>
 
               <!-- Question 1: Full Name -->
+              <!-- Q1: Name -->
               <div class="ks-q-stage ks-active" data-q="1">
                 <h3 class="ks-q-title">What is your full name?</h3>
-                <p class="ks-q-hint">As you would like it to appear on your clinical report.</p>
+                <p class="ks-q-hint">As you would like it to appear on your report.</p>
                 <div class="ks-input-wrap">
-                  <input type="text" id="ksInputName" class="ks-input-field" placeholder="e.g. Rahul Sharma" autocomplete="name">
+                  <input type="text" id="ksInputName" class="ks-input-field" placeholder="e.g. Rahul Sharma" autocomplete="name" enterkeyhint="next">
                 </div>
               </div>
 
-              <!-- Question 2: WhatsApp Number -->
+              <!-- Q2: Age -->
               <div class="ks-q-stage" data-q="2">
-                <h3 class="ks-q-title">What is your WhatsApp number?</h3>
-                <p class="ks-q-hint">We will deliver your full diagnostic report directly to this WhatsApp.</p>
-                <div class="ks-phone-input-group">
-                  <div class="ks-phone-prefix">🇮🇳 +91</div>
-                  <input type="tel" id="ksInputWhatsApp" class="ks-phone-input" placeholder="10-digit mobile number" maxlength="10" autocomplete="tel">
+                <h3 class="ks-q-title">What is your age group?</h3>
+                <div class="ks-chips-grid">
+                  <button type="button" class="ks-chip-btn" data-age="15-25 yrs"><i class="fas fa-child"></i> 15-25 yrs</button>
+                  <button type="button" class="ks-chip-btn" data-age="26-35 yrs"><i class="fas fa-user"></i> 26-35 yrs</button>
+                  <button type="button" class="ks-chip-btn" data-age="36-45 yrs"><i class="fas fa-user-tie"></i> 36-45 yrs</button>
+                  <button type="button" class="ks-chip-btn" data-age="46-55 yrs"><i class="fas fa-user-clock"></i> 46-55 yrs</button>
+                  <button type="button" class="ks-chip-btn" data-age="55+ yrs"><i class="fas fa-user-shield"></i> 55+ yrs</button>
                 </div>
               </div>
 
-              <!-- Question 3: Age -->
+              <!-- Q3: City -->
               <div class="ks-q-stage" data-q="3">
-                <h3 class="ks-q-title">What is your age?</h3>
-                <p class="ks-q-hint">Helps calibrate clinical cell regeneration &amp; treatment response rate.</p>
+                <h3 class="ks-q-title">Which city are you from?</h3>
                 <div class="ks-input-wrap">
-                  <input type="number" id="ksInputAge" class="ks-input-field" placeholder="e.g. 28" min="1" max="120">
+                  <input type="text" id="ksInputCity" class="ks-input-field" placeholder="e.g. Jaipur, Sikar, Delhi..." autocomplete="address-level2" enterkeyhint="next">
+                </div>
+                <div class="ks-chips-grid" style="margin-top:12px">
+                  <button type="button" class="ks-chip-btn" data-city="Jaipur"><i class="fas fa-location-dot"></i> Jaipur</button>
+                  <button type="button" class="ks-chip-btn" data-city="Sikar"><i class="fas fa-location-dot"></i> Sikar</button>
+                  <button type="button" class="ks-chip-btn" data-city="Delhi"><i class="fas fa-location-dot"></i> Delhi</button>
                 </div>
               </div>
 
-              <!-- Question 4: Gender -->
+              <!-- Q4: Clinic -->
               <div class="ks-q-stage" data-q="4">
-                <h3 class="ks-q-title">What is your gender?</h3>
-                <p class="ks-q-hint">Important for androgenic &amp; hormonal hair/skin analysis.</p>
-                <div class="ks-chips-grid">
-                  <button type="button" class="ks-chip-btn" data-gender="Female"><i class="fas fa-venus"></i> Female</button>
-                  <button type="button" class="ks-chip-btn" data-gender="Male"><i class="fas fa-mars"></i> Male</button>
-                  <button type="button" class="ks-chip-btn" data-gender="Other"><i class="fas fa-genderless"></i> Other</button>
-                </div>
-              </div>
-
-              <!-- Question 5: Main Concern -->
-              <div class="ks-q-stage" data-q="5">
-                <h3 class="ks-q-title">What is your primary concern?</h3>
-                <p class="ks-q-hint">Select the main condition you wish to treat.</p>
-                <div class="ks-chips-grid">
-                  <button type="button" class="ks-chip-btn" data-concern="Acne"><i class="fas fa-spa"></i> Acne</button>
-                  <button type="button" class="ks-chip-btn" data-concern="Dark Spots"><i class="fas fa-wand-magic-sparkles"></i> Dark Spots</button>
-                  <button type="button" class="ks-chip-btn" data-concern="Pigmentation"><i class="fas fa-sun"></i> Pigmentation</button>
-                  <button type="button" class="ks-chip-btn" data-concern="Dryness"><i class="fas fa-droplet"></i> Dryness</button>
-                  <button type="button" class="ks-chip-btn" data-concern="Redness"><i class="fas fa-heart-pulse"></i> Redness</button>
-                  <button type="button" class="ks-chip-btn" data-concern="Hair/Scalp"><i class="fas fa-dna"></i> Hair/Scalp</button>
-                  <button type="button" class="ks-chip-btn" data-concern="Other"><i class="fas fa-ellipsis"></i> Other</button>
-                </div>
-              </div>
-
-              <!-- Question 6: Duration -->
-              <div class="ks-q-stage" data-q="6">
-                <h3 class="ks-q-title">How long have you noticed this?</h3>
-                <p class="ks-q-hint">Helps determine if the condition is acute or chronic.</p>
-                <div class="ks-chips-grid ks-chips-grid-2col">
-                  <button type="button" class="ks-chip-btn" data-duration="<1 month"><i class="fas fa-clock"></i> &lt; 1 month</button>
-                  <button type="button" class="ks-chip-btn" data-duration="1–6 months"><i class="fas fa-calendar-week"></i> 1–6 months</button>
-                  <button type="button" class="ks-chip-btn" data-duration="6–12 months"><i class="fas fa-calendar-days"></i> 6–12 months</button>
-                  <button type="button" class="ks-chip-btn" data-duration="1+ years"><i class="fas fa-calendar-check"></i> 1+ years</button>
-                </div>
-              </div>
-
-              <!-- Question 7: Severity -->
-              <div class="ks-q-stage" data-q="7">
-                <h3 class="ks-q-title">How severe would you rate it?</h3>
-                <p class="ks-q-hint">Your subjective assessment of discomfort or aesthetic impact.</p>
-                <div class="ks-chips-grid">
-                  <button type="button" class="ks-chip-btn" data-severity="Mild"><i class="fas fa-shield"></i> Mild</button>
-                  <button type="button" class="ks-chip-btn" data-severity="Moderate"><i class="fas fa-shield-halved"></i> Moderate</button>
-                  <button type="button" class="ks-chip-btn" data-severity="Severe"><i class="fas fa-shield-virus"></i> Severe</button>
-                </div>
-              </div>
-
-              <!-- Question 8: Existing Symptoms (Optional) -->
-              <div class="ks-q-stage" data-q="8">
-                <h3 class="ks-q-title">Any symptoms or pain? <span class="ks-gold-text">(Optional)</span></h3>
-                <p class="ks-q-hint">e.g. Itching, burning, scaling, excessive hair shedding, tenderness.</p>
-                <div class="ks-input-wrap">
-                  <textarea id="ksInputSymptoms" class="ks-textarea-field" placeholder="Describe any physical symptoms or triggers..."></textarea>
-                </div>
-              </div>
-
-              <!-- Question 9: Allergies (Optional) -->
-              <div class="ks-q-stage" data-q="9">
-                <h3 class="ks-q-title">Known allergies or sensitivities? <span class="ks-gold-text">(Optional)</span></h3>
-                <p class="ks-q-hint">e.g. Chemical peels, sulfur, minoxidil, perfumes, sensitive skin.</p>
-                <div class="ks-input-wrap">
-                  <textarea id="ksInputAllergies" class="ks-textarea-field" placeholder="List any known allergies or skin reactions..."></textarea>
-                </div>
-              </div>
-
-              <!-- Question 10: Medicines (Optional) -->
-              <div class="ks-q-stage" data-q="10">
-                <h3 class="ks-q-title">Current medicines or products? <span class="ks-gold-text">(Optional)</span></h3>
-                <p class="ks-q-hint">e.g. Retinoids, serums, steroids, supplements, prescription creams.</p>
-                <div class="ks-input-wrap">
-                  <textarea id="ksInputMedicines" class="ks-textarea-field" placeholder="List any current skincare or hair medications..."></textarea>
-                </div>
-              </div>
-
-              <!-- Question 11: Clinic & Consent -->
-              <div class="ks-q-stage" data-q="11">
-                <h3 class="ks-q-title">Preferred Kezza Clinic Location</h3>
-                <p class="ks-q-hint">Select the branch most convenient for your consultation.</p>
-                
+                <h3 class="ks-q-title">Which Kezza Clinic would you like to visit?</h3>
                 <div class="ks-clinic-cards-grid">
-                  <div class="ks-clinic-card ks-selected" data-clinic="Jaipur (Flagship)">
+                  <div class="ks-clinic-card" data-clinic="Jaipur (Flagship)">
                     <span class="ks-clinic-card-badge">Flagship</span>
                     <div class="ks-clinic-card-title">Jaipur</div>
                     <div class="ks-clinic-card-loc">Hanuman Nagar, Khatipura</div>
@@ -388,8 +325,71 @@
                     <div class="ks-clinic-card-loc">Opp. S.K. Hospital</div>
                   </div>
                 </div>
+              </div>
 
-                <!-- Mandatory WhatsApp Consent Line -->
+              <!-- Q5: Category -->
+              <div class="ks-q-stage" data-q="5">
+                <h3 class="ks-q-title">Which treatment category do you need?</h3>
+                <div class="ks-chips-grid">
+                  <button type="button" class="ks-chip-btn" data-category="hair"><i class="fas fa-user-doctor"></i> Hair</button>
+                  <button type="button" class="ks-chip-btn" data-category="skin"><i class="fas fa-wand-magic-sparkles"></i> Skin</button>
+                  <button type="button" class="ks-chip-btn" data-category="pmu"><i class="fas fa-pen-fancy"></i> PMU</button>
+                  <button type="button" class="ks-chip-btn" data-category="smp"><i class="fas fa-palette"></i> SMP</button>
+                  <button type="button" class="ks-chip-btn" data-category="weight_loss"><i class="fas fa-scale-balanced"></i> Weight Loss</button>
+                  <button type="button" class="ks-chip-btn" data-category="rhinoplasty"><i class="fas fa-nose"></i> Rhinoplasty / ENT</button>
+                </div>
+              </div>
+
+              <!-- Q6: Treatment (filled from the chosen category) -->
+              <div class="ks-q-stage" data-q="6">
+                <h3 class="ks-q-title">Which treatment are you interested in?</h3>
+                <div class="ks-chips-grid" id="ksTreatmentGrid"></div>
+              </div>
+
+              <!-- Q7: Duration -->
+              <div class="ks-q-stage" data-q="7">
+                <h3 class="ks-q-title">How long have you had this concern?</h3>
+                <div class="ks-chips-grid">
+                  <button type="button" class="ks-chip-btn" data-duration="Less than 1 month"><i class="fas fa-calendar-day"></i> Less than 1 month</button>
+                  <button type="button" class="ks-chip-btn" data-duration="1-6 months"><i class="fas fa-calendar-week"></i> 1-6 months</button>
+                  <button type="button" class="ks-chip-btn" data-duration="6-12 months"><i class="fas fa-calendar-days"></i> 6-12 months</button>
+                  <button type="button" class="ks-chip-btn" data-duration="More than 1 year"><i class="fas fa-hourglass-half"></i> More than 1 year</button>
+                </div>
+              </div>
+
+              <!-- Q8: Date -->
+              <div class="ks-q-stage" data-q="8">
+                <h3 class="ks-q-title">When would you like to visit?</h3>
+                <div class="ks-chips-grid">
+                  <button type="button" class="ks-chip-btn" data-dateq="today"><i class="fas fa-sun"></i> Today</button>
+                  <button type="button" class="ks-chip-btn" data-dateq="tomorrow"><i class="fas fa-calendar-day"></i> Tomorrow</button>
+                  <button type="button" class="ks-chip-btn" data-dateq="in2"><i class="fas fa-calendar-plus"></i> In 2 Days</button>
+                </div>
+                <div class="ks-input-wrap" style="margin-top:12px">
+                  <input type="date" id="ksInputDate" class="ks-input-field">
+                </div>
+              </div>
+
+              <!-- Q9: Time -->
+              <div class="ks-q-stage" data-q="9">
+                <h3 class="ks-q-title">Preferred time slot?</h3>
+                <div class="ks-chips-grid">
+                  <button type="button" class="ks-chip-btn" data-time="Morning (9 AM - 12 PM)"><i class="fas fa-sun"></i> Morning<br><small>9 AM - 12 PM</small></button>
+                  <button type="button" class="ks-chip-btn" data-time="Afternoon (12 PM - 4 PM)"><i class="fas fa-cloud-sun"></i> Afternoon<br><small>12 PM - 4 PM</small></button>
+                  <button type="button" class="ks-chip-btn" data-time="Evening (4 PM - 7 PM)"><i class="fas fa-moon"></i> Evening<br><small>4 PM - 7 PM</small></button>
+                  <button type="button" class="ks-chip-btn" data-time="Any Time"><i class="fas fa-infinity"></i> Any Time<br><small>Flexible</small></button>
+                </div>
+              </div>
+
+              <!-- Q10: WhatsApp -->
+              <div class="ks-q-stage" data-q="10">
+                <h3 class="ks-q-title">Your WhatsApp number?</h3>
+                <p class="ks-q-hint">We will send your report and appointment confirmation here.</p>
+                <div class="ks-input-wrap">
+                  <input type="tel" id="ksInputWhatsApp" class="ks-phone-input" placeholder="10-digit mobile number" maxlength="10" inputmode="numeric" autocomplete="tel" enterkeyhint="done">
+                </div>
+                <p class="ks-q-hint" id="ksPhoneHint" style="min-height:18px"></p>
+
                 <label class="ks-consent-wrap" for="ksConsentCheckbox">
                   <input type="checkbox" id="ksConsentCheckbox" class="ks-consent-checkbox" checked>
                   <span class="ks-consent-label">
@@ -516,6 +516,7 @@
   }
 
   function closeModal(force = false) {
+    cancelWhatsAppHandoff();
     if (!state.isOpen) return;
 
     // Cancel any running countdown
@@ -990,139 +991,191 @@
   }
 
   // ── STEP 3: Step-by-Step Details Wizard ───────────────────────────────
+  // Treatment options per category (mirrors the chatbot's category list)
+  const KS_CATEGORIES = {
+    hair:        { label: 'Hair', treatments: ['Hair Transplant (HT)', 'PRP Therapy', 'GFC Therapy', 'White Hair Removal', 'Electrolysis', 'Hair Loss Medical Consultation'] },
+    skin:        { label: 'Skin', treatments: ['Medical Facial', 'Botox Treatment', 'Glutathione Skin Brightening', 'Dark Circle Treatment', 'Acne & Scar Treatment', 'Anti-Aging & Wrinkle Consultation', 'Dermal Fillers', 'HIFU Skin Tightening', 'Laser Treatment'] },
+    pmu:         { label: 'PMU', treatments: ['Eyebrow PMU (Microblading / Ombre Brows)', 'Lip PMU (Lip Blush / Neutralization)', 'Permanent Eyeliner', 'Beauty Spot'] },
+    smp:         { label: 'SMP', treatments: ['Scalp Micropigmentation (SMP)', 'Stretch Mark Camouflage', 'Scar Camouflage', 'Vitiligo Camouflage', 'Beard Micropigmentation'] },
+    weight_loss: { label: 'Weight Loss', treatments: ['Medical Weight Loss Management', 'Body Slimming & Contouring', 'Diet & Metabolic Care', 'Targeted Fat Reduction'] },
+    rhinoplasty: { label: 'Rhinoplasty / ENT', treatments: ['Aesthetic Rhinoplasty (Nose Reshaping)', 'Endoscopic ENT Procedures', 'Nasal Septum & Symmetry Correction', 'ENT & Head-Neck Consultation'] }
+  };
+  const KS_TOTAL_Q = 10;
+
+  function ksFormatDate(d) {
+    return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+  function ksToInputDate(d) {
+    const p = n => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+  }
+
   function setupDetailsWizardEvents() {
     const btnBack     = document.getElementById('ksBtnQBack');
     const btnSkip     = document.getElementById('ksBtnQSkip');
     const btnContinue = document.getElementById('ksBtnQContinue');
 
-    // Input listeners to trigger validation
-    document.getElementById('ksInputName').addEventListener('input', (e) => {
+    // Advance as soon as an option is chosen, so the flow feels instant
+    function autoAdvance() {
+      if (state.activeQuestion < KS_TOTAL_Q) {
+        setTimeout(() => showQuestion(state.activeQuestion + 1), 160);
+      } else {
+        const activeInput = document.querySelector('.ks-q-stage.ks-active input[type="text"], .ks-q-stage.ks-active input[type="tel"]');
+    if (activeInput) setTimeout(() => { try { activeInput.focus({ preventScroll: true }); } catch (_) {} }, 120);
+
+    updateContinueBtnState();
+      }
+    }
+
+    function pickOne(attr, handler) {
+      document.querySelectorAll('[' + attr + ']').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('[' + attr + ']').forEach(b => b.classList.remove('ks-selected'));
+          btn.classList.add('ks-selected');
+          handler(btn.getAttribute(attr), btn);
+          updateContinueBtnState();
+          autoAdvance();
+        });
+      });
+    }
+
+    // Q1 Name — Enter moves on
+    const inName = document.getElementById('ksInputName');
+    inName.addEventListener('input', (e) => {
       state.answers.name = e.target.value.trim();
       updateContinueBtnState();
     });
+    inName.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && isCurrentQuestionValid()) { e.preventDefault(); showQuestion(2); }
+    });
 
-    document.getElementById('ksInputWhatsApp').addEventListener('input', (e) => {
-      // Clean only digits
+    // Q2 Age group
+    pickOne('data-age', (v) => { state.answers.age = v; });
+
+    // Q3 City — typed or tapped
+    const inCity = document.getElementById('ksInputCity');
+    inCity.addEventListener('input', (e) => {
+      state.answers.city = e.target.value.trim();
+      updateContinueBtnState();
+    });
+    inCity.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && isCurrentQuestionValid()) { e.preventDefault(); showQuestion(4); }
+    });
+    pickOne('data-city', (v) => { state.answers.city = v; inCity.value = v; });
+
+    // Q4 Clinic
+    pickOne('data-clinic', (v) => { state.answers.clinic = v; });
+
+    // Q5 Category -> fills Q6 treatments
+    pickOne('data-category', (v) => {
+      state.answers.category = v;
+      state.answers.categoryLabel = (KS_CATEGORIES[v] || {}).label || v;
+      state.answers.concern = state.answers.categoryLabel;
+      state.answers.treatment = '';
+      renderTreatmentOptions(v);
+    });
+
+    function renderTreatmentOptions(catKey) {
+      const grid = document.getElementById('ksTreatmentGrid');
+      if (!grid) return;
+      const list = (KS_CATEGORIES[catKey] || {}).treatments || [];
+      grid.innerHTML = '';
+      list.forEach(t => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'ks-chip-btn';
+        b.setAttribute('data-treatment', t);
+        b.textContent = t;
+        b.addEventListener('click', () => {
+          grid.querySelectorAll('.ks-chip-btn').forEach(x => x.classList.remove('ks-selected'));
+          b.classList.add('ks-selected');
+          state.answers.treatment = t;
+          updateContinueBtnState();
+          autoAdvance();
+        });
+        grid.appendChild(b);
+      });
+    }
+
+    // Q7 Duration
+    pickOne('data-duration', (v) => { state.answers.duration = v; });
+
+    // Q8 Date — quick chips or picker
+    const inDate = document.getElementById('ksInputDate');
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    inDate.min = ksToInputDate(today);
+    pickOne('data-dateq', (v) => {
+      const d = new Date(today);
+      if (v === 'tomorrow') d.setDate(d.getDate() + 1);
+      if (v === 'in2') d.setDate(d.getDate() + 2);
+      state.answers.date = ksFormatDate(d);
+      inDate.value = ksToInputDate(d);
+    });
+    inDate.addEventListener('change', (e) => {
+      if (!e.target.value) return;
+      const d = new Date(e.target.value + 'T00:00:00');
+      state.answers.date = ksFormatDate(d);
+      document.querySelectorAll('[data-dateq]').forEach(b => b.classList.remove('ks-selected'));
+      updateContinueBtnState();
+      autoAdvance();
+    });
+
+    // Q9 Time
+    pickOne('data-time', (v) => { state.answers.time = v; });
+
+    // Q10 WhatsApp — digits only, 10-digit check
+    const inWa = document.getElementById('ksInputWhatsApp');
+    const waHint = document.getElementById('ksPhoneHint');
+    inWa.addEventListener('input', (e) => {
       const digits = e.target.value.replace(/\D/g, '').slice(0, 10);
       e.target.value = digits;
       state.answers.whatsapp = digits;
+      if (waHint) {
+        if (!digits) waHint.textContent = '';
+        else if (digits.length < 10) waHint.textContent = `${10 - digits.length} more digit${digits.length === 9 ? '' : 's'}`;
+        else if (!/^[6-9]/.test(digits)) waHint.textContent = 'Indian mobile numbers start with 6, 7, 8 or 9';
+        else waHint.textContent = 'Looks good';
+      }
       updateContinueBtnState();
     });
-
-    document.getElementById('ksInputAge').addEventListener('input', (e) => {
-      state.answers.age = e.target.value;
-      updateContinueBtnState();
+    inWa.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && isCurrentQuestionValid()) { e.preventDefault(); btnContinue.click(); }
     });
 
-    // Gender chips
-    document.querySelectorAll('[data-gender]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('[data-gender]').forEach(b => b.classList.remove('ks-selected'));
-        btn.classList.add('ks-selected');
-        state.answers.gender = btn.getAttribute('data-gender');
-        updateContinueBtnState();
-      });
-    });
-
-    // Concern chips
-    document.querySelectorAll('[data-concern]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('[data-concern]').forEach(b => b.classList.remove('ks-selected'));
-        btn.classList.add('ks-selected');
-        state.answers.concern = btn.getAttribute('data-concern');
-        updateContinueBtnState();
-      });
-    });
-
-    // Duration chips
-    document.querySelectorAll('[data-duration]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('[data-duration]').forEach(b => b.classList.remove('ks-selected'));
-        btn.classList.add('ks-selected');
-        state.answers.duration = btn.getAttribute('data-duration');
-        updateContinueBtnState();
-      });
-    });
-
-    // Severity chips
-    document.querySelectorAll('[data-severity]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('[data-severity]').forEach(b => b.classList.remove('ks-selected'));
-        btn.classList.add('ks-selected');
-        state.answers.severity = btn.getAttribute('data-severity');
-        updateContinueBtnState();
-      });
-    });
-
-    // Symptoms, Allergies, Medicines (optional)
-    document.getElementById('ksInputSymptoms').addEventListener('input', (e) => {
-      state.answers.symptoms = e.target.value.trim();
-    });
-    document.getElementById('ksInputAllergies').addEventListener('input', (e) => {
-      state.answers.allergies = e.target.value.trim();
-    });
-    document.getElementById('ksInputMedicines').addEventListener('input', (e) => {
-      state.answers.medicines = e.target.value.trim();
-    });
-
-    // Clinic Cards
-    document.querySelectorAll('[data-clinic]').forEach(card => {
-      card.addEventListener('click', () => {
-        document.querySelectorAll('[data-clinic]').forEach(c => c.classList.remove('ks-selected'));
-        card.classList.add('ks-selected');
-        state.answers.clinic = card.getAttribute('data-clinic');
-        updateContinueBtnState();
-      });
-    });
-
-    // Consent Checkbox
     document.getElementById('ksConsentCheckbox').addEventListener('change', (e) => {
       state.answers.consent = e.target.checked;
       updateContinueBtnState();
     });
 
-    // Wizard Back Button
     btnBack.addEventListener('click', () => {
-      if (state.activeQuestion > 1) {
-        showQuestion(state.activeQuestion - 1);
-      } else {
-        setStage(2); // Go back to partial reveal
-      }
+      if (state.activeQuestion > 1) showQuestion(state.activeQuestion - 1);
+      else setStage(2);
     });
 
-    // Wizard Skip Button (Optional questions 8, 9, 10)
-    btnSkip.addEventListener('click', () => {
-      if (state.activeQuestion >= 8 && state.activeQuestion <= 10) {
-        showQuestion(state.activeQuestion + 1);
-      }
-    });
+    if (btnSkip) btnSkip.style.display = 'none';
 
-    // Wizard Continue Button
     btnContinue.addEventListener('click', () => {
       if (!isCurrentQuestionValid()) return;
-
-      if (state.activeQuestion < 11) {
-        showQuestion(state.activeQuestion + 1);
-      } else {
-        // Final Submit: Submit lead and unveil full report
-        submitLeadAndRevealResults();
-      }
+      if (state.activeQuestion < KS_TOTAL_Q) showQuestion(state.activeQuestion + 1);
+      else submitLeadAndRevealResults();
     });
   }
 
   function isCurrentQuestionValid() {
-    const q = state.activeQuestion;
-    if (q === 1) return state.answers.name.length >= 2;
-    if (q === 2) return /^\d{10}$/.test(state.answers.whatsapp);
-    const parsedAge = parseInt(state.answers.age, 10);
-    if (q === 3) return !isNaN(parsedAge) && parsedAge >= 1 && parsedAge <= 120;
-    if (q === 4) return Boolean(state.answers.gender);
-    if (q === 5) return Boolean(state.answers.concern);
-    if (q === 6) return Boolean(state.answers.duration);
-    if (q === 7) return Boolean(state.answers.severity);
-    if (q === 8 || q === 9 || q === 10) return true; // optional
-    if (q === 11) return Boolean(state.answers.clinic && state.answers.consent);
-    return true;
+    const a = state.answers;
+    switch (state.activeQuestion) {
+      case 1:  return a.name.trim().length >= 2;
+      case 2:  return Boolean(a.age);
+      case 3:  return a.city.trim().length >= 2;
+      case 4:  return Boolean(a.clinic);
+      case 5:  return Boolean(a.category);
+      case 6:  return Boolean(a.treatment);
+      case 7:  return Boolean(a.duration);
+      case 8:  return Boolean(a.date);
+      case 9:  return Boolean(a.time);
+      case 10: return /^[6-9]\d{9}$/.test(a.whatsapp) && a.consent === true;
+      default: return true;
+    }
   }
 
   function updateContinueBtnState() {
@@ -1141,21 +1194,20 @@
 
     // Update Tracker Header
     const tracker = document.getElementById('ksQTrackerText');
-    if (tracker) tracker.textContent = `Question ${qNum} of 11`;
+    if (tracker) tracker.textContent = `Question ${qNum} of ${KS_TOTAL_Q}`;
 
     // Update Progress Fill
     const fill = document.getElementById('ksProgressFill');
-    if (fill) fill.style.width = `${50 + (qNum / 11) * 45}%`;
+    if (fill) fill.style.width = `${50 + (qNum / KS_TOTAL_Q) * 45}%`;
 
-    // Show/Hide Skip button for optional questions
+    // No optional questions in this flow
     const btnSkip = document.getElementById('ksBtnQSkip');
-    const isOptional = qNum >= 8 && qNum <= 10;
-    btnSkip.style.display = isOptional ? 'inline-block' : 'none';
+    if (btnSkip) btnSkip.style.display = 'none';
 
     // Button label
     const btnContinueText = document.getElementById('ksBtnQContinueText');
-    if (qNum === 11) {
-      btnContinueText.textContent = 'Unlock Full Report';
+    if (qNum === KS_TOTAL_Q) {
+      btnContinueText.textContent = 'Confirm & Send to WhatsApp';
     } else {
       btnContinueText.textContent = 'Continue';
     }
@@ -1183,7 +1235,12 @@
       timestamp: new Date().toISOString(),
       name: state.answers.name,
       whatsapp: state.answers.whatsapp,
-      age: parseInt(state.answers.age, 10),
+      age: state.answers.age || '',
+      city: state.answers.city || '',
+      category: state.answers.categoryLabel || '',
+      treatment: state.answers.treatment || '',
+      preferredDate: state.answers.date || '',
+      preferredTime: state.answers.time || '',
       gender: state.answers.gender || 'Not Specified',
       concern: state.answers.concern || 'General Assessment',
       duration: state.answers.duration || '',
@@ -1256,40 +1313,97 @@
     // Configure WhatsApp Button
     const waCTA = document.getElementById('ksBtnWhatsAppCTA');
     if (waCTA) {
-      const msg = encodeURIComponent(
-        `Hi Kezza Clinic! My name is ${ans.name}. I just completed the AI Skin & Hair Scan for ${ans.concern || 'Consultation'} (${ans.clinic || 'Jaipur'}). Please share my full report and specialist appointment availability.`
-      );
+      const lines = [
+        `Hi Kezza Clinic! I just completed the AI Skin & Hair Scan.`,
+        ``,
+        `Name: ${ans.name}`,
+        ans.age ? `Age: ${ans.age}` : '',
+        ans.city ? `City: ${ans.city}` : '',
+        ans.categoryLabel ? `Category: ${ans.categoryLabel}` : '',
+        ans.treatment ? `Treatment: ${ans.treatment}` : '',
+        ans.duration ? `Duration: ${ans.duration}` : '',
+        ans.clinic ? `Preferred clinic: ${ans.clinic}` : '',
+        (ans.date || ans.time) ? `Preferred slot: ${[ans.date, ans.time].filter(Boolean).join(' - ')}` : '',
+        ``,
+        `Please share my full report and confirm my appointment.`
+      ].filter(l => l !== undefined && l !== '');
+      const msg = encodeURIComponent(lines.join('\n'));
       waCTA.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+      startWhatsAppHandoff(waCTA.href);
     }
+  }
+
+  // After the final confirm, hand the visitor to WhatsApp automatically.
+  // A visible countdown and a Stay control keep it from feeling hijacked.
+  function startWhatsAppHandoff(url) {
+    if (state.waRedirectTimer) return;
+    const cta = document.getElementById('ksBtnWhatsAppCTA');
+    if (!cta || !cta.parentNode) return;
+
+    const note = document.createElement('div');
+    note.className = 'ks-wa-autoredirect';
+    note.innerHTML = '<span id="ksWaCountText"></span><button type="button" id="ksWaStay">Stay &amp; read report</button>';
+    cta.parentNode.insertBefore(note, cta.nextSibling);
+
+    const txt = note.querySelector('#ksWaCountText');
+    let left = 4;
+    const tick = () => {
+      if (left <= 0) {
+        clearInterval(state.waRedirectTimer);
+        state.waRedirectTimer = null;
+        window.location.href = url;   // navigation, not a popup, so it is never blocked
+        return;
+      }
+      if (txt) txt.textContent = `Opening WhatsApp in ${left}...`;
+      left--;
+    };
+    tick();
+    state.waRedirectTimer = setInterval(tick, 1000);
+
+    note.querySelector('#ksWaStay').addEventListener('click', () => {
+      clearInterval(state.waRedirectTimer);
+      state.waRedirectTimer = null;
+      note.remove();
+    });
+  }
+
+  function cancelWhatsAppHandoff() {
+    if (state.waRedirectTimer) {
+      clearInterval(state.waRedirectTimer);
+      state.waRedirectTimer = null;
+    }
+    const note = document.querySelector('.ks-wa-autoredirect');
+    if (note) note.remove();
   }
 
   function setupResultsEvents() {
     document.getElementById('ksBtnRestartScan').addEventListener('click', () => {
       // Reset state
       cancelCountdown();
+      cancelWhatsAppHandoff();
       state.capturedImageBase64 = null;
       state.aiAnalysis = null;
       state.answers = {
-        name: '',
-        whatsapp: '',
-        age: '',
-        gender: '',
-        concern: '',
-        duration: '',
-        severity: '',
-        symptoms: '',
-        allergies: '',
-        medicines: '',
-        clinic: 'Jaipur (Flagship)',
+        name: '', whatsapp: '', age: '', city: '', clinic: '',
+        category: '', categoryLabel: '', treatment: '',
+        duration: '', date: '', time: '',
+        gender: '', concern: '', severity: '', symptoms: '', allergies: '', medicines: '',
         consent: true
       };
 
       // Reset form inputs
-      ['ksInputName', 'ksInputWhatsApp', 'ksInputAge', 'ksInputSymptoms', 'ksInputAllergies', 'ksInputMedicines'].forEach(id => {
+      ['ksInputName', 'ksInputCity', 'ksInputWhatsApp', 'ksInputDate'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = '';
       });
+      const waHint = document.getElementById('ksPhoneHint');
+      if (waHint) waHint.textContent = '';
+      const tGrid = document.getElementById('ksTreatmentGrid');
+      if (tGrid) tGrid.innerHTML = '';
       document.querySelectorAll('.ks-chip-btn').forEach(b => b.classList.remove('ks-selected'));
+      document.querySelectorAll('.ks-clinic-card').forEach(c => c.classList.remove('ks-selected'));
+      const consentBox = document.getElementById('ksConsentCheckbox');
+      if (consentBox) consentBox.checked = true;
 
       // Restore subtitle
       const subtitle = document.getElementById('ksScanSubtitle');

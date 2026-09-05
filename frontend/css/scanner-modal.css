@@ -1397,3 +1397,7 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+.ks-wa-autoredirect{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:10px;font-family:'Inter',sans-serif;font-size:.82rem;color:#cbd5e1}
+.ks-wa-autoredirect button{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#e6ebf3;font-size:.78rem;font-weight:600;padding:6px 14px;border-radius:20px;cursor:pointer}
+.ks-wa-autoredirect button:hover{background:rgba(255,255,255,.16)}
+.ks-wa-autoredirect button:focus-visible{outline:2px solid #d4af37;outline-offset:2px}
