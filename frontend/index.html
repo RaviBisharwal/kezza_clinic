@@ -1199,14 +1199,14 @@
       var loaded=false, evts=['scroll','mousemove','touchstart','click','keydown'];
       function load(){ if(loaded) return; loaded=true;
         evts.forEach(function(e){ window.removeEventListener(e,load); });
-        var sc=document.createElement('script'); sc.src='js/kezza-ai.js?v=5.0'; sc.defer=true;
+        var sc=document.createElement('script'); sc.src='js/kezza-ai.js?v=5.2'; sc.defer=true;
         document.body.appendChild(sc);
       }
       evts.forEach(function(e){ window.addEventListener(e,load,{passive:true}); });
       if('requestIdleCallback' in window){ requestIdleCallback(load,{timeout:4000}); } else { setTimeout(load,4000); }
     })();
     </script>
-    <script src="js/quick-actions.js" defer></script>
+    <script src="js/quick-actions.js?v=3.0" defer></script>
 
     <!-- Interactive Calculators Logic -->
     <script>

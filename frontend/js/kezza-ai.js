@@ -5268,6 +5268,12 @@ Please guide me on next steps and appointment availability.
         };
     }
 
+    // ── Helper to navigate to AI Scanner from Chatbot ──
+    function launchAiScanner() {
+        closeChat();
+        window.location.href = 'face-scanner.html';
+    }
+
     // ============================================
     function createChatWidget() {
         const fab = document.createElement('button');
@@ -5458,6 +5464,15 @@ Please guide me on next steps and appointment availability.
         updateBusinessHoursHeaderStatus();
         setInterval(updateBusinessHoursHeaderStatus, 30000);
 
+        // Intercept scanner links & buttons inside chat window
+        win.addEventListener('click', (e) => {
+            const scannerTarget = e.target.closest('a[href*="face-scanner.html"], .kezza-header-btn[href*="face-scanner"], .kezza-chat-scanner-btn, .kezza-scanner-cta-btn, .kezza-chat-inline-link');
+            if (scannerTarget) {
+                e.preventDefault();
+                launchAiScanner(scannerTarget);
+            }
+        });
+
         initSpeechRecognition();
 
         // ── Initialize AI Scanner Opportunity Modal ──────────────────
@@ -5630,6 +5645,12 @@ Please guide me on next steps and appointment availability.
             });
         }
 
+        if (launchBtn) {
+            launchBtn.addEventListener('click', function() {
+                hideScannerModal();
+            });
+        }
+
         window.openScannerPromoModal = showScannerModal;
 
         document.querySelectorAll('[data-open-scanner], .btn-open-scanner-modal').forEach(el => {
@@ -5638,13 +5659,6 @@ Please guide me on next steps and appointment availability.
                 showScannerModal();
             });
         });
-
-        const isModalClosedThisSession = sessionStorage.getItem('kezza_scanner_modal_closed') === 'true';
-        if (!isModalClosedThisSession) {
-            setTimeout(() => {
-                showScannerModal();
-            }, 4500);
-        }
     }
 
     function toggleChat() {
@@ -5704,6 +5718,29 @@ Please guide me on next steps and appointment availability.
 
         addUserMessage(text);
 
+        // Intercept direct AI Scanner queries before LLM/Gemini
+        const lowerText = text.toLowerCase().trim();
+        if (
+            lowerText === '✦ ai scanner' ||
+            lowerText === 'ai scanner' ||
+            lowerText === 'scanner' ||
+            lowerText === 'face scanner' ||
+            lowerText === 'scalp scanner' ||
+            lowerText.includes('ai scanner') ||
+            lowerText.includes('face scanner') ||
+            lowerText.includes('launch scanner') ||
+            lowerText.includes('photo scan')
+        ) {
+            state.isProcessing = false;
+            if (sendBtn) { sendBtn.disabled = false; sendBtn.style.opacity = ''; }
+            launchAiScanner();
+            addBotMessage(
+                `📸 <strong>Kezza AI Scanner launched!</strong><br><br>If the scanner window didn't open automatically, tap below:<br><br><a href="face-scanner.html" class="kezza-scanner-cta-btn"><i class="fas fa-camera"></i> ✦ Open AI Scanner</a>`,
+                ['📅 Book Consultation', '📍 Clinic Locations', '💬 Enquiry']
+            );
+            return;
+        }
+
         // Keep history lightweight (last 8 turns)
         state.chatHistory.push({ role: 'user', text: text });
         if (state.chatHistory.length > 8) {
@@ -5758,6 +5795,10 @@ Please guide me on next steps and appointment availability.
     }
 
     function handleQuickReply(text) {
+        if (text === '✦ AI Scanner' || text.toLowerCase().includes('scanner') || text.toLowerCase().includes('ai scanner')) {
+            launchAiScanner();
+            return;
+        }
         if (text === '💬 Ask About This Concern') {
             addBotMessage(
                 (state.preferredLang === 'hinglish')

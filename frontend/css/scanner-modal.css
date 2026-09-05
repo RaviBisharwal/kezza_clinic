@@ -1,0 +1,1399 @@
+/**
+ * Kezza Hair & Skin Clinic — AI Scanner Lead-Capture Flow
+ * File: frontend/css/scanner-modal.css
+ * Theme: Dark Navy (#090c14 -> #0e1220) + Gold Accents (#c9a84c / #d4af37 / #ffd700)
+ */
+
+/* ── Root Variables & Fonts ─────────────────────────────────────────── */
+:root {
+  --ks-bg-start: #090c14;
+  --ks-bg-end: #0e1220;
+  --ks-card-bg: rgba(18, 24, 40, 0.88);
+  --ks-card-surface: rgba(255, 255, 255, 0.04);
+  --ks-card-surface-hover: rgba(255, 255, 255, 0.08);
+  --ks-gold-primary: #d4af37;
+  --ks-gold-light: #ffd700;
+  --ks-gold-dark: #b8860b;
+  --ks-gold-glow: rgba(212, 175, 55, 0.35);
+  --ks-gold-border: rgba(201, 168, 76, 0.4);
+  --ks-text-main: #f5f7fb;
+  --ks-text-muted: #94a3b8;
+  --ks-text-dim: #64748b;
+  --ks-border-subtle: rgba(255, 255, 255, 0.1);
+  --ks-success: #22c55e;
+  --ks-danger: #ef4444;
+  --ks-wa-green: #25d366;
+  --ks-radius-lg: 24px;
+  --ks-radius-md: 14px;
+  --ks-radius-sm: 10px;
+  --ks-radius-pill: 999px;
+  --ks-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ks-font-serif: 'Playfair Display', Georgia, serif;
+}
+
+/* ── Modal Backdrop ─────────────────────────────────────────────────── */
+.ks-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 7, 16, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 100005;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s;
+  box-sizing: border-box;
+}
+
+.ks-modal-backdrop.ks-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ── Mobile-App-Style Container ─────────────────────────────────────── */
+.ks-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 428px;
+  height: min(780px, calc(100vh - 32px));
+  height: min(780px, calc(100dvh - 32px));
+  background: linear-gradient(180deg, var(--ks-bg-start) 0%, var(--ks-bg-end) 100%);
+  border: 1.5px solid var(--ks-gold-border);
+  border-radius: 28px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 40px rgba(201, 168, 76, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--ks-text-main);
+  font-family: var(--ks-font-sans);
+  box-sizing: border-box;
+  transform: translateY(20px) scale(0.96);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ks-modal-backdrop.ks-active .ks-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+/* Edge-to-edge on Mobile screens */
+@media (max-width: 480px) {
+  .ks-modal-backdrop {
+    padding: 0;
+  }
+  .ks-modal-card {
+    max-width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+  }
+}
+
+/* ── Header Bar ─────────────────────────────────────────────────────── */
+.ks-header {
+  padding: 14px 18px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--ks-border-subtle);
+  background: rgba(9, 12, 20, 0.95);
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.ks-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ks-brand-logo {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+
+.ks-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: var(--ks-gold-light);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--ks-radius-pill);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ks-brand-badge i {
+  font-size: 0.65rem;
+  color: var(--ks-gold-primary);
+}
+
+.ks-close-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--ks-text-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.ks-close-btn:hover {
+  background: rgba(239, 68, 68, 0.85);
+  border-color: var(--ks-danger);
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+/* ── Top Slim Progress Tracker ───────────────────────────────────────── */
+.ks-progress-track {
+  width: 100%;
+  height: 3.5px;
+  background: rgba(255, 255, 255, 0.06);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.ks-progress-fill {
+  height: 100%;
+  width: 25%;
+  background: linear-gradient(90deg, var(--ks-gold-dark), var(--ks-gold-light));
+  box-shadow: 0 0 10px var(--ks-gold-glow);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Body Container ─────────────────────────────────────────────────── */
+.ks-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 18px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ks-body::-webkit-scrollbar {
+  width: 4px;
+}
+.ks-body::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 76, 0.3);
+  border-radius: 4px;
+}
+.ks-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ── View Stages (Step 1, 2, 3, 4) ──────────────────────────────────── */
+.ks-stage {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  animation: ksStageIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.ks-stage.ks-active {
+  display: flex;
+}
+
+@keyframes ksStageIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Typography Elements ─────────────────────────────────────────────── */
+.ks-stage-title {
+  font-family: var(--ks-font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+  margin: 0 0 6px 0;
+  text-align: center;
+}
+
+.ks-stage-subtitle {
+  font-size: 0.82rem;
+  color: var(--ks-text-muted);
+  text-align: center;
+  line-height: 1.45;
+  margin: 0 0 16px 0;
+}
+
+.ks-gold-text {
+  color: var(--ks-gold-light);
+}
+
+/* ── STEP 1: SCAN (Viewfinder & Upload Area) ─────────────────────────── */
+.ks-viewfinder-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 4.2;
+  background: #000;
+  border-radius: var(--ks-radius-lg);
+  border: 1.5px solid var(--ks-gold-border);
+  overflow: hidden;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8), 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.ks-video-feed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+  transform: scaleX(-1); /* mirror selfie camera */
+}
+
+.ks-video-feed.ks-environment {
+  transform: scaleX(1); /* don't mirror rear camera */
+}
+
+.ks-video-feed.ks-active {
+  display: block;
+}
+
+/* Guideline overlay on top of video */
+.ks-face-guide {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: none;
+}
+.ks-face-guide.ks-active {
+  display: block;
+}
+
+.ks-guide-oval {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 74%;
+  border: 2px dashed rgba(212, 175, 55, 0.7);
+  border-radius: 50%;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.38);
+}
+
+.ks-scan-laser {
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ks-gold-light), #fff, var(--ks-gold-light), transparent);
+  box-shadow: 0 0 10px var(--ks-gold-light);
+  animation: ksLaserSweep 2.2s ease-in-out infinite;
+  display: none;
+}
+.ks-scan-laser.ks-active {
+  display: block;
+}
+
+@keyframes ksLaserSweep {
+  0% { top: 18%; opacity: 0.2; }
+  50% { top: 80%; opacity: 1; }
+  100% { top: 18%; opacity: 0.2; }
+}
+
+/* Idle State in Viewfinder */
+.ks-viewfinder-idle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  color: var(--ks-text-muted);
+  cursor: pointer;
+}
+
+.ks-idle-icon-wrap {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1.5px solid var(--ks-gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.65rem;
+  color: var(--ks-gold-light);
+  margin-bottom: 12px;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+.ks-idle-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ks-text-main);
+  margin-bottom: 4px;
+}
+
+.ks-idle-hint {
+  font-size: 0.74rem;
+  color: var(--ks-text-dim);
+}
+
+/* Drag-over glow */
+.ks-viewfinder-wrap.ks-dragover {
+  border-color: var(--ks-gold-light);
+  background: rgba(212, 175, 55, 0.08);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.35);
+}
+
+/* ── Auto-Capture Countdown Overlay ──────────────────────────────── */
+.ks-countdown-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.ks-countdown-ring {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.ks-countdown-svg {
+  width: 80px;
+  height: 80px;
+  transform: rotate(-90deg); /* start arc from top */
+}
+
+.ks-countdown-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.15);
+  stroke-width: 5;
+}
+
+.ks-countdown-arc {
+  fill: none;
+  stroke: var(--ks-gold-light);
+  stroke-width: 5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.8));
+}
+
+.ks-countdown-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.ks-countdown-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+/* ── Capture Flash ────────────────────────────────────────────────── */
+.ks-capture-flash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+  transition: opacity 0.08s ease;
+}
+
+.ks-capture-flash.ks-flash-active {
+  opacity: 0.85;
+  transition: opacity 0.08s ease;
+  animation: ksFlashOut 0.35s ease forwards;
+}
+
+@keyframes ksFlashOut {
+  0%   { opacity: 0.85; }
+  100% { opacity: 0; }
+}
+
+/* Image Preview */
+.ks-image-preview-wrap {
+  position: absolute;
+  inset: 0;
+  display: none;
+  background: #000;
+}
+.ks-image-preview-wrap.ks-active {
+  display: block;
+}
+
+.ks-image-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ks-preview-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(34, 197, 94, 0.9);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--ks-radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  backdrop-filter: blur(4px);
+}
+
+.ks-preview-retake-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(9, 12, 20, 0.85);
+  border: 1px solid var(--ks-gold-border);
+  color: var(--ks-gold-light);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--ks-radius-pill);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(6px);
+}
+.ks-preview-retake-btn:hover {
+  background: var(--ks-gold-primary);
+  color: #000;
+}
+
+/* Camera Action Buttons Row */
+.ks-camera-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.ks-btn-action {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 14px;
+  border-radius: var(--ks-radius-md);
+  font-family: var(--ks-font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--ks-border-subtle);
+  background: var(--ks-card-surface);
+  color: var(--ks-text-main);
+  transition: all 0.22s ease;
+}
+
+.ks-btn-action:hover {
+  background: var(--ks-card-surface-hover);
+  border-color: var(--ks-gold-border);
+  color: var(--ks-gold-light);
+}
+
+.ks-btn-action.ks-btn-shutter {
+  background: linear-gradient(135deg, var(--ks-gold-dark), var(--ks-gold-light));
+  color: #000;
+  font-weight: 700;
+  border-color: var(--ks-gold-light);
+  box-shadow: 0 4px 15px var(--ks-gold-glow);
+}
+
+.ks-btn-action.ks-btn-shutter:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.45);
+}
+
+.ks-hidden-file-input {
+  display: none;
+}
+
+/* Privacy Note */
+.ks-privacy-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.73rem;
+  color: var(--ks-text-muted);
+  margin-bottom: 16px;
+  text-align: center;
+}
+.ks-privacy-note i {
+  color: var(--ks-gold-primary);
+  font-size: 0.75rem;
+}
+
+/* Primary CTA Button */
+.ks-btn-primary {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 20px;
+  border-radius: var(--ks-radius-md);
+  background: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #b8860b 100%);
+  color: #090c14;
+  font-family: var(--ks-font-sans);
+  font-size: 0.92rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px var(--ks-gold-glow);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: auto;
+}
+
+.ks-btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+  color: #000;
+}
+
+.ks-btn-primary:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── STEP 2: AI ANALYSIS & PARTIAL REVEAL ────────────────────────────── */
+.ks-analyzing-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  min-height: 280px;
+}
+
+.ks-scanner-radar {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+  border: 2px solid var(--ks-gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 0 0 30px var(--ks-gold-glow);
+}
+
+.ks-radar-pulse {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ks-gold-primary);
+  opacity: 0;
+  animation: ksPulseAnim 1.8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+.ks-radar-icon {
+  font-size: 2.2rem;
+  color: var(--ks-gold-light);
+  animation: ksBrainBounce 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes ksPulseAnim {
+  0% { transform: scale(0.6); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+@keyframes ksBrainBounce {
+  0% { transform: scale(0.94); }
+  100% { transform: scale(1.06); }
+}
+
+.ks-analysis-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--ks-text-muted);
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.ks-analysis-step-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+.ks-analysis-step-item.ks-active {
+  opacity: 1;
+  color: var(--ks-gold-light);
+  font-weight: 600;
+}
+.ks-analysis-step-item i {
+  font-size: 0.8rem;
+}
+
+/* Partial Reveal Results Container */
+.ks-partial-results {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: ksFadeIn 0.35s ease;
+}
+
+.ks-confidence-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: center;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  color: var(--ks-success);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--ks-radius-pill);
+  margin-bottom: 4px;
+}
+
+.ks-observations-box {
+  background: var(--ks-card-surface);
+  border: 1px solid var(--ks-border-subtle);
+  border-radius: var(--ks-radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ks-obs-heading {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ks-gold-primary);
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ks-obs-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--ks-text-main);
+  line-height: 1.45;
+}
+.ks-obs-item i {
+  color: var(--ks-gold-primary);
+  font-size: 0.85rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* Teaser Card (Locked Value) */
+.ks-lock-teaser {
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.08) 0%, rgba(14, 18, 32, 0.9) 100%);
+  border: 1.5px dashed var(--ks-gold-border);
+  border-radius: var(--ks-radius-md);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0 10px;
+}
+
+.ks-lock-icon-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid var(--ks-gold-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ks-gold-light);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.ks-lock-teaser-text {
+  font-size: 0.78rem;
+  color: var(--ks-text-muted);
+  line-height: 1.4;
+}
+.ks-lock-teaser-text strong {
+  color: #fff;
+  display: block;
+  font-size: 0.82rem;
+  margin-bottom: 2px;
+}
+
+.ks-teaser-callout {
+  font-size: 0.84rem;
+  color: var(--ks-gold-light);
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+/* ── STEP 3: YOUR DETAILS (1-Question-Per-Screen) ─────────────────────── */
+.ks-details-wizard {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ks-q-tracker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.ks-q-subtrack {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--ks-gold-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ks-q-stage {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  animation: ksFadeSlide 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.ks-q-stage.ks-active {
+  display: flex;
+}
+
+@keyframes ksFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.ks-q-title {
+  font-family: var(--ks-font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+}
+
+.ks-q-hint {
+  font-size: 0.78rem;
+  color: var(--ks-text-muted);
+  margin: 0 0 20px 0;
+}
+
+/* Inputs & Form Groups */
+.ks-input-wrap {
+  width: 100%;
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.ks-input-field {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--ks-card-surface);
+  border: 1.5px solid var(--ks-border-subtle);
+  border-radius: var(--ks-radius-md);
+  color: #fff;
+  font-family: var(--ks-font-sans);
+  font-size: 1.05rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.ks-input-field:focus {
+  border-color: var(--ks-gold-primary);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 16px var(--ks-gold-glow);
+}
+
+.ks-input-field::placeholder {
+  color: var(--ks-text-dim);
+  font-size: 0.92rem;
+}
+
+.ks-phone-input-group {
+  display: flex;
+  align-items: center;
+  background: var(--ks-card-surface);
+  border: 1.5px solid var(--ks-border-subtle);
+  border-radius: var(--ks-radius-md);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+.ks-phone-input-group:focus-within {
+  border-color: var(--ks-gold-primary);
+  box-shadow: 0 0 16px var(--ks-gold-glow);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.ks-phone-prefix {
+  padding: 14px 14px 14px 16px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ks-gold-light);
+  border-right: 1px solid var(--ks-border-subtle);
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ks-phone-input {
+  border: none;
+  background: transparent;
+  padding: 14px 16px;
+  font-size: 1.08rem;
+  color: #fff;
+  flex: 1;
+  outline: none;
+  font-family: var(--ks-font-sans);
+  letter-spacing: 0.05em;
+}
+.ks-phone-input::placeholder {
+  color: var(--ks-text-dim);
+}
+
+.ks-textarea-field {
+  width: 100%;
+  min-height: 110px;
+  padding: 14px 16px;
+  background: var(--ks-card-surface);
+  border: 1.5px solid var(--ks-border-subtle);
+  border-radius: var(--ks-radius-md);
+  color: #fff;
+  font-family: var(--ks-font-sans);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+.ks-textarea-field:focus {
+  border-color: var(--ks-gold-primary);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 16px var(--ks-gold-glow);
+}
+
+/* Chip Grid Selectors */
+.ks-chips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 9px;
+  margin-bottom: 16px;
+}
+
+.ks-chips-grid-2col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.ks-chip-btn {
+  padding: 12px 14px;
+  background: var(--ks-card-surface);
+  border: 1.5px solid var(--ks-border-subtle);
+  border-radius: var(--ks-radius-md);
+  color: var(--ks-text-main);
+  font-family: var(--ks-font-sans);
+  font-size: 0.84rem;
+  font-weight: 550;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.ks-chip-btn:hover {
+  background: var(--ks-card-surface-hover);
+  border-color: var(--ks-gold-border);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.ks-chip-btn.ks-selected {
+  background: rgba(212, 175, 55, 0.16);
+  border-color: var(--ks-gold-light);
+  color: var(--ks-gold-light);
+  font-weight: 700;
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.25);
+}
+
+.ks-chip-btn i {
+  font-size: 1.1rem;
+  color: var(--ks-gold-primary);
+  margin-bottom: 2px;
+}
+
+/* Clinic Choice Big Cards */
+.ks-clinic-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.ks-clinic-card {
+  background: var(--ks-card-surface);
+  border: 1.5px solid var(--ks-border-subtle);
+  border-radius: var(--ks-radius-md);
+  padding: 14px 12px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.22s ease;
+  position: relative;
+}
+
+.ks-clinic-card:hover {
+  border-color: var(--ks-gold-border);
+  background: var(--ks-card-surface-hover);
+  transform: translateY(-2px);
+}
+
+.ks-clinic-card.ks-selected {
+  border-color: var(--ks-gold-light);
+  background: rgba(212, 175, 55, 0.15);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.ks-clinic-card-title {
+  font-family: var(--ks-font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 3px;
+}
+
+.ks-clinic-card-badge {
+  font-size: 0.65rem;
+  color: var(--ks-gold-light);
+  background: rgba(212, 175, 55, 0.2);
+  padding: 1px 6px;
+  border-radius: var(--ks-radius-pill);
+  display: inline-block;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.ks-clinic-card-loc {
+  font-size: 0.72rem;
+  color: var(--ks-text-muted);
+}
+
+/* Consent Checkbox Row */
+.ks-consent-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--ks-border-subtle);
+  border-radius: var(--ks-radius-sm);
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.ks-consent-checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--ks-gold-primary);
+  margin-top: 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ks-consent-label {
+  font-size: 0.74rem;
+  color: var(--ks-text-muted);
+  line-height: 1.4;
+  cursor: pointer;
+}
+.ks-consent-label strong {
+  color: var(--ks-gold-light);
+}
+
+/* Navigation Row (Back / Skip / Continue) */
+.ks-wizard-nav-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.ks-btn-back {
+  background: transparent;
+  border: 1px solid var(--ks-border-subtle);
+  color: var(--ks-text-muted);
+  padding: 12px 16px;
+  border-radius: var(--ks-radius-md);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.ks-btn-back:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.ks-btn-skip {
+  background: transparent;
+  border: none;
+  color: var(--ks-text-dim);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 6px 10px;
+  margin-right: auto;
+  transition: color 0.2s ease;
+}
+.ks-btn-skip:hover {
+  color: var(--ks-gold-light);
+}
+
+/* ── STEP 4: FULL RESULTS & WHATSAPP CTA ─────────────────────────────── */
+.ks-results-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: ksFadeIn 0.35s ease;
+}
+
+.ks-unlocked-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: center;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(34, 197, 94, 0.2) 100%);
+  border: 1px solid var(--ks-gold-light);
+  color: var(--ks-gold-light);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 5px 14px;
+  border-radius: var(--ks-radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 16px var(--ks-gold-glow);
+}
+
+.ks-patient-summary-card {
+  background: var(--ks-card-surface);
+  border: 1px solid var(--ks-border-subtle);
+  border-radius: var(--ks-radius-md);
+  padding: 12px 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  font-size: 0.78rem;
+}
+
+.ks-p-stat-item strong {
+  color: var(--ks-gold-light);
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 2px;
+}
+
+.ks-treatment-rec-card {
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.12) 0%, rgba(14, 18, 32, 0.95) 100%);
+  border: 1.5px solid var(--ks-gold-primary);
+  border-radius: var(--ks-radius-md);
+  padding: 14px 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.ks-rec-title {
+  font-family: var(--ks-font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ks-gold-light);
+  margin-bottom: 6px;
+}
+
+.ks-rec-desc {
+  font-size: 0.82rem;
+  color: var(--ks-text-main);
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+
+.ks-doctor-pill-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--ks-border-subtle);
+  border-radius: var(--ks-radius-sm);
+  padding: 8px 12px;
+}
+
+.ks-doc-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--ks-gold-primary);
+  flex-shrink: 0;
+}
+
+.ks-doc-info {
+  flex: 1;
+}
+
+.ks-doc-name {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1px;
+}
+
+.ks-doc-spec {
+  font-size: 0.72rem;
+  color: var(--ks-text-muted);
+}
+
+/* WhatsApp Master CTA Button */
+.ks-btn-whatsapp-cta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: var(--ks-radius-md);
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #ffffff !important;
+  font-family: var(--ks-font-sans);
+  font-size: 0.94rem;
+  font-weight: 700;
+  text-decoration: none !important;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.ks-btn-whatsapp-cta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-25deg);
+  animation: ksWaLightSweep 3s ease-in-out infinite;
+}
+
+@keyframes ksWaLightSweep {
+  0%, 60% { left: -100%; }
+  100% { left: 200%; }
+}
+
+.ks-btn-whatsapp-cta:hover {
+  background: linear-gradient(135deg, #2bf075 0%, #17a091 100%);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.55);
+}
+
+.ks-btn-whatsapp-cta i {
+  font-size: 1.25rem;
+}
+
+.ks-btn-restart {
+  background: transparent;
+  border: 1px solid var(--ks-border-subtle);
+  color: var(--ks-text-muted);
+  padding: 9px 14px;
+  border-radius: var(--ks-radius-md);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+.ks-btn-restart:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Exit Confirmation Dialog ────────────────────────────────────────── */
+.ks-confirm-dialog-wrap {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 7, 16, 0.94);
+  backdrop-filter: blur(10px);
+  z-index: 50;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  animation: ksFadeIn 0.2s ease;
+}
+.ks-confirm-dialog-wrap.ks-active {
+  display: flex;
+}
+
+.ks-confirm-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1.5px solid var(--ks-danger);
+  color: var(--ks-danger);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.ks-confirm-title {
+  font-family: var(--ks-font-serif);
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.ks-confirm-text {
+  font-size: 0.84rem;
+  color: var(--ks-text-muted);
+  line-height: 1.45;
+  margin-bottom: 20px;
+  max-width: 260px;
+}
+
+.ks-confirm-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.ks-btn-confirm-stay {
+  flex: 1;
+  padding: 11px;
+  border-radius: var(--ks-radius-md);
+  background: var(--ks-gold-primary);
+  color: #000;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: none;
+  cursor: pointer;
+}
+
+.ks-btn-confirm-leave {
+  flex: 1;
+  padding: 11px;
+  border-radius: var(--ks-radius-md);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--ks-border-subtle);
+  color: var(--ks-text-muted);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.ks-btn-confirm-leave:hover {
+  color: var(--ks-danger);
+  border-color: var(--ks-danger);
+}
+
+@keyframes ksFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -220,9 +220,28 @@ app.post('/api/analyze-photo', async (req, res) => {
             });
         }
 
-        const { image, textContext, answers } = req.body;
+        const { image, textContext, answers, userDetails } = req.body;
         if (!image) {
             return res.status(400).json({ status: 'ERROR', message: 'Image payload is required.' });
+        }
+
+        // Build enriched patient context from userDetails if provided
+        let enrichedContext = textContext || '';
+        if (userDetails && typeof userDetails === 'object') {
+            const lines = [];
+            if (userDetails.age) lines.push(`Patient Age: ${userDetails.age}`);
+            if (userDetails.gender) lines.push(`Gender: ${userDetails.gender}`);
+            if (userDetails.mainConcern || userDetails.concernLabel) lines.push(`Primary Target Concern: ${userDetails.mainConcern || userDetails.concernLabel}`);
+            if (userDetails.duration) lines.push(`Duration of Concern: ${userDetails.duration}`);
+            if (userDetails.severity) lines.push(`Self-Reported Severity: ${userDetails.severity}`);
+            if (userDetails.allergies) lines.push(`Known Allergies / Skin Sensitivities: ${userDetails.allergies}`);
+            if (userDetails.medicines) lines.push(`Current Medicines / Skincare Products: ${userDetails.medicines}`);
+            if (userDetails.clinic) lines.push(`Preferred Clinic: ${userDetails.clinic}`);
+            if (userDetails.additionalInfo) lines.push(`Additional Patient Symptoms & Notes: ${userDetails.additionalInfo}`);
+            
+            if (lines.length > 0) {
+                enrichedContext = (enrichedContext ? enrichedContext + '\n\n' : '') + 'PATIENT CLINICAL PROFILE & QUESTIONNAIRE:\n' + lines.join('\n');
+            }
         }
 
         // Parse base64 data URL
@@ -234,8 +253,8 @@ app.post('/api/analyze-photo', async (req, res) => {
 
         const promptText = `Perform a comprehensive dermatological and trichological visual evaluation of this patient photo for Kezza Hair & Skin Clinic (Jaipur & Sikar).
 
-PATIENT QUESTIONNAIRE & CONCERN:
-${textContext || 'General Skin & Hair Assessment'}
+PATIENT QUESTIONNAIRE & CLINICAL CONTEXT:
+${enrichedContext || 'General Skin & Hair Assessment'}
 
 CLINICAL DEPARTMENTS & KEY SPECIALISTS AT KEZZA:
 1. HAIR: Dr. Ankit Bhalothia (Sapphire FUE, GFC/PRP Therapy, Hair Thinning)
@@ -309,6 +328,151 @@ Return a strict JSON object with this exact schema:
     } catch (err) {
         console.error('[Gemini Vision API Error]:', err.message);
         return res.status(500).json({ status: 'ERROR', message: err.message });
+    }
+});
+
+// ── 4. Lead Capture & Google Sheets Webhook API (/api/lead) ─────────
+const leadRateLimitMap = new Map(); // whatsapp -> [timestamps]
+
+// Clean up expired rate-limit records every 15 minutes
+setInterval(() => {
+    const now = Date.now();
+    const tenMinutes = 10 * 60 * 1000;
+    for (const [phone, timestamps] of leadRateLimitMap.entries()) {
+        const validTimestamps = timestamps.filter(t => (now - t) < tenMinutes);
+        if (validTimestamps.length === 0) {
+            leadRateLimitMap.delete(phone);
+        } else {
+            leadRateLimitMap.set(phone, validTimestamps);
+        }
+    }
+}, 15 * 60 * 1000);
+
+app.post('/api/lead', async (req, res) => {
+    try {
+        const {
+            name,
+            whatsapp,
+            age,
+            gender,
+            concern,
+            duration,
+            severity,
+            symptoms,
+            allergies,
+            medicines,
+            clinic,
+            aiSummary,
+            consent,
+            timestamp
+        } = req.body || {};
+
+        // 1. Validation
+        const trimmedName = typeof name === 'string' ? name.trim() : '';
+        if (!trimmedName) {
+            return res.status(400).json({ status: 'ERROR', message: 'Full name is required.' });
+        }
+
+        // Clean whatsapp string (remove spaces, hyphens, leading +91 or 91 if 12 digits)
+        let cleanPhone = String(whatsapp || '').replace(/[\s\-\+\(\)]/g, '');
+        if (cleanPhone.startsWith('91') && cleanPhone.length === 12) {
+            cleanPhone = cleanPhone.slice(2);
+        } else if (cleanPhone.startsWith('0') && cleanPhone.length === 11) {
+            cleanPhone = cleanPhone.slice(1);
+        }
+
+        if (!/^\d{10}$/.test(cleanPhone)) {
+            return res.status(400).json({ status: 'ERROR', message: 'WhatsApp number must be exactly 10 digits.' });
+        }
+
+        const parsedAge = parseInt(age, 10);
+        if (isNaN(parsedAge) || parsedAge < 1 || parsedAge > 120) {
+            return res.status(400).json({ status: 'ERROR', message: 'Age must be a valid number between 1 and 120.' });
+        }
+
+        const hasConsent = consent === true || consent === 'true';
+        if (!hasConsent) {
+            return res.status(400).json({ status: 'ERROR', message: 'Consent to contact on WhatsApp is required.' });
+        }
+
+        // 2. Spam Protection Rate Limiting (max 3 submissions per 10 minutes per phone)
+        const now = Date.now();
+        const tenMinutes = 10 * 60 * 1000;
+        const pastTimestamps = (leadRateLimitMap.get(cleanPhone) || []).filter(t => (now - t) < tenMinutes);
+
+        if (pastTimestamps.length >= 3) {
+            return res.status(429).json({
+                status: 'ERROR',
+                message: 'Too many submissions from this number. Please wait 10 minutes or message us directly on WhatsApp.'
+            });
+        }
+
+        pastTimestamps.push(now);
+        leadRateLimitMap.set(cleanPhone, pastTimestamps);
+
+        // 3. Prepare sanitized payload (Never store photo blobs - only text AI summary)
+        const leadRecord = {
+            timestamp: timestamp || new Date().toISOString(),
+            name: trimmedName,
+            whatsapp: cleanPhone,
+            age: parsedAge,
+            gender: gender || 'Not Specified',
+            concern: concern || 'General Assessment',
+            duration: duration || '',
+            severity: severity || '',
+            symptoms: symptoms || '',
+            allergies: allergies || '',
+            medicines: medicines || '',
+            clinic: clinic || 'Jaipur (Flagship)',
+            aiSummary: typeof aiSummary === 'string' ? aiSummary.slice(0, 1500) : JSON.stringify(aiSummary || '').slice(0, 1500),
+            consent: true
+        };
+
+        console.log(`[Lead Received] ${leadRecord.name} (${leadRecord.whatsapp}) | Concern: ${leadRecord.concern} | Clinic: ${leadRecord.clinic}`);
+
+        // 4. Forward to Google Sheets Webhook if configured
+        const sheetWebhookUrl = process.env.SHEET_WEBHOOK_URL;
+        if (sheetWebhookUrl && sheetWebhookUrl.trim()) {
+            // Forward asynchronously with timeout
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 8000);
+
+                fetch(sheetWebhookUrl.trim(), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(leadRecord),
+                    signal: controller.signal
+                })
+                .then(async (sheetRes) => {
+                    clearTimeout(timeoutId);
+                    if (!sheetRes.ok) {
+                        const errText = await sheetRes.text().catch(() => '');
+                        console.warn('[Google Sheets Webhook Response Not OK]:', sheetRes.status, errText);
+                    } else {
+                        console.log(`[Google Sheets Webhook Success] Synced lead for ${leadRecord.whatsapp}`);
+                    }
+                })
+                .catch((sheetErr) => {
+                    clearTimeout(timeoutId);
+                    console.error('[Google Sheets Webhook Forward Error]:', sheetErr.message);
+                });
+            } catch (postErr) {
+                console.error('[Google Sheets Webhook Dispatch Error]:', postErr.message);
+            }
+        } else {
+            console.log('[Google Sheets Webhook] SHEET_WEBHOOK_URL not configured. Lead recorded in server logs only.');
+        }
+
+        return res.json({
+            status: 'OK',
+            message: 'Lead captured successfully.',
+            leadId: `KZ-${Date.now().toString(36).toUpperCase()}`
+        });
+
+    } catch (err) {
+        console.error('[Lead Capture Error]:', err.message);
+        return res.status(500).json({ status: 'ERROR', message: 'Internal server error processing lead.' });
     }
 });
 
