@@ -18,10 +18,10 @@
     return;
   }
 
-  // ── Configuration & Doctors Directory ────────────────────────────────
   const WHATSAPP_NUMBER = '919284517427';
   const API_ANALYZE     = '/api/analyze-photo';
   const API_LEAD        = '/api/lead';
+  const GOOGLE_SHEET_LEAD_URL = 'https://script.google.com/macros/s/AKfycbwsWmFO6lLgh_UAAZkQpBstzRQ8335TQ_XP3jGnq3cBsfkFNE6eDewuQDRqho1o1CqiuA/exec';
 
   const DOCTORS = {
     HAIR: {
@@ -1252,10 +1252,23 @@
       aiSummary: (state.aiAnalysis && state.aiAnalysis.visible_observations) 
         ? state.aiAnalysis.visible_observations.join('; ') 
         : 'Assessment complete.',
+      source: 'AI Scanner Modal',
       consent: true
     };
 
-    // Forward to backend /api/lead (Non-blocking fallback)
+    // Forward to Google Sheet Webhook (Direct client-side, CORS-safe simple request)
+    try {
+      fetch(GOOGLE_SHEET_LEAD_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(leadData)
+      }).catch(e => console.warn('[Direct Sheet Sync Warn]:', e));
+    } catch (sheetErr) {
+      console.warn('[Direct Sheet Sync Error]:', sheetErr);
+    }
+
+    // Forward to backend /api/lead (Server also syncs with Google Sheets)
     try {
       const leadRes = await fetch(API_LEAD, {
         method: 'POST',

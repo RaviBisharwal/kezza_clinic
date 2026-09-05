@@ -189,6 +189,34 @@ Source: Kezza Clinic Contact Form`;
 
                 const waUrl = `https://wa.me/919284517427?text=${encodeURIComponent(waMessage)}`;
                 
+                // Dispatch lead to Google Sheets & Backend
+                const leadPayload = {
+                    timestamp: new Date().toISOString(),
+                    name: fullName,
+                    phone: phone,
+                    whatsapp: phone,
+                    email: email,
+                    service: service,
+                    category: service,
+                    message: `[Subject: ${subject}] ${message}`,
+                    source: 'Contact Form'
+                };
+                try {
+                    fetch('https://script.google.com/macros/s/AKfycbwsWmFO6lLgh_UAAZkQpBstzRQ8335TQ_XP3jGnq3cBsfkFNE6eDewuQDRqho1o1CqiuA/exec', {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify(leadPayload)
+                    }).catch(e => {});
+                } catch(e) {}
+                try {
+                    fetch('/api/lead', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(leadPayload)
+                    }).catch(e => {});
+                } catch(e) {}
+
                 try {
                     window.open(waUrl, '_blank');
                 } catch (e) {}

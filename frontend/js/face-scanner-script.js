@@ -24,6 +24,7 @@
         : window.location.origin;
     const API_ENDPOINT  = `${API_BASE}/api/analyze-photo`;
     const WHATSAPP_NUM  = '919284517427';
+    const GOOGLE_SHEET_LEAD_URL = 'https://script.google.com/macros/s/AKfycbwsWmFO6lLgh_UAAZkQpBstzRQ8335TQ_XP3jGnq3cBsfkFNE6eDewuQDRqho1o1CqiuA/exec';
 
     // Doctor map: department_key → { name, spec, img, contact, location }
     const DOCTOR_MAP = {
@@ -1070,6 +1071,37 @@
             };
 
             const consultationId = `KEZZA-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+            payload.consultationId = consultationId;
+            payload.leadId = consultationId;
+            payload.name = answers.q4 || 'Patient';
+            payload.phone = answers.q9 || '';
+            payload.whatsapp = answers.q9 || '';
+            payload.city = answers.q6 || 'Jaipur';
+            payload.clinic = answers.q7 || 'Jaipur';
+            payload.duration = answers.q2 || 'Not specified';
+            payload.source = 'Face Scanner Page';
+
+            // 1. Send directly to Google Sheet Webhook (CORS safe simple request)
+            try {
+                fetch(GOOGLE_SHEET_LEAD_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                }).catch(err => console.warn('[Face Scanner Direct Sheet Sync Warn]:', err));
+            } catch (sheetErr) {
+                console.warn('[Face Scanner Direct Sheet Error]:', sheetErr);
+            }
+
+            // 2. Forward to backend /api/lead (Server also syncs with Google Sheets)
+            try {
+                fetch(`${API_BASE}/api/lead`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).catch(e => {});
+            } catch (e) {}
+
             const updatedMsg = buildWhatsAppMessage(data, doctor, consultationId);
             const destPhone = answers.clinicContact || doctor.contact || WHATSAPP_NUM;
             btnBookWA.href = `https://wa.me/${destPhone.replace(/\D/g, '')}?text=${encodeURIComponent(updatedMsg)}`;

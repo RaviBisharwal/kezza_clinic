@@ -2717,8 +2717,31 @@ Please contact the patient for further consultation and appointment confirmation
             date: data.date || '',
             time: data.time || '',
             phone: data.phone || '',
-            department: routing.departmentKey
+            whatsapp: data.phone || '',
+            city: data.patientLocation || clinicCity,
+            clinic: clinicCity,
+            department: routing.departmentKey,
+            source: 'Kezza AI Widget'
         };
+
+        // Direct fetch to Google Apps Script Webhook (CORS-safe simple POST)
+        try {
+            fetch('https://script.google.com/macros/s/AKfycbwsWmFO6lLgh_UAAZkQpBstzRQ8335TQ_XP3jGnq3cBsfkFNE6eDewuQDRqho1o1CqiuA/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(payload)
+            }).catch(e => console.warn('[Kezza-AI Sheet Sync Warn]:', e));
+        } catch (sheetErr) {}
+
+        // Forward to /api/lead (Server also syncs to Google Sheets)
+        try {
+            fetch('/api/lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).catch(e => {});
+        } catch (apiErr) {}
 
         const timeInfo = getISTTimeInfo();
         let afterHoursNote = '';

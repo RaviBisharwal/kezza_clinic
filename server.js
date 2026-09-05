@@ -348,33 +348,50 @@ setInterval(() => {
     }
 }, 15 * 60 * 1000);
 
-app.post('/api/lead', async (req, res) => {
+app.post(['/api/lead', '/api/send-consultation'], async (req, res) => {
     try {
+        const body = req.body || {};
         const {
             name,
+            full_name,
             whatsapp,
+            phone,
+            mobile_number,
             age,
             gender,
             concern,
             duration,
+            concernDetails,
             severity,
             symptoms,
             allergies,
             medicines,
             clinic,
+            selectedClinic,
+            category,
+            categoryTitle,
+            treatment,
+            preferredDate,
+            date,
+            preferredTime,
+            time,
+            email,
+            message,
+            notes,
             aiSummary,
-            consent,
-            timestamp
-        } = req.body || {};
+            source,
+            timestamp,
+            consultationId
+        } = body;
 
         // 1. Validation
-        const trimmedName = typeof name === 'string' ? name.trim() : '';
+        const trimmedName = typeof (name || full_name) === 'string' ? (name || full_name).trim() : '';
         if (!trimmedName) {
             return res.status(400).json({ status: 'ERROR', message: 'Full name is required.' });
         }
 
-        // Clean whatsapp string (remove spaces, hyphens, leading +91 or 91 if 12 digits)
-        let cleanPhone = String(whatsapp || '').replace(/[\s\-\+\(\)]/g, '');
+        // Clean phone/whatsapp string (remove spaces, hyphens, leading +91 or 91 if 12 digits)
+        let cleanPhone = String(whatsapp || phone || mobile_number || '').replace(/[\s\-\+\(\)]/g, '');
         if (cleanPhone.startsWith('91') && cleanPhone.length === 12) {
             cleanPhone = cleanPhone.slice(2);
         } else if (cleanPhone.startsWith('0') && cleanPhone.length === 11) {
@@ -385,22 +402,17 @@ app.post('/api/lead', async (req, res) => {
             return res.status(400).json({ status: 'ERROR', message: 'WhatsApp number must be exactly 10 digits.' });
         }
 
-        const parsedAge = parseInt(age, 10);
+        let parsedAge = parseInt(age, 10);
         if (isNaN(parsedAge) || parsedAge < 1 || parsedAge > 120) {
-            return res.status(400).json({ status: 'ERROR', message: 'Age must be a valid number between 1 and 120.' });
+            parsedAge = '';
         }
 
-        const hasConsent = consent === true || consent === 'true';
-        if (!hasConsent) {
-            return res.status(400).json({ status: 'ERROR', message: 'Consent to contact on WhatsApp is required.' });
-        }
-
-        // 2. Spam Protection Rate Limiting (max 3 submissions per 10 minutes per phone)
+        // 2. Spam Protection Rate Limiting (max 5 submissions per 10 minutes per phone)
         const now = Date.now();
         const tenMinutes = 10 * 60 * 1000;
         const pastTimestamps = (leadRateLimitMap.get(cleanPhone) || []).filter(t => (now - t) < tenMinutes);
 
-        if (pastTimestamps.length >= 3) {
+        if (pastTimestamps.length >= 5) {
             return res.status(429).json({
                 status: 'ERROR',
                 message: 'Too many submissions from this number. Please wait 10 minutes or message us directly on WhatsApp.'
@@ -410,30 +422,40 @@ app.post('/api/lead', async (req, res) => {
         pastTimestamps.push(now);
         leadRateLimitMap.set(cleanPhone, pastTimestamps);
 
-        // 3. Prepare sanitized payload (Never store photo blobs - only text AI summary)
+        // 3. Prepare sanitized payload for Google Sheets & logs
+        const finalLeadId = consultationId || `KEZZA-${new Date().getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
         const leadRecord = {
             timestamp: timestamp || new Date().toISOString(),
+            leadId: finalLeadId,
             name: trimmedName,
             whatsapp: cleanPhone,
+            phone: cleanPhone,
             age: parsedAge,
             gender: gender || 'Not Specified',
-            concern: concern || 'General Assessment',
+            city: body.city || body.patientLocation || body.patient_city || '',
+            clinic: clinic || selectedClinic || 'Jaipur (Flagship)',
+            category: categoryTitle || category || '',
+            treatment: treatment || '',
+            concern: concern || concernDetails || 'General Consultation',
             duration: duration || '',
+            date: date || preferredDate || '',
+            time: time || preferredTime || '',
+            email: email || '',
+            message: message || notes || '',
             severity: severity || '',
             symptoms: symptoms || '',
             allergies: allergies || '',
             medicines: medicines || '',
-            clinic: clinic || 'Jaipur (Flagship)',
             aiSummary: typeof aiSummary === 'string' ? aiSummary.slice(0, 1500) : JSON.stringify(aiSummary || '').slice(0, 1500),
+            source: source || 'Kezza Website',
             consent: true
         };
 
-        console.log(`[Lead Received] ${leadRecord.name} (${leadRecord.whatsapp}) | Concern: ${leadRecord.concern} | Clinic: ${leadRecord.clinic}`);
+        console.log(`[Lead Received] ${leadRecord.name} (${leadRecord.whatsapp}) | ${leadRecord.treatment || leadRecord.concern} | ${leadRecord.clinic} | Source: ${leadRecord.source}`);
 
-        // 4. Forward to Google Sheets Webhook if configured
-        const sheetWebhookUrl = process.env.SHEET_WEBHOOK_URL;
+        // 4. Forward to Google Sheets Webhook
+        const sheetWebhookUrl = process.env.SHEET_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbwsWmFO6lLgh_UAAZkQpBstzRQ8335TQ_XP3jGnq3cBsfkFNE6eDewuQDRqho1o1CqiuA/exec';
         if (sheetWebhookUrl && sheetWebhookUrl.trim()) {
-            // Forward asynchronously with timeout
             try {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 8000);
@@ -450,7 +472,7 @@ app.post('/api/lead', async (req, res) => {
                         const errText = await sheetRes.text().catch(() => '');
                         console.warn('[Google Sheets Webhook Response Not OK]:', sheetRes.status, errText);
                     } else {
-                        console.log(`[Google Sheets Webhook Success] Synced lead for ${leadRecord.whatsapp}`);
+                        console.log(`[Google Sheets Webhook Success] Synced lead ${finalLeadId} for ${leadRecord.whatsapp}`);
                     }
                 })
                 .catch((sheetErr) => {
@@ -460,14 +482,12 @@ app.post('/api/lead', async (req, res) => {
             } catch (postErr) {
                 console.error('[Google Sheets Webhook Dispatch Error]:', postErr.message);
             }
-        } else {
-            console.log('[Google Sheets Webhook] SHEET_WEBHOOK_URL not configured. Lead recorded in server logs only.');
         }
 
         return res.json({
-            status: 'OK',
+            status: 'SENT',
             message: 'Lead captured successfully.',
-            leadId: `KZ-${Date.now().toString(36).toUpperCase()}`
+            leadId: finalLeadId
         });
 
     } catch (err) {

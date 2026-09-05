@@ -183,6 +183,42 @@
 
             const waUrl = `https://wa.me/${toPhone}?text=${encodeURIComponent(waMessage)}`;
 
+            // Send to Google Sheet Webhook & Backend Lead API
+            const leadPayload = {
+                timestamp: new Date().toISOString(),
+                consultationId: consultationId,
+                leadId: consultationId,
+                name: name,
+                phone: phone,
+                whatsapp: phone,
+                email: email,
+                category: category,
+                service: category,
+                clinic: clinicLabel,
+                message: message,
+                department: deptName,
+                source: 'Contact Us Form'
+            };
+
+            // Direct sync to Google Apps Script (CORS-safe simple POST)
+            try {
+                fetch('https://script.google.com/macros/s/AKfycbwsWmFO6lLgh_UAAZkQpBstzRQ8335TQ_XP3jGnq3cBsfkFNE6eDewuQDRqho1o1CqiuA/exec', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(leadPayload)
+                }).catch(e => console.warn('[WhatsApp Form Sheet Sync Warn]:', e));
+            } catch (sheetErr) {}
+
+            // Server-side sync via /api/lead
+            try {
+                fetch('/api/lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(leadPayload)
+                }).catch(e => {});
+            } catch (apiErr) {}
+
             // Show success message inline with large clickable button
             showSuccess(contactForm, `Redirecting you to WhatsApp (${deptName}). Consultation ID: <strong>${consultationId}</strong>.`, waUrl, deptName);
 
