@@ -5314,6 +5314,15 @@ Please guide me on next steps and appointment availability.
     // ── Helper to navigate to AI Scanner from Chatbot ──
     function launchAiScanner() {
         closeChat();
+        // Prefer the in-page scanner popup; fall back to the standalone page
+        if (typeof window.openKezzaScanner === 'function') {
+            window.openKezzaScanner();
+            return;
+        }
+        if (window.KezzaScannerModal && window.KezzaScannerModal.open) {
+            window.KezzaScannerModal.open();
+            return;
+        }
         window.location.href = 'face-scanner.html';
     }
 
