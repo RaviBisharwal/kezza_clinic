@@ -55,14 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!document.querySelector('link[href*="scanner-modal.css"]')) {
             const cssLink = document.createElement('link');
             cssLink.rel = 'stylesheet';
-            cssLink.href = 'css/scanner-modal.css?v=5.0';
+            cssLink.href = 'css/scanner-modal.css?v=6.0';
             document.head.appendChild(cssLink);
         }
 
         // 2. Inject JS and open modal once loaded
         if (!document.querySelector('script[src*="scanner-modal.js"]')) {
             const script = document.createElement('script');
-            script.src = 'js/scanner-modal.js?v=5.0';
+            script.src = 'js/scanner-modal.js?v=6.0';
             script.defer = true;
             script.onload = () => {
                 scannerAssetsLoading = false;

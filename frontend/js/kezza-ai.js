@@ -1176,38 +1176,6 @@ Please contact the patient for further consultation and appointment confirmation
         ERROR:                    'ERROR'
     };
 
-    // ============================================
-    // GUIDED QUESTION UI META (scanner-style step cards)
-    // ============================================
-    const GUIDED_TOTAL_STEPS = 10;
-    const QUESTION_META = {
-        'NAME':             { icon: 'fa-user',            order: 1  },
-        'AGE':              { icon: 'fa-cake-candles',    order: 2  },
-        'PATIENT_LOCATION': { icon: 'fa-location-dot',    order: 3  },
-        'CLINIC_LOCATION':  { icon: 'fa-hospital',        order: 4  },
-        'CATEGORY':         { icon: 'fa-magnifying-glass',order: 5  },
-        'TREATMENT':        { icon: 'fa-syringe',         order: 6  },
-        'CONCERN':          { icon: 'fa-hourglass-half',  order: 7  },
-        'PREFERRED_DATE':   { icon: 'fa-calendar-days',   order: 8  },
-        'PREFERRED_TIME':   { icon: 'fa-clock',           order: 9  },
-        'WHATSAPP':         { icon: 'fa-mobile-screen',   order: 10 },
-        'EDIT_WHATSAPP':    { icon: 'fa-mobile-screen',   order: 10 },
-        'REVIEW':           { icon: 'fa-clipboard-check', order: 10 }
-    };
-    const GUIDED_BACK_LABEL = '\u2190 Back';
-
-    // Age-group option labels -> stored value (tap-friendly, no typing needed)
-    const AGE_GROUP_OPTIONS = ['15\u201325 yrs', '26\u201335 yrs', '36\u201345 yrs', '46\u201355 yrs', '55+ yrs'];
-    function matchAgeGroup(text) {
-        if (!text) return null;
-        const t = String(text).toLowerCase().replace(/[\u2013\u2014]/g, '-').trim();
-        for (const opt of AGE_GROUP_OPTIONS) {
-            const norm = opt.toLowerCase().replace(/[\u2013\u2014]/g, '-');
-            if (t === norm || t === norm.replace(' yrs', '') || t.startsWith(norm.replace(' yrs', ''))) return opt;
-        }
-        return null;
-    }
-
     // Universal general greetings & chat stopwords (Case-Insensitive)
     const GREETINGS_AND_NOISE = new Set([
         'hi', 'hii', 'hiii', 'heyy', 'hey', 'hello', 'helloo', 'namaste', 'namaskar', 'ola', 'sup',
@@ -1983,11 +1951,6 @@ Please contact the patient for further consultation and appointment confirmation
     function advanceConsultationState(flow, lang) {
         const currentLang = flow.lang || lang || state.preferredLang || 'english';
         const nextState = getNextMissingState(flow);
-        // Keep a history stack so the visitor can go Back without re-answering
-        if (!Array.isArray(flow.history)) flow.history = [];
-        if (!flow.suppressHistory && flow.state && flow.state !== nextState && QUESTION_META[flow.state]) {
-            if (flow.history[flow.history.length - 1] !== flow.state) flow.history.push(flow.state);
-        }
         flow.state = nextState;
 
         switch (nextState) {
@@ -2015,7 +1978,7 @@ Please contact the patient for further consultation and appointment confirmation
                     text: (currentLang === 'hinglish')
                         ? `Thanks, ${name} 😊 Aapki age kya hai?`
                         : ((currentLang === 'hindi') ? `धन्यवाद, ${name} 😊 आपकी उम्र (age) क्या है?` : `Thanks, ${name} 😊 What is your age?`),
-                    quickReplies: AGE_GROUP_OPTIONS.slice()
+                    quickReplies: []
                 };
             }
 
@@ -2429,19 +2392,13 @@ Please contact the patient for further consultation and appointment confirmation
             }
 
             case CONSULTATION_STATES.AGE: {
-                const tappedAge = matchAgeGroup(text);
-                if (tappedAge) {
-                    flow.data.age = tappedAge;
-                    state.userAge = tappedAge;
-                    break;
-                }
                 const validAge = validateAge(text);
                 if (!validAge) {
                     return {
                         text: (currentLang === 'hinglish')
                             ? `Please apni age number mein batayein, jaise 21.`
                             : ((currentLang === 'hindi') ? `कृपया अपनी उम्र संख्या में बताएं, जैसे 21:` : `Please enter your age in numbers, e.g. 21:`),
-                        quickReplies: AGE_GROUP_OPTIONS.slice()
+                        quickReplies: []
                     };
                 }
                 flow.data.age = validAge;
@@ -5897,102 +5854,8 @@ Please guide me on next steps and appointment availability.
         scrollToBottom();
     }
 
-    // States rendered as full scanner-style guided step cards
-    const GUIDED_QUESTION_STATES = new Set([
-        'NAME', 'AGE', 'PATIENT_LOCATION', 'CLINIC_LOCATION', 'CATEGORY',
-        'TREATMENT', 'CONCERN', 'PREFERRED_DATE', 'PREFERRED_TIME', 'WHATSAPP'
-    ]);
-
-    // Which flow.data field each question state fills (used by Back navigation)
-    const STATE_FIELD_MAP = {
-        'NAME': 'name', 'AGE': 'age', 'PATIENT_LOCATION': 'patientLocation',
-        'CLINIC_LOCATION': 'selectedClinic', 'CATEGORY': 'category',
-        'TREATMENT': 'treatment', 'CONCERN': 'concernDetails',
-        'PREFERRED_DATE': 'date', 'PREFERRED_TIME': 'time', 'WHATSAPP': 'phone'
-    };
-
-    function currentGuidedState() {
-        const f = state.consultationFlow;
-        if (!f || !f.state) return null;
-        return GUIDED_QUESTION_STATES.has(f.state) ? f.state : null;
-    }
-
-    // Back: reopen the previous question, keeping every other answer intact
-    function goBackConsultationStep() {
-        const flow = state.consultationFlow;
-        if (!flow || !Array.isArray(flow.history) || flow.history.length === 0) return;
-        const prev = flow.history.pop();
-        const field = STATE_FIELD_MAP[prev];
-        if (field) flow.data[field] = null;
-        flow.state = prev;
-        flow.suppressHistory = true;
-        const resp = advanceConsultationState(flow, flow.lang || state.preferredLang || 'english');
-        flow.suppressHistory = false;
-        addBotMessage(resp.text, resp.quickReplies);
-    }
-
     function addBotMessage(html, quickReplies) {
         const container = document.getElementById('kezzaMessages');
-        const guided = currentGuidedState();
-
-        if (guided) {
-            const meta = QUESTION_META[guided] || {};
-            const flow = state.consultationFlow;
-            const canBack = Array.isArray(flow.history) && flow.history.length > 0;
-
-            const step = document.createElement('div');
-            step.className = 'kezza-guided-step';
-
-            const head = document.createElement('div');
-            head.className = 'kezza-guided-head';
-            const backHtml = canBack
-                ? `<button type="button" class="kezza-guided-back" aria-label="Go back to previous question">${GUIDED_BACK_LABEL}</button>`
-                : `<span></span>`;
-            head.innerHTML = `${backHtml}<span class="kezza-guided-progress">Question ${meta.order || 1} of ${GUIDED_TOTAL_STEPS}</span>`;
-            step.appendChild(head);
-
-            const icon = document.createElement('div');
-            icon.className = 'kezza-guided-icon';
-            icon.innerHTML = `<i class="fas ${meta.icon || 'fa-circle-question'}" aria-hidden="true"></i>`;
-            step.appendChild(icon);
-
-            const q = document.createElement('div');
-            q.className = 'kezza-guided-question';
-            q.innerHTML = html.replace(/\n/g, '<br>');
-            step.appendChild(q);
-
-            if (quickReplies && quickReplies.length > 0) {
-                const opts = document.createElement('div');
-                opts.className = 'kezza-guided-options';
-                quickReplies.forEach(qr => {
-                    const btn = document.createElement('button');
-                    btn.type = 'button';
-                    btn.className = 'kezza-guided-card';
-                    btn.textContent = qr;
-                    btn.addEventListener('click', () => {
-                        btn.classList.add('selected');
-                        opts.querySelectorAll('.kezza-guided-card').forEach(b => { b.disabled = true; });
-                        const bk = step.querySelector('.kezza-guided-back');
-                        if (bk) bk.remove();
-                        handleQuickReply(qr);
-                    });
-                    opts.appendChild(btn);
-                });
-                step.appendChild(opts);
-            }
-
-            const backBtn = step.querySelector('.kezza-guided-back');
-            if (backBtn) backBtn.addEventListener('click', () => {
-                backBtn.remove();
-                goBackConsultationStep();
-            });
-
-            container.appendChild(step);
-            scrollToBottom();
-            updateChatInputMode();
-            return;
-        }
-
         const msg = document.createElement('div');
         msg.className = 'kezza-msg bot';
         msg.innerHTML = `

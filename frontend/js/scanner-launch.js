@@ -9,8 +9,8 @@
  */
 (function () {
   var SELECTORS = '.nav-scanner-link, .btn-scanner-hero, .dock-scan';
-  var CSS_URL = 'css/scanner-modal.css';
-  var JS_URL  = 'js/scanner-modal.js';
+  var CSS_URL = 'css/scanner-modal.css?v=6.0';
+  var JS_URL  = 'js/scanner-modal.js?v=6.0';
   var loading = null;
 
   function loadOnce() {
