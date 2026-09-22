@@ -1,0 +1,39 @@
+.scroll3d-bg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: min(62vw, 540px);
+    aspect-ratio: 297/200;
+    margin: 0;
+    padding: 0;
+    transform: translate3d(-50%, -50%, 0);
+    perspective: 1100px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .09;
+    contain: layout paint style;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+.scroll3d-bg img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform-style: preserve-3d;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+body.scanner-body .scroll3d-bg img,
+body:has(#cameraFeed) .scroll3d-bg img,
+body.dark-page .scroll3d-bg img,
+body.weight-loss-body .scroll3d-bg img,
+[data-theme="dark"] .scroll3d-bg img {
+    filter: brightness(0) invert(1);
+    opacity: 0.08;
+}
+@media (prefers-reduced-motion: reduce) {
+    .scroll3d-bg img {
+        transform: none !important;
+    }
+}

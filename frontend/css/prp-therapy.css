@@ -1,0 +1,2740 @@
+/* ═══════════════════════════════════════════════════════════════════
+   KEZZA HAIR & SKIN CLINIC — PRP & GFC THERAPY LUXURY DESIGN SUITE
+   Fully Integrated with Kezza Luxury Pro Design System
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  --prp-primary: #00AFC0;
+  --prp-primary-hover: #008F9C;
+  --prp-primary-dark: #006d77;
+  --prp-primary-light: #e6f9fb;
+  --prp-primary-glow: rgba(0, 175, 192, 0.25);
+  --prp-teal-gradient: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%);
+  --prp-navy: #0d1726;
+  --prp-navy-soft: #152238;
+  --prp-gold: #d4a017;
+  --prp-gold-light: rgba(212, 160, 23, 0.12);
+  --prp-gold-gradient: linear-gradient(135deg, #d4a017 0%, #f5c842 100%);
+  --prp-slate-dark: #0f172a;
+  --prp-slate-body: #334155;
+  --prp-slate-muted: #64748b;
+  --prp-bg-light: #f8fafc;
+  --prp-bg-white: #ffffff;
+  --prp-border-subtle: #e2e8f0;
+  --prp-border-card: #eaedf3;
+  --prp-emerald: #059669;
+  --prp-emerald-bg: #ecfdf5;
+  --prp-emerald-border: #a7f3d0;
+  --prp-rose: #e11d48;
+  --prp-rose-bg: #fff1f2;
+  --prp-rose-border: #fecdd3;
+  --prp-radius-sm: 8px;
+  --prp-radius-md: 16px;
+  --prp-radius-lg: 24px;
+  --prp-radius-pill: 9999px;
+  --prp-shadow-sm: 0 4px 14px rgba(15, 23, 42, 0.05);
+  --prp-shadow-md: 0 12px 30px rgba(15, 23, 42, 0.08);
+  --prp-shadow-lg: 0 24px 50px rgba(15, 23, 42, 0.12);
+  --prp-font-main: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --prp-font-heading: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Base Main Wrapper */
+.prp-main-content {
+  font-family: var(--prp-font-main);
+  padding-top: 86px; /* Perfect clearance for Kezza fixed navbar */
+  color: var(--prp-slate-body);
+  background-color: #ffffff;
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.prp-main-content h1,
+.prp-main-content h2,
+.prp-main-content h3,
+.prp-main-content h4,
+.prp-main-content h5,
+.prp-main-content h6 {
+  font-family: var(--prp-font-heading);
+  letter-spacing: -0.025em;
+}
+
+.prp-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Animations */
+@keyframes prpFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes badgeShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes subtleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Scroll-reveal observer class */
+.prp-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.prp-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Luxury Pill Badges */
+.prp-cat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--prp-primary-light);
+  color: var(--prp-primary-dark);
+  border: 1px solid rgba(0, 137, 123, 0.3);
+  padding: 7px 18px;
+  border-radius: var(--prp-radius-pill);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0, 137, 123, 0.08);
+}
+
+.prp-cat-badge .badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--prp-primary);
+  display: inline-block;
+  box-shadow: 0 0 6px rgba(0, 137, 123, 0.6);
+}
+
+.prp-badge-sub {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--prp-slate-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-left: 8px;
+}
+
+/* Editorial Typography */
+.prp-editorial-title {
+  font-family: var(--prp-font-heading);
+  font-size: clamp(2.3rem, 4.4vw, 3.5rem);
+  font-weight: 800;
+  color: var(--prp-slate-dark);
+  line-height: 1.15;
+  margin: 0 0 12px;
+  letter-spacing: -0.035em;
+}
+
+.prp-editorial-h2 {
+  font-family: var(--prp-font-heading);
+  font-size: clamp(1.95rem, 3.3vw, 2.75rem);
+  font-weight: 800;
+  color: var(--prp-slate-dark);
+  line-height: 1.22;
+  margin: 0 0 10px;
+  letter-spacing: -0.025em;
+}
+
+.prp-gold-line {
+  width: 70px;
+  height: 3.5px;
+  background: var(--prp-gold-gradient);
+  border-radius: 2px;
+  margin: 0 0 14px;
+}
+
+.prp-gold-line.centered {
+  margin: 0 auto 14px;
+}
+
+.prp-section-center-head {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 28px;
+}
+
+.prp-section-lead-p {
+  font-size: 1.08rem;
+  line-height: 1.78;
+  color: var(--prp-slate-body);
+  margin-bottom: 28px;
+}
+
+.prp-subhead-p {
+  font-size: 1.05rem;
+  color: var(--prp-slate-muted);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ════ NAVIGATION OVERRIDES FOR PRP PAGE ════ */
+.navbar .nav-menu > li > a.nav-scanner-link,
+a.nav-scanner-link {
+  color: #00AFC0 !important;
+  font-weight: 700 !important;
+  background: rgba(0, 175, 192, 0.12) !important;
+  border: 1px solid rgba(0, 175, 192, 0.35) !important;
+  border-radius: 20px !important;
+  padding: 5px 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 0.82rem !important;
+  transition: all 0.22s ease !important;
+  letter-spacing: 0.02em !important;
+  white-space: nowrap !important;
+}
+
+.navbar .nav-menu > li > a.nav-scanner-link:hover,
+a.nav-scanner-link:hover {
+  background: linear-gradient(135deg, rgba(0, 175, 192, 0.25), rgba(0, 175, 192, 0.15)) !important;
+  color: #00AFC0 !important;
+  border-color: #00AFC0 !important;
+  box-shadow: 0 0 14px rgba(0, 175, 192, 0.35) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ════ 1. HERO SECTION ════ */
+.prp-hero-section {
+  padding: 32px 0 36px;
+  background: linear-gradient(180deg, #f0fdfa 0%, #ffffff 65%, #f8fafc 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.prp-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: start;
+  margin-bottom: 24px;
+}
+
+.prp-hero-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.prp-hero-visual-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 96px;
+}
+
+/* Stat Counters Grid (4 boxes) */
+.prp-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 0 0 20px;
+}
+
+.prp-stat-card {
+  background: #ffffff;
+  border: 1.5px solid var(--prp-border-card);
+  border-radius: var(--prp-radius-md);
+  padding: 22px 16px;
+  text-align: center;
+  box-shadow: var(--prp-shadow-sm);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.prp-stat-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--prp-teal-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.prp-stat-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 137, 123, 0.5);
+  box-shadow: var(--prp-shadow-md), 0 0 16px rgba(0, 137, 123, 0.08);
+}
+
+.prp-stat-card:hover::after {
+  opacity: 1;
+}
+
+.prp-stat-num {
+  font-family: var(--prp-font-heading);
+  font-size: clamp(1.55rem, 2.2vw, 2.15rem);
+  font-weight: 800;
+  color: var(--prp-primary);
+  line-height: 1.1;
+  margin-bottom: 5px;
+  letter-spacing: -0.02em;
+}
+
+.prp-stat-lbl {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--prp-slate-dark);
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.prp-stat-sub {
+  font-size: 0.74rem;
+  color: var(--prp-slate-muted);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* 6 Feature Bullets Grid */
+.prp-features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 20px;
+  margin-bottom: 28px;
+}
+
+.prp-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 0.93rem;
+  font-weight: 500;
+  color: var(--prp-slate-dark);
+}
+
+.prp-feature-item i {
+  color: var(--prp-primary);
+  font-size: 0.92rem;
+  flex-shrink: 0;
+}
+
+/* Doctor Quote Card */
+.prp-doctor-quote-box {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+  border-left: 4px solid var(--prp-primary);
+  border-radius: 0 var(--prp-radius-md) var(--prp-radius-md) 0;
+  padding: 16px 20px;
+  box-shadow: var(--prp-shadow-sm);
+  border-top: 1px solid var(--prp-border-subtle);
+  border-right: 1px solid var(--prp-border-subtle);
+  border-bottom: 1px solid var(--prp-border-subtle);
+  transition: all 0.3s ease;
+}
+
+.prp-doctor-quote-box:hover {
+  transform: translateX(4px);
+  box-shadow: var(--prp-shadow-md);
+  border-left-color: var(--prp-gold);
+}
+
+.prp-doc-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  flex-shrink: 0;
+  border: 2px solid var(--prp-primary-light);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.prp-doc-info {
+  flex: 1;
+}
+
+.prp-doc-name-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--prp-slate-dark);
+  margin-bottom: 4px;
+}
+
+.prp-doc-name-title span {
+  font-weight: 500;
+  color: var(--prp-slate-muted);
+}
+
+.prp-doc-quote-text {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--prp-slate-body);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* CTA Action Buttons */
+.prp-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.prp-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--prp-primary);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px 28px;
+  border-radius: var(--prp-radius-pill);
+  text-decoration: none;
+  box-shadow: 0 8px 22px var(--prp-primary-glow);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  border: none;
+}
+
+.prp-btn-primary:hover {
+  background: var(--prp-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 137, 123, 0.35);
+}
+
+.prp-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--prp-navy);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px 26px;
+  border-radius: var(--prp-radius-pill);
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(13, 23, 38, 0.2);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  border: none;
+}
+
+.prp-btn-secondary:hover {
+  background: var(--prp-navy-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(13, 23, 38, 0.3);
+}
+
+/* Trust Rating Micro-Bar */
+.prp-hero-trust {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-size: 0.86rem;
+  color: var(--prp-slate-muted);
+  font-weight: 500;
+}
+
+.prp-hero-trust .stars {
+  color: #00c4d6;
+  letter-spacing: 2px;
+  font-size: 0.95rem;
+}
+
+/* Media Showcase Frame (Right Side) */
+.prp-media-showcase {
+  position: relative;
+  border-radius: var(--prp-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.1);
+  border: 3px solid #ffffff;
+  background: #0f172a;
+}
+
+.prp-media-showcase img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.prp-media-showcase:hover img {
+  transform: scale(1.025);
+}
+
+.prp-media-badge-top {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(13, 23, 38, 0.9);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 14px;
+  border-radius: var(--prp-radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.prp-media-caption-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(13, 23, 38, 0.94) 100%);
+  padding: 24px 18px 14px;
+  color: #ffffff;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  z-index: 2;
+}
+
+/* Sub-Navigation Quick Anchor Bar */
+.prp-subnav-section {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--prp-border-subtle);
+  border-bottom: 1px solid var(--prp-border-subtle);
+  padding: 12px 0;
+  position: sticky;
+  top: 72px;
+  z-index: 99;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+}
+
+.prp-subnav-pills {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 2px 0;
+}
+
+.prp-subnav-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.prp-subnav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--prp-radius-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--prp-slate-body);
+  background: #f1f5f9;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prp-subnav-pill i {
+  font-size: 0.76rem;
+  color: var(--prp-primary);
+}
+
+.prp-subnav-pill:hover {
+  background: var(--prp-primary-light);
+  color: var(--prp-primary-dark);
+  border-color: rgba(0, 137, 123, 0.35);
+  transform: translateY(-1px);
+}
+
+.prp-subnav-pill.active {
+  background: var(--prp-primary);
+  color: #ffffff !important;
+  border-color: var(--prp-primary);
+  box-shadow: 0 4px 14px var(--prp-primary-glow);
+}
+
+.prp-subnav-pill.active i {
+  color: #ffffff;
+}
+
+/* ════ 2. GFC SECTION ════ */
+.prp-gfc-section {
+  padding: 38px 0 42px;
+  background-color: var(--prp-bg-light);
+  border-top: 1px solid var(--prp-border-subtle);
+  border-bottom: 1px solid var(--prp-border-subtle);
+}
+
+/* ════ 3. COMPARISON TABLE SECTION ════ */
+.prp-comparison-section {
+  padding: 38px 0 42px;
+  background-color: #ffffff;
+}
+
+.prp-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--prp-radius-md);
+  box-shadow: var(--prp-shadow-md);
+  border: 1px solid var(--prp-border-card);
+  margin-bottom: 24px;
+}
+
+.prp-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  background: #ffffff;
+  font-size: 0.94rem;
+}
+
+.prp-comparison-table th {
+  padding: 20px 24px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+}
+
+.prp-comparison-table th.col-param {
+  background: var(--prp-navy);
+  color: #ffffff;
+  width: 25%;
+}
+
+.prp-comparison-table th.col-prp {
+  background: #00695c;
+  color: #ffffff;
+  width: 37.5%;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.prp-comparison-table th.col-gfc {
+  background: #006d77;
+  color: #ffffff;
+  width: 37.5%;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.prp-comparison-table td {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--prp-border-card);
+  color: var(--prp-slate-body);
+  line-height: 1.6;
+  vertical-align: top;
+  transition: background-color 0.2s ease;
+}
+
+.prp-comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.prp-comparison-table tr:hover td {
+  background-color: rgba(0, 137, 123, 0.04);
+}
+
+.prp-comparison-table td.param-title {
+  font-weight: 700;
+  color: var(--prp-slate-dark);
+  background: #f1f5f9;
+}
+
+.prp-table-notice {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: var(--prp-radius-md);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 0.92rem;
+  color: #92400e;
+}
+
+.prp-table-notice a {
+  color: #b45309;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.prp-table-notice a:hover {
+  text-decoration: underline;
+}
+
+/* ════ 4. FACIAL DERMAL REJUVENATION (VAMPIRE FACIAL) ════ */
+.prp-facial-section {
+  padding: 38px 0 42px;
+  background-color: var(--prp-bg-light);
+  border-bottom: 1px solid var(--prp-border-subtle);
+}
+
+/* ════ 5. 5-STAGE PROCEDURE WORKFLOW ════ */
+.prp-workflow-section {
+  padding: 38px 0 42px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbfb 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.prp-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.prp-step-card {
+  background: #ffffff;
+  border: 1.5px solid rgba(226, 232, 240, 0.95);
+  border-radius: var(--prp-radius-lg);
+  padding: 28px 22px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.prp-step-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--prp-primary), #10b981);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.prp-step-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 137, 123, 0.35);
+  box-shadow: 0 18px 38px rgba(0, 137, 123, 0.12);
+}
+
+.prp-step-card:hover::before {
+  opacity: 1;
+}
+
+.prp-step-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.prp-step-num {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--prp-navy);
+  color: #ffffff;
+  font-family: var(--prp-font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(13, 23, 38, 0.2);
+  transition: all 0.3s ease;
+}
+
+.prp-step-card:hover .prp-step-num {
+  background: var(--prp-primary);
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px var(--prp-primary-glow);
+}
+
+.prp-step-icon-aura {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--prp-primary-light);
+  border: 1px solid rgba(0, 137, 123, 0.2);
+  color: var(--prp-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  transition: all 0.35s ease;
+}
+
+.prp-step-card:hover .prp-step-icon-aura {
+  background: var(--prp-primary);
+  color: #ffffff;
+  transform: rotate(10deg);
+}
+
+.prp-step-title {
+  font-family: var(--prp-font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--prp-slate-dark);
+  line-height: 1.35;
+  margin: 0 0 12px;
+  letter-spacing: -0.015em;
+}
+
+.prp-step-desc {
+  font-size: 0.88rem;
+  color: var(--prp-slate-muted);
+  line-height: 1.6;
+  margin: 0 0 18px;
+  flex: 1;
+}
+
+.prp-step-time-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--prp-primary-dark);
+  background: var(--prp-primary-light);
+  padding: 6px 14px;
+  border-radius: var(--prp-radius-pill);
+  margin-top: auto;
+  align-self: flex-start;
+  border: 1px solid rgba(0, 137, 123, 0.15);
+}
+
+/* ════ 6. CANDIDACY (INDICATIONS & CONTRAINDICATIONS) ════ */
+.prp-candidacy-section {
+  padding: 86px 0;
+  background-color: var(--prp-bg-light);
+  border-top: 1px solid var(--prp-border-subtle);
+  border-bottom: 1px solid var(--prp-border-subtle);
+}
+
+.prp-candidacy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.prp-candidacy-box {
+  background: #ffffff;
+  border-radius: var(--prp-radius-lg);
+  padding: 36px 32px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prp-candidacy-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 42px rgba(15, 23, 42, 0.09);
+}
+
+.prp-candidacy-box.suited {
+  border: 1.5px solid var(--prp-emerald-border);
+  border-top: 6px solid var(--prp-emerald);
+}
+
+.prp-candidacy-box.not-suited {
+  border: 1.5px solid var(--prp-rose-border);
+  border-top: 6px solid var(--prp-rose);
+}
+
+.prp-candidacy-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.prp-cand-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.suited .prp-cand-icon {
+  background: var(--prp-emerald-bg);
+  color: var(--prp-emerald);
+}
+
+.not-suited .prp-cand-icon {
+  background: var(--prp-rose-bg);
+  color: var(--prp-rose);
+}
+
+.prp-candidacy-head h3 {
+  font-family: var(--prp-font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.suited .prp-candidacy-head h3 { color: #065f46; }
+.not-suited .prp-candidacy-head h3 { color: #9f1239; }
+
+.prp-cand-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.prp-cand-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.prp-cand-list li i {
+  margin-top: 4px;
+  font-size: 0.92rem;
+  flex-shrink: 0;
+}
+
+.suited .prp-cand-list li i { color: var(--prp-emerald); }
+.not-suited .prp-cand-list li i { color: var(--prp-rose); }
+
+.prp-cand-list strong {
+  color: var(--prp-slate-dark);
+}
+
+/* ════ 7. RECOVERY TIMELINE ════ */
+.prp-timeline-section {
+  padding: 38px 0 42px;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f9f8 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient Radial Glow */
+.prp-timeline-section::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(0, 137, 123, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ════ CLINICAL PHOTOGRAPHIC STAGES & TRANSFORMATION SHOWCASE ════ */
+.prp-stages-showcase-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin: 20px 0 28px;
+  position: relative;
+  z-index: 3;
+}
+
+.prp-stages-card {
+  background: #ffffff;
+  border-radius: var(--prp-radius-lg);
+  border: 1.5px solid rgba(226, 232, 240, 0.95);
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.06);
+  padding: 28px 26px 30px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prp-stages-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--prp-primary), #00c4d6, #00AFC0);
+  opacity: 0.95;
+}
+
+.prp-stages-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 137, 123, 0.4);
+  box-shadow: 0 24px 55px rgba(0, 137, 123, 0.14), 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.prp-stages-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.prp-photo-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--prp-primary-light);
+  color: var(--prp-primary-dark);
+  border: 1px solid rgba(0, 137, 123, 0.25);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 12px;
+  border-radius: var(--prp-radius-pill);
+}
+
+.prp-photo-tag.gold {
+  background: #fef9c3;
+  color: #854d0e;
+  border-color: rgba(202, 138, 4, 0.35);
+}
+
+.prp-photo-tag.emerald {
+  background: var(--prp-emerald-bg);
+  color: var(--prp-emerald);
+  border-color: var(--prp-emerald-border);
+}
+
+.prp-stages-card-title {
+  font-family: var(--prp-font-heading);
+  font-size: clamp(1.28rem, 1.8vw, 1.55rem);
+  font-weight: 800;
+  color: var(--prp-slate-dark);
+  line-height: 1.28;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.prp-stages-card-desc {
+  font-size: 0.88rem;
+  color: var(--prp-slate-muted);
+  line-height: 1.55;
+  margin: 0 0 20px;
+}
+
+/* Photo Viewport with Scanner Effect */
+.prp-photo-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 420px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #09131c;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  border: 2px solid rgba(0, 137, 123, 0.25);
+  margin-bottom: 20px;
+  cursor: crosshair;
+}
+
+.prp-stages-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+}
+
+.prp-stages-card:hover .prp-stages-img {
+  transform: scale(1.025);
+}
+
+/* Medical Laser Scanning Line Animation */
+.prp-scanner-laser {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  pointer-events: none;
+  z-index: 6;
+  animation: clinicalLaserScan 5s ease-in-out infinite;
+}
+
+.laser-beam {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, #00e5ff 30%, #ffffff 50%, #00e5ff 70%, transparent 100%);
+  box-shadow: 0 0 14px #00e5ff, 0 0 24px rgba(0, 229, 255, 0.7);
+}
+
+.laser-glow {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(180deg, rgba(0, 229, 255, 0.14) 0%, transparent 100%);
+}
+
+@keyframes clinicalLaserScan {
+  0% {
+    top: 4%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  50% {
+    top: 92%;
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 4%;
+    opacity: 0;
+  }
+}
+
+/* Quadrant Masks Overlay */
+.prp-quadrant-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.quadrant-box {
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  transition: all 0.35s ease;
+  position: relative;
+}
+
+/* Quadrant active focus illumination */
+.prp-stages-card[data-active-stage="1"] .quadrant-box.q1,
+.prp-stages-card[data-active-stage="2"] .quadrant-box.q2,
+.prp-stages-card[data-active-stage="3"] .quadrant-box.q3,
+.prp-stages-card[data-active-stage="4"] .quadrant-box.q4 {
+  background: rgba(0, 206, 209, 0.14);
+  border: 2px solid #00f0ff;
+  box-shadow: inset 0 0 24px rgba(0, 240, 255, 0.35), 0 0 18px rgba(0, 240, 255, 0.45);
+}
+
+/* Stage Pins on Photo */
+.prp-stage-pin {
+  position: absolute;
+  z-index: 7;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.pin-1 { top: 12px; left: 12px; }
+.pin-2 { top: 12px; right: 12px; }
+.pin-3 { bottom: 12px; left: 12px; }
+.pin-4 { bottom: 12px; right: 12px; }
+
+.pin-badge {
+  background: rgba(13, 23, 38, 0.88);
+  color: #ffffff;
+  border: 1.5px solid rgba(0, 186, 186, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transition: all 0.25s ease;
+}
+
+.pin-badge.gold {
+  border-color: rgba(255, 215, 0, 0.8);
+  color: #00AFC0;
+}
+
+.prp-stage-pin:hover .pin-badge,
+.prp-stage-pin.active .pin-badge {
+  background: var(--prp-primary);
+  border-color: #ffffff;
+  color: #ffffff;
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(0, 137, 123, 0.55);
+}
+
+.pin-pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #00e5ff;
+  display: inline-block;
+  box-shadow: 0 0 8px #00e5ff;
+  animation: pinPulseRing 2s infinite ease-in-out;
+}
+
+.pin-pulse.gold {
+  background: #00AFC0;
+  box-shadow: 0 0 8px #00AFC0;
+}
+
+@keyframes pinPulseRing {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.7);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 8px rgba(0, 229, 255, 0);
+  }
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(0, 229, 255, 0);
+  }
+}
+
+.prp-photo-float-badge {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(13, 23, 38, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #e2e8f0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  animation: subtleFloat 4s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+/* Stage Navigation Buttons */
+.prp-stage-pills-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.prp-stage-btn {
+  background: #f8fafc;
+  border: 1.5px solid var(--prp-border-subtle);
+  border-radius: 12px;
+  padding: 10px 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: var(--prp-font-main);
+}
+
+.prp-stage-btn .s-step {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--prp-primary);
+  background: var(--prp-primary-light);
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.prp-stage-btn .s-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.prp-stage-btn .s-info strong {
+  font-size: 0.78rem;
+  color: var(--prp-slate-dark);
+}
+
+.prp-stage-btn .s-info small {
+  font-size: 0.68rem;
+  color: var(--prp-slate-muted);
+}
+
+.prp-stage-btn:hover {
+  border-color: var(--prp-primary);
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 137, 123, 0.12);
+}
+
+.prp-stage-btn.active {
+  background: linear-gradient(135deg, #00AFC0, #005b52);
+  border-color: #006d77;
+  box-shadow: 0 4px 14px var(--prp-primary-glow);
+}
+
+.prp-stage-btn.active .s-step {
+  background: #ffffff;
+  color: var(--prp-primary-dark);
+}
+
+.prp-stage-btn.active .s-info strong,
+.prp-stage-btn.active .s-info small {
+  color: #ffffff;
+}
+
+/* Dynamic Live Caption Box */
+.prp-stage-live-caption {
+  background: #f0fdfa;
+  border: 1.5px solid rgba(0, 137, 123, 0.25);
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.prp-stage-live-caption .caption-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--prp-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px var(--prp-primary-glow);
+}
+
+.prp-stage-live-caption .caption-text strong {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--prp-slate-dark);
+  margin-bottom: 3px;
+}
+
+.prp-stage-live-caption .caption-text p {
+  font-size: 0.78rem;
+  color: var(--prp-slate-body);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ── Card 2: Before & After Specifics ── */
+.prp-ba-viewport {
+  aspect-ratio: 4 / 3;
+  max-height: 420px;
+}
+
+.prp-ba-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.prp-ba-viewport.focus-before .prp-ba-img {
+  transform: scale(1.4) translate(14%, 0);
+}
+
+.prp-ba-viewport.focus-after .prp-ba-img {
+  transform: scale(1.4) translate(-14%, 0);
+}
+
+/* Shimmer Light Sweep on BA */
+.prp-ba-shimmer-sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.22) 50%, transparent 65%);
+  background-size: 250% 100%;
+  pointer-events: none;
+  animation: baShimmerSweep 6s infinite linear;
+}
+
+@keyframes baShimmerSweep {
+  0% { background-position: 250% 0; }
+  100% { background-position: -150% 0; }
+}
+
+.prp-ba-tag {
+  position: absolute;
+  bottom: 14px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.tag-before { left: 14px; }
+.tag-after { right: 14px; text-align: right; }
+
+.ba-pill {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.ba-pill.before {
+  background: rgba(15, 23, 42, 0.88);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.ba-pill.after {
+  background: rgba(15, 23, 42, 0.88);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.5);
+}
+
+.ba-note {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  font-weight: 600;
+}
+
+.prp-ba-metric-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(13, 23, 38, 0.9);
+  border: 1.5px solid rgba(255, 215, 0, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 14px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  z-index: 5;
+  animation: badgeGlowPulse 3s infinite ease-in-out;
+}
+
+.metric-num {
+  font-family: var(--prp-font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #00AFC0;
+  line-height: 1;
+}
+
+.metric-lbl {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #e2e8f0;
+  margin-top: 2px;
+}
+
+@keyframes badgeGlowPulse {
+  0%, 100% {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  }
+  50% {
+    box-shadow: 0 6px 22px rgba(255, 215, 0, 0.35);
+  }
+}
+
+/* BA View Modes */
+.prp-ba-view-modes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.ba-mode-btn {
+  flex: 1;
+  background: #f8fafc;
+  border: 1px solid var(--prp-border-subtle);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--prp-slate-body);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.22s ease;
+  font-family: var(--prp-font-main);
+}
+
+.ba-mode-btn:hover {
+  background: #ffffff;
+  border-color: var(--prp-primary);
+  color: var(--prp-primary-dark);
+}
+
+.ba-mode-btn.active {
+  background: var(--prp-primary);
+  color: #ffffff;
+  border-color: var(--prp-primary-dark);
+  box-shadow: 0 4px 12px var(--prp-primary-glow);
+}
+
+/* Clinical Case Meta Stats Grid */
+.prp-ba-case-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.ba-stat-item {
+  background: #f8fafc;
+  border: 1px solid var(--prp-border-subtle);
+  border-radius: 10px;
+  padding: 10px 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ba-stat-item .s-val {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--prp-slate-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.ba-stat-item .s-key {
+  font-size: 0.68rem;
+  color: var(--prp-slate-muted);
+  font-weight: 600;
+}
+
+/* Interactive Stage Link in Timeline Cards */
+.prp-tl-stage-link {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--prp-border-subtle);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--prp-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.prp-tl-stage-link:hover {
+  color: var(--prp-primary-dark);
+  transform: translateX(3px);
+}
+
+.prp-tl-stage-link.gold {
+  color: #b48c14;
+}
+
+.prp-tl-stage-link.gold:hover {
+  color: #854d0e;
+}
+
+/* Mobile Responsive */
+@media (max-width: 960px) {
+  .prp-stages-showcase-wrap {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .prp-stage-pills-nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .prp-ba-case-stats {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+/* Timeline Horizontal Milestone Track (Desktop/Tablet) */
+.prp-timeline-track-wrap {
+  position: relative;
+  max-width: 1080px;
+  margin: 0 auto 24px;
+  padding: 0 20px;
+  z-index: 2;
+}
+
+.prp-timeline-track-line {
+  position: absolute;
+  top: 26px;
+  left: 60px;
+  right: 60px;
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.prp-timeline-track-progress {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #00AFC0 0%, #10b981 50%, #00AFC0 100%);
+  border-radius: 4px;
+  position: relative;
+  box-shadow: 0 0 12px rgba(0, 137, 123, 0.35);
+}
+
+.prp-timeline-milestones {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.prp-tl-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.prp-node-dot {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid var(--prp-primary);
+  color: var(--prp-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  box-shadow: 0 4px 16px rgba(0, 137, 123, 0.25);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.prp-tl-node:hover .prp-node-dot {
+  background: var(--prp-primary);
+  color: #ffffff;
+  transform: scale(1.12);
+  box-shadow: 0 8px 24px var(--prp-primary-glow);
+}
+
+.prp-tl-node.is-gold .prp-node-dot {
+  border-color: #00AFC0;
+  color: #b48c14;
+  box-shadow: 0 4px 16px rgba(0, 175, 192, 0.3);
+}
+
+.prp-tl-node.is-gold:hover .prp-node-dot {
+  background: linear-gradient(135deg, #00AFC0, #00c4d6);
+  color: #ffffff;
+}
+
+.prp-node-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--prp-slate-dark);
+  background: #ffffff;
+  padding: 3px 10px;
+  border-radius: var(--prp-radius-pill);
+  border: 1px solid var(--prp-border-subtle);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+/* Timeline 4-Card Grid */
+.prp-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.prp-timeline-card {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdfd 100%);
+  border: 1.5px solid rgba(226, 232, 240, 0.95);
+  border-top: 4px solid var(--prp-primary);
+  border-radius: var(--prp-radius-lg);
+  padding: 30px 24px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.prp-timeline-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at 100% 0%, rgba(0, 137, 123, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.prp-timeline-card.is-peak {
+  border-top-color: #00AFC0;
+  background: linear-gradient(180deg, #ffffff 0%, #fdfbf7 100%);
+}
+
+.prp-timeline-card.is-peak::after {
+  background: radial-gradient(circle at 100% 0%, rgba(0, 175, 192, 0.12) 0%, transparent 70%);
+}
+
+.prp-timeline-card:hover {
+  transform: translateY(-8px) scale(1.015);
+  border-color: rgba(0, 137, 123, 0.35);
+  box-shadow: 0 22px 48px rgba(0, 137, 123, 0.16);
+}
+
+.prp-timeline-card.is-peak:hover {
+  border-color: rgba(0, 175, 192, 0.45);
+  box-shadow: 0 22px 48px rgba(0, 175, 192, 0.2);
+}
+
+/* Card Top Bar: Icon Halo + Phase Badge */
+.prp-tl-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.prp-tl-icon-halo {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--prp-primary-light);
+  border: 1.5px solid rgba(0, 137, 123, 0.2);
+  color: var(--prp-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 137, 123, 0.1);
+}
+
+.prp-timeline-card:hover .prp-tl-icon-halo {
+  background: var(--prp-primary);
+  color: #ffffff;
+  transform: rotate(8deg) scale(1.08);
+  box-shadow: 0 8px 20px var(--prp-primary-glow);
+}
+
+.prp-tl-icon-halo.peak {
+  background: rgba(0, 175, 192, 0.12);
+  border-color: rgba(0, 175, 192, 0.3);
+  color: #b48c14;
+  box-shadow: 0 4px 12px rgba(0, 175, 192, 0.15);
+}
+
+.prp-timeline-card.is-peak:hover .prp-tl-icon-halo.peak {
+  background: linear-gradient(135deg, #00AFC0, #00c4d6);
+  color: #ffffff;
+  box-shadow: 0 8px 22px rgba(0, 175, 192, 0.35);
+}
+
+.prp-tl-phase-badge {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--prp-primary-dark);
+  background: var(--prp-primary-light);
+  padding: 6px 14px;
+  border-radius: var(--prp-radius-pill);
+  border: 1px solid rgba(0, 137, 123, 0.15);
+  display: inline-block;
+  align-self: center;
+}
+
+.prp-tl-phase-badge.gold {
+  color: #854d0e;
+  background: #fef9c3;
+  border-color: rgba(202, 138, 4, 0.3);
+}
+
+.prp-tl-time {
+  font-family: var(--prp-font-heading);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--prp-slate-dark);
+  margin-bottom: 8px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.prp-tl-title {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--prp-primary);
+  margin-bottom: 12px;
+  line-height: 1.35;
+}
+
+.prp-timeline-card.is-peak .prp-tl-title {
+  color: #b48c14;
+}
+
+.prp-tl-desc {
+  font-size: 0.88rem;
+  color: var(--prp-slate-muted);
+  line-height: 1.62;
+  margin: 0 0 22px;
+  flex: 1;
+}
+
+/* Biological Response Progress Bar */
+.prp-tl-progress-bar-wrap {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(226, 232, 240, 0.9);
+}
+
+.prp-tl-progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.76rem;
+  color: var(--prp-slate-muted);
+  margin-bottom: 6px;
+}
+
+.prp-tl-progress-label strong {
+  color: var(--prp-primary-dark);
+  font-weight: 700;
+}
+
+.prp-timeline-card.is-peak .prp-tl-progress-label strong {
+  color: #854d0e;
+}
+
+.prp-tl-progress-track {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.prp-tl-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00AFC0, #10b981);
+  border-radius: 10px;
+  transition: width 1s ease-in-out;
+}
+
+.prp-tl-progress-fill.gold {
+  background: linear-gradient(90deg, #00AFC0, #00c4d6);
+}
+
+/* ════ 8. VERIFIED PATIENT REVIEWS & EXPERIENCES ════ */
+.patient-comments-section.prp-reviews-section {
+  padding: 38px 0 42px;
+  background: linear-gradient(180deg, #f8fcfb 0%, #ffffff 50%, #f7fafc 100%);
+  border-top: 1px solid var(--prp-border-subtle);
+  border-bottom: 1px solid var(--prp-border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.patient-comments-section.prp-reviews-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(0, 137, 123, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Trust Rating Micro-Badge Bar */
+.prp-reviews-trust-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 100%;
+  gap: 8px 10px;
+  background: #ffffff;
+  border: 1.5px solid rgba(0, 137, 123, 0.22);
+  border-radius: var(--prp-radius-pill);
+  padding: 8px 24px;
+  margin-top: 12px;
+  box-shadow: 0 4px 16px rgba(0, 137, 123, 0.08);
+  font-size: 0.86rem;
+  color: var(--prp-slate-body);
+}
+
+.trust-stars {
+  color: #00c4d6;
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+}
+
+.trust-score strong {
+  color: var(--prp-slate-dark);
+  font-weight: 700;
+}
+
+.trust-divider {
+  color: #cbd5e1;
+  font-weight: bold;
+}
+
+.trust-count {
+  font-weight: 600;
+  color: var(--prp-slate-dark);
+}
+
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--prp-primary-dark);
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+
+/* ════ Reviews Executive Carousel Slider ════ */
+.prp-reviews-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 22px auto 0;
+  z-index: 2;
+  padding: 0 56px;
+  box-sizing: border-box;
+}
+
+.prp-reviews-viewport {
+  width: 100%;
+  overflow: hidden;
+  padding: 14px 6px 22px;
+  border-radius: 20px;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  box-sizing: border-box;
+}
+
+.prp-reviews-viewport:active {
+  cursor: grabbing;
+}
+
+.prp-reviews-track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.25, 1);
+  will-change: transform;
+  align-items: stretch;
+}
+
+.prp-review-slide {
+  flex: 0 0 calc((100% - 48px) / 3);
+  max-width: calc((100% - 48px) / 3);
+  width: calc((100% - 48px) / 3);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.prp-review-slide .patient-comment-card {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure review cards inside the carousel are always fully visible */
+.prp-review-slide .patient-comment-card.prp-reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Executive Glassmorphic Navigation Buttons */
+.prp-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1.5px solid rgba(0, 175, 192, 0.35);
+  box-shadow: 0 10px 26px rgba(11, 19, 43, 0.12), 0 0 14px rgba(0, 175, 192, 0.12);
+  color: #063940;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.prp-carousel-prev {
+  left: 2px;
+}
+
+.prp-carousel-next {
+  right: 2px;
+}
+
+.prp-carousel-btn:hover {
+  background: linear-gradient(135deg, #00AFC0, #008F9C);
+  color: #ffffff;
+  border-color: #00AFC0;
+  transform: translateY(-50%) scale(1.12);
+  box-shadow: 0 14px 34px rgba(0, 175, 192, 0.4);
+}
+
+.prp-carousel-btn:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.prp-carousel-btn:focus-visible {
+  outline: 2px solid #00AFC0;
+  outline-offset: 3px;
+}
+
+/* Pagination Dots & Navigation Indicators */
+.prp-reviews-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+  position: relative;
+  z-index: 3;
+}
+
+.prp-reviews-dots {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 175, 192, 0.22);
+  border-radius: 30px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+}
+
+.prp-review-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(0, 175, 192, 0.25);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prp-review-dot:hover {
+  background: rgba(0, 175, 192, 0.65);
+  transform: scale(1.2);
+}
+
+.prp-review-dot.active {
+  width: 28px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #00AFC0, #008F9C);
+  box-shadow: 0 2px 10px rgba(0, 175, 192, 0.45);
+}
+
+/* Fallback Grid */
+.prp-patient-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: stretch;
+  position: relative;
+  z-index: 2;
+}
+
+.patient-comment-card {
+  background: #ffffff;
+  border: 1.5px solid rgba(226, 232, 240, 0.95);
+  border-top: 4px solid var(--prp-primary);
+  border-radius: 20px;
+  padding: 34px 26px 28px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  transition: all 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.patient-comment-quote-mark {
+  position: absolute;
+  top: 12px;
+  right: 22px;
+  font-family: 'Plus Jakarta Sans', 'Inter', Georgia, serif;
+  font-size: 4.8rem;
+  line-height: 1;
+  color: rgba(0, 137, 123, 0.07);
+  pointer-events: none;
+  user-select: none;
+}
+
+.patient-comment-quote-mark.gold {
+  color: rgba(245, 158, 11, 0.12);
+}
+
+.patient-comment-card:hover {
+  transform: translateY(-8px) scale(1.015);
+  border-color: rgba(0, 137, 123, 0.4);
+  box-shadow: 0 24px 50px rgba(0, 137, 123, 0.15);
+}
+
+/* Featured Gold Story Card */
+.patient-comment-card.is-featured-gold {
+  border-top-color: #00c4d6;
+  border-color: rgba(245, 158, 11, 0.35);
+  background: linear-gradient(180deg, #ffffff 0%, #fffef8 100%);
+  box-shadow: 0 12px 36px rgba(245, 158, 11, 0.12);
+}
+
+.patient-comment-card.is-featured-gold:hover {
+  transform: translateY(-8px) scale(1.015);
+  border-color: rgba(245, 158, 11, 0.55);
+  box-shadow: 0 24px 52px rgba(245, 158, 11, 0.22);
+}
+
+.featured-story-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #854d0e;
+  background: #fef9c3;
+  border: 1px solid rgba(202, 138, 4, 0.3);
+  padding: 4px 12px;
+  border-radius: var(--prp-radius-pill);
+  margin-bottom: 14px;
+  width: fit-content;
+}
+
+.patient-comment-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.patient-stars {
+  color: #00c4d6;
+  font-size: 1rem;
+  letter-spacing: 3px;
+}
+
+.verified-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #059669;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 4px 10px;
+  border-radius: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.patient-procedure-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #00AFC0;
+  background: rgba(0, 137, 123, 0.08);
+  border: 1px solid rgba(0, 137, 123, 0.2);
+  padding: 6px 14px;
+  border-radius: var(--prp-radius-pill);
+  margin-bottom: 16px;
+  width: fit-content;
+}
+
+.patient-procedure-pill.is-gfc {
+  color: #b45309;
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.28);
+}
+
+.patient-procedure-pill.is-maintenance {
+  color: #4338ca;
+  background: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.22);
+}
+
+.patient-quote-text {
+  font-size: 0.94rem;
+  line-height: 1.72;
+  color: #334155;
+  font-style: italic;
+  margin: 0 0 20px;
+  flex-grow: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.patient-verification-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #475569;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 5px 12px;
+  border-radius: var(--prp-radius-pill);
+  margin-bottom: 18px;
+  width: fit-content;
+}
+
+.patient-verification-badge.gold {
+  background: #fefce8;
+  border-color: #fef08a;
+  color: #854d0e;
+}
+
+.patient-footer-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid #f1f5f9;
+  position: relative;
+  z-index: 2;
+}
+
+.patient-author-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--prp-primary);
+  background: linear-gradient(135deg, rgba(0, 137, 123, 0.1), rgba(16, 185, 129, 0.15));
+  color: var(--prp-primary);
+  font-size: 0.94rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.patient-comment-card:hover .patient-author-avatar {
+  transform: scale(1.08);
+}
+
+.patient-author-avatar.gold {
+  border-color: #00c4d6;
+  color: #854d0e;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(0, 150, 166, 0.18));
+}
+
+.patient-author-avatar.gold-ring {
+  border-color: var(--prp-navy);
+  color: var(--prp-navy);
+  background: linear-gradient(135deg, rgba(13, 23, 38, 0.08), rgba(99, 102, 241, 0.12));
+}
+
+.patient-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.patient-author-name {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.25;
+}
+
+.patient-author-loc {
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.35;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.patient-author-loc i {
+  font-size: 0.74rem;
+  color: var(--prp-primary);
+}
+
+.patient-author-loc i.text-gold {
+  color: #00c4d6;
+}
+
+.patient-review-date {
+  font-size: 0.75rem;
+  color: #475569;
+  line-height: 1.3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 2px 8px;
+  border-radius: 6px;
+  width: fit-content;
+  margin-top: 3px;
+}
+
+.patient-review-date i {
+  font-size: 0.72rem;
+  color: var(--prp-primary);
+}
+
+.patient-comment-card.is-featured-gold .patient-review-date {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.22);
+  color: #854d0e;
+}
+
+.patient-comment-card.is-featured-gold .patient-review-date i {
+  color: #0096a6;
+}
+
+/* ════ 9. CLINICAL FAQS ════ */
+.prp-faq-section {
+  padding: 38px 0 42px;
+  background-color: #ffffff;
+}
+
+.prp-faq-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.prp-faq-item {
+  background: #ffffff;
+  border: 1px solid var(--prp-border-card);
+  border-radius: var(--prp-radius-md);
+  margin-bottom: 14px;
+  overflow: hidden;
+  box-shadow: var(--prp-shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.prp-faq-item:hover {
+  border-color: rgba(0, 137, 123, 0.4);
+}
+
+.prp-faq-item.active {
+  border-color: var(--prp-primary);
+  box-shadow: var(--prp-shadow-md);
+}
+
+.prp-faq-question {
+  width: 100%;
+  padding: 22px 26px;
+  background: #ffffff;
+  border: none;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  font-family: var(--prp-font-heading);
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--prp-slate-dark);
+  transition: all 0.25s ease;
+  letter-spacing: -0.01em;
+}
+
+.prp-faq-question:hover {
+  color: var(--prp-primary);
+  background-color: #fafbfc;
+}
+
+.prp-faq-item.active .prp-faq-question {
+  color: var(--prp-primary-dark);
+  background-color: #f0fdfa;
+}
+
+.prp-faq-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--prp-slate-muted);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.25s ease, color 0.25s ease;
+  flex-shrink: 0;
+}
+
+.prp-faq-item.active .prp-faq-icon {
+  transform: rotate(180deg);
+  background: var(--prp-primary);
+  color: #ffffff;
+}
+
+.prp-faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
+  padding: 0 26px;
+  background-color: #ffffff;
+}
+
+.prp-faq-item.active .prp-faq-answer {
+  max-height: 400px;
+  padding: 16px 26px 24px;
+}
+
+.prp-faq-answer p {
+  font-size: 0.95rem;
+  line-height: 1.72;
+  color: var(--prp-slate-body);
+  margin: 0;
+}
+
+/* ════ 10. FINAL CTA BANNER ════ */
+.prp-cta-banner-section {
+  padding: 38px 0 42px;
+  background: linear-gradient(135deg, #00AFC0 0%, #00695c 60%, #006d77 100%);
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.prp-cta-banner-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.prp-cta-banner-content {
+  max-width: 780px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.prp-cta-banner-title {
+  font-family: var(--prp-font-heading);
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.22;
+  margin: 0 0 10px;
+  letter-spacing: -0.025em;
+}
+
+.prp-cta-banner-sub {
+  font-size: 1.02rem;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.6;
+  margin: 0 auto 22px;
+  max-width: 680px;
+}
+
+.prp-btn-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--prp-navy);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.98rem;
+  padding: 13px 34px;
+  border-radius: var(--prp-radius-pill);
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.prp-btn-banner:hover {
+  background: #000000;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* ════ RESPONSIVE ADAPTATIONS ════ */
+@media (max-width: 1024px) {
+  .prp-hero-grid,
+  .prp-gfc-grid,
+  .prp-facial-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .prp-steps-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .prp-timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .prp-patient-reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .prp-reviews-carousel-wrapper {
+    padding: 0 48px;
+  }
+
+  .prp-review-slide {
+    flex: 0 0 calc((100% - 24px) / 2);
+    max-width: calc((100% - 24px) / 2);
+  }
+
+  .prp-carousel-prev {
+    left: 2px;
+  }
+
+  .prp-carousel-next {
+    right: 2px;
+  }
+}
+
+@media (max-width: 768px) {
+  .prp-main-content {
+    padding-top: 72px;
+  }
+
+  .prp-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .prp-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prp-candidacy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prp-steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prp-timeline-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prp-patient-reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prp-reviews-carousel-wrapper {
+    padding: 0 42px;
+  }
+
+  .prp-review-slide {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .prp-carousel-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 0.9rem;
+    box-shadow: 0 6px 18px rgba(11, 19, 43, 0.16);
+  }
+
+  .prp-carousel-prev {
+    left: 0;
+  }
+
+  .prp-carousel-next {
+    right: 0;
+  }
+
+  .prp-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .prp-cta-group a {
+    text-align: center;
+  }
+
+  .prp-table-notice {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Compact Responsive Spacing */
+  .prp-hero-section {
+    padding: 24px 0 28px !important;
+  }
+
+  .prp-gfc-section,
+  .prp-comparison-section,
+  .prp-facial-section,
+  .prp-workflow-section,
+  .prp-timeline-section,
+  .patient-comments-section.prp-reviews-section,
+  .prp-faq-section {
+    padding: 28px 0 32px !important;
+  }
+
+  .prp-section-center-head {
+    margin: 0 auto 20px !important;
+  }
+
+  .prp-stages-showcase-wrap {
+    margin: 16px 0 20px !important;
+    gap: 20px !important;
+  }
+
+  .prp-timeline-track-wrap {
+    margin: 0 auto 16px !important;
+  }
+
+  .prp-cta-banner-section {
+    padding: 28px 0 32px !important;
+  }
+
+  .prp-cta-banner-title {
+    font-size: 1.55rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .prp-cta-banner-sub {
+    font-size: 0.92rem !important;
+    margin-bottom: 16px !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CLEAN LUXURY SECTION DIVIDER (WITHOUT GEM LOGO)
+   ═══════════════════════════════════════════════════════════════ */
+.section-gold-divider {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  max-width: 580px !important;
+  margin: 12px auto !important;
+  padding: 0 16px;
+  opacity: 0.85;
+}
+
+.section-gold-divider .gold-divider-line {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent 0%, rgba(184, 134, 11, 0.45) 50%, transparent 100%) !important;
+}
+
+.gold-divider-gem,
+.section-gold-divider i.fa-gem,
+.section-gold-divider i.fa-diamond {
+  display: none !important;
+}
+

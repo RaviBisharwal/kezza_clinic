@@ -1,0 +1,552 @@
+@media (min-width: 1025px) {
+    .nav-cta {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        flex-shrink: 0 !important;
+    }
+}
+
+.btn-nav-call {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 7px 14px !important;
+    background: #ffffff !important;
+    border: 1.5px solid rgba(0, 175, 192, 0.35) !important;
+    border-radius: 25px !important;
+    color: #334155 !important;
+    font-weight: 700 !important;
+    font-size: 0.78rem !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    font-family: 'Inter', sans-serif !important;
+    box-shadow: 0 2px 8px rgba(0, 175, 192, 0.08) !important;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.btn-nav-call i {
+    color: #00AFC0 !important;
+    font-size: 0.82rem !important;
+    transition: transform 0.3s ease !important;
+}
+
+.btn-nav-call:hover {
+    background: rgba(0, 175, 192, 0.08) !important;
+    color: #008F9C !important;
+    border-color: #00AFC0 !important;
+    box-shadow: 0 4px 14px rgba(0, 175, 192, 0.22) !important;
+    transform: translateY(-2px) scale(1.03) !important;
+}
+
+.btn-nav-call:hover i {
+    color: #008F9C !important;
+    animation: phoneWiggle 0.6s ease infinite !important;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   SOCIAL SIDEBAR (Left screen, vertically centred) — Dark Luxury Theme
+   ═════════════════════════════════════════════════════════════════════ */
+.social-sidebar {
+    position: fixed !important;
+    left: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) translateZ(0) !important;
+    z-index: 990 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+.social-sidebar:hover {
+    transform: translateY(-50%) scale(1.02) !important;
+}
+
+.social-icon {
+    width: 44px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 0 !important;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    text-decoration: none !important;
+    font-size: 18px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #ffffff !important;
+}
+
+.social-icon:hover {
+    transform: scale(1.25) translateX(4px) !important;
+    width: 50px !important;
+}
+
+.social-icon.instagram {
+    background: #E1306C !important;
+    color: #ffffff !important;
+}
+
+.social-icon.instagram:hover {
+    background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 20px rgba(220, 39, 67, 0.45) !important;
+}
+
+.social-icon.facebook {
+    background: #1877F2 !important;
+    color: #ffffff !important;
+}
+
+.social-icon.facebook:hover {
+    background: #1456b8 !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 20px rgba(24, 119, 242, 0.45) !important;
+}
+
+.social-icon.google {
+    background: #EA4335 !important;
+    color: #ffffff !important;
+}
+
+.social-icon.google:hover {
+    background: #4285F4 !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 20px rgba(66, 133, 244, 0.45) !important;
+}
+
+.social-icon.whatsapp {
+    background: #25D366 !important;
+    color: #ffffff !important;
+}
+
+.social-icon.whatsapp:hover {
+    background: #1aa150 !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45) !important;
+}
+
+.social-icon.youtube {
+    background: #FF0000 !important;
+    color: #ffffff !important;
+}
+
+.social-icon.youtube:hover {
+    background: #cc0000 !important;
+    color: #ffffff !important;
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.45) !important;
+}
+
+@media (max-width: 1024px) {
+    .social-sidebar {
+        left: 0 !important;
+        gap: 0 !important;
+        padding: 0 !important;
+    }
+    .social-icon {
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 16px !important;
+    }
+    .btn-nav-call span {
+        display: none !important;
+    }
+    .btn-nav-call {
+        padding: 7px 10px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .social-icon {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 15px !important;
+    }
+    .social-icon:hover {
+        transform: scale(1.18) translateX(3px) !important;
+        width: 42px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-icon {
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 14px !important;
+    }
+    .social-icon:hover {
+        transform: scale(1.15) translateX(2px) !important;
+        width: 38px !important;
+    }
+}
+
+@media (max-height: 520px) {
+    .social-icon {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 13px !important;
+    }
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   FLOATING QUICK DOCK (Centred at the bottom of the viewport)
+   ═════════════════════════════════════════════════════════════════════ */
+.floating-quick-dock {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 50% !important;
+    right: auto !important;
+    top: auto !important;
+    transform: translateX(-50%) translateZ(0) !important;
+    margin: 0 !important;
+    background: rgba(9, 19, 38, 0.96) !important;
+    border: 1.5px solid rgba(0, 175, 192, 0.5) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-radius: 50px !important;
+    padding: 6px 9px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7px !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 175, 192, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+    z-index: 998 !important;
+    width: max-content !important;
+    max-width: min(calc(100vw - 24px), 620px) !important;
+    box-sizing: border-box !important;
+    animation: dockEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+.floating-quick-dock.dock-hidden {
+    transform: translateX(-50%) translateY(120px) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+@keyframes dockEntrance {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(60px) scale(0.92);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+}
+
+.dock-item {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 8px 14px !important;
+    border-radius: 30px !important;
+    color: #f1f5f9 !important;
+    text-decoration: none !important;
+    font-size: 0.79rem !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+    overflow: hidden !important;
+    font-family: 'Inter', sans-serif !important;
+    box-sizing: border-box !important;
+    transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.dock-item:active {
+    transform: scale(0.94) !important;
+}
+
+/* Call Button - Matched with Kezza Teal */
+.dock-item.dock-call {
+    background: rgba(0, 175, 192, 0.16) !important;
+    color: #ffffff !important;
+    border: 1.5px solid rgba(0, 175, 192, 0.5) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dock-item.dock-call i {
+    color: #5eead4 !important;
+    transition: transform 0.3s ease;
+}
+
+.dock-item.dock-call:hover {
+    background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+    color: #ffffff !important;
+    border-color: #5eead4 !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 8px 22px rgba(0, 175, 192, 0.45) !important;
+}
+
+.dock-item.dock-call:hover i {
+    color: #ffffff !important;
+    animation: phoneWiggle 0.6s ease infinite;
+}
+
+@keyframes phoneWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(-15deg); }
+    40% { transform: rotate(15deg); }
+    60% { transform: rotate(-10deg); }
+    80% { transform: rotate(10deg); }
+}
+
+/* WhatsApp Button */
+.dock-item.dock-wa {
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    border: 1.5px solid #25d366 !important;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.45) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.dock-item.dock-wa::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: skewX(-25deg);
+    animation: waLightSweep 3.5s ease-in-out infinite;
+}
+
+@keyframes waLightSweep {
+    0%, 60% { left: -100%; }
+    100% { left: 200%; }
+}
+
+.dock-item.dock-wa:hover {
+    background: linear-gradient(135deg, #28e06c 0%, #15a08e 100%) !important;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
+}
+
+.dock-item.dock-wa i {
+    font-size: 1.05rem;
+    animation: waIconPulse 2.5s infinite;
+}
+
+@keyframes waIconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* AI Scanner Button - Signature Kezza Gradient */
+.dock-item.dock-scan {
+    background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+    color: #ffffff !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+    font-weight: 700 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+    box-shadow: 0 4px 16px rgba(0, 175, 192, 0.35) !important;
+}
+
+.dock-item.dock-scan:hover {
+    background: linear-gradient(135deg, #00c7db 0%, #009baa 100%) !important;
+    border-color: #5eead4 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 8px 25px rgba(0, 175, 192, 0.55) !important;
+}
+
+.dock-item.dock-scan i {
+    animation: sparkleSpin 3s ease-in-out infinite;
+    color: #ffffff;
+}
+
+@keyframes sparkleSpin {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.25) rotate(12deg); }
+}
+
+/* Book Visit Button - Matched with Kezza Teal & Call button */
+.dock-item.dock-book {
+    background: rgba(0, 175, 192, 0.16) !important;
+    color: #ffffff !important;
+    border: 1.5px solid rgba(0, 175, 192, 0.5) !important;
+    font-weight: 700 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: none !important;
+}
+
+.dock-item.dock-book i {
+    color: #5eead4 !important;
+    transition: transform 0.3s ease;
+}
+
+.dock-item.dock-book:hover {
+    background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+    color: #ffffff !important;
+    border-color: #5eead4 !important;
+    transform: translateY(-2px) scale(1.03) !important;
+    box-shadow: 0 8px 22px rgba(0, 175, 192, 0.45) !important;
+}
+
+.dock-item.dock-book:hover i {
+    color: #ffffff !important;
+    transform: scale(1.15);
+}
+
+@media (max-width: 1024px) {
+    .floating-quick-dock {
+        bottom: 16px !important;
+        padding: 5px 9px !important;
+        gap: 6px !important;
+        max-width: calc(100vw - 20px) !important;
+    }
+    .dock-item {
+        padding: 7px 12px !important;
+        font-size: 0.76rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-quick-dock {
+        bottom: 14px !important;
+        padding: 5px 8px !important;
+        gap: 5px !important;
+        max-width: calc(100vw - 16px) !important;
+    }
+    .dock-item {
+        padding: 7px 10px !important;
+        font-size: 0.74rem !important;
+        gap: 5px !important;
+    }
+    .dock-item.dock-call span {
+        display: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-quick-dock {
+        bottom: 12px !important;
+        padding: 4px 6px !important;
+        gap: 4px !important;
+        max-width: calc(100vw - 12px) !important;
+    }
+    .dock-item {
+        padding: 6px 8px !important;
+        font-size: 0.70rem !important;
+        gap: 4px !important;
+    }
+    .dock-item.dock-call span {
+        display: none !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .dock-item span {
+        display: none !important;
+    }
+    .dock-item {
+        padding: 6px 10px !important;
+    }
+    .dock-item i {
+        font-size: 0.95rem !important;
+    }
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   GLOBAL READING PROGRESS BAR (Fills across header on scroll)
+   ═════════════════════════════════════════════════════════════════════ */
+#kzScrollProgress {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, #00AFC0 0%, #00c4d6 40%, #00AFC0 85%, #00AFC0 100%) !important;
+    box-shadow: 0 1px 8px rgba(0, 175, 192, 0.45) !important;
+    transform-origin: 0% 50% !important;
+    transform: scaleX(0);
+    z-index: 10002 !important;
+    pointer-events: none !important;
+    will-change: transform !important;
+    transition: opacity 0.25s ease !important;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   MINIMALIST LUXURY BACK-TO-TOP BUTTON
+   ═════════════════════════════════════════════════════════════════════ */
+#kzBackToTop {
+    position: fixed !important;
+    bottom: 24px !important;
+    left: 24px !important;
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 50% !important;
+    background: rgba(10, 18, 36, 0.94) !important;
+    border: 1.5px solid rgba(0, 175, 192, 0.5) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    color: #00AFC0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 15px rgba(0, 175, 192, 0.15) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(12px) translateZ(0) !important;
+    transition: all 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    z-index: 995 !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#kzBackToTop i {
+    color: #00AFC0 !important;
+    font-size: 14px !important;
+    transition: transform 0.25s ease, color 0.25s ease !important;
+    display: inline-block !important;
+    line-height: 1 !important;
+}
+
+#kzBackToTop.is-visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) translateZ(0) !important;
+}
+
+#kzBackToTop:hover {
+    background: linear-gradient(135deg, #00AFC0 0%, #008f9c 100%) !important;
+    border-color: #00c4d6 !important;
+    box-shadow: 0 10px 28px rgba(0, 175, 192, 0.5) !important;
+    transform: translateY(-3px) scale(1.06) translateZ(0) !important;
+}
+
+#kzBackToTop:hover i {
+    color: #ffffff !important;
+    transform: translateY(-1px) !important;
+}
+
+@media (max-width: 768px) {
+    #kzBackToTop {
+        bottom: 84px !important;
+        left: 16px !important;
+        width: 38px !important;
+        height: 38px !important;
+    }
+    #kzBackToTop i {
+        font-size: 13px !important;
+    }
+}

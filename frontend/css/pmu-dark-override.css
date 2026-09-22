@@ -1,0 +1,2759 @@
+/* ══════════════════════════════════════════════════════════════════════
+   PMU PAGE — WHITE PROFESSIONAL OVERRIDE  (loads LAST)
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── Navbar — Clean White ────────────────────────────────────────────── */
+.navbar,
+html body .navbar {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07) !important;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07) !important;
+}
+
+/* ── Nav links ───────────────────────────────────────────────────────── */
+html body .nav-menu > li > a,
+html body .nav-menu a,
+html body .services-nav-toggle,
+html body .services-mega-toggle {
+  color: #1a1a2e !important;
+  font-weight: 500 !important;
+  background: transparent !important;
+}
+
+html body .nav-menu > li > a:hover,
+html body .nav-menu a:hover,
+html body .services-nav-toggle:hover,
+html body .services-mega-toggle:hover {
+  color: #00AFC0 !important;
+  background: rgba(0, 175, 192, 0.07) !important;
+}
+
+html body .nav-menu > li > a.active,
+html body .nav-menu a.active,
+html body .services-nav-toggle.active,
+html body .nav-item-services-dropdown.dropdown-active .services-nav-toggle {
+  color: #00AFC0 !important;
+  background: rgba(0, 175, 192, 0.08) !important;
+}
+
+html body .nav-menu > li > a.active::after,
+html body .nav-menu a.active::after,
+html body .services-nav-toggle.active::after {
+  background: linear-gradient(90deg, #00AFC0, #008F9C) !important;
+  box-shadow: none !important;
+}
+
+/* ── AI Scanner link ─────────────────────────────────────────────────── */
+html body .nav-scanner-link {
+  color: #008F9C !important;
+  background: rgba(0, 175, 192, 0.08) !important;
+  border: 1px solid rgba(0, 175, 192, 0.22) !important;
+  border-radius: 6px !important;
+}
+
+/* ── Services dropdown arrow ─────────────────────────────────────────── */
+html body .services-nav-toggle .nav-arrow,
+html body .services-mega-toggle .nav-arrow {
+  color: rgba(0, 175, 192, 0.65) !important;
+}
+
+/* ── Dropdown panel — white ──────────────────────────────────────────── */
+html body .services-dropdown-menu,
+html body .services-mega-menu {
+  background: rgba(255, 255, 255, 0.99) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+html body .services-cat-title { color: #1a1a2e !important; }
+html body .services-cat-header:hover { background: rgba(0, 175, 192, 0.06) !important; }
+html body .services-cat-header:hover .services-cat-title { color: #00AFC0 !important; }
+html body .services-cat-item.is-expanded .services-cat-header { background: rgba(0, 175, 192, 0.07) !important; }
+html body .services-cat-item.is-expanded .services-cat-title { color: #00AFC0 !important; }
+html body .services-cat-arrow { color: rgba(0, 175, 192, 0.6) !important; }
+html body .services-cat-item.is-expanded .services-cat-arrow { color: #00AFC0 !important; }
+html body .services-sub-list { border-left-color: rgba(0, 175, 192, 0.2) !important; }
+html body .services-sub-link { color: #4b5563 !important; }
+html body .services-sub-link:hover { background: rgba(0, 175, 192, 0.06) !important; color: #00AFC0 !important; }
+
+/* ── Book Consultation button ────────────────────────────────────────── */
+html body .nav-cta .btn-primary,
+html body .btn-primary {
+  background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(0, 175, 192, 0.35) !important;
+  border-radius: 8px !important;
+}
+
+html body .nav-cta .btn-primary:hover,
+html body .btn-primary:hover {
+  box-shadow: 0 8px 28px rgba(0, 175, 192, 0.5) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+/* ── Phone call button ────────────────────────────────────────────────── */
+html body .btn-nav-call {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(0, 175, 192, 0.3) !important;
+  color: #334155 !important;
+  border-radius: 20px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+html body .btn-nav-call i { color: #00AFC0 !important; }
+html body .btn-nav-call:hover {
+  background: rgba(0, 175, 192, 0.05) !important;
+  color: #008F9C !important;
+  border-color: #00AFC0 !important;
+}
+
+/* ── Hamburger ────────────────────────────────────────────────────────── */
+html body .hamburger span { background: #1a1a2e !important; }
+
+/* ── Mobile nav panel ─────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  html body .nav-menu {
+    background: rgba(255, 255, 255, 0.99) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+  }
+  html body .services-dropdown-menu,
+  html body .services-mega-menu {
+    background: rgba(255, 255, 255, 0.99) !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   HERO — Pure White, Matches Navbar
+   ══════════════════════════════════════════════════════════════════════ */
+html body .pmu-hero-section {
+  background: #ffffff !important;
+  min-height: 100vh !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Subtle warm accent blobs — very light, won't distract */
+html body .pmu-hero-section::before {
+  background: radial-gradient(circle at 10% 30%, rgba(0, 175, 192, 0.07) 0%, transparent 55%) !important;
+}
+html body .pmu-hero-section::after {
+  background: radial-gradient(circle at 90% 70%, rgba(201, 151, 42, 0.06) 0%, transparent 55%) !important;
+}
+
+/* Hero text — dark on white */
+html body .hero-title         { color: #1a1a2e !important; }
+html body .hero-subtitle      { color: #4b5563 !important; }
+
+/* Benefit pills */
+html body .benefit-item {
+  background: #f9fafb !important;
+  border: 1px solid rgba(0, 175, 192, 0.18) !important;
+  color: #1a1a2e !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+html body .benefit-item:hover {
+  background: rgba(0, 175, 192, 0.06) !important;
+  border-color: rgba(0, 175, 192, 0.35) !important;
+  color: #008F9C !important;
+}
+html body .benefit-item span:last-child { color: #1a1a2e !important; }
+
+/* Hero secondary button */
+html body .btn-navy {
+  background: transparent !important;
+  color: #1a1a2e !important;
+  border: 2px solid rgba(26, 26, 46, 0.2) !important;
+}
+html body .btn-navy:hover {
+  background: #1a1a2e !important;
+  color: #ffffff !important;
+  border-color: #1a1a2e !important;
+}
+
+/* Hero image border glow — teal to match brand */
+html body .hero-image::before {
+  background: linear-gradient(135deg,
+    rgba(0, 175, 192, 0.45),
+    rgba(201, 151, 42, 0.3),
+    rgba(0, 175, 192, 0.45)
+  ) !important;
+}
+
+/* Stats overlay — crisp white cards */
+html body .hero-stat {
+  background: rgba(255, 255, 255, 0.97) !important;
+  border: 1px solid rgba(0, 175, 192, 0.18) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+html body .hero-stat-label { color: #6b7280 !important; }
+
+/* ══════════════════════════════════════════════════════════════════════
+   Social Sidebar — brand-colored icon strip, no white box
+   ══════════════════════════════════════════════════════════════════════ */
+html body .social-sidebar {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  left: 0 !important;
+  border-radius: 0 !important;
+}
+
+html body .social-icon {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 6px 6px 0 !important;
+  width: 42px !important;
+  height: 42px !important;
+  font-size: 17px !important;
+}
+
+html body .social-icon.instagram { background: #E1306C !important; color: #fff !important; }
+html body .social-icon.facebook  { background: #1877F2 !important; color: #fff !important; }
+html body .social-icon.google    { background: #EA4335 !important; color: #fff !important; }
+html body .social-icon.whatsapp  { background: #25D366 !important; color: #fff !important; }
+
+html body .social-icon:hover {
+  width: 52px !important;
+  border-radius: 0 8px 8px 0 !important;
+  box-shadow: 4px 0 14px rgba(0,0,0,0.15) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   GOLD → TEAL: Match all amber/gold accents to website theme colour
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Hero title span "Kezza Clinic" — teal instead of gold */
+html body .hero-title span {
+  background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Gold underline bar below title → teal */
+html body .gold-underline {
+  background: linear-gradient(135deg, #00AFC0 0%, #33c5d1 50%, #00AFC0 100%) !important;
+  box-shadow: 0 0 12px rgba(0, 175, 192, 0.45) !important;
+}
+
+/* Gold dividers in content sections → teal */
+html body .gold-divider,
+html body .gold-divider-small {
+  background: linear-gradient(135deg, #00AFC0 0%, #33c5d1 100%) !important;
+}
+
+/* Benefit item checkmark circles — teal instead of gold */
+html body .benefit-icon {
+  background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+  box-shadow: 0 4px 10px rgba(0, 175, 192, 0.35) !important;
+  color: #ffffff !important;
+}
+
+/* Hero stat numbers — teal instead of gold */
+html body .hero-stat-number {
+  background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Book Your Consultation button — teal instead of gold */
+html body .btn-gold {
+  background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 25px rgba(0, 175, 192, 0.35) !important;
+}
+html body .btn-gold:hover {
+  box-shadow: 0 16px 40px rgba(0, 175, 192, 0.5) !important;
+}
+
+/* CTA phone button — teal */
+html body .btn-cta-phone {
+  background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 25px rgba(0, 175, 192, 0.35) !important;
+}
+html body .btn-cta-phone:hover {
+  box-shadow: 0 20px 50px rgba(0, 175, 192, 0.5) !important;
+}
+
+/* Why choose — top border reveal on cards → teal */
+html body .why-card::before {
+  background: linear-gradient(135deg, #00AFC0 0%, #33c5d1 100%) !important;
+}
+
+/* Service cards — top border on hover → teal */
+html body .service-detail-card::before {
+  background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+}
+
+/* Process step bottom line → already teal ✓ */
+
+/* Case study left border — teal */
+html body .case-study {
+  border-left-color: #00AFC0 !important;
+}
+html body .case-study h3 { color: #008F9C !important; }
+
+/* Aftercare left border on list items — teal ✓ (already set) */
+
+/* FAQ active state — teal */
+html body .faq-item.active .faq-question { color: #008F9C !important; }
+html body .faq-question:hover            { color: #008F9C !important; }
+html body .faq-icon                      { color: #00AFC0 !important; border-color: rgba(0, 175, 192,0.3) !important; background: rgba(0, 175, 192,0.07) !important; }
+html body .faq-item.active .faq-icon    { background: rgba(0, 175, 192,0.14) !important; }
+
+/* Footer gold titles → teal */
+html body .footer-column h3,
+html body .footer-column .footer-nav-title,
+html body p.footer-nav-title {
+  color: #00AFC0 !important;
+}
+html body .footer-column ul li a:hover { color: #33c5d1 !important; }
+html body .footer { border-top-color: #00AFC0 !important; }
+
+/* Section headers span (gradient gold text) → teal */
+html body .section-header h2 span,
+html body .services-breakdown-section .section-header h2 span,
+html body .why-choose-section .section-header h2 span,
+html body .treatment-process-section .section-header h2 span,
+html body .before-after-section .section-header h2 span,
+html body .aftercare-section .section-header h2 span,
+html body .faq-section .section-header h2 span,
+html body .final-cta-section h2 span {
+  background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Hero image border glow — full teal */
+html body .hero-image::before {
+  background: linear-gradient(135deg,
+    rgba(0, 175, 192, 0.5),
+    rgba(51, 197, 209, 0.35),
+    rgba(0, 175, 192, 0.5)
+  ) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   PROFESSIONAL POLISH — Subtle refinements, no layout changes
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════════════════
+   PMU JOURNEY PROCESS GRAPH — Interactive Clinical Roadmap System
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Section header badge */
+html body .treatment-process-section .section-header::before {
+  content: "CLINICAL WORKFLOW • 6-PHASE ROADMAP" !important;
+  display: inline-block !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: #008F9C !important;
+  background: rgba(0, 175, 192, 0.08) !important;
+  border: 1px solid rgba(0, 175, 192, 0.25) !important;
+  padding: 6px 18px !important;
+  border-radius: 30px !important;
+  margin-bottom: 16px !important;
+  box-shadow: 0 2px 10px rgba(0, 175, 192, 0.1) !important;
+}
+
+/* Timeline grid container */
+html body .process-timeline {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 34px 28px !important;
+  margin-bottom: 40px !important;
+  z-index: 2 !important;
+}
+
+/* Process Card — Graph Data Node */
+html body .process-step {
+  border: 1.5px solid rgba(0, 175, 192, 0.18) !important;
+  border-radius: 20px !important;
+  padding: 28px 24px 34px !important;
+  text-align: center !important;
+  position: relative !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+/* Top Progress Tracker Bar on each card */
+html body .process-step:nth-child(1) {
+  background:
+    linear-gradient(to right, #00AFC0 0%, #00AFC0 16.6%, rgba(0, 175, 192, 0.1) 16.6%, rgba(0, 175, 192, 0.1) 100%) top/100% 4px no-repeat,
+    #ffffff !important;
+}
+html body .process-step:nth-child(2) {
+  background:
+    linear-gradient(to right, #00AFC0 0%, #00AFC0 33.3%, rgba(0, 175, 192, 0.1) 33.3%, rgba(0, 175, 192, 0.1) 100%) top/100% 4px no-repeat,
+    #ffffff !important;
+}
+html body .process-step:nth-child(3) {
+  background:
+    linear-gradient(to right, #00AFC0 0%, #00AFC0 50%, rgba(0, 175, 192, 0.1) 50%, rgba(0, 175, 192, 0.1) 100%) top/100% 4px no-repeat,
+    #ffffff !important;
+}
+html body .process-step:nth-child(4) {
+  background:
+    linear-gradient(to right, #00AFC0 0%, #00AFC0 66.6%, rgba(0, 175, 192, 0.1) 66.6%, rgba(0, 175, 192, 0.1) 100%) top/100% 4px no-repeat,
+    #ffffff !important;
+}
+html body .process-step:nth-child(5) {
+  background:
+    linear-gradient(to right, #00AFC0 0%, #00AFC0 83.3%, rgba(0, 175, 192, 0.1) 83.3%, rgba(0, 175, 192, 0.1) 100%) top/100% 4px no-repeat,
+    #ffffff !important;
+}
+html body .process-step:nth-child(6) {
+  background:
+    linear-gradient(to right, #00AFC0 0%, #33c5d1 100%) top/100% 4px no-repeat,
+    #ffffff !important;
+}
+
+/* Card Stage Milestone Pill Badge */
+html body .process-step::before {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 10.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.3px !important;
+  text-transform: uppercase !important;
+  padding: 4px 14px !important;
+  border-radius: 20px !important;
+  margin-bottom: 18px !important;
+  background: rgba(0, 175, 192, 0.08) !important;
+  border: 1px solid rgba(0, 175, 192, 0.22) !important;
+  color: #008F9C !important;
+  box-shadow: 0 2px 6px rgba(0, 175, 192, 0.08) !important;
+  transition: all 0.3s ease !important;
+}
+
+html body .process-step:nth-child(1)::before { content: "STAGE 01 • CONSULTATION" !important; }
+html body .process-step:nth-child(2)::before { content: "STAGE 02 • MAPPING" !important; }
+html body .process-step:nth-child(3)::before { content: "STAGE 03 • PREPARATION" !important; }
+html body .process-step:nth-child(4)::before { content: "STAGE 04 • IMPLANTATION" !important; }
+html body .process-step:nth-child(5)::before { content: "STAGE 05 • AFTERCARE" !important; }
+html body .process-step:nth-child(6)::before {
+  content: "STAGE 06 • PERFECTION" !important;
+  background: linear-gradient(135deg, rgba(0, 175, 192, 0.15), rgba(51, 197, 209, 0.15)) !important;
+  border-color: rgba(0, 175, 192, 0.4) !important;
+  color: #006b77 !important;
+}
+
+html body .process-step:hover::before {
+  background: #00AFC0 !important;
+  border-color: #00AFC0 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 175, 192, 0.35) !important;
+}
+
+/* Card Hover Elevation */
+html body .process-step:hover {
+  transform: translateY(-8px) !important;
+  border-color: #00AFC0 !important;
+  box-shadow: 0 20px 48px rgba(0, 175, 192, 0.16), 0 0 0 1px rgba(0, 175, 192, 0.22) !important;
+}
+
+/* Step Number Node Hub */
+html body .step-number,
+html body .process-step .step-number,
+html body .process-step:nth-child(5) .step-number {
+  width: 66px !important;
+  height: 66px !important;
+  background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+  border-radius: 50% !important;
+  color: #ffffff !important;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto 18px !important;
+  box-shadow:
+    0 0 0 4px #ffffff,
+    0 0 0 7px rgba(0, 175, 192, 0.22),
+    0 8px 22px rgba(0, 175, 192, 0.32) !important;
+  position: relative !important;
+  z-index: 3 !important;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+
+html body .process-step:hover .step-number {
+  background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+  transform: scale(1.1) translateY(-2px) !important;
+  box-shadow:
+    0 0 0 4px #ffffff,
+    0 0 0 10px rgba(0, 175, 192, 0.38),
+    0 12px 30px rgba(0, 175, 192, 0.5) !important;
+}
+
+/* Card Headings & Descriptions */
+html body .process-step h3 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  color: #1a1a2e !important;
+  margin: 0 0 10px !important;
+  line-height: 1.35 !important;
+  transition: color 0.3s ease !important;
+}
+
+html body .process-step:hover h3 {
+  color: #008F9C !important;
+}
+
+html body .process-step p {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  color: #52606d !important;
+  margin: 0 !important;
+}
+
+/* ── Flow Arrows & Graph Node Connectors (Desktop) ── */
+@media (min-width: 993px) {
+  /* Horizontal flow arrows between steps 1->2, 2->3, 4->5, 5->6 */
+  html body .process-step:nth-child(1)::after,
+  html body .process-step:nth-child(2)::after,
+  html body .process-step:nth-child(4)::after,
+  html body .process-step:nth-child(5)::after {
+    content: '→' !important;
+    position: absolute !important;
+    right: -20px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 28px !important;
+    height: 28px !important;
+    background: #ffffff !important;
+    border: 2px solid #00AFC0 !important;
+    border-radius: 50% !important;
+    color: #00AFC0 !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    line-height: 24px !important;
+    text-align: center !important;
+    box-shadow: 0 3px 12px rgba(0, 175, 192, 0.28) !important;
+    z-index: 10 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  }
+
+  html body .process-step:nth-child(1):hover::after,
+  html body .process-step:nth-child(2):hover::after,
+  html body .process-step:nth-child(4):hover::after,
+  html body .process-step:nth-child(5):hover::after {
+    background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+    color: #ffffff !important;
+    transform: translateY(-50%) scale(1.18) !important;
+    box-shadow: 0 6px 18px rgba(0, 175, 192, 0.5) !important;
+  }
+
+  /* Downward flow connector from Step 3 (Row 1 end) to Row 2 */
+  html body .process-step:nth-child(3)::after {
+    content: '↓' !important;
+    position: absolute !important;
+    bottom: -22px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 28px !important;
+    height: 28px !important;
+    background: #ffffff !important;
+    border: 2px solid #00AFC0 !important;
+    border-radius: 50% !important;
+    color: #00AFC0 !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    line-height: 24px !important;
+    text-align: center !important;
+    box-shadow: 0 3px 12px rgba(0, 175, 192, 0.28) !important;
+    z-index: 10 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  }
+
+  html body .process-step:nth-child(3):hover::after {
+    background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+    color: #ffffff !important;
+    transform: translateX(-50%) scale(1.18) !important;
+    box-shadow: 0 6px 18px rgba(0, 175, 192, 0.5) !important;
+  }
+
+  /* Step 6 Target Achieved Star Badge */
+  html body .process-step:nth-child(6)::after {
+    content: '★' !important;
+    position: absolute !important;
+    top: 14px !important;
+    right: 14px !important;
+    width: 26px !important;
+    height: 26px !important;
+    background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+    border-radius: 50% !important;
+    color: #ffffff !important;
+    font-size: 13px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 3px 12px rgba(0, 175, 192, 0.35) !important;
+    z-index: 10 !important;
+  }
+}
+
+@media (max-width: 992px) {
+  html body .process-step::after {
+    display: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   WHY CHOOSE SECTION — Luxury Interactive Clinical Advantage Grid
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Section header badge */
+html body .why-choose-section .section-header::before {
+  content: "✦ THE KEZZA STANDARD • JAIPUR'S TRUSTED PMU CLINIC ✦" !important;
+  display: inline-block !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: #008F9C !important;
+  background: rgba(0, 175, 192, 0.08) !important;
+  border: 1px solid rgba(0, 175, 192, 0.25) !important;
+  padding: 6px 18px !important;
+  border-radius: 30px !important;
+  margin-bottom: 16px !important;
+  box-shadow: 0 2px 10px rgba(0, 175, 192, 0.1) !important;
+}
+
+/* Why Choose Section Background */
+html body .why-choose-section {
+  background-color: #f8fcfe !important;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(0, 175, 192, 0.07) 0%, transparent 65%),
+    radial-gradient(circle at 10% 90%, rgba(0, 175, 192, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 90% 90%, rgba(51, 197, 209, 0.04) 0%, transparent 45%) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  padding: 95px 0 105px !important;
+}
+
+/* Why Choose Grid Container */
+html body .why-choose-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 30px 26px !important;
+  margin-bottom: 50px !important;
+}
+
+/* Why Choose Card — Interactive Glass Block */
+html body .why-card {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(0, 175, 192, 0.16) !important;
+  border-radius: 22px !important;
+  padding: 32px 26px 30px !important;
+  text-align: center !important;
+  position: relative !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  overflow: visible !important;
+}
+
+/* Top Progress Accent on Cards */
+html body .why-card:nth-child(1) { background: linear-gradient(to right, #00AFC0 0%, #00AFC0 100%) top/40px 3px no-repeat, #ffffff !important; }
+html body .why-card:nth-child(2) { background: linear-gradient(to right, #00AFC0 0%, #00AFC0 100%) top/40px 3px no-repeat, #ffffff !important; }
+html body .why-card:nth-child(3) { background: linear-gradient(to right, #00AFC0 0%, #00AFC0 100%) top/40px 3px no-repeat, #ffffff !important; }
+html body .why-card:nth-child(4) { background: linear-gradient(to right, #00AFC0 0%, #00AFC0 100%) top/40px 3px no-repeat, #ffffff !important; }
+html body .why-card:nth-child(5) { background: linear-gradient(to right, #00AFC0 0%, #00AFC0 100%) top/40px 3px no-repeat, #ffffff !important; }
+html body .why-card:nth-child(6) { background: linear-gradient(to right, #00AFC0 0%, #00AFC0 100%) top/40px 3px no-repeat, #ffffff !important; }
+
+/* Interactive Top Category Pill Badge */
+html body .why-card::before {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 10.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.2px !important;
+  text-transform: uppercase !important;
+  padding: 4px 14px !important;
+  border-radius: 20px !important;
+  margin-bottom: 18px !important;
+  background: rgba(0, 175, 192, 0.08) !important;
+  border: 1px solid rgba(0, 175, 192, 0.22) !important;
+  color: #008F9C !important;
+  box-shadow: 0 2px 6px rgba(0, 175, 192, 0.08) !important;
+  transition: all 0.35s ease !important;
+  position: static !important;
+  height: auto !important;
+  width: auto !important;
+  transform: none !important;
+}
+
+html body .why-card:nth-child(1)::before { content: "✦ MASTER ARTISTRY" !important; }
+html body .why-card:nth-child(2)::before { content: "✦ MEDICAL SAFETY" !important; }
+html body .why-card:nth-child(3)::before { content: "✦ FACIAL MAPPING" !important; }
+html body .why-card:nth-child(4)::before { content: "✦ EU CERTIFIED" !important; }
+html body .why-card:nth-child(5)::before { content: "✦ HYPER-NATURAL" !important; }
+html body .why-card:nth-child(6)::before { content: "✦ CLINICAL PROTOCOL" !important; }
+
+html body .why-card:hover::before {
+  background: #00AFC0 !important;
+  border-color: #00AFC0 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(0, 175, 192, 0.35) !important;
+}
+
+/* Card Hover Elevation */
+html body .why-card:hover {
+  transform: translateY(-10px) !important;
+  border-color: #00AFC0 !important;
+  box-shadow: 0 22px 52px rgba(0, 175, 192, 0.16), 0 0 0 1px rgba(0, 175, 192, 0.22) !important;
+}
+
+/* Luxury Floating Icon Hub */
+html body .why-icon {
+  width: 74px !important;
+  height: 74px !important;
+  margin: 0 auto 18px !important;
+  background: linear-gradient(135deg, rgba(0, 175, 192, 0.09) 0%, rgba(51, 197, 209, 0.04) 100%) !important;
+  border: 2px solid rgba(0, 175, 192, 0.22) !important;
+  border-radius: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 32px !important;
+  box-shadow: 0 8px 24px rgba(0, 175, 192, 0.1), inset 0 0 12px rgba(0, 175, 192, 0.05) !important;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  animation: floatWhyIcon 4s ease-in-out infinite !important;
+}
+
+@keyframes floatWhyIcon {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+html body .why-card:hover .why-icon {
+  background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+  border-color: #00AFC0 !important;
+  box-shadow: 0 0 0 6px rgba(0, 175, 192, 0.2), 0 14px 32px rgba(0, 175, 192, 0.4) !important;
+  transform: scale(1.12) translateY(-2px) rotate(3deg) !important;
+  animation: none !important;
+}
+
+/* Card Headings & Descriptions */
+html body .why-card h3 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #1a1a2e !important;
+  margin: 0 0 12px !important;
+  line-height: 1.35 !important;
+  transition: color 0.3s ease !important;
+}
+
+html body .why-card:hover h3 {
+  color: #008F9C !important;
+}
+
+html body .why-card p {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  color: #52606d !important;
+  margin: 0 !important;
+  flex-grow: 1 !important;
+}
+
+/* Interactive Bottom Guarantee Tag */
+html body .why-card::after {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  color: #008F9C !important;
+  background: rgba(0, 175, 192, 0.07) !important;
+  border: 1px dashed rgba(0, 175, 192, 0.35) !important;
+  padding: 6px 16px !important;
+  border-radius: 20px !important;
+  margin-top: 18px !important;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  box-shadow: 0 2px 8px rgba(0, 175, 192, 0.08) !important;
+}
+
+html body .why-card:nth-child(1)::after { content: "✓ 5,000+ PMU Completed" !important; }
+html body .why-card:nth-child(2)::after { content: "✓ 100% Hospital Grade Hygiene" !important; }
+html body .why-card:nth-child(3)::after { content: "✓ Client Pre-Approved Design" !important; }
+html body .why-card:nth-child(4)::after { content: "✓ Hypoallergenic & Safe" !important; }
+html body .why-card:nth-child(5)::after { content: "✓ Zero Discoloration Guarantee" !important; }
+html body .why-card:nth-child(6)::after { content: "✓ Mandatory Allergy Test First" !important; }
+
+html body .why-card:hover::after {
+  background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) scale(1.04) !important;
+  box-shadow: 0 4px 16px rgba(0, 175, 192, 0.4) !important;
+}
+
+/* Clinic Reputation Prestige Trust Banner */
+html body .clinic-reputation {
+  background: linear-gradient(135deg, #ffffff 0%, #f4fafb 100%) !important;
+  border: 1.5px solid rgba(0, 175, 192, 0.25) !important;
+  border-radius: 24px !important;
+  padding: 40px 50px !important;
+  text-align: center !important;
+  box-shadow: 0 12px 36px rgba(0, 175, 192, 0.08), 0 2px 6px rgba(0, 0, 0, 0.02) !important;
+  position: relative !important;
+  transition: all 0.35s ease !important;
+}
+
+html body .clinic-reputation:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 20px 48px rgba(0, 175, 192, 0.14) !important;
+  border-color: #00AFC0 !important;
+}
+
+html body .clinic-reputation::before {
+  content: "“" !important;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 64px !important;
+  line-height: 1 !important;
+  color: #00AFC0 !important;
+  opacity: 0.3 !important;
+  display: block !important;
+  margin-bottom: -15px !important;
+}
+
+html body .clinic-reputation p {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 16.5px !important;
+  line-height: 1.85 !important;
+  color: #374151 !important;
+  margin: 0 !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   OUR PMU SERVICES — Luxury Interactive Treatment Showcases
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Section header badge */
+html body .services-breakdown-section .section-header::before {
+  content: "✦ SPECIALIZED PMU TREATMENTS • BESPOKE PROTOCOLS ✦" !important;
+  display: inline-block !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: #008F9C !important;
+  background: rgba(0, 175, 192, 0.08) !important;
+  border: 1px solid rgba(0, 175, 192, 0.25) !important;
+  padding: 6px 18px !important;
+  border-radius: 30px !important;
+  margin-bottom: 16px !important;
+  box-shadow: 0 2px 10px rgba(0, 175, 192, 0.1) !important;
+}
+
+/* Service Detail Card — Luxury Floating Showcase */
+html body .service-detail-card {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(0, 175, 192, 0.18) !important;
+  border-radius: 26px !important;
+  padding: 44px !important;
+  gap: 55px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  margin-bottom: 65px !important;
+}
+
+/* Top Accent Line on Card */
+html body .service-detail-card::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 4px !important;
+  background: linear-gradient(90deg, #00AFC0 0%, #33c5d1 50%, #008F9C 100%) !important;
+  transform: scaleX(0) !important;
+  transform-origin: left !important;
+  transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  z-index: 5 !important;
+}
+
+html body .service-detail-card:hover::before {
+  transform: scaleX(1) !important;
+}
+
+html body .service-detail-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: #00AFC0 !important;
+  box-shadow: 0 26px 65px rgba(0, 175, 192, 0.16), 0 0 0 1px rgba(0, 175, 192, 0.22) !important;
+}
+
+/* Service Detail Image Frame */
+html body .service-detail-image {
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+html body .service-detail-image img {
+  border-radius: 20px !important;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), filter 0.4s ease !important;
+  display: block !important;
+  width: 100% !important;
+  height: 380px !important;
+  object-fit: cover !important;
+}
+
+html body .service-detail-card:hover .service-detail-image img {
+  transform: scale(1.06) !important;
+  filter: brightness(1.02) !important;
+}
+
+/* Floating Glass Trust Badge on Image */
+html body .service-detail-image::after {
+  position: absolute !important;
+  bottom: 18px !important;
+  left: 18px !important;
+  z-index: 4 !important;
+  background: rgba(15, 23, 42, 0.84) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(0, 175, 192, 0.45) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  padding: 7px 16px !important;
+  border-radius: 30px !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35) !important;
+  transition: all 0.35s ease !important;
+}
+
+html body #microblading .service-detail-image::after { content: "★ Most Popular • 1–2 Yrs Longevity" !important; }
+html body #eyeliner .service-detail-image::after     { content: "★ 100% Smudge-Proof • 2–3 Yrs" !important; }
+html body #lip-blush .service-detail-image::after     { content: "★ Natural Gradient • Soft Lip Flush" !important; }
+html body .service-detail-card:last-child .service-detail-image::after { content: "★ Color Refresh & Beauty Spots" !important; }
+
+html body .service-detail-card:hover .service-detail-image::after {
+  background: rgba(0, 175, 192, 0.92) !important;
+  border-color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 22px rgba(0, 175, 192, 0.5) !important;
+}
+
+/* Category Pill Badge above Service Title */
+html body .service-detail-content::before {
+  display: inline-flex !important;
+  align-items: center !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 10.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.3px !important;
+  text-transform: uppercase !important;
+  color: #008F9C !important;
+  background: rgba(0, 175, 192, 0.08) !important;
+  border: 1px solid rgba(0, 175, 192, 0.22) !important;
+  padding: 5px 14px !important;
+  border-radius: 20px !important;
+  margin-bottom: 14px !important;
+  box-shadow: 0 2px 6px rgba(0, 175, 192, 0.08) !important;
+  transition: all 0.35s ease !important;
+}
+
+html body #microblading .service-detail-content::before { content: "✦ SIGNATURE PROCEDURE • HAIR-LIKE STROKES" !important; }
+html body #eyeliner .service-detail-content::before     { content: "✦ ZERO-SMUDGE PRECISION • WAKE UP READY" !important; }
+html body #lip-blush .service-detail-content::before     { content: "✦ LIP REJUVENATION • FULL YOUTHFUL GLOW" !important; }
+html body .service-detail-card:last-child .service-detail-content::before { content: "✦ PMU SPECIALIST • PIGMENT CORRECTION" !important; }
+
+html body .service-detail-card:hover .service-detail-content::before {
+  background: #00AFC0 !important;
+  border-color: #00AFC0 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(0, 175, 192, 0.35) !important;
+}
+
+/* Service Title & Divider */
+html body .service-detail-content h3 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: clamp(24px, 2.4vw, 30px) !important;
+  font-weight: 700 !important;
+  color: #1a1a2e !important;
+  margin-bottom: 14px !important;
+  line-height: 1.3 !important;
+  transition: color 0.3s ease !important;
+}
+
+html body .service-detail-card:hover .service-detail-content h3 {
+  color: #008F9C !important;
+}
+
+html body .service-detail-content .gold-divider-small {
+  width: 65px !important;
+  height: 3px !important;
+  border-radius: 3px !important;
+  margin-bottom: 20px !important;
+  background: linear-gradient(90deg, #00AFC0, #33c5d1) !important;
+  box-shadow: 0 0 10px rgba(0, 175, 192, 0.4) !important;
+}
+
+/* Service Descriptions */
+html body .service-detail-content p {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 15px !important;
+  line-height: 1.85 !important;
+  color: #4b5563 !important;
+  margin-bottom: 16px !important;
+}
+
+/* Interactive Consultation Action Pill */
+html body .service-detail-content::after {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.4px !important;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+  padding: 12px 24px !important;
+  border-radius: 30px !important;
+  margin-top: 10px !important;
+  box-shadow: 0 4px 18px rgba(0, 175, 192, 0.32) !important;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  cursor: pointer !important;
+}
+
+html body #microblading .service-detail-content::after { content: "Book Microblading Consultation ✦" !important; }
+html body #eyeliner .service-detail-content::after     { content: "Book Permanent Eyeliner Session ✦" !important; }
+html body #lip-blush .service-detail-content::after     { content: "Book Lip Blush Consultation ✦" !important; }
+html body .service-detail-card:last-child .service-detail-content::after { content: "Book Correction Assessment ✦" !important; }
+
+html body .service-detail-card:hover .service-detail-content::after {
+  background: linear-gradient(135deg, #008F9C 0%, #00AFC0 100%) !important;
+  transform: translateY(-2px) scale(1.03) !important;
+  box-shadow: 0 8px 24px rgba(0, 175, 192, 0.5) !important;
+}
+
+@media (max-width: 992px) {
+  html body .service-detail-card {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    padding: 28px 22px !important;
+  }
+  html body .service-detail-card.reverse {
+    direction: ltr !important;
+  }
+  html body .service-detail-image img {
+    height: 260px !important;
+  }
+}
+
+/* Section backgrounds — subtle alternating teal tint with graph matrix */
+html body .treatment-process-section {
+  background-color: #f7fbfc !important;
+  background-image:
+    radial-gradient(ellipse at 50% 10%, rgba(0, 175, 192, 0.08) 0%, transparent 65%),
+    linear-gradient(to right, rgba(0, 175, 192, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 175, 192, 0.055) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 32px 32px, 32px 32px !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+/* ══════════════════════════════════════════════════════════════════════
+   AFTERCARE GUIDELINES — Luxury Interactive Recovery Protocol
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Section header badge */
+html body .aftercare-section .section-header::before {
+  content: "✦ CLINICAL RECOVERY PROTOCOL • OPTIMAL COLOR RETENTION ✦" !important;
+  display: inline-block !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: #008F9C !important;
+  background: rgba(0, 175, 192, 0.08) !important;
+  border: 1px solid rgba(0, 175, 192, 0.25) !important;
+  padding: 6px 18px !important;
+  border-radius: 30px !important;
+  margin-bottom: 16px !important;
+  box-shadow: 0 2px 10px rgba(0, 175, 192, 0.1) !important;
+}
+
+/* Section Background */
+html body .aftercare-section {
+  background-color: #f7fbfc !important;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(0, 175, 192, 0.07) 0%, transparent 65%),
+    radial-gradient(circle at 10% 90%, rgba(0, 175, 192, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 90% 90%, rgba(51, 197, 209, 0.04) 0%, transparent 45%) !important;
+  padding: 95px 0 105px !important;
+  position: relative !important;
+}
+
+/* Aftercare Grid Layout */
+html body .aftercare-content {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 65px !important;
+  align-items: center !important;
+}
+
+/* Aftercare Image Showcase */
+html body .aftercare-image {
+  border-radius: 26px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  border: 1.5px solid rgba(0, 175, 192, 0.2) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08) !important;
+}
+
+html body .aftercare-image img {
+  width: 100% !important;
+  height: 540px !important;
+  object-fit: cover !important;
+  border-radius: 26px !important;
+  display: block !important;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+
+html body .aftercare-image:hover img {
+  transform: scale(1.04) !important;
+}
+
+/* Floating Frosted Glass Badge on Aftercare Image */
+html body .aftercare-image::after {
+  content: "★ 100% Healed Results Guarantee • Doctor Approved" !important;
+  position: absolute !important;
+  bottom: 22px !important;
+  left: 22px !important;
+  z-index: 4 !important;
+  background: rgba(15, 23, 42, 0.84) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(0, 175, 192, 0.45) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  padding: 7px 16px !important;
+  border-radius: 30px !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35) !important;
+  transition: all 0.35s ease !important;
+}
+
+html body .aftercare-image:hover::after {
+  background: rgba(0, 175, 192, 0.92) !important;
+  border-color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 22px rgba(0, 175, 192, 0.5) !important;
+}
+
+/* Aftercare Title */
+html body .aftercare-list h3 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: clamp(24px, 2.4vw, 30px) !important;
+  font-weight: 700 !important;
+  color: #1a1a2e !important;
+  margin-bottom: 24px !important;
+  line-height: 1.3 !important;
+}
+
+/* Aftercare List Items */
+html body .aftercare-items {
+  list-style: none !important;
+  margin-bottom: 24px !important;
+  padding: 0 !important;
+}
+
+html body .aftercare-items li {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(0, 175, 192, 0.16) !important;
+  border-left: 5px solid #00AFC0 !important;
+  border-radius: 14px !important;
+  padding: 15px 20px 15px 50px !important;
+  margin-bottom: 12px !important;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.03) !important;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  cursor: pointer !important;
+  position: relative !important;
+  display: block !important;
+}
+
+/* Checkmark Icon Circle */
+html body .aftercare-items li::before {
+  content: '✓' !important;
+  position: absolute !important;
+  left: 16px !important;
+  top: 16px !important;
+  width: 22px !important;
+  height: 22px !important;
+  background: rgba(0, 175, 192, 0.1) !important;
+  border: 1px solid rgba(0, 175, 192, 0.3) !important;
+  border-radius: 50% !important;
+  color: #00AFC0 !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+}
+
+html body .aftercare-items li:hover::before {
+  background: #00AFC0 !important;
+  border-color: #00AFC0 !important;
+  color: #ffffff !important;
+  transform: scale(1.15) !important;
+  box-shadow: 0 0 10px rgba(0, 175, 192, 0.4) !important;
+}
+
+/* Item Heading */
+html body .aftercare-items li strong {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  color: #008F9C !important;
+  display: inline !important;
+  margin-right: 6px !important;
+}
+
+/* Item Descriptions via ::after */
+html body .aftercare-items li::after {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 13.5px !important;
+  line-height: 1.6 !important;
+  color: #4b5563 !important;
+  font-weight: 400 !important;
+  display: inline !important;
+}
+
+html body .aftercare-items li:nth-child(1)::after { content: "Expect slight scabbing; allow skin to naturally heal without scratching." !important; }
+html body .aftercare-items li:nth-child(2)::after { content: "Gently blot with sterile cotton & saline water; keep completely sterile." !important; }
+html body .aftercare-items li:nth-child(3)::after { content: "Keep treated area dry during showers; avoid soaking for 7–10 days." !important; }
+html body .aftercare-items li:nth-child(4)::after { content: "Avoid cosmetics, foundations, or serums directly over the treated area." !important; }
+html body .aftercare-items li:nth-child(5)::after { content: "Apply thin layer of Kezza healing balm twice daily as prescribed." !important; }
+html body .aftercare-items li:nth-child(6)::after { content: "Avoid direct UV sunlight, tanning beds, and tanning oils for 2 weeks." !important; }
+html body .aftercare-items li:nth-child(7)::after { content: "Avoid heavy gym workouts, saunas, and excess sweating for 10 days." !important; }
+
+/* Item Hover Micro-Interaction */
+html body .aftercare-items li:hover {
+  transform: translateX(8px) !important;
+  border-left-color: #008F9C !important;
+  border-color: rgba(0, 175, 192, 0.35) !important;
+  background: linear-gradient(90deg, rgba(0, 175, 192, 0.05) 0%, #ffffff 100%) !important;
+  box-shadow: 0 8px 24px rgba(0, 175, 192, 0.12) !important;
+}
+
+/* Aftercare Note Callout */
+html body .aftercare-note {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fafb 100%) !important;
+  border: 1.5px solid rgba(0, 175, 192, 0.28) !important;
+  border-radius: 18px !important;
+  padding: 22px 26px !important;
+  box-shadow: 0 6px 20px rgba(0, 175, 192, 0.08) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+  color: #374151 !important;
+  transition: all 0.35s ease !important;
+}
+
+html body .aftercare-note:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 30px rgba(0, 175, 192, 0.14) !important;
+  border-color: #00AFC0 !important;
+}
+
+html body .aftercare-note strong {
+  color: #008F9C !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+}
+
+@media (max-width: 992px) {
+  html body .aftercare-content {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+  html body .aftercare-image img {
+    height: 320px !important;
+  }
+}
+
+/* Section headers — teal underline accent */
+html body .section-header {
+  position: relative !important;
+  padding-bottom: 32px !important;
+}
+html body .section-header::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 60px !important;
+  height: 3px !important;
+  background: linear-gradient(135deg, #00AFC0, #33c5d1) !important;
+  border-radius: 3px !important;
+  box-shadow: 0 0 10px rgba(0, 175, 192, 0.4) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   REAL TRANSFORMATIONS — Luxury Interactive Case Study Showcases
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Section header badge */
+html body .before-after-section .section-header::before {
+  content: "✦ VERIFIED CLINICAL OUTCOMES • 100% HEALED RESULTS ✦" !important;
+  display: inline-block !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: #008F9C !important;
+  background: rgba(0, 175, 192, 0.08) !important;
+  border: 1px solid rgba(0, 175, 192, 0.25) !important;
+  padding: 6px 18px !important;
+  border-radius: 30px !important;
+  margin-bottom: 16px !important;
+  box-shadow: 0 2px 10px rgba(0, 175, 192, 0.1) !important;
+}
+
+/* Section Background */
+html body .before-after-section {
+  background-color: #ffffff !important;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(0, 175, 192, 0.06) 0%, transparent 60%),
+    radial-gradient(circle at 90% 80%, rgba(0, 175, 192, 0.04) 0%, transparent 40%) !important;
+  padding: 95px 0 105px !important;
+  position: relative !important;
+}
+
+/* Results Intro text */
+html body .results-intro {
+  max-width: 820px !important;
+  margin: 0 auto 50px !important;
+  text-align: center !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.8 !important;
+  color: #4b5563 !important;
+}
+
+/* Case Studies Grid */
+html body .case-studies {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 28px !important;
+  margin-bottom: 40px !important;
+}
+
+/* Case Study Card — Luxury Glass Block */
+html body .case-study {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(0, 175, 192, 0.18) !important;
+  border-left: 5px solid #00AFC0 !important;
+  border-radius: 24px !important;
+  padding: 34px 28px 30px !important;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  cursor: pointer !important;
+  overflow: visible !important;
+}
+
+/* Top Verified Star Rating Pill */
+html body .case-study::before {
+  display: inline-flex !important;
+  align-items: center !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.8px !important;
+  text-transform: uppercase !important;
+  color: #008F9C !important;
+  background: rgba(0, 175, 192, 0.08) !important;
+  border: 1px solid rgba(0, 175, 192, 0.22) !important;
+  padding: 5px 14px !important;
+  border-radius: 20px !important;
+  margin-bottom: 18px !important;
+  width: fit-content !important;
+  box-shadow: 0 2px 6px rgba(0, 175, 192, 0.08) !important;
+  transition: all 0.35s ease !important;
+}
+
+html body .case-study:nth-child(1)::before { content: "★ ★ ★ ★ ★ • VERIFIED BROW CLIENT" !important; }
+html body .case-study:nth-child(2)::before { content: "★ ★ ★ ★ ★ • VERIFIED EYELINER CLIENT" !important; }
+html body .case-study:nth-child(3)::before { content: "★ ★ ★ ★ ★ • VERIFIED LIP BLUSH CLIENT" !important; }
+
+html body .case-study:hover::before {
+  background: #00AFC0 !important;
+  border-color: #00AFC0 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(0, 175, 192, 0.35) !important;
+}
+
+/* Case Study Title & Text */
+html body .case-study h3 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #1a1a2e !important;
+  margin: 0 0 14px !important;
+  line-height: 1.35 !important;
+  transition: color 0.3s ease !important;
+}
+
+html body .case-study:hover h3 {
+  color: #008F9C !important;
+}
+
+html body .case-study p {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 14.5px !important;
+  line-height: 1.75 !important;
+  color: #52606d !important;
+  margin: 0 0 18px !important;
+  flex-grow: 1 !important;
+}
+
+/* Tangible Result Outcome Badge */
+html body .case-study::after {
+  display: inline-flex !important;
+  align-items: center !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  color: #008F9C !important;
+  background: rgba(0, 175, 192, 0.08) !important;
+  border: 1px dashed rgba(0, 175, 192, 0.35) !important;
+  padding: 7px 16px !important;
+  border-radius: 20px !important;
+  margin-top: auto !important;
+  width: fit-content !important;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  box-shadow: 0 2px 8px rgba(0, 175, 192, 0.08) !important;
+}
+
+html body .case-study:nth-child(1)::after { content: "🎯 Result: Saved 15 Mins Daily ✓" !important; }
+html body .case-study:nth-child(2)::after { content: "🎯 Result: 100% Humidity-Proof Eyes ✓" !important; }
+html body .case-study:nth-child(3)::after { content: "🎯 Result: Rosy Tint Without Lipstick ✓" !important; }
+
+/* Case Study Hover Elevation & Interaction */
+html body .case-study:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 22px 52px rgba(0, 175, 192, 0.16), 0 0 0 1px rgba(0, 175, 192, 0.22) !important;
+  border-left-color: #008F9C !important;
+}
+
+html body .case-study:hover::after {
+  background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 4px 16px rgba(0, 175, 192, 0.4) !important;
+}
+
+@media (max-width: 992px) {
+  html body .case-studies {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+/* FAQ items — smoother hover */
+html body .faq-item {
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+html body .faq-item:hover {
+  box-shadow: 0 8px 28px rgba(0, 175, 192, 0.1) !important;
+}
+
+/* Floating dock — teal border */
+html body .floating-quick-dock {
+  border-color: rgba(0, 175, 192, 0.25) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 175, 192, 0.1) !important;
+}
+
+/* Section divider lines — teal */
+html body .services-breakdown-section::before,
+html body .why-choose-section::before,
+html body .faq-section::before,
+html body .before-after-section::before,
+html body .what-is-pmu-section::before {
+  background: linear-gradient(90deg, transparent, rgba(0, 175, 192, 0.25), transparent) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   FINAL CALL TO ACTION — Refined Heading Size & Luxury Aesthetics
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Section background & ambient radial illumination */
+html body .final-cta-section {
+  background: linear-gradient(180deg, #091224 0%, #0d1a33 50%, #070e1c 100%) !important;
+  padding: 85px 0 95px !important;
+  text-align: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+html body .final-cta-section::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 45% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 750px !important;
+  height: 450px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(ellipse, rgba(0, 175, 192, 0.18) 0%, rgba(0, 175, 192, 0.04) 50%, transparent 70%) !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+/* Consultation availability badge */
+html body .final-cta-section .container::before {
+  content: "✦ LIMITED SLOTS • SCHEDULE YOUR CONSULTATION ✦" !important;
+  display: inline-block !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: #5eead4 !important;
+  background: rgba(0, 175, 192, 0.12) !important;
+  border: 1px solid rgba(0, 175, 192, 0.35) !important;
+  padding: 6px 20px !important;
+  border-radius: 30px !important;
+  margin-bottom: 20px !important;
+  box-shadow: 0 4px 15px rgba(0, 175, 192, 0.2) !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Reduced & perfectly balanced heading */
+html body .final-cta-section h2 {
+  font-size: clamp(26px, 2.7vw, 36px) !important;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.3px !important;
+  line-height: 1.35 !important;
+  color: #ffffff !important;
+  margin-bottom: 18px !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Glowing text gradient for Perfect Permanent Makeup */
+html body .final-cta-section h2 span {
+  background: linear-gradient(135deg, #00AFC0 0%, #33c5d1 50%, #00AFC0 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  filter: drop-shadow(0 2px 14px rgba(0, 175, 192, 0.45)) !important;
+  display: inline-block !important;
+  transition: filter 0.3s ease !important;
+}
+
+html body .final-cta-section:hover h2 span {
+  filter: drop-shadow(0 4px 20px rgba(0, 175, 192, 0.65)) !important;
+}
+
+/* CTA description paragraphs */
+html body .final-cta-section p {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 15.5px !important;
+  line-height: 1.8 !important;
+  max-width: 680px !important;
+  margin: 0 auto 12px !important;
+  color: rgba(226, 232, 240, 0.88) !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* CTA Buttons */
+html body .cta-buttons {
+  display: flex !important;
+  gap: 18px !important;
+  justify-content: center !important;
+  margin: 34px 0 22px !important;
+  position: relative !important;
+  z-index: 2 !important;
+  flex-wrap: wrap !important;
+}
+
+html body .btn-cta-phone {
+  background: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%) !important;
+  color: #ffffff !important;
+  padding: 15px 34px !important;
+  border-radius: 35px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.3px !important;
+  text-decoration: none !important;
+  box-shadow: 0 8px 25px rgba(0, 175, 192, 0.38) !important;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+html body .btn-cta-phone:hover {
+  transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 16px 36px rgba(0, 175, 192, 0.55) !important;
+  color: #ffffff !important;
+}
+
+html body .btn-cta-whatsapp {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important;
+  color: #ffffff !important;
+  padding: 15px 34px !important;
+  border-radius: 35px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.3px !important;
+  text-decoration: none !important;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.32) !important;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+html body .btn-cta-whatsapp:hover {
+  transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 16px 36px rgba(37, 211, 102, 0.5) !important;
+  color: #ffffff !important;
+}
+
+/* Location Chip */
+html body .cta-location {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(0, 175, 192, 0.28) !important;
+  color: #5eead4 !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  padding: 7px 18px !important;
+  border-radius: 20px !important;
+  margin-top: 6px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+  position: relative !important;
+  z-index: 2 !important;
+  transition: all 0.3s ease !important;
+}
+
+html body .cta-location:hover {
+  background: rgba(0, 175, 192, 0.16) !important;
+  border-color: #00AFC0 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ✨ PROFESSIONAL ANIMATIONS — PMU PAGE ENHANCEMENT
+   Pure CSS animations, scroll-triggered reveals & micro-interactions
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Core Keyframe Library ─────────────────────────────────────────────── */
+
+@keyframes pmu-fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pmu-fadeInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pmu-fadeInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pmu-fadeInScale {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pmu-floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes pmu-floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-6px) rotate(0.5deg); }
+  66%       { transform: translateY(-3px) rotate(-0.5deg); }
+}
+
+@keyframes pmu-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pmu-pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 175, 192, 0); }
+  50%       { box-shadow: 0 0 0 10px rgba(0, 175, 192, 0.12); }
+}
+
+@keyframes pmu-pulseRing {
+  0%   { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes pmu-borderRotate {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pmu-slideUnderline {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+@keyframes pmu-countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pmu-orbFloat {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.4; }
+  33%       { transform: translateY(-20px) translateX(10px) scale(1.05); opacity: 0.6; }
+  66%       { transform: translateY(-8px) translateX(-8px) scale(0.97); opacity: 0.45; }
+}
+
+@keyframes pmu-tickIn {
+  0%   { transform: scale(0) rotate(-45deg); opacity: 0; }
+  60%  { transform: scale(1.2) rotate(5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes pmu-sparkle {
+  0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+  50%       { transform: scale(1) rotate(180deg); opacity: 1; }
+}
+
+@keyframes pmu-gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+@keyframes pmu-lineGrow {
+  from { transform: scaleX(0); transform-origin: left; }
+  to   { transform: scaleX(1); transform-origin: left; }
+}
+
+@keyframes pmu-numberPop {
+  0%   { transform: scale(0.5); opacity: 0; }
+  70%  { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pmu-cardLift {
+  from { opacity: 0; transform: translateY(30px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pmu-badgePop {
+  0%   { transform: scale(0) rotate(-8deg); opacity: 0; }
+  65%  { transform: scale(1.08) rotate(2deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes pmu-ripple {
+  0%   { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes pmu-textGlow {
+  0%, 100% { text-shadow: 0 0 0px rgba(0, 175, 192, 0); }
+  50%       { text-shadow: 0 0 20px rgba(0, 175, 192, 0.25); }
+}
+
+/* ── 2. Hero Section Animations ──────────────────────────────────────────── */
+
+/* Hero title stagger entrance */
+html body .hero-content h1,
+html body .pmu-hero-content h1,
+html body .hero-title {
+  animation: pmu-fadeInLeft 0.9s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+}
+
+html body .hero-content h1 em,
+html body .pmu-hero-content h1 em,
+html body .hero-title em,
+html body .hero-title span {
+  animation: pmu-textGlow 4s ease-in-out infinite !important;
+}
+
+html body .hero-content p,
+html body .pmu-hero-content p,
+html body .hero-desc {
+  animation: pmu-fadeInLeft 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both !important;
+}
+
+/* Benefit pills stagger */
+html body .hero-benefits .benefit-item:nth-child(1),
+html body .pmu-benefits .benefit-item:nth-child(1) {
+  animation: pmu-fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both !important;
+}
+html body .hero-benefits .benefit-item:nth-child(2),
+html body .pmu-benefits .benefit-item:nth-child(2) {
+  animation: pmu-fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.42s both !important;
+}
+html body .hero-benefits .benefit-item:nth-child(3),
+html body .pmu-benefits .benefit-item:nth-child(3) {
+  animation: pmu-fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.54s both !important;
+}
+html body .hero-benefits .benefit-item:nth-child(4),
+html body .pmu-benefits .benefit-item:nth-child(4) {
+  animation: pmu-fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.66s both !important;
+}
+html body .hero-benefits .benefit-item:nth-child(5),
+html body .pmu-benefits .benefit-item:nth-child(5) {
+  animation: pmu-fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.78s both !important;
+}
+
+/* Benefit item tick icon bounce on load */
+html body .benefit-item .benefit-icon,
+html body .benefit-item i {
+  animation: pmu-tickIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1s both !important;
+}
+
+/* Hero image float */
+html body .hero-image-wrapper,
+html body .pmu-hero-image,
+html body .hero-visual {
+  animation: pmu-fadeInRight 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both,
+             pmu-floatSlow 7s ease-in-out 1.2s infinite !important;
+}
+
+/* Hero image shimmer highlight sweep */
+html body .hero-image-wrapper::after,
+html body .pmu-hero-image::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(255,255,255,0.08) 50%,
+    transparent 60%
+  ) !important;
+  background-size: 200% !important;
+  animation: pmu-shimmer 4s ease-in-out 2s infinite !important;
+  border-radius: inherit !important;
+  pointer-events: none !important;
+  z-index: 3 !important;
+}
+
+/* CTA Buttons entrance + pulse glow */
+html body .hero-cta-buttons .btn-primary,
+html body .pmu-hero-cta .btn-primary,
+html body .hero-buttons .btn-primary {
+  animation: pmu-fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.85s both,
+             pmu-pulseGlow 3s ease-in-out 2s infinite !important;
+}
+
+html body .hero-cta-buttons .btn-secondary,
+html body .pmu-hero-cta .btn-secondary,
+html body .hero-buttons .btn-secondary {
+  animation: pmu-fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1s both !important;
+}
+
+/* Stats badges pop in */
+html body .hero-stat-badge,
+html body .stat-badge,
+html body .pmu-stat-badge {
+  animation: pmu-badgePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.1s both !important;
+}
+html body .hero-stat-badge:nth-child(2),
+html body .stat-badge:nth-child(2) {
+  animation-delay: 1.25s !important;
+}
+html body .hero-stat-badge:nth-child(3),
+html body .stat-badge:nth-child(3) {
+  animation-delay: 1.4s !important;
+}
+
+/* Stat numbers pop */
+html body .stat-number,
+html body .hero-stat-number {
+  animation: pmu-numberPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s both !important;
+}
+
+/* ── 3. Section Heading Animations ───────────────────────────────────────── */
+
+/* All section titles slide up with underline */
+html body .section-title,
+html body .section-heading,
+html body .pmu-section-title {
+  animation: pmu-fadeInUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+}
+
+html body .section-subtitle,
+html body .section-desc {
+  animation: pmu-fadeInUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both !important;
+}
+
+/* Section title teal accent animated underline */
+html body .section-title::after,
+html body .pmu-section-title::after {
+  animation: pmu-lineGrow 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both !important;
+}
+
+/* ── 4. Journey / Workflow Cards ─────────────────────────────────────────── */
+
+html body .journey-card:nth-child(1),
+html body .workflow-step:nth-child(1),
+html body .process-step:nth-child(1) {
+  animation: pmu-cardLift 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both !important;
+}
+html body .journey-card:nth-child(2),
+html body .workflow-step:nth-child(2),
+html body .process-step:nth-child(2) {
+  animation: pmu-cardLift 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both !important;
+}
+html body .journey-card:nth-child(3),
+html body .workflow-step:nth-child(3),
+html body .process-step:nth-child(3) {
+  animation: pmu-cardLift 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.34s both !important;
+}
+html body .journey-card:nth-child(4),
+html body .workflow-step:nth-child(4),
+html body .process-step:nth-child(4) {
+  animation: pmu-cardLift 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.46s both !important;
+}
+html body .journey-card:nth-child(5),
+html body .workflow-step:nth-child(5),
+html body .process-step:nth-child(5) {
+  animation: pmu-cardLift 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.58s both !important;
+}
+html body .journey-card:nth-child(6),
+html body .workflow-step:nth-child(6),
+html body .process-step:nth-child(6) {
+  animation: pmu-cardLift 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.70s both !important;
+}
+
+/* Journey card hover — lift + glow */
+html body .journey-card:hover,
+html body .workflow-step:hover,
+html body .process-step:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 20px 50px rgba(0, 175, 192, 0.18), 0 6px 20px rgba(0,0,0,0.10) !important;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s ease !important;
+}
+
+/* ── 5. Advantage / Why-Choose Cards ────────────────────────────────────── */
+
+html body .advantage-item:nth-child(odd),
+html body .why-card:nth-child(odd),
+html body .feature-card:nth-child(odd) {
+  animation: pmu-fadeInLeft 0.7s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+}
+html body .advantage-item:nth-child(even),
+html body .why-card:nth-child(even),
+html body .feature-card:nth-child(even) {
+  animation: pmu-fadeInRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+}
+
+/* Advantage card icon float */
+html body .advantage-icon,
+html body .why-icon,
+html body .feature-icon {
+  animation: pmu-floatY 4s ease-in-out infinite !important;
+  transition: transform 0.3s ease, color 0.3s ease !important;
+}
+html body .advantage-item:hover .advantage-icon,
+html body .why-card:hover .why-icon,
+html body .feature-card:hover .feature-icon {
+  transform: scale(1.2) rotate(5deg) !important;
+  color: #00AFC0 !important;
+}
+
+/* Advantage badge pop */
+html body .advantage-badge,
+html body .verified-badge,
+html body .trust-badge {
+  animation: pmu-badgePop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both !important;
+}
+
+/* ── 6. Service Cards ────────────────────────────────────────────────────── */
+
+html body .service-card:nth-child(1),
+html body .pmu-service-card:nth-child(1) {
+  animation: pmu-cardLift 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both !important;
+}
+html body .service-card:nth-child(2),
+html body .pmu-service-card:nth-child(2) {
+  animation: pmu-cardLift 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both !important;
+}
+html body .service-card:nth-child(3),
+html body .pmu-service-card:nth-child(3) {
+  animation: pmu-cardLift 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.31s both !important;
+}
+html body .service-card:nth-child(4),
+html body .pmu-service-card:nth-child(4) {
+  animation: pmu-cardLift 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.44s both !important;
+}
+
+/* Service card image zoom on hover */
+html body .service-card:hover img,
+html body .pmu-service-card:hover img,
+html body .service-card:hover .service-image img {
+  transform: scale(1.06) !important;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+/* Service card shimmer sweep on hover */
+html body .service-card::before,
+html body .pmu-service-card::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important; left: -75% !important;
+  width: 50% !important; height: 100% !important;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  ) !important;
+  transition: left 0.6s ease !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+html body .service-card:hover::before,
+html body .pmu-service-card:hover::before {
+  left: 125% !important;
+}
+
+/* ── 7. Case Study / Transformation Cards ───────────────────────────────── */
+
+html body .case-study-card:nth-child(1),
+html body .transformation-card:nth-child(1) {
+  animation: pmu-fadeInLeft 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both !important;
+}
+html body .case-study-card:nth-child(2),
+html body .transformation-card:nth-child(2) {
+  animation: pmu-fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both !important;
+}
+html body .case-study-card:nth-child(3),
+html body .transformation-card:nth-child(3) {
+  animation: pmu-fadeInRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.34s both !important;
+}
+
+/* Outcome badge sparkle effect */
+html body .outcome-badge,
+html body .result-badge {
+  animation: pmu-badgePop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+html body .outcome-badge:hover,
+html body .result-badge:hover {
+  transform: translateY(-3px) scale(1.05) !important;
+  box-shadow: 0 8px 20px rgba(0, 175, 192, 0.25) !important;
+}
+
+/* Star rating shimmer */
+html body .star-rating,
+html body .rating-stars {
+  animation: pmu-fadeInUp 0.5s ease 0.8s both !important;
+}
+
+/* ── 8. Aftercare / Protocol Cards ──────────────────────────────────────── */
+
+html body .aftercare-card:nth-child(1),
+html body .protocol-card:nth-child(1),
+html body .guideline-card:nth-child(1) { animation: pmu-cardLift 0.6s ease 0.05s both !important; }
+html body .aftercare-card:nth-child(2),
+html body .protocol-card:nth-child(2),
+html body .guideline-card:nth-child(2) { animation: pmu-cardLift 0.6s ease 0.15s both !important; }
+html body .aftercare-card:nth-child(3),
+html body .protocol-card:nth-child(3),
+html body .guideline-card:nth-child(3) { animation: pmu-cardLift 0.6s ease 0.25s both !important; }
+html body .aftercare-card:nth-child(4),
+html body .protocol-card:nth-child(4),
+html body .guideline-card:nth-child(4) { animation: pmu-cardLift 0.6s ease 0.35s both !important; }
+html body .aftercare-card:nth-child(5),
+html body .protocol-card:nth-child(5),
+html body .guideline-card:nth-child(5) { animation: pmu-cardLift 0.6s ease 0.45s both !important; }
+html body .aftercare-card:nth-child(6),
+html body .protocol-card:nth-child(6),
+html body .guideline-card:nth-child(6) { animation: pmu-cardLift 0.6s ease 0.55s both !important; }
+
+/* Checkmark icons tick on load */
+html body .aftercare-check,
+html body .protocol-check,
+html body .guideline-icon {
+  animation: pmu-tickIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both !important;
+  transition: transform 0.3s ease !important;
+}
+html body .aftercare-card:hover .aftercare-check,
+html body .protocol-card:hover .protocol-check,
+html body .guideline-card:hover .guideline-icon {
+  transform: scale(1.2) rotate(8deg) !important;
+}
+
+/* ── 9. Final CTA Section ───────────────────────────────────────────────── */
+
+/* CTA heading shimmer gradient */
+html body .final-cta-section h2,
+html body .cta-section h2,
+html body .cta-heading {
+  background: linear-gradient(
+    90deg,
+    #1a1a2e 0%,
+    #00AFC0 40%,
+    #008F9C 60%,
+    #1a1a2e 100%
+  ) !important;
+  background-size: 300% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: pmu-gradientShift 5s ease-in-out infinite !important;
+}
+
+/* CTA section ambient orb background pulse */
+html body .final-cta-section::before {
+  animation: pmu-orbFloat 8s ease-in-out infinite !important;
+}
+html body .final-cta-section::after {
+  animation: pmu-orbFloat 10s ease-in-out 3s infinite !important;
+}
+
+/* Primary CTA button ripple ring */
+html body .final-cta-section .btn-primary,
+html body .cta-section .btn-primary,
+html body .cta-primary-btn {
+  position: relative !important;
+  overflow: hidden !important;
+}
+html body .final-cta-section .btn-primary::after,
+html body .cta-section .btn-primary::after,
+html body .cta-primary-btn::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: inherit !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+html body .final-cta-section .btn-primary:hover::after,
+html body .cta-section .btn-primary:hover::after {
+  opacity: 1 !important;
+}
+
+/* Pulse ring on CTA primary button */
+html body .final-cta-section .btn-primary::before,
+html body .cta-section .btn-primary::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: -3px !important;
+  border-radius: inherit !important;
+  background: transparent !important;
+  border: 2px solid rgba(0, 175, 192, 0.5) !important;
+  animation: pmu-pulseRing 2.5s ease-out infinite !important;
+  pointer-events: none !important;
+}
+
+/* CTA trust indicators float */
+html body .cta-trust-badge,
+html body .cta-guarantee-badge {
+  animation: pmu-floatY 5s ease-in-out infinite !important;
+}
+
+/* ── 10. Global Button Micro-interactions ───────────────────────────────── */
+
+html body .btn,
+html body button,
+html body [class*="btn-"] {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              background 0.3s ease !important;
+}
+html body .btn:hover,
+html body button:hover,
+html body [class*="btn-"]:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+}
+html body .btn:active,
+html body button:active,
+html body [class*="btn-"]:active {
+  transform: translateY(0px) scale(0.98) !important;
+  transition: transform 0.1s ease !important;
+}
+
+/* ── 11. Scroll-Triggered Reveal (Intersection Observer fallback) ─────── */
+/* Elements start hidden and animate in when they enter the viewport       */
+/* We use a CSS-only approach with animation-play-state where supported     */
+
+html body .journey-cards-grid,
+html body .advantage-grid,
+html body .services-grid,
+html body .case-studies-grid,
+html body .aftercare-grid {
+  animation: pmu-fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both !important;
+}
+
+/* ── 12. Navigation — hover underline slide ─────────────────────────────── */
+
+html body .nav-menu > li > a::before {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -2px !important;
+  left: 50% !important;
+  width: 0 !important;
+  height: 2px !important;
+  background: #00AFC0 !important;
+  transition: width 0.3s ease, left 0.3s ease !important;
+  border-radius: 2px !important;
+}
+html body .nav-menu > li > a:hover::before {
+  width: 80% !important;
+  left: 10% !important;
+}
+
+/* ── 13. Social sidebar icon animations ────────────────────────────────── */
+
+html body .social-sidebar a:nth-child(1) { animation: pmu-fadeInLeft 0.5s ease 0.2s both !important; }
+html body .social-sidebar a:nth-child(2) { animation: pmu-fadeInLeft 0.5s ease 0.35s both !important; }
+html body .social-sidebar a:nth-child(3) { animation: pmu-fadeInLeft 0.5s ease 0.5s both !important; }
+html body .social-sidebar a:nth-child(4) { animation: pmu-fadeInLeft 0.5s ease 0.65s both !important; }
+
+html body .social-sidebar a:hover {
+  transform: translateX(4px) scale(1.12) !important;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+/* ── 14. Quick Action Bar animations ────────────────────────────────────── */
+
+html body .quick-actions-bar,
+html body .quick-action-bar,
+html body .sticky-cta-bar {
+  animation: pmu-fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.5s both !important;
+}
+
+html body .quick-actions-bar a:hover,
+html body .quick-action-bar a:hover {
+  transform: translateY(-4px) scale(1.04) !important;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+/* ── 15. Section Dividers — subtle animated gradient line ───────────────── */
+
+html body section + section::before,
+html body .pmu-section + .pmu-section::before {
+  content: '' !important;
+  display: block !important;
+  height: 2px !important;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 175, 192, 0.25),
+    transparent
+  ) !important;
+  background-size: 300% !important;
+  animation: pmu-borderRotate 6s ease infinite !important;
+  margin-bottom: 0 !important;
+}
+
+/* ── 16. Image Hover Effects ────────────────────────────────────────────── */
+
+html body img {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              filter 0.4s ease !important;
+}
+html body .service-card:hover img,
+html body .case-study-card:hover img,
+html body .transformation-card:hover img {
+  filter: brightness(1.05) contrast(1.02) !important;
+}
+
+/* ── 17. Floating Background Orbs ──────────────────────────────────────── */
+
+html body .pmu-hero-section::before,
+html body .hero-section::before {
+  animation: pmu-orbFloat 12s ease-in-out infinite !important;
+}
+
+/* ── 18. Reduced Motion Support ────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  html body *,
+  html body *::before,
+  html body *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   🦶 FOOTER — WHITE PROFESSIONAL LUXURY OVERRIDE
+   Matches white/teal theme — replaces dark navy with clean professional look
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Footer container — clean white ─────────────────────────────────────── */
+html body footer,
+html body .site-footer,
+html body .footer {
+  background: #ffffff !important;
+  background-image: none !important;
+  border-top: 1px solid rgba(0, 175, 192, 0.15) !important;
+  color: #1a1a2e !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Subtle teal top accent line */
+html body footer::before,
+html body .site-footer::before,
+html body .footer::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, transparent, #00AFC0 30%, #008F9C 70%, transparent) !important;
+  z-index: 2 !important;
+}
+
+/* Subtle background texture */
+html body footer::after,
+html body .site-footer::after,
+html body .footer::after {
+  content: '' !important;
+  position: absolute !important;
+  top: -60px !important;
+  right: -60px !important;
+  width: 300px !important;
+  height: 300px !important;
+  background: radial-gradient(circle, rgba(0, 175, 192, 0.05) 0%, transparent 70%) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* ── Footer inner container ──────────────────────────────────────────────── */
+html body .footer-container,
+html body .footer-content,
+html body .footer-grid,
+html body footer .container {
+  position: relative !important;
+  z-index: 1 !important;
+  padding-top: 48px !important;
+  padding-bottom: 12px !important;
+}
+
+/* ── Footer columns ──────────────────────────────────────────────────────── */
+html body .footer-column,
+html body .footer-col {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* ── Footer nav/column titles ────────────────────────────────────────────── */
+html body .footer-nav-title,
+html body .footer-column > p:first-child,
+html body .footer-col-title,
+html body .footer-heading {
+  color: #00AFC0 !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 16px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 2px solid rgba(0, 175, 192, 0.18) !important;
+  position: relative !important;
+}
+
+/* Teal accent underline on titles */
+html body .footer-nav-title::after,
+html body .footer-col-title::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -2px !important;
+  left: 0 !important;
+  width: 30px !important;
+  height: 2px !important;
+  background: #00AFC0 !important;
+  border-radius: 2px !important;
+  transition: width 0.4s ease !important;
+}
+html body .footer-column:hover .footer-nav-title::after,
+html body .footer-col:hover .footer-col-title::after {
+  width: 60px !important;
+}
+
+/* ── Footer body text (About, Contact paragraphs) ───────────────────────── */
+html body footer p,
+html body .footer p,
+html body .site-footer p,
+html body .footer-column p,
+html body .footer-col p {
+  color: #4b5563 !important;
+  font-size: 14px !important;
+  line-height: 1.75 !important;
+  margin-bottom: 6px !important;
+}
+
+/* Override nav-title paragraph color back to teal */
+html body .footer-nav-title {
+  color: #00AFC0 !important;
+}
+
+/* ── Footer links ────────────────────────────────────────────────────────── */
+html body footer ul,
+html body .footer ul,
+html body .footer-column ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+html body footer ul li,
+html body .footer ul li,
+html body .footer-column ul li {
+  margin-bottom: 8px !important;
+}
+
+html body footer ul li a,
+html body .footer ul li a,
+html body .footer-column ul li a,
+html body .footer a {
+  color: #4b5563 !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: color 0.25s ease, transform 0.25s ease, padding-left 0.25s ease !important;
+  position: relative !important;
+}
+
+/* Arrow pseudo-element on hover */
+html body footer ul li a::before,
+html body .footer ul li a::before,
+html body .footer-column ul li a::before {
+  content: '›' !important;
+  color: #00AFC0 !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  opacity: 0 !important;
+  transform: translateX(-6px) !important;
+  transition: opacity 0.25s ease, transform 0.25s ease !important;
+  display: inline-block !important;
+}
+
+html body footer ul li a:hover,
+html body .footer ul li a:hover,
+html body .footer-column ul li a:hover {
+  color: #00AFC0 !important;
+  padding-left: 8px !important;
+  transform: translateX(0) !important;
+}
+
+html body footer ul li a:hover::before,
+html body .footer ul li a:hover::before,
+html body .footer-column ul li a:hover::before {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+/* ── Footer brand/logo area ──────────────────────────────────────────────── */
+html body .footer-logo,
+html body .footer-brand {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+html body .footer-logo img,
+html body .footer-brand img {
+  filter: none !important;
+}
+
+/* ── Footer divider ──────────────────────────────────────────────────────── */
+html body .footer-divider,
+html body footer hr,
+html body .footer hr {
+  border: none !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(0, 175, 192, 0.2), transparent) !important;
+  margin: 28px 0 !important;
+}
+
+/* ── Footer bottom bar ───────────────────────────────────────────────────── */
+html body .footer-bottom,
+html body .footer-copyright {
+  background: linear-gradient(135deg, #f0fafb 0%, #e8f8f9 100%) !important;
+  border-top: 1px solid rgba(0, 175, 192, 0.15) !important;
+  padding: 16px 24px !important;
+  margin-top: 24px !important;
+  border-radius: 0 !important;
+}
+
+html body .footer-bottom p,
+html body .footer-copyright p {
+  color: #6b7280 !important;
+  font-size: 13px !important;
+  text-align: center !important;
+  margin: 0 !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* Copyright year — teal accent */
+html body .footer-bottom .footer-year,
+html body .footer-copyright .footer-year {
+  color: #00AFC0 !important;
+  font-weight: 600 !important;
+}
+
+/* ── Footer social icons (if any in footer) ─────────────────────────────── */
+html body .footer-social a,
+html body footer .social-links a {
+  color: #6b7280 !important;
+  background: rgba(0, 175, 192, 0.06) !important;
+  border: 1px solid rgba(0, 175, 192, 0.15) !important;
+  border-radius: 50% !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+}
+
+html body .footer-social a:hover,
+html body footer .social-links a:hover {
+  color: #ffffff !important;
+  background: #00AFC0 !important;
+  border-color: #00AFC0 !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 16px rgba(0, 175, 192, 0.3) !important;
+}
+
+/* ── Footer CTA button (if any) ─────────────────────────────────────────── */
+html body .footer-cta-btn,
+html body footer .btn {
+  background: linear-gradient(135deg, #00AFC0, #008F9C) !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 10px 24px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  transition: all 0.3s ease !important;
+}
+
+html body .footer-cta-btn:hover,
+html body footer .btn:hover {
+  background: linear-gradient(135deg, #008F9C, #005f6b) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(0, 175, 192, 0.3) !important;
+}
+
+/* ── Ensure no dark overlays leak through ───────────────────────────────── */
+html body footer *,
+html body .footer *,
+html body .site-footer * {
+  background-image: none !important;
+}
+
+html body footer .footer-column,
+html body footer .footer-col,
+html body footer .footer-container,
+html body footer .footer-grid {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+/* Re-allow footer::before and ::after gradients */
+html body footer::before,
+html body footer::after,
+html body .site-footer::before,
+html body .site-footer::after {
+  background-image: unset !important;
+}
+
+html body footer::before {
+  background: linear-gradient(90deg, transparent, #00AFC0 30%, #008F9C 70%, transparent) !important;
+}
+
+html body footer::after {
+  background: radial-gradient(circle, rgba(0, 175, 192, 0.05) 0%, transparent 70%) !important;
+}
+
+/* ── Footer entrance animation ───────────────────────────────────────────── */
+html body footer,
+html body .site-footer,
+html body .footer {
+  animation: pmu-fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both !important;
+}
+
+html body .footer-column:nth-child(1) { animation: pmu-fadeInUp 0.6s ease 0.15s both !important; }
+html body .footer-column:nth-child(2) { animation: pmu-fadeInUp 0.6s ease 0.25s both !important; }
+html body .footer-column:nth-child(3) { animation: pmu-fadeInUp 0.6s ease 0.35s both !important; }
+html body .footer-column:nth-child(4) { animation: pmu-fadeInUp 0.6s ease 0.45s both !important; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   🔧 FOOTER TARGETED FIX — Override base dark styles precisely
+   permanent-makeup-styles.css sets: background: var(--secondary) = #1a1a2e
+   border-top: 3px solid var(--gold), color: rgba(255,255,255,0.6)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Force white background — highest specificity override */
+html body .footer,
+html body footer.footer,
+body .footer {
+  background: #f8fbfc !important;
+  background-color: #f8fbfc !important;
+  background-image: none !important;
+  border-top: 3px solid #00AFC0 !important;
+  color: #1a1a2e !important;
+}
+
+/* Footer grid — ensure transparent */
+html body .footer .footer-grid {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Footer nav titles — was var(--gold), now teal */
+html body .footer .footer-column h3,
+html body .footer .footer-column .footer-nav-title,
+html body .footer p.footer-nav-title,
+html body .footer-column h3,
+html body .footer-column .footer-nav-title,
+html body p.footer-nav-title {
+  color: #00AFC0 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 18px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid rgba(0, 175, 192, 0.2) !important;
+}
+
+/* Footer paragraph text — was rgba(255,255,255,0.6), now readable dark */
+html body .footer .footer-column p,
+html body .footer-column p {
+  color: #4b5563 !important;
+  line-height: 1.75 !important;
+  font-size: 14px !important;
+}
+
+/* Footer links — was rgba(255,255,255,0.6) */
+html body .footer .footer-column ul li a,
+html body .footer-column ul li a {
+  color: #4b5563 !important;
+  transition: color 0.25s ease, padding-left 0.25s ease !important;
+}
+
+html body .footer .footer-column ul li a:hover,
+html body .footer-column ul li a:hover {
+  color: #00AFC0 !important;
+  padding-left: 6px !important;
+}
+
+/* Footer bottom bar — was border rgba(255,255,255,0.1) + color rgba(255,255,255,0.4) */
+html body .footer .footer-bottom,
+html body .footer-bottom {
+  border-top: 1px solid rgba(0, 175, 192, 0.18) !important;
+  background: rgba(0, 175, 192, 0.04) !important;
+  color: #6b7280 !important;
+  padding: 20px 0 !important;
+}
+
+html body .footer .footer-bottom p,
+html body .footer-bottom p {
+  color: #6b7280 !important;
+  font-size: 13px !important;
+}
+
+/* Footer year highlight */
+html body .footer .footer-bottom .footer-year,
+html body .footer-bottom .footer-year {
+  color: #00AFC0 !important;
+  font-weight: 600 !important;
+}
+
+/* Kill any inherited dark colors from children */
+html body .footer * {
+  border-color: rgba(0, 175, 192, 0.15) !important;
+}
+
+/* But restore specific elements */
+html body .footer .footer-nav-title {
+  border-bottom-color: rgba(0, 175, 192, 0.2) !important;
+  border-top-color: transparent !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+}
+html body .footer .footer-bottom {
+  border-top-color: rgba(0, 175, 192, 0.18) !important;
+}
+

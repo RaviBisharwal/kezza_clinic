@@ -1,0 +1,612 @@
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
+        try {
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        } catch (err) {}
+    });
+});
+
+// Optimized Single RAF Scroll Handler
+(function() {
+    let ticking = false;
+    let isScrolled = false;
+    let navbar = null;
+    let heroImage = null;
+    let particles = null;
+    let heroContent = null;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        navbar = document.querySelector('.navbar');
+        heroImage = document.querySelector('.hero-image img');
+        particles = document.querySelectorAll('.floating-particles');
+        heroContent = document.querySelector('.hero-content');
+    });
+
+    function onScrollTick() {
+        const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
+
+        // Navbar styling (only mutate when crossing 50px threshold)
+        const shouldBeScrolled = scrolled > 50;
+        if (shouldBeScrolled !== isScrolled && navbar) {
+            isScrolled = shouldBeScrolled;
+            if (isScrolled) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        }
+
+        // Hero parallax (only active while hero is near viewport)
+        if (scrolled < window.innerHeight) {
+            if (heroImage) {
+                heroImage.style.transform = `translate3d(0, ${scrolled * -0.25}px, 0)`;
+            }
+            if (particles && particles.length > 0) {
+                const rate = scrolled * -0.15;
+                particles.forEach(p => {
+                    p.style.transform = `translate3d(0, ${rate}px, 0)`;
+                });
+            }
+            if (heroContent) {
+                heroContent.style.opacity = Math.max(0, 1 - scrolled / 600);
+            }
+        }
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(onScrollTick);
+            ticking = true;
+        }
+    }, { passive: true });
+})();
+
+// Intersection Observer for animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            
+            // Special animations for different elements
+            if (entry.target.classList.contains('branch-card')) {
+                entry.target.style.animation = 'slideUpSequential 0.8s ease forwards';
+            }
+            if (entry.target.classList.contains('why-contact-card')) {
+                entry.target.style.animation = 'floatUp 0.8s ease forwards';
+            }
+            if (entry.target.classList.contains('faq-item')) {
+                entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+            }
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe elements for animation
+document.addEventListener('DOMContentLoaded', function() {
+    const animatedElements = document.querySelectorAll(
+        '.branch-card, .why-contact-card, .faq-item'
+    );
+    
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s ease';
+        observer.observe(el);
+    });
+});
+
+// Staggered animation for branch cards
+document.addEventListener('DOMContentLoaded', function() {
+    const branchCards = document.querySelectorAll('.branch-card');
+    branchCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+    });
+});
+
+// Mouse move parallax for hero image
+document.addEventListener('DOMContentLoaded', function() {
+    const heroImage = document.querySelector('.hero-image img');
+    const heroSection = document.querySelector('.contact-hero-section');
+    
+    if (heroImage && heroSection) {
+        heroSection.addEventListener('mousemove', function(e) {
+            const rect = heroSection.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = (e.clientY - rect.top) / rect.height;
+            
+            const moveX = (x - 0.5) * 15;
+            const moveY = (y - 0.5) * 15;
+            
+            heroImage.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+        
+        heroSection.addEventListener('mouseleave', function() {
+            heroImage.style.transform = 'translate(0, 0)';
+        });
+    }
+});
+
+// Video shimmer effects
+document.addEventListener('DOMContentLoaded', function() {
+    const videoContainers = document.querySelectorAll('.video-container');
+    
+    videoContainers.forEach(container => {
+        container.addEventListener('mouseenter', function() {
+            this.style.animation = 'shimmer 2s ease infinite';
+        });
+        
+        container.addEventListener('mouseleave', function() {
+            this.style.animation = 'none';
+        });
+    });
+});
+
+// Contact Form Handling
+// DISABLED: js/whatsapp-form.js is the single source of truth for #contactForm.
+// Both files used to bind a submit handler to the same form, which sent every
+// enquiry twice (two Google Sheets rows, two /api/lead calls, two WhatsApp tabs)
+// and routed one of them to reception instead of the chosen department. This
+// handler also read fields the form no longer has (`service`, `subject`), so it
+// always submitted "General Inquiry". Kept for reference only — do not re-enable
+// without removing the handler in whatsapp-form.js first.
+/*
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Form validation
+            const formData = new FormData(this);
+            const formObject = {};
+            
+            // Convert FormData to object
+            for (let [key, value] of formData.entries()) {
+                formObject[key] = value;
+            }
+            
+            // Basic validation
+            if (!formObject.fullName || !formObject.phone || !formObject.email || !formObject.message) {
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formObject.email)) {
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Phone validation (basic)
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+            if (!phoneRegex.test(formObject.phone.replace(/\s/g, ''))) {
+                showNotification('Please enter a valid phone number.', 'error');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                const fullName = formObject.fullName || formObject.full_name || 'Patient';
+                const email    = formObject.email    || 'Not provided';
+                const phone    = formObject.phone    || 'Not provided';
+                const service  = formObject.service  || 'General Inquiry';
+                const subject  = formObject.subject  || 'Clinic Consultation';
+                const message  = formObject.message  || 'Looking for clinic treatment consultation.';
+
+                const waMessage = `🏥 *KEZZA CLINIC — WEBSITE INQUIRY*
+━━━━━━━━━━━━━━━━━━━━━
+👤 *Name:* ${fullName}
+📱 *Phone:* ${phone}
+📧 *Email:* ${email}
+🏷️ *Service:* ${service}
+📌 *Subject:* ${subject}
+📝 *Message:* ${message}
+━━━━━━━━━━━━━━━━━━━━━
+Source: Kezza Clinic Contact Form`;
+
+                const waUrl = `https://wa.me/919284517427?text=${encodeURIComponent(waMessage)}`;
+                
+                // Dispatch lead to Google Sheets & Backend
+                const leadPayload = {
+                    timestamp: new Date().toISOString(),
+                    name: fullName,
+                    phone: phone,
+                    whatsapp: phone,
+                    email: email,
+                    service: service,
+                    category: service,
+                    message: `[Subject: ${subject}] ${message}`,
+                    source: 'Contact Form'
+                };
+                try {
+                    fetch('https://script.google.com/macros/s/AKfycbwsWmFO6lLgh_UAAZkQpBstzRQ8335TQ_XP3jGnq3cBsfkFNE6eDewuQDRqho1o1CqiuA/exec', {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify(leadPayload)
+                    }).catch(e => {});
+                } catch(e) {}
+                try {
+                    fetch('/api/lead', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(leadPayload)
+                    }).catch(e => {});
+                } catch(e) {}
+
+                try {
+                    window.open(waUrl, '_blank');
+                } catch (e) {}
+
+                showNotification('Thank you! Your message has been submitted to our clinic specialist team.', 'success');
+                contactForm.reset();
+
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 400);
+        });
+    }
+});
+*/
+
+// File upload handling
+document.addEventListener('DOMContentLoaded', function() {
+    const fileInputs = document.querySelectorAll('input[type="file"]');
+    
+    fileInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            const label = document.querySelector(`label[for="${this.id}"]`);
+            if (this.files.length > 0) {
+                label.textContent = `✓ ${this.files[0].name}`;
+                label.style.background = 'rgba(212, 175, 55, 0.2)';
+                label.style.borderColor = 'var(--gold)';
+                label.style.color = 'var(--navy)';
+            } else {
+                label.textContent = label.getAttribute('data-original') || 'Choose File';
+                label.style.background = 'var(--light-gray)';
+                label.style.borderColor = '#cdbb7d';
+                label.style.color = 'var(--dark-gray)';
+            }
+        });
+    });
+});
+
+// FAQ Accordion functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        
+        question.addEventListener('click', function() {
+            const isActive = item.classList.contains('active');
+            
+            // Close all other FAQ items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    const otherAnswer = otherItem.querySelector('.faq-answer');
+                    otherAnswer.style.maxHeight = '0';
+                }
+            });
+            
+            // Toggle current item
+            if (isActive) {
+                item.classList.remove('active');
+                answer.style.maxHeight = '0';
+            } else {
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
+});
+
+// Enhanced button hover effects
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.btn-gold, .btn-navy, .btn-primary, .btn-appointment, .directions-btn, .submit-btn');
+    
+    buttons.forEach(button => {
+        // Ripple effect
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+        
+        // Enhanced hover effects
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.02)';
+            this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.2)';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = 'none';
+        });
+    });
+});
+
+// Card hover effects
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.branch-card, .why-contact-card, .form-card, .info-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+            this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+        });
+    });
+});
+
+// Notification system
+function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notification => notification.remove());
+    
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-icon">${type === 'success' ? '✓' : type === 'error' ? '✗' : 'ℹ'}</span>
+            <span class="notification-message">${message}</span>
+            <button class="notification-close">&times;</button>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 5000);
+    
+    // Close button functionality
+    const closeBtn = notification.querySelector('.notification-close');
+    closeBtn.addEventListener('click', () => {
+        notification.remove();
+    });
+    
+    // Animate in
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+}
+
+// Scroll-triggered animations for dividers
+const scrollAnimations = {
+    '.gold-underline': {
+        animation: 'expandWidth 1.5s ease forwards',
+        delay: 500
+    }
+};
+
+Object.keys(scrollAnimations).forEach(selector => {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(element => {
+        const elementObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.animation = scrollAnimations[selector].animation;
+                    }, scrollAnimations[selector].delay);
+                    elementObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        elementObserver.observe(element);
+    });
+});
+
+
+
+// Loading animation
+window.addEventListener('load', function() {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.5s ease';
+    
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+    }, 100);
+});
+
+// Enhanced scroll effects handled in unified RAF loop above
+
+// Form field focus effects
+document.addEventListener('DOMContentLoaded', function() {
+    const formFields = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea');
+    
+    formFields.forEach(field => {
+        field.addEventListener('focus', function() {
+            this.parentNode.classList.add('focused');
+        });
+        
+        field.addEventListener('blur', function() {
+            this.parentNode.classList.remove('focused');
+            if (this.value) {
+                this.parentNode.classList.add('filled');
+            } else {
+                this.parentNode.classList.remove('filled');
+            }
+        });
+    });
+});
+
+// Add CSS for additional animations and notifications
+const additionalCSS = `
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    max-width: 400px;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification-content {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.notification-success {
+    border-left: 4px solid #4CAF50;
+}
+
+.notification-error {
+    border-left: 4px solid #f44336;
+}
+
+.notification-info {
+    border-left: 4px solid var(--gold);
+}
+
+.notification-icon {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.notification-success .notification-icon {
+    color: #4CAF50;
+}
+
+.notification-error .notification-icon {
+    color: #f44336;
+}
+
+.notification-info .notification-icon {
+    color: var(--gold);
+}
+
+.notification-message {
+    flex: 1;
+    color: var(--dark-gray);
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-close:hover {
+    color: var(--dark-gray);
+}
+
+.form-group.focused label {
+    color: var(--gold);
+}
+
+.form-group.filled label {
+    color: var(--navy);
+}
+
+.card-icon {
+    animation: bounce 2s infinite;
+}
+
+.floating-particles {
+    animation: floatParticles 8s ease-in-out infinite;
+}
+
+@keyframes floatParticles {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(180deg);
+    }
+}
+`;
+
+const style = document.createElement('style');
+style.textContent = additionalCSS;
+document.head.appendChild(style);
+
+// Video playback handled smoothly by IntersectionObserver in quick-actions.js
+
+console.log('Kezza Contact page loaded successfully! 📞');
