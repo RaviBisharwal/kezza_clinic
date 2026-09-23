@@ -48,7 +48,7 @@
             drawerCta.className = 'nav-drawer-cta';
             drawerCta.innerHTML = `
                 <a href="tel:+919284517427" class="btn-drawer-call"><i class="fas fa-phone-alt"></i> Call 9284517427</a>
-                <a href="https://wa.me/919284517427" target="_blank" rel="noopener" class="btn-drawer-book"><i class="fab fa-whatsapp"></i> Book Consultation</a>
+                <a href="#chat-consultant" class="btn-drawer-book" data-open-chatbot-consultant><i class="fab fa-whatsapp"></i> Book Consultation</a>
             `;
             navMenu.appendChild(drawerCta);
         }

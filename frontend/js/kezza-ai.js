@@ -5867,16 +5867,20 @@ Please guide me on next steps and appointment availability.
         else openChat();
     }
 
-    function openChat() {
+    function openChat(startConsultation = false) {
         state.isOpen = true;
         const fab = document.getElementById('kezzaChatFab');
         const win = document.getElementById('kezzaChatWindow');
-        fab.classList.add('open');
-        win.classList.add('open');
-        win.setAttribute('aria-hidden', 'false');  // FIX U7: visible to screen readers when open
-        win.setAttribute('aria-modal', 'true');
-        document.getElementById('kezzaTooltip').classList.add('hidden');
-        document.getElementById('kezzaBadge').classList.add('hidden');
+        if (fab) fab.classList.add('open');
+        if (win) {
+            win.classList.add('open');
+            win.setAttribute('aria-hidden', 'false');  // FIX U7: visible to screen readers when open
+            win.setAttribute('aria-modal', 'true');
+        }
+        const tooltip = document.getElementById('kezzaTooltip');
+        if (tooltip) tooltip.classList.add('hidden');
+        const badge = document.getElementById('kezzaBadge');
+        if (badge) badge.classList.add('hidden');
         state.tooltipDismissed = true;
         localStorage.setItem('kezza_tooltip_dismissed', 'true');
 
@@ -5888,9 +5892,20 @@ Please guide me on next steps and appointment availability.
             addBotMessage(resp.text, resp.quickReplies);
             speakText(resp.text);
         }
+
+        if (startConsultation && !state.consultationFlow) {
+            const resp = startConsultationFlow(null, null, null, null, state.preferredLang || 'hinglish');
+            addBotMessage(resp.text, resp.quickReplies);
+        }
+
         updateChatInputMode();
-        setTimeout(() => document.getElementById('kezzaChatInput').focus(), 80);
+        setTimeout(() => {
+            const input = document.getElementById('kezzaChatInput');
+            if (input) input.focus();
+        }, 80);
     }
+
+    window.openKezzaChat = openChat;
 
     function closeChat() {
         state.isOpen = false;
@@ -6145,6 +6160,9 @@ Please guide me on next steps and appointment availability.
 
     // Expose for programmatic access & comprehensive test verification
     const KezzaAIExport = {
+        openChat,
+        closeChat,
+        toggleChat,
         CONSULTATION_STATES,
         validateName,
         validateAge,

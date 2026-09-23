@@ -900,7 +900,11 @@
   }
   .hero-photo-tag-flagship {
     top: 12px !important;
+    bottom: auto !important;
+    left: auto !important;
     right: 12px !important;
+    width: auto !important;
+    height: auto !important;
     padding: 6px 14px !important;
   }
 }

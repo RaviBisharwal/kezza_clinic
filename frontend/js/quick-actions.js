@@ -121,5 +121,60 @@ document.addEventListener('DOMContentLoaded', () => {
             sessionStorage.setItem('kz_scanner_shown', '1');
         }, 2500);
     }
+
+    // 5. Header / Drawer "Book Consultation" triggers AI Chatbot Consultant
+    function openChatbotConsultant() {
+        // Close mobile drawer if currently open
+        const navMenu = document.getElementById('navMenu') || document.querySelector('.nav-links');
+        const hamburger = document.getElementById('hamburger');
+        const backdrop = document.getElementById('drawerBackdrop');
+        if (navMenu) navMenu.classList.remove('active');
+        if (hamburger) hamburger.classList.remove('active');
+        if (backdrop) backdrop.classList.remove('active');
+        document.body.classList.remove('nav-drawer-open');
+        document.documentElement.classList.remove('nav-drawer-open');
+
+        if (typeof window.openKezzaChat === 'function') {
+            window.openKezzaChat(true);
+            return;
+        }
+
+        const fab = document.getElementById('kezzaChatFab');
+        if (fab) {
+            fab.click();
+            setTimeout(() => {
+                if (typeof window.openKezzaChat === 'function') {
+                    window.openKezzaChat(true);
+                }
+            }, 100);
+            return;
+        }
+
+        if (!document.querySelector('script[src*="kezza-ai.js"]')) {
+            const sc = document.createElement('script');
+            sc.src = 'js/kezza-ai.js?v=5.4';
+            sc.defer = true;
+            sc.onload = () => {
+                setTimeout(() => {
+                    if (typeof window.openKezzaChat === 'function') {
+                        window.openKezzaChat(true);
+                    } else {
+                        const f = document.getElementById('kezzaChatFab');
+                        if (f) f.click();
+                    }
+                }, 100);
+            };
+            document.body.appendChild(sc);
+        }
+    }
+
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.nav-cta .btn-primary, .btn-drawer-book, [data-open-chatbot-consultant]');
+        if (btn) {
+            e.preventDefault();
+            e.stopPropagation();
+            openChatbotConsultant();
+        }
+    });
 });
 
