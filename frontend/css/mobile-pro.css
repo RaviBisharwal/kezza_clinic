@@ -1,0 +1,333 @@
+/* ==========================================================================
+   KEZZA CLINIC — PROFESSIONAL MOBILE FIX SUITE  v1.0
+   Loaded LAST so every rule wins cleanly.
+   Covers: 375px to 768px (phones) and 769px to 1024px (tablets)
+   ========================================================================== */
+
+/* 0. GLOBAL */
+html, body { overflow-x: hidden !important; max-width: 100vw !important; }
+*, *::before, *::after { box-sizing: border-box !important; }
+img, video, iframe, embed { max-width: 100% !important; }
+
+/* 1. NAVBAR */
+@media (max-width: 1024px) {
+    .navbar {
+        position: fixed !important; top: 0 !important; left: 0 !important;
+        right: 0 !important; width: 100% !important; z-index: 1000 !important;
+        background: rgba(255,255,255,0.98) !important;
+        backdrop-filter: blur(14px) !important;
+        -webkit-backdrop-filter: blur(14px) !important;
+        border-bottom: 1px solid rgba(0,175,192,0.14) !important;
+        box-shadow: 0 2px 16px rgba(12,35,56,0.06) !important;
+        padding: 10px 0 !important;
+    }
+    .nav-container {
+        display: flex !important; align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0 16px !important; gap: 0 !important;
+    }
+    .nav-logo img { height: 40px !important; width: auto !important; display: block !important; }
+    .nav-cta { display: none !important; }
+    .hamburger, #hamburger {
+        display: flex !important; flex-direction: column !important;
+        align-items: center !important; justify-content: center !important;
+        width: 44px !important; height: 44px !important;
+        min-width: 44px !important; min-height: 44px !important;
+        padding: 0 !important; margin: 0 0 0 auto !important;
+        background: transparent !important; border: none !important;
+        cursor: pointer !important; gap: 5px !important;
+        -webkit-tap-highlight-color: transparent !important;
+        flex-shrink: 0 !important;
+    }
+    .hamburger span, #hamburger span {
+        display: block !important; width: 24px !important;
+        height: 2px !important; background: #1e293b !important;
+        border-radius: 2px !important;
+        transition: transform 0.25s ease, opacity 0.25s ease !important;
+    }
+    .navbar .nav-menu { left: auto !important; }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+    .nav-logo img { height: 44px !important; }
+}
+
+/* 2. HERO SECTION */
+@media (max-width: 768px) {
+    .hero-section { padding-top: 60px !important; }
+    .hero-stage { min-height: clamp(520px, 78vh, 640px) !important; height: clamp(520px, 78vh, 640px) !important; }
+    .hero-inner { align-items: flex-end !important; padding-bottom: 28px !important; }
+    .hero-copy { margin-left: 0 !important; padding: 0 18px !important; width: 100% !important; }
+    .hero-eyebrow { font-size: 10px !important; padding: 6px 12px !important; margin-bottom: 12px !important; }
+    .hero-h1 { font-size: clamp(1.65rem, 6.5vw, 2.2rem) !important; margin-bottom: 12px !important; line-height: 1.2 !important; white-space: normal !important; }
+    .hero-h1 .hero-line-1, .hero-h1 .hero-line-2, .hero-h1 .hero-line-3 { white-space: normal !important; }
+    .hero-sub { font-size: 0.88rem !important; margin-bottom: 18px !important; line-height: 1.6 !important; max-width: 100% !important; }
+    .hero-ctas { display: flex !important; flex-direction: column !important; width: 100% !important; gap: 10px !important; margin: 0 !important; }
+    .hero-btn { width: 100% !important; justify-content: center !important; padding: 14px 20px !important; font-size: 0.92rem !important; }
+    .hero-scrim { background: linear-gradient(0deg, rgba(4,14,22,0.92) 0%, rgba(4,14,22,0.5) 40%, rgba(4,14,22,0.1) 70%, transparent 100%) !important; }
+}
+@media (max-width: 480px) {
+    .hero-stage { min-height: clamp(500px, 76vh, 600px) !important; height: clamp(500px, 76vh, 600px) !important; }
+    .hero-h1 { font-size: clamp(1.45rem, 7vw, 1.9rem) !important; }
+    .hero-eyebrow { font-size: 9px !important; }
+}
+
+/* 3. TRUST STRIP */
+@media (max-width: 860px) {
+    .kz-trust-strip { overflow: hidden !important; }
+    .kz-trust-list { padding: 10px 16px !important; gap: 10px !important; }
+    .kz-trust-list li { font-size: 12px !important; padding: 6px 12px !important; white-space: nowrap !important; }
+}
+
+/* 4. GALLERY CAROUSEL */
+@media (max-width: 768px) {
+    .image-gallery-section { padding: 20px 0 28px !important; overflow: hidden !important; }
+    .gallery-carousel-viewport { padding: 6px 12px !important; overflow: hidden !important; }
+    .gallery-carousel-card { flex: 0 0 78vw !important; max-width: 310px !important; height: 280px !important; border-radius: 14px !important; }
+}
+@media (max-width: 480px) {
+    .gallery-carousel-card { flex: 0 0 85vw !important; max-width: 295px !important; height: 250px !important; }
+}
+
+/* 5. WHY KEZZA */
+@media (max-width: 768px) {
+    .why-kezza-section { padding: 48px 0 !important; }
+    .features-grid-pro { display: grid !important; grid-template-columns: 1fr !important; gap: 16px !important; }
+    .feature-card-pro { padding: 22px 20px !important; border-radius: 14px !important; }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+    .features-grid-pro { grid-template-columns: repeat(2,1fr) !important; }
+}
+
+/* 6. STATS */
+@media (max-width: 768px) {
+    .stats-section-pro { padding: 36px 0 !important; }
+    .stats-grid-pro { display: grid !important; grid-template-columns: repeat(2,1fr) !important; gap: 14px !important; }
+    .stat-box-pro { padding: 18px 14px !important; border-radius: 14px !important; }
+    .stat-number-pro { font-size: 2rem !important; }
+    .stat-label-pro { font-size: 0.8rem !important; }
+    .stat-badge-micro { font-size: 0.65rem !important; }
+}
+@media (max-width: 480px) {
+    .stats-grid-pro { grid-template-columns: repeat(2,1fr) !important; gap: 10px !important; }
+    .stat-number-pro { font-size: 1.75rem !important; }
+}
+
+/* 7. SERVICES */
+@media (max-width: 768px) {
+    .services-master-section { padding: 36px 0 24px !important; }
+    .services-section-header { padding: 0 16px !important; }
+    .services-section-header h2 { font-size: clamp(1.5rem, 5vw, 2rem) !important; }
+    .services-categories-grid { grid-template-columns: repeat(2,1fr) !important; gap: 14px !important; padding: 0 !important; }
+    .service-category-card { border-radius: 14px !important; }
+    .service-category-inner { padding: 14px 14px 16px !important; }
+    .category-thumb-wrap { height: 140px !important; border-radius: 10px !important; }
+    .category-desc { display: none !important; }
+    .services-interactive-viewer { padding: 16px 14px !important; border-radius: 16px !important; }
+    .viewer-header { flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; padding-bottom: 16px !important; margin-bottom: 20px !important; }
+    .viewer-header-left h3 { font-size: 1.1rem !important; }
+    .viewer-tabs-nav { width: 100% !important; overflow-x: auto !important; overflow-y: hidden !important; flex-wrap: nowrap !important; padding: 4px !important; -webkit-overflow-scrolling: touch !important; scrollbar-width: none !important; }
+    .viewer-tabs-nav::-webkit-scrollbar { display: none !important; }
+    .viewer-tab-btn { flex-shrink: 0 !important; padding: 7px 12px !important; font-size: 0.78rem !important; white-space: nowrap !important; }
+    .treatments-subgrid { grid-template-columns: 1fr !important; gap: 14px !important; }
+    .treatment-item-card { border-radius: 14px !important; }
+    .treatment-thumb-box { height: 170px !important; }
+    .tab-page-cta-banner { flex-direction: column !important; align-items: flex-start !important; padding: 18px 16px !important; border-radius: 14px !important; gap: 14px !important; }
+    .btn-banner-full { width: 100% !important; justify-content: center !important; }
+}
+@media (max-width: 480px) {
+    .services-categories-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+    .category-thumb-wrap { height: 160px !important; }
+}
+
+/* 8. DOCTORS */
+@media (max-width: 768px) {
+    .doctors-section { padding: 40px 0 !important; }
+    .doctors-grid { display: grid !important; grid-template-columns: 1fr !important; gap: 20px !important; }
+    .doctor-card { flex-direction: column !important; border-radius: 16px !important; max-width: 480px !important; margin: 0 auto !important; width: 100% !important; }
+    .doctor-image-wrapper, .doctor-card-img { width: 100% !important; aspect-ratio: 4/3 !important; height: auto !important; flex: none !important; }
+}
+
+/* 9. TESTIMONIALS */
+@media (max-width: 768px) {
+    .testimonials-section { padding: 48px 0 !important; }
+    .testimonials-section h2 { font-size: clamp(1.6rem, 5vw, 2.2rem) !important; margin-bottom: 32px !important; }
+    .video-testimonials { grid-template-columns: 1fr !important; gap: 16px !important; }
+    .video-testimonials video { width: 100% !important; max-width: 340px !important; margin: 0 auto !important; display: block !important; }
+}
+
+/* 10. BRANCHES */
+@media (max-width: 768px) {
+    .kz-branches { padding: 36px 0 60px !important; }
+    .kz-branches-header { padding: 0 16px !important; text-align: center !important; }
+    .kz-branches-title { font-size: clamp(1.55rem, 5vw, 2rem) !important; }
+    .kz-visit-filters { justify-content: flex-start !important; overflow-x: auto !important; flex-wrap: nowrap !important; padding: 4px 0 8px !important; -webkit-overflow-scrolling: touch !important; scrollbar-width: none !important; gap: 6px !important; }
+    .kz-visit-filters::-webkit-scrollbar { display: none !important; }
+    .kz-visit-pill-btn { flex-shrink: 0 !important; white-space: nowrap !important; }
+    .kz-branch-grid { grid-template-columns: 1fr !important; max-width: 420px !important; margin: 0 auto !important; }
+    .kz-branch-media { height: 180px !important; }
+}
+
+/* 11. FAQ */
+@media (max-width: 768px) {
+    .kz-faq { padding: 40px 0 !important; }
+    .kz-faq-list { padding: 0 16px !important; }
+    .kz-faq-q { font-size: 14px !important; padding: 16px 18px !important; }
+    .kz-faq-a p { padding: 0 18px 16px !important; font-size: 13.5px !important; }
+}
+
+/* 12. BMI / EMI */
+@media (max-width: 768px) {
+    .bmi-calculator-section, .emi-calculator-section { padding: 44px 0 !important; }
+    .bmi-calc-card { grid-template-columns: 1fr !important; gap: 20px !important; padding: 20px 16px !important; }
+    .emi-calc-wrap { padding: 20px 16px !important; }
+    .emi-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+    .bmi-target-grid { grid-template-columns: repeat(3,1fr) !important; }
+    .emi-tenure-pills { flex-wrap: wrap !important; gap: 8px !important; }
+    .emi-tenure-btn { flex: 1 1 calc(50% - 4px) !important; min-width: 80px !important; }
+}
+
+/* 13. CONTACT CTA BANNER */
+@media (max-width: 768px) {
+    .contact-cta-section { padding: 28px 16px !important; }
+    .contact-cta-section h2 { font-size: clamp(1.2rem, 5vw, 1.55rem) !important; margin-bottom: 8px !important; }
+    .contact-cta-section p { font-size: 0.86rem !important; margin-bottom: 16px !important; }
+    .btn-white { padding: 10px 22px !important; font-size: 0.88rem !important; }
+}
+
+/* 14. FOOTER */
+@media (max-width: 768px) {
+    .footer { padding: 40px 0 20px !important; }
+    .footer-grid { grid-template-columns: 1fr !important; gap: 28px !important; padding: 0 16px !important; }
+    .footer-column { border-bottom: 1px solid rgba(255,255,255,0.08) !important; padding-bottom: 20px !important; }
+    .footer-column:last-child { border-bottom: none !important; }
+    .footer-bottom-content { flex-direction: column !important; gap: 14px !important; text-align: center !important; padding: 0 16px !important; }
+    .footer-social { flex-wrap: wrap !important; justify-content: center !important; gap: 8px !important; }
+    .social-link { font-size: 0.82rem !important; padding: 6px 12px !important; }
+}
+
+/* 15. FLOATING DOCK */
+@media (max-width: 600px) {
+    .floating-quick-dock { bottom: 12px !important; max-width: calc(100vw - 16px) !important; padding: 5px 8px !important; gap: 5px !important; border-radius: 40px !important; }
+    .floating-quick-dock .dock-item.dock-call { display: none !important; }
+    .floating-quick-dock .dock-item { flex: 1 1 0 !important; min-width: 0 !important; padding: 8px 10px !important; font-size: 0.72rem !important; gap: 5px !important; justify-content: center !important; border-radius: 30px !important; }
+    .floating-quick-dock .dock-item span { overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; max-width: 80px !important; }
+}
+@media (max-width: 360px) {
+    .floating-quick-dock .dock-item span { display: none !important; }
+    .floating-quick-dock .dock-item { padding: 8px 12px !important; }
+    .floating-quick-dock .dock-item i { font-size: 1rem !important; }
+}
+
+/* 16. AI CHAT FAB */
+@media (max-width: 768px) {
+    .kezza-chat-fab, #kezzaChatFab { bottom: 80px !important; right: 14px !important; width: 50px !important; height: 50px !important; }
+    .kezza-chat-tooltip, #kezzaTooltip { bottom: 138px !important; right: 12px !important; max-width: min(280px,80vw) !important; }
+    .kezza-chat-window, #kezzaChatWindow { bottom: 80px !important; right: 0 !important; left: 0 !important; width: 100% !important; max-width: 100% !important; border-radius: 20px 20px 0 0 !important; max-height: 75vh !important; }
+}
+
+/* 17. BACK TO TOP */
+@media (max-width: 768px) {
+    #kzBackToTop { bottom: 78px !important; left: 14px !important; width: 38px !important; height: 38px !important; }
+}
+
+/* 18. SOCIAL SIDEBAR */
+@media (max-width: 992px) {
+    .social-sidebar { display: none !important; }
+}
+
+/* 19. SECTION PADDING RHYTHM */
+@media (max-width: 768px) {
+    .why-kezza-section, .services-master-section, .branches-section,
+    .testimonials-section, .gallery-section, .doctors-section, .stats-section {
+        padding-left: 0 !important; padding-right: 0 !important;
+    }
+    .container { padding: 0 16px !important; }
+    .section-header h2, .section-header-pro h2 { font-size: clamp(1.5rem, 5.5vw, 2.2rem) !important; margin-bottom: 12px !important; }
+    .section-header p { font-size: 0.9rem !important; }
+    .section-badge-luxury { font-size: 0.72rem !important; padding: 5px 12px !important; }
+}
+
+/* 20. INPUT ZOOM PREVENTION */
+@media (max-width: 1024px) {
+    input[type="text"], input[type="email"], input[type="tel"],
+    input[type="number"], input[type="password"], input[type="search"],
+    input[type="date"], select, textarea { font-size: 16px !important; }
+}
+
+/* 21. FACE SCANNER PAGE */
+@media (max-width: 768px) {
+    .scanner-hero-section { padding: 80px 16px 40px !important; }
+    .scanner-content-grid, .scanner-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+    #videoCanvas, #cameraView { width: 100% !important; max-width: 320px !important; margin: 0 auto !important; }
+    .scanner-results-panel { max-width: 100% !important; width: 100% !important; }
+}
+
+/* 22. BRANCHES PAGE */
+@media (max-width: 768px) {
+    .branches-hero { padding: 80px 16px 40px !important; }
+    .branches-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+    .branch-card { padding: 20px 16px !important; }
+    .map-placeholder img { height: 220px !important; border-radius: 12px !important; }
+}
+
+/* 23. CONTACT PAGE */
+@media (max-width: 768px) {
+    .contact-form-grid, .contact-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+    .contact-form-section { padding: 80px 16px 40px !important; }
+}
+
+/* 24. ABOUT PAGE */
+@media (max-width: 768px) {
+    .story-grid, .about-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .about-section { padding: 80px 16px 40px !important; }
+    .timeline-item { padding-left: 20px !important; }
+}
+
+/* 25. SERVICE PAGES */
+@media (max-width: 768px) {
+    .treatments-grid, .services-grid, .skin-services-grid, .service-cards-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+    .service-card, .skin-card, .treatment-card { border-radius: 14px !important; }
+    .service-card img, .skin-card img, .treatment-card img { height: 200px !important; border-radius: 10px 10px 0 0 !important; }
+    .service-page-hero, .page-hero, .hair-hero, .skin-hero { padding: 80px 16px 40px !important; }
+}
+@media (min-width: 480px) and (max-width: 768px) {
+    .treatments-grid, .services-grid, .skin-services-grid { grid-template-columns: repeat(2,1fr) !important; }
+}
+
+/* 26. BEFORE/AFTER SLIDER */
+@media (max-width: 768px) {
+    .before-after-slider, .comparison-slider { max-width: 100% !important; width: 100% !important; border-radius: 12px !important; }
+    .comparison-slider img { height: 260px !important; }
+}
+
+/* 27. PMU PAGE */
+@media (max-width: 768px) {
+    .pmu-hero-section, .pmu-header { padding: 80px 16px 40px !important; }
+    .pmu-grid, .pmu-treatments-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+}
+
+/* 28. TAP TARGETS */
+@media (max-width: 1024px) {
+    button, [role="button"], a.btn, .btn-primary, .btn-white, .btn-gold, .btn-navy,
+    .hero-btn, .kz-btn-book, .kz-btn-wa, .kz-btn-map, .btn-drawer-call, .btn-drawer-book {
+        min-height: 44px !important; touch-action: manipulation !important;
+        -webkit-tap-highlight-color: transparent !important;
+    }
+}
+
+/* 29. REMOVE HOVER LINGERING ON TOUCH */
+@media (hover: none) {
+    .feature-card-pro:hover, .kz-branch:hover, .treatment-item-card:hover,
+    .gallery-carousel-card:hover, .service-category-card:hover,
+    .testimonial-card:hover, .stat-box-pro:hover { transform: none !important; }
+    .feature-card-pro:hover .category-thumb-wrap img,
+    .service-category-card:hover .category-thumb-wrap img,
+    .gallery-carousel-card:hover img { transform: none !important; }
+}
+
+/* 30. OVERFLOW GUARD — no section bleeds past viewport */
+section, .hero-section, .image-gallery-section, .why-kezza-section,
+.stats-section-pro, .services-master-section, .testimonials-section,
+.kz-branches, .kz-trust-strip, .kz-faq, .contact-cta-section, .footer {
+    max-width: 100vw !important; overflow-x: hidden !important;
+}

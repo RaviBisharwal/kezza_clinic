@@ -25,8 +25,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Floating Quick Dock - kept stably visible without scroll jank
-    // (eliminated heavy backdrop-filter repaint thrashing during scrolling)
+    // 2. Floating Quick Dock — hide while scrolling, reappear after scroll stops
+    (function initDockScroll() {
+        const dock = document.querySelector('.floating-quick-dock');
+        if (!dock) return;
+
+        let ticking = false;
+        let hideTimer = null;
+        let isHidden = false;
+
+        function hideDock() {
+            if (!isHidden) {
+                dock.classList.add('dock-hidden');
+                isHidden = true;
+            }
+        }
+
+        function showDock() {
+            if (isHidden) {
+                dock.classList.remove('dock-hidden');
+                isHidden = false;
+            }
+        }
+
+        window.addEventListener('scroll', function () {
+            // Clear any pending show-timer on each scroll tick
+            clearTimeout(hideTimer);
+
+            if (!ticking) {
+                requestAnimationFrame(function () {
+                    hideDock();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+
+            // Show dock 0.4s after the last scroll event
+            hideTimer = setTimeout(showDock, 400);
+        }, { passive: true });
+    })();
 
     // 3. Lazy-Loaded AI Scanner Lead-Capture Modal Trigger
     let scannerAssetsLoading = false;
@@ -76,5 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
             openScannerModalLazy();
         }
     });
+
+    // 4. Auto-open AI Scanner modal once per session
+    if (!sessionStorage.getItem('kz_scanner_shown')) {
+        setTimeout(function () {
+            openScannerModalLazy();
+            sessionStorage.setItem('kz_scanner_shown', '1');
+        }, 2500);
+    }
 });
 
