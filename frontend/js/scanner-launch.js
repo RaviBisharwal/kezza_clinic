@@ -36,6 +36,9 @@
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return; // let new-tab clicks work
       e.preventDefault();
     }
+    try {
+      sessionStorage.setItem('kezza_scanner_auto_shown', 'true');
+    } catch (err) {}
     loadOnce().then(function () {
       if (window.KezzaScannerModal && window.KezzaScannerModal.open) {
         window.KezzaScannerModal.open();
@@ -70,17 +73,29 @@
   // Deep link: /face-scanner.html#scanner or any page with #scanner opens it
   if (window.location.hash === '#scanner') openScanner();
 
-  // ── Automatic Popup on Website Open (6 seconds = 6000ms) ──
+  // ── Automatic Popup on Website Open (Once per visit, after 6 seconds) ──
   var path = (window.location.pathname || '').toLowerCase();
   var isScannerPage = path.endsWith('face-scanner.html') || path.endsWith('face-scanner');
   var isAdminPage   = path.includes('admin');
 
-  if (!isScannerPage && !isAdminPage) {
+  var alreadyShown = false;
+  try {
+    alreadyShown = sessionStorage.getItem('kezza_scanner_auto_shown') === 'true';
+  } catch (err) {
+    alreadyShown = false;
+  }
+
+  // Only trigger once per visit across the entire website
+  if (!isScannerPage && !isAdminPage && !alreadyShown) {
     // Pre-warm assets in the background so opening at 6s is completely instant
     loadOnce();
 
-    // Trigger popup after exactly 6 seconds (6000ms)
+    // Trigger popup once after exactly 6 seconds (6000ms)
     setTimeout(function () {
+      try {
+        if (sessionStorage.getItem('kezza_scanner_auto_shown') === 'true') return;
+        sessionStorage.setItem('kezza_scanner_auto_shown', 'true');
+      } catch (err) {}
       openScanner();
     }, 6000);
   }
