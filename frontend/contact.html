@@ -11,8 +11,8 @@
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Consultation | Contact Kezza Clinic Jaipur, Sikar & Ajmer</title>
-        <meta name="description" content="Book a consultation at Kezza Hair &amp; Skin Clinic in Jaipur, Sikar or Ajmer, Rajasthan. Reach us by phone, WhatsApp or our online form. Same-day appointments.">
+    <title>Book Consultation | Contact Kezza Clinic Jaipur</title>
+        <meta name="description" content="Book a consultation at Kezza Hair & Skin Clinic in Jaipur or Sikar. Reach us by phone, WhatsApp or our online form. Same-day appointments.">
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q4NB5CRMW"></script>
         <script>
@@ -24,14 +24,14 @@
         </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/contact-styles.css?v=2.1">
+    <link rel="stylesheet" href="css/contact-styles.css?v=8.5">
     <link rel="stylesheet" href="css/quick-actions.css?v=2.0">
     <link rel="stylesheet" href="css/services-navigation.css?v=3.6">
     <link rel="stylesheet" href="css/kezza-ai.css?v=5.5">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="css/responsive.css?v=3.6">
+    <link rel="stylesheet" href="css/responsive.css?v=3.8">
     <link rel="stylesheet" href="css/scroll-3d.css?v=2.0">
     <link rel="icon" type="image/png" href="images/logo.png">
 
@@ -86,7 +86,7 @@
     </script>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Kezza Hair & Skin Clinic">
-    <link rel="stylesheet" href="css/mobile-pro.css?v=1.0">
+    <link rel="stylesheet" href="css/mobile-pro.css?v=2.1">
 </head>
 
 <body>
@@ -124,7 +124,7 @@
                                         <li><a href="hair-services.html#hair-transplant" class="services-sub-link">Hair Transplant (HT)</a></li>
                                         <li><a href="prp-therapy.html" class="services-sub-link">PRP Therapy</a></li>
                                         <li><a href="prp-therapy.html#gfc-therapy" class="services-sub-link">GFC Therapy</a></li>
-                                        <li><a href="hair-services.html#white-hair" class="services-sub-link">White Hair Removal</a></li>
+                                        <li><a href="white-hair-removal.html" class="services-sub-link">White Hair Removal</a></li>
                                         <li><a href="hair-services.html#electrolysis" class="services-sub-link">Electrolysis</a></li>
                                         <li><a href="hair-services.html#hair-wig" class="services-sub-link">Hair Wig / Hair Replacement</a></li>
                                         <li><a href="hair-services.html#consultation" class="services-sub-link">Hair Loss Consultation</a></li>
@@ -203,22 +203,199 @@
         </div>
     </nav>
 
-    <!-- Section 1: Hero Banner (Professional Open Developer Architecture — Zero Box Container) -->
+    <!-- Section 1: Contact Form (Premier Hero Placement at Top) -->
+    <section class="contact-form-section" id="contact-form-anchor">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-card">
+                    <div class="form-card-header">
+                        <div class="form-badge">
+                            <i class="fas fa-stethoscope"></i> Instant Consultation Request
+                        </div>
+                        <h1 class="form-card-title">Book a Consultation or Ask a Question</h1>
+                        <p class="form-subtitle">A certified dermatologist or hair specialist will review your inquiry and connect with you shortly.</p>
+                    </div>
+
+                    <form class="contact-form" id="contactForm" novalidate>
+                        <!-- Row 1: Full Name * & WhatsApp Number * -->
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="fullName">Full Name <span class="req">*</span></label>
+                                <div class="input-with-icon" id="wrap-name">
+                                    <i class="fas fa-user input-icon"></i>
+                                    <input type="text" id="fullName" name="name" placeholder="e.g. Rahul Sharma" autocomplete="name" aria-required="true" aria-describedby="err-name" required>
+                                </div>
+                                <span class="field-error-text" id="err-name" role="alert" style="display:none;"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="whatsapp">WhatsApp Number <span class="req">*</span></label>
+                                <div class="input-with-icon phone-input-box" id="wrap-whatsapp">
+                                    <span class="country-prefix"><i class="fab fa-whatsapp wa-icon"></i> +91</span>
+                                    <input type="tel" id="whatsapp" name="whatsapp" inputmode="numeric" placeholder="Enter 10-digit number" aria-required="true" aria-describedby="err-whatsapp" required>
+                                </div>
+                                <span class="field-error-text" id="err-whatsapp" role="alert" style="display:none;"></span>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Age * & Your City / Location * -->
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="age">Age <span class="req">*</span></label>
+                                <div class="input-with-icon" id="wrap-age">
+                                    <i class="fas fa-id-card input-icon"></i>
+                                    <input type="number" id="age" name="age" inputmode="numeric" min="10" max="90" placeholder="e.g. 28" aria-required="true" aria-describedby="err-age" required>
+                                </div>
+                                <span class="field-error-text" id="err-age" role="alert" style="display:none;"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="location">Your City / Location <span class="req">*</span></label>
+                                <div class="input-with-icon" id="wrap-location">
+                                    <i class="fas fa-city input-icon"></i>
+                                    <input type="text" id="location" name="location" placeholder="e.g. Jaipur, Sikar, Ajmer" aria-required="true" aria-describedby="err-location" required>
+                                </div>
+                                <span class="field-error-text" id="err-location" role="alert" style="display:none;"></span>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: Preferred Clinic * & Department * -->
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="clinic">Preferred Clinic <span class="req">*</span></label>
+                                <div class="input-with-icon" id="wrap-clinic">
+                                    <i class="fas fa-map-marker-alt input-icon"></i>
+                                    <select id="clinic" name="clinic" aria-required="true" aria-describedby="err-clinic" required>
+                                        <option value="">Choose a location...</option>
+                                        <option value="Jaipur">Jaipur Clinic (Khatipura)</option>
+                                        <option value="Sikar">Sikar Clinic (Silver Jubilee Rd)</option>
+                                        <option value="Ajmer">Ajmer Clinic (Shastri Nagar)</option>
+                                    </select>
+                                </div>
+                                <span class="field-error-text" id="err-clinic" role="alert" style="display:none;"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="department">Department <span class="req">*</span></label>
+                                <div class="input-with-icon" id="wrap-department">
+                                    <i class="fas fa-stethoscope input-icon"></i>
+                                    <select id="department" name="department" aria-required="true" aria-describedby="err-department" required>
+                                        <option value="">Select department...</option>
+                                        <option value="Hair Transplant">Hair Transplant</option>
+                                        <option value="Skin">Skin</option>
+                                        <option value="Weight Loss">Weight Loss</option>
+                                        <option value="PMU">PMU</option>
+                                    </select>
+                                </div>
+                                <span class="field-error-text" id="err-department" role="alert" style="display:none;"></span>
+                            </div>
+                        </div>
+
+                        <!-- Row 4: Treatment / Service * (full width) -->
+                        <div class="form-group">
+                            <label for="treatment">Treatment / Service <span class="req">*</span></label>
+                            <div class="input-with-icon" id="wrap-treatment">
+                                <i class="fas fa-list-ul input-icon"></i>
+                                <select id="treatment" name="treatment" aria-required="true" aria-describedby="err-treatment" required disabled>
+                                    <option value="">Select department first</option>
+                                </select>
+                            </div>
+                            <span class="field-error-text" id="err-treatment" role="alert" style="display:none;"></span>
+                            <div class="specialist-hint" id="specialistHint" style="display:none; font-size:0.80rem; color:var(--primary); font-weight:600; margin-top:5px;">
+                                <i class="fas fa-user-md"></i> <span id="specialistHintText">Your specialist: <strong id="specialistName"></strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Row 5: Preferred Date * & Preferred Time * -->
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="preferredDate">Preferred Date <span class="req">*</span></label>
+                                <div class="input-with-icon" id="wrap-preferredDate">
+                                    <i class="fas fa-calendar-day input-icon"></i>
+                                    <input type="date" id="preferredDate" name="preferredDate" aria-required="true" aria-describedby="err-preferredDate" required>
+                                </div>
+                                <span class="field-error-text" id="err-preferredDate" role="alert" style="display:none;"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="preferredTime">Preferred Time <span class="req">*</span></label>
+                                <div class="input-with-icon" id="wrap-preferredTime">
+                                    <i class="fas fa-clock input-icon"></i>
+                                    <select id="preferredTime" name="preferredTime" aria-required="true" aria-describedby="err-preferredTime" required>
+                                        <option value="Any Time" selected>Any Time</option>
+                                        <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
+                                        <option value="Afternoon (12 PM - 4 PM)">Afternoon (12 PM - 4 PM)</option>
+                                    </select>
+                                </div>
+                                <span class="field-error-text" id="err-preferredTime" role="alert" style="display:none;"></span>
+                            </div>
+                        </div>
+
+                        <!-- Row 6: How long have you had this concern? (full width) -->
+                        <div class="form-group">
+                            <label for="duration">How long have you had this concern?</label>
+                            <div class="input-with-icon" id="wrap-duration">
+                                <i class="fas fa-hourglass-half input-icon"></i>
+                                <select id="duration" name="duration">
+                                    <option value="">Select duration (optional)</option>
+                                    <option value="Less than 1 month">Less than 1 month</option>
+                                    <option value="1–6 months">1–6 months</option>
+                                    <option value="6–12 months">6–12 months</option>
+                                    <option value="1–3 years">1–3 years</option>
+                                    <option value="More than 3 years">More than 3 years</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Row 7: Your Concern or Message (full width) -->
+                        <div class="form-group">
+                            <label for="message">Your Concern or Message</label>
+                            <div class="input-with-icon textarea-box" id="wrap-message">
+                                <textarea id="message" name="message" rows="3" maxlength="500" placeholder="Briefly describe what you'd like guidance on..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Honeypot anti-spam field (hidden offscreen) -->
+                        <div style="position: absolute; left: -9999px; top: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
+                            <input type="text" id="kz_hp" name="kz_hp" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <!-- Row 8: Submit button & Consent line -->
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <span>Book Consultation Now &rarr;</span>
+                        </button>
+
+                        <p class="form-consent-note" style="font-size:0.75rem; color:#64748B; text-align:center; margin:10px 0 0; line-height:1.4;">
+                            By submitting, you agree to be contacted by Kezza Clinic on WhatsApp or phone about your enquiry.
+                        </p>
+
+                        <div class="form-trust-notes">
+                            <span><i class="fas fa-lock"></i> 100% Confidential</span>
+                            <span><i class="fas fa-clock"></i> Quick Reply (&lt; 12 hrs)</span>
+                            <span><i class="fas fa-user-md"></i> Expert Care</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Kezza Clinic Overview & Building Showcase (Details & Photo Moved Below Form) -->
     <section class="contact-hero-section">
         <div class="hero-ambient-aura aura-left"></div>
         <div class="hero-ambient-aura aura-right"></div>
         <div class="hero-container">
             <!-- Left: Open Editorial Narrative & Action Suite (Zero Box Container) -->
-            <div class="hero-content hero-editorial-col">
+            <div class="hero-editorial-col">
                 <div class="hero-kicker-badge">
                     <span class="hero-beacon-pulse"></span>
                     <i class="fas fa-stethoscope"></i>
                     <span>Direct Specialist Access &bull; Jaipur &bull; Sikar &bull; Ajmer</span>
                 </div>
                 
-                <h1 class="hero-main-heading">
+                <h2 class="hero-main-heading">
                     Connect With Rajasthan's Foremost <span class="hero-teal-gradient">Skin &amp; Hair Specialists</span>
-                </h1>
+                </h2>
 
                 <p class="hero-lead-narrative">
                     Consult directly with senior board-certified dermatologists and hair restoration surgeons. Get evidence-based diagnostic evaluation, personalized treatment plans, and priority same-day scheduling.
@@ -266,7 +443,7 @@
 
                     <!-- Main Architectural Frame (with tag inside to prevent clipping) -->
                     <div class="hero-photo-frame">
-                        <img src="images/kezza-building-main.jpg" alt="Kezza Hair &amp; Skin Clinic Flagship Center Jaipur" width="768" height="1024" loading="eager">
+                        <img src="images/kezza-building-main.jpg" alt="Kezza Hair &amp; Skin Clinic Flagship Center Jaipur" width="768" height="1024" loading="lazy" decoding="async">
                         <div class="hero-photo-shimmer"></div>
                         <!-- Top Floating Live Status Glass Tag (inside frame) -->
                         <div class="hero-photo-tag-flagship">
@@ -291,260 +468,185 @@
         </div>
     </section>
 
-    <!-- Section 2: Contact Form -->
-    <section class="contact-form-section" id="contact-form-anchor">
+    <!-- Section 3: Our Clinic Locations (Landscape Layout) -->
+    <section class="clinic-locations-section" id="clinic-locations">
         <div class="container">
-            <div class="contact-grid">
-                <div class="form-container">
-                    <div class="form-card">
-                        <div class="form-card-header">
-                            <div class="form-badge">
-                                <i class="fas fa-stethoscope"></i> Instant Consultation Request
-                            </div>
-                            <h2 class="form-card-title">Book a Consultation or Ask a Question</h2>
-                            <p class="form-subtitle">A certified dermatologist or hair specialist will review your inquiry and connect with you shortly.</p>
+            <div class="clinic-info">
+                <!-- ═══ REDESIGNED: Our Clinic Locations – White Premium Panel ═══ -->
+                <div class="clinic-info-panel">
+
+                    <!-- Panel heading -->
+                    <div class="cip-heading">
+                        <span class="cip-heading-icon"><i class="fas fa-map-marker-alt"></i></span>
+                        <div>
+                            <h3 class="cip-title">Our Clinic Locations</h3>
+                            <p class="cip-subtitle">3 clinics across Rajasthan</p>
                         </div>
-
-                        <form class="contact-form" id="contactForm">
-                            <!-- Row 1: Name & Phone -->
-                            <div class="form-row-2">
-                                <div class="form-group">
-                                    <label for="fullName">Full Name <span class="req">*</span></label>
-                                    <div class="input-with-icon">
-                                        <i class="fas fa-user input-icon"></i>
-                                        <input type="text" id="fullName" name="fullName" placeholder="e.g. Rahul Sharma" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="phone">WhatsApp Number <span class="req">*</span></label>
-                                    <div class="input-with-icon phone-input-box">
-                                        <span class="country-prefix"><i class="fab fa-whatsapp wa-icon"></i> +91</span>
-                                        <input type="tel" id="phone" name="phone" inputmode="numeric" maxlength="10" placeholder="10-digit number" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Row 2: Email & Clinic -->
-                            <div class="form-row-2">
-                                <div class="form-group">
-                                    <label for="email">Email Address <span class="req">*</span></label>
-                                    <div class="input-with-icon">
-                                        <i class="fas fa-envelope input-icon"></i>
-                                        <input type="email" id="email" name="email" placeholder="name@example.com" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="clinic">Preferred Clinic <span class="req">*</span></label>
-                                    <div class="input-with-icon">
-                                        <i class="fas fa-map-marker-alt input-icon"></i>
-                                        <select id="clinic" name="clinic" required>
-                                            <option value="">Choose a location...</option>
-                                            <option value="jaipur">Jaipur Clinic (Khatipura)</option>
-                                            <option value="sikar">Sikar Clinic (Silver Jubilee Rd)</option>
-                                            <option value="ajmer">Ajmer Clinic (Shastri Nagar)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Row 3: Category -->
-                            <div class="form-group">
-                                <label for="category">Select Service / Treatment Concern <span class="req">*</span></label>
-                                <div class="input-with-icon">
-                                    <i class="fas fa-sparkles input-icon"></i>
-                                    <select id="category" name="category" required>
-                                        <option value="">Select your area of interest...</option>
-                                        <option value="hair-services">Hair Restoration &amp; Hair Fall</option>
-                                        <option value="skin-services">Skin Treatments &amp; Glow</option>
-                                        <option value="laser-treatments">Laser Hair &amp; Skin Care</option>
-                                        <option value="hair-transplant">Hair Transplant (FUE / DHI)</option>
-                                        <option value="prp-treatment">PRP &amp; GFC Treatment</option>
-                                        <option value="weight-loss">Weight Loss &amp; Body Sculpting</option>
-                                        <option value="permanent-makeup">Permanent Makeup (PMU)</option>
-                                        <option value="general-query">General Doctor Inquiry</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Row 4: Message -->
-                            <div class="form-group">
-                                <label for="message">Your Concern or Message <span class="req">*</span></label>
-                                <div class="input-with-icon textarea-box">
-                                    <textarea id="message" name="message" rows="4" placeholder="Briefly describe what you'd like guidance on..." required></textarea>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="submit-btn" id="submitBtn">
-                                <span>Book Consultation Now</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-
-                            <div class="form-trust-notes">
-                                <span><i class="fas fa-lock"></i> 100% Confidential</span>
-                                <span><i class="fas fa-clock"></i> Quick Reply (&lt; 12 hrs)</span>
-                                <span><i class="fas fa-user-md"></i> Expert Care</span>
-                            </div>
-                        </form>
                     </div>
-                </div>
 
-                <div class="clinic-info">
-                    <!-- ═══ REDESIGNED: Our Clinic Locations – White Premium Panel ═══ -->
-                    <div class="clinic-info-panel">
+                    <!-- Clinic Cards Container -->
+                    <div class="cip-cards-container">
 
-                        <!-- Panel heading -->
-                        <div class="cip-heading">
-                            <span class="cip-heading-icon"><i class="fas fa-map-marker-alt"></i></span>
-                            <div>
-                                <h3 class="cip-title">Our Clinic Locations</h3>
-                                <p class="cip-subtitle">3 clinics across Rajasthan</p>
+                        <!-- Jaipur Clinic -->
+                        <div class="cip-location-card" data-maps-url="https://maps.app.goo.gl/4eUGixic35V777yd8" onclick="if(!event.target.closest('a, button')){ window.open('https://maps.app.goo.gl/4eUGixic35V777yd8', '_blank', 'noopener,noreferrer'); }" title="Click to view Jaipur clinic on Google Maps">
+                            <div class="cip-location-top">
+                                <div class="cip-badge-wrap">
+                                    <span class="cip-city-badge">Jaipur</span>
+                                    <span class="cip-clinic-name">Khatipura Road (Flagship)</span>
+                                </div>
+                                <div class="cip-card-actions">
+                                    <a href="https://maps.app.goo.gl/4eUGixic35V777yd8" target="_blank" rel="noopener" class="cip-maps-pill" title="View on Google Maps" onclick="event.stopPropagation();">
+                                        <i class="fas fa-directions"></i> Maps
+                                    </a>
+                                    <a href="https://wa.me/919284517427?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20visit%20Jaipur%20Clinic." target="_blank" rel="noopener" class="cip-wa-pill" title="WhatsApp Jaipur" onclick="event.stopPropagation();">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <p class="cip-address">
+                                <i class="fas fa-map-marker-alt cip-pin"></i>
+                                A-7, 1st Floor, Hanuman Nagar, Sirsi Rd, Main, Khatipura, Jaipur, Rajasthan 302021
+                            </p>
+                            <div class="cip-card-meta">
+                                <span><i class="fas fa-user-md"></i> Dr. Ankit Bhalothia &amp; Dr. Amrita Mukhija</span>
+                                <span><i class="fas fa-clock"></i> Mon–Sun: 9:00 AM – 8:00 PM</span>
+                                <a href="tel:+919284517427" class="cip-phone-link" onclick="event.stopPropagation();" title="Call Jaipur Clinic (+91-9284517427)">
+                                    <i class="fas fa-phone-alt"></i> +91-9284517427
+                                </a>
+                            </div>
+                            <div class="cip-specialty-tags">
+                                <span class="cip-tag">Hair Transplant</span>
+                                <span class="cip-tag">Laser Skin Care</span>
+                                <span class="cip-tag">PRP &amp; GFC</span>
+                                <span class="cip-tag">Anti-Aging</span>
+                                <span class="cip-tag">Permanent Makeup</span>
                             </div>
                         </div>
 
-                        <!-- Clinic Cards Container -->
-                        <div class="cip-cards-container">
-
-                            <!-- Jaipur Clinic -->
-                            <div class="cip-location-card">
-                                <div class="cip-location-top">
-                                    <div class="cip-badge-wrap">
-                                        <span class="cip-city-badge">Jaipur</span>
-                                        <span class="cip-clinic-name">Khatipura Road</span>
-                                    </div>
-                                    <div class="cip-card-actions">
-                                        <a href="https://maps.app.goo.gl/4eUGixic35V777yd8" target="_blank" rel="noopener" class="cip-maps-pill" title="View on Google Maps">
-                                            <i class="fas fa-directions"></i> Maps
-                                        </a>
-                                        <a href="https://wa.me/919284517427?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20visit%20Jaipur%20Clinic." target="_blank" rel="noopener" class="cip-wa-pill" title="WhatsApp Jaipur">
-                                            <i class="fab fa-whatsapp"></i>
-                                        </a>
-                                    </div>
+                        <!-- Sikar Clinic -->
+                        <div class="cip-location-card" data-maps-url="https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6" onclick="if(!event.target.closest('a, button')){ window.open('https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6', '_blank', 'noopener,noreferrer'); }" title="Click to view Sikar clinic on Google Maps">
+                            <div class="cip-location-top">
+                                <div class="cip-badge-wrap">
+                                    <span class="cip-city-badge">Sikar</span>
+                                    <span class="cip-clinic-name">Silver Jubilee Rd</span>
                                 </div>
-                                <p class="cip-address">
-                                    <i class="fas fa-map-marker-alt cip-pin"></i>
-                                    A-7, 1st Floor, Hanuman Nagar, Sirsi Rd, Main, Khatipura, Jaipur, Rajasthan 302021
-                                </p>
-                                <div class="cip-card-meta">
-                                    <span><i class="fas fa-clock"></i> Mon–Sun: 9:00 AM – 8:00 PM</span>
-                                    <span><i class="fas fa-phone-alt"></i> +91-9284517427</span>
-                                </div>
-                                <div class="cip-specialty-tags">
-                                    <span class="cip-tag">Hair Transplant</span>
-                                    <span class="cip-tag">Laser Skin Care</span>
-                                    <span class="cip-tag">PRP &amp; GFC</span>
+                                <div class="cip-card-actions">
+                                    <a href="https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6" target="_blank" rel="noopener" class="cip-maps-pill" title="View on Google Maps" onclick="event.stopPropagation();">
+                                        <i class="fas fa-directions"></i> Maps
+                                    </a>
+                                    <a href="https://wa.me/919284517427?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20visit%20Sikar%20Clinic." target="_blank" rel="noopener" class="cip-wa-pill" title="WhatsApp Sikar" onclick="event.stopPropagation();">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
                                 </div>
                             </div>
-
-                            <!-- Sikar Clinic -->
-                            <div class="cip-location-card">
-                                <div class="cip-location-top">
-                                    <div class="cip-badge-wrap">
-                                        <span class="cip-city-badge">Sikar</span>
-                                        <span class="cip-clinic-name">Silver Jubilee Rd</span>
-                                    </div>
-                                    <div class="cip-card-actions">
-                                        <a href="https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6" target="_blank" rel="noopener" class="cip-maps-pill" title="View on Google Maps">
-                                            <i class="fas fa-directions"></i> Maps
-                                        </a>
-                                        <a href="https://wa.me/919284517427?text=Hello%20Kezza%20Team%2C%20I%20want%20to%20visit%20Sikar%20Clinic." target="_blank" rel="noopener" class="cip-wa-pill" title="WhatsApp Sikar">
-                                            <i class="fab fa-whatsapp"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <p class="cip-address">
-                                    <i class="fas fa-map-marker-alt cip-pin"></i>
-                                    First Floor, Shakambhari Heights, Infront of S.K. Hospital, Silver Jubilee Rd, Sikar 332001
-                                </p>
-                                <div class="cip-card-meta">
-                                    <span><i class="fas fa-clock"></i> Mon–Sun: 9:00 AM – 8:00 PM</span>
-                                    <span><i class="fas fa-phone-alt"></i> +91-9284517427</span>
-                                </div>
-                                <div class="cip-specialty-tags">
-                                    <span class="cip-tag">Hair Regrowth</span>
-                                    <span class="cip-tag">Acne &amp; Scars</span>
-                                    <span class="cip-tag">Hydra Facial</span>
-                                </div>
+                            <p class="cip-address">
+                                <i class="fas fa-map-marker-alt cip-pin"></i>
+                                First Floor, Shakambhari Heights, Infront of S.K. Hospital, Silver Jubilee Rd, Sikar 332001
+                            </p>
+                            <div class="cip-card-meta">
+                                <span><i class="fas fa-user-md"></i> Dr. Ankit Bhalothia &amp; Dr. Amrita Mukhija</span>
+                                <span><i class="fas fa-clock"></i> Mon–Sun: 9:00 AM – 8:00 PM</span>
+                                <a href="tel:+919284517427" class="cip-phone-link" onclick="event.stopPropagation();" title="Call Sikar Clinic (+91-9284517427)">
+                                    <i class="fas fa-phone-alt"></i> +91-9284517427
+                                </a>
                             </div>
-
-                            <!-- Ajmer Clinic -->
-                            <div class="cip-location-card">
-                                <div class="cip-location-top">
-                                    <div class="cip-badge-wrap">
-                                        <span class="cip-city-badge">Ajmer</span>
-                                        <span class="cip-clinic-name">Shastri Nagar</span>
-                                    </div>
-                                    <div class="cip-card-actions">
-                                        <a href="https://maps.app.goo.gl/zMajvKmT5N7coswJA?g_st=ic" target="_blank" rel="noopener" class="cip-maps-pill" title="View on Google Maps">
-                                            <i class="fas fa-directions"></i> Maps
-                                        </a>
-                                        <a href="https://wa.me/919216088257?text=Hello%20Kezza%20Clinic%20Ajmer%2C%20I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener" class="cip-wa-pill" title="WhatsApp Ajmer">
-                                            <i class="fab fa-whatsapp"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <p class="cip-address">
-                                    <i class="fas fa-map-marker-alt cip-pin"></i>
-                                    First Floor, Shastri Nagar, Oasis Complex and Hotels, Jawahar Nagar, Ajmer 305001
-                                </p>
-                                <div class="cip-card-meta">
-                                    <span><i class="fas fa-user-md"></i> Dr. Dhiral V. &amp; Dr. Aliza R.</span>
-                                    <span><i class="fas fa-phone-alt"></i> +91-9216088257</span>
-                                </div>
-                                <div class="cip-specialty-tags">
-                                    <span class="cip-tag">Facial Aesthetics</span>
-                                    <span class="cip-tag">Hair Transplant</span>
-                                    <span class="cip-tag">Skin Glow</span>
-                                </div>
+                            <div class="cip-specialty-tags">
+                                <span class="cip-tag">Hair Regrowth</span>
+                                <span class="cip-tag">Acne &amp; Scars</span>
+                                <span class="cip-tag">Hydra Facial</span>
+                                <span class="cip-tag">Body Sculpting</span>
+                                <span class="cip-tag">Laser Hair Removal</span>
                             </div>
-
                         </div>
 
-                        <!-- Divider -->
-                        <div class="cip-divider"></div>
-
-                        <!-- Contact Information (2x2 Grid) -->
-                        <div class="cip-contact-strip">
-                            <h4 class="cip-contact-heading">Contact Information</h4>
-                            <div class="cip-contact-list cip-contact-grid-2x2">
-                                <a href="tel:+919284517427" class="cip-contact-item">
-                                    <span class="cip-contact-icon"><i class="fas fa-phone-alt"></i></span>
-                                    <span class="cip-contact-text">
-                                        <span class="cip-contact-label">Phone</span>
-                                        <span class="cip-contact-value">+91-9284517427</span>
-                                    </span>
-                                </a>
-
-                                <a href="https://wa.me/919284517427" target="_blank" rel="noopener" class="cip-contact-item cip-contact-whatsapp">
-                                    <span class="cip-contact-icon cip-wa-icon"><i class="fab fa-whatsapp"></i></span>
-                                    <span class="cip-contact-text">
-                                        <span class="cip-contact-label">WhatsApp</span>
-                                        <span class="cip-contact-value">+91-9284517427</span>
-                                    </span>
-                                </a>
-
-                                <a href="mailto:support@kezza.co.in" class="cip-contact-item">
-                                    <span class="cip-contact-icon"><i class="fas fa-envelope"></i></span>
-                                    <span class="cip-contact-text">
-                                        <span class="cip-contact-label">Email</span>
-                                        <span class="cip-contact-value">support@kezza.co.in</span>
-                                    </span>
-                                </a>
-
-                                <div class="cip-contact-item cip-contact-hours">
-                                    <span class="cip-contact-icon"><i class="fas fa-clock"></i></span>
-                                    <span class="cip-contact-text">
-                                        <span class="cip-contact-label">Hours</span>
-                                        <span class="cip-contact-value">Mon–Sun 9AM–8PM</span>
-                                    </span>
+                        <!-- Ajmer Clinic -->
+                        <div class="cip-location-card" data-maps-url="https://maps.app.goo.gl/zMajvKmT5N7coswJA?g_st=ic" onclick="if(!event.target.closest('a, button')){ window.open('https://maps.app.goo.gl/zMajvKmT5N7coswJA?g_st=ic', '_blank', 'noopener,noreferrer'); }" title="Click to view Ajmer clinic on Google Maps">
+                            <div class="cip-location-top">
+                                <div class="cip-badge-wrap">
+                                    <span class="cip-city-badge">Ajmer</span>
+                                    <span class="cip-clinic-name">Shastri Nagar</span>
                                 </div>
+                                <div class="cip-card-actions">
+                                    <a href="https://maps.app.goo.gl/zMajvKmT5N7coswJA?g_st=ic" target="_blank" rel="noopener" class="cip-maps-pill" title="View on Google Maps" onclick="event.stopPropagation();">
+                                        <i class="fas fa-directions"></i> Maps
+                                    </a>
+                                    <a href="https://wa.me/919216088257?text=Hello%20Kezza%20Clinic%20Ajmer%2C%20I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener" class="cip-wa-pill" title="WhatsApp Ajmer" onclick="event.stopPropagation();">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <p class="cip-address">
+                                <i class="fas fa-map-marker-alt cip-pin"></i>
+                                First Floor, Shastri Nagar, Oasis Complex and Hotels, Jawahar Nagar, Ajmer 305001
+                            </p>
+                            <div class="cip-card-meta">
+                                <span><i class="fas fa-user-md"></i> Dr. Dhiral V. &amp; Dr. Aliza R.</span>
+                                <span><i class="fas fa-clock"></i> Mon–Sun: 10:00 AM – 7:30 PM</span>
+                                <a href="tel:+919216088257" class="cip-phone-link" onclick="event.stopPropagation();" title="Call Ajmer Clinic (+91-9216088257)">
+                                    <i class="fas fa-phone-alt"></i> +91-9216088257
+                                </a>
+                            </div>
+                            <div class="cip-specialty-tags">
+                                <span class="cip-tag">Facial Aesthetics</span>
+                                <span class="cip-tag">Hair Transplant</span>
+                                <span class="cip-tag">Skin Glow</span>
+                                <span class="cip-tag">Maxillofacial Surgery</span>
+                                <span class="cip-tag">Chemical Peels</span>
                             </div>
                         </div>
 
                     </div>
-                    <!-- ═══ END REDESIGNED CLINIC INFO PANEL ═══ -->
+
+                    <!-- Divider -->
+                    <div class="cip-divider"></div>
+
+                    <!-- Contact Information (4-column Landscape Row) -->
+                    <div class="cip-contact-strip">
+                        <h4 class="cip-contact-heading">Contact Information</h4>
+                        <div class="cip-contact-list cip-contact-grid-2x2">
+                            <a href="tel:+919284517427" class="cip-contact-item">
+                                <span class="cip-contact-icon"><i class="fas fa-phone-alt"></i></span>
+                                <span class="cip-contact-text">
+                                    <span class="cip-contact-label">Phone</span>
+                                    <span class="cip-contact-value">+91-9284517427</span>
+                                </span>
+                            </a>
+
+                            <a href="https://wa.me/919284517427" target="_blank" rel="noopener" class="cip-contact-item cip-contact-whatsapp">
+                                <span class="cip-contact-icon cip-wa-icon"><i class="fab fa-whatsapp"></i></span>
+                                <span class="cip-contact-text">
+                                    <span class="cip-contact-label">WhatsApp</span>
+                                    <span class="cip-contact-value">+91-9284517427</span>
+                                </span>
+                            </a>
+
+                            <a href="mailto:support@kezza.co.in" class="cip-contact-item">
+                                <span class="cip-contact-icon"><i class="fas fa-envelope"></i></span>
+                                <span class="cip-contact-text">
+                                    <span class="cip-contact-label">Email</span>
+                                    <span class="cip-contact-value">support@kezza.co.in</span>
+                                </span>
+                            </a>
+
+                            <div class="cip-contact-item cip-contact-hours">
+                                <span class="cip-contact-icon"><i class="fas fa-clock"></i></span>
+                                <span class="cip-contact-text">
+                                    <span class="cip-contact-label">Hours</span>
+                                    <span class="cip-contact-value">Mon–Sun 9AM–8PM</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel Trust Footer -->
+                    <div class="cip-trust-footer">
+                        <span><i class="fas fa-user-md"></i> Doctor-Led Clinic</span>
+                        <span><i class="fas fa-shield-alt"></i> US-FDA Lasers</span>
+                        <span><i class="fas fa-parking"></i> Dedicated Parking</span>
+                    </div>
+
                 </div>
+                <!-- ═══ END REDESIGNED CLINIC INFO PANEL ═══ -->
             </div>
         </div>
     </section>
@@ -647,7 +749,7 @@
         <div class="container">
             <h2>Let's Begin Your Journey Toward Healthy Hair & Glowing Skin</h2>
             <p>A single message can change everything. Expert guidance is just a click away.</p>
-            <a href="https://wa.me/919284517427" class="btn-appointment">Book Your Appointment Now</a>
+            <a href="https://wa.me/919284517427" class="btn-appointment" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Book Your Appointment Now</a>
         </div>
     </section>
 
@@ -703,7 +805,7 @@
         <script>document.querySelectorAll('.footer-year').forEach(el=>el.textContent=new Date().getFullYear());</script>
     </footer>
 
-    <script src="js/contact-script.js"></script>
+    <script src="js/contact-script.js?v=2.0"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -776,7 +878,7 @@
 
     <script src="js/mobile-menu.js?v=3.5" defer></script>
     <script src="js/services-navigation.js?v=3.5" defer></script>
-    <script src="js/whatsapp-form.js?v=2.0" defer></script>
+    <script src="js/whatsapp-form.js?v=5.0" defer></script>
     <script src="js/kezza-ai.js?v=5.4" defer></script>
     <script src="js/quick-actions.js?v=3.0" defer></script>
     <script src="js/scanner-launch.js" defer></script>

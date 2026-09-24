@@ -21,15 +21,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     let ticking = false;
     let isScrolled = false;
     let navbar = null;
-    let heroImage = null;
-    let particles = null;
-    let heroContent = null;
 
     document.addEventListener('DOMContentLoaded', function() {
         navbar = document.querySelector('.navbar');
-        heroImage = document.querySelector('.hero-image img');
-        particles = document.querySelectorAll('.floating-particles');
-        heroContent = document.querySelector('.hero-content');
     });
 
     function onScrollTick() {
@@ -45,22 +39,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             } else {
                 navbar.style.background = 'rgba(255, 255, 255, 0.95)';
                 navbar.style.boxShadow = 'none';
-            }
-        }
-
-        // Hero parallax (only active while hero is near viewport)
-        if (scrolled < window.innerHeight) {
-            if (heroImage) {
-                heroImage.style.transform = `translate3d(0, ${scrolled * -0.25}px, 0)`;
-            }
-            if (particles && particles.length > 0) {
-                const rate = scrolled * -0.15;
-                particles.forEach(p => {
-                    p.style.transform = `translate3d(0, ${rate}px, 0)`;
-                });
-            }
-            if (heroContent) {
-                heroContent.style.opacity = Math.max(0, 1 - scrolled / 600);
             }
         }
 
@@ -246,21 +224,35 @@ Source: Kezza Clinic Contact Form`;
                     message: `[Subject: ${subject}] ${message}`,
                     source: 'Contact Form'
                 };
-                try {
-                    fetch('https://script.google.com/macros/s/AKfycbwsWmFO6lLgh_UAAZkQpBstzRQ8335TQ_XP3jGnq3cBsfkFNE6eDewuQDRqho1o1CqiuA/exec', {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                        body: JSON.stringify(leadPayload)
-                    }).catch(e => {});
-                } catch(e) {}
-                try {
-                    fetch('/api/lead', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(leadPayload)
-                    }).catch(e => {});
-                } catch(e) {}
+                // Smart sync: post to backend /api/lead first (which persists to local store and syncs to Google Sheets).
+                // If backend is unreachable, fallback to direct Google Sheets webhook.
+                (async () => {
+                    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                    const apiBase = isLocal && window.location.port !== '3001' ? 'http://localhost:3001' : '';
+                    let backendSynced = false;
+                    try {
+                        const apiRes = await fetch(`${apiBase}/api/lead`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(leadPayload)
+                        });
+                        if (apiRes.ok) backendSynced = true;
+                    } catch (err) {
+                        backendSynced = false;
+                    }
+
+                    if (!backendSynced) {
+                        try {
+                            fetch('https://script.google.com/macros/s/AKfycbwsWmFO6lLgh_UAAZkQpBstzRQ8335TQ_XP3jGnq3cBsfkFNE6eDewuQDRqho1o1CqiuA/exec', {
+                                method: 'POST',
+                                mode: 'no-cors',
+                                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                                body: JSON.stringify(leadPayload),
+                                keepalive: true
+                            }).catch(() => {});
+                        } catch (e) {}
+                    }
+                })();
 
                 try {
                     window.open(waUrl, '_blank');

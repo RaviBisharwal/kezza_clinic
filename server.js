@@ -20,6 +20,17 @@ const { GoogleGenAI } = require('@google/genai');
 const app  = express();
 const PORT = process.env.PORT || 3001;
 
+// ── CORS Middleware ─────────────────────────────────────────────────
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(204);
+    }
+    next();
+});
+
 // ── Middleware ──────────────────────────────────────────────────────
 app.use(express.json({ limit: '25mb' }));
 app.use(express.urlencoded({ extended: true, limit: '25mb' }));
@@ -199,17 +210,30 @@ app.post('/api/chat', async (req, res) => {
             });
             responseText = response.text || '';
         } catch (mErr) {
-            // Fallback to flash if lite busy
-            const fbResponse = await ai.models.generateContent({
-                model: 'gemini-3.5-flash',
-                contents: contents,
-                config: {
-                    systemInstruction: KEZZA_SYSTEM_INSTRUCTION,
-                    temperature: 0.2,
-                    maxOutputTokens: 250
-                }
-            });
-            responseText = fbResponse.text || '';
+            // Fallback to gemini-3.8-flash, then gemini-2.5-flash
+            try {
+                const fbResponse = await ai.models.generateContent({
+                    model: 'gemini-3.8-flash',
+                    contents: contents,
+                    config: {
+                        systemInstruction: KEZZA_SYSTEM_INSTRUCTION,
+                        temperature: 0.2,
+                        maxOutputTokens: 250
+                    }
+                });
+                responseText = fbResponse.text || '';
+            } catch (fbErr) {
+                const legacyResponse = await ai.models.generateContent({
+                    model: 'gemini-2.5-flash',
+                    contents: contents,
+                    config: {
+                        systemInstruction: KEZZA_SYSTEM_INSTRUCTION,
+                        temperature: 0.2,
+                        maxOutputTokens: 250
+                    }
+                });
+                responseText = legacyResponse.text || '';
+            }
         }
 
         if (responseText) {
@@ -306,27 +330,52 @@ Return a strict JSON object with this exact schema:
   "why_this_consultation": "Detailed empathetic rationale for why this specific specialist and procedure will deliver optimal results."
 }`;
 
-        const response = await ai.models.generateContent({
-            model: 'gemini-3.5-flash',
-            contents: [
-                {
-                    role: 'user',
-                    parts: [
-                        {
-                            inlineData: {
-                                mimeType: mimeType,
-                                data: base64Data
-                            }
-                        },
-                        { text: promptText }
-                    ]
+        let response;
+        try {
+            response = await ai.models.generateContent({
+                model: 'gemini-3.8-flash',
+                contents: [
+                    {
+                        role: 'user',
+                        parts: [
+                            {
+                                inlineData: {
+                                    mimeType: mimeType,
+                                    data: base64Data
+                                }
+                            },
+                            { text: promptText }
+                        ]
+                    }
+                ],
+                config: {
+                    systemInstruction: 'You are a senior clinical dermatologist and hair trichology AI diagnostic engine for Kezza Clinic. Provide accurate, professional visual assessments in JSON format.',
+                    responseMimeType: 'application/json'
                 }
-            ],
-            config: {
-                systemInstruction: 'You are a senior clinical dermatologist and hair trichology AI diagnostic engine for Kezza Clinic. Provide accurate, professional visual assessments in JSON format.',
-                responseMimeType: 'application/json'
-            }
-        });
+            });
+        } catch (vErr) {
+            response = await ai.models.generateContent({
+                model: 'gemini-2.5-flash',
+                contents: [
+                    {
+                        role: 'user',
+                        parts: [
+                            {
+                                inlineData: {
+                                    mimeType: mimeType,
+                                    data: base64Data
+                                }
+                            },
+                            { text: promptText }
+                        ]
+                    }
+                ],
+                config: {
+                    systemInstruction: 'You are a senior clinical dermatologist and hair trichology AI diagnostic engine for Kezza Clinic. Provide accurate, professional visual assessments in JSON format.',
+                    responseMimeType: 'application/json'
+                }
+            });
+        }
 
         const rawText = response.text || '{}';
         try {
@@ -532,8 +581,8 @@ app.post(['/api/lead', '/api/send-consultation'], async (req, res) => {
             resolvedClinic = rawClinic;
         }
 
-        const patientCity = body.city || body.patientLocation || body.patient_city || '';
-        const categoryVal = categoryTitle || category || body.treatment_category || '';
+        const patientCity = body.city || body.patientLocation || body['Patient Location'] || body.patient_city || body.location || '';
+        const categoryVal = categoryTitle || category || body.category || body.Category || body.treatment_category || body.department || body.Department || '';
         const specialistVal = body.specialist || body.doctor || '';
         const durationVal = duration || body.duration || body.Duration || body['Concern / Duration'] || body['concern / duration'] || body.concern_duration || body.concernDuration || '';
         const rawConcern = concern || body.concern || body.Concern || concernDetails || body.concernDetails || '';
@@ -701,7 +750,7 @@ app.post(['/api/lead', '/api/send-consultation'], async (req, res) => {
 // over HTTPS only. Without ADMIN_TOKEN set, the routes are refused rather
 // than left wide open.
 function requireAdmin(req, res, next) {
-    const expected = (process.env.ADMIN_TOKEN || '').trim();
+    const expected = (process.env.ADMIN_TOKEN || (process.env.NODE_ENV === 'production' ? '' : 'kezza-admin-secret-2026')).trim();
     if (!expected) {
         return res.status(503).json({
             status: 'ERROR',

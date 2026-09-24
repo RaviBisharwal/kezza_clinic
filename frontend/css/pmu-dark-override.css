@@ -1540,7 +1540,8 @@ html body .what-is-pmu-section::before {
 /* Section background & ambient radial illumination */
 html body .final-cta-section {
   background: linear-gradient(180deg, #091224 0%, #0d1a33 50%, #070e1c 100%) !important;
-  padding: 85px 0 95px !important;
+  padding: 48px 0 54px !important;
+  border-radius: 0 !important;
   text-align: center !important;
   position: relative !important;
   overflow: hidden !important;

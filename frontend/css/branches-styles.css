@@ -1424,12 +1424,13 @@ body {
 
 /* ── Final High-Conversion CTA Banner ── */
 .final-cta-section {
-    padding: 70px 0;
+    padding: 48px 0 52px;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     color: var(--white);
     text-align: center;
     position: relative;
     overflow: hidden;
+    border-radius: 0 !important;
 }
 
 .final-cta-section::after {
@@ -1453,18 +1454,19 @@ body {
 }
 
 .final-cta-section h2 {
-    font-size: clamp(2rem, 3.4vw, 2.75rem);
+    font-size: clamp(1.6rem, 2.8vw, 2.25rem);
     font-weight: 800;
     color: var(--white);
-    margin-bottom: 16px;
-    letter-spacing: -0.025em;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
 }
 
 .final-cta-section p {
-    font-size: 1.06rem;
+    font-size: 0.96rem;
     color: #cbd5e1;
-    margin-bottom: 34px;
-    line-height: 1.7;
+    margin-bottom: 24px;
+    line-height: 1.6;
 }
 
 .cta-buttons {

@@ -2,21 +2,20 @@
  * Kezza AI Scanner launcher.
  * Opens the scanner as a full-screen popup from any entry point
  * (header nav link, hero CTA, floating dock) instead of navigating away.
- *
- * The 86KB of scanner assets are fetched only on first use, so this file
- * is the only cost on initial page load. The href="face-scanner.html" on
- * each link is kept as a no-JS / failure fallback.
+ * Automatically triggers popup 0.6 seconds after website open.
  */
 (function () {
-  var SELECTORS = '.nav-scanner-link, .btn-scanner-hero, .dock-scan';
-  var CSS_URL = 'css/scanner-modal.css?v=6.0';
-  var JS_URL  = 'js/scanner-modal.js?v=6.4';
+  var isSubdir = window.location.pathname.includes('/hair-transplant/');
+  var basePath = isSubdir ? '../' : '';
+  var SELECTORS = '.nav-scanner-link, .btn-scanner-hero, .dock-scan, [data-open-scanner-modal]';
+  var CSS_URL = basePath + 'css/scanner-modal.css?v=6.5';
+  var JS_URL  = basePath + 'js/scanner-modal.js?v=6.5';
   var loading = null;
 
   function loadOnce() {
     if (loading) return loading;
     loading = new Promise(function (resolve, reject) {
-      if (!document.querySelector('link[href="' + CSS_URL + '"]')) {
+      if (!document.querySelector('link[href*="scanner-modal.css"]')) {
         var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.href = CSS_URL;
@@ -41,10 +40,10 @@
       if (window.KezzaScannerModal && window.KezzaScannerModal.open) {
         window.KezzaScannerModal.open();
       } else {
-        window.location.href = 'face-scanner.html';
+        window.location.href = basePath + 'face-scanner.html';
       }
     }).catch(function () {
-      window.location.href = 'face-scanner.html'; // graceful fallback
+      window.location.href = basePath + 'face-scanner.html'; // graceful fallback
     });
   }
 
@@ -70,4 +69,19 @@
 
   // Deep link: /face-scanner.html#scanner or any page with #scanner opens it
   if (window.location.hash === '#scanner') openScanner();
+
+  // ── Automatic Popup on Website Open (6 seconds = 6000ms) ──
+  var path = (window.location.pathname || '').toLowerCase();
+  var isScannerPage = path.endsWith('face-scanner.html') || path.endsWith('face-scanner');
+  var isAdminPage   = path.includes('admin');
+
+  if (!isScannerPage && !isAdminPage) {
+    // Pre-warm assets in the background so opening at 6s is completely instant
+    loadOnce();
+
+    // Trigger popup after exactly 6 seconds (6000ms)
+    setTimeout(function () {
+      openScanner();
+    }, 6000);
+  }
 })();

@@ -19,7 +19,7 @@
     const LARAVEL_API   = isLocal
         ? 'http://localhost:8000/api'
         : `${window.location.origin}/api`;
-    const API_BASE      = (window.location.hostname === 'localhost' && window.location.port === '8080')
+    const API_BASE      = (isLocal && window.location.port !== '3001')
         ? 'http://localhost:3001'
         : window.location.origin;
     const API_ENDPOINT  = `${API_BASE}/api/analyze-photo`;
@@ -910,7 +910,7 @@
             isPoorQuality: false
         };
 
-        const endpoints = [`${LARAVEL_API}/analyze-photo`, API_ENDPOINT].filter(
+        const endpoints = [API_ENDPOINT, `${LARAVEL_API}/analyze-photo`].filter(
             (url, i, arr) => arr.indexOf(url) === i
         );
 

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "serve": "npx serve frontend -p 3001"
+    "serve": "npx serve frontend -p 3001",
+    "test": "python3 tools/validate_reference_page.py && node -c server.js"
   },
   "dependencies": {
     "@google/genai": "^2.20.0",

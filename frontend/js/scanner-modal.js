@@ -19,8 +19,10 @@
   }
 
   const WHATSAPP_NUMBER = '919284517427';
-  const API_ANALYZE     = '/api/analyze-photo';
-  const API_LEAD        = '/api/lead';
+  const isLocal         = typeof window !== 'undefined' && window.location && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+  const API_BASE        = isLocal && window.location.port !== '3001' ? 'http://localhost:3001' : '';
+  const API_ANALYZE     = `${API_BASE}/api/analyze-photo`;
+  const API_LEAD        = `${API_BASE}/api/lead`;
   const GOOGLE_SHEETS_WEBHOOK = 'https://script.google.com/macros/s/AKfycbwsWmFO6lLgh_UAAZkQpBstzRQ8335TQ_XP3jGnq3cBsfkFNE6eDewuQDRqho1o1CqiuA/exec';
 
   const DOCTORS = {
@@ -521,6 +523,7 @@
 
   // ── Core Open / Close / Lifecycle ────────────────────────────────────
   function openModal() {
+    if (state.isOpen) return;
     if (!modalEl) init();
 
     state.isOpen = true;

@@ -2,18 +2,18 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    width: min(62vw, 540px);
+    width: min(56vw, 480px);
+    max-width: 480px;
     aspect-ratio: 297/200;
     margin: 0;
     padding: 0;
-    transform: translate3d(-50%, -50%, 0);
-    perspective: 1100px;
+    transform: translate(-50%, -50%) !important;
+    perspective: 1200px;
     z-index: 0;
     pointer-events: none;
-    opacity: .09;
+    opacity: 0.075;
     contain: layout paint style;
     will-change: transform;
-    backface-visibility: hidden;
 }
 .scroll3d-bg img {
     display: block;
@@ -22,15 +22,17 @@
     object-fit: contain;
     transform-style: preserve-3d;
     will-change: transform;
-    backface-visibility: hidden;
+    backface-visibility: visible;
+    filter: drop-shadow(0 12px 28px rgba(0, 175, 192, 0.08));
+    transition: filter 0.3s ease;
 }
 body.scanner-body .scroll3d-bg img,
 body:has(#cameraFeed) .scroll3d-bg img,
 body.dark-page .scroll3d-bg img,
 body.weight-loss-body .scroll3d-bg img,
 [data-theme="dark"] .scroll3d-bg img {
-    filter: brightness(0) invert(1);
-    opacity: 0.08;
+    filter: brightness(0) invert(1) drop-shadow(0 12px 28px rgba(0, 175, 192, 0.18));
+    opacity: 0.07;
 }
 @media (prefers-reduced-motion: reduce) {
     .scroll3d-bg img {

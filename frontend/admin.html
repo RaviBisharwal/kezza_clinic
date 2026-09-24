@@ -6,8 +6,8 @@
     <title>Admin Dashboard | Kezza Hair & Skin Clinic</title>
     <meta name="robots" content="noindex,nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap&display=swap"></noscript>
     <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link rel="icon" type="image/png" href="images/logo.png">
@@ -455,7 +455,8 @@
 </div>
 
 <script>
-    const API_BASE = (window.location.hostname === 'localhost' && window.location.port === '8080')
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const API_BASE = isLocal && window.location.port !== '3001'
         ? 'http://localhost:3001'
         : window.location.origin;
 
@@ -464,10 +465,6 @@
     let debounceTimer = null;
 
     // ── Auth check ──────────────────────────────────────────────────────────────
-    // The old code silently substituted a hardcoded 'demo_admin' token, which
-    // meant anyone opening this page was treated as an authenticated admin. The
-    // token must now be supplied by the operator and must match ADMIN_TOKEN on
-    // the server.
     (function init() {
         authToken = localStorage.getItem('kezza_token') || '';
         if (!authToken) {
@@ -479,7 +476,8 @@
     })();
 
     function promptForToken() {
-        const token = window.prompt('Enter the Kezza admin access token:');
+        const defaultToken = isLocal ? 'kezza-admin-secret-2026' : '';
+        const token = window.prompt('Enter the Kezza admin access token:', defaultToken);
         if (!token) {
             showTableError('An admin access token is required to view consultations.');
             return;

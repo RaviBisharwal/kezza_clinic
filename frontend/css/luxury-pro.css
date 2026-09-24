@@ -54,8 +54,7 @@ body {
 
 /* Hardware-accelerated fixed layers to prevent scroll-repaint stutter */
 .navbar,
-.social-sidebar,
-.scroll3d-bg {
+.social-sidebar {
     transform: translateZ(0);
     backface-visibility: hidden;
 }
@@ -66,7 +65,8 @@ body {
 }
 
 .scroll3d-bg {
-    opacity: 0.04 !important;
+    transform: translate(-50%, -50%) !important;
+    opacity: 0.075 !important;
 }
 
 /* ── Luxury Reading Progress Bar ── */

@@ -8,7 +8,7 @@
 (function () {
     'use strict';
 
-    const CHATBOT_API_BASE = (typeof window !== 'undefined' && window.location && window.location.hostname === 'localhost' && window.location.port === '8080')
+    const CHATBOT_API_BASE = (typeof window !== 'undefined' && window.location && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port !== '3001')
         ? 'http://localhost:3001'
         : (typeof window !== 'undefined' && window.location ? window.location.origin : 'http://localhost:3001');
 
@@ -2836,7 +2836,7 @@ Please contact the patient for further consultation and appointment confirmation
         // If backend is unavailable (e.g. live static hosting), fallback to direct Google Sheets Webhook!
         let backendSynced = false;
         try {
-            const apiRes = await fetch('/api/lead', {
+            const apiRes = await fetch(`${CHATBOT_API_BASE}/api/lead`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
