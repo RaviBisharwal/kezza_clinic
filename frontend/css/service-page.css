@@ -1,0 +1,1146 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Kezza Hair & Skin Clinic — Hair Services Universal Stylesheet
+   Shared CSS for all 7 Service Pages + Hub Page
+   Production-ready, lightweight, zero-dependency, mobile-first
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  --sp-primary: #00AFC0;
+  --sp-primary-dark: #008f9c;
+  --sp-primary-light: #e6f8fa;
+  --sp-secondary: #1e293b;
+  --sp-slate-dark: #0f172a;
+  --sp-slate-body: #334155;
+  --sp-slate-muted: #64748b;
+  --sp-light-bg: #f8fafc;
+  --sp-border-subtle: #e2e8f0;
+  --sp-border-card: #eaedf3;
+  --sp-white: #ffffff;
+  --sp-gold: #00AFC0;
+  --sp-gold-bg: rgba(0, 175, 192, 0.08);
+  --sp-gold-border: rgba(0, 175, 192, 0.3);
+  --sp-emerald: #10b981;
+  --sp-emerald-bg: #ecfdf5;
+  --sp-rose: #f43f5e;
+  --sp-rose-bg: #fff1f2;
+  --sp-shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.04);
+  --sp-shadow-md: 0 10px 25px rgba(15, 23, 42, 0.06);
+  --sp-shadow-lg: 0 20px 40px rgba(0, 175, 192, 0.12);
+  --sp-radius-sm: 8px;
+  --sp-radius-md: 14px;
+  --sp-radius-lg: 22px;
+  --sp-radius-pill: 9999px;
+}
+
+/* Base resets & layout */
+.service-page-main {
+  padding-top: 74px; /* Clearance for fixed top navbar */
+  color: var(--sp-slate-body);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.68;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
+.sp-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Typography defaults for service pages */
+.sp-section-heading {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(1.85rem, 3.2vw, 2.6rem);
+  font-weight: 700;
+  color: var(--sp-slate-dark);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+
+.sp-section-subhead {
+  font-size: 1.05rem;
+  color: var(--sp-slate-muted);
+  max-width: 720px;
+  margin: 0 auto 40px;
+  line-height: 1.65;
+}
+
+.sp-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--sp-primary-light);
+  color: var(--sp-primary-dark);
+  border: 1px solid rgba(0, 175, 192, 0.3);
+  padding: 6px 16px;
+  border-radius: var(--sp-radius-pill);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+/* ── 1. Breadcrumbs ─────────────────────────────────────────────── */
+.service-breadcrumbs {
+  background: #f8fafc;
+  border-bottom: 1px solid var(--sp-border-subtle);
+  padding: 12px 0;
+  font-size: 0.85rem;
+}
+.service-breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 8px;
+}
+.service-breadcrumbs li {
+  display: flex;
+  align-items: center;
+  color: var(--sp-slate-muted);
+}
+.service-breadcrumbs li:not(:last-child)::after {
+  content: "›";
+  margin-left: 8px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+.service-breadcrumbs a {
+  color: var(--sp-primary-dark);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.service-breadcrumbs a:hover {
+  color: var(--sp-primary);
+  text-decoration: underline;
+}
+.service-breadcrumbs [aria-current="page"] {
+  color: var(--sp-slate-dark);
+  font-weight: 600;
+}
+
+/* ── 2. Hero Section ─────────────────────────────────────────────── */
+.service-hero-section {
+  padding: 48px 0 64px;
+  background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 65%, #f8fafc 100%);
+  position: relative;
+  overflow: hidden;
+}
+.service-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+}
+.service-hero-content {
+  text-align: left;
+}
+.hero-trust-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.hero-trust-chips .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: var(--sp-radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.hero-trust-chips .chip-clinical {
+  background: rgba(16, 185, 129, 0.12);
+  color: #065f46;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+.hero-trust-chips .chip-network {
+  background: rgba(0, 175, 192, 0.12);
+  color: #0e7490;
+  border: 1px solid rgba(0, 175, 192, 0.35);
+}
+.service-hero-content h1 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(2.1rem, 3.8vw, 3.1rem);
+  font-weight: 700;
+  color: var(--sp-slate-dark);
+  line-height: 1.18;
+  margin-bottom: 18px;
+}
+.service-hero-content h1 span {
+  color: var(--sp-primary-dark);
+}
+.service-hero-lead {
+  font-size: 1.08rem;
+  line-height: 1.72;
+  color: var(--sp-slate-body);
+  margin-bottom: 28px;
+}
+.service-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+.btn-wa-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px 26px;
+  border-radius: var(--sp-radius-pill);
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.btn-wa-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.42);
+}
+.btn-call-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: #ffffff;
+  color: var(--sp-slate-dark) !important;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 13px 22px;
+  border-radius: var(--sp-radius-pill);
+  border: 1.5px solid var(--sp-border-subtle);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.btn-call-action:hover {
+  border-color: var(--sp-primary);
+  color: var(--sp-primary-dark) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--sp-shadow-sm);
+}
+.service-hero-image-wrap {
+  position: relative;
+  border-radius: var(--sp-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--sp-shadow-lg);
+  border: 4px solid #ffffff;
+  background: #e2e8f0;
+}
+.service-hero-image-wrap picture,
+.service-hero-image-wrap img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── 3. What is Service Section ──────────────────────────────────── */
+.sp-section-pad {
+  padding: 72px 0;
+}
+.sp-bg-light {
+  background-color: var(--sp-light-bg);
+}
+.sp-bg-white {
+  background-color: #ffffff;
+}
+.explainer-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 44px;
+  align-items: center;
+}
+.explainer-text h2 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(1.75rem, 2.8vw, 2.3rem);
+  font-weight: 700;
+  color: var(--sp-slate-dark);
+  margin-bottom: 16px;
+  line-height: 1.28;
+}
+.explainer-text p {
+  font-size: 1.02rem;
+  line-height: 1.74;
+  margin-bottom: 22px;
+}
+.explainer-in-short {
+  background: #ffffff;
+  border-left: 4px solid var(--sp-primary);
+  border-radius: 0 var(--sp-radius-sm) var(--sp-radius-sm) 0;
+  padding: 18px 22px;
+  box-shadow: var(--sp-shadow-sm);
+}
+.explainer-in-short h3 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--sp-primary-dark);
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+.explainer-in-short ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.explainer-in-short li {
+  font-size: 0.92rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.45;
+}
+.explainer-in-short li i {
+  color: var(--sp-primary);
+  margin-top: 3px;
+  font-size: 0.85rem;
+}
+.explainer-media {
+  border-radius: var(--sp-radius-md);
+  overflow: hidden;
+  box-shadow: var(--sp-shadow-md);
+  border: 1px solid var(--sp-border-card);
+}
+.explainer-media picture,
+.explainer-media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── 4. Candidacy Section (Honest Clinical Suitability) ──────────── */
+.candidacy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.candidacy-card {
+  padding: 32px 28px;
+  border-radius: var(--sp-radius-md);
+  box-shadow: var(--sp-shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+.candidacy-card.suited {
+  background: #ffffff;
+  border: 1.5px solid rgba(16, 185, 129, 0.35);
+  border-top: 5px solid var(--sp-emerald);
+}
+.candidacy-card.not-suited {
+  background: #ffffff;
+  border: 1.5px solid rgba(244, 63, 94, 0.25);
+  border-top: 5px solid var(--sp-rose);
+}
+.candidacy-card h3 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.35rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.candidacy-card.suited h3 { color: #065f46; }
+.candidacy-card.not-suited h3 { color: #9f1239; }
+.candidacy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.candidacy-list li {
+  font-size: 0.94rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.48;
+}
+.candidacy-card.suited .candidacy-list li i {
+  color: var(--sp-emerald);
+  margin-top: 3px;
+}
+.candidacy-card.not-suited .candidacy-list li i {
+  color: var(--sp-rose);
+  margin-top: 3px;
+}
+.candidacy-note {
+  font-size: 0.85rem;
+  color: var(--sp-slate-muted);
+  font-style: italic;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px dashed var(--sp-border-subtle);
+}
+
+/* ── 5. Benefits Section (6 Cards with Inline SVG Icons) ────────── */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.benefit-card {
+  background: #ffffff;
+  padding: 28px 24px;
+  border-radius: var(--sp-radius-md);
+  border: 1px solid var(--sp-border-card);
+  box-shadow: var(--sp-shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.benefit-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--sp-primary);
+  box-shadow: var(--sp-shadow-md);
+}
+.benefit-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--sp-primary-light);
+  color: var(--sp-primary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.benefit-icon-box svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+.benefit-card h3 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--sp-slate-dark);
+  margin-bottom: 8px;
+}
+.benefit-card p {
+  font-size: 0.9rem;
+  color: var(--sp-slate-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ── 6. How Procedure Works (4–6 Steps with Photos) ─────────────── */
+.procedure-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+.procedure-step-card {
+  background: #ffffff;
+  border-radius: var(--sp-radius-md);
+  overflow: hidden;
+  border: 1px solid var(--sp-border-card);
+  box-shadow: var(--sp-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease;
+}
+.procedure-step-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sp-shadow-md);
+}
+.procedure-img-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+.procedure-img-box picture,
+.procedure-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.step-number-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.88);
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(6px);
+}
+.step-card-body {
+  padding: 18px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.step-card-body h3 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--sp-slate-dark);
+  margin-bottom: 6px;
+  line-height: 1.35;
+}
+.step-card-body p {
+  font-size: 0.85rem;
+  color: var(--sp-slate-muted);
+  line-height: 1.52;
+  margin: 0;
+}
+
+/* ── 7. Results & Realistic Timeline ─────────────────────────────── */
+.timeline-track-wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  position: relative;
+}
+.timeline-track-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 28px;
+  width: 3px;
+  background: linear-gradient(180deg, var(--sp-primary) 0%, rgba(0, 175, 192, 0.2) 100%);
+}
+.timeline-milestone {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 32px;
+  position: relative;
+}
+.milestone-marker {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid var(--sp-primary);
+  box-shadow: 0 0 0 6px var(--sp-primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: var(--sp-primary-dark);
+  flex-shrink: 0;
+  z-index: 2;
+  text-align: center;
+  line-height: 1.1;
+}
+.milestone-card {
+  background: #ffffff;
+  padding: 20px 24px;
+  border-radius: var(--sp-radius-md);
+  border: 1px solid var(--sp-border-card);
+  box-shadow: var(--sp-shadow-sm);
+  flex: 1;
+}
+.milestone-card h3 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.15rem;
+  color: var(--sp-slate-dark);
+  margin-bottom: 6px;
+}
+.milestone-card p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--sp-slate-body);
+  margin: 0;
+}
+.medical-disclaimer-box {
+  background: rgba(0, 175, 192, 0.08);
+  border: 1px solid rgba(0, 175, 192, 0.35);
+  border-radius: var(--sp-radius-md);
+  padding: 16px 20px;
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.86rem;
+  color: #78350f;
+  line-height: 1.5;
+}
+.medical-disclaimer-box i {
+  font-size: 1.25rem;
+  color: var(--sp-gold);
+  flex-shrink: 0;
+}
+
+/* ── 8. Downtime, Aftercare & Safety ─────────────────────────────── */
+.aftercare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+.aftercare-card {
+  padding: 28px 24px;
+  border-radius: var(--sp-radius-md);
+  background: #ffffff;
+  box-shadow: var(--sp-shadow-sm);
+}
+.aftercare-card.dos {
+  border: 1.5px solid rgba(16, 185, 129, 0.3);
+}
+.aftercare-card.donts {
+  border: 1.5px solid rgba(244, 63, 94, 0.3);
+}
+.aftercare-card h3 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.aftercare-card.dos h3 { color: #065f46; }
+.aftercare-card.donts h3 { color: #9f1239; }
+.aftercare-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.aftercare-card li {
+  font-size: 0.92rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  line-height: 1.48;
+}
+.aftercare-card.dos li i { color: var(--sp-emerald); margin-top: 3px; }
+.aftercare-card.donts li i { color: var(--sp-rose); margin-top: 3px; }
+
+/* ── 9. Before & After (Consented Patient Gallery) ───────────────── */
+.ba-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.ba-gallery-card {
+  background: #ffffff;
+  border-radius: var(--sp-radius-md);
+  overflow: hidden;
+  border: 1px solid var(--sp-border-card);
+  box-shadow: var(--sp-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease;
+}
+.ba-gallery-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sp-shadow-md);
+}
+.ba-img-container {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #e2e8f0;
+  overflow: hidden;
+  position: relative;
+}
+.ba-img-container picture,
+.ba-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ba-tag-overlay {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: var(--sp-radius-pill);
+  backdrop-filter: blur(4px);
+}
+.ba-card-caption {
+  padding: 14px 14px 16px;
+  text-align: left;
+}
+.ba-card-caption strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--sp-slate-dark);
+  margin-bottom: 4px;
+}
+.ba-card-caption span {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--sp-slate-muted);
+  line-height: 1.4;
+}
+.ba-legal-caption {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--sp-slate-muted);
+  font-style: italic;
+  margin-top: 10px;
+}
+
+/* ── 10. Why Choose Kezza Clinic ─────────────────────────────────── */
+.why-clinic-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px;
+  align-items: center;
+}
+.why-points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.why-point-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.why-point-num {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--sp-primary-light);
+  color: var(--sp-primary-dark);
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.why-point-text h3 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--sp-slate-dark);
+  margin-bottom: 4px;
+}
+.why-point-text p {
+  font-size: 0.9rem;
+  color: var(--sp-slate-body);
+  line-height: 1.55;
+  margin: 0;
+}
+.why-clinic-media {
+  border-radius: var(--sp-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--sp-shadow-md);
+  border: 3px solid #ffffff;
+}
+.why-clinic-media picture,
+.why-clinic-media img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── 11. Meet Your Doctor / Team ─────────────────────────────────── */
+.doctor-team-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.doctor-card {
+  background: #ffffff;
+  border-radius: var(--sp-radius-lg);
+  border: 1px solid var(--sp-border-card);
+  box-shadow: var(--sp-shadow-md);
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  overflow: hidden;
+}
+.doctor-portrait-box {
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  background: #e2e8f0;
+}
+.doctor-portrait-box picture,
+.doctor-portrait-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.doctor-bio-box {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.doctor-bio-box .doctor-role-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--sp-primary-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+.doctor-bio-box h3 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.45rem;
+  color: var(--sp-slate-dark);
+  margin-bottom: 8px;
+}
+.doctor-bio-box p {
+  font-size: 0.92rem;
+  line-height: 1.62;
+  color: var(--sp-slate-body);
+  margin-bottom: 16px;
+}
+.doctor-trust-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.84rem;
+  color: var(--sp-slate-muted);
+}
+.doctor-trust-items span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.doctor-trust-items i {
+  color: var(--sp-primary);
+}
+
+/* ── 12. Transparent Pricing Guidance (Zero Price Numbers) ──────── */
+.pricing-guidance-card {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #ffffff;
+  border-radius: var(--sp-radius-lg);
+  padding: 44px 36px;
+  box-shadow: var(--sp-shadow-md);
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.pricing-guidance-card h2 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  color: #ffffff;
+  margin-bottom: 14px;
+}
+.pricing-guidance-card p {
+  color: #cbd5e1;
+  font-size: 0.98rem;
+  line-height: 1.68;
+  max-width: 720px;
+  margin: 0 auto 28px;
+}
+.pricing-factors-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+.pricing-factor-box {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--sp-radius-md);
+  padding: 16px 18px;
+}
+.pricing-factor-box h4 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-bottom: 6px;
+}
+.pricing-factor-box p {
+  font-size: 0.84rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* ── 13. FAQs Accordion (Native <details>/<summary>, Zero JS) ───── */
+.faq-accordion-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.sp-faq-item {
+  background: #ffffff;
+  border: 1px solid var(--sp-border-card);
+  border-radius: var(--sp-radius-md);
+  box-shadow: var(--sp-shadow-sm);
+  transition: border-color 0.2s ease;
+  overflow: hidden;
+}
+.sp-faq-item[open] {
+  border-color: var(--sp-primary);
+}
+.sp-faq-question {
+  padding: 18px 22px;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--sp-slate-dark);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  user-select: none;
+}
+.sp-faq-question::-webkit-details-marker {
+  display: none;
+}
+.faq-chevron {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--sp-light-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.faq-chevron i {
+  font-size: 0.78rem;
+  color: var(--sp-slate-muted);
+}
+.sp-faq-item[open] .faq-chevron {
+  transform: rotate(180deg);
+  background: var(--sp-primary-light);
+}
+.sp-faq-item[open] .faq-chevron i {
+  color: var(--sp-primary-dark);
+}
+.sp-faq-answer {
+  padding: 0 22px 20px;
+  font-size: 0.92rem;
+  color: var(--sp-slate-body);
+  line-height: 1.65;
+  border-top: 1px solid var(--sp-border-subtle);
+  padding-top: 14px;
+}
+
+/* ── 14. Related Services (3 Photo Cards) ───────────────────────── */
+.related-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.related-service-card {
+  background: #ffffff;
+  border-radius: var(--sp-radius-md);
+  overflow: hidden;
+  border: 1px solid var(--sp-border-card);
+  box-shadow: var(--sp-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.related-service-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--sp-primary);
+  box-shadow: var(--sp-shadow-md);
+}
+.related-thumb-box {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+.related-thumb-box picture,
+.related-thumb-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.related-service-card:hover .related-thumb-box img {
+  transform: scale(1.05);
+}
+.related-body {
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.related-body h3 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.15rem;
+  color: var(--sp-slate-dark);
+  margin-bottom: 6px;
+}
+.related-body p {
+  font-size: 0.88rem;
+  color: var(--sp-slate-muted);
+  line-height: 1.5;
+  margin-bottom: 14px;
+  flex-grow: 1;
+}
+.related-link-text {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--sp-primary-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+}
+
+/* ── 15. Final CTA Band ─────────────────────────────────────────── */
+.service-cta-band {
+  position: relative;
+  padding: 80px 0;
+  background: #0f172a;
+  color: #ffffff;
+  overflow: hidden;
+}
+.cta-band-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.18;
+  z-index: 1;
+}
+.cta-band-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto;
+}
+.cta-band-inner h2 {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  color: #ffffff;
+  margin-bottom: 14px;
+}
+.cta-band-inner p {
+  color: #cbd5e1;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+.cta-band-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* ── 16. Styled Placeholder System ──────────────────────────────── */
+.img-placeholder {
+  background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+  border: 1.5px dashed rgba(0, 175, 192, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  color: var(--sp-primary-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: var(--sp-radius-md);
+  user-select: none;
+}
+.img-placeholder i {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+
+/* ── 17. Responsive Media Queries ────────────────────────────────── */
+@media (max-width: 1024px) {
+  .service-hero-grid,
+  .explainer-grid,
+  .why-clinic-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .procedure-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ba-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .doctor-card {
+    grid-template-columns: 1fr;
+  }
+  .doctor-portrait-box {
+    max-height: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-page-main {
+    padding-top: 64px;
+  }
+  .benefits-grid,
+  .related-services-grid,
+  .pricing-factors-row,
+  .candidacy-grid,
+  .aftercare-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .timeline-track-wrap::before {
+    left: 20px;
+  }
+  .milestone-marker {
+    width: 44px;
+    height: 44px;
+    font-size: 0.75rem;
+  }
+  .timeline-milestone {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .procedure-steps-grid,
+  .ba-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  .service-hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-wa-action,
+  .btn-call-action {
+    justify-content: center;
+  }
+}

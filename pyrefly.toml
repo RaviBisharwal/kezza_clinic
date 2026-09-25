@@ -1,0 +1,24 @@
+# Pyrefly Python type-checker configuration
+# https://pyrefly.dev/docs/configuration
+
+[pyrefly]
+# Only scan actual Python source files
+source_paths = ["tools"]
+
+# Exclude non-Python directories and file types
+project_excludes = [
+    "**/frontend/**",
+    "**/node_modules/**",
+    "**/backend/**",
+    "**/*.html",
+    "**/*.js",
+    "**/*.css",
+    "**/*.php",
+    "**/*.json",
+    "**/*.toml",
+    "**/*.md",
+]
+
+# Suppress errors from external/unresolved names in utility scripts
+[pyrefly.errors]
+missing-global-annotation = false

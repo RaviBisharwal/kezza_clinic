@@ -1,0 +1,1379 @@
+/* ═══════════════════════════════════════════════════════════════════
+   KEZZA HAIR & SKIN CLINIC — WHITE HAIR REMOVAL LUXURY DESIGN SUITE
+   Professional Clinical Epilation Experience & Interactive Science Suite
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  --whr-primary: #00AFC0;
+  --whr-primary-hover: #008F9C;
+  --whr-primary-dark: #006d77;
+  --whr-primary-light: #e6f9fb;
+  --whr-primary-glow: rgba(0, 175, 192, 0.25);
+  --whr-teal-gradient: linear-gradient(135deg, #00AFC0 0%, #008F9C 100%);
+  --whr-navy: #0d1726;
+  --whr-navy-soft: #152238;
+  --whr-gold: #d4a017;
+  --whr-gold-light: rgba(212, 160, 23, 0.12);
+  --whr-gold-gradient: linear-gradient(135deg, #d4a017 0%, #f5c842 100%);
+  --whr-slate-dark: #0f172a;
+  --whr-slate-body: #334155;
+  --whr-slate-muted: #64748b;
+  --whr-bg-light: #f8fafc;
+  --whr-bg-white: #ffffff;
+  --whr-border-subtle: #e2e8f0;
+  --whr-radius-sm: 8px;
+  --whr-radius-md: 16px;
+  --whr-radius-lg: 24px;
+  --whr-radius-pill: 9999px;
+  --whr-shadow-sm: 0 4px 14px rgba(15, 23, 42, 0.05);
+  --whr-shadow-md: 0 12px 30px rgba(15, 23, 42, 0.08);
+  --whr-shadow-lg: 0 24px 50px rgba(15, 23, 42, 0.12);
+  --whr-font-main: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ─── Base Main Wrapper (Tight, seamless fit under fixed navbar) ─── */
+.whr-main-content {
+  font-family: var(--whr-font-main);
+  padding-top: 72px; /* Perfect flush clearance for Kezza fixed navbar */
+  color: var(--whr-slate-body);
+  background-color: #ffffff;
+  line-height: 1.68;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.whr-main-content h1,
+.whr-main-content h2,
+.whr-main-content h3,
+.whr-main-content h4 {
+  font-family: var(--whr-font-main);
+  letter-spacing: -0.025em;
+}
+
+.whr-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ─── Keyframe Animations ─── */
+@keyframes whrFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes whrDotPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.45); opacity: 0.65; }
+}
+
+@keyframes whrFloatBadge {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+@keyframes whrFloatBadgeReverse {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+
+@keyframes whrGlowPulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(0, 175, 192, 0.25); }
+  50%      { box-shadow: 0 0 28px rgba(0, 175, 192, 0.5); }
+}
+
+@keyframes whrLaserBeamAnim {
+  0%   { height: 0; opacity: 0; }
+  25%  { height: 180px; opacity: 1; }
+  75%  { height: 220px; opacity: 1; }
+  100% { height: 220px; opacity: 0.2; }
+}
+
+@keyframes whrProbeDescend {
+  0%   { transform: translateY(-70px); opacity: 0; }
+  40%  { transform: translateY(0); opacity: 1; }
+  70%  { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes whrElectroThermalRing {
+  0%   { transform: scale(0.3); opacity: 0; }
+  50%  { transform: scale(1.6); opacity: 0.9; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+@keyframes whrTrackPulse {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.whr-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.whr-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Compact Header Badge Pill ─── */
+.whr-cat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--whr-primary-light);
+  color: var(--whr-primary-dark);
+  border: 1px solid rgba(0, 137, 156, 0.3);
+  padding: 6px 16px;
+  border-radius: var(--whr-radius-pill);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 12px;
+}
+.badge-dot-whr {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--whr-primary);
+  display: inline-block;
+  animation: whrDotPulse 2s ease-in-out infinite;
+}
+
+/* ─── Gold Dividers ─── */
+.whr-gold-line {
+  width: 52px; height: 3.5px;
+  background: var(--whr-gold-gradient);
+  border-radius: 4px;
+  margin: 10px 0 16px;
+}
+.whr-gold-line.centered { margin: 10px auto 16px; }
+
+.section-gold-divider-whr {
+  display: flex; align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  margin: 0;
+}
+.gold-divider-line-whr {
+  display: block;
+  width: 100%; max-width: 900px; height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%, rgba(212,160,23,0.3) 25%,
+    rgba(212,160,23,0.5) 50%, rgba(212,160,23,0.3) 75%,
+    transparent 100%);
+}
+
+/* ═══════════════════════════════════════════
+   HERO SECTION (Compacted Gaps & Richer Visuals)
+   ═══════════════════════════════════════════ */
+.whr-hero-section {
+  padding: 16px 0 0;
+  background: linear-gradient(165deg, #f0fafe 0%, #ffffff 50%, #f6fcfe 100%);
+  position: relative;
+  overflow: hidden;
+}
+.whr-hero-section::before {
+  content: '';
+  position: absolute; top: -50px; right: -50px; width: 420px; height: 420px;
+  background: radial-gradient(circle, rgba(0,175,192,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.whr-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 36px;
+  align-items: center;
+  padding: 12px 0 26px;
+}
+
+/* ─── Hero Left ─── */
+.whr-editorial-title {
+  font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  color: var(--whr-slate-dark);
+  line-height: 1.16;
+  margin-bottom: 10px;
+}
+.whr-editorial-title .title-accent {
+  color: var(--whr-primary);
+  display: block;
+}
+
+.whr-section-lead-p {
+  font-size: 0.98rem;
+  color: var(--whr-slate-muted);
+  line-height: 1.7;
+  margin-bottom: 18px;
+  max-width: 550px;
+}
+
+.whr-features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+  margin-bottom: 20px;
+}
+.whr-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--whr-slate-body);
+}
+.whr-feature-item i {
+  color: var(--whr-primary);
+  margin-top: 2px;
+  font-size: 0.88rem;
+  flex-shrink: 0;
+}
+
+.whr-cta-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.whr-btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--whr-teal-gradient);
+  color: #fff;
+  padding: 12px 26px;
+  border-radius: var(--whr-radius-pill);
+  font-size: 0.90rem; font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 6px 20px var(--whr-primary-glow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  white-space: nowrap;
+}
+.whr-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0,175,192,0.45);
+}
+.whr-btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent;
+  color: var(--whr-primary-dark);
+  padding: 11px 22px;
+  border-radius: var(--whr-radius-pill);
+  border: 1.5px solid var(--whr-primary);
+  font-size: 0.90rem; font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.whr-btn-secondary:hover {
+  background: var(--whr-primary-light);
+  transform: translateY(-2px);
+}
+
+.whr-hero-trust {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.84rem; color: var(--whr-slate-muted);
+}
+.whr-hero-trust .stars { color: #f59e0b; }
+.whr-hero-trust strong { color: var(--whr-slate-dark); }
+
+/* ─── Hero Right Visual Card with Floating Hologram Badges ─── */
+.whr-hero-visual-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+}
+
+.whr-media-showcase {
+  position: relative;
+  border-radius: var(--whr-radius-lg);
+  overflow: hidden;
+  background: var(--whr-navy);
+  box-shadow: 0 18px 45px rgba(0, 175, 192, 0.16), 0 0 0 1.5px rgba(0, 175, 192, 0.25);
+  transition: box-shadow 0.3s ease;
+}
+.whr-media-showcase:hover {
+  box-shadow: 0 22px 55px rgba(0, 175, 192, 0.28), 0 0 0 2px rgba(0, 175, 192, 0.4);
+}
+.whr-media-showcase img {
+  width: 100%; height: 300px;
+  object-fit: cover; display: block;
+  transition: transform 0.65s ease;
+}
+.whr-media-showcase:hover img { transform: scale(1.03); }
+
+/* In-image Top Floating Badge */
+.whr-media-badge-top {
+  position: absolute; top: 12px; left: 12px;
+  background: rgba(13,23,38,0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  padding: 5px 12px; border-radius: 20px;
+  font-size: 0.70rem; font-weight: 700;
+  letter-spacing: 0.04em;
+  display: flex; align-items: center; gap: 6px;
+  z-index: 2;
+}
+.whr-media-badge-top .text-gold { color: #f5c842; }
+
+/* Floating Tech Chips */
+.whr-float-chip {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(0, 175, 192, 0.4);
+  padding: 7px 14px;
+  border-radius: var(--whr-radius-pill);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--whr-navy);
+  box-shadow: 0 8px 24px rgba(13, 23, 38, 0.18);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  z-index: 3;
+}
+.whr-float-chip i { color: var(--whr-primary); font-size: 0.82rem; }
+.whr-float-chip.chip-top-right {
+  top: 12px; right: 12px;
+  animation: whrFloatBadge 4s ease-in-out infinite;
+}
+.whr-float-chip.chip-bottom-left {
+  bottom: 48px; left: 12px;
+  animation: whrFloatBadgeReverse 4.5s ease-in-out infinite;
+}
+
+.whr-media-caption-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 10px 14px;
+  background: linear-gradient(0deg, rgba(13,23,38,0.88) 0%, transparent 100%);
+  color: rgba(255,255,255,0.92);
+  font-size: 0.76rem; line-height: 1.45;
+}
+
+/* Doctor Quote Box */
+.whr-doctor-quote-box {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: #fff;
+  border: 1px solid var(--whr-border-subtle);
+  border-left: 4px solid var(--whr-primary);
+  border-radius: var(--whr-radius-md);
+  padding: 14px 16px;
+  box-shadow: var(--whr-shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.whr-doctor-quote-box:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--whr-shadow-md);
+}
+.whr-doc-avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--whr-primary-light);
+  flex-shrink: 0;
+}
+.whr-doc-name-title {
+  font-size: 0.80rem; font-weight: 700;
+  color: var(--whr-slate-dark); margin-bottom: 3px;
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.whr-doc-verified-badge {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 12px;
+  padding: 1px 7px;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+.whr-doc-name-title span { color: var(--whr-slate-muted); font-weight: 500; }
+.whr-doc-quote-text {
+  font-size: 0.82rem; color: var(--whr-slate-muted);
+  line-height: 1.55; margin: 0;
+  font-style: italic;
+}
+
+/* ─── Hero Stats Grid ─── */
+.whr-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 0;
+  padding: 18px 0 24px;
+  border-top: 1px solid var(--whr-border-subtle);
+}
+.whr-stat-card {
+  text-align: center; padding: 14px 10px;
+  background: var(--whr-bg-white);
+  border: 1px solid var(--whr-border-subtle);
+  border-radius: var(--whr-radius-md);
+  box-shadow: var(--whr-shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.whr-stat-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0,175,192,0.4);
+  box-shadow: var(--whr-shadow-md);
+}
+.whr-stat-num {
+  font-size: 1.85rem; font-weight: 800;
+  background: var(--whr-teal-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1; margin-bottom: 3px;
+}
+.whr-stat-num sup { font-size: 0.95rem; }
+.whr-stat-num span { font-size: 0.95rem; font-weight: 600; }
+.whr-stat-lbl {
+  font-size: 0.78rem; font-weight: 700;
+  color: var(--whr-slate-dark); margin-bottom: 2px;
+}
+.whr-stat-sub {
+  font-size: 0.70rem; color: var(--whr-slate-muted); line-height: 1.35;
+}
+
+/* ═══════════════════════════════════════════
+   SUBNAV PILLS (Sticky, compact)
+   ═══════════════════════════════════════════ */
+.whr-subnav-section {
+  background: #fff;
+  border-bottom: 1px solid var(--whr-border-subtle);
+  position: sticky; top: 64px; z-index: 80;
+  box-shadow: 0 2px 10px rgba(15,23,42,0.04);
+}
+.whr-subnav-pills {
+  display: flex; gap: 6px;
+  padding: 8px 0;
+  overflow-x: auto; white-space: nowrap;
+  scrollbar-width: none;
+}
+.whr-subnav-pills::-webkit-scrollbar { display: none; }
+.whr-subnav-pill {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 6px 14px;
+  border-radius: var(--whr-radius-pill);
+  font-size: 0.78rem; font-weight: 600;
+  color: var(--whr-slate-muted);
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  transition: all 0.22s ease;
+  white-space: nowrap; flex-shrink: 0;
+}
+.whr-subnav-pill:hover,
+.whr-subnav-pill.active {
+  background: var(--whr-primary-light);
+  color: var(--whr-primary-dark);
+  border-color: rgba(0,175,192,0.3);
+}
+.whr-subnav-pill i { font-size: 0.76rem; }
+
+/* ═══════════════════════════════════════════
+   SECTION 2: WHY TRADITIONAL LASERS FAIL
+   ═══════════════════════════════════════════ */
+.whr-why-fail-section {
+  padding: 50px 0;
+  background: #fff;
+}
+.whr-section-center-head {
+  text-align: center; margin-bottom: 28px;
+}
+.whr-editorial-h2 {
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  font-weight: 800;
+  color: var(--whr-slate-dark);
+  line-height: 1.2; margin-bottom: 8px;
+}
+.whr-subhead-p {
+  font-size: 0.96rem; color: var(--whr-slate-muted);
+  max-width: 640px; margin: 0 auto; line-height: 1.65;
+}
+
+.whr-compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.whr-compare-card {
+  border-radius: var(--whr-radius-lg);
+  padding: 26px 24px;
+  box-shadow: var(--whr-shadow-md);
+  position: relative; overflow: hidden;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.whr-compare-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--whr-shadow-lg);
+}
+.whr-compare-card.card-fail {
+  background: linear-gradient(160deg, #fff1f2 0%, #fff8f9 100%);
+  border: 1.5px solid #fecdd3;
+}
+.whr-compare-card.card-win {
+  background: linear-gradient(160deg, #e6f9fb 0%, #f0fdfe 100%);
+  border: 1.5px solid rgba(0,175,192,0.35);
+}
+.whr-compare-card-header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 16px;
+}
+.whr-compare-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.15rem; flex-shrink: 0;
+}
+.card-fail .whr-compare-icon { background: #ffe4e6; color: #e11d48; }
+.card-win  .whr-compare-icon { background: var(--whr-primary-light); color: var(--whr-primary); }
+.whr-compare-card-title {
+  font-size: 1.02rem; font-weight: 800;
+  color: var(--whr-slate-dark); margin: 0;
+}
+.whr-compare-card-sub {
+  font-size: 0.78rem; color: var(--whr-slate-muted);
+}
+.whr-compare-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 9px;
+}
+.whr-compare-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.86rem; line-height: 1.5;
+  color: var(--whr-slate-body);
+}
+.whr-compare-list li i {
+  margin-top: 3px; font-size: 0.86rem; flex-shrink: 0;
+}
+.card-fail .whr-compare-list li i { color: #e11d48; }
+.card-win  .whr-compare-list li i { color: var(--whr-primary); }
+
+/* ═══════════════════════════════════════════════════════════════════
+   NEW: INTERACTIVE FOLLICLE SCIENCE SIMULATOR (Professional Visualizer)
+   ═══════════════════════════════════════════════════════════════════ */
+.whr-simulator-card {
+  background: linear-gradient(145deg, #0d1726 0%, #091322 100%);
+  border: 1.5px solid rgba(0, 175, 192, 0.35);
+  border-radius: var(--whr-radius-lg);
+  padding: 30px;
+  color: #fff;
+  box-shadow: 0 20px 50px rgba(13, 23, 38, 0.35);
+  position: relative;
+  overflow: hidden;
+  margin-top: 10px;
+}
+.whr-simulator-card::before {
+  content: '';
+  position: absolute; top: -50px; right: -50px; width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(0, 175, 192, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.whr-sim-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.whr-sim-title-group h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 4px;
+}
+.whr-sim-title-group p {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* Mode Switcher Buttons */
+.whr-sim-switch-group {
+  display: flex;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px;
+  border-radius: var(--whr-radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  gap: 4px;
+}
+.whr-sim-btn {
+  padding: 8px 18px;
+  border-radius: var(--whr-radius-pill);
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--whr-font-main);
+  font-size: 0.80rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.whr-sim-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+.whr-sim-btn.active-laser {
+  background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(225, 29, 72, 0.4);
+}
+.whr-sim-btn.active-medline {
+  background: var(--whr-teal-gradient);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0, 175, 192, 0.45);
+}
+
+/* Visualizer Grid (Diagram Left + Telemetry Right) */
+.whr-sim-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 28px;
+  align-items: center;
+}
+
+/* Diagram Stage */
+.whr-sim-diagram-stage {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(0, 175, 192, 0.25);
+  border-radius: var(--whr-radius-md);
+  padding: 24px;
+  position: relative;
+  min-height: 310px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Interactive SVG & Canvas Elements */
+.whr-sim-follicle-wrap {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+.whr-sim-follicle-wrap svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Telemetry Readout Box */
+.whr-sim-telemetry {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.whr-telem-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--whr-radius-sm);
+  padding: 12px 14px;
+  transition: all 0.25s ease;
+}
+.whr-telem-card.telem-status {
+  background: rgba(0, 175, 192, 0.1);
+  border-color: rgba(0, 175, 192, 0.35);
+}
+.whr-telem-card.telem-fail {
+  background: rgba(225, 29, 72, 0.12);
+  border-color: rgba(225, 29, 72, 0.4);
+}
+.whr-telem-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  margin-bottom: 4px;
+}
+.whr-telem-lbl { color: rgba(255, 255, 255, 0.6); }
+.whr-telem-val { font-weight: 700; color: #ffffff; }
+.whr-telem-val.val-laser { color: #fda4af; }
+.whr-telem-val.val-medline { color: #5eead4; }
+
+.whr-sim-action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  gap: 12px;
+}
+.btn-sim-replay {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: var(--whr-radius-pill);
+  padding: 6px 14px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.btn-sim-replay:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 3: KEZZA MEDLINE TECHNOLOGY
+   ═══════════════════════════════════════════ */
+.whr-tech-section {
+  padding: 50px 0;
+  background: linear-gradient(160deg, var(--whr-navy) 0%, #0a1e38 100%);
+  position: relative; overflow: hidden;
+}
+.whr-tech-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 30% 50%, rgba(0,175,192,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.whr-tech-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: center;
+}
+.whr-tech-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,175,192,0.15);
+  color: #5eead4;
+  border: 1px solid rgba(0,175,192,0.4);
+  padding: 5px 14px; border-radius: var(--whr-radius-pill);
+  font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+.whr-tech-title {
+  font-size: clamp(1.55rem, 2.8vw, 2.15rem);
+  font-weight: 800; color: #fff;
+  line-height: 1.2; margin-bottom: 12px;
+}
+.whr-tech-title .text-teal { color: #5eead4; }
+.whr-tech-lead {
+  font-size: 0.94rem; color: rgba(255,255,255,0.78);
+  line-height: 1.7; margin-bottom: 20px;
+}
+.whr-tech-features {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 22px;
+}
+.whr-tech-feat-item {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 0.84rem; color: rgba(255,255,255,0.88);
+  line-height: 1.45;
+}
+.whr-tech-feat-item i { color: #5eead4; margin-top: 2px; flex-shrink: 0; }
+
+.whr-tech-visual { position: relative; }
+.whr-tech-img-frame {
+  border-radius: var(--whr-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+}
+.whr-tech-img-frame img {
+  width: 100%; height: 320px;
+  object-fit: cover; display: block;
+}
+.whr-tech-overlay-badge {
+  position: absolute; bottom: 16px; left: 16px; right: 16px;
+  background: rgba(13,23,38,0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0,175,192,0.4);
+  border-radius: var(--whr-radius-md);
+  padding: 12px 16px;
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 10px; text-align: center;
+}
+.whr-overlay-stat-val {
+  font-size: 1.15rem; font-weight: 800; color: #5eead4;
+  line-height: 1.1; display: block;
+}
+.whr-overlay-stat-lbl {
+  font-size: 0.64rem; color: rgba(255,255,255,0.65);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  display: block; margin-top: 2px;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 4: ANATOMICAL EPILATION AREAS & ESTIMATOR
+   ═══════════════════════════════════════════ */
+.whr-areas-section {
+  padding: 50px 0;
+  background: var(--whr-bg-light);
+}
+.whr-areas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+  margin-bottom: 36px;
+}
+.whr-area-card {
+  background: #fff;
+  border: 1.5px solid var(--whr-border-subtle);
+  border-radius: var(--whr-radius-md);
+  padding: 20px 16px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+  position: relative; overflow: hidden;
+  box-shadow: var(--whr-shadow-sm);
+}
+.whr-area-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--whr-teal-gradient);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.whr-area-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--whr-shadow-md);
+  border-color: rgba(0,175,192,0.35);
+}
+.whr-area-card:hover::before { transform: scaleX(1); }
+.whr-area-icon {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: var(--whr-primary-light);
+  color: var(--whr-primary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  margin: 0 auto 12px;
+  transition: all 0.3s ease;
+}
+.whr-area-card:hover .whr-area-icon {
+  background: var(--whr-teal-gradient);
+  color: #fff;
+  transform: scale(1.1);
+}
+.whr-area-name {
+  font-size: 0.92rem; font-weight: 700;
+  color: var(--whr-slate-dark); margin-bottom: 5px;
+}
+.whr-area-desc {
+  font-size: 0.76rem; color: var(--whr-slate-muted);
+  line-height: 1.5;
+}
+.whr-area-badge {
+  display: inline-block;
+  margin-top: 8px;
+  background: var(--whr-primary-light);
+  color: var(--whr-primary-dark);
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+
+/* ─── NEW: TREATMENT ZONE & CLEARANCE ESTIMATOR ─── */
+.whr-estimator-container {
+  background: #ffffff;
+  border: 1.5px solid rgba(0, 175, 192, 0.3);
+  border-radius: var(--whr-radius-lg);
+  padding: 30px;
+  box-shadow: 0 14px 40px rgba(0, 175, 192, 0.08);
+}
+.whr-estimator-head {
+  text-align: center;
+  margin-bottom: 22px;
+}
+.whr-estimator-head h3 {
+  font-size: 1.35rem; font-weight: 800; color: var(--whr-slate-dark);
+  margin-bottom: 6px;
+}
+.whr-estimator-head p {
+  font-size: 0.88rem; color: var(--whr-slate-muted); margin: 0;
+}
+
+.whr-estimator-body {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 28px;
+  align-items: center;
+}
+
+/* Selector Group */
+.whr-calc-select-group {
+  margin-bottom: 18px;
+}
+.whr-calc-label {
+  display: block;
+  font-size: 0.80rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--whr-slate-dark);
+  margin-bottom: 8px;
+}
+.whr-calc-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.whr-calc-pill-btn {
+  padding: 7px 14px;
+  border-radius: var(--whr-radius-pill);
+  border: 1.5px solid var(--whr-border-subtle);
+  background: #fff;
+  color: var(--whr-slate-body);
+  font-family: var(--whr-font-main);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.whr-calc-pill-btn:hover {
+  border-color: var(--whr-primary);
+  color: var(--whr-primary-dark);
+}
+.whr-calc-pill-btn.active {
+  background: var(--whr-primary-light);
+  border-color: var(--whr-primary);
+  color: var(--whr-primary-dark);
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 175, 192, 0.2);
+}
+
+/* Estimator Live Output Card */
+.whr-calc-result-box {
+  background: linear-gradient(145deg, #0d1726 0%, #112239 100%);
+  border-radius: var(--whr-radius-md);
+  padding: 22px;
+  color: #fff;
+  border: 1px solid rgba(0, 175, 192, 0.35);
+  box-shadow: 0 12px 30px rgba(13, 23, 38, 0.25);
+}
+.whr-result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.whr-result-zone-title {
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: #5eead4;
+}
+.whr-result-tag {
+  background: rgba(0, 175, 192, 0.2);
+  color: #5eead4;
+  border: 1px solid rgba(0, 175, 192, 0.4);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.whr-result-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.whr-metric-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--whr-radius-sm);
+  padding: 10px 12px;
+  text-align: center;
+}
+.whr-metric-val {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 2px;
+}
+.whr-metric-val span { font-size: 0.82rem; font-weight: 600; color: #5eead4; }
+.whr-metric-lbl {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.btn-calc-book {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 16px;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #fff;
+  border-radius: var(--whr-radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-calc-book:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(37, 211, 102, 0.5);
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 5: 4-STAGE MEDICAL PROCEDURE (Connected Pathway)
+   ═══════════════════════════════════════════ */
+.whr-procedure-section {
+  padding: 50px 0;
+  background: #fff;
+  position: relative;
+}
+.whr-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+  position: relative;
+}
+
+/* Glowing connector track on desktop */
+.whr-steps-track {
+  position: absolute;
+  top: 42px;
+  left: 60px;
+  right: 60px;
+  height: 2px;
+  background: linear-gradient(90deg,
+    rgba(0,175,192,0.2) 0%,
+    rgba(0,175,192,0.8) 50%,
+    rgba(0,175,192,0.2) 100%);
+  background-size: 200% 100%;
+  animation: whrTrackPulse 4s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.whr-step-card {
+  border: 1.5px solid var(--whr-border-subtle);
+  border-radius: var(--whr-radius-md);
+  padding: 22px 18px;
+  background: #fff;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+  box-shadow: var(--whr-shadow-sm);
+}
+.whr-step-card:hover {
+  border-color: rgba(0,175,192,0.45);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0,175,192,0.12);
+}
+.whr-step-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px;
+}
+.whr-step-num {
+  font-size: 1.8rem; font-weight: 900; line-height: 1;
+  background: var(--whr-teal-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: var(--whr-font-main);
+}
+.whr-step-icon-aura {
+  width: 38px; height: 38px;
+  border-radius: 12px;
+  background: var(--whr-primary-light);
+  color: var(--whr-primary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+.whr-step-card:hover .whr-step-icon-aura {
+  background: var(--whr-teal-gradient);
+  color: #fff; transform: scale(1.08);
+}
+.whr-step-title {
+  font-size: 0.94rem; font-weight: 800;
+  color: var(--whr-slate-dark); margin-bottom: 6px;
+}
+.whr-step-desc {
+  font-size: 0.80rem; color: var(--whr-slate-muted);
+  line-height: 1.55; margin-bottom: 12px;
+}
+.whr-step-time-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--whr-primary-light);
+  color: var(--whr-primary-dark);
+  border-radius: var(--whr-radius-pill);
+  padding: 3px 10px;
+  font-size: 0.70rem; font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 6: CLINICAL OUTCOMES & REVIEWS
+   ═══════════════════════════════════════════ */
+.whr-outcomes-section {
+  padding: 50px 0;
+  background: var(--whr-bg-light);
+}
+.whr-outcomes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 26px;
+  align-items: start;
+}
+.whr-outcome-card {
+  background: #fff;
+  border: 1.5px solid var(--whr-border-subtle);
+  border-radius: var(--whr-radius-lg);
+  padding: 24px 22px;
+  box-shadow: var(--whr-shadow-sm);
+  transition: transform 0.25s ease;
+}
+.whr-outcome-card:hover { transform: translateY(-3px); }
+.whr-outcome-stars { color: #f59e0b; margin-bottom: 8px; font-size: 0.88rem; }
+.whr-outcome-quote {
+  font-size: 0.88rem; color: var(--whr-slate-body);
+  line-height: 1.65; font-style: italic;
+  margin-bottom: 12px;
+}
+.whr-outcome-patient {
+  display: flex; align-items: center; gap: 10px;
+}
+.whr-outcome-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--whr-teal-gradient);
+  color: #fff; display: flex; align-items: center;
+  justify-content: center; font-size: 0.95rem; font-weight: 700;
+  flex-shrink: 0;
+}
+.whr-outcome-patient-name {
+  font-size: 0.84rem; font-weight: 700;
+  color: var(--whr-slate-dark);
+}
+.whr-outcome-patient-tag {
+  font-size: 0.72rem; color: var(--whr-slate-muted);
+}
+
+.whr-outcomes-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+.whr-outcome-stat {
+  background: #fff;
+  border: 1.5px solid var(--whr-border-subtle);
+  border-radius: var(--whr-radius-md);
+  padding: 18px 16px; text-align: center;
+  box-shadow: var(--whr-shadow-sm);
+  transition: transform 0.25s ease;
+}
+.whr-outcome-stat:hover { transform: translateY(-3px); }
+.whr-outcome-stat-num {
+  font-size: 1.85rem; font-weight: 900;
+  background: var(--whr-teal-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1; margin-bottom: 3px;
+}
+.whr-outcome-stat-label {
+  font-size: 0.76rem; font-weight: 700;
+  color: var(--whr-slate-dark); margin-bottom: 2px;
+}
+.whr-outcome-stat-note {
+  font-size: 0.68rem; color: var(--whr-slate-muted);
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 7: FAQ ACCORDION (Clean & Responsive)
+   ═══════════════════════════════════════════ */
+.whr-faq-section {
+  padding: 50px 0;
+  background: #fff;
+}
+.whr-faq-list {
+  max-width: 820px; margin: 26px auto 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.whr-faq-item {
+  border: 1.5px solid var(--whr-border-subtle);
+  border-radius: var(--whr-radius-md);
+  overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  background: #fff;
+}
+.whr-faq-item.is-open {
+  border-color: rgba(0,175,192,0.4);
+  box-shadow: 0 8px 24px rgba(0,175,192,0.08);
+}
+.whr-faq-question {
+  width: 100%; text-align: left;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  background: transparent; border: none; cursor: pointer;
+  font-size: 0.90rem; font-weight: 700;
+  color: var(--whr-slate-dark);
+  font-family: var(--whr-font-main);
+  transition: color 0.2s;
+}
+.whr-faq-question:hover { color: var(--whr-primary); }
+.whr-faq-icon {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--whr-primary-light);
+  color: var(--whr-primary);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.74rem; flex-shrink: 0;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+.whr-faq-item.is-open .whr-faq-icon {
+  transform: rotate(180deg);
+  background: var(--whr-primary); color: #fff;
+}
+.whr-faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.whr-faq-item.is-open .whr-faq-answer {
+  max-height: 400px;
+}
+.whr-faq-answer p {
+  padding: 0 20px 16px;
+  font-size: 0.86rem; color: var(--whr-slate-muted);
+  line-height: 1.65; margin: 0;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 8: FINAL CTA BANNER
+   ═══════════════════════════════════════════ */
+.whr-cta-banner-section {
+  padding: 0 0 44px;
+  background: #fff;
+}
+.whr-cta-banner-inner {
+  background: linear-gradient(135deg, var(--whr-navy) 0%, #0a2040 50%, #0d2a50 100%);
+  border-radius: var(--whr-radius-lg);
+  padding: 42px 32px;
+  text-align: center;
+  position: relative; overflow: hidden;
+  box-shadow: 0 16px 50px rgba(0,0,0,0.2);
+}
+.whr-cta-banner-inner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 70% at 50% 0%, rgba(0,175,192,0.18) 0%, transparent 65%);
+  pointer-events: none;
+}
+.whr-cta-banner-title {
+  font-size: clamp(1.55rem, 3.2vw, 2.4rem);
+  font-weight: 800; color: #fff;
+  margin-bottom: 10px;
+}
+.whr-cta-banner-sub {
+  font-size: 0.96rem; color: rgba(255,255,255,0.75);
+  max-width: 520px; margin: 0 auto 24px; line-height: 1.6;
+}
+.whr-btn-banner {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #fff;
+  padding: 13px 30px;
+  border-radius: var(--whr-radius-pill);
+  font-size: 0.96rem; font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.whr-btn-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(37,211,102,0.6);
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — TABLET (900px)
+   ═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .whr-hero-grid,
+  .whr-tech-grid,
+  .whr-outcomes-grid,
+  .whr-sim-grid,
+  .whr-estimator-body { grid-template-columns: 1fr; gap: 24px; }
+  .whr-areas-grid { grid-template-columns: repeat(2,1fr); }
+  .whr-steps-grid { grid-template-columns: repeat(2,1fr); }
+  .whr-steps-track { display: none; }
+  .whr-stats-grid { grid-template-columns: repeat(2,1fr); }
+  .whr-compare-grid { grid-template-columns: 1fr; }
+  .whr-outcomes-stats { grid-template-columns: repeat(2,1fr); }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — MOBILE (768px)
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .whr-main-content { padding-top: 62px; }
+  .whr-hero-section { padding: 8px 0 0; }
+  .whr-hero-grid { padding: 16px 0 18px; gap: 20px; }
+  .whr-editorial-title { font-size: clamp(1.5rem, 6.2vw, 1.95rem); }
+  .whr-section-lead-p { font-size: 0.88rem; }
+  .whr-features-grid { grid-template-columns: 1fr; gap: 7px; }
+  .whr-cta-group { flex-direction: column; }
+  .whr-btn-primary, .whr-btn-secondary { width: 100%; justify-content: center; }
+  .whr-stats-grid { grid-template-columns: repeat(2,1fr); padding: 14px 0 20px; gap: 10px; }
+  
+  .whr-float-chip { display: none; } /* Hide floating chips on narrow screens to avoid covering image */
+  .whr-media-showcase img { height: 220px; }
+  
+  .whr-simulator-card { padding: 18px 14px; }
+  .whr-sim-switch-group { width: 100%; flex-direction: column; }
+  .whr-sim-btn { justify-content: center; width: 100%; }
+  
+  .whr-estimator-container { padding: 18px 14px; }
+  .whr-calc-pills { justify-content: flex-start; }
+  .whr-calc-result-box { padding: 16px 14px; }
+
+  .whr-areas-grid { grid-template-columns: repeat(2,1fr); gap: 10px; }
+  .whr-steps-grid { grid-template-columns: 1fr; gap: 12px; }
+  .whr-compare-grid { grid-template-columns: 1fr; }
+  .whr-tech-features { grid-template-columns: 1fr; }
+  .whr-tech-img-frame img { height: 220px; }
+  .whr-tech-overlay-badge { grid-template-columns: repeat(3,1fr); padding: 8px 10px; }
+  .whr-outcomes-grid { grid-template-columns: 1fr; }
+  .whr-outcomes-stats { grid-template-columns: repeat(2,1fr); }
+  .whr-cta-banner-inner { padding: 30px 16px; border-radius: 18px; }
+  .whr-cta-banner-title { font-size: clamp(1.35rem, 5.8vw, 1.8rem); }
+  .whr-btn-banner { width: 100%; justify-content: center; font-size: 0.90rem; padding: 12px 20px; }
+  .whr-faq-question { padding: 14px 15px; font-size: 0.85rem; }
+  .whr-faq-answer p { padding: 0 15px 12px; }
+  
+  .whr-why-fail-section,
+  .whr-tech-section,
+  .whr-areas-section,
+  .whr-procedure-section,
+  .whr-outcomes-section,
+  .whr-faq-section { padding: 36px 0; }
+}
+
+@media (max-width: 480px) {
+  .whr-areas-grid { grid-template-columns: 1fr; }
+  .whr-stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .whr-stat-num { font-size: 1.45rem; }
+  .whr-steps-grid { grid-template-columns: 1fr; }
+}

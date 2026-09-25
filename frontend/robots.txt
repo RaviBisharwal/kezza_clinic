@@ -1,0 +1,22 @@
+# Kezza Hair & Skin Clinic — robots.txt
+# https://kezzaclinic.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Block admin/internal pages from indexing
+Disallow: /admin.html
+Disallow: /uploads/
+
+# Allow all major crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+# Sitemap location
+Sitemap: https://kezzaclinic.com/sitemap.xml

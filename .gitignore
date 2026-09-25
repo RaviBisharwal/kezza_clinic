@@ -1,0 +1,29 @@
+# ── Dependencies ──────────────────────────────────────────────
+node_modules/
+package-lock.json.bak
+
+# ── Secrets & environment ─────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Patient data — NEVER COMMIT ───────────────────────────────
+# Uploaded patient photos and captured leads are personal health
+# information. They must not enter version control or a deploy.
+frontend/uploads/photos/*
+!frontend/uploads/photos/.gitkeep
+private_patient_photos_REVIEW/
+data/
+*.db
+*.sqlite
+*.sqlite3
+
+# ── Build & editor noise ──────────────────────────────────────
+*.bak
+*.log
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+.vscode/
+.idea/
