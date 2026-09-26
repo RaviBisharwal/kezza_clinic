@@ -634,6 +634,158 @@
 .aftercare-card.donts li i { color: var(--sp-rose); margin-top: 3px; }
 
 /* ── 9. Before & After (Consented Patient Gallery) ───────────────── */
+.ht-featured-case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-bottom: 36px;
+}
+
+.ht-featured-case-card {
+  background: #ffffff;
+  border: 1.5px solid #e2ecf3;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 22px rgba(12, 35, 56, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.ht-featured-case-card:hover {
+  transform: translateY(-8px);
+  border-color: #00AFC0;
+  box-shadow: 0 20px 45px rgba(0, 175, 192, 0.16), 0 4px 15px rgba(12, 35, 56, 0.06);
+}
+
+.ht-featured-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+  background: #0b1120;
+}
+
+.ht-featured-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ht-featured-case-card:hover .ht-featured-img {
+  transform: scale(1.05);
+}
+
+/* Floating Pill Badge */
+.ht-ba-pill-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 30px;
+  padding: 5px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
+}
+
+.ht-ba-pill-badge .pill-badge-before {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #fda4af;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(225, 29, 72, 0.25);
+}
+
+.ht-ba-pill-badge .pill-badge-icon {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ht-ba-pill-badge .pill-badge-after {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #5eead4;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(0, 175, 192, 0.3);
+}
+
+.ht-featured-body {
+  padding: 24px 26px 22px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.ht-featured-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.ht-tag-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.02em;
+}
+
+.ht-tag-pill.teal {
+  background: rgba(0, 175, 192, 0.1);
+  color: #007a87;
+  border: 1px solid rgba(0, 175, 192, 0.25);
+}
+
+.ht-tag-pill.gold {
+  background: rgba(212, 160, 23, 0.12);
+  color: #92660a;
+  border: 1px solid rgba(212, 160, 23, 0.28);
+}
+
+.ht-featured-title {
+  font-family: var(--sp-font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--sp-slate-dark);
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.ht-featured-desc {
+  font-size: 0.88rem;
+  color: var(--sp-slate-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 820px) {
+  .ht-featured-case-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .ht-featured-img-wrap {
+    height: 280px;
+  }
+}
+
 .ba-gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

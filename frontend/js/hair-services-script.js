@@ -75,49 +75,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }, { passive: true });
 })();
 
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            
-            // Special animations for different elements
-            if (entry.target.classList.contains('hairline-card')) {
-                entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
-            }
-            if (entry.target.classList.contains('treatment-card')) {
-                entry.target.style.animation = 'slideUp 0.8s ease forwards';
-            }
-            if (entry.target.classList.contains('timeline-step')) {
-                entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
-            }
-            if (entry.target.classList.contains('faq-item')) {
-                entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
-            }
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-// Observe elements for animation
-document.addEventListener('DOMContentLoaded', function() {
-    const animatedElements = document.querySelectorAll(
-        '.hairline-card, .treatment-card, .timeline-step, .faq-item'
-    );
-    
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.6s ease';
-        observer.observe(el);
-    });
-});
+// Legacy observer removed in favor of unified initScrollReveal() below
 
 // Mouse move parallax for hero image
 document.addEventListener('DOMContentLoaded', function() {
@@ -553,3 +511,331 @@ console.log('Kezza Hair Services page loaded successfully! 💇‍♂️');
     });
 
 })();
+
+// ── Verified Hair Transplant Transformation Showcase Controller ──
+(function() {
+    function initTransformationShowcase() {
+        const toggleBtns = document.querySelectorAll('.transformation-view-controls .view-toggle-btn');
+        const sideBySideWrap = document.getElementById('htSideBySideWrap');
+        const sliderWrap = document.getElementById('htInteractiveSliderWrap');
+        const rangeInput = document.getElementById('htRangeSlider');
+        
+        // 1. View Switcher (Interactive Split Slider vs Side-by-Side)
+        if (toggleBtns.length && sideBySideWrap && sliderWrap) {
+            toggleBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const targetView = this.getAttribute('data-view');
+                    toggleBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    if (targetView === 'slider') {
+                        sideBySideWrap.style.display = 'none';
+                        sliderWrap.style.display = 'block';
+                    } else {
+                        sliderWrap.style.display = 'none';
+                        sideBySideWrap.style.display = 'grid';
+                    }
+                });
+            });
+        }
+
+        // 2. Real Interactive Split Slider Controller
+        if (sliderWrap) {
+            function setSliderPos(val) {
+                val = Math.max(0, Math.min(100, parseFloat(val)));
+                sliderWrap.style.setProperty('--slider-pos', `${val}%`);
+                if (rangeInput) rangeInput.value = val;
+            }
+
+            // Sync with range input (supports mouse drag, keyboard arrows, and mobile touch scrubbing)
+            if (rangeInput) {
+                rangeInput.addEventListener('input', function() {
+                    setSliderPos(this.value);
+                });
+                rangeInput.addEventListener('change', function() {
+                    setSliderPos(this.value);
+                });
+            }
+
+            // Pointer events for direct click/drag on any part of the image
+            function updateFromPointer(e) {
+                const rect = sliderWrap.getBoundingClientRect();
+                if (rect.width <= 0) return;
+                const pct = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+                setSliderPos(pct);
+            }
+
+            sliderWrap.addEventListener('pointerdown', function(e) {
+                // If user didn't directly hit range input, set pointer capture and update
+                try { sliderWrap.setPointerCapture(e.pointerId); } catch(err) {}
+                updateFromPointer(e);
+            });
+
+            sliderWrap.addEventListener('pointermove', function(e) {
+                if (e.buttons === 1) {
+                    updateFromPointer(e);
+                }
+            });
+
+            sliderWrap.addEventListener('pointerup', function(e) {
+                try { sliderWrap.releasePointerCapture(e.pointerId); } catch(err) {}
+            });
+
+            // Set initial state to 50%
+            setSliderPos(50);
+
+            // Subtle intro hint animation on first scroll into view
+            let hasAnimatedHint = false;
+            const hintObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && !hasAnimatedHint) {
+                    hasAnimatedHint = true;
+                    let i = 0;
+                    const sequence = [50, 44, 38, 45, 58, 53, 50];
+                    const timer = setInterval(() => {
+                        if (i >= sequence.length) {
+                            clearInterval(timer);
+                            return;
+                        }
+                        setSliderPos(sequence[i]);
+                        i++;
+                    }, 110);
+                    hintObserver.disconnect();
+                }
+            }, { threshold: 0.35 });
+            hintObserver.observe(sliderWrap);
+        }
+
+        // 3. High-Definition Lightbox / Image Inspection Modal
+        const zoomCards = document.querySelectorAll('.ht-ba-visual-card');
+        const modal = document.getElementById('htLightboxModal');
+        const modalImg = document.getElementById('htLightboxImg');
+        const modalCaption = document.getElementById('htLightboxCaption');
+        const modalClose = document.getElementById('htLightboxClose');
+
+        if (modal && modalImg) {
+            zoomCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const img = this.querySelector('img');
+                    const title = this.querySelector('.ht-ba-info-title')?.textContent.trim() || '';
+                    const desc = this.querySelector('.ht-ba-info-desc')?.textContent.trim() || '';
+                    if (img) {
+                        modalImg.src = img.src;
+                        modalImg.alt = img.alt;
+                        if (modalCaption) {
+                            modalCaption.innerHTML = `<strong>${title}</strong> &mdash; ${desc}`;
+                        }
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            if (modalClose) {
+                modalClose.addEventListener('click', closeModal);
+            }
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModal();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTransformationShowcase);
+    } else {
+        initTransformationShowcase();
+    }
+})();
+
+// ── Premium "Website Wali Feel" Interactive Animation System ──
+(function() {
+    // 1. Scroll-Driven Reveal Engine
+    function initScrollReveal() {
+        const revealElements = document.querySelectorAll(
+            '.reveal-on-scroll, .service-showcase-split, .hairline-card-v2, .process-card-step, .norwood-card, .mini-service-card, .treatment-card, .faq-item, .timeline-step, .patient-comment-card, .surgeon-comment-box'
+        );
+
+        if (!('IntersectionObserver' in window)) {
+            revealElements.forEach(el => el.classList.add('is-revealed'));
+            return;
+        }
+
+        const revealObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-revealed');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => {
+            el.classList.add('reveal-on-scroll');
+            revealObserver.observe(el);
+        });
+    }
+
+    // 2. High-Precision Eased Counter Animation
+    function initStatCounters() {
+        const counterElements = document.querySelectorAll('.counter-stat');
+        if (!counterElements.length) return;
+
+        const counterObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseFloat(el.getAttribute('data-target') || 0);
+                    const prefix = el.getAttribute('data-prefix') || '';
+                    const suffix = el.getAttribute('data-suffix') || '';
+                    const format = el.getAttribute('data-format') || '';
+                    const isDecimal = String(target).includes('.');
+                    const duration = 1800; // ms
+                    const startTime = performance.now();
+
+                    function updateNumber(now) {
+                        const elapsed = now - startTime;
+                        const progress = Math.min(1, elapsed / duration);
+                        // Easing: easeOutExpo
+                        const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                        const current = target * ease;
+
+                        let displayVal;
+                        if (isDecimal) {
+                            displayVal = current.toFixed(1);
+                        } else if (format === 'comma') {
+                            displayVal = Math.floor(current).toLocaleString();
+                        } else {
+                            displayVal = Math.floor(current);
+                        }
+
+                        el.textContent = `${prefix}${displayVal}${suffix}`;
+
+                        if (progress < 1) {
+                            requestAnimationFrame(updateNumber);
+                        } else {
+                            let finalVal = isDecimal ? target.toFixed(1) : (format === 'comma' ? target.toLocaleString() : target);
+                            el.textContent = `${prefix}${finalVal}${suffix}`;
+                        }
+                    }
+
+                    requestAnimationFrame(updateNumber);
+                    obs.unobserve(el);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        counterElements.forEach(el => counterObserver.observe(el));
+    }
+
+    // 3. Smart Sub-Navigation Scroll-Spy & Smooth Auto-Center
+    function initSubnavScrollSpy() {
+        const navPills = document.querySelectorAll('.hair-subnav-pills .subnav-pill');
+        const navContainer = document.getElementById('hairSubnavPills');
+        if (!navPills.length) return;
+
+        const sections = [];
+        navPills.forEach(pill => {
+            const href = pill.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                const sec = document.querySelector(href);
+                if (sec) {
+                    sections.push({ id: href, section: sec, pill: pill });
+                }
+            }
+        });
+
+        if (!sections.length) return;
+
+        let activeId = '';
+        function updateActivePill() {
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+            const triggerOffset = 220; // Trigger threshold below top
+
+            let currentSec = null;
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const top = sections[i].section.offsetTop - triggerOffset;
+                if (scrollY >= top) {
+                    currentSec = sections[i];
+                    break;
+                }
+            }
+
+            if (!currentSec && sections.length) {
+                currentSec = sections[0];
+            }
+
+            if (currentSec && currentSec.id !== activeId) {
+                activeId = currentSec.id;
+                navPills.forEach(p => p.classList.remove('active'));
+                currentSec.pill.classList.add('active');
+
+                // Smoothly scroll the pill into the center of the subnav bar if overflowed
+                if (navContainer) {
+                    const pillLeft = currentSec.pill.offsetLeft;
+                    const pillWidth = currentSec.pill.offsetWidth;
+                    const containerWidth = navContainer.offsetWidth;
+                    const targetScroll = pillLeft - (containerWidth / 2) + (pillWidth / 2);
+                    navContainer.scrollTo({
+                        left: Math.max(0, targetScroll),
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }
+
+        window.addEventListener('scroll', function() {
+            requestAnimationFrame(updateActivePill);
+        }, { passive: true });
+
+        // Initial run
+        setTimeout(updateActivePill, 200);
+    }
+
+    // 4. Subtle 3D Card Hover Micro-Interactions
+    function initCardMicroInteractions() {
+        const cards = document.querySelectorAll('.service-showcase-split, .hairline-card-v2, .stat-box');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -3;
+                const rotateY = ((x - centerX) / centerX) * 3;
+                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+    }
+
+    function initAll() {
+        initScrollReveal();
+        initStatCounters();
+        initSubnavScrollSpy();
+        initCardMicroInteractions();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+        initAll();
+    }
+})();
+
+

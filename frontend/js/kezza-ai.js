@@ -5861,15 +5861,6 @@ Please guide me on next steps and appointment availability.
             });
         });
 
-        // ── Auto-open scanner modal once per session after 6 seconds ──
-        if (!sessionStorage.getItem('kezza_scanner_modal_closed')) {
-            setTimeout(function () {
-                // Do not interrupt if chat is already open or modal was dismissed during the wait
-                if (!state.isOpen && !sessionStorage.getItem('kezza_scanner_modal_closed')) {
-                    showScannerModal();
-                }
-            }, 6000);
-        }
     }
 
     function toggleChat() {
