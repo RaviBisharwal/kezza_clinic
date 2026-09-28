@@ -34,6 +34,7 @@ function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((d) => {
     const p = path.join(dir, d.name);
     if (d.isDirectory()) return SKIP_DIRS.has(d.name) ? [] : walk(p);
+    if (/^google[a-z0-9]+\.html$/i.test(d.name)) return [];
     return d.name.endsWith('.html') ? [p] : [];
   });
 }
