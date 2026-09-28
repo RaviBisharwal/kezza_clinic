@@ -130,37 +130,37 @@
             category: 'PMU',
             label: 'Eyebrow PMU',
             phone: '9079161300',
-            specialist: 'Dr. Krishna Choudhary',
+            specialist: 'Krishna Choudhary',
             triggers_en: ['eyebrow pmu', 'pmu eyebrow', 'permanent eyebrow', 'eyebrow permanent makeup', 'microblading', 'ombre brows', 'powder brows', 'eyebrow tattoo', 'brow pmu', 'brow permanent makeup', 'permanent brows'],
             triggers_hi: ['eyebrow pmu chahiye', 'eyebrow permanent makeup', 'bhrauhn pmu'],
-            defaultMsg: 'Hello Dr. Krishna Choudhary PMU Team, I would like to book a consultation for Eyebrow PMU.'
+            defaultMsg: 'Hello Krishna Choudhary PMU Team, I would like to book a consultation for Eyebrow PMU.'
         },
         LIP_PMU: {
             category: 'PMU',
             label: 'Lip PMU',
             phone: '9079161300',
-            specialist: 'Dr. Krishna Choudhary',
+            specialist: 'Krishna Choudhary',
             triggers_en: ['lip pmu', 'pmu lip', 'lip blush', 'lip blushing', 'lip neutralization', 'cosmetic lip pigmentation', 'permanent lip', 'lip permanent makeup', 'lip color correction'],
             triggers_hi: ['lip pmu chahiye', 'lip blush chahiye', 'lip permanent makeup'],
-            defaultMsg: 'Hello Dr. Krishna Choudhary PMU Team, I would like to book a consultation for Lip PMU.'
+            defaultMsg: 'Hello Krishna Choudhary PMU Team, I would like to book a consultation for Lip PMU.'
         },
         EYELINER_PMU: {
             category: 'PMU',
             label: 'Permanent Eyeliner',
             phone: '9079161300',
-            specialist: 'Dr. Krishna Choudhary',
+            specialist: 'Krishna Choudhary',
             triggers_en: ['permanent eyeliner', 'eyeliner pmu', 'pmu eyeliner', 'lash enhancement', 'lash line tattoo'],
             triggers_hi: ['permanent eyeliner chahiye', 'eyeliner permanent'],
-            defaultMsg: 'Hello Dr. Krishna Choudhary PMU Team, I would like to book a consultation for Permanent Eyeliner.'
+            defaultMsg: 'Hello Krishna Choudhary PMU Team, I would like to book a consultation for Permanent Eyeliner.'
         },
         BEAUTY_SPOT: {
             category: 'PMU',
             label: 'Beauty Spot',
             phone: '9079161300',
-            specialist: 'Dr. Krishna Choudhary',
+            specialist: 'Krishna Choudhary',
             triggers_en: ['beauty spot', 'beauty mark', 'mole tattoo'],
             triggers_hi: ['beauty spot chahiye', 'beauty mark lagwana hai'],
-            defaultMsg: 'Hello Dr. Krishna Choudhary PMU Team, I would like to book a consultation for Beauty Spot.'
+            defaultMsg: 'Hello Krishna Choudhary PMU Team, I would like to book a consultation for Beauty Spot.'
         },
         // ── SMP INTENTS (route to: 9079161300 — SMP dept) ─────────────────
         // SMP = SCALP / HAIRLINE micropigmentation ONLY
@@ -253,22 +253,22 @@
         // NOT: beard micropigmentation, scalp micropigmentation, stretch mark camouflage
         pmu: {
             id: 'PMU',
-            name: 'PMU / Permanent Makeup (Dr. Krishna Choudhary)',
+            name: 'PMU / Permanent Makeup (Krishna Choudhary)',
             phone: '9079161300',
             consultationBtn: '📅 Book PMU Consultation',
-            buttonTextEn: 'Chat with PMU Team (Dr. Krishna Choudhary)',
-            buttonTextHi: 'PMU Team se Chat Karein (Dr. Krishna Choudhary)',
-            defaultMsg: 'Hello Dr. Krishna Choudhary PMU Team, I would like to book a PMU consultation.',
+            buttonTextEn: 'Chat with PMU Team (Krishna Choudhary)',
+            buttonTextHi: 'PMU Team se Chat Karein (Krishna Choudhary)',
+            defaultMsg: 'Hello Krishna Choudhary PMU Team, I would like to book a PMU consultation.',
             scope: ['pmu', 'permanent makeup', 'microblading', 'permanent eyeliner', 'lip blush', 'lip neutralization', 'lash enhancement', 'beauty spot', 'ombre brows', 'powder brows', 'eyebrow tattoo', 'brow tattoo', 'permanent brows']
         },
         eyebrow_lip: {
             id: 'PMU',
-            name: 'PMU / Permanent Makeup (Dr. Krishna Choudhary)',
+            name: 'PMU / Permanent Makeup (Krishna Choudhary)',
             phone: '9079161300', // Merged into verified PMU number
             consultationBtn: '📅 Book Eyebrow / Lip Consultation',
-            buttonTextEn: 'Chat with PMU Team (Dr. Krishna Choudhary)',
-            buttonTextHi: 'PMU Team se Chat Karein (Dr. Krishna Choudhary)',
-            defaultMsg: 'Hello Dr. Krishna Choudhary PMU Team, I would like to book a consultation for eyebrow/lip treatment.',
+            buttonTextEn: 'Chat with PMU Team (Krishna Choudhary)',
+            buttonTextHi: 'PMU Team se Chat Karein (Krishna Choudhary)',
+            defaultMsg: 'Hello Krishna Choudhary PMU Team, I would like to book a consultation for eyebrow/lip treatment.',
             scope: ['eyebrow transplant', 'cosmetic lip', 'eybrow']
         },
         laser: {
@@ -337,12 +337,12 @@
         },
         dr_krishna: {
             id: 'PMU',
-            name: 'Dr. Krishna Choudhary',
+            name: 'Krishna Choudhary',
             role: 'Makeup / PMU Specialist',
             phone: '9079161300',
-            buttonTextEn: 'Chat with PMU Team (Dr. Krishna Choudhary)',
-            buttonTextHi: 'PMU Team se Chat Karein (Dr. Krishna Choudhary)',
-            defaultMsg: 'Hello Dr. Krishna Choudhary PMU Team, I would like to book a PMU / Makeup consultation.'
+            buttonTextEn: 'Chat with PMU Team (Krishna Choudhary)',
+            buttonTextHi: 'PMU Team se Chat Karein (Krishna Choudhary)',
+            defaultMsg: 'Hello Krishna Choudhary PMU Team, I would like to book a PMU / Makeup consultation.'
         },
         dr_dhiral: {
             id: 'HAIR_TRANSPLANT_SIKAR',
@@ -400,8 +400,8 @@
         generalPhone: '+91-9284517427',
         generalWhatsApp: '919284517427',
         email: 'support@kezza.co.in',
-        website: 'https://kezza.co.in',
-        timings: '9:00 AM – 8:00 PM, Monday–Saturday'
+        website: 'https://www.kezza.co.in',
+        timings: '9:00 AM – 8:00 PM, all 7 days (Monday–Sunday)'
     };
 
     const DOCTORS = [
@@ -428,7 +428,7 @@
             title: 'Oral & Maxillofacial, Aesthetic & Hair Transplant Surgeon',
             specialization: 'Oral and Maxillofacial Surgeon with expertise in hair transplantation and facial aesthetics',
             brief: 'Combines elite surgical expertise with refined aesthetic precision for natural results.',
-            location: 'Sikar & Ajmer'
+            location: 'Ajmer'
         },
         {
             name: 'Dr. Aliza Rizvi',
@@ -520,7 +520,7 @@ NEVER mix unrelated treatments. ASK clarification if intent is ambiguous.
 1. HAIR         → Dr. Ankit Bhalothia / Elite Surgical
 2. SKIN         → Dr. Amrita Mukhija / Dr. Neelam Choudhary (9216063686)
 3. ANTI-AGING   → Dr. Amrita Mukhija / Dr. Neelam Choudhary (9216063686)
-4. PMU          → Dr. Krishna Choudhary (9079161300)
+4. PMU          → Krishna Choudhary (9079161300)
 5. SMP          → Kezza SMP Team (9079161300)
 6. BEARD_MICROPIGMENTATION → Separate service (no auto-route to PMU)
 7. HAIR TRANSPLANT → Elite Surgical, Sikar (8130888129)
@@ -602,7 +602,7 @@ HINDI/HINGLISH INTENT DETECTION:
 - "glutathione chahiye" → GLUTATHIONE → SKIN
 - "laser karwana hai" / "lazer treatment" → LASER → SKIN
 - "wrinkles hain" / "anti aging" / "face tight" → ANTI_AGING → SKIN
-- "eyebrow PMU" / "microblading" / "permanent makeup" → PMU (Dr. Krishna)
+- "eyebrow PMU" / "microblading" / "permanent makeup" → PMU (Krishna)
 - "scalp micropigmentation" / "smp" → SMP
 - "beard micropigmentation" / "beard smp" → BEARD_MICROPIGMENTATION
 - "daant mein pain" / "tooth problem" → DENTAL
@@ -657,7 +657,7 @@ Hair Transplant: "Hair transplant ke liye Sikar mein Elite Surgical available ha
 Medical Facial: "Medical Facial Kezza ke Skin treatment mein aata hai. Skin consultation book kar sakte hain. 📞 9216063686"
 Botox: "Botox Skin/Aesthetic Skin consultation ke under aata hai. 📞 9216063686"
 Acne: "Acne ke liye Skin Team se contact karein. 📞 9216063686"
-PMU (Eyebrow): "Eyebrow PMU ke liye Dr. Krishna Choudhary ki team. 📞 9079161300"
+PMU (Eyebrow): "Eyebrow PMU ke liye Krishna Choudhary ki team. 📞 9079161300"
 SMP: "Scalp Micropigmentation ke liye Kezza SMP Team. 📞 9079161300"
 Beard Micropigmentation: "Beard Micropigmentation PMU se alag category hai. Verified Kezza department available hone par aapko connect karunga."
 Dental: "Dr. Dhiral Vijayvargiya relevant hain. Verified dental number abhi available nahi hai."
@@ -906,7 +906,7 @@ Dental: "Dr. Dhiral Vijayvargiya relevant hain. Verified dental number abhi avai
             const tax = strictResult.taxonomy;
             switch (tax.category) {
                 case 'SKIN':   return 'acne_scar';    // routes to skin team 9216063686
-                case 'PMU':    return 'pmu';           // routes to Dr. Krishna 9079161300
+                case 'PMU':    return 'pmu';           // routes to Krishna 9079161300
                 case 'SMP':    return 'smp_stretchmark';
                 case 'BEARD_MICROPIGMENTATION': return null; // handled separately
                 case 'ANTI_AGING': return 'anti_aging';
@@ -1003,13 +1003,13 @@ Dental: "Dr. Dhiral Vijayvargiya relevant hain. Verified dental number abhi avai
         PMU: {
             id: 'PMU',
             departmentKey: 'PMU',
-            specialistName: 'Dr. Krishna Choudhary',
-            departmentName: 'PMU Team (Dr. Krishna Choudhary)',
+            specialistName: 'Krishna Choudhary',
+            departmentName: 'PMU Team (Krishna Choudhary)',
             phone: '9079161300',
             isTransplant: false,
             isDental: false,
-            buttonTextEn: '💬 Send Consultation to Dr. Krishna Choudhary (9079161300)',
-            buttonTextHi: '💬 Dr. Krishna Choudhary ko WhatsApp par Send karein (9079161300)'
+            buttonTextEn: '💬 Send Consultation to Krishna Choudhary (9079161300)',
+            buttonTextHi: '💬 Krishna Choudhary ko WhatsApp par Send karein (9079161300)'
         },
         SMP: {
             id: 'SMP',
@@ -2237,7 +2237,7 @@ Please contact the patient for further consultation and appointment confirmation
             } else if (norm.includes('pmu') || norm.includes('microblading') || norm.includes('lip blush') || norm.includes('eyebrow') || norm.includes('permanent makeup')) {
                 category = 'pmu';
                 treatment = validateTreatment(norm, 'pmu') || 'Eyebrow PMU (Microblading / Ombré Brows)';
-                specialist = 'Dr. Krishna Choudhary';
+                specialist = 'Krishna Choudhary';
                 department = 'PMU';
                 phone = '9079161300';
             } else if (norm.includes('hair loss') || norm.includes('hair fall') || norm.includes('prp') || norm.includes('gfc') || (norm.includes('hair') && !norm.includes('skin') && !norm.includes('transplant'))) {
@@ -2299,7 +2299,7 @@ Please contact the patient for further consultation and appointment confirmation
             } else if (stateRef.lastConcern === 'PMU / Permanent Makeup' || stateRef.lastCategory === 'pmu') {
                 category = 'pmu';
                 treatment = stateRef.lastTreatment || 'Eyebrow PMU (Microblading / Ombré Brows)';
-                specialist = 'Dr. Krishna Choudhary';
+                specialist = 'Krishna Choudhary';
                 department = 'PMU';
                 phone = '9079161300';
             } else if (stateRef.lastConcern === 'SMP & Stretch Marks' || stateRef.lastCategory === 'smp') {
@@ -4261,12 +4261,12 @@ Please guide me on next steps and appointment availability.
                 possible_concerns: ['Scalp Micropigmentation (SMP) candidate for follicle replication.'],
                 preliminary_assessment: 'Mild visible concern',
                 assessment_level: 'Low',
-                specialist: 'Dr. Krishna Choudhary',
+                specialist: 'Krishna Choudhary',
                 specialist_contact: '9079161300',
                 location: 'Jaipur & Sikar',
                 department: 'PMU / SMP Department',
                 department_key: 'SMP',
-                why_this_consultation: 'Visible scalp contrast can be aesthetically enhanced with SMP micro-pigment dot simulation. Dr. Krishna Choudhary can assess scalp skin tone and follicle density.',
+                why_this_consultation: 'Visible scalp contrast can be aesthetically enhanced with SMP micro-pigment dot simulation. Krishna Choudhary can assess scalp skin tone and follicle density.',
                 disclaimer: 'This is an AI-assisted preliminary assessment based on the uploaded photo. It is not a medical diagnosis. The Kezza specialist will confirm the concern and determine the appropriate treatment.',
                 needs_in_person_assessment: true,
                 follow_up_questions: ['What is your desired visual density?']
@@ -4329,12 +4329,12 @@ Please guide me on next steps and appointment availability.
                 possible_concerns: ['Semi-Permanent Makeup / Microblading cosmetic enhancement or touch-up.'],
                 preliminary_assessment: 'Mild visible concern',
                 assessment_level: 'Low',
-                specialist: 'Dr. Krishna Choudhary',
+                specialist: 'Krishna Choudhary',
                 specialist_contact: '9079161300',
                 location: 'Jaipur & Sikar',
                 department: 'PMU Department',
                 department_key: 'PMU',
-                why_this_consultation: 'The eyebrows show sparse areas or fading pigment suitable for semi-permanent microblading stroke replication. Dr. Krishna Choudhary can design the ideal brow architecture.',
+                why_this_consultation: 'The eyebrows show sparse areas or fading pigment suitable for semi-permanent microblading stroke replication. Krishna Choudhary can design the ideal brow architecture.',
                 disclaimer: 'This is an AI-assisted preliminary assessment based on the uploaded photo. It is not a medical diagnosis. The Kezza specialist will confirm the concern and determine the appropriate treatment.',
                 needs_in_person_assessment: true,
                 follow_up_questions: ['Have you had previous permanent makeup done?']
@@ -4863,18 +4863,18 @@ Please guide me on next steps and appointment availability.
                 state.lastConcern = taxonomy.label;
                 if (lang === 'hinglish') {
                     return {
-                        text: `Bilkul 😊 <strong>${taxonomy.label}</strong> Kezza ke <strong>PMU (Permanent Makeup)</strong> category mein aata hai.\n\nIske liye <strong>Dr. Krishna Choudhary</strong> ki team se consultation book kar sakte hain.\n\n📞 <strong>${pmuPhone}</strong>\n\n${pmuBtn}`,
+                        text: `Bilkul 😊 <strong>${taxonomy.label}</strong> Kezza ke <strong>PMU (Permanent Makeup)</strong> category mein aata hai.\n\nIske liye <strong>Krishna Choudhary</strong> ki team se consultation book kar sakte hain.\n\n📞 <strong>${pmuPhone}</strong>\n\n${pmuBtn}`,
                         quickReplies: ['📅 Book PMU Consultation', '📍 Clinic Locations']
                     };
                 }
                 if (lang === 'hindi') {
                     return {
-                        text: `बिल्कुल 😊 <strong>${taxonomy.label}</strong> केज़ा के <strong>PMU (Permanent Makeup)</strong> श्रेणी में आता है।\n\nइसके लिए <strong>Dr. Krishna Choudhary</strong> की टीम से संपर्क करें।\n\n📞 <strong>${pmuPhone}</strong>\n\n${pmuBtn}`,
+                        text: `बिल्कुल 😊 <strong>${taxonomy.label}</strong> केज़ा के <strong>PMU (Permanent Makeup)</strong> श्रेणी में आता है।\n\nइसके लिए <strong>Krishna Choudhary</strong> की टीम से संपर्क करें।\n\n📞 <strong>${pmuPhone}</strong>\n\n${pmuBtn}`,
                         quickReplies: ['📅 PMU परामर्श बुक करें', '📍 क्लीनिक लोकेशन']
                     };
                 }
                 return {
-                    text: `<strong>${taxonomy.label}</strong> falls under Kezza's <strong>PMU / Permanent Makeup</strong> category.\n\nContact <strong>Dr. Krishna Choudhary</strong>'s team.\n\n📞 <strong>${pmuPhone}</strong>\n\n${pmuBtn}`,
+                    text: `<strong>${taxonomy.label}</strong> falls under Kezza's <strong>PMU / Permanent Makeup</strong> category.\n\nContact <strong>Krishna Choudhary</strong>'s team.\n\n📞 <strong>${pmuPhone}</strong>\n\n${pmuBtn}`,
                     quickReplies: ['📅 Book PMU Consultation', '📍 Clinic Locations']
                 };
             }
@@ -5073,7 +5073,7 @@ Please guide me on next steps and appointment availability.
             };
         }
 
-        // PMU / Permanent Makeup → Dr. Krishna Choudhary
+        // PMU / Permanent Makeup → Krishna Choudhary
         // STRICT: only explicit PMU terms — not micropigmentation alone, not beard/scalp
         if (DEPARTMENTS.pmu.scope.some(k => norm.includes(k)) ||
             (norm.includes('makeup') && (norm.includes('karwana') || norm.includes('consultation') || norm.includes('treatment') || norm.includes('chahiye')))) {
@@ -5082,12 +5082,12 @@ Please guide me on next steps and appointment availability.
             const btn = createSpecialistWhatsAppButtonHtml('dr_krishna', null, lang);
             if (lang === 'hinglish') {
                 return {
-                    text: `PMU / Permanent Makeup ke liye <strong>Dr. Krishna Choudhary</strong> ki team se contact kar sakte hain.\n\n📞 <strong>${spec.phone}</strong>\n\n${btn}\n\n<em>PMU mein eyebrow, lip, eyeliner aur beauty spot permanent makeup services include hain.</em>`,
+                    text: `PMU / Permanent Makeup ke liye <strong>Krishna Choudhary</strong> ki team se contact kar sakte hain.\n\n📞 <strong>${spec.phone}</strong>\n\n${btn}\n\n<em>PMU mein eyebrow, lip, eyeliner aur beauty spot permanent makeup services include hain.</em>`,
                     quickReplies: ['📅 Book PMU Consultation', 'Eyebrow PMU', 'Lip PMU', '📍 Clinic Locations']
                 };
             }
             return {
-                text: `For <strong>PMU / Permanent Makeup</strong>, contact <strong>Dr. Krishna Choudhary</strong>'s team.\n\n📞 <strong>${spec.phone}</strong>\n\n${btn}\n\n<em>PMU includes: Eyebrow Microblading, Lip Blush, Permanent Eyeliner, and Beauty Spot.</em>`,
+                text: `For <strong>PMU / Permanent Makeup</strong>, contact <strong>Krishna Choudhary</strong>'s team.\n\n📞 <strong>${spec.phone}</strong>\n\n${btn}\n\n<em>PMU includes: Eyebrow Microblading, Lip Blush, Permanent Eyeliner, and Beauty Spot.</em>`,
                 quickReplies: ['📅 Book PMU Consultation', 'Eyebrow PMU', 'Lip PMU', '📍 Clinic Locations']
             };
         }

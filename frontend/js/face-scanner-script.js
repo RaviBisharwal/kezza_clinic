@@ -50,7 +50,7 @@
             spec:     'Oral & Maxillofacial, Aesthetic & Hair Transplant Surgeon',
             img:      'images/Doctor4.jpeg',
             contact:  '918130888129',
-            location: 'Sikar & Ajmer'
+            location: 'Ajmer'
         },
         SKIN: {
             name:     'Dr. Amrita Mukhija',

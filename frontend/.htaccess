@@ -1,0 +1,90 @@
+# ─────────────────────────────────────────────────────────────────────
+# Kezza Hair & Skin Clinic — Apache / LiteSpeed config (GoDaddy cPanel)
+# Upload to the web root (public_html) next to index.html.
+# Every block is wrapped in <IfModule> so a missing module can't 500 the site.
+# ─────────────────────────────────────────────────────────────────────
+
+Options -Indexes
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+ErrorDocument 404 /404.html
+
+# ── 1. One canonical host: https://www.kezza.co.in ───────────────────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # kezza.co.in (http or https)  ->  https://www.kezza.co.in  (single 301 hop)
+    RewriteCond %{HTTP_HOST} ^kezza\.co\.in$ [NC]
+    RewriteRule ^ https://www.kezza.co.in%{REQUEST_URI} [L,R=301]
+
+    # http://www.kezza.co.in  ->  https://www.kezza.co.in
+    # (X-Forwarded-Proto check prevents a loop if SSL is ever terminated upstream)
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{HTTP_HOST} ^www\.kezza\.co\.in$ [NC]
+    RewriteRule ^ https://www.kezza.co.in%{REQUEST_URI} [L,R=301]
+
+    # llms.txt spec path is lowercase; keep the old mixed-case URL working
+    RewriteRule ^LLMs\.txt$ /llms.txt [L,R=301]
+
+    # Folder URLs for the new sections (serve without the trailing-slash 404)
+    RewriteRule ^(locations|blog)$ /$1/ [L,R=301]
+</IfModule>
+
+# ── 2. Compression (text assets) ─────────────────────────────────────
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+    AddOutputFilterByType DEFLATE application/javascript text/javascript application/json
+    AddOutputFilterByType DEFLATE application/xml application/rss+xml image/svg+xml
+    AddOutputFilterByType DEFLATE application/manifest+json font/ttf font/otf
+</IfModule>
+
+<IfModule mod_mime.c>
+    AddType image/webp .webp
+    AddType image/avif .avif
+    AddType font/woff2 .woff2
+    AddType application/manifest+json .webmanifest
+</IfModule>
+
+# ── 3. Browser caching ───────────────────────────────────────────────
+# HTML is always revalidated so content/SEO changes show immediately.
+# CSS/JS: 1 week (bundles carry content hashes; bump ?v= on other files when you edit them).
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault                          "access plus 1 week"
+    ExpiresByType text/html                 "access plus 0 seconds"
+    ExpiresByType text/plain                "access plus 1 hour"
+    ExpiresByType application/xml           "access plus 1 hour"
+    ExpiresByType text/xml                  "access plus 1 hour"
+    ExpiresByType text/css                  "access plus 1 week"
+    ExpiresByType application/javascript    "access plus 1 week"
+    ExpiresByType text/javascript           "access plus 1 week"
+    ExpiresByType image/jpeg                "access plus 6 months"
+    ExpiresByType image/png                 "access plus 6 months"
+    ExpiresByType image/webp                "access plus 6 months"
+    ExpiresByType image/avif                "access plus 6 months"
+    ExpiresByType image/svg+xml             "access plus 6 months"
+    ExpiresByType image/x-icon              "access plus 1 year"
+    ExpiresByType video/mp4                 "access plus 6 months"
+    ExpiresByType font/woff2                "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.html?$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Internal pages must never be indexed, whatever a crawler does with robots.txt
+    <FilesMatch "^(admin\.html)$">
+        Header set X-Robots-Tag "noindex, nofollow"
+    </FilesMatch>
+</IfModule>
+
+# ── 4. Keep private files off the public web ─────────────────────────
+<FilesMatch "^\.|\.(env|log|bak|sql|db|md|py|sh)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</FilesMatch>
