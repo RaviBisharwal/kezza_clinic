@@ -36,7 +36,7 @@
       name: 'Dr. Amrita Mukhija',
       spec: 'Aesthetic Physician & Skin Specialist',
       img: 'images/Doctor2.jpeg',
-      clinic: 'Jaipur & Sikar'
+      clinic: 'Jaipur'
     },
     PMU: {
       name: 'Krishna',
@@ -60,7 +60,7 @@
       name: 'Dr. Dhiral Vijayvargiya',
       spec: 'Oral & Maxillofacial, Aesthetic & Hair Transplant Surgeon',
       img: 'images/Doctor4.jpeg',
-      clinic: 'Sikar & Ajmer'
+      clinic: 'Ajmer'
     }
   };
 

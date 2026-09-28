@@ -1,0 +1,6 @@
+Delete these files from your repo AND from the live server (public_html) — unzipping won't remove them:
+
+  frontend/LLMs.txt                         (replaced by lowercase frontend/llms.txt — delete it BEFORE copying the new file on a Mac)
+  frontend/images/BILLPRINT_16050485.pdf    (a private electricity bill that was publicly downloadable)
+
+On the server the paths are public_html/LLMs.txt and public_html/images/BILLPRINT_16050485.pdf.

@@ -5,11 +5,14 @@
  * Automatically triggers popup 0.6 seconds after website open.
  */
 (function () {
-  var isSubdir = window.location.pathname.includes('/hair-transplant/');
-  var basePath = isSubdir ? '../' : '';
+  // Resolve the site root from this script's own URL so the scanner works from
+  // pages at any depth (/, /hair-transplant/, /locations/jaipur/, /blog/<post>/).
+  var selfSrc = (document.currentScript && document.currentScript.src) || '';
+  var basePath = selfSrc ? selfSrc.replace(/js\/scanner-launch\.js(\?.*)?$/, '')
+                         : (window.location.pathname.split('/').length > 2 ? '/' : '');
   var SELECTORS = '.nav-scanner-link, .btn-scanner-hero, .dock-scan, [data-open-scanner-modal]';
   var CSS_URL = basePath + 'css/scanner-modal.css?v=6.5';
-  var JS_URL  = basePath + 'js/scanner-modal.js?v=6.5';
+  var JS_URL  = basePath + 'js/scanner-modal.js?v=6.6';
   var loading = null;
 
   function loadOnce() {

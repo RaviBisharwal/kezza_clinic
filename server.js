@@ -108,7 +108,7 @@ CLINIC INFORMATION:
   3. Ajmer Clinic (Kezza Clinic – Ajmer): First Floor, Shastri Nagar, Oasis Complex and Hotels, Jawahar Nagar, Ajmer, Rajasthan 305001.
      Phone: +91-9216088257 | WhatsApp: +91-9216088257 | Email: kezzaclinic@gmail.com
      Google Maps: https://maps.app.goo.gl/zMajvKmT5N7coswJA?g_st=ic
-     Opening Hours: Please contact the clinic directly for current timings.
+     Timings: 9:00 AM to 8:00 PM (Monday to Sunday, All 7 Days).
 - Central WhatsApp / Consultation Helpline: +91 9284517427.
 
 KEY MEDICAL EXPERTS & DEPARTMENTS:
@@ -116,7 +116,7 @@ KEY MEDICAL EXPERTS & DEPARTMENTS:
    - Specialist: Dr. Ankit Bhalothia & Elite Surgical Team (Sikar).
    - Treatments: Sapphire FUE Hair Transplant, Choi DHI, GFC / PRP Hair Loss Therapy, Beard & Eyebrow Transplant, White Hair Removal.
 2. Skin & Aesthetics:
-   - Specialist: Dr. Amrita Mukhija (Jaipur & Sikar).
+   - Specialist: Dr. Amrita Mukhija (Jaipur).
    - Treatments: Medical HydraFacial, Acne & Fractional Scar Repair, Botox & Dermal Fillers, Pigmentation / Melasma Reduction, Laser Hair Removal, Glutathione Glow Therapy.
 3. Permanent Makeup (PMU):
    - Microblading, Ombre Powder Brows, Lip Blush, Scalp Micropigmentation (SMP).
@@ -131,7 +131,7 @@ LOCATION ROUTING RULES:
 - If a user mentions "Ajmer", "Ajmer clinic", "Kezza Ajmer", "I want appointment in Ajmer" or "I live in Ajmer": use location = Ajmer and provide Ajmer clinic details.
 - Ajmer doctors: Dr. Dhiral Vijayvargiya and Dr. Aliza Rizvi.
 - Do NOT claim Jaipur/Sikar doctors are available in Ajmer unless explicitly configured.
-- Do NOT invent opening hours for Ajmer — say "Please contact the clinic directly for current timings."
+- All three clinics (Jaipur, Sikar, Ajmer) are open 9:00 AM to 8:00 PM, all 7 days.
 
 RESPONSE GUIDELINES:
 - Language: Respond naturally in the language user speaks (English, Hindi, or conversational Hinglish).
@@ -303,9 +303,9 @@ ${preferredClinic ? `\nPATIENT PREFERRED CLINIC: ${preferredClinic}` : ''}
 
 CLINICAL DEPARTMENTS & KEY SPECIALISTS AT KEZZA:
 1. HAIR: Dr. Ankit Bhalothia (Sapphire FUE, GFC/PRP Therapy, Hair Thinning) — Jaipur & Sikar
-2. HAIR_TRANSPLANT_SIKAR: Dr. Dhiral Vijayvargiya (Elite Surgical Hair Restoration) — Sikar & Ajmer
-3. SKIN: Dr. Amrita Mukhija (Acne, Scars, HydraFacial, Melasma, Laser Toning) — Jaipur & Sikar
-4. ANTI_AGING: Dr. Amrita Mukhija (Botox, Dermal Fillers, HIFU, Skin Tightening) — Jaipur & Sikar
+2. HAIR_TRANSPLANT_SIKAR: Dr. Dhiral Vijayvargiya (Elite Surgical Hair Restoration) — Ajmer
+3. SKIN: Dr. Amrita Mukhija (Acne, Scars, HydraFacial, Melasma, Laser Toning) — Jaipur
+4. ANTI_AGING: Dr. Amrita Mukhija (Botox, Dermal Fillers, HIFU, Skin Tightening) — Jaipur
 5. PMU / SMP: Krishna (Eyebrow Microblading, Lip Blush, Scalp Micropigmentation) — Jaipur & Sikar
 6. WEIGHT_LOSS: Kezza Wellness Team (360° Cryolipolysis Fat Freezing, Body Sculpting) — Jaipur & Sikar
 7. ENT_RHINOPLASTY: Dr. Mandhata Sharma (Aesthetic Rhinoplasty, Facial Contour) — Jaipur

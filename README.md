@@ -1,6 +1,6 @@
 # 🏥 Kezza Hair & Skin Clinic — Developer Documentation & Architecture Guide
 
-A modern, responsive, high-performance static web platform with an integrated **AI Face & Scalp Scanner**, interactive medical triage chatbot, dynamic doctor profiles, and direct WhatsApp consultation routing for **Kezza Hair & Skin Clinic** (Jaipur & Sikar, Rajasthan).
+A modern, responsive, high-performance static web platform with an integrated **AI Face & Scalp Scanner**, interactive medical triage chatbot, dynamic doctor profiles, and direct WhatsApp consultation routing for **Kezza Hair & Skin Clinic** (Jaipur, Sikar & Ajmer, Rajasthan).
 
 ---
 
@@ -18,7 +18,11 @@ kezza_clinic/                       ← Repository Root
 ├── 🔑 .env.example                 # Template for .env — copy and fill before running the server
 ├── 🛠️ tools/                       # Developer utility scripts
 │   ├── fix_mojibake.py             # Unicode / character encoding sanitizer
-│   └── update_paths.js             # Batch CSS/JS path integrity updater
+│   ├── update_paths.js             # Batch CSS/JS path integrity updater
+│   ├── build-css.js                # CSS bundler (npm run build:css)
+│   ├── content/                    # Location pages, blog, sitemap, llms.txt builder (npm run build:content)
+│   ├── og/                         # Social share image generator (npm run og)
+│   └── seo/                        # site-data.json (clinic facts) + check-seo.js (npm run seo:check)
 │
 └── 🌐 frontend/                    ← ALL public-facing website files live here
     │
@@ -81,7 +85,7 @@ kezza_clinic/                       ← Repository Root
 - **Smart Date Picker**: Interactive calendar allowing date selection (Today, Tomorrow, or customized calendar selection up to 60 days ahead) with Morning / Afternoon / Evening time slots.
 - **Doctor Matching Logic**:
   - *Hair Concerns* (Jaipur) ➔ **Dr. Ankit Bhalothia** (+91 9216063681)
-  - *Hair Concerns* (Sikar) ➔ **Dr. Dhiral Vijayvargiya** (+91 8130888129)
+  - *Hair Concerns* (Sikar) ➔ Sikar hair transplant team (+91 8130888129 — routed under Dr. Dhiral's profile; he now consults at Ajmer)
   - *Skin & Laser Concerns* (Jaipur) ➔ **Dr. Amrita Mukhija** (+91 9216063686)
   - *Skin Concerns* ➔ **Dr. Neelam Choudhary** (+91 9216063686)
   - *Permanent Makeup / SMP* ➔ **Krishna** (+91 9079161300)
@@ -98,9 +102,9 @@ kezza_clinic/                       ← Repository Root
   - **Dr. Ankit Bhalothia**: Jaipur & Sikar
   - **Dr. Amrita Mukhija**: Jaipur
   - **Dr. Neelam Choudhary**: Jaipur & Sikar
-  - **Dr. Dhiral Vijayvargiya**: Sikar
+  - **Dr. Dhiral Vijayvargiya**: Ajmer
   - **Dr. Aliza Rizvi**: Ajmer
-  - **Krishna (PMU)**: Jaipur & Sikar
+  - **Krishna Choudhary (PMU artist)**: Jaipur & Sikar
   - **Dr. Mandhata Sharma (ENT & Rhinoplasty)**: Jaipur
   - **Dr. Nakul Somani (Plastic & Aesthetic Surgery)**: Jaipur
 - **Interactive Bio (`... More Info`)**: Truncated previews can be toggled to view the doctor's full surgical and clinical credentials with smooth transitions.
@@ -215,6 +219,24 @@ Open **`http://localhost:3001`** in your browser.
   console.log('Verification finished.');
   "
   ```
+
+## 🔎 5.5 SEO, content pages & CSS build
+
+The live site is **https://www.kezza.co.in** (GoDaddy, Apache). All SEO URLs, schema and the sitemap use that host; `frontend/.htaccess` redirects `kezza.co.in` and `http://` to it. See `SEO-CHANGES.md` for the full September 2026 change log and deploy checklist.
+
+| Command | What it does |
+| --- | --- |
+| `npm run build` | Rebuilds `/locations/*`, `/blog/*`, `sitemap.xml` and `llms.txt`, then the CSS bundles |
+| `npm run build:content` | Only the generated pages (`python3 tools/content/build_content_pages.py`) |
+| `npm run build:css` | Re-bundles CSS after editing anything in `frontend/css/` (`node tools/build-css.js`) |
+| `npm run seo:check` | Checks domain, NAP/hours, schema, FAQs, links, sitemap — run before every deploy |
+| `npm run og` | Regenerates 1200×630 social share images in `frontend/images/og/` (needs `pip install pillow`) |
+
+- **Clinic facts** (addresses, phones, hours, doctors, services per branch) live in `tools/seo/site-data.json`. Change them there, keep them identical to each Google Business Profile, then run `npm run build`.
+- **CSS:** keep editing the normal files in `frontend/css/`. Pages load `css/bundle-<page>.min.css`; `tools/css-bundles.json` lists which source files (in which order) make up each bundle.
+- **Blog:** each article is one file in `tools/content/blog/` (JSON header + HTML body). Copy one, edit it, add its share image in `tools/og/make_og_images.py`, then `npm run og && npm run build`.
+- **Generated files** (`frontend/locations/**`, `frontend/blog/**`, `sitemap.xml`, `llms.txt`, `css/bundle-*.min.css`) are overwritten by the build — edit their sources instead.
+- Retired: `tools/inject_seo.js`, `tools/fix_titles.js`, `tools/fix_descriptions.js` (they would re-introduce the old domain and phone).
 
 ---
 

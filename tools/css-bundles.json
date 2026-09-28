@@ -1,0 +1,167 @@
+{
+  "bundles": {
+    "404": [
+      "css/styles.css",
+      "css/scroll-3d.css"
+    ],
+    "about": [
+      "css/about-styles.css",
+      "css/doctors-landscape.css",
+      "css/quick-actions.css",
+      "css/services-navigation.css",
+      "css/kezza-ai.css",
+      "css/responsive.css",
+      "css/scroll-3d.css",
+      "css/mobile-pro.css"
+    ],
+    "branches": [
+      "css/branches-styles.css",
+      "css/quick-actions.css",
+      "css/services-navigation.css",
+      "css/kezza-ai.css",
+      "css/responsive.css",
+      "css/scroll-3d.css",
+      "css/mobile-pro.css"
+    ],
+    "contact": [
+      "css/contact-styles.css",
+      "css/quick-actions.css",
+      "css/services-navigation.css",
+      "css/kezza-ai.css",
+      "css/responsive.css",
+      "css/scroll-3d.css",
+      "css/mobile-pro.css"
+    ],
+    "content": [
+      "css/styles.css",
+      "css/services-navigation.css",
+      "css/quick-actions.css",
+      "css/service-page.css",
+      "css/responsive.css",
+      "css/kezza-ai.css",
+      "css/content-pages.css"
+    ],
+    "face-scanner": [
+      "css/face-scanner-styles.css",
+      "css/quick-actions.css",
+      "css/services-navigation.css",
+      "css/kezza-ai.css",
+      "css/responsive.css",
+      "css/scroll-3d.css",
+      "css/mobile-pro.css"
+    ],
+    "hair-services": [
+      "css/hair-services-styles.css",
+      "css/quick-actions.css",
+      "css/services-navigation.css",
+      "css/responsive.css",
+      "css/scroll-3d.css",
+      "css/kezza-ai.css",
+      "css/mobile-pro.css"
+    ],
+    "hair-transplant": [
+      "css/styles.css",
+      "css/services-navigation.css",
+      "css/quick-actions.css",
+      "css/service-page.css",
+      "css/responsive.css",
+      "css/kezza-ai.css"
+    ],
+    "home": [
+      "css/styles.css",
+      "css/quick-actions.css",
+      "css/services-navigation.css",
+      "css/kezza-ai.css",
+      "css/scroll-3d.css",
+      "css/responsive.css",
+      "css/luxury-pro.css",
+      "css/home-upgrade.css",
+      "css/mobile-pro.css"
+    ],
+    "permanent-makeup": [
+      "css/permanent-makeup-styles.css",
+      "css/quick-actions.css",
+      "css/services-navigation.css",
+      "css/kezza-ai.css",
+      "css/responsive.css",
+      "css/scroll-3d.css",
+      "css/pmu-dark-override.css",
+      "css/mobile-pro.css"
+    ],
+    "prp-therapy": [
+      "css/styles.css",
+      "css/quick-actions.css",
+      "css/services-navigation.css",
+      "css/responsive.css",
+      "css/luxury-pro.css",
+      "css/scroll-3d.css",
+      "css/prp-therapy.css",
+      "css/kezza-ai.css",
+      "css/mobile-pro.css"
+    ],
+    "skin-services": [
+      "css/skin-services-styles.css",
+      "css/quick-actions.css",
+      "css/services-navigation.css",
+      "css/responsive.css",
+      "css/scroll-3d.css",
+      "css/kezza-ai.css",
+      "css/mobile-pro.css"
+    ],
+    "terms": [
+      "css/terms-styles.css",
+      "css/quick-actions.css",
+      "css/services-navigation.css",
+      "css/kezza-ai.css",
+      "css/responsive.css",
+      "css/scroll-3d.css",
+      "css/mobile-pro.css"
+    ],
+    "weight-loss": [
+      "css/quick-actions.css",
+      "css/services-navigation.css",
+      "css/kezza-ai.css",
+      "css/scroll-3d.css",
+      "css/responsive.css",
+      "css/mobile-pro.css"
+    ],
+    "white-hair-removal": [
+      "css/styles.css",
+      "css/quick-actions.css",
+      "css/services-navigation.css",
+      "css/responsive.css",
+      "css/luxury-pro.css",
+      "css/scroll-3d.css",
+      "css/white-hair-removal.css",
+      "css/kezza-ai.css",
+      "css/mobile-pro.css"
+    ]
+  },
+  "pages": {
+    "404.html": "404",
+    "about.html": "about",
+    "blog/fue-vs-dhi-hair-transplant/index.html": "content",
+    "blog/hair-transplant-cost-jaipur/index.html": "content",
+    "blog/how-many-prp-sessions/index.html": "content",
+    "blog/index.html": "content",
+    "blog/norwood-scale-explained/index.html": "content",
+    "blog/prp-vs-gfc-therapy/index.html": "content",
+    "blog/why-laser-cant-remove-white-hair/index.html": "content",
+    "branches.html": "branches",
+    "contact.html": "contact",
+    "face-scanner.html": "face-scanner",
+    "hair-services.html": "hair-services",
+    "hair-transplant/index.html": "hair-transplant",
+    "index.html": "home",
+    "locations/ajmer/index.html": "content",
+    "locations/index.html": "content",
+    "locations/jaipur/index.html": "content",
+    "locations/sikar/index.html": "content",
+    "permanent-makeup.html": "permanent-makeup",
+    "prp-therapy.html": "prp-therapy",
+    "skin-services.html": "skin-services",
+    "terms.html": "terms",
+    "weight-loss.html": "weight-loss",
+    "white-hair-removal.html": "white-hair-removal"
+  }
+}
