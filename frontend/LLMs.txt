@@ -5,28 +5,48 @@
 # Kezza Hair & Skin Clinic
 
 > Kezza Hair & Skin Clinic is a premium hair transplant and skin care clinic
-> based in Jaipur and Sikar, Rajasthan, India. We offer FUE & DHI hair transplants,
-> advanced skin treatments, permanent makeup, non-surgical weight loss, and a free
-> AI-powered face & scalp assessment tool.
+> operating in Jaipur, Sikar, and Ajmer, Rajasthan, India. Specialist services
+> include FUE & DHI hair transplants, PRP & GFC hair therapy, white & grey hair
+> removal (Kezza Medline Micro-Epilation), advanced skin treatments, permanent
+> makeup (PMU), scalp micropigmentation (SMP), non-surgical weight loss, and a
+> free AI-powered face & scalp assessment tool.
 
 ## About
-- Clinics in Jaipur and Sikar, Rajasthan
+
+- Clinics in Jaipur, Sikar, and Ajmer, Rajasthan, India
 - Expert dermatologists and certified hair transplant surgeons
-- Contact: +91-9414077399
+- Primary Contact: +91-9284517427
 - Website: https://kezzaclinic.com
+- Open: Monday – Sunday, 10:00 AM – 8:00 PM
+
+## Medical Team
+
+- Dr. Ankit Bhalothia — Aesthetic & Hair Transplant Surgeon (Jaipur & Sikar)
+- Dr. Nakul Somani — Aesthetic & Reconstructive Plastic Surgeon (Jaipur), trained at Sir Ganga Ram Hospital, Delhi & Cocoona Dubai
+- Dr. Mandhata Sharma — ENT, Rhinoplasty & Head & Neck Surgeon (Jaipur), MS Gold Medalist from MAMC Delhi
+- Dr. Youvraj Singh — Consultant Physician & Internal Medicine Specialist, MBBS, MD (Jaipur)
 
 ## Services
-- [Hair Transplant & Restoration](https://kezzaclinic.com/hair-services.html): FUE, DHI, PRP, GFC, beard & eyebrow transplant
-- [Skin Care & Dermatology](https://kezzaclinic.com/skin-services.html): HydraFacial, carbon peel, laser, anti-aging, acne scar removal
-- [Permanent Makeup (PMU)](https://kezzaclinic.com/permanent-makeup.html): Microblading, ombre brows, lip blush, eyeliner, scalp micropigmentation
-- [Non-Surgical Weight Loss](https://kezzaclinic.com/weight-loss.html): Body sculpting & personalised weight management programs
-- [AI Face & Scalp Scanner](https://kezzaclinic.com/face-scanner.html): Free AI-powered preliminary assessment (MediaPipe technology)
+
+- [Hair Transplant — FUE & DHI](https://kezzaclinic.com/hair-transplant/): Surgical follicular restoration using FUE, DHI, and sapphire techniques in Jaipur, Sikar & Ajmer
+- [PRP Therapy](https://kezzaclinic.com/prp-therapy.html): Autologous Platelet-Rich Plasma (PRP) hair regrowth therapy in Jaipur
+- [GFC Therapy](https://kezzaclinic.com/prp-therapy.html#gfc-therapy): Acellular Growth Factor Concentrate (GFC) — advanced hair restoration in Jaipur
+- [White & Grey Hair Removal](https://kezzaclinic.com/white-hair-removal.html): Kezza Medline Micro-Epilation — permanent removal of laser-resistant white, grey & blonde hair
+- [Skin Care & Dermatology](https://kezzaclinic.com/skin-services.html): HydraFacial, carbon peel, fractional CO2 laser, Botox, acne scar removal, anti-aging in Jaipur
+- [Permanent Makeup (PMU)](https://kezzaclinic.com/permanent-makeup.html): Microblading, ombre brows, lip blush, permanent eyeliner in Jaipur
+- [Scalp Micropigmentation (SMP)](https://kezzaclinic.com/permanent-makeup.html): Non-surgical hair follicle simulation for thinning hair and alopecia
+- [Non-Surgical Weight Loss](https://kezzaclinic.com/weight-loss.html): Cryolipolysis, HIFU body sculpting & personalised weight management programs
+- [AI Face & Scalp Scanner](https://kezzaclinic.com/face-scanner.html): Free AI-powered preliminary skin and scalp assessment tool
 
 ## Locations
-- [Jaipur Branch](https://kezzaclinic.com/contact.html): Main clinic in Jaipur, Rajasthan
-- [Sikar Branch](https://kezzaclinic.com/branches.html): Clinic in Sikar, Rajasthan
+
+- [Jaipur Clinic](https://kezzaclinic.com/contact.html): A-7, 1st Floor, Hanuman Nagar, Sirsi Rd, Main, Khatipura, Jaipur, Rajasthan 302012 | Tel: +91-92845-17427
+- [Sikar Clinic](https://kezzaclinic.com/branches.html): First Floor, Shakambhari Heights, Infront of S.K. Hospital, Silver Jubilee Rd, Sikar, Rajasthan 332001
+- [Ajmer Clinic](https://kezzaclinic.com/branches.html): Ajmer, Rajasthan, India | Tel: +91-92160-88257
 
 ## Optional
-- [About Us](https://kezzaclinic.com/about.html)
+
+- [About Us & Medical Team](https://kezzaclinic.com/about.html)
 - [Contact & Appointments](https://kezzaclinic.com/contact.html)
+- [Clinic Locations](https://kezzaclinic.com/branches.html)
 - [Terms & Privacy Policy](https://kezzaclinic.com/terms.html)
