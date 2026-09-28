@@ -16,13 +16,14 @@ kezza_clinic/                       ← Repository Root
 ├── 📖 README.md                    # Developer onboarding & architecture documentation (this file)
 ├── 🔐 .gitignore                   # Ignored files: node_modules, .env, *.bak, *.db, uploads/photos, data/
 ├── 🔑 .env.example                 # Template for .env — copy and fill before running the server
-├── 🛠️ tools/                       # Developer utility scripts
-│   ├── fix_mojibake.py             # Unicode / character encoding sanitizer
-│   ├── update_paths.js             # Batch CSS/JS path integrity updater
+├── 🛠️ tools/                       # Developer build & audit tools
 │   ├── build-css.js                # CSS bundler (npm run build:css)
+│   ├── css-bundles.json            # CSS bundle definitions and file mappings
+│   ├── validate_reference_page.py  # Reference page HTML integrity validator
 │   ├── content/                    # Location pages, blog, sitemap, llms.txt builder (npm run build:content)
 │   ├── og/                         # Social share image generator (npm run og)
-│   └── seo/                        # site-data.json (clinic facts) + check-seo.js (npm run seo:check)
+│   ├── seo/                        # site-data.json (clinic facts) + check-seo.js (npm run seo:check)
+│   └── archive/                    # Retired migration & one-off audit scripts
 │
 └── 🌐 frontend/                    ← ALL public-facing website files live here
     │
