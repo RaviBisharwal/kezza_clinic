@@ -55,6 +55,26 @@ CARDS = [
     ("blog-prp-sessions", "Hair Loss Therapy", "How Many PRP Sessions Do You Need?", "prp-1.jpg"),
     ("blog-white-hair-laser", "White Hair Removal", "Why Laser Can't Remove White Hair", "keeza-machine.jpg"),
     ("blog-norwood-scale", "Hair Loss Basics", "The Norwood Scale, Explained", "norwood-stage-3.jpg"),
+    # Treatment pages (tools/content/pages)
+    ("fue-hair-transplant", "Hair Transplant", "FUE Hair Transplant in Jaipur", "fui-hair-2.jpg"),
+    ("dhi-hair-transplant", "Hair Transplant", "DHI Hair Transplant in Jaipur", "dhi-hair-2.jpg"),
+    ("beard-transplant", "Facial Hair Restoration", "Beard Transplant in Jaipur", "beard-transplant-2.jpg"),
+    ("eyebrow-transplant", "Facial Hair Restoration", "Eyebrow Transplant in Jaipur", "eyebro.jpg"),
+    ("gfc-treatment", "Hair Loss Therapy", "GFC Hair Treatment in Jaipur", "gfc-centrifuge-tube.jpg"),
+    ("laser-hair-removal", "Skin & Laser", "Laser Hair Removal in Jaipur", "laser-facial.jpg"),
+    # pSEO treatment pages (built as noindex until the clinic approves them)
+    ("acne-treatment", "Skin & Acne", "Acne Treatment in Jaipur", "vitamin-c-pigmentation.jpg"),
+    ("acne-scar-treatment", "Skin & Acne", "Acne Scar Treatment in Jaipur", "scar-removal-before.jpg"),
+    ("hydra-facial", "Medical Facials", "Hydra Facial in Jaipur", "hydra-facial-2.jpg"),
+    ("botox", "Anti-Ageing", "Botox in Jaipur", "anti-aging-2.jpg"),
+    ("dark-circles-treatment", "Skin Care", "Dark Circles Treatment in Jaipur", "pigmentation-removal.jpg"),
+    ("cryolipolysis", "Body Contouring", "Cryolipolysis in Jaipur", "body-sculpting-treatment.jpg"),
+    ("hifu-body-sculpting", "Body Contouring", "HIFU Body Sculpting in Jaipur", "hifu-body-sculpting-procedure.jpg"),
+    ("weight-management", "Weight Loss", "Medical Weight Management in Jaipur", "keeza-inside-clinic-2.jpg"),
+    ("microblading", "Permanent Makeup", "Microblading in Jaipur", "pm-eyebro.jpg"),
+    ("lip-blush", "Permanent Makeup", "Lip Blush in Jaipur", "pm-lip.jpg"),
+    ("permanent-eyeliner", "Permanent Makeup", "Permanent Eyeliner in Jaipur", "pm-eyeliner.jpg"),
+    ("pmu-correction", "Permanent Makeup", "PMU Correction in Jaipur", "beauty-spot-correction.jpg"),
 ]
 
 

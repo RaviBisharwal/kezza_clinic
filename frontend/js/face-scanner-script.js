@@ -124,14 +124,6 @@
         }
     };
 
-    // Ajmer doctor overrides by department key
-    const AJMER_DOCTOR_OVERRIDE = {
-        HAIR:                 'HAIR_TRANSPLANT_SIKAR', // Dr. Dhiral for hair in Ajmer
-        HAIR_TRANSPLANT_SIKAR: 'HAIR_TRANSPLANT_SIKAR',
-        AJMER_SPECIALIST:     'AJMER_SPECIALIST',
-        // All other depts default to Dr. Aliza Rizvi for Ajmer
-    };
-
     function getDoctorForResult(deptKey, selectedClinic) {
         if (selectedClinic && selectedClinic.toLowerCase() === 'ajmer') {
             if (deptKey === 'HAIR' || deptKey === 'HAIR_TRANSPLANT_SIKAR') {
@@ -143,13 +135,11 @@
     }
     window.getDoctorForResult = getDoctorForResult;
 
-
     // ─── STATE ────────────────────────────────────────────────────────────────
     let capturedImageBase64 = null;   // full data URL
     let mediaStream         = null;
     let faceMesh            = null;
     let cameraRunning       = false;
-    let faceDetected        = false;
 
     const answers = {
         q1: null, // Concern
@@ -183,8 +173,6 @@
     const capturedImg     = $('capturedImg');
     const faceGuide       = $('faceGuide');
     const scanLine        = $('scanLine');
-    const analysisOverlay = $('analysisOverlay');
-    const analysisText    = $('analysisText');
 
     const step1 = $('step1');
     const step2 = $('step2');
@@ -257,7 +245,6 @@
         ctx.clearRect(0, 0, meshCanvas.width, meshCanvas.height);
 
         if (results.multiFaceLandmarks && results.multiFaceLandmarks.length > 0) {
-            faceDetected = true;
             scanLine.classList.add('active');
 
             for (const landmarks of results.multiFaceLandmarks) {
@@ -275,7 +262,6 @@
                 }
             }
         } else {
-            faceDetected = false;
             scanLine.classList.remove('active');
         }
     }
@@ -362,7 +348,7 @@
 
     function showCameraError(msg) {
         cameraIdle.innerHTML = `
-            <div class="idle-icon"><i class="fas fa-camera-slash" style="color:#ef4444"></i></div>
+            <div class="idle-icon"><i class="fas fa-video-slash" style="color:#ef4444"></i></div>
             <p style="color:#f87171;font-size:0.88rem;text-align:center;max-width:220px">${msg}</p>
         `;
         cameraIdle.style.display = 'flex';
@@ -696,7 +682,6 @@
 
     // Q8 date picker input listener
     const consultDateInput = document.getElementById('consultDate');
-    const dateDisplay = document.getElementById('dateDisplay');
     if (consultDateInput) {
         const onDateChange = function () {
             const val = this.value; // YYYY-MM-DD
@@ -1150,7 +1135,6 @@
         const deptKey = data.department_key || 'SKIN';
         const doctor  = getDoctorForResult(deptKey, answers.q7);
 
-
         $('resultDoctorImg').src  = doctor.img;
         $('resultDoctorName').textContent = doctor.name;
         $('resultDoctorSpec').textContent = doctor.spec;
@@ -1306,8 +1290,6 @@
                 consent:          true
             };
 
-            console.log(`[AI Scanner Lead] ${payload.name} (${payload.whatsapp}) | ${payload.treatment} | ${payload.clinic} | Source: AI Scanner`);
-
             // Deduplication & safe sync:
             // First forward to /api/lead (server logs, saves, and forwards to Google Sheets).
             // If /api/lead is unavailable (e.g. live static hosting without Node backend),
@@ -1351,7 +1333,6 @@
             console.warn('[saveAssessmentToDB error]:', err);
         }
     }
-
 
     function buildWhatsAppMessage(data, doctor, consultationId = null) {
         const concern    = data.recommended_consultation || data.possible_concern || 'General Consultation';
@@ -1724,17 +1705,6 @@ _Please confirm my consultation booking at Kezza Clinic._
         });
     }
 
-    // ─── MOBILE NAV (matches other pages) ─────────────────────────────────────
-    const hamburger = document.getElementById('hamburger');
-    const navMenu   = document.getElementById('navMenu');
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
-    }
-
-    // ─── STICKY HEADER SCROLL EFFECT ─────────────────────────────────────────
     // ─── STICKY HEADER SCROLL EFFECT ─────────────────────────────────────────
     const navbar = document.querySelector('.navbar');
     if (navbar) {
@@ -1786,7 +1756,6 @@ _Please confirm my consultation booking at Kezza Clinic._
     } else {
         goToStep(1);
     }
-    console.log('[Kezza AI Scanner] v3.0 - session save, confidence ring, share, download.');
 
 })();
 

@@ -4,121 +4,221 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.kezza.co.in/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/home.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/about.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/about.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/hair-services.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/hair-services.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/hair-transplant/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/hair-services/og/hair-transplant-og-kezza-jaipur.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/prp-therapy.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/prp-therapy.jpg</image:loc></image:image>
   </url>
   <url>
+    <loc>https://www.kezza.co.in/hair-loss-consultation.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/hair-fall-control-program.jpg</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.kezza.co.in/white-hair-removal.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/white-hair-removal.jpg</image:loc></image:image>
   </url>
   <url>
+    <loc>https://www.kezza.co.in/electrolysis.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/electrolysis.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/hair-wig.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/hair-wig.jpg</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://www.kezza.co.in/skin-services.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/skin-services.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/weight-loss.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/weight-loss.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/permanent-makeup.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/permanent-makeup.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/face-scanner.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/face-scanner.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/contact.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/contact.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/branches.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/branches.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/terms.html</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/hair-transplant/fue/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/fue-hair-transplant.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/hair-transplant/dhi/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/dhi-hair-transplant.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/hair-transplant/beard/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/beard-transplant.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/hair-transplant/eyebrow/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/eyebrow-transplant.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/gfc-treatment/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/gfc-treatment.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/laser-hair-removal/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/laser-hair-removal.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/hi/hair-transplant/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/hair-services/og/hair-transplant-og-kezza-jaipur.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/locations/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/locations.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/locations/jaipur/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/location-jaipur.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/locations/sikar/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/location-sikar.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/locations/ajmer/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/location-ajmer.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/blog/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/blog.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/blog/fue-vs-dhi-hair-transplant/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/blog-fue-vs-dhi.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/blog/hair-transplant-cost-jaipur/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/blog-hair-transplant-cost-jaipur.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/blog/prp-vs-gfc-therapy/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/blog-prp-vs-gfc.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/blog/how-many-prp-sessions/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/blog-prp-sessions.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/blog/why-laser-cant-remove-white-hair/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/blog-white-hair-laser.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://www.kezza.co.in/blog/norwood-scale-explained/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <image:image><image:loc>https://www.kezza.co.in/images/og/blog-norwood-scale.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/blog/how-many-grafts-hair-transplant/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/dhi-hair-transplant.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/blog/hair-transplant-recovery-timeline/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/fue-hair-transplant.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/blog/acne-scars-treatment-options/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/acne-scar-treatment.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/blog/hydrafacial-benefits-process/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/hydra-facial.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/blog/laser-hair-removal-how-it-works/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/laser-hair-removal.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/blog/chemical-peels-vs-laser-toning/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/skin-services.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/blog/cryolipolysis-fat-freezing-guide/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/cryolipolysis.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/blog/body-sculpting-vs-weight-loss/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/hifu-body-sculpting.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/blog/microblading-vs-powder-brows/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/microblading.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://www.kezza.co.in/blog/lip-blush-treatment-guide/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <image:image><image:loc>https://www.kezza.co.in/images/og/lip-blush.jpg</image:loc></image:image>
   </url>
 </urlset>

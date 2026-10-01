@@ -1,21 +1,4 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (!href || href === '#') return;
-        try {
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        } catch (err) {}
-    });
-});
-
+// In-page anchor scrolling (with the fixed-navbar offset) is handled by smooth-scroll.js.
 // Optimized Single RAF Scroll Handler
 (function() {
     let ticking = false;
@@ -66,9 +49,6 @@ const observer = new IntersectionObserver(function(entries) {
             entry.target.style.transform = 'translateY(0)';
             
             // Special animations for different elements
-            if (entry.target.classList.contains('branch-card')) {
-                entry.target.style.animation = 'slideUpSequential 0.8s ease forwards';
-            }
             if (entry.target.classList.contains('why-contact-card')) {
                 entry.target.style.animation = 'floatUp 0.8s ease forwards';
             }
@@ -91,14 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'all 0.6s ease';
         observer.observe(el);
-    });
-});
-
-// Staggered animation for branch cards
-document.addEventListener('DOMContentLoaded', function() {
-    const branchCards = document.querySelectorAll('.branch-card');
-    branchCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.2}s`;
     });
 });
 
@@ -125,171 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Video shimmer effects
-document.addEventListener('DOMContentLoaded', function() {
-    const videoContainers = document.querySelectorAll('.video-container');
-    
-    videoContainers.forEach(container => {
-        container.addEventListener('mouseenter', function() {
-            this.style.animation = 'shimmer 2s ease infinite';
-        });
-        
-        container.addEventListener('mouseleave', function() {
-            this.style.animation = 'none';
-        });
-    });
-});
-
-// Contact Form Handling
-// DISABLED: js/whatsapp-form.js is the single source of truth for #contactForm.
-// Both files used to bind a submit handler to the same form, which sent every
-// enquiry twice (two Google Sheets rows, two /api/lead calls, two WhatsApp tabs)
-// and routed one of them to reception instead of the chosen department. This
-// handler also read fields the form no longer has (`service`, `subject`), so it
-// always submitted "General Inquiry". Kept for reference only — do not re-enable
-// without removing the handler in whatsapp-form.js first.
-/*
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contactForm');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Form validation
-            const formData = new FormData(this);
-            const formObject = {};
-            
-            // Convert FormData to object
-            for (let [key, value] of formData.entries()) {
-                formObject[key] = value;
-            }
-            
-            // Basic validation
-            if (!formObject.fullName || !formObject.phone || !formObject.email || !formObject.message) {
-                showNotification('Please fill in all required fields.', 'error');
-                return;
-            }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(formObject.email)) {
-                showNotification('Please enter a valid email address.', 'error');
-                return;
-            }
-            
-            // Phone validation (basic)
-            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-            if (!phoneRegex.test(formObject.phone.replace(/\s/g, ''))) {
-                showNotification('Please enter a valid phone number.', 'error');
-                return;
-            }
-            
-            // Show loading state
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-
-            setTimeout(() => {
-                const fullName = formObject.fullName || formObject.full_name || 'Patient';
-                const email    = formObject.email    || 'Not provided';
-                const phone    = formObject.phone    || 'Not provided';
-                const service  = formObject.service  || 'General Inquiry';
-                const subject  = formObject.subject  || 'Clinic Consultation';
-                const message  = formObject.message  || 'Looking for clinic treatment consultation.';
-
-                const waMessage = `🏥 *KEZZA CLINIC — WEBSITE INQUIRY*
-━━━━━━━━━━━━━━━━━━━━━
-👤 *Name:* ${fullName}
-📱 *Phone:* ${phone}
-📧 *Email:* ${email}
-🏷️ *Service:* ${service}
-📌 *Subject:* ${subject}
-📝 *Message:* ${message}
-━━━━━━━━━━━━━━━━━━━━━
-Source: Kezza Clinic Contact Form`;
-
-                const waUrl = `https://wa.me/919284517427?text=${encodeURIComponent(waMessage)}`;
-                
-                // Dispatch lead to Google Sheets & Backend
-                const leadPayload = {
-                    timestamp: new Date().toISOString(),
-                    name: fullName,
-                    phone: phone,
-                    whatsapp: phone,
-                    email: email,
-                    service: service,
-                    category: service,
-                    message: `[Subject: ${subject}] ${message}`,
-                    source: 'Contact Form'
-                };
-                // Smart sync: post to backend /api/lead first (which persists to local store and syncs to Google Sheets).
-                // If backend is unreachable, fallback to direct Google Sheets webhook.
-                (async () => {
-                    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-                    const apiBase = isLocal && window.location.port !== '3001' ? 'http://localhost:3001' : '';
-                    let backendSynced = false;
-                    try {
-                        const apiRes = await fetch(`${apiBase}/api/lead`, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(leadPayload)
-                        });
-                        if (apiRes.ok) backendSynced = true;
-                    } catch (err) {
-                        backendSynced = false;
-                    }
-
-                    if (!backendSynced) {
-                        try {
-                            fetch('https://script.google.com/macros/s/AKfycbwsWmFO6lLgh_UAAZkQpBstzRQ8335TQ_XP3jGnq3cBsfkFNE6eDewuQDRqho1o1CqiuA/exec', {
-                                method: 'POST',
-                                mode: 'no-cors',
-                                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                                body: JSON.stringify(leadPayload),
-                                keepalive: true
-                            }).catch(() => {});
-                        } catch (e) {}
-                    }
-                })();
-
-                try {
-                    window.open(waUrl, '_blank');
-                } catch (e) {}
-
-                showNotification('Thank you! Your message has been submitted to our clinic specialist team.', 'success');
-                contactForm.reset();
-
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 400);
-        });
-    }
-});
-*/
-
-// File upload handling
-document.addEventListener('DOMContentLoaded', function() {
-    const fileInputs = document.querySelectorAll('input[type="file"]');
-    
-    fileInputs.forEach(input => {
-        input.addEventListener('change', function() {
-            const label = document.querySelector(`label[for="${this.id}"]`);
-            if (this.files.length > 0) {
-                label.textContent = `✓ ${this.files[0].name}`;
-                label.style.background = 'rgba(212, 175, 55, 0.2)';
-                label.style.borderColor = 'var(--gold)';
-                label.style.color = 'var(--navy)';
-            } else {
-                label.textContent = label.getAttribute('data-original') || 'Choose File';
-                label.style.background = 'var(--light-gray)';
-                label.style.borderColor = '#cdbb7d';
-                label.style.color = 'var(--dark-gray)';
-            }
-        });
-    });
-});
+// The #contactForm submit handler lives in js/whatsapp-form.js (the single source of truth).
 
 // FAQ Accordion functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -378,71 +186,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Notification system
-function showNotification(message, type = 'info') {
-    // Remove existing notifications
-    const existingNotifications = document.querySelectorAll('.notification');
-    existingNotifications.forEach(notification => notification.remove());
-    
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <div class="notification-content">
-            <span class="notification-icon">${type === 'success' ? '✓' : type === 'error' ? '✗' : 'ℹ'}</span>
-            <span class="notification-message">${message}</span>
-            <button class="notification-close">&times;</button>
-        </div>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.remove();
-        }
-    }, 5000);
-    
-    // Close button functionality
-    const closeBtn = notification.querySelector('.notification-close');
-    closeBtn.addEventListener('click', () => {
-        notification.remove();
-    });
-    
-    // Animate in
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 100);
-}
-
-// Scroll-triggered animations for dividers
-const scrollAnimations = {
-    '.gold-underline': {
-        animation: 'expandWidth 1.5s ease forwards',
-        delay: 500
-    }
-};
-
-Object.keys(scrollAnimations).forEach(selector => {
-    const elements = document.querySelectorAll(selector);
-    elements.forEach(element => {
-        const elementObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.animation = scrollAnimations[selector].animation;
-                    }, scrollAnimations[selector].delay);
-                    elementObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        elementObserver.observe(element);
-    });
-});
-
-
-
 // Loading animation
 window.addEventListener('load', function() {
     document.body.style.opacity = '0';
@@ -452,8 +195,6 @@ window.addEventListener('load', function() {
         document.body.style.opacity = '1';
     }, 100);
 });
-
-// Enhanced scroll effects handled in unified RAF loop above
 
 // Form field focus effects
 document.addEventListener('DOMContentLoaded', function() {
@@ -475,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Add CSS for additional animations and notifications
+// Add CSS for additional animations
 const additionalCSS = `
 .ripple {
     position: absolute;
@@ -491,82 +232,6 @@ const additionalCSS = `
         transform: scale(4);
         opacity: 0;
     }
-}
-
-.notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    z-index: 10000;
-    transform: translateX(400px);
-    transition: transform 0.3s ease;
-    max-width: 400px;
-}
-
-.notification.show {
-    transform: translateX(0);
-}
-
-.notification-content {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.notification-success {
-    border-left: 4px solid #4CAF50;
-}
-
-.notification-error {
-    border-left: 4px solid #f44336;
-}
-
-.notification-info {
-    border-left: 4px solid var(--gold);
-}
-
-.notification-icon {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.notification-success .notification-icon {
-    color: #4CAF50;
-}
-
-.notification-error .notification-icon {
-    color: #f44336;
-}
-
-.notification-info .notification-icon {
-    color: var(--gold);
-}
-
-.notification-message {
-    flex: 1;
-    color: var(--dark-gray);
-}
-
-.notification-close {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #999;
-    padding: 0;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.notification-close:hover {
-    color: var(--dark-gray);
 }
 
 .form-group.focused label {
@@ -600,5 +265,3 @@ style.textContent = additionalCSS;
 document.head.appendChild(style);
 
 // Video playback handled smoothly by IntersectionObserver in quick-actions.js
-
-console.log('Kezza Contact page loaded successfully! 📞');

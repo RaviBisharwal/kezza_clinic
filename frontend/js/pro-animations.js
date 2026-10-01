@@ -4,14 +4,13 @@
  * 1. IntersectionObserver scroll reveal engine
  * 2. Eased live count-up animation for clinical statistics
  * 3. Interactive Before & After transformation slider (Touch + Mouse)
- * 4. Micro-interactions and smooth UI polish
+ * 4. Testimonial filters and stat-box tilt micro-interactions
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     initCountUpStats();
     initBeforeAfterSlider();
-    initDoctorFilters();
     initTestimonialFilters();
     initStatBoxTilt();
 });
@@ -48,57 +47,47 @@ function initCountUpStats() {
     const statElements = document.querySelectorAll('.stat-number-pro[data-count]');
     if (!statElements.length) return;
 
-    let hasRun = false;
+    function animateSingleCounter(el) {
+        const target = parseInt(el.getAttribute('data-count'), 10) || 0;
+        const prefix = el.getAttribute('data-prefix') || '';
+        const suffix = el.getAttribute('data-suffix') || '';
+        const duration = 1800; // ms
+        const startTime = performance.now();
 
-    function runCounters() {
-        if (hasRun) return;
-        hasRun = true;
+        function easeOutExpo(x) {
+            return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+        }
 
-        statElements.forEach(el => {
-            const target = parseInt(el.getAttribute('data-count'), 10) || 0;
-            const prefix = el.getAttribute('data-prefix') || '';
-            const suffix = el.getAttribute('data-suffix') || '';
-            const duration = 2000; // ms
-            const startTime = performance.now();
+        function updateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const currentVal = Math.floor(easeOutExpo(progress) * target);
 
-            function easeOutExpo(x) {
-                return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+            el.textContent = `${prefix}${currentVal.toLocaleString()}${suffix}`;
+
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+            } else {
+                el.textContent = `${prefix}${target.toLocaleString()}${suffix}`;
             }
+        }
 
-            function updateCounter(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                const currentVal = Math.floor(easeOutExpo(progress) * target);
-
-                // Format numbers nicely (e.g., 15000 -> 15,000)
-                el.textContent = `${prefix}${currentVal.toLocaleString()}${suffix}`;
-
-                if (progress < 1) {
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    el.textContent = `${prefix}${target.toLocaleString()}${suffix}`;
-                }
-            }
-
-            requestAnimationFrame(updateCounter);
-        });
+        requestAnimationFrame(updateCounter);
     }
 
-    // Trigger when stats section enters viewport
-    const statsSection = document.querySelector('.stats-section-pro, .stats-section');
-    if (statsSection && 'IntersectionObserver' in window) {
-        const statsObserver = new IntersectionObserver((entries, observer) => {
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    runCounters();
-                    observer.unobserve(entry.target);
+                    animateSingleCounter(entry.target);
+                    obs.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.25 });
+        }, { threshold: 0.15 });
 
-        statsObserver.observe(statsSection);
+        statElements.forEach(el => observer.observe(el));
     } else {
-        runCounters();
+        statElements.forEach(el => animateSingleCounter(el));
     }
 }
 
@@ -171,61 +160,7 @@ function initBeforeAfterSlider() {
     window.addEventListener('touchend', onPointerUp, { passive: true });
 }
 
-/* ── 4. Doctor Specialty Filtering & Micro-Interactions ── */
-function initDoctorFilters() {
-    const filterBtns = document.querySelectorAll('.doc-filter-btn');
-    const doctorCards = document.querySelectorAll('.doctor-card');
-    if (!filterBtns.length || !doctorCards.length) return;
-
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', function () {
-            const filter = this.getAttribute('data-filter');
-            if (!filter) return;
-
-            // Update active state
-            filterBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-
-            // Filter doctor cards with staggered animation
-            let visibleIndex = 0;
-            doctorCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                const shouldShow = (filter === 'all' || category === filter);
-
-                if (shouldShow) {
-                    card.classList.remove('is-hidden');
-                    card.classList.remove('is-animating-in');
-                    // Force reflow for clean re-trigger
-                    void card.offsetWidth;
-                    card.style.animationDelay = `${visibleIndex * 0.08}s`;
-                    card.classList.add('is-animating-in');
-                    visibleIndex++;
-                } else {
-                    card.classList.remove('is-animating-in');
-                    card.classList.add('is-hidden');
-                }
-            });
-        });
-    });
-
-    // Subtle 3D card tilt effect for desktop pointers
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        doctorCards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = (e.clientX - rect.left) / rect.width - 0.5;
-                const y = (e.clientY - rect.top) / rect.height - 0.5;
-                card.style.transform = `translateY(-7px) perspective(900px) rotateX(${(-y * 4).toFixed(2)}deg) rotateY(${(x * 4).toFixed(2)}deg)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-            });
-        });
-    }
-}
-
-/* ── 5. Testimonial Category Filters ── */
+/* ── 4. Testimonial Category Filters ── */
 function initTestimonialFilters() {
     const filterBtns = document.querySelectorAll('.testi-filter-btn');
     const cards = document.querySelectorAll('.testi-card-pro');
@@ -262,7 +197,7 @@ function initTestimonialFilters() {
     });
 }
 
-/* ── 6. Interactive 3D Perspective Tilt for Stat Boxes ── */
+/* ── 5. Interactive 3D Perspective Tilt for Stat Boxes ── */
 function initStatBoxTilt() {
     const boxes = document.querySelectorAll('.stat-box-pro');
     if (!boxes.length) return;

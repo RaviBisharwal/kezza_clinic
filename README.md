@@ -16,14 +16,19 @@ kezza_clinic/                       ← Repository Root
 ├── 📖 README.md                    # Developer onboarding & architecture documentation (this file)
 ├── 🔐 .gitignore                   # Ignored files: node_modules, .env, *.bak, *.db, uploads/photos, data/
 ├── 🔑 .env.example                 # Template for .env — copy and fill before running the server
-├── 🛠️ tools/                       # Developer build & audit tools
+├── 🛠️ tools/                       # Developer utility scripts
+│   ├── fix_mojibake.py             # Unicode / character encoding sanitizer
+│   ├── validate_reference_page.py  # Content checks for hair-transplant/ (run by npm test)
+│   ├── build_hair_transplant_images.py # Resizes hair-transplant page photos (macOS `sips`)
+│   ├── optimize_for_90_plus.js     # One-off head/meta optimizer (already applied; review before re-running)
 │   ├── build-css.js                # CSS bundler (npm run build:css)
-│   ├── css-bundles.json            # CSS bundle definitions and file mappings
-│   ├── validate_reference_page.py  # Reference page HTML integrity validator
-│   ├── content/                    # Location pages, blog, sitemap, llms.txt builder (npm run build:content)
+│   ├── stamp-js.js                 # JS cache-busting ?v=<hash> stamps (npm run build:js)
+│   ├── content/                    # Clinic, treatment and blog pages, sitemap, llms.txt builder (npm run build:content)
+│   │                               # pseo.py = programmatic-SEO engine (status model, quality gates, link rules)
 │   ├── og/                         # Social share image generator (npm run og)
-│   ├── seo/                        # site-data.json (clinic facts) + check-seo.js (npm run seo:check)
-│   └── archive/                    # Retired migration & one-off audit scripts
+│   └── seo/                        # site-data.json (clinic facts), taxonomy.json (treatment registry),
+│                                   # check-seo.js (npm run seo:check), pseo_audit.py (npm run seo:audit)
+├── 📚 docs/pseo/                   # pSEO report, page inventory (before/after), quality-gate results
 │
 └── 🌐 frontend/                    ← ALL public-facing website files live here
     │
@@ -38,6 +43,12 @@ kezza_clinic/                       ← Repository Root
     │   ├── branches.html           # Franchise & Clinic Locations (Jaipur & Sikar Centers)
     │   ├── contact.html            # Contact Form, Direct Calling, Clinic Google Maps
     │   ├── terms.html              # Privacy Policy, Medical Disclaimer, Terms & Conditions
+    │   ├── hair-transplant/fue|dhi|beard|eyebrow/, gfc-treatment/, laser-hair-removal/, hi/hair-transplant/,
+    │   │   acne-treatment/, acne-scar-treatment/, hydra-facial/, botox/, dark-circles-treatment/,
+    │   │   cryolipolysis/, hifu-body-sculpting/, weight-management/, microblading/, lip-blush/,
+    │   │   permanent-eyeliner/, pmu-correction/
+    │   │                           # Treatment pages generated from tools/content/pages/ (do not edit the HTML);
+    │   │                           # the last 12 are in review (noindex) until the clinic approves them
     │   └── admin.html              # Internal Clinic Intake & Dashboard Preview
     │
     ├── 🎨 css/                     # Modular CSS Stylesheets (one per page/feature)
@@ -56,7 +67,7 @@ kezza_clinic/                       ← Repository Root
     │   └── terms-styles.css        # Legal, privacy policy & terms page formatting
     │
     ├── ⚡ js/                      # JavaScript Logic & Interactive Modules (one per page/feature)
-    │   ├── script.js               # Homepage (Lazy loading, Video Observer, Doctor Bio expander)
+    │   ├── script.js               # Home, hair-transplant, blog & location pages (navbar shadow, image lazy-loading)
     │   ├── about-script.js         # About page interactions, shine effects & bio toggle
     │   ├── branches-script.js      # Branch page animations & enquiry form
     │   ├── kezza-ai.js             # Tri-lingual chatbot (Eng/Hindi/Hinglish) + scanner modal
@@ -69,7 +80,10 @@ kezza_clinic/                       ← Repository Root
     │   ├── services-navigation.js  # 170ms hover-intent auto-expand & mobile accordion logic
     │   ├── skin-services-script.js # Skin treatment tabs & skin concern quiz
     │   ├── terms-script.js         # Legal TOC scrollspy & print utilities
-    │   └── whatsapp-form.js        # Consultation ID generator & WhatsApp URL formatting helpers
+    │   ├── whatsapp-form.js        # Consultation ID generator & WhatsApp URL formatting helpers
+    │   ├── smooth-scroll.js        # Shared: in-page anchor scrolling, reading progress bar, navbar elevation, back-to-top
+    │   ├── quick-actions.js        # Shared: video autoplay on scroll, quick dock, scanner & chatbot launchers
+    │   └── scanner-launch.js       # Shared: lazy-loads the AI scanner popup (scanner-modal.js / .css)
     │
     ├── 🖼️ images/                  # High-res: doctor portraits, clinic photos, logos, badges, procedure images
     ├── 🎬 video/                   # Clinic walkthrough & patient video testimonials
@@ -227,17 +241,25 @@ The live site is **https://www.kezza.co.in** (GoDaddy, Apache). All SEO URLs, sc
 
 | Command | What it does |
 | --- | --- |
-| `npm run build` | Rebuilds `/locations/*`, `/blog/*`, `sitemap.xml` and `llms.txt`, then the CSS bundles |
+| `npm run build` | Rebuilds `/locations/*`, `/blog/*`, the treatment pages, `sitemap.xml` and `llms.txt`, then the CSS bundles, then stamps JS versions |
 | `npm run build:content` | Only the generated pages (`python3 tools/content/build_content_pages.py`) |
 | `npm run build:css` | Re-bundles CSS after editing anything in `frontend/css/` (`node tools/build-css.js`) |
+| `npm run build:js` | Stamps every local `<script src>` (and the lazily-injected chatbot/scanner files) with a content hash so edited JS reaches returning visitors (`node tools/stamp-js.js`) |
 | `npm run seo:check` | Checks domain, NAP/hours, schema, FAQs, links, sitemap — run before every deploy |
+| `npm run seo:audit` | Page inventory and programmatic-SEO audit (`python3 tools/seo/pseo_audit.py`): duplicate titles/H1s, near-duplicate content, competing pages, orphans, links to unpublished pages, claim wording. Writes `docs/pseo/inventory.*` |
+| `npm test` | Reference-page check, server syntax, `seo:check` and the pSEO audit in strict mode (fails on any critical issue) |
 | `npm run og` | Regenerates 1200×630 social share images in `frontend/images/og/` (needs `pip install pillow`) |
 
 - **Clinic facts** (addresses, phones, hours, doctors, services per branch) live in `tools/seo/site-data.json`. Change them there, keep them identical to each Google Business Profile, then run `npm run build`.
 - **CSS:** keep editing the normal files in `frontend/css/`. Pages load `css/bundle-<page>.min.css`; `tools/css-bundles.json` lists which source files (in which order) make up each bundle.
 - **Blog:** each article is one file in `tools/content/blog/` (JSON header + HTML body). Copy one, edit it, add its share image in `tools/og/make_og_images.py`, then `npm run og && npm run build`.
-- **Generated files** (`frontend/locations/**`, `frontend/blog/**`, `sitemap.xml`, `llms.txt`, `css/bundle-*.min.css`) are overwritten by the build — edit their sources instead.
-- Retired: `tools/inject_seo.js`, `tools/fix_titles.js`, `tools/fix_descriptions.js` (they would re-introduce the old domain and phone).
+- **Treatment pages (programmatic SEO).** The registry `tools/seo/taxonomy.json` lists every category, treatment and page: URL, category and parent, clinics, search intent, related pages, card and fallback link. Each generated page's content is one file in `tools/content/pages/` (JSON header with hero, sections, FAQs, sources and `review_notes`; the HTML after it is the long guide section). The engine is `tools/content/pseo.py`; the full design is in `docs/pseo/PSEO-REPORT.md`.
+  - **Status** (`"status"` in the page file): `draft` = not built · `review` / `approved` = built for preview but `noindex`, left out of the sitemap, llms.txt, menus and related links, no "reviewed by" line · `published` = indexable, but only when every critical quality gate passes and `"reviewer"` + `"reviewed"` are set (otherwise held back) · `noindex` = built, never indexed.
+  - **Add a treatment:** (1) add it to the registry; (2) copy a page file, write the content with sources and `review_notes`, keep `"status": "review"`; (3) add its image crops to `tools/content/make_treatment_images.py` and a share card to `tools/og/make_og_images.py`; (4) `npm run og && npm run build`, then fix every critical item in `docs/pseo/quality-gates.md`; (5) doctor review; (6) set `"status": "published"`, `"reviewer"` and `"reviewed"`, then `npm run build && npm test`. Menus, home cards, hub-page links, clinic pages, related cards, the sitemap and llms.txt switch to the page on their own; CSS bundling picks the page up automatically.
+  - **Links in hand-built pages** that should follow a page's status use `<a href="…" data-pseo="<id>" data-pseo-fallback="<url>">` or a `<!--pseo:link id="<id>" text="…"--><!--/pseo:link-->` slot. Do not hard-code a link to a page that is not published: `npm test` fails on it.
+- **Clinic pages:** addresses, phones, doctors and treatment lists come from `tools/seo/site-data.json`; the longer local text (H1, treatments in the city, nearby towns, extra FAQs) is in `tools/content/locations.json`.
+- **Generated files** (`frontend/locations/**`, `frontend/blog/**`, the treatment page folders listed in the registry, `sitemap.xml`, `llms.txt`, `css/bundle-*.min.css`, the trailing-slash rule in `.htaccess`) are overwritten by the build — edit their sources instead.
+- Removed: `tools/inject_seo.js`, `tools/fix_titles.js`, `tools/fix_descriptions.js` (they would re-introduce the old domain and phone) and the one-off migration scripts `fix_headings.js`, `fix_img_dimensions.js`, `update_paths.js`. All remain in git history.
 
 ---
 

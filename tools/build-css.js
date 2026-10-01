@@ -17,7 +17,8 @@
  *
  * Which files go into which bundle lives in tools/css-bundles.json. To add a
  * page, add it under "pages" with its bundle name (create the bundle list if
- * it needs a new combination of stylesheets).
+ * it needs a new combination of stylesheets). Treatment pages built from
+ * tools/seo/taxonomy.json join the "content" bundle automatically.
  */
 'use strict';
 const fs = require('fs');
@@ -130,6 +131,15 @@ function main() {
     cfg = discover();
     fs.writeFileSync(CONFIG, JSON.stringify(cfg, null, 2) + '\n');
     console.log('created', path.relative(ROOT, CONFIG));
+  }
+  // Treatment pages generated from the pSEO registry use the "content" bundle automatically,
+  // so a new page does not have to be added here by hand.
+  const TAX = path.join(__dirname, 'seo', 'taxonomy.json');
+  if (fs.existsSync(TAX) && cfg.bundles.content) {
+    for (const t of JSON.parse(fs.readFileSync(TAX, 'utf8')).treatments || []) {
+      const rel = t.type === 'generated' ? `${t.url.replace(/^\/|\/$/g, '')}/index.html` : null;
+      if (rel && !cfg.pages[rel] && fs.existsSync(path.join(FE, rel))) cfg.pages[rel] = 'content';
+    }
   }
   const versions = {};
   let rawTotal = 0;

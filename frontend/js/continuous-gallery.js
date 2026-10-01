@@ -25,7 +25,6 @@
         let isHovered = false;
         let isDragging = false;
         let isMomentum = false;
-        let dragStartX = 0;
         let dragLastX = 0;
         let dragVelocityX = 0;
         let lastTimestamp = performance.now();
@@ -110,7 +109,6 @@
 
         // Touch & Pointer Drag Interactions
         let lastMoveTime = 0;
-        let pointerMoved = false;
 
         viewport.addEventListener('pointerdown', (e) => {
             // Allow primary mouse or single touch
@@ -118,8 +116,6 @@
 
             isDragging = true;
             isMomentum = false;
-            pointerMoved = false;
-            dragStartX = e.clientX;
             dragLastX = e.clientX;
             lastMoveTime = performance.now();
             dragVelocityX = 0;
@@ -140,9 +136,6 @@
             const now = performance.now();
             const dt = Math.max((now - lastMoveTime) / 1000, 0.005);
 
-            if (Math.abs(currentClientX - dragStartX) > 4) {
-                pointerMoved = true;
-            }
 
             currentX += deltaX;
             // Instantaneous velocity (with smoothing)

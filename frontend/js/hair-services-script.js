@@ -1,21 +1,4 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (!href || href === '#') return;
-        try {
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        } catch (err) {}
-    });
-});
-
+// In-page anchor scrolling (with the fixed-navbar offset) is handled by smooth-scroll.js.
 // Optimized Single RAF Scroll Handler
 (function() {
     let ticking = false;
@@ -75,8 +58,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }, { passive: true });
 })();
 
-// Legacy observer removed in favor of unified initScrollReveal() below
-
 // Mouse move parallax for hero image
 document.addEventListener('DOMContentLoaded', function() {
     const heroImage = document.querySelector('.hero-image img');
@@ -98,27 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
             heroImage.style.transform = 'translate(0, 0)';
         });
     }
-});
-
-// Video controls and effects
-document.addEventListener('DOMContentLoaded', function() {
-    const videos = document.querySelectorAll('video');
-    
-    videos.forEach(video => {
-        // Add hover glow effect to video containers
-        const container = video.closest('.video-container');
-        if (container) {
-            container.addEventListener('mouseenter', function() {
-                this.style.boxShadow = '0 25px 50px rgba(212, 175, 55, 0.5)';
-                this.style.borderColor = '#F4E4BC';
-            });
-            
-            container.addEventListener('mouseleave', function() {
-                this.style.boxShadow = '0 20px 40px rgba(212, 175, 55, 0.3)';
-                this.style.borderColor = '#D4AF37';
-            });
-        }
-    });
 });
 
 // FAQ Accordion functionality
@@ -170,33 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Timeline step hover effects
-document.addEventListener('DOMContentLoaded', function() {
-    const timelineSteps = document.querySelectorAll('.timeline-step');
-    
-    timelineSteps.forEach((step, index) => {
-        step.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px)';
-            
-            // Add ripple effect
-            const stepNumber = this.querySelector('.step-number');
-            stepNumber.style.animation = 'pulse 0.6s ease';
-        });
-        
-        step.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            
-            const stepNumber = this.querySelector('.step-number');
-            stepNumber.style.animation = 'none';
-        });
-        
-        // Staggered animation on scroll
-        setTimeout(() => {
-            step.style.animationDelay = `${index * 0.1}s`;
-        }, 100);
-    });
-});
-
 // Button hover effects with ripple
 document.addEventListener('DOMContentLoaded', function() {
     const buttons = document.querySelectorAll('.btn-gold, .btn-navy, .btn-primary, .btn-consultation');
@@ -235,34 +168,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Animated counters for statistics (if needed)
-function animateCounter(element, target, duration = 2000) {
-    let start = 0;
-    const increment = target / (duration / 16);
-    
-    function updateCounter() {
-        start += increment;
-        if (start < target) {
-            element.textContent = Math.floor(start);
-            requestAnimationFrame(updateCounter);
-        } else {
-            element.textContent = target;
-        }
-    }
-    
-    updateCounter();
-}
-
 // Scroll-triggered animations for dividers
 const scrollAnimations = {
-    '.gold-border-highlight': {
-        animation: 'expandWidth 1.5s ease forwards',
-        delay: 500
-    },
-    '.gold-divider': {
-        animation: 'expandWidth 1s ease forwards',
-        delay: 300
-    },
     '.gold-underline': {
         animation: 'expandWidth 1s ease forwards',
         delay: 400
@@ -298,8 +205,6 @@ window.addEventListener('load', function() {
         document.body.style.opacity = '1';
     }, 100);
 });
-
-// Enhanced scroll effects handled in unified RAF loop above
 
 // Service card interactions
 document.addEventListener('DOMContentLoaded', function() {
@@ -347,53 +252,11 @@ const additionalCSS = `
         transform: scale(1);
     }
 }
-
-.card-icon {
-    animation: bounce 2s infinite;
-}
-
-.step-number {
-    position: relative;
-    overflow: hidden;
-}
-
-.step-number::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s ease;
-}
-
-.timeline-step:hover .step-number::before {
-    left: 100%;
-}
 `;
 
 const style = document.createElement('style');
 style.textContent = additionalCSS;
 document.head.appendChild(style);
-
-// Lazy loading for images
-document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('img[data-src]');
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-    
-    images.forEach(img => imageObserver.observe(img));
-});
 
 // Video playback handled smoothly by IntersectionObserver in quick-actions.js
 
@@ -418,7 +281,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-console.log('Kezza Hair Services page loaded successfully! 💇‍♂️');
 /* ══════════════════════════════════════════════════════════════
    HAIR LOSS SCALE SECTION — Scroll-Triggered Animations
 ══════════════════════════════════════════════════════════════ */
@@ -512,150 +374,6 @@ console.log('Kezza Hair Services page loaded successfully! 💇‍♂️');
 
 })();
 
-// ── Verified Hair Transplant Transformation Showcase Controller ──
-(function() {
-    function initTransformationShowcase() {
-        const toggleBtns = document.querySelectorAll('.transformation-view-controls .view-toggle-btn');
-        const sideBySideWrap = document.getElementById('htSideBySideWrap');
-        const sliderWrap = document.getElementById('htInteractiveSliderWrap');
-        const rangeInput = document.getElementById('htRangeSlider');
-        
-        // 1. View Switcher (Interactive Split Slider vs Side-by-Side)
-        if (toggleBtns.length && sideBySideWrap && sliderWrap) {
-            toggleBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const targetView = this.getAttribute('data-view');
-                    toggleBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-
-                    if (targetView === 'slider') {
-                        sideBySideWrap.style.display = 'none';
-                        sliderWrap.style.display = 'block';
-                    } else {
-                        sliderWrap.style.display = 'none';
-                        sideBySideWrap.style.display = 'grid';
-                    }
-                });
-            });
-        }
-
-        // 2. Real Interactive Split Slider Controller
-        if (sliderWrap) {
-            function setSliderPos(val) {
-                val = Math.max(0, Math.min(100, parseFloat(val)));
-                sliderWrap.style.setProperty('--slider-pos', `${val}%`);
-                if (rangeInput) rangeInput.value = val;
-            }
-
-            // Sync with range input (supports mouse drag, keyboard arrows, and mobile touch scrubbing)
-            if (rangeInput) {
-                rangeInput.addEventListener('input', function() {
-                    setSliderPos(this.value);
-                });
-                rangeInput.addEventListener('change', function() {
-                    setSliderPos(this.value);
-                });
-            }
-
-            // Pointer events for direct click/drag on any part of the image
-            function updateFromPointer(e) {
-                const rect = sliderWrap.getBoundingClientRect();
-                if (rect.width <= 0) return;
-                const pct = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
-                setSliderPos(pct);
-            }
-
-            sliderWrap.addEventListener('pointerdown', function(e) {
-                // If user didn't directly hit range input, set pointer capture and update
-                try { sliderWrap.setPointerCapture(e.pointerId); } catch(err) {}
-                updateFromPointer(e);
-            });
-
-            sliderWrap.addEventListener('pointermove', function(e) {
-                if (e.buttons === 1) {
-                    updateFromPointer(e);
-                }
-            });
-
-            sliderWrap.addEventListener('pointerup', function(e) {
-                try { sliderWrap.releasePointerCapture(e.pointerId); } catch(err) {}
-            });
-
-            // Set initial state to 50%
-            setSliderPos(50);
-
-            // Subtle intro hint animation on first scroll into view
-            let hasAnimatedHint = false;
-            const hintObserver = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting && !hasAnimatedHint) {
-                    hasAnimatedHint = true;
-                    let i = 0;
-                    const sequence = [50, 44, 38, 45, 58, 53, 50];
-                    const timer = setInterval(() => {
-                        if (i >= sequence.length) {
-                            clearInterval(timer);
-                            return;
-                        }
-                        setSliderPos(sequence[i]);
-                        i++;
-                    }, 110);
-                    hintObserver.disconnect();
-                }
-            }, { threshold: 0.35 });
-            hintObserver.observe(sliderWrap);
-        }
-
-        // 3. High-Definition Lightbox / Image Inspection Modal
-        const zoomCards = document.querySelectorAll('.ht-ba-visual-card');
-        const modal = document.getElementById('htLightboxModal');
-        const modalImg = document.getElementById('htLightboxImg');
-        const modalCaption = document.getElementById('htLightboxCaption');
-        const modalClose = document.getElementById('htLightboxClose');
-
-        if (modal && modalImg) {
-            zoomCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const img = this.querySelector('img');
-                    const title = this.querySelector('.ht-ba-info-title')?.textContent.trim() || '';
-                    const desc = this.querySelector('.ht-ba-info-desc')?.textContent.trim() || '';
-                    if (img) {
-                        modalImg.src = img.src;
-                        modalImg.alt = img.alt;
-                        if (modalCaption) {
-                            modalCaption.innerHTML = `<strong>${title}</strong> &mdash; ${desc}`;
-                        }
-                        modal.classList.add('active');
-                        document.body.style.overflow = 'hidden';
-                    }
-                });
-            });
-
-            function closeModal() {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-
-            if (modalClose) {
-                modalClose.addEventListener('click', closeModal);
-            }
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) closeModal();
-            });
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && modal.classList.contains('active')) {
-                    closeModal();
-                }
-            });
-        }
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initTransformationShowcase);
-    } else {
-        initTransformationShowcase();
-    }
-})();
-
 // ── Premium "Website Wali Feel" Interactive Animation System ──
 (function() {
     // 1. Scroll-Driven Reveal Engine
@@ -687,62 +405,9 @@ console.log('Kezza Hair Services page loaded successfully! 💇‍♂️');
         });
     }
 
-    // 2. High-Precision Eased Counter Animation
-    function initStatCounters() {
-        const counterElements = document.querySelectorAll('.counter-stat');
-        if (!counterElements.length) return;
-
-        const counterObserver = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const el = entry.target;
-                    const target = parseFloat(el.getAttribute('data-target') || 0);
-                    const prefix = el.getAttribute('data-prefix') || '';
-                    const suffix = el.getAttribute('data-suffix') || '';
-                    const format = el.getAttribute('data-format') || '';
-                    const isDecimal = String(target).includes('.');
-                    const duration = 1800; // ms
-                    const startTime = performance.now();
-
-                    function updateNumber(now) {
-                        const elapsed = now - startTime;
-                        const progress = Math.min(1, elapsed / duration);
-                        // Easing: easeOutExpo
-                        const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-                        const current = target * ease;
-
-                        let displayVal;
-                        if (isDecimal) {
-                            displayVal = current.toFixed(1);
-                        } else if (format === 'comma') {
-                            displayVal = Math.floor(current).toLocaleString();
-                        } else {
-                            displayVal = Math.floor(current);
-                        }
-
-                        el.textContent = `${prefix}${displayVal}${suffix}`;
-
-                        if (progress < 1) {
-                            requestAnimationFrame(updateNumber);
-                        } else {
-                            let finalVal = isDecimal ? target.toFixed(1) : (format === 'comma' ? target.toLocaleString() : target);
-                            el.textContent = `${prefix}${finalVal}${suffix}`;
-                        }
-                    }
-
-                    requestAnimationFrame(updateNumber);
-                    obs.unobserve(el);
-                }
-            });
-        }, { threshold: 0.2 });
-
-        counterElements.forEach(el => counterObserver.observe(el));
-    }
-
-    // 3. Smart Sub-Navigation Scroll-Spy & Smooth Auto-Center
+    // 2. Smart Sub-Navigation Scroll-Spy
     function initSubnavScrollSpy() {
         const navPills = document.querySelectorAll('.hair-subnav-pills .subnav-pill');
-        const navContainer = document.getElementById('hairSubnavPills');
         if (!navPills.length) return;
 
         const sections = [];
@@ -780,18 +445,6 @@ console.log('Kezza Hair Services page loaded successfully! 💇‍♂️');
                 activeId = currentSec.id;
                 navPills.forEach(p => p.classList.remove('active'));
                 currentSec.pill.classList.add('active');
-
-                // Smoothly scroll the pill into the center of the subnav bar if overflowed
-                if (navContainer) {
-                    const pillLeft = currentSec.pill.offsetLeft;
-                    const pillWidth = currentSec.pill.offsetWidth;
-                    const containerWidth = navContainer.offsetWidth;
-                    const targetScroll = pillLeft - (containerWidth / 2) + (pillWidth / 2);
-                    navContainer.scrollTo({
-                        left: Math.max(0, targetScroll),
-                        behavior: 'smooth'
-                    });
-                }
             }
         }
 
@@ -803,7 +456,7 @@ console.log('Kezza Hair Services page loaded successfully! 💇‍♂️');
         setTimeout(updateActivePill, 200);
     }
 
-    // 4. Subtle 3D Card Hover Micro-Interactions
+    // 3. Subtle 3D Card Hover Micro-Interactions
     function initCardMicroInteractions() {
         const cards = document.querySelectorAll('.service-showcase-split, .hairline-card-v2, .stat-box');
         cards.forEach(card => {
@@ -826,7 +479,6 @@ console.log('Kezza Hair Services page loaded successfully! 💇‍♂️');
 
     function initAll() {
         initScrollReveal();
-        initStatCounters();
         initSubnavScrollSpy();
         initCardMicroInteractions();
     }
@@ -837,5 +489,3 @@ console.log('Kezza Hair Services page loaded successfully! 💇‍♂️');
         initAll();
     }
 })();
-
-

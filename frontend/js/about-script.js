@@ -1,35 +1,13 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (!href || href === '#') return;
-        try {
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        } catch (err) {}
-    });
-});
+// In-page anchor scrolling (with the fixed-navbar offset) is handled by smooth-scroll.js.
 
-// Optimized Single RAF Scroll Handler
+// Navbar background/shadow once the page is scrolled (single RAF-throttled handler)
 (function() {
     let ticking = false;
     let isScrolled = false;
     let navbar = null;
-    let heroImage = null;
-    let particles = null;
-    let heroContent = null;
 
     document.addEventListener('DOMContentLoaded', function() {
         navbar = document.querySelector('.navbar');
-        heroImage = document.querySelector('.hero-image img');
-        particles = document.querySelectorAll('.particles');
-        heroContent = document.querySelector('.hero-content');
     });
 
     function onScrollTick() {
@@ -45,22 +23,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             } else {
                 navbar.style.background = 'rgba(255, 255, 255, 0.95)';
                 navbar.style.boxShadow = 'none';
-            }
-        }
-
-        // Hero parallax (only active while hero is near viewport)
-        if (scrolled < window.innerHeight) {
-            if (heroImage) {
-                heroImage.style.transform = `translate3d(0, ${scrolled * -0.25}px, 0)`;
-            }
-            if (particles && particles.length > 0) {
-                const rate = scrolled * -0.15;
-                particles.forEach(p => {
-                    p.style.transform = `translate3d(0, ${rate}px, 0)`;
-                });
-            }
-            if (heroContent) {
-                heroContent.style.opacity = Math.max(0, 1 - scrolled / 500);
             }
         }
 
@@ -88,9 +50,6 @@ const observer = new IntersectionObserver(function(entries) {
             entry.target.style.transform = 'translateY(0)';
             
             // Special handling for different animation types
-            if (entry.target.classList.contains('value-card')) {
-                entry.target.style.animation = 'bounceIn 0.8s ease forwards';
-            }
             if (entry.target.classList.contains('tech-card')) {
                 entry.target.style.animation = 'slideUp 0.8s ease forwards';
             }
@@ -113,29 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Mouse move parallax for hero image
-document.addEventListener('DOMContentLoaded', function() {
-    const heroImage = document.querySelector('.hero-image img');
-    const heroSection = document.querySelector('.about-hero-section');
-    
-    if (heroImage && heroSection) {
-        heroSection.addEventListener('mousemove', function(e) {
-            const rect = heroSection.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width;
-            const y = (e.clientY - rect.top) / rect.height;
-            
-            const moveX = (x - 0.5) * 20;
-            const moveY = (y - 0.5) * 20;
-            
-            heroImage.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        });
-        
-        heroSection.addEventListener('mouseleave', function() {
-            heroImage.style.transform = 'translate(0, 0)';
-        });
-    }
-});
-
 // Video playback handled smoothly by IntersectionObserver in quick-actions.js
 
 // Enhanced hover effects for cards
@@ -154,53 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-// Testimonials carousel auto-rotation
-document.addEventListener('DOMContentLoaded', function() {
-    const testimonials = document.querySelectorAll('.testimonial-card');
-    let currentTestimonial = 0;
-    
-    function highlightTestimonial(index) {
-        testimonials.forEach((testimonial, i) => {
-            if (i === index) {
-                testimonial.style.transform = 'scale(1.05)';
-                testimonial.style.background = 'rgba(255, 255, 255, 0.2)';
-            } else {
-                testimonial.style.transform = 'scale(1)';
-                testimonial.style.background = 'rgba(255, 255, 255, 0.1)';
-            }
-        });
-    }
-    
-    function nextTestimonial() {
-        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-        highlightTestimonial(currentTestimonial);
-    }
-    
-    // Auto-rotate testimonials every 4 seconds
-    if (testimonials.length > 0) {
-        highlightTestimonial(0);
-        setInterval(nextTestimonial, 4000);
-    }
-});
-
-// Animated counters for statistics (if needed)
-function animateCounter(element, target, duration = 2000) {
-    let start = 0;
-    const increment = target / (duration / 16);
-    
-    function updateCounter() {
-        start += increment;
-        if (start < target) {
-            element.textContent = Math.floor(start);
-            requestAnimationFrame(updateCounter);
-        } else {
-            element.textContent = target;
-        }
-    }
-    
-    updateCounter();
-}
 
 // Enhanced button interactions
 document.addEventListener('DOMContentLoaded', function() {
@@ -239,38 +128,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-// Scroll-triggered animations for specific elements
-const scrollAnimations = {
-    '.gold-divider': {
-        animation: 'expandWidth 1.5s ease forwards',
-        delay: 500
-    },
-    '.gold-accent-line': {
-        animation: 'expandWidth 1s ease forwards',
-        delay: 300
-    }
-};
-
-Object.keys(scrollAnimations).forEach(selector => {
-    const elements = document.querySelectorAll(selector);
-    elements.forEach(element => {
-        const elementObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.animation = scrollAnimations[selector].animation;
-                    }, scrollAnimations[selector].delay);
-                    elementObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        elementObserver.observe(element);
-    });
-});
-
-
 
 // Loading animation
 window.addEventListener('load', function() {
@@ -322,24 +179,6 @@ const rippleCSS = `
 const style = document.createElement('style');
 style.textContent = rippleCSS;
 document.head.appendChild(style);
-
-// Lazy loading for images
-document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('img[data-src]');
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-    
-    images.forEach(img => imageObserver.observe(img));
-});
 
 // Enhanced micro-interactions
 document.addEventListener('DOMContentLoaded', function() {
@@ -452,5 +291,3 @@ document.addEventListener('DOMContentLoaded', function() {
         video.addEventListener('ended', () => overlay.classList.remove('is-playing'));
     });
 });
-
-console.log('Kezza Clinic About page loaded successfully! ✨');

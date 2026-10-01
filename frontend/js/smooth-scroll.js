@@ -33,7 +33,22 @@
                 const targetEl = document.querySelector(hash);
                 if (targetEl) {
                     e.preventDefault();
-                    const targetTop = targetEl.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop || 0) - NAV_OFFSET;
+                    let currentOffset = NAV_OFFSET;
+                    const navbarEl = document.querySelector('.navbar');
+                    const stickyStripEl = document.querySelector('.service-nav-strip, .sticky-nav');
+                    if (navbarEl) {
+                        currentOffset = navbarEl.offsetHeight;
+                        if (stickyStripEl) {
+                            currentOffset += stickyStripEl.offsetHeight;
+                        }
+                        currentOffset += 12;
+                    }
+                    const computedMargin = parseInt(window.getComputedStyle(targetEl).scrollMarginTop, 10);
+                    if (!isNaN(computedMargin) && computedMargin > 0) {
+                        currentOffset = computedMargin;
+                    }
+
+                    const targetTop = targetEl.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop || 0) - currentOffset;
 
                     window.scrollTo({
                         top: Math.max(0, Math.round(targetTop)),

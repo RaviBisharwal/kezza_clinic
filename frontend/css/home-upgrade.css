@@ -44,7 +44,6 @@ html, body {
 
 h1, h2, h3, h4, h5, h6, .hero-h1 {
     font-family: var(--kz-font-heading) !important;
-    letter-spacing: -0.025em;
     font-weight: 700;
 }
 
@@ -116,14 +115,6 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
 /* ==========================================================================
    1. HERO WITH LUXURY STAGGERED ENTRANCE & POLISHED COPYS
    ========================================================================== */
-
-.hero-section {
-    padding-top: var(--kz-nav-h);
-    background: var(--kz-dark);
-    min-height: 0;
-    overflow: hidden;
-    position: relative;
-}
 
 .hero-stage {
     position: relative;
@@ -270,7 +261,6 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
     color: #ffffff;
     margin: 0 0 22px;
     text-shadow: 0 3px 25px rgba(0, 0, 0, 0.45);
-    letter-spacing: -0.025em;
     animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.35s;
 }
 
@@ -583,9 +573,6 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
    ========================================================================== */
 
 /* 3a. Social rail is desktop-only — it covered card text on the left edge */
-@media (max-width: 992px) {
-    .social-sidebar { display: none !important; }
-}
 
 /* 3b. Quick-action dock: four pills could not fit a 390px viewport, so the
        first ("Call") and last ("Book Visit") were clipped off both edges.
@@ -593,27 +580,9 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
        phones and tighten the rest. The dock keeps its translateX(-50%)
        centering so .dock-hidden still works. */
 @media (max-width: 600px) {
-    .floating-quick-dock .dock-item.dock-call { display: none !important; }
 
     .floating-quick-dock {
-        width: calc(100vw - 20px) !important;
-        max-width: calc(100vw - 20px) !important;
         justify-content: space-between !important;
-    }
-
-    .floating-quick-dock .dock-item {
-        flex: 1 1 0 !important;
-        min-width: 0 !important;
-        justify-content: center !important;
-        padding: 9px 6px !important;
-        font-size: 0.74rem !important;
-        gap: 5px !important;
-    }
-
-    .floating-quick-dock .dock-item span {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
     }
 }
 
@@ -629,16 +598,6 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
    the grid, so the existing .doc-filter-btn filtering (which toggles
    .is-hidden on individual cards) keeps working untouched.
    ========================================================================== */
-
-.doctors-grid.kz-collapsed > .doctor-card:nth-child(n + 5) {
-    display: none !important;
-}
-
-.kz-doctors-more {
-    display: flex;
-    justify-content: center;
-    margin-top: 34px;
-}
 
 .kz-more-btn {
     display: inline-flex;
@@ -673,42 +632,9 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
    5. TESTIMONIALS — equal heights, avatars, Google mark, mobile rail
    ========================================================================== */
 
-.kz-testi-rail .testimonial-card {
-    display: flex !important;
-    flex-direction: column;
-    height: 100%;
-}
-
 /* Push the attribution block to the bottom so every card lines up */
-.kz-testi-rail .testimonial-card > p { flex: 1 1 auto; }
-
-.kz-testi-rail .star-rating { color: var(--kz-google-gold) !important; letter-spacing: 2px; }
 
 /* Replace the wordy pill with the Google mark */
-.kz-testi-rail .verified-label {
-    display: inline-flex !important;
-    align-items: center;
-    gap: 6px;
-    font-size: 11.5px !important;
-    letter-spacing: .02em;
-}
-
-.kz-testi-rail .verified-label::before {
-    content: "G";
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #fff;
-    color: #4285f4;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 1;
-    flex-shrink: 0;
-}
 
 /* Author avatar: initial in a teal disc */
 .kz-testi-author {
@@ -733,39 +659,7 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
     flex-shrink: 0;
 }
 
-@media (min-width: 861px) {
-    .kz-testi-rail {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        align-items: stretch;
-    }
-}
-
 /* Phones: one card at a time on a snapping rail instead of six stacked */
-@media (max-width: 860px) {
-    .kz-testi-rail {
-        display: grid !important;
-        grid-auto-flow: column;
-        grid-auto-columns: 84%;
-        gap: 16px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        padding: 4px 16px 18px;
-        margin: 0 -16px;
-        scrollbar-width: none;
-    }
-
-    .kz-testi-rail::-webkit-scrollbar { display: none; }
-
-    .kz-testi-rail .testimonial-card {
-        scroll-snap-align: center;
-        margin: 0 !important;
-        height: auto;
-    }
-}
 
 /* ==========================================================================
 /* ==========================================================================
@@ -1415,12 +1309,6 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
    Gentle alternation only — tints, never a colour flip, so existing dark text
    keeps its contrast on every section.
    ========================================================================== */
-
-.why-kezza-section      { background: #ffffff; }
-.stats-section-pro      { background: #ffffff; }
-.services-master-section{ background: #ffffff; }
-.gallery-section        { background: var(--kz-surface-alt); }
-.doctors-section        { background: #ffffff; }
 
 /* ==========================================================================
    10. MICRO-INTERACTIONS

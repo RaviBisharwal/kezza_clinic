@@ -6,7 +6,8 @@
  *
  * Fails (exit code 1) on anything that would hurt indexing or NAP consistency:
  *   • canonical / og:url not on https://www.kezza.co.in, or the old kezzaclinic.com domain anywhere
- *   • missing/duplicate title, description, canonical, lang="en-IN"
+ *   • missing/duplicate title, description, canonical, lang="en-IN" (lang="hi-IN" on Hindi pages)
+ *   • hreflang alternates that point at missing pages or are not returned by the other page
  *   • JSON-LD that doesn't parse, phone numbers or opening hours that don't match tools/seo/site-data.json
  *   • FAQPage questions that aren't visible on the page
  *   • internal links, images or og:images that point at files that don't exist
@@ -43,7 +44,7 @@ const decode = (s) => s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&g
   .replace(/&#39;|&#x27;/g, "'").replace(/&nbsp;/g, ' ').replace(/&ndash;/g, '–').replace(/&mdash;/g, '—')
   .replace(/&rsquo;/g, '’').replace(/&ldquo;|&rdquo;/g, '"').replace(/&middot;/g, '·').replace(/&bull;/g, '•');
 const textOf = (html) => decode(html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ');
-const norm = (s) => decode(s).toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const norm = (s) => decode(s).toLowerCase().replace(/[^a-z0-9\u0900-\u097f]+/g, ' ').trim(); // keeps Devanagari
 
 function localTarget(fromFile, href) {
   if (href && href.includes('${')) return null;                  // JS template strings
@@ -66,6 +67,7 @@ function urlToFile(url) {
 
 const pages = walk(FE);
 const indexable = [];
+const hreflang = new Map(); // page URL -> Set of alternate URLs it declares
 
 for (const file of pages) {
   const rel = path.relative(FE, file).replace(/\\/g, '/');
@@ -73,7 +75,7 @@ for (const file of pages) {
   const noindex = /<meta\s+name="robots"\s+content="[^"]*noindex/i.test(html);
 
   if (/kezzaclinic\.com/i.test(html)) err(rel, 'references the dead domain kezzaclinic.com');
-  if (!/<html[^>]*\blang="en-IN"/.test(html)) err(rel, 'missing lang="en-IN"');
+  if (!/<html[^>]*\blang="(en-IN|hi-IN)"/.test(html)) err(rel, 'missing lang="en-IN" (or "hi-IN" on Hindi pages)');
   if (/Dr\.\s*Krishna/.test(html)) err(rel, 'Krishna is the PMU artist, not a doctor ("Dr. Krishna")');
 
   // Links, images, scripts, stylesheets that resolve to local files
@@ -109,6 +111,8 @@ for (const file of pages) {
     if (!fs.existsSync(urlToFile(canon[0]))) err(rel, `canonical points at a page that doesn't exist: ${canon[0]}`);
     const og = (html.match(/property="og:url"\s+content="([^"]+)"/) || [])[1];
     if (og !== canon[0]) err(rel, `og:url (${og}) differs from canonical (${canon[0]})`);
+    const alts = [...html.matchAll(/<link\s+rel="alternate"\s+hreflang="[^"]+"\s+href="([^"]+)"/g)].map((m) => m[1]);
+    if (alts.length) hreflang.set(canon[0], new Set(alts));
   }
   const ogImg = (html.match(/property="og:image"\s+content="([^"]+)"/) || [])[1];
   if (!ogImg) err(rel, 'missing og:image');
@@ -142,6 +146,16 @@ for (const file of pages) {
         }
       }
     }
+  }
+}
+
+// hreflang: every alternate must exist and list this page back
+for (const [url, alts] of hreflang) {
+  if (!alts.has(url)) err(url, 'hreflang set does not include the page itself');
+  for (const a of alts) {
+    if (a === url) continue;
+    const back = hreflang.get(a);
+    if (!back || !back.has(url)) err(url, `hreflang alternate ${a} does not link back`);
   }
 }
 

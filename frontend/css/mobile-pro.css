@@ -165,8 +165,6 @@ img, video, iframe, embed { max-width: 100% !important; }
 @media (max-width: 768px) {
     .testimonials-section { padding: 48px 0 !important; }
     .testimonials-section h2 { font-size: clamp(1.6rem, 5vw, 2.2rem) !important; margin-bottom: 32px !important; }
-    .video-testimonials { grid-template-columns: 1fr !important; gap: 16px !important; }
-    .video-testimonials video { width: 100% !important; max-width: 340px !important; margin: 0 auto !important; display: block !important; }
 }
 
 /* 10. BRANCHES */
@@ -190,21 +188,10 @@ img, video, iframe, embed { max-width: 100% !important; }
 }
 
 /* 12. BMI / EMI */
-@media (max-width: 768px) {
-    .bmi-calculator-section, .emi-calculator-section { padding: 44px 0 !important; }
-    .bmi-calc-card { grid-template-columns: 1fr !important; gap: 20px !important; padding: 20px 16px !important; }
-    .emi-calc-wrap { padding: 20px 16px !important; }
-    .emi-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-    .bmi-target-grid { grid-template-columns: repeat(3,1fr) !important; }
-    .emi-tenure-pills { flex-wrap: wrap !important; gap: 8px !important; }
-    .emi-tenure-btn { flex: 1 1 calc(50% - 4px) !important; min-width: 80px !important; }
-}
 
 /* 13. CONTACT CTA BANNER */
 @media (max-width: 768px) {
-    .contact-cta-section { padding: 28px 16px !important; }
-    .contact-cta-section h2 { font-size: clamp(1.2rem, 5vw, 1.55rem) !important; margin-bottom: 8px !important; }
-    .contact-cta-section p { font-size: 0.86rem !important; margin-bottom: 16px !important; }
+    .contact-cta-section h2 { font-size: clamp(1.2rem, 5vw, 1.55rem) !important; }
     .btn-white { padding: 10px 22px !important; font-size: 0.88rem !important; }
 }
 
@@ -225,10 +212,7 @@ img, video, iframe, embed { max-width: 100% !important; }
     .footer-column ul { display: flex !important; flex-direction: column !important; gap: 8px !important; padding-left: 0 !important; list-style: none !important; }
     .footer-column ul li a { font-size: 0.88rem !important; color: #e2e8f0 !important; display: inline-block !important; padding: 2px 0 !important; }
     .footer-bottom { margin-top: 24px !important; padding-top: 20px !important; text-align: center !important; font-size: 0.78rem !important; color: #64748b !important; border-top: 1px solid rgba(255,255,255,0.08) !important; }
-    .footer-bottom-content { flex-direction: column !important; gap: 14px !important; text-align: center !important; padding: 0 !important; }
     /* Social icons: centered, spaced, wrap cleanly */
-    .footer-social { flex-wrap: wrap !important; justify-content: center !important; gap: 8px !important; }
-    .social-link { font-size: 0.82rem !important; padding: 6px 12px !important; }
 
     /* Final CTA Banner (contact.html & other pages) */
     .final-cta-section,
@@ -404,26 +388,11 @@ img, video, iframe, embed { max-width: 100% !important; }
 }
 
 /* 21. FACE SCANNER PAGE */
-@media (max-width: 768px) {
-    .scanner-hero-section { padding: 80px 16px 40px !important; }
-    .scanner-content-grid, .scanner-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-    #videoCanvas, #cameraView { width: 100% !important; max-width: 320px !important; margin: 0 auto !important; }
-    .scanner-results-panel { max-width: 100% !important; width: 100% !important; }
-}
 
 /* 22. BRANCHES PAGE */
 @media (max-width: 768px) {
-    .branches-hero { padding: 80px 16px 40px !important; }
-    .branches-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
     .branch-card { padding: 20px 16px !important; }
-    .map-placeholder img { height: 220px !important; border-radius: 12px !important; }
     /* Branch CTA section buttons stack properly */
-    .branch-cta-actions, .kz-branch-ctas {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 10px !important;
-        width: 100% !important;
-    }
     .kz-btn-book, .kz-btn-wa, .kz-btn-map {
         width: 100% !important;
         justify-content: center !important;
@@ -584,29 +553,18 @@ img, video, iframe, embed { max-width: 100% !important; }
         color: #64748b !important;
         display: block !important;
     }
-
-    .contact-form-grid, .contact-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-    }
     .contact-form-section {
         padding: 85px 14px 28px !important;
     }
 }
 
 /* 24. ABOUT PAGE */
-@media (max-width: 768px) {
-    .story-grid, .about-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
-    .about-section { padding: 80px 16px 40px !important; }
-    .timeline-item { padding-left: 20px !important; }
-}
 
 /* 25. SERVICE PAGES */
 @media (max-width: 768px) {
     .treatments-grid, .services-grid, .skin-services-grid, .service-cards-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
     .service-card, .skin-card, .treatment-card { border-radius: 14px !important; }
     .service-card img, .skin-card img, .treatment-card img { height: 200px !important; border-radius: 10px 10px 0 0 !important; }
-    .service-page-hero, .page-hero, .hair-hero, .skin-hero { padding: 80px 16px 40px !important; }
     /* PRP, Weight-Loss, Skin service page heroes */
     .prp-hero-section, .weight-hero-section, .skin-hero-section,
     .pm-hero-section, .ht-hero-section {
@@ -614,30 +572,17 @@ img, video, iframe, embed { max-width: 100% !important; }
         padding-bottom: 36px !important;
     }
     /* Treatment process steps & numbered lists */
-    .treatment-steps, .process-steps, .steps-grid {
-        grid-template-columns: 1fr !important;
-        gap: 14px !important;
-    }
     /* Before/after result grids */
-    .results-grid, .before-after-grid, .ba-grid {
-        grid-template-columns: 1fr !important;
-        gap: 16px !important;
-    }
 }
 @media (min-width: 480px) and (max-width: 768px) {
     .treatments-grid, .services-grid, .skin-services-grid { grid-template-columns: repeat(2,1fr) !important; }
 }
 
 /* 26. BEFORE/AFTER SLIDER */
-@media (max-width: 768px) {
-    .before-after-slider, .comparison-slider { max-width: 100% !important; width: 100% !important; border-radius: 12px !important; }
-    .comparison-slider img { height: 260px !important; }
-}
 
 /* 27. PMU PAGE */
 @media (max-width: 768px) {
     .pmu-hero-section, .pmu-header { padding: 80px 16px 40px !important; }
-    .pmu-grid, .pmu-treatments-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
 }
 
 /* 28. TAP TARGETS */

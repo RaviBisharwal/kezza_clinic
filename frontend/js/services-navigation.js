@@ -13,29 +13,9 @@
         const viewerSection = document.getElementById('servicesViewer');
 
         function switchCategory(categoryName, shouldScroll) {
-            categoryCards.forEach(card => {
-                if (card.getAttribute('data-category') === categoryName) {
-                    card.classList.add('active-category');
-                } else {
-                    card.classList.remove('active-category');
-                }
-            });
-
-            tabButtons.forEach(btn => {
-                if (btn.getAttribute('data-category') === categoryName) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-
-            tabPanels.forEach(panel => {
-                if (panel.getAttribute('data-category') === categoryName) {
-                    panel.classList.add('active');
-                } else {
-                    panel.classList.remove('active');
-                }
-            });
+            categoryCards.forEach(card => card.classList.toggle('active-category', card.getAttribute('data-category') === categoryName));
+            tabButtons.forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-category') === categoryName));
+            tabPanels.forEach(panel => panel.classList.toggle('active', panel.getAttribute('data-category') === categoryName));
 
             if (shouldScroll && viewerSection) {
                 const headerOffset = 90;
@@ -62,6 +42,7 @@
         tabButtons.forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
+                e.stopPropagation(); // tab clicks never reach document-level handlers (open dropdowns stay open)
                 const category = this.getAttribute('data-category');
                 if (category) {
                     switchCategory(category, false);
@@ -157,8 +138,6 @@
                         });
                     } else {
                         const navMenu = document.getElementById('navMenu') || document.querySelector('.nav-menu');
-                        const navbar = document.querySelector('.navbar');
-                        const navHeight = navbar ? navbar.offsetHeight : 70;
 
                         if (navMenu && (navMenu.scrollHeight > navMenu.clientHeight)) {
                             const menuRect = navMenu.getBoundingClientRect();

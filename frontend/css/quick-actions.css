@@ -49,52 +49,53 @@
    ═════════════════════════════════════════════════════════════════════ */
 .social-sidebar {
     position: fixed !important;
-    left: 0 !important;
+    left: 18px !important;
     top: 50% !important;
     transform: translateY(-50%) translateZ(0) !important;
     z-index: 990 !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 0 !important;
-    padding: 0 !important;
-    background: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border-radius: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    gap: 8px !important;
+    padding: 10px 8px !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(14px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
+    border-radius: 36px !important;
+    border: 1px solid rgba(0, 175, 192, 0.22) !important;
+    box-shadow: 0 14px 35px -6px rgba(15, 23, 42, 0.12), 0 4px 14px rgba(0, 175, 192, 0.1) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
     will-change: transform;
     backface-visibility: hidden;
 }
 
 .social-sidebar:hover {
-    transform: translateY(-50%) scale(1.02) !important;
+    transform: translateY(-50%) scale(1.04) !important;
+    box-shadow: 0 18px 45px -6px rgba(0, 175, 192, 0.22) !important;
 }
 
 .social-icon {
-    width: 44px !important;
-    height: 44px !important;
+    width: 38px !important;
+    height: 38px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    border-radius: 0 !important;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    border-radius: 50% !important;
+    transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
     text-decoration: none !important;
-    font-size: 18px !important;
+    font-size: 16px !important;
     background: transparent !important;
     border: none !important;
-    box-shadow: none !important;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12) !important;
     color: #ffffff !important;
 }
 
 .social-icon:hover {
-    transform: scale(1.25) translateX(4px) !important;
-    width: 50px !important;
+    transform: scale(1.18) !important;
+    width: 38px !important;
 }
 
 .social-icon.instagram {
-    background: #E1306C !important;
+    background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
     color: #ffffff !important;
 }
 
@@ -150,14 +151,14 @@
 
 @media (max-width: 1024px) {
     .social-sidebar {
-        left: 0 !important;
-        gap: 0 !important;
-        padding: 0 !important;
+        left: 10px !important;
+        gap: 6px !important;
+        padding: 8px 6px !important;
     }
     .social-icon {
-        width: 38px !important;
-        height: 38px !important;
-        font-size: 16px !important;
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 14px !important;
     }
     .btn-nav-call span {
         display: none !important;
@@ -168,34 +169,8 @@
 }
 
 @media (max-width: 768px) {
-    .social-icon {
-        width: 36px !important;
-        height: 36px !important;
-        font-size: 15px !important;
-    }
-    .social-icon:hover {
-        transform: scale(1.18) translateX(3px) !important;
-        width: 42px !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .social-icon {
-        width: 34px !important;
-        height: 34px !important;
-        font-size: 14px !important;
-    }
-    .social-icon:hover {
-        transform: scale(1.15) translateX(2px) !important;
-        width: 38px !important;
-    }
-}
-
-@media (max-height: 520px) {
-    .social-icon {
-        width: 30px !important;
-        height: 30px !important;
-        font-size: 13px !important;
+    .social-sidebar {
+        display: none !important;
     }
 }
 

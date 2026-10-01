@@ -61,14 +61,31 @@
           "fa-user-md"
         ],
         [
-          "PRP & GFC hair therapy",
+          "Hair loss consultation",
+          "/hair-loss-consultation.html",
+          "fa-search"
+        ],
+        [
+          "PRP hair therapy",
           "/prp-therapy.html",
           "fa-vial"
+        ],
+        [
+          "GFC hair treatment",
+          "/prp-therapy.html#gfc-therapy",
+          "fa-flask",
+          "gfc-treatment"
         ],
         [
           "White & grey hair removal",
           "/white-hair-removal.html",
           "fa-bolt"
+        ],
+        [
+          "Laser hair removal",
+          "/skin-services.html#laser",
+          "fa-sun",
+          "laser-hair-removal"
         ],
         [
           "Skin & laser treatments",
@@ -78,7 +95,8 @@
         [
           "Botox & anti-ageing",
           "/skin-services.html#anti-aging",
-          "fa-magic"
+          "fa-magic",
+          "botox"
         ],
         [
           "Permanent makeup",
@@ -135,27 +153,42 @@
         [
           "Hair transplant (FUE)",
           "/hair-transplant/",
-          "fa-user-md"
+          "fa-user-md",
+          "fue-hair-transplant"
         ],
         [
-          "PRP & GFC hair therapy",
+          "Hair loss consultation",
+          "/hair-loss-consultation.html",
+          "fa-search"
+        ],
+        [
+          "PRP hair therapy",
           "/prp-therapy.html",
           "fa-vial"
         ],
         [
+          "GFC hair treatment",
+          "/prp-therapy.html#gfc-therapy",
+          "fa-flask",
+          "gfc-treatment"
+        ],
+        [
+          "Laser hair removal",
+          "/skin-services.html#laser",
+          "fa-sun",
+          "laser-hair-removal"
+        ],
+        [
           "Acne, scars & pigmentation",
           "/skin-services.html#acne",
-          "fa-spa"
+          "fa-spa",
+          "acne-treatment"
         ],
         [
           "HydraFacial & medical facials",
           "/skin-services.html#hydra-facial",
-          "fa-tint"
-        ],
-        [
-          "Laser hair reduction",
-          "/skin-services.html#laser",
-          "fa-bolt"
+          "fa-tint",
+          "hydra-facial"
         ],
         [
           "Non-surgical body sculpting",
@@ -201,7 +234,7 @@
         ],
         [
           "Hair-loss diagnosis & consultation",
-          "/hair-services.html#consultation",
+          "/hair-loss-consultation.html",
           "fa-search"
         ],
         [

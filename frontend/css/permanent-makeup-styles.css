@@ -2,7 +2,7 @@
    KEZZA CLINIC — PERMANENT MAKEUP PAGE  |  White Luxury Professional
    ══════════════════════════════════════════════════════════════════════ */
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; }
 
 :root {
   --primary:        #00AFC0;
@@ -47,7 +47,6 @@ body {
   color: var(--body-text);
   background: var(--white);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -64,58 +63,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ── NAVBAR ─────────────────────────────────────────────────────────── */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.97);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-  z-index: 1000;
-  padding: 14px 0;
-  transition: var(--transition);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-}
-
-.nav-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .nav-logo img {
   height: 40px !important;
-  width: auto;
-  display: block;
   background: transparent;
-}
-
-.nav-menu {
-  display: flex;
-  list-style: none;
-  gap: 4px;
-  align-items: center;
-}
-
-.nav-menu a {
-  text-decoration: none;
-  color: var(--secondary);
-  font-weight: 500;
-  font-size: 0.82rem;
-  padding: 6px 10px;
-  border-radius: 6px;
-  transition: var(--transition);
-  white-space: nowrap;
-}
-
-.nav-menu a:hover,
-.nav-menu a.active {
-  color: var(--primary);
-  background: rgba(0, 175, 192,0.07);
 }
 
 .btn-primary {
@@ -135,38 +86,15 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 12px 30px rgba(0, 175, 192,0.4) !important;
 }
 
-.btn-nav-call {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--secondary) !important;
-  text-decoration: none;
-  font-size: 0.82rem;
-  padding: 6px 12px;
-  border: 1.5px solid rgba(0, 175, 192,0.3);
-  border-radius: 20px;
-  transition: var(--transition);
-  font-weight: 600;
-}
-
-.btn-nav-call:hover {
-  border-color: var(--primary);
-  color: var(--primary) !important;
-  background: rgba(0, 175, 192,0.05);
-}
-
 .nav-cta { display: flex; align-items: center; gap: 12px; }
 
 .nav-scanner-link {
-  color: var(--gold-dark) !important;
-  font-weight: 600 !important;
-  background: rgba(0,175,192,0.08);
   border: 1px solid rgba(0,175,192,0.2);
   border-radius: 6px;
   padding: 4px 10px !important;
 }
 
-.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+.hamburger { flex-direction: column; cursor: pointer; gap: 5px; }
 
 .hamburger span {
   width: 25px;
@@ -174,15 +102,6 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--secondary);
   border-radius: 3px;
   transition: var(--transition);
-}
-
-.scroll3d-bg {
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.07;
 }
 
 /* ── HERO SECTION — Dark accent for impact ──────────────────────────── */
@@ -415,9 +334,6 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.08em;
   font-weight: 600;
 }
-
-.sparkle-particles { display: none; }
-.image-placeholder  { display: none; }
 
 /* ── SECTION COMMONS ────────────────────────────────────────────────── */
 .section-header {
@@ -813,12 +729,6 @@ h1, h2, h3, h4, h5, h6 {
 .case-study h3 { font-size: 19px; color: var(--gold-dark); margin-bottom: 14px; }
 .case-study p  { font-size: 14.5px; line-height: 1.8; color: var(--body-text); }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
 .gallery-item {
   position: relative;
   overflow: hidden;
@@ -993,11 +903,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── SECTION 9 — Final CTA ──────────────────────────────────────────── */
 .final-cta-section {
-  padding: 80px 0;
   background: var(--gradient-hero);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
 }
 
 .final-cta-section::before {
@@ -1013,20 +919,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .final-cta-section h2 {
   font-size: clamp(32px, 4vw, 50px);
-  color: #ffffff;
   margin-bottom: 24px;
   position: relative;
   z-index: 2;
 }
 
 .final-cta-section p {
-  font-size: 17px;
   margin-bottom: 18px;
-  line-height: 1.8;
-  max-width: 750px;
   margin-left: auto;
   margin-right: auto;
-  color: rgba(255,255,255,0.78);
   position: relative;
   z-index: 2;
 }
@@ -1139,75 +1040,13 @@ p.footer-nav-title {
 }
 
 /* ── SOCIAL SIDEBAR — transparent, icon-only ─────────────────────── */
-.social-sidebar {
-  position: fixed !important;
-  left: 0 !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  z-index: 990 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0 !important;
-  padding: 0 !important;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-}
-
-.social-icon {
-  width: 42px !important;
-  height: 42px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: #ffffff !important;
-  font-size: 17px !important;
-  text-decoration: none !important;
-  transition: var(--transition) !important;
-  border-radius: 0 6px 6px 0 !important;
-}
-
-.social-icon.instagram { background: #E1306C !important; }
-.social-icon.facebook  { background: #1877F2 !important; }
-.social-icon.google    { background: #EA4335 !important; }
-.social-icon.whatsapp  { background: #25D366 !important; }
 
 .social-icon:hover {
-  width: 52px !important;
   font-size: 20px !important;
   border-radius: 0 8px 8px 0 !important;
 }
 
 /* ── FLOATING DOCK ──────────────────────────────────────────────────── */
-.floating-quick-dock {
-  position: fixed;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  display: flex;
-  gap: 8px;
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0,0,0,0.1);
-  border-radius: 50px;
-  padding: 10px 14px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
-}
-
-.dock-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  transition: var(--transition);
-  color: var(--secondary);
-}
 
 .dock-item:hover { transform: translateY(-3px); }
 
@@ -1234,10 +1073,6 @@ p.footer-nav-title {
   from { opacity: 0; transform: translateX(40px); }
   to   { opacity: 1; transform: translateX(0); }
 }
-@keyframes fadeInLeft {
-  from { opacity: 0; transform: translateX(-40px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
 @keyframes expandWidth {
   from { width: 0; }
   to   { width: 80px; }
@@ -1257,13 +1092,9 @@ p.footer-nav-title {
 }
 
 /* ── TYPOGRAPHY UTILITIES ───────────────────────────────────────────── */
-p.item-heading   { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: inherit; line-height: 1.4; }
-p.cta-subtext    { font-family: var(--font-body);    font-size: 0.95rem; font-weight: 500; margin-top: 0.75rem; opacity: 0.9; }
-p.section-subhead{ font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; margin-bottom: 0.75rem; color: inherit; }
 
 /* ── RESPONSIVE ─────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .hamburger { display: flex; }
 
   .nav-menu {
     position: fixed;
@@ -1284,7 +1115,6 @@ p.section-subhead{ font-family: var(--font-heading); font-size: 1.15rem; font-we
 
   .nav-menu.active { left: 0; }
   .nav-menu li { margin: 10px 0; }
-  .nav-cta { display: none; }
 
   .hero-container,
   .section-grid,
@@ -1300,7 +1130,6 @@ p.section-subhead{ font-family: var(--font-heading); font-size: 1.15rem; font-we
   .why-choose-grid  { grid-template-columns: repeat(2, 1fr); }
   .process-timeline { grid-template-columns: repeat(2, 1fr); }
   .case-studies     { grid-template-columns: repeat(2, 1fr); }
-  .gallery-grid     { grid-template-columns: repeat(2, 1fr); }
 
   .hero-benefits { grid-template-columns: 1fr; }
 
@@ -1311,17 +1140,13 @@ p.section-subhead{ font-family: var(--font-heading); font-size: 1.15rem; font-we
   .btn-cta-phone, .btn-cta-whatsapp { width: 100%; max-width: 320px; text-align: center; justify-content: center; }
 
   .clinic-reputation { padding: 32px 24px; }
-
-  .floating-quick-dock { padding: 8px 10px; gap: 6px; bottom: 14px; }
   .dock-item span { display: none; }
-  .dock-item { padding: 10px 12px; }
 }
 
 @media (max-width: 768px) {
   .why-choose-grid  { grid-template-columns: 1fr; }
   .process-timeline { grid-template-columns: 1fr; }
   .case-studies     { grid-template-columns: 1fr; }
-  .gallery-grid     { grid-template-columns: 1fr; }
   .section-image img    { height: 360px; }
   .aftercare-image img  { height: 360px; }
 }
@@ -1337,23 +1162,6 @@ p.section-subhead{ font-family: var(--font-heading); font-size: 1.15rem; font-we
 
 /* ── DESKTOP NAV OVERRIDE ───────────────────────────────────────────── */
 @media (min-width: 1025px) {
-  .nav-container {
-    max-width: 1400px !important;
-    padding: 0 14px !important;
-    gap: 10px !important;
-  }
-  .nav-logo img { height: 38px !important; }
-  .nav-menu {
-    gap: 2px !important;
-    flex-wrap: nowrap !important;
-    align-items: center !important;
-  }
-  .nav-menu a {
-    font-size: 0.79rem !important;
-    padding: 5px 8px !important;
-    white-space: nowrap !important;
-    font-weight: 500 !important;
-  }
   .nav-cta .btn-primary,
   .btn-primary {
     padding: 8px 16px !important;

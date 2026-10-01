@@ -81,14 +81,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!document.querySelector('link[href*="scanner-modal.css"]')) {
             const cssLink = document.createElement('link');
             cssLink.rel = 'stylesheet';
-            cssLink.href = 'css/scanner-modal.css?v=6.0';
+            cssLink.href = 'css/scanner-modal.css?v=46427c85';
             document.head.appendChild(cssLink);
         }
 
         // 2. Inject JS and open modal once loaded
         if (!document.querySelector('script[src*="scanner-modal.js"]')) {
             const script = document.createElement('script');
-            script.src = 'js/scanner-modal.js?v=6.4';
+            script.src = 'js/scanner-modal.js?v=bec4355e';
             script.defer = true;
             script.onload = () => {
                 scannerAssetsLoading = false;
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!document.querySelector('script[src*="kezza-ai.js"]')) {
             const sc = document.createElement('script');
-            sc.src = 'js/kezza-ai.js?v=5.4';
+            sc.src = 'js/kezza-ai.js?v=a3cc0339';
             sc.defer = true;
             sc.onload = () => {
                 setTimeout(() => {

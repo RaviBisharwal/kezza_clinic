@@ -1,0 +1,80 @@
+{
+  "_about": "Extra content for the clinic pages (frontend/locations/<city>/). Addresses, phones, hours, doctors and the treatment list come from tools/seo/site-data.json; this file holds the longer local copy. Text fields are HTML. Edit, then run: python3 tools/content/build_content_pages.py",
+  "jaipur": {
+    "h1": "Hair &amp; Skin Clinic in Khatipura, Jaipur",
+    "h1_span": "| Kezza, Sirsi Road",
+    "services_h2": "Hair and skin treatments in Jaipur",
+    "services_sub": "Our flagship clinic has the widest team and our operation theatre for hair transplant surgery.",
+    "services": [
+      {"title": "Hair transplant in Jaipur", "href": "/hair-transplant/", "icon": "fa-user-md",
+       "text": "Our doctors perform <a href=\"/hair-transplant/fue/\">FUE</a> and <a href=\"/hair-transplant/dhi/\">DHI</a> hair transplants in the clinic's operation theatre, as well as <a href=\"/hair-transplant/beard/\">beard</a> and <a href=\"/hair-transplant/eyebrow/\">eyebrow</a> transplants, after a trichoscopy check of your donor area."},
+      {"title": "PRP and GFC for hair fall", "href": "/gfc-treatment/", "icon": "fa-vial",
+       "text": "For thinning hair that is still growing, <a href=\"/prp-therapy.html\">PRP</a> and <a href=\"/gfc-treatment/\">GFC</a> injections use growth factors from your own blood. A <a href=\"/hair-loss-consultation.html\">hair loss consultation</a> first finds the cause of your hair fall."},
+      {"title": "Skin and laser treatments", "href": "/skin-services.html", "icon": "fa-spa",
+       "text": "Our skin specialists treat acne and scars, pigmentation, dark circles and signs of ageing, and offer HydraFacial, Botox and <a href=\"/laser-hair-removal/\">laser hair removal</a>."},
+      {"title": "White hair removal", "href": "/white-hair-removal.html", "icon": "fa-bolt",
+       "text": "White, grey and blonde hairs cannot be treated with laser. We remove them one by one with doctor-led <a href=\"/electrolysis.html\">electrolysis</a>."},
+      {"title": "Permanent makeup and body sculpting", "href": "/permanent-makeup.html", "icon": "fa-paint-brush",
+       "text": "Microblading, lip blush and permanent eyeliner with our PMU artist, and <a href=\"/weight-loss.html\">non-surgical body sculpting</a> for stubborn fat."},
+      {"title": "Visiting specialists", "href": "/about.html#doctors", "icon": "fa-stethoscope",
+       "text": "Consultations for <a href=\"/about.html#dr-nakul-somani\">plastic and aesthetic surgery</a>, <a href=\"/about.html#dr-mandhata-sharma\">rhinoplasty and ENT</a> and <a href=\"/about.html#dr-youvraj-singh\">internal medicine</a> with our visiting consultants."}
+    ],
+    "nearby_text": "The clinic is on the main Sirsi Road in Khatipura, West Jaipur, and is convenient from these areas:",
+    "nearby": ["Vaishali Nagar", "Jhotwara", "Gandhi Path", "Chitrakoot", "Panchyawala", "Kalwar Road", "Sirsi Road"],
+    "faqs": [
+      ["Is hair transplant surgery done at the Jaipur clinic?", "Yes. The Jaipur clinic has an operation theatre for hair transplant surgery, where our doctors perform FUE, DHI, beard and eyebrow transplants. Read about <a href=\"/hair-transplant/fue/\">FUE</a> and <a href=\"/hair-transplant/dhi/\">DHI</a>."],
+      ["Which visiting specialists see patients in Jaipur?", "Dr. Nakul Somani (aesthetic and reconstructive plastic surgeon), Dr. Mandhata Sharma (ENT, rhinoplasty and head and neck surgeon) and Dr. Youvraj Singh (consultant physician) visit our Jaipur clinic. Call ahead to check their consultation days."],
+      ["Is laser hair removal available at the Jaipur clinic?", "Yes. Laser hair removal for the face and body is available in Jaipur, with settings chosen for your skin type. See <a href=\"/laser-hair-removal/\">laser hair removal</a> for sessions, preparation and aftercare."]
+    ]
+  },
+  "sikar": {
+    "h1": "Hair Transplant &amp; Skin Clinic in Sikar",
+    "h1_span": "| Kezza, Silver Jubilee Road",
+    "services_h2": "Hair and skin treatments in Sikar",
+    "services_sub": "Our Sikar doctors also practise at our Jaipur clinic, so you get the same protocols closer to home.",
+    "services": [
+      {"title": "Hair transplant in Sikar", "href": "/hair-transplant/fue/", "icon": "fa-user-md",
+       "text": "<a href=\"/hair-transplant/fue/\">FUE hair transplant</a> consultations and procedures with Dr. Ankit Bhalothia, who also sees patients in Jaipur. <a href=\"/hair-transplant/beard/\">Beard</a> and <a href=\"/hair-transplant/eyebrow/\">eyebrow</a> transplants can be discussed at the same visit."},
+      {"title": "PRP and GFC hair treatment", "href": "/gfc-treatment/", "icon": "fa-vial",
+       "text": "For hair fall and early thinning, <a href=\"/prp-therapy.html\">PRP</a> and <a href=\"/gfc-treatment/\">GFC</a> injections are available in Sikar, after a scalp check to find the cause."},
+      {"title": "Laser hair removal in Sikar", "href": "/laser-hair-removal/", "icon": "fa-bolt",
+       "text": "<a href=\"/laser-hair-removal/\">Laser hair removal</a> for the face, underarms, arms, legs and body, with settings chosen for your skin type."},
+      {"title": "Acne, pigmentation and facials", "href": "/skin-services.html", "icon": "fa-spa",
+       "text": "Dr. Neelam Choudhary, aesthetic physician and skin specialist, treats <a href=\"/skin-services.html#acne\">acne and scars</a> and <a href=\"/skin-services.html#pigmentation\">pigmentation</a>. HydraFacial and medical facials are also offered."},
+      {"title": "Body sculpting and permanent makeup", "href": "/weight-loss.html", "icon": "fa-weight",
+       "text": "Non-surgical <a href=\"/weight-loss.html\">body sculpting</a>, and <a href=\"/permanent-makeup.html\">permanent makeup</a> for brows, lips and eyeliner with our PMU artist, Krishna Choudhary."}
+    ],
+    "nearby_text": "The clinic is on Silver Jubilee Road, opposite S.K. Hospital, and serves patients from across the Shekhawati region, including:",
+    "nearby": ["Fatehpur", "Laxmangarh", "Danta Ramgarh", "Khandela", "Neem Ka Thana", "Jhunjhunu", "Churu"],
+    "faqs": [
+      ["Do the Sikar doctors also work at the Jaipur clinic?", "Yes. Dr. Ankit Bhalothia and Dr. Neelam Choudhary see patients in both Sikar and Jaipur, and both clinics follow the same clinical protocols."],
+      ["Are PRP and GFC available in Sikar?", "Yes. Both PRP and GFC hair treatments are offered at the Sikar clinic. Most GFC courses are 3 to 4 sessions about 4 weeks apart; your doctor advises you after a scalp check. Read about <a href=\"/gfc-treatment/\">GFC treatment</a>."],
+      ["Is laser hair removal available in Sikar?", "Yes. Laser hair removal is offered at the Sikar clinic. Most people need 6 to 8 sessions, spaced several weeks apart. See <a href=\"/laser-hair-removal/\">laser hair removal</a>."]
+    ]
+  },
+  "ajmer": {
+    "h1": "Hair Transplant &amp; Skin Clinic in Ajmer",
+    "h1_span": "| Kezza, Shastri Nagar",
+    "services_h2": "Hair and skin treatments in Ajmer",
+    "services_sub": "The Ajmer clinic is led by surgeons who specialise in the face and jaw, as well as hair transplant.",
+    "services": [
+      {"title": "Hair transplant in Ajmer", "href": "/hair-transplant/", "icon": "fa-user-md",
+       "text": "Hair transplant consultations and procedures with Dr. Aliza Rizvi and Dr. Dhiral Vijayvargiya. Read about <a href=\"/hair-transplant/fue/\">FUE</a>, <a href=\"/hair-transplant/beard/\">beard</a> and <a href=\"/hair-transplant/eyebrow/\">eyebrow</a> transplants."},
+      {"title": "Hair loss diagnosis", "href": "/hair-loss-consultation.html", "icon": "fa-search",
+       "text": "Not sure why your hair is falling? A <a href=\"/hair-loss-consultation.html\">hair loss consultation</a> checks your scalp and finds the cause before any treatment is planned."},
+      {"title": "Facial aesthetics", "href": "/skin-services.html#anti-aging", "icon": "fa-magic",
+       "text": "<a href=\"/skin-services.html#anti-aging\">Anti-ageing and facial aesthetic treatments</a>, planned by oral and maxillofacial surgeons who know the anatomy of the face."},
+      {"title": "Skin glow and chemical peels", "href": "/skin-services.html", "icon": "fa-spa",
+       "text": "<a href=\"/skin-services.html\">Skin glow treatments and chemical peels</a> for dull skin, tanning and uneven tone."},
+      {"title": "Oral and maxillofacial consultations", "href": "/about.html#dr-aliza-rizvi", "icon": "fa-stethoscope",
+       "text": "Dr. Aliza Rizvi, an oral and maxillofacial surgeon, also offers <a href=\"/about.html#dr-aliza-rizvi\">oral and maxillofacial surgery consultations</a>."}
+    ],
+    "nearby_text": "The clinic is in the Oasis Complex (Hotel Oasis building) in Shastri Nagar and is within reach of:",
+    "nearby": ["Pushkar", "Kishangarh", "Nasirabad", "Beawar", "Kekri"],
+    "faqs": [
+      ["Who leads the Ajmer clinic?", "The Ajmer clinic is led by oral and maxillofacial surgeon Dr. Aliza Rizvi, together with Dr. Dhiral Vijayvargiya. Both are also aesthetic and hair transplant surgeons."],
+      ["What is the phone number of Kezza Ajmer?", "The Ajmer clinic has its own number, +91 92160 88257, which is also on WhatsApp. The main helpline, +91 92845 17427, serves our Jaipur and Sikar clinics."],
+      ["Can I get a hair loss consultation in Ajmer?", "Yes. The Ajmer clinic offers hair-loss diagnosis and consultation, including a scalp examination, so the right treatment can be planned. Read about our <a href=\"/hair-loss-consultation.html\">hair loss consultation</a>."]
+    ]
+  }
+}

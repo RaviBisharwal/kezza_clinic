@@ -401,13 +401,13 @@
         <!-- Filters -->
         <div class="filters-bar">
             <input type="text" class="filter-input search-input" id="searchInput" placeholder="🔍 Search name / mobile / ID / city" oninput="debounceFilter()">
-            <select class="filter-input" id="filterClinic" onchange="loadRecords()">
+            <select class="filter-input" id="filterClinic" onchange="loadRecords()" aria-label="Filter by clinic">
                 <option value="">All Clinics</option>
                 <option value="Jaipur">Jaipur</option>
                 <option value="Sikar">Sikar</option>
                 <option value="Ajmer">Ajmer</option>
             </select>
-            <select class="filter-input" id="filterCategory" onchange="loadRecords()">
+            <select class="filter-input" id="filterCategory" onchange="loadRecords()" aria-label="Filter by category">
                 <option value="">All Categories</option>
                 <option value="Hair">Hair</option>
                 <option value="Skin">Skin</option>
@@ -417,7 +417,7 @@
                 <option value="Anti-Aging">Anti-Aging</option>
                 <option value="Weight Loss">Weight Loss</option>
             </select>
-            <select class="filter-input" id="filterStatus" onchange="loadRecords()">
+            <select class="filter-input" id="filterStatus" onchange="loadRecords()" aria-label="Filter by status">
                 <option value="">All Statuses</option>
                 <option value="NEW">NEW</option>
                 <option value="PENDING">PENDING</option>
@@ -448,7 +448,7 @@
     <div class="modal" id="modal">
         <div class="modal-header">
             <h3 id="modalTitle">Consultation Detail</h3>
-            <button class="btn-close-modal" onclick="closeModalDirect()"><i class="fas fa-times"></i></button>
+            <button class="btn-close-modal" onclick="closeModalDirect()" aria-label="Close"><i class="fas fa-times"></i></button>
         </div>
         <div class="modal-body" id="modalBody">Loading…</div>
     </div>

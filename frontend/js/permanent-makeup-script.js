@@ -1,34 +1,15 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (!href || href === '#') return;
-        try {
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        } catch (err) {}
-    });
-});
-
+// In-page anchor scrolling (with the fixed-navbar offset) is handled by smooth-scroll.js.
 // Optimized Single RAF Scroll Handler
 (function() {
     let ticking = false;
     let isScrolled = false;
     let navbar = null;
     let heroImage = null;
-    let particles = null;
     let heroContent = null;
 
     document.addEventListener('DOMContentLoaded', function() {
         navbar = document.querySelector('.navbar');
         heroImage = document.querySelector('.hero-image');
-        particles = document.querySelectorAll('.sparkle-particles');
         heroContent = document.querySelector('.hero-content');
     });
 
@@ -52,12 +33,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (scrolled < window.innerHeight) {
             if (heroImage) {
                 heroImage.style.transform = `translate3d(0, ${scrolled * -0.25}px, 0)`;
-            }
-            if (particles && particles.length > 0) {
-                const rate = scrolled * -0.15;
-                particles.forEach(p => {
-                    p.style.transform = `translate3d(0, ${rate}px, 0)`;
-                });
             }
             if (heroContent) {
                 heroContent.style.opacity = Math.max(0, 1 - scrolled / 600);
@@ -365,8 +340,6 @@ Object.keys(scrollAnimations).forEach(selector => {
     });
 });
 
-// Enhanced scroll effects handled in unified RAF loop above
-
 // Smooth reveal animations for content sections
 document.addEventListener('DOMContentLoaded', function() {
     const contentSections = document.querySelectorAll('.section-content, .section-header, .aftercare-list');
@@ -385,23 +358,6 @@ document.addEventListener('DOMContentLoaded', function() {
         section.style.transform = 'translateY(20px)';
         section.style.transition = 'all 0.8s ease';
         contentObserver.observe(section);
-    });
-});
-
-// Gallery item hover effects
-document.addEventListener('DOMContentLoaded', function() {
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    
-    galleryItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            const placeholder = this.querySelector('.image-placeholder');
-            placeholder.style.transform = 'rotateY(-10deg) scale(1.05) translateZ(30px)';
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            const placeholder = this.querySelector('.image-placeholder');
-            placeholder.style.transform = 'rotateY(0) scale(1) translateZ(0)';
-        });
     });
 });
 
@@ -556,6 +512,3 @@ document.addEventListener('DOMContentLoaded', function() {
         ctaObserver.observe(ctaSection);
     }
 });
-
-console.log('Kezza Permanent Makeup page loaded successfully! ✨');
-

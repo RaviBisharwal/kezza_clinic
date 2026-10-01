@@ -150,6 +150,17 @@ app.get('/api/health', (req, res) => {
     });
 });
 
+// Ask each Gemini model in turn; the first answer wins and the last model's error propagates.
+async function generateWithFallback(ai, models, request) {
+    for (let i = 0; ; i++) {
+        try {
+            return await ai.models.generateContent({ model: models[i], ...request });
+        } catch (err) {
+            if (i === models.length - 1) throw err;
+        }
+    }
+}
+
 // In-memory instant response cache
 const chatCache = new Map();
 
@@ -196,45 +207,16 @@ app.post('/api/chat', async (req, res) => {
             parts: [{ text: message }]
         });
 
-        // Use ultra-fast lite model with concise output tokens for instant response
-        let responseText = '';
-        try {
-            const response = await ai.models.generateContent({
-                model: 'gemini-3.5-flash-lite',
-                contents: contents,
-                config: {
-                    systemInstruction: KEZZA_SYSTEM_INSTRUCTION,
-                    temperature: 0.2,
-                    maxOutputTokens: 250
-                }
-            });
-            responseText = response.text || '';
-        } catch (mErr) {
-            // Fallback to gemini-3.8-flash, then gemini-2.5-flash
-            try {
-                const fbResponse = await ai.models.generateContent({
-                    model: 'gemini-3.8-flash',
-                    contents: contents,
-                    config: {
-                        systemInstruction: KEZZA_SYSTEM_INSTRUCTION,
-                        temperature: 0.2,
-                        maxOutputTokens: 250
-                    }
-                });
-                responseText = fbResponse.text || '';
-            } catch (fbErr) {
-                const legacyResponse = await ai.models.generateContent({
-                    model: 'gemini-2.5-flash',
-                    contents: contents,
-                    config: {
-                        systemInstruction: KEZZA_SYSTEM_INSTRUCTION,
-                        temperature: 0.2,
-                        maxOutputTokens: 250
-                    }
-                });
-                responseText = legacyResponse.text || '';
+        // Ultra-fast lite model first (concise output for instant replies), then the fallbacks
+        const response = await generateWithFallback(ai, ['gemini-3.5-flash-lite', 'gemini-3.8-flash', 'gemini-2.5-flash'], {
+            contents: contents,
+            config: {
+                systemInstruction: KEZZA_SYSTEM_INSTRUCTION,
+                temperature: 0.2,
+                maxOutputTokens: 250
             }
-        }
+        });
+        const responseText = response.text || '';
 
         if (responseText) {
             // Cache response (up to 200 items)
@@ -330,52 +312,21 @@ Return a strict JSON object with this exact schema:
   "why_this_consultation": "Detailed empathetic rationale for why this specific specialist and procedure will deliver optimal results."
 }`;
 
-        let response;
-        try {
-            response = await ai.models.generateContent({
-                model: 'gemini-3.8-flash',
-                contents: [
-                    {
-                        role: 'user',
-                        parts: [
-                            {
-                                inlineData: {
-                                    mimeType: mimeType,
-                                    data: base64Data
-                                }
-                            },
-                            { text: promptText }
-                        ]
-                    }
-                ],
-                config: {
-                    systemInstruction: 'You are a senior clinical dermatologist and hair trichology AI diagnostic engine for Kezza Clinic. Provide accurate, professional visual assessments in JSON format.',
-                    responseMimeType: 'application/json'
+        const response = await generateWithFallback(ai, ['gemini-3.8-flash', 'gemini-2.5-flash'], {
+            contents: [
+                {
+                    role: 'user',
+                    parts: [
+                        { inlineData: { mimeType: mimeType, data: base64Data } },
+                        { text: promptText }
+                    ]
                 }
-            });
-        } catch (vErr) {
-            response = await ai.models.generateContent({
-                model: 'gemini-2.5-flash',
-                contents: [
-                    {
-                        role: 'user',
-                        parts: [
-                            {
-                                inlineData: {
-                                    mimeType: mimeType,
-                                    data: base64Data
-                                }
-                            },
-                            { text: promptText }
-                        ]
-                    }
-                ],
-                config: {
-                    systemInstruction: 'You are a senior clinical dermatologist and hair trichology AI diagnostic engine for Kezza Clinic. Provide accurate, professional visual assessments in JSON format.',
-                    responseMimeType: 'application/json'
-                }
-            });
-        }
+            ],
+            config: {
+                systemInstruction: 'You are a senior clinical dermatologist and hair trichology AI diagnostic engine for Kezza Clinic. Provide accurate, professional visual assessments in JSON format.',
+                responseMimeType: 'application/json'
+            }
+        });
 
         const rawText = response.text || '{}';
         try {

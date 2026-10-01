@@ -2,56 +2,13 @@
  * Kezza Clinic — Home Page Upgrade
  * Progressive enhancements layered on top of the existing scripts. Every block
  * bails out quietly if its markup is absent, so this file is safe to include on
- * any page. Nothing here replaces existing behaviour:
- *   - Count-up stats and the before/after drag already live in pro-animations.js.
- *     This file only ADDS keyboard access and ARIA to that slider.
- *   - Doctor filtering also lives in pro-animations.js and keeps working; the
- *     "View All" collapse is released the moment a filter is used.
+ * any page. Count-up stats and the before/after drag live in pro-animations.js;
+ * this file only ADDS keyboard access and ARIA to that slider.
  */
 (function () {
     'use strict';
 
-    var reduceMotion = window.matchMedia &&
-        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    /* ── 1. Doctors: reveal the remaining specialists ──────────────────── */
-    function initDoctorsReveal() {
-        var grid = document.getElementById('doctorsGrid');
-        var btn = document.getElementById('doctorsMoreBtn');
-        if (!grid || !btn) return;
-
-        var total = grid.querySelectorAll('.doctor-card').length;
-        var labelEl = btn;
-
-        function expand() {
-            if (!grid.classList.contains('kz-collapsed')) return;
-            grid.classList.remove('kz-collapsed');
-            btn.setAttribute('aria-expanded', 'true');
-            labelEl.innerHTML = 'Show Fewer Specialists <i class="fas fa-arrow-down" aria-hidden="true"></i>';
-        }
-
-        function collapse() {
-            grid.classList.add('kz-collapsed');
-            btn.setAttribute('aria-expanded', 'false');
-            labelEl.innerHTML = 'View All ' + total + ' Specialists <i class="fas fa-arrow-down" aria-hidden="true"></i>';
-            // Keep the section header in view when collapsing
-            var sec = document.getElementById('doctors');
-            if (sec) sec.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-        }
-
-        btn.addEventListener('click', function () {
-            if (grid.classList.contains('kz-collapsed')) expand();
-            else collapse();
-        });
-
-        // Filtering must never be hidden behind the collapse
-        document.querySelectorAll('.doc-filter-btn').forEach(function (f) {
-            f.addEventListener('click', expand);
-        });
-    }
-
-
-    /* ── 1b. Services: reveal the remaining treatments (phones only) ───── */
+    /* ── 1. Services: reveal the remaining treatments (phones only) ────── */
     function initServicesReveal() {
         var viewer = document.getElementById('servicesViewer');
         var btn = document.getElementById('servicesMoreBtn');
@@ -74,40 +31,7 @@
         });
     }
 
-    /* ── 2. Testimonials: avatar initial next to each author ───────────── */
-    function initTestimonialAuthors() {
-        var rail = document.getElementById('testiRail');
-        if (!rail) return;
-
-        rail.querySelectorAll('.testimonial-card').forEach(function (card) {
-            if (card.querySelector('.kz-testi-author')) return;
-
-            // The author sits in a bare <span> between the quote and "Read More"
-            var nameEl = null;
-            card.querySelectorAll('span').forEach(function (sp) {
-                if (nameEl) return;
-                if (sp.classList.length === 0 && sp.textContent.trim()) nameEl = sp;
-            });
-            if (!nameEl) return;
-
-            var name = nameEl.textContent.trim();
-            var initial = name.charAt(0).toUpperCase();
-
-            var row = document.createElement('div');
-            row.className = 'kz-testi-author';
-
-            var av = document.createElement('span');
-            av.className = 'kz-testi-avatar';
-            av.setAttribute('aria-hidden', 'true');
-            av.textContent = initial;
-
-            nameEl.parentNode.insertBefore(row, nameEl);
-            row.appendChild(av);
-            row.appendChild(nameEl);
-        });
-    }
-
-    /* ── 3. Before/After slider: keyboard + ARIA ───────────────────────────
+    /* ── 2. Before/After slider: keyboard + ARIA ───────────────────────────
        pro-animations.js already handles mouse and touch. This adds the
        accessible half without touching that logic.                          */
     function initComparisonA11y() {
@@ -158,7 +82,7 @@
         });
     }
 
-    /* ── 4. FAQ accordion ──────────────────────────────────────────────── */
+    /* ── 3. FAQ accordion ──────────────────────────────────────────────── */
     function initFaq() {
         var items = document.querySelectorAll('.kz-faq-item');
         if (!items.length) return;
@@ -186,7 +110,7 @@
         });
     }
 
-    /* ── 5. Auto-dismiss the chat teaser so it stops covering content ──── */
+    /* ── 4. Auto-dismiss the chat teaser so it stops covering content ──── */
     function initTeaserAutoDismiss() {
         var tries = 0;
         var timer = setInterval(function () {
@@ -207,7 +131,7 @@
         }, 500);
     }
 
-    /* ── 6. Branch clinic locations filter tabs ──────────────────────── */
+    /* ── 5. Branch clinic locations filter tabs ──────────────────────── */
     function initBranchFilters() {
         var filterBtns = document.querySelectorAll('.kz-visit-pill-btn');
         var branches = document.querySelectorAll('.kz-branch-grid .kz-branch');
@@ -240,9 +164,7 @@
     }
 
     function boot() {
-        initDoctorsReveal();
         initServicesReveal();
-        initTestimonialAuthors();
         initComparisonA11y();
         initFaq();
         initTeaserAutoDismiss();

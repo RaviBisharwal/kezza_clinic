@@ -1,39 +1,13 @@
 /**
  * Kezza Hair & Skin Clinic — PRP & GFC Therapy Interactive Script
- * Enhanced Animations, ScrollSpy, Stat Counters, FAQ Accordion & Mobile Navigation
+ * Enhanced Animations, ScrollSpy, Stat Counters and FAQ Accordion
  */
 document.addEventListener('DOMContentLoaded', function() {
     'use strict';
 
-    // ── 1. Mobile Menu & Service Dropdown Toggles ───────────────
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
-    const servicesToggle = document.getElementById('servicesNavToggle');
-    const servicesDropdown = document.getElementById('servicesDropdownMenu');
+    // Mobile drawer and services dropdown are handled by mobile-menu.js and services-navigation.js.
 
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-    }
-
-    if (servicesToggle && servicesDropdown) {
-        servicesToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isOpen = servicesDropdown.classList.toggle('show');
-            servicesToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!servicesToggle.contains(e.target) && !servicesDropdown.contains(e.target)) {
-                servicesDropdown.classList.remove('show');
-                servicesToggle.setAttribute('aria-expanded', 'false');
-            }
-        });
-    }
-
-    // ── 2. FAQ Accordion ───────────────────────────────────────
+    // ── 1. FAQ Accordion ───────────────────────────────────────
     const faqItems = document.querySelectorAll('.prp-faq-item');
     
     faqItems.forEach(item => {
@@ -63,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ── 3. Scroll Reveal & Timeline Progress Animations ────────
+    // ── 2. Scroll Reveal & Timeline Progress Animations ────────
     const revealElements = document.querySelectorAll(
         '.prp-stat-card, .prp-step-card, .prp-candidacy-box, .prp-timeline-card, .patient-comment-card, .patient-review-action-card, .prp-media-showcase, .prp-doctor-quote-box, .prp-table-responsive'
     );
@@ -105,54 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
         revealElements.forEach(el => el.classList.add('is-visible'));
     }
 
-    // ── 4. Navbar Elevation & Reading Progress Bar ─────────────
-    const navbar = document.querySelector('.navbar');
-    const progressBar = document.getElementById('kzScrollProgress');
+    // Navbar elevation, reading progress and in-page anchor scrolling come from smooth-scroll.js.
 
-    window.addEventListener('scroll', () => {
-        const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Navbar elevation on scroll
-        if (navbar) {
-            if (scrollY > 30) {
-                navbar.classList.add('is-scrolled');
-            } else {
-                navbar.classList.remove('is-scrolled');
-            }
-        }
-
-        // Reading progress calculation
-        if (progressBar) {
-            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            if (docHeight > 0) {
-                const scrollPercent = (scrollY / docHeight);
-                progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, scrollPercent))})`;
-            }
-        }
-    }, { passive: true });
-
-    // ── 5. Smooth In-Page Anchor Scrolling ─────────────────────
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if (targetId && targetId !== '#' && targetId.length > 1) {
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    e.preventDefault();
-                    const headerOffset = 110;
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-
-    // ── 6. Sub-Navigation ScrollSpy with Horizontal Auto-Scroll 
+    // ── 3. Sub-Navigation ScrollSpy with Horizontal Auto-Scroll 
     const subnavPills = document.querySelectorAll('.prp-subnav-pill');
     const subnavContainer = document.querySelector('.prp-subnav-pills');
 
@@ -196,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { passive: true });
     }
 
-    // ── 7. Clinical PRP Stages & Before/After Showcase Interactive Controller ──
+    // ── 4. Clinical PRP Stages & Before/After Showcase Interactive Controller ──
     const stagesCard = document.getElementById('prpStagesCard');
     const stageBtns = document.querySelectorAll('.prp-stage-btn');
     const stagePins = document.querySelectorAll('.prp-stage-pin');
@@ -348,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
         startAutoStageCycle();
     }
 
-    // ── 8. Before & After View Mode Controller ────────────────
+    // ── 5. Before & After View Mode Controller ────────────────
     const baViewport = document.getElementById('prpBaViewport');
     const baModeBtns = document.querySelectorAll('.ba-mode-btn');
 
@@ -370,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ── 9. Timeline Cards Sync with Showcase Stages ───────────
+    // ── 6. Timeline Cards Sync with Showcase Stages ───────────
     const tlStageLinks = document.querySelectorAll('.prp-tl-stage-link');
     tlStageLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -389,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ── 10. Verified Patient Reviews Executive Carousel Slider ───────
+    // ── 7. Verified Patient Reviews Executive Carousel Slider ───────
     function initReviewsCarousel() {
         const carousel = document.getElementById('prpReviewsCarousel');
         const viewport = document.getElementById('prpReviewsViewport');

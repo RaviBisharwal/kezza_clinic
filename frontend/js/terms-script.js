@@ -1,21 +1,4 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (!href || href === '#') return;
-        try {
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        } catch (err) {}
-    });
-});
-
+// In-page anchor scrolling (with the fixed-navbar offset) is handled by smooth-scroll.js.
 // Optimized Navbar scroll effect
 (function() {
     let ticking = false;
@@ -91,83 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Scroll to Top Button
-document.addEventListener('DOMContentLoaded', function() {
-    // Create scroll to top button
-    const scrollToTopBtn = document.createElement('button');
-    scrollToTopBtn.className = 'scroll-to-top';
-    scrollToTopBtn.innerHTML = '↑';
-    scrollToTopBtn.setAttribute('aria-label', 'Scroll to top');
-    document.body.appendChild(scrollToTopBtn);
-    
-    // Show/hide scroll to top button
-    let btnTicking = false;
-    let btnVisible = false;
-    window.addEventListener('scroll', function() {
-        if (!btnTicking) {
-            requestAnimationFrame(function() {
-                const shouldBeVisible = (window.pageYOffset || document.documentElement.scrollTop || 0) > 300;
-                if (shouldBeVisible !== btnVisible) {
-                    btnVisible = shouldBeVisible;
-                    scrollToTopBtn.classList.toggle('visible', btnVisible);
-                }
-                btnTicking = false;
-            });
-            btnTicking = true;
-        }
-    }, { passive: true });
-    
-    // Scroll to top functionality
-    scrollToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-});
-
-// Mobile menu toggle
-document.addEventListener('DOMContentLoaded', function() {
-    const navMenu = document.querySelector('.nav-menu');
-    const navToggle = document.createElement('div');
-    navToggle.className = 'nav-toggle';
-    navToggle.innerHTML = '☰';
-    navToggle.style.display = 'none';
-    navToggle.style.fontSize = '24px';
-    navToggle.style.cursor = 'pointer';
-    navToggle.style.color = 'var(--navy)';
-    
-    document.querySelector('.nav-container').appendChild(navToggle);
-    
-    function checkScreenSize() {
-        if (window.innerWidth <= 768) {
-            navToggle.style.display = 'block';
-            navMenu.style.display = 'none';
-        } else {
-            navToggle.style.display = 'none';
-            navMenu.style.display = 'flex';
-        }
-    }
-    
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    
-    navToggle.addEventListener('click', function() {
-        if (navMenu.style.display === 'none' || navMenu.style.display === '') {
-            navMenu.style.display = 'flex';
-            navMenu.style.flexDirection = 'column';
-            navMenu.style.position = 'absolute';
-            navMenu.style.top = '100%';
-            navMenu.style.left = '0';
-            navMenu.style.right = '0';
-            navMenu.style.background = 'white';
-            navMenu.style.padding = '20px';
-            navMenu.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
-        } else {
-            navMenu.style.display = 'none';
-        }
-    });
-});
+// The back-to-top button and reading-progress bar come from the site-wide smooth-scroll.js.
 
 // Loading animation
 window.addEventListener('load', function() {
@@ -177,41 +84,6 @@ window.addEventListener('load', function() {
     setTimeout(() => {
         document.body.style.opacity = '1';
     }, 100);
-});
-
-// Reading progress indicator
-document.addEventListener('DOMContentLoaded', function() {
-    // Create progress bar
-    const progressBar = document.createElement('div');
-    progressBar.className = 'reading-progress';
-    progressBar.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: linear-gradient(90deg, #D4AF37, #F4E4BC);
-        z-index: 10000;
-        transition: width 0.1s ease;
-    `;
-    document.body.appendChild(progressBar);
-    
-    // Update progress on scroll
-    let progTicking = false;
-    window.addEventListener('scroll', function() {
-        if (!progTicking) {
-            requestAnimationFrame(function() {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                if (docHeight > 0) {
-                    const scrollPercent = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
-                    progressBar.style.width = scrollPercent + '%';
-                }
-                progTicking = false;
-            });
-            progTicking = true;
-        }
-    }, { passive: true });
 });
 
 // Print functionality
@@ -224,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
         position: fixed;
         bottom: 90px;
         right: 30px;
-        background: var(--navy);
+        background: var(--navy, #333333);
         color: var(--white);
         border: none;
         padding: 12px 20px;
@@ -242,13 +114,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     printBtn.addEventListener('mouseenter', function() {
-        this.style.background = 'var(--gold)';
-        this.style.color = 'var(--navy)';
+        this.style.background = 'var(--gold, #00AFC0)';
+        this.style.color = 'var(--navy, #333333)';
         this.style.transform = 'translateY(-2px)';
     });
     
     printBtn.addEventListener('mouseleave', function() {
-        this.style.background = 'var(--navy)';
+        this.style.background = 'var(--navy, #333333)';
         this.style.color = 'var(--white)';
         this.style.transform = 'translateY(0)';
     });
@@ -266,37 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     checkPrintButtonVisibility();
     window.addEventListener('resize', checkPrintButtonVisibility);
-});
-
-// Highlight current section in navigation (if TOC is added)
-document.addEventListener('DOMContentLoaded', function() {
-    const sections = document.querySelectorAll('.terms-section');
-    const tocLinks = document.querySelectorAll('.table-of-contents a');
-    
-    if (tocLinks.length > 0) {
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.id;
-                    tocLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${id}`) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            });
-        }, {
-            threshold: 0.3,
-            rootMargin: '-20% 0px -70% 0px'
-        });
-        
-        sections.forEach(section => {
-            if (section.id) {
-                sectionObserver.observe(section);
-            }
-        });
-    }
 });
 
 // Copy link functionality for sections
@@ -339,8 +180,8 @@ function showNotification(message, duration = 3000) {
         position: fixed;
         top: 20px;
         right: 20px;
-        background: var(--gold);
-        color: var(--navy);
+        background: var(--gold, #00AFC0);
+        color: var(--navy, #333333);
         padding: 15px 25px;
         border-radius: 5px;
         font-weight: 600;
@@ -368,6 +209,9 @@ function showNotification(message, duration = 3000) {
 
 // Keyboard navigation
 document.addEventListener('keydown', function(e) {
+    // Never hijack keys while the visitor is typing (chatbot, forms)
+    if (e.target && e.target.closest && e.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+
     // Press 'T' to scroll to top
     if (e.key === 't' || e.key === 'T') {
         if (!e.ctrlKey && !e.altKey && !e.metaKey) {
@@ -391,15 +235,15 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Add keyboard shortcuts info (optional)
+// Keyboard shortcuts hint (sits just above the site-wide back-to-top button)
 document.addEventListener('DOMContentLoaded', function() {
     const shortcutsInfo = document.createElement('div');
     shortcutsInfo.className = 'shortcuts-info';
     shortcutsInfo.innerHTML = `
         <small style="
             position: fixed;
-            bottom: 10px;
-            left: 20px;
+            bottom: 76px;
+            left: 24px;
             color: #999;
             font-size: 12px;
             z-index: 1000;
@@ -423,26 +267,12 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', checkShortcutsVisibility);
 });
 
-// Add CSS for active TOC links
+// Hide the print button and the shortcut hint on phones
 const additionalCSS = `
-.table-of-contents a.active {
-    color: var(--gold);
-    font-weight: 600;
-}
-
-.reading-progress {
-    box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
-}
-
 @media (max-width: 768px) {
     .print-btn,
     .shortcuts-info {
         display: none !important;
-    }
-    
-    .scroll-to-top {
-        bottom: 20px;
-        right: 20px;
     }
 }
 `;
@@ -450,5 +280,3 @@ const additionalCSS = `
 const style = document.createElement('style');
 style.textContent = additionalCSS;
 document.head.appendChild(style);
-
-console.log('Kezza Terms & Conditions page loaded successfully! 📋');

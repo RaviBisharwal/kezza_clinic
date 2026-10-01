@@ -811,35 +811,6 @@ a.btn-drawer-book {
   }
 
   /* About page: stack doctor photo above story text on mobile/tablet with proper portrait framing */
-  .story-grid {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-  }
-
-  .story-image {
-    order: -1 !important;
-    margin: 0 auto 32px auto !important;
-    width: 100% !important;
-    max-width: 440px !important;
-    display: flex !important;
-    justify-content: center !important;
-  }
-
-  .story-image img {
-    width: 100% !important;
-    max-width: 440px !important;
-    height: auto !important;
-    aspect-ratio: 3 / 4 !important;
-    max-height: 580px !important;
-    border-radius: 20px !important;
-    box-shadow: 0 14px 36px rgba(15, 23, 42, 0.14), 0 2px 6px rgba(0, 0, 0, 0.05) !important;
-    border: 1.5px solid rgba(0, 175, 192, 0.2) !important;
-    object-fit: cover !important;
-    object-position: top center !important;
-    margin: 0 auto !important;
-    display: block !important;
-  }
 }
 
 /* ==========================================================================
@@ -904,18 +875,6 @@ a.btn-drawer-book {
   }
 
   /* About page: mobile sizing for founder story photo */
-  .story-image {
-    max-width: 360px !important;
-    margin: 0 auto 24px auto !important;
-  }
-
-  .story-image img {
-    max-width: 360px !important;
-    aspect-ratio: 3 / 4 !important;
-    height: auto !important;
-    max-height: 480px !important;
-    border-radius: 18px !important;
-  }
 
   /* Tap targets min-height 44px */
   #btnCapture,
@@ -923,21 +882,6 @@ a.btn-drawer-book {
   .btn-scanner-secondary,
   .btn-scanner-gold {
     min-height: 44px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .story-image {
-    max-width: 310px !important;
-    margin: 0 auto 20px auto !important;
-  }
-
-  .story-image img {
-    max-width: 310px !important;
-    aspect-ratio: 3 / 4 !important;
-    height: auto !important;
-    max-height: 410px !important;
-    border-radius: 16px !important;
   }
 }
 
@@ -1104,6 +1048,4 @@ a.btn-drawer-book {
     max-width: 320px !important;
   }
 }
-
-
 

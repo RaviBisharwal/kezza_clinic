@@ -29,37 +29,37 @@
     HAIR: {
       name: 'Dr. Ankit Bhalothia',
       spec: 'Aesthetic & Hair Transplant Surgeon',
-      img: 'images/Doctor1.jpeg',
+      img: '/images/Doctor1.jpeg',
       clinic: 'Jaipur & Sikar'
     },
     SKIN: {
       name: 'Dr. Amrita Mukhija',
       spec: 'Aesthetic Physician & Skin Specialist',
-      img: 'images/Doctor2.jpeg',
+      img: '/images/Doctor2.jpeg',
       clinic: 'Jaipur'
     },
     PMU: {
       name: 'Krishna',
       spec: 'PMU & Scalp Micropigmentation Artist',
-      img: 'images/Doctor5.jpeg',
+      img: '/images/Doctor5.jpeg',
       clinic: 'Jaipur & Sikar'
     },
     WEIGHT: {
       name: 'Kezza Wellness & Slimming Team',
       spec: 'Clinical Nutrition & Body Contouring',
-      img: 'images/Doctor3.jpeg',
+      img: '/images/Doctor3.jpeg',
       clinic: 'Jaipur & Sikar'
     },
     AJMER_SPECIALIST: {
       name: 'Dr. Aliza Rizvi',
       spec: 'Oral & Maxillofacial, Aesthetic & Hair Transplant Surgeon',
-      img: 'images/dr-aliza-rizvi.jpg',
+      img: '/images/dr-aliza-rizvi.jpg',
       clinic: 'Ajmer'
     },
     AJMER_HAIR: {
       name: 'Dr. Dhiral Vijayvargiya',
       spec: 'Oral & Maxillofacial, Aesthetic & Hair Transplant Surgeon',
-      img: 'images/Doctor4.jpeg',
+      img: '/images/Doctor4.jpeg',
       clinic: 'Ajmer'
     }
   };
@@ -251,7 +251,7 @@
             <!-- Partial Reveal Card (Populated after analysis) -->
             <div class="ks-partial-results" id="ksPartialResults" style="display: none;">
               <div class="ks-confidence-badge" id="ksConfidenceBadge">
-                <i class="fas fa-shield-check"></i> <span id="ksConfidenceVal">88% Clinical Match</span>
+                <i class="fas fa-shield-halved"></i> <span id="ksConfidenceVal">88% Clinical Match</span>
               </div>
 
               <h3 class="ks-stage-title" style="margin-bottom: 4px;">Initial Observations <span class="ks-gold-text">Ready</span></h3>
@@ -359,7 +359,7 @@
                   <button type="button" class="ks-chip-btn" data-category="pmu"><i class="fas fa-pen-fancy"></i> PMU</button>
                   <button type="button" class="ks-chip-btn" data-category="smp"><i class="fas fa-palette"></i> SMP</button>
                   <button type="button" class="ks-chip-btn" data-category="weight_loss"><i class="fas fa-scale-balanced"></i> Weight Loss</button>
-                  <button type="button" class="ks-chip-btn" data-category="rhinoplasty"><i class="fas fa-nose"></i> Rhinoplasty / ENT</button>
+                  <button type="button" class="ks-chip-btn" data-category="rhinoplasty"><i class="fas fa-face-smile"></i> Rhinoplasty / ENT</button>
                 </div>
               </div>
 
@@ -473,7 +473,7 @@
 
                 <!-- Assigned Specialist Doctor -->
                 <div class="ks-doctor-pill-card" id="ksDoctorPillCard">
-                  <img src="images/Doctor2.jpeg" id="ksDocAvatar" class="ks-doc-avatar" alt="Specialist Doctor">
+                  <img src="/images/Doctor2.jpeg" id="ksDocAvatar" class="ks-doc-avatar" alt="Specialist Doctor">
                   <div class="ks-doc-info">
                     <div class="ks-doc-name" id="ksDocName">Dr. Amrita Mukhija</div>
                     <div class="ks-doc-spec" id="ksDocSpec">Aesthetic Physician &amp; Skin Specialist</div>
@@ -843,7 +843,7 @@
       const idleEl = document.getElementById('ksViewfinderIdle');
       if (idleEl) {
         idleEl.innerHTML = `
-          <div class="ks-idle-icon-wrap"><i class="fas fa-camera-slash" style="color:#ef4444"></i></div>
+          <div class="ks-idle-icon-wrap"><i class="fas fa-video-slash" style="color:#ef4444"></i></div>
           <div class="ks-idle-title">Camera access unavailable</div>
           <div class="ks-idle-hint">Please tap "Upload Photo" below to select a photo</div>
         `;

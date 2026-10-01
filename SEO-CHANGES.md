@@ -1,3 +1,142 @@
+# Update — 30 September 2026 (pSEO): treatment registry, quality gates and 12 pages in review
+
+Full report: `docs/pseo/PSEO-REPORT.md` (23 sections). `npm test`: 48 pages, 0 errors, 0 critical audit issues.
+
+## A. What changed
+
+- **A programmatic-SEO system** instead of hand-copied pages: one registry of treatments (`tools/seo/taxonomy.json`), one content
+  file per page (`tools/content/pages/`), an engine with a status model and quality gates (`tools/content/pseo.py`) and a sitewide
+  audit (`tools/seo/pseo_audit.py`, run by `npm test`).
+- **12 new treatment pages, all in review** (built, `noindex`, not in the sitemap, not linked from live pages): acne treatment, acne
+  scar treatment, hydra facial, Botox, dark circles, cryolipolysis, HIFU body sculpting, medical weight management, microblading,
+  lip blush, permanent eyeliner, PMU correction. Each lists what the clinic must confirm before approval.
+- **The 7 doctor-approved pages** (FUE, DHI, beard, eyebrow, GFC, laser hair removal, Hindi) are marked `published` and stay live.
+- **Links that follow page status** in menus, footers, home cards, hub pages and clinic pages. They point to the hub sections today
+  and switch to the new pages automatically when each one is published.
+- **Visible changes on live pages:** the home page FUE and DHI cards now open the FUE and DHI pages; the Jaipur clinic page H1 now
+  reads "Hair & Skin Clinic in Khatipura, Jaipur" so it no longer competes with the home page.
+
+## B. Upload and approval
+
+1. Upload the changed files and the new folders (`acne-treatment/`, `acne-scar-treatment/`, `hydra-facial/`, `botox/`,
+   `dark-circles-treatment/`, `cryolipolysis/`, `hifu-body-sculpting/`, `weight-management/`, `microblading/`, `lip-blush/`,
+   `permanent-eyeliner/`, `pmu-correction/`, new files in `images/treatments/` and `images/og/`), plus `.htaccess`. The new pages
+   are safe to upload: Google is told not to index them and no live page links to them.
+2. Ask the suggested reviewer to read each page and answer its points (report section 15).
+3. To publish a page: in its file in `tools/content/pages/` set `"status": "published"`, `"reviewer"` and `"reviewed"`, run
+   `npm run build && npm test`, upload the changed files, then request indexing for that URL in Google Search Console.
+
+## C. Found, not changed (please decide) — details in report section 15
+
+- Before/after photos on the weight-loss page that carry another practice's "GW" watermark.
+- Stock photos showing a CoolSculpting logo, and HydraFacial brand wording, that should only stay if Kezza uses those systems.
+- 48 phrases of claim wording on existing pages ("100% Safe", "Zero Pain Guarantee", "guaranteed inch loss", "permanent results"…).
+- Doctor names in reviews that are not in the clinic's doctor list, and unverified results cases.
+
+---
+
+# Update — 30 September 2026: new treatment pages, Hindi page, stronger clinic pages
+
+This update adds the pages and changes recommended after comparing Kezza with the clinics that rank above it
+(medispaindia.in, alcsindia.com). Your own recent work (the electrolysis, hair-wig and hair-loss-consultation
+pages, your navigation and footer changes, your edit to the Norwood article) is kept. `npm test` and
+`npm run seo:check`: 36 pages, 0 errors, 0 warnings.
+
+## A. Before you upload
+
+1. **Doctor review.** Each new page says "Medically reviewed by". Ask **Dr. Ankit Bhalothia** to read the FUE, DHI,
+   beard, eyebrow, GFC and Hindi hair-transplant pages, and **Dr. Nakul Somani** to read the laser hair removal page.
+   Make any corrections in `tools/content/pages/*.html`, change `"reviewed"` in that file to the date they approve it,
+   then run `npm run build`.
+2. **Upload** the changed files to `public_html`, keeping the folder structure. New folders:
+   `hair-transplant/fue/`, `hair-transplant/dhi/`, `hair-transplant/beard/`, `hair-transplant/eyebrow/`,
+   `gfc-treatment/`, `laser-hair-removal/`, `hi/hair-transplant/`, `images/treatments/`.
+   Also upload `.htaccess` (hidden on a Mac: Cmd+Shift+. in Finder shows it).
+3. **Delete on the server** (uploading does not remove files): `images/BILLPRINT_16050485.pdf`. It is a private
+   electricity bill and was back in the uploaded zip.
+4. **Google Search Console:** resubmit `https://www.kezza.co.in/sitemap.xml` and request indexing for the 7 new URLs
+   and the 3 clinic pages.
+5. **Google Business Profiles:** set each profile's website link to its clinic page, with tracking so you can see
+   these visits in Analytics:
+   - Jaipur: `https://www.kezza.co.in/locations/jaipur/?utm_source=google&utm_medium=organic&utm_campaign=gbp`
+   - Sikar: `https://www.kezza.co.in/locations/sikar/?utm_source=google&utm_medium=organic&utm_campaign=gbp`
+   - Ajmer: `https://www.kezza.co.in/locations/ajmer/?utm_source=google&utm_medium=organic&utm_campaign=gbp`
+
+## B. What changed
+
+### New pages (built by `tools/content/build_content_pages.py` from `tools/content/pages/*.html`)
+| URL | Main search it targets | Reviewer |
+| --- | --- | --- |
+| `/hair-transplant/fue/` | FUE hair transplant in Jaipur | Dr. Ankit Bhalothia |
+| `/hair-transplant/dhi/` | DHI hair transplant in Jaipur | Dr. Ankit Bhalothia |
+| `/hair-transplant/beard/` | Beard transplant in Jaipur | Dr. Ankit Bhalothia |
+| `/hair-transplant/eyebrow/` | Eyebrow transplant in Jaipur | Dr. Ankit Bhalothia |
+| `/gfc-treatment/` | GFC hair treatment in Jaipur | Dr. Ankit Bhalothia |
+| `/laser-hair-removal/` | Laser hair removal in Jaipur / Sikar | Dr. Nakul Somani |
+| `/hi/hair-transplant/` | हेयर ट्रांसप्लांट जयपुर (Hindi searches) | Dr. Ankit Bhalothia |
+
+- Same design as the hair-transplant page: hero, reviewer line, explainer, benefits, suitability, steps, recovery
+  timeline, a detailed guide with sources, the clinics that offer it, FAQs, related treatments and the booking band.
+- No prices (as agreed). Pages link to the existing cost guide instead.
+- Clinic availability follows `site-data.json`: DHI is shown for Jaipur only; GFC and laser for Jaipur and Sikar.
+- Schema: `MedicalWebPage` with `reviewedBy` and `lastReviewed`, `MedicalProcedure`, `BreadcrumbList`, `FAQPage`.
+- The Hindi page is linked both ways with the English page (`hreflang` en-IN / hi-IN / x-default) and has a
+  "यह पेज हिंदी में पढ़ें" link on the English page.
+- New photos are crops of images already on the site (`tools/content/make_treatment_images.py`). They look like
+  stock/AI photos, so their alt text describes the procedure and does not claim they are Kezza patients.
+
+### Clinic pages (Jaipur, Sikar, Ajmer)
+- H1 now says "Hair Transplant & Skin Clinic in {city}".
+- New sections: treatments in that city (with the doctors who provide them), nearby towns, and "your first visit".
+  Three more FAQs per clinic. Each page is now about twice as long (for example Sikar 475 → 909 words). The copy is
+  in `tools/content/locations.json`.
+- Treatment lists point to the new pages (FUE, GFC, laser hair removal, hair loss consultation).
+
+### Navigation and footer (all pages)
+- Hair menu: FUE, DHI, beard and eyebrow transplant added under Hair Transplant. "GFC Therapy" opens the GFC page and
+  "Electrolysis" opens your `electrolysis.html` (it used to jump to a section of the hair services page).
+- Skin menu: "Laser Hair Removal" added under "Laser Treatments".
+- Footers: FUE, DHI, beard, eyebrow, GFC and electrolysis links now open their own pages.
+
+### Titles (to stop pages competing for the same search)
+| Page | New title |
+| --- | --- |
+| hair-services.html | Hair Treatment in Jaipur: Transplant, PRP, GFC \| Kezza |
+| hair-loss-consultation.html | Hair Fall & Hair Loss Treatment in Jaipur \| Kezza Clinic |
+| prp-therapy.html | PRP Hair Treatment in Jaipur \| Kezza Clinic |
+| skin-services.html | Skin Specialist & Laser Treatment in Jaipur \| Kezza Clinic |
+| permanent-makeup.html | Microblading & Permanent Makeup in Jaipur \| Kezza Clinic |
+
+Descriptions, Open Graph/Twitter titles and the schema page name were updated to match. Headings and page content
+were not changed.
+
+### Links inside pages
+- Hair transplant page: FUE/DHI links in the explainer, beard/eyebrow links in the FAQ, cost-guide link in the pricing
+  box, GFC card → GFC page, Hindi page link.
+- Hair services page: a "Read the full … guide" link in the FUE, DHI, beard and eyebrow sections; GFC card → GFC page.
+- PRP page (GFC section), skin page (laser section), home page (GFC and laser "view details" arrows) → new pages.
+- Blog articles link to the new pages where they mention them. The Norwood article keeps your `/hair-wig.html` link
+  (now in its source file too, so a rebuild no longer undoes it).
+
+### Other
+- 23 social share images that pages still referenced were missing from the upload; restored.
+- `sitemap.xml` and `llms.txt` include the new pages and your three new pages.
+- `.htaccess`: the new folders redirect to their trailing-slash URL.
+- `tools/seo/check-seo.js` accepts `lang="hi-IN"` on Hindi pages, reads Hindi FAQ text and checks that `hreflang`
+  pages link back to each other.
+
+## C. Found, not changed (please decide)
+- **hair-services.html** shows surgeon quotes from "Dr. S. Sharma" and "Dr. R. Verma", who are not on the doctors page,
+  and figures such as "99.2% graft survival". Unverifiable names and numbers on medical pages can hurt trust with
+  Google and patients; consider replacing them with your real doctors and removing the figures.
+- **skin-services.html** and **prp-therapy.html** make absolute claims ("92%+ reduction", "zero burn risk",
+  "zero pain", "US FDA-approved laser"). Keep them only if you can back them up (for the laser, the device's approval).
+- **index.html / about.html / weight-loss.html** use five other WhatsApp numbers (…63681, …63686, …61300, …46221,
+  …88129). Check that each one is answered.
+- The hair-transplant page's in-text links use the browser's default blue (they have no link style); left as is.
+
+---
+
 # SEO / AEO / GEO implementation — September 2026
 
 This change set implements the September 2026 SEO audit, corrects the places where the audit was wrong, and adds clinic location pages, a blog and CSS bundles. Everything was checked with `npm run seo:check` (0 errors) and a computed-style comparison of all 18 page templates at desktop and mobile widths (CSS bundles render identically to the old separate files).
@@ -118,7 +257,7 @@ This change set implements the September 2026 SEO audit, corrects the places whe
 | `npm run og` | Regenerates the 1200×630 share images (needs `pip install pillow`) |
 
 - The clinic facts (addresses, phones, hours, doctors, services per branch) live in `tools/seo/site-data.json`. Edit that file, then run `npm run build`.
-- `tools/inject_seo.js`, `tools/fix_titles.js` and `tools/fix_descriptions.js` are **retired**. They hard-coded the dead domain, the wrong phone and the wrong hours, and re-running them would have undone all of this.
+- `tools/inject_seo.js`, `tools/fix_titles.js` and `tools/fix_descriptions.js` have been **removed** (still in git history). They hard-coded the dead domain, the wrong phone and the wrong hours, and re-running them would have undone all of this.
 
 ---
 

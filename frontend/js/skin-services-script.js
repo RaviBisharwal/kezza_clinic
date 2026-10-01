@@ -1,35 +1,12 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (!href || href === '#') return;
-        try {
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        } catch (err) {}
-    });
-});
-
+// In-page anchor scrolling (with the fixed-navbar offset) is handled by smooth-scroll.js.
 // Optimized Single RAF Scroll Handler
 (function() {
     let ticking = false;
     let isScrolled = false;
     let navbar = null;
-    let heroImage = null;
-    let particles = null;
-    let heroContent = null;
 
     document.addEventListener('DOMContentLoaded', function() {
         navbar = document.querySelector('.navbar');
-        heroImage = document.querySelector('.hero-image img');
-        particles = document.querySelectorAll('.sparkle-particles');
-        heroContent = document.querySelector('.hero-content');
     });
 
     function onScrollTick() {
@@ -119,9 +96,6 @@ const observer = new IntersectionObserver(function(entries) {
             if (entry.target.classList.contains('medical-card')) {
                 entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
             }
-            if (entry.target.classList.contains('timeline-step')) {
-                entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
-            }
             if (entry.target.classList.contains('faq-item')) {
                 entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
             }
@@ -175,26 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Video controls and shimmer effects
-document.addEventListener('DOMContentLoaded', function() {
-    const videoContainers = document.querySelectorAll('.video-container');
-    
-    videoContainers.forEach(container => {
-        // Add hover shimmer effect
-        container.addEventListener('mouseenter', function() {
-            if (this.classList.contains('cinematic')) {
-                this.style.animation = 'goldShimmer 2s ease infinite';
-            } else {
-                this.style.animation = 'shimmer 2s ease infinite';
-            }
-        });
-        
-        container.addEventListener('mouseleave', function() {
-            this.style.animation = 'none';
-        });
-    });
-});
-
 // FAQ Accordion functionality
 document.addEventListener('DOMContentLoaded', function() {
     const faqItems = document.querySelectorAll('.faq-item');
@@ -241,33 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.transform = 'scale(1)';
             this.style.filter = 'brightness(1)';
         });
-    });
-});
-
-// Timeline step hover effects with enhanced animations
-document.addEventListener('DOMContentLoaded', function() {
-    const timelineSteps = document.querySelectorAll('.timeline-step');
-    
-    timelineSteps.forEach((step, index) => {
-        step.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px)';
-            
-            // Add pulse effect to step number
-            const stepNumber = this.querySelector('.step-number');
-            stepNumber.style.animation = 'pulse 0.6s ease';
-        });
-        
-        step.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            
-            const stepNumber = this.querySelector('.step-number');
-            stepNumber.style.animation = 'none';
-        });
-        
-        // Staggered animation on scroll
-        setTimeout(() => {
-            step.style.animationDelay = `${index * 0.1}s`;
-        }, 100);
     });
 });
 
@@ -352,42 +279,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Scroll-triggered animations for dividers
-const scrollAnimations = {
-    '.gold-underline': {
-        animation: 'expandWidth 1.5s ease forwards',
-        delay: 500
-    },
-    '.gold-divider': {
-        animation: 'expandWidth 1s ease forwards',
-        delay: 300
-    },
-    '.gold-divider-center': {
-        animation: 'expandWidth 1s ease forwards',
-        delay: 400
-    }
-};
-
-Object.keys(scrollAnimations).forEach(selector => {
-    const elements = document.querySelectorAll(selector);
-    elements.forEach(element => {
-        const elementObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.animation = scrollAnimations[selector].animation;
-                    }, scrollAnimations[selector].delay);
-                    elementObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        elementObserver.observe(element);
-    });
-});
-
-
-
 // Loading animation
 window.addEventListener('load', function() {
     document.body.style.opacity = '0';
@@ -397,8 +288,6 @@ window.addEventListener('load', function() {
         document.body.style.opacity = '1';
     }, 100);
 });
-
-// Enhanced scroll effects handled in unified RAF loop above
 
 // Video playback handled smoothly by IntersectionObserver in quick-actions.js
 
@@ -495,121 +384,9 @@ const style = document.createElement('style');
 style.textContent = additionalCSS;
 document.head.appendChild(style);
 
-// Lazy loading for images
+// Staggered animation delay for medical cards
 document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('img[data-src]');
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-    
-    images.forEach(img => imageObserver.observe(img));
-});
-
-// Enhanced medical card interactions
-document.addEventListener('DOMContentLoaded', function() {
-    const medicalCards = document.querySelectorAll('.medical-card');
-    
-    medicalCards.forEach((card, index) => {
-        // Staggered animation delay
+    document.querySelectorAll('.medical-card').forEach((card, index) => {
         card.style.animationDelay = `${index * 0.1}s`;
-        
-        // Enhanced hover with icon animation
-        card.addEventListener('mouseenter', function() {
-            const icon = this.querySelector('.medical-icon');
-            icon.style.animation = 'bounce 0.6s ease';
-            icon.style.transform = 'scale(1.2)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            const icon = this.querySelector('.medical-icon');
-            icon.style.animation = 'bounce 2s infinite';
-            icon.style.transform = 'scale(1)';
-        });
     });
 });
-
-// Interactive Clinical Protocol Graph & Pathway Controller
-document.addEventListener('DOMContentLoaded', function() {
-    const milestones = document.querySelectorAll('.milestone-node');
-    const stepCards = document.querySelectorAll('.graph-step-card');
-    const progressFill = document.querySelector('.pipeline-progress-fill');
-
-    function activateStep(stepNum) {
-        milestones.forEach((m) => {
-            const mStep = parseInt(m.getAttribute('data-step'), 10);
-            if (mStep <= stepNum) {
-                m.classList.add('active');
-            } else {
-                m.classList.remove('active');
-            }
-        });
-
-        if (progressFill && milestones.length > 1) {
-            const pct = Math.min(100, Math.max(16, ((stepNum - 1) / (milestones.length - 1)) * 100));
-            progressFill.style.width = pct + '%';
-        }
-
-        stepCards.forEach(card => {
-            const cStep = parseInt(card.getAttribute('data-step'), 10);
-            if (cStep === stepNum) {
-                card.style.borderColor = '#00AFC0';
-                card.style.boxShadow = '0 16px 36px rgba(0, 175, 192, 0.2), 0 0 20px rgba(212, 175, 55, 0.25)';
-                card.style.transform = 'translateY(-6px)';
-            } else {
-                card.style.borderColor = '';
-                card.style.boxShadow = '';
-                card.style.transform = '';
-            }
-        });
-    }
-
-    milestones.forEach(node => {
-        node.addEventListener('click', function() {
-            const step = parseInt(this.getAttribute('data-step'), 10);
-            activateStep(step);
-            const targetCard = document.querySelector(`.graph-step-card[data-step="${step}"]`);
-            if (targetCard) {
-                targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-        });
-    });
-
-    stepCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            const step = parseInt(this.getAttribute('data-step'), 10);
-            activateStep(step);
-        });
-    });
-
-    // Clinical Dashboard Progress Bar Animation on Scroll
-    const dashboard = document.querySelector('.clinical-graph-dashboard');
-    if (dashboard) {
-        const barFills = dashboard.querySelectorAll('.bar-fill');
-        const originalWidths = Array.from(barFills).map(b => b.style.width);
-        
-        const dashObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    barFills.forEach((bar, i) => {
-                        bar.style.width = '0%';
-                        setTimeout(() => {
-                            bar.style.width = originalWidths[i] || '90%';
-                        }, 120 + i * 80);
-                    });
-                    dashObserver.unobserve(dashboard);
-                }
-            });
-        }, { threshold: 0.2 });
-        dashObserver.observe(dashboard);
-    }
-});
-
-console.log('Kezza Skin Services page loaded successfully! ✨');

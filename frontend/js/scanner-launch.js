@@ -11,8 +11,8 @@
   var basePath = selfSrc ? selfSrc.replace(/js\/scanner-launch\.js(\?.*)?$/, '')
                          : (window.location.pathname.split('/').length > 2 ? '/' : '');
   var SELECTORS = '.nav-scanner-link, .btn-scanner-hero, .dock-scan, [data-open-scanner-modal]';
-  var CSS_URL = basePath + 'css/scanner-modal.css?v=6.5';
-  var JS_URL  = basePath + 'js/scanner-modal.js?v=6.6';
+  var CSS_URL = basePath + 'css/scanner-modal.css?v=46427c85';
+  var JS_URL  = basePath + 'js/scanner-modal.js?v=bec4355e';
   var loading = null;
 
   function loadOnce() {

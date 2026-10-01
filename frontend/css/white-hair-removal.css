@@ -60,15 +60,6 @@
 }
 
 /* ─── Keyframe Animations ─── */
-@keyframes whrFadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes whrDotPulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50%      { transform: scale(1.45); opacity: 0.65; }
-}
 
 @keyframes whrFloatBadge {
   0%, 100% { transform: translateY(0); }
@@ -78,31 +69,6 @@
 @keyframes whrFloatBadgeReverse {
   0%, 100% { transform: translateY(0); }
   50%      { transform: translateY(6px); }
-}
-
-@keyframes whrGlowPulse {
-  0%, 100% { box-shadow: 0 0 15px rgba(0, 175, 192, 0.25); }
-  50%      { box-shadow: 0 0 28px rgba(0, 175, 192, 0.5); }
-}
-
-@keyframes whrLaserBeamAnim {
-  0%   { height: 0; opacity: 0; }
-  25%  { height: 180px; opacity: 1; }
-  75%  { height: 220px; opacity: 1; }
-  100% { height: 220px; opacity: 0.2; }
-}
-
-@keyframes whrProbeDescend {
-  0%   { transform: translateY(-70px); opacity: 0; }
-  40%  { transform: translateY(0); opacity: 1; }
-  70%  { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes whrElectroThermalRing {
-  0%   { transform: scale(0.3); opacity: 0; }
-  50%  { transform: scale(1.6); opacity: 0.9; }
-  100% { transform: scale(2.4); opacity: 0; }
 }
 
 @keyframes whrTrackPulse {
@@ -124,26 +90,12 @@
 
 /* ─── Compact Header Badge Pill ─── */
 .whr-cat-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
   background: var(--whr-primary-light);
   color: var(--whr-primary-dark);
-  border: 1px solid rgba(0, 137, 156, 0.3);
-  padding: 6px 16px;
   border-radius: var(--whr-radius-pill);
-  font-size: 0.74rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  margin-bottom: 12px;
 }
 .badge-dot-whr {
-  width: 7px; height: 7px;
-  border-radius: 50%;
   background: var(--whr-primary);
-  display: inline-block;
-  animation: whrDotPulse 2s ease-in-out infinite;
 }
 
 /* ─── Gold Dividers ─── */
@@ -153,7 +105,6 @@
   border-radius: 4px;
   margin: 10px 0 16px;
 }
-.whr-gold-line.centered { margin: 10px auto 16px; }
 
 .section-gold-divider-whr {
   display: flex; align-items: center;
@@ -744,412 +695,27 @@
 /* Mobile */
 @media (max-width: 768px) {
   .whr-compare-grid {
-    grid-template-columns: 1fr;
     gap: 16px;
   }
   .whr-compare-grid::after {
     display: none;
   }
-  .whr-why-fail-section { padding: 56px 0 64px; }
   .whr-compare-card { padding: 24px 20px; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════
    ELECTROLYSIS LEAD EXPLANATION BOX
    ═══════════════════════════════════════════════════════════════════ */
-.whr-lead-explanation-box {
-  background: linear-gradient(135deg, #ffffff 0%, #f0fdfe 100%);
-  border: 1.5px solid rgba(0, 175, 192, 0.22);
-  border-radius: 18px;
-  padding: 26px 32px;
-  margin: 22px auto 38px;
-  max-width: 940px;
-  box-shadow: 0 8px 30px rgba(0, 175, 192, 0.06), 0 2px 8px rgba(15, 23, 42, 0.03);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.whr-lead-explanation-box::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--whr-teal-gradient);
-}
-.whr-lead-para {
-  font-size: 1.06rem;
-  line-height: 1.75;
-  color: var(--whr-slate-dark);
-  margin: 0 0 10px;
-}
-.whr-lead-para.sub-para {
-  font-size: 0.98rem;
-  line-height: 1.7;
-  color: var(--whr-slate-body);
-  margin: 0;
-}
 
 /* ═══════════════════════════════════════════════════════════════════
    BEFORE & AFTER PROGRESS RESULTS SHOWCASE
    ═══════════════════════════════════════════════════════════════════ */
-.whr-ba-showcase-box {
-  background: #ffffff;
-  border: 1.5px solid rgba(0, 175, 192, 0.2);
-  border-radius: 24px;
-  padding: 44px 36px;
-  margin: 50px 0 45px;
-  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.05), 0 2px 10px rgba(0, 175, 192, 0.04);
-  position: relative;
-  overflow: hidden;
-}
-.whr-why-fail-section .whr-ba-showcase-box {
-  margin-top: 10px;
-}
-.whr-ba-showcase-box::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #00AFC0, #d4a017, #00AFC0);
-}
-.whr-ba-header {
-  text-align: center;
-  max-width: 780px;
-  margin: 0 auto 38px;
-}
-.whr-ba-title {
-  font-size: clamp(1.65rem, 2.5vw, 2.2rem);
-  font-weight: 800;
-  color: var(--whr-slate-dark);
-  margin: 10px 0 12px;
-  letter-spacing: -0.02em;
-}
-.whr-ba-desc {
-  font-size: 0.98rem;
-  color: var(--whr-slate-muted);
-  line-height: 1.75;
-  margin-top: 14px;
-}
-.whr-ba-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-}
-.whr-ba-card {
-  background: #ffffff;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
-  display: flex;
-  flex-direction: column;
-}
-.whr-ba-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(0, 175, 192, 0.45);
-  box-shadow: 0 20px 45px rgba(0, 175, 192, 0.14), 0 4px 15px rgba(15, 23, 42, 0.06);
-}
-.whr-ba-image-wrapper {
-  position: relative;
-  width: 100%;
-  height: 340px;
-  overflow: hidden;
-  background: #0b1120;
-}
-.whr-ba-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  background: #0f172a;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  display: block;
-}
-.whr-ba-card:hover .whr-ba-img {
-  transform: scale(1.04);
-}
-.whr-ba-pill-badge {
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(15, 23, 42, 0.88);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 30px;
-  padding: 6px 18px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  z-index: 5;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
-}
-.pill-badge-before {
-  color: #fda4af;
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-}
-.pill-badge-icon {
-  color: #ffffff;
-  font-size: 0.74rem;
-}
-.pill-badge-after {
-  color: #5eead4;
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-}
-.whr-ba-card-info {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-.whr-ba-tags {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-.whr-tag-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 20px;
-}
-.whr-tag-pill.teal {
-  background: rgba(0, 175, 192, 0.08);
-  color: #008f9c;
-  border: 1px solid rgba(0, 175, 192, 0.25);
-}
-.whr-tag-pill.gold {
-  background: rgba(212, 160, 23, 0.1);
-  color: #946808;
-  border: 1px solid rgba(212, 160, 23, 0.25);
-}
-.whr-ba-case-title {
-  font-size: 1.18rem;
-  font-weight: 800;
-  color: var(--whr-slate-dark);
-  margin: 0 0 8px;
-  line-height: 1.35;
-}
-.whr-ba-case-summary {
-  font-size: 0.88rem;
-  color: var(--whr-slate-body);
-  line-height: 1.6;
-  margin: 0;
-}
 
 /* ═══════════════════════════════════════════════════════════════════
    WHAT TO EXPECT AT EACH STAGE (STAGES OF WHITE HAIR REMOVAL)
    ═══════════════════════════════════════════════════════════════════ */
-.whr-stages-box {
-  background: #ffffff;
-  border: 1.5px solid rgba(0, 175, 192, 0.2);
-  border-radius: 24px;
-  padding: 44px 36px;
-  margin: 45px 0 20px;
-  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.05), 0 2px 10px rgba(0, 175, 192, 0.04);
-  position: relative;
-  overflow: hidden;
-}
-.whr-stages-box::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #00AFC0, #22d3ee, #00AFC0);
-}
-.whr-stages-header {
-  text-align: center;
-  max-width: 780px;
-  margin: 0 auto 38px;
-}
-.whr-stages-title {
-  font-size: clamp(1.65rem, 2.5vw, 2.2rem);
-  font-weight: 800;
-  color: var(--whr-slate-dark);
-  margin: 10px 0 12px;
-  letter-spacing: -0.02em;
-}
-.whr-stages-desc {
-  font-size: 0.98rem;
-  color: var(--whr-slate-muted);
-  line-height: 1.75;
-  margin-top: 14px;
-}
-.whr-stages-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-.whr-stage-card {
-  background: #ffffff;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 18px;
-  padding: 28px 24px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-.whr-stage-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(0, 175, 192, 0.35);
-  box-shadow: 0 18px 40px rgba(0, 175, 192, 0.12);
-}
-.whr-stage-accent-stripe {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 4px;
-}
-.stage-1-accent { background: linear-gradient(90deg, #38bdf8, #00AFC0); }
-.stage-2-accent { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-.stage-3-accent { background: linear-gradient(90deg, #10b981, #34d399); }
-
-.whr-stage-header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-}
-.whr-stage-badge {
-  background: linear-gradient(135deg, #00AFC0, #008f9c);
-  color: #ffffff;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  padding: 4px 10px;
-  border-radius: 20px;
-}
-.whr-stage-time {
-  color: #64748b;
-  font-size: 0.82rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.whr-stage-img-box {
-  width: 100%;
-  height: 200px;
-  border-radius: 14px;
-  overflow: hidden;
-  margin: 4px 0 16px;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
-  position: relative;
-}
-.whr-stage-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.whr-stage-card:hover .whr-stage-img {
-  transform: scale(1.05);
-}
-.whr-stage-name {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--whr-slate-dark);
-  margin: 0 0 16px;
-}
-.whr-stage-detail-box {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 14px 16px;
-  margin-bottom: 12px;
-}
-.whr-stage-detail-box.reaction-style {
-  background: #fff5f6;
-  border-color: #fecdd3;
-}
-.whr-stage-detail-box.consistency-style {
-  background: #fffbeb;
-  border-color: #fde68a;
-}
-.whr-stage-detail-box.maintenance-style {
-  background: #f0fdf4;
-  border-color: #bbf7d0;
-}
-.whr-stage-detail-title {
-  font-size: 0.80rem;
-  font-weight: 800;
-  color: var(--whr-slate-dark);
-  margin-bottom: 6px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.whr-stage-detail-title .text-teal { color: var(--whr-primary); }
-.whr-stage-detail-title .text-rose { color: #e11d48; }
-.whr-stage-detail-title .text-amber { color: #d97706; }
-.whr-stage-detail-title .text-gold { color: #b45309; }
-
-.whr-stage-detail-desc {
-  font-size: 0.86rem;
-  color: var(--whr-slate-body);
-  line-height: 1.6;
-  margin: 0;
-}
-.whr-stage-footer-note {
-  margin-top: auto;
-  padding-top: 14px;
-  border-top: 1px dashed #e2e8f0;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #008f9c;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-.whr-stage-footer-note.permanent-note {
-  color: #059669;
-}
-.text-emerald { color: #059669; }
 
 /* Responsive for BA & Stages */
-@media (max-width: 992px) {
-  .whr-ba-cards-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .whr-stages-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .whr-ba-image-wrapper {
-    height: 300px;
-  }
-  .whr-ba-showcase-box, .whr-stages-box {
-    padding: 30px 20px;
-  }
-}
-
-@media (max-width: 600px) {
-  .whr-ba-image-wrapper {
-    height: 240px;
-  }
-  .whr-lead-explanation-box {
-    padding: 20px 16px;
-  }
-}
-
 
 /* ═══════════════════════════════════════════════════════════════════
    INTERACTIVE FOLLICLE SCIENCE SIMULATOR — WHITE LIGHT THEME
@@ -1393,11 +959,6 @@
 /* ═══════════════════════════════════════════
    SECTION 3: KEZZA MEDLINE TECHNOLOGY — WHITE THEME
    ═══════════════════════════════════════════ */
-
-@keyframes whr-tech-left {
-  from { opacity: 0; transform: translateX(-30px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
 @keyframes whr-tech-right {
   from { opacity: 0; transform: translateX(30px); }
   to   { opacity: 1; transform: translateX(0); }
@@ -1446,9 +1007,6 @@
 }
 
 /* Left content side */
-.whr-tech-content {
-  animation: whr-tech-left 0.7s ease both 0.1s;
-}
 .whr-tech-badge {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--whr-primary-light);
