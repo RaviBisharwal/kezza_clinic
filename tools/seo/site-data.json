@@ -82,6 +82,12 @@
           "fa-bolt"
         ],
         [
+          "Skin consultation",
+          "/skin-services.html#consultation",
+          "fa-user-md",
+          "skin-consultation"
+        ],
+        [
           "Laser hair removal",
           "/skin-services.html#laser",
           "fa-sun",
@@ -93,7 +99,7 @@
           "fa-spa"
         ],
         [
-          "Botox & anti-ageing",
+          "Botox & dermal fillers",
           "/skin-services.html#anti-aging",
           "fa-magic",
           "botox"
@@ -173,6 +179,12 @@
           "gfc-treatment"
         ],
         [
+          "Skin consultation",
+          "/skin-services.html#consultation",
+          "fa-user-md",
+          "skin-consultation"
+        ],
+        [
           "Laser hair removal",
           "/skin-services.html#laser",
           "fa-sun",
@@ -185,7 +197,7 @@
           "acne-treatment"
         ],
         [
-          "HydraFacial & medical facials",
+          "Hydra facial & medical facials",
           "/skin-services.html#hydra-facial",
           "fa-tint",
           "hydra-facial"
@@ -236,6 +248,12 @@
           "Hair-loss diagnosis & consultation",
           "/hair-loss-consultation.html",
           "fa-search"
+        ],
+        [
+          "Skin consultation",
+          "/skin-services.html#consultation",
+          "fa-user-md",
+          "skin-consultation"
         ],
         [
           "Facial aesthetics",

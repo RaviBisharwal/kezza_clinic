@@ -579,6 +579,135 @@ a.btn-drawer-book {
     pointer-events: auto !important;
   }
 
+  /* ── Mega menu: mobile layout ────────────────────────────────────────────── */
+  .navbar .mega-menu-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Each column becomes a full-width section separated by a divider */
+  .navbar .mega-col {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-right: none !important;
+    border-bottom: 1px solid #e5e9f0 !important;
+    background: #f8f9fb !important;
+    box-sizing: border-box !important;
+  }
+
+  .navbar .mega-col:last-child {
+    border-bottom: none !important;
+  }
+
+  /* Column header — acts like a section accordion toggle */
+  .navbar .mega-col-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    padding: 14px 20px 14px 36px !important;
+    margin-bottom: 0 !important;
+    background: #f1f5f9 !important;
+    border-bottom: 1px solid #e5e9f0 !important;
+    box-sizing: border-box !important;
+    cursor: pointer !important;
+    user-select: none !important;
+  }
+
+  /* Second col-header inside same column (PMU) */
+  .navbar .mega-col-header[style*="margin-top"] {
+    border-top: 1px solid #e5e9f0 !important;
+  }
+
+  .navbar .mega-col-icon {
+    color: #00AFC0 !important;
+    font-size: 0.85rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Col title becomes plain label, not a link-looking text */
+  .navbar .mega-col-title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 0.8rem !important;
+    font-weight: 700 !important;
+    color: #475569 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    text-decoration: none !important;
+    background: none !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    line-height: 1.2 !important;
+  }
+
+  .navbar .mega-col-arrow {
+    display: inline-block !important;
+    margin-left: auto !important;
+    font-size: 0.75rem !important;
+    color: #64748b !important;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease !important;
+  }
+
+  .navbar .mega-col-header.is-expanded .mega-col-arrow {
+    transform: rotate(180deg) !important;
+    color: #00AFC0 !important;
+  }
+
+  /* Link list - collapsible accordion on mobile */
+  .navbar .mega-link-list {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: none !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    background: #ffffff !important;
+    overflow: hidden !important;
+  }
+
+  .navbar .mega-link-list.is-expanded {
+    display: flex !important;
+    padding: 4px 0 8px !important;
+  }
+
+  .navbar .mega-link-list li {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Individual links */
+  .navbar .mega-link {
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-height: 44px !important;
+    padding: 11px 20px 11px 52px !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 0.9rem !important;
+    font-weight: 400 !important;
+    color: #374151 !important;
+    text-decoration: none !important;
+    background: #ffffff !important;
+    border: none !important;
+    border-radius: 0 !important;
+    border-bottom: 1px solid #f8fafc !important;
+    box-sizing: border-box !important;
+    transition: background-color 0.15s ease, color 0.15s ease !important;
+    white-space: normal !important;
+  }
+
+  .navbar .mega-link:hover {
+    background: #f8f9fb !important;
+    color: #00AFC0 !important;
+    padding-left: 52px !important; /* override the desktop indent animation */
+  }
+
+  /* ── Legacy accordion styles (kept for fallback / old pages) ─────────────── */
   .navbar .services-dropdown-list {
     list-style: none !important;
     margin: 0 !important;
@@ -589,7 +718,6 @@ a.btn-drawer-book {
     width: 100% !important;
   }
 
-  /* Categories: Indented to 36px left padding, 0.95rem, weight 600, #f8f9fb background */
   .navbar .services-cat-item {
     margin: 0 !important;
     padding: 0 !important;
@@ -609,7 +737,7 @@ a.btn-drawer-book {
     justify-content: space-between !important;
     width: 100% !important;
     min-height: 50px !important;
-    padding: 14px 20px 14px 36px !important; /* 36px left padding indent */
+    padding: 14px 20px 14px 36px !important;
     background: #f8f9fb !important;
     border: none !important;
     border-radius: 0 !important;

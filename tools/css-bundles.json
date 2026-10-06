@@ -12,7 +12,8 @@
       "css/kezza-ai.css",
       "css/responsive.css",
       "css/scroll-3d.css",
-      "css/mobile-pro.css"
+      "css/mobile-pro.css",
+      "css/site-footer.css"
     ],
     "branches": [
       "css/branches-styles.css",
@@ -21,7 +22,8 @@
       "css/kezza-ai.css",
       "css/responsive.css",
       "css/scroll-3d.css",
-      "css/mobile-pro.css"
+      "css/mobile-pro.css",
+      "css/site-footer.css"
     ],
     "contact": [
       "css/contact-styles.css",
@@ -30,7 +32,8 @@
       "css/kezza-ai.css",
       "css/responsive.css",
       "css/scroll-3d.css",
-      "css/mobile-pro.css"
+      "css/mobile-pro.css",
+      "css/site-footer.css"
     ],
     "content": [
       "css/styles.css",
@@ -39,7 +42,8 @@
       "css/service-page.css",
       "css/responsive.css",
       "css/kezza-ai.css",
-      "css/content-pages.css"
+      "css/content-pages.css",
+      "css/site-footer.css"
     ],
     "face-scanner": [
       "css/face-scanner-styles.css",
@@ -48,7 +52,8 @@
       "css/kezza-ai.css",
       "css/responsive.css",
       "css/scroll-3d.css",
-      "css/mobile-pro.css"
+      "css/mobile-pro.css",
+      "css/site-footer.css"
     ],
     "hair-loss-consultation": [
       "css/styles.css",
@@ -59,7 +64,8 @@
       "css/scroll-3d.css",
       "css/responsive.css",
       "css/kezza-ai.css",
-      "css/mobile-pro.css"
+      "css/mobile-pro.css",
+      "css/site-footer.css"
     ],
     "hair-services": [
       "css/hair-services-styles.css",
@@ -68,7 +74,8 @@
       "css/responsive.css",
       "css/scroll-3d.css",
       "css/kezza-ai.css",
-      "css/mobile-pro.css"
+      "css/mobile-pro.css",
+      "css/site-footer.css"
     ],
     "hair-transplant": [
       "css/styles.css",
@@ -76,7 +83,8 @@
       "css/quick-actions.css",
       "css/service-page.css",
       "css/responsive.css",
-      "css/kezza-ai.css"
+      "css/kezza-ai.css",
+      "css/site-footer.css"
     ],
     "home": [
       "css/styles.css",
@@ -87,7 +95,8 @@
       "css/responsive.css",
       "css/luxury-pro.css",
       "css/home-upgrade.css",
-      "css/mobile-pro.css"
+      "css/mobile-pro.css",
+      "css/site-footer.css"
     ],
     "permanent-makeup": [
       "css/permanent-makeup-styles.css",
@@ -97,7 +106,8 @@
       "css/responsive.css",
       "css/scroll-3d.css",
       "css/pmu-dark-override.css",
-      "css/mobile-pro.css"
+      "css/mobile-pro.css",
+      "css/site-footer.css"
     ],
     "prp-therapy": [
       "css/styles.css",
@@ -108,7 +118,8 @@
       "css/scroll-3d.css",
       "css/prp-therapy.css",
       "css/kezza-ai.css",
-      "css/mobile-pro.css"
+      "css/mobile-pro.css",
+      "css/site-footer.css"
     ],
     "skin-services": [
       "css/skin-services-styles.css",
@@ -117,7 +128,8 @@
       "css/responsive.css",
       "css/scroll-3d.css",
       "css/kezza-ai.css",
-      "css/mobile-pro.css"
+      "css/mobile-pro.css",
+      "css/site-footer.css"
     ],
     "terms": [
       "css/terms-styles.css",
@@ -126,7 +138,8 @@
       "css/kezza-ai.css",
       "css/responsive.css",
       "css/scroll-3d.css",
-      "css/mobile-pro.css"
+      "css/mobile-pro.css",
+      "css/site-footer.css"
     ],
     "hair-wig": [
       "css/styles.css",
@@ -137,7 +150,8 @@
       "css/hair-wig.css",
       "css/responsive.css",
       "css/kezza-ai.css",
-      "css/mobile-pro.css"
+      "css/mobile-pro.css",
+      "css/site-footer.css"
     ],
     "electrolysis": [
       "css/styles.css",
@@ -148,7 +162,8 @@
       "css/scroll-3d.css",
       "css/responsive.css",
       "css/kezza-ai.css",
-      "css/mobile-pro.css"
+      "css/mobile-pro.css",
+      "css/site-footer.css"
     ],
     "weight-loss": [
       "css/quick-actions.css",
@@ -156,7 +171,8 @@
       "css/kezza-ai.css",
       "css/scroll-3d.css",
       "css/responsive.css",
-      "css/mobile-pro.css"
+      "css/mobile-pro.css",
+      "css/site-footer.css"
     ],
     "white-hair-removal": [
       "css/styles.css",
@@ -167,7 +183,8 @@
       "css/scroll-3d.css",
       "css/white-hair-removal.css",
       "css/kezza-ai.css",
-      "css/mobile-pro.css"
+      "css/mobile-pro.css",
+      "css/site-footer.css"
     ]
   },
   "pages": {

@@ -1,0 +1,124 @@
+Media files removed on 6 October 2026 because no page, stylesheet, script or build tool refers to them
+(mostly duplicate copies with spaces in their names, unused @2x JPEGs, and three unused videos).
+A copy of all of them is in kezza-removed-unused-media-2026-10-06.zip.
+
+frontend/Founder.jpg
+frontend/images/Doctor2.webp
+frontend/images/Doctor3.webp
+frontend/images/Doctor4.webp
+frontend/images/Doctor5.webp
+frontend/images/Doctor6.webp
+frontend/images/Doctor7.jpeg
+frontend/images/Founder.jpg
+frontend/images/Founder.png
+frontend/images/Hair fall control program.jpg
+frontend/images/Micro-Motor FUE Extraction.jpeg
+frontend/images/Sapphire Blade Incisions.jpeg
+frontend/images/Sideburn Temple Reconstruction.jpg
+frontend/images/anti aging 2.jpg
+frontend/images/anti aging.jpg
+frontend/images/anti danderuff and scalf treatment.jpg
+frontend/images/background3.jpg
+frontend/images/beard transplant 1.jpg
+frontend/images/beard transplant 2.jpg
+frontend/images/beauty spot correction.jpg
+frontend/images/blog-real/acne-scar-treatment-before-after.jpg
+frontend/images/blog-real/body-sculpting-hifu-procedure.jpg
+frontend/images/blog-real/chemical-peels-pigmentation-before-after.jpg
+frontend/images/blog-real/cryolipolysis-fat-freezing-before-after.jpg
+frontend/images/blog-real/hydrafacial-before-after.jpg
+frontend/images/blog-real/hydrafacial-before-after.webp
+frontend/images/blog-real/hydrafacial-treatment-before-after.jpg
+frontend/images/blog-real/hydrafacial-treatment-before-after.webp
+frontend/images/blog-real/laser-hair-removal-procedure.jpg
+frontend/images/blog-real/lip-blush-treatment-before-after.jpg
+frontend/images/blog-real/prp-gfc-patient-hair-result.jpg
+frontend/images/blog-real/prp-gfc-patient-hair-result.webp
+frontend/images/blog-real/prp-gfc-patient-hair-v2.jpg
+frontend/images/blog-real/prp-sessions-hair-density-before-after.jpg
+frontend/images/body-contouring.jpg
+frontend/images/chemical peel pigmentation.jpg
+frontend/images/consultation-hero-patient.jpg
+frontend/images/consultation-stage1-crown.jpg
+frontend/images/consultation-stage2-temporal.jpg
+frontend/images/consultation-stage3-laser.jpg
+frontend/images/consultation-stage4-density.jpg
+frontend/images/consultation-stage4-patient.jpg
+frontend/images/consultation-stage5-outcome.jpg
+frontend/images/crown area transplant.jpg
+frontend/images/dhi hair 1.jpg
+frontend/images/dhi hair 2.jpg
+frontend/images/double-chin-slimming.jpg
+frontend/images/dr-aliza-rizvi.webp
+frontend/images/dr-nakul-somani.webp
+frontend/images/dr-youvraj-singh.webp
+frontend/images/facial laser 2.jpg
+frontend/images/female hair restoration .jpg
+frontend/images/female hair restoration 2.jpg
+frontend/images/female-hair-restoration-.jpg
+frontend/images/female-hair-restoration-2.jpg
+frontend/images/fui hair 1.jpg
+frontend/images/fui hair 2.jpg
+frontend/images/gallery-facial-aesthetic-care.jpg
+frontend/images/gallery-hair-transplant-grafts.jpg
+frontend/images/gfc therepy 2.jpg
+frontend/images/hair-restoration-stage5-full-volume.jpg
+frontend/images/hair-services/hair-transplant/hair-transplant-before-after-beard-transplant-kezza-jaipur@2x.jpg
+frontend/images/hair-services/hair-transplant/hair-transplant-before-after-crown-area-kezza-jaipur@2x.jpg
+frontend/images/hair-services/hair-transplant/hair-transplant-before-after-female-restoration-kezza-jaipur@2x.jpg
+frontend/images/hair-services/hair-transplant/hair-transplant-before-after-revision-repair-kezza-jaipur@2x.jpg
+frontend/images/hair-services/hair-transplant/hair-transplant-hero-clinical-procedure-kezza-jaipur@2x.jpg
+frontend/images/hair-services/og/hair-transplant-og-kezza-jaipur.webp
+frontend/images/hero/body-contouring.jpg
+frontend/images/hero2.jpg
+frontend/images/hero2.webp
+frontend/images/hero3.jpg
+frontend/images/hydra facial 2.jpg
+frontend/images/hydra facial.jpg
+frontend/images/keeza clinic outside.jpg
+frontend/images/keeza clinic outside.webp
+frontend/images/keeza hall.jpg
+frontend/images/keeza inside clinic 2.jpg
+frontend/images/keeza inside clinic room.jpg
+frontend/images/keeza inside clinic.jpg
+frontend/images/keeza inside photo.jpg
+frontend/images/keeza machine.jpg
+frontend/images/keeza poster.jpg
+frontend/images/keeza reception.jpg
+frontend/images/keeza-clinic-outside.jpg
+frontend/images/keeza-clinic-outside.webp
+frontend/images/keeza-hall.jpg
+frontend/images/keeza-poster.jpg
+frontend/images/kezza reception.jpg
+frontend/images/kezza-reception.jpg
+frontend/images/laser facial 2.jpg
+frontend/images/laser facial.jpg
+frontend/images/laser hair rejuvation.jpg
+frontend/images/mesotherepy .jpg
+frontend/images/mesotherepy 2.jpg
+frontend/images/mesotherepy-.jpg
+frontend/images/mustache transplant 2.jpg
+frontend/images/mustache transplant after.jpg
+frontend/images/mustache transplant.jpg
+frontend/images/mustache-transplant-2.jpg
+frontend/images/mustache-transplant-after.jpg
+frontend/images/pigmentation removal.jpg
+frontend/images/pm eyebro.jpg
+frontend/images/pm eyeliner 2.jpg
+frontend/images/pm eyeliner.jpg
+frontend/images/pm hero.jpg
+frontend/images/pm lip.jpg
+frontend/images/prp 1.jpg
+frontend/images/prp 2.jpg
+frontend/images/revision repair hair transplant.jpg
+frontend/images/scar removal after.jpg
+frontend/images/scar removal before.jpg
+frontend/images/stretch mark.jpg
+frontend/images/vitamin c pigmentation.jpg
+frontend/posters/video1.jpg
+frontend/posters/video2.jpg
+frontend/posters/video3.jpg
+frontend/posters/video7.jpg
+frontend/video/video1.mp4
+frontend/video/video10.mp4
+frontend/video/video11.mp4

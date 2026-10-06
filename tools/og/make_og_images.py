@@ -55,6 +55,7 @@ CARDS = [
     ("blog-prp-sessions", "Hair Loss Therapy", "How Many PRP Sessions Do You Need?", "prp-1.jpg"),
     ("blog-white-hair-laser", "White Hair Removal", "Why Laser Can't Remove White Hair", "keeza-machine.jpg"),
     ("blog-norwood-scale", "Hair Loss Basics", "The Norwood Scale, Explained", "norwood-stage-3.jpg"),
+    ("blog-semaglutide", "Weight Loss Guide", "Semaglutide for Weight Loss, Explained", "keeza-inside-clinic-room.jpg"),
     # Treatment pages (tools/content/pages)
     ("fue-hair-transplant", "Hair Transplant", "FUE Hair Transplant in Jaipur", "fui-hair-2.jpg"),
     ("dhi-hair-transplant", "Hair Transplant", "DHI Hair Transplant in Jaipur", "dhi-hair-2.jpg"),
@@ -66,7 +67,7 @@ CARDS = [
     ("acne-treatment", "Skin & Acne", "Acne Treatment in Jaipur", "vitamin-c-pigmentation.jpg"),
     ("acne-scar-treatment", "Skin & Acne", "Acne Scar Treatment in Jaipur", "scar-removal-before.jpg"),
     ("hydra-facial", "Medical Facials", "Hydra Facial in Jaipur", "hydra-facial-2.jpg"),
-    ("botox", "Anti-Ageing", "Botox in Jaipur", "anti-aging-2.jpg"),
+    ("botox", "Anti-Ageing Injectables", "Botox & Dermal Fillers in Jaipur", "anti-aging-2.jpg"),
     ("dark-circles-treatment", "Skin Care", "Dark Circles Treatment in Jaipur", "pigmentation-removal.jpg"),
     ("cryolipolysis", "Body Contouring", "Cryolipolysis in Jaipur", "body-sculpting-treatment.jpg"),
     ("hifu-body-sculpting", "Body Contouring", "HIFU Body Sculpting in Jaipur", "hifu-body-sculpting-procedure.jpg"),
@@ -75,6 +76,11 @@ CARDS = [
     ("lip-blush", "Permanent Makeup", "Lip Blush in Jaipur", "pm-lip.jpg"),
     ("permanent-eyeliner", "Permanent Makeup", "Permanent Eyeliner in Jaipur", "pm-eyeliner.jpg"),
     ("pmu-correction", "Permanent Makeup", "PMU Correction in Jaipur", "beauty-spot-correction.jpg"),
+    # Skin cluster pages (review until the clinic approves them)
+    ("pigmentation-treatment", "Skin & Pigmentation", "Pigmentation & Melasma Treatment in Jaipur", "chemical-peel-pigmentation.jpg"),
+    ("stretch-marks-treatment", "Skin & Body", "Stretch Marks Treatment in Jaipur", "stretch-mark.jpg"),
+    ("medical-dermatology", "Medical Skin Care", "Mole, Wart & Skin Tag Removal in Jaipur", "electrolysis-hero-procedure.jpg"),
+    ("skin-consultation", "Book a Skin Check", "Skin Consultation in Jaipur", "keeza-reception.jpg"),
 ]
 
 

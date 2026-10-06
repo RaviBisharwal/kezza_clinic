@@ -51,7 +51,7 @@ E = lambda s: html.escape(str(s), quote=True)  # noqa: E731
 # Stylesheets for the generated pages. build-css.js swaps these for one bundle.
 CSS = ["/css/styles.css?v=2.2", "/css/services-navigation.css?v=3.6", "/css/quick-actions.css?v=2.0",
        "/css/service-page.css?v=2.0", "/css/responsive.css?v=3.8", "/css/kezza-ai.css?v=5.5",
-       "/css/content-pages.css?v=1.0"]
+       "/css/content-pages.css?v=2.0"]
 
 
 # ───────────────────────────── template parts ─────────────────────────────
@@ -307,7 +307,16 @@ def cta_band(title, text, wa="919284517427", phone="+919284517427", phone_label=
 
 
 RESOLVER = None      # set in __main__ once the quality gates have run
+LIVE_SLUGS = set()   # blog articles that are published (set in __main__)
 NEUTRALIZED = []     # (page, link, fallback) for the gate report
+BUILD_DATE_RE = re.compile(r'("dateModified": ")\d{4}-\d{2}-\d{2}(")')
+CSS_LINK_RE = re.compile(r'[ \t]*<link[^>]*rel="stylesheet"[^>]*href="/?css/[^"?]+\.css(?:\?[^"]*)?"[^>]*>'
+                         r'(?:<!-- built by tools/build-css\.js[^>]*?-->)?[ \t]*\r?\n?')   # rewritten later by build-css.js
+
+
+def same_but_date(old, new):
+    norm = lambda s: CSS_LINK_RE.sub("", BUILD_DATE_RE.sub(r"\1\2", s))
+    return old != new and norm(old) == norm(new)
 
 
 def write(rel, content, live=True):
@@ -316,6 +325,12 @@ def write(rel, content, live=True):
         content, fixed = pseo.neutralize(content, RESOLVER, self_url)
         NEUTRALIZED.extend((rel, u, fb) for u, fb in fixed)
     path = os.path.join(FE, rel)
+    if os.path.exists(path):
+        # A rebuild on a new day changes only the build date: keep the page as it is, so "dateModified"
+        # (and the sitemap's lastmod) move only when the content really changes.
+        if same_but_date(open(path, encoding="utf-8").read(), content):
+            print("unchanged", os.path.relpath(path, ROOT), "(only the build date differed)")
+            return
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         f.write(content)
@@ -324,7 +339,7 @@ def write(rel, content, live=True):
 
 def pretty_phone(p):
     d = re.sub(r"\D", "", p)[-10:]
-    return f"+91 {d[:5]} {d[5:]}"
+    return f"+91-{d}"
 
 
 def tel(p):
@@ -559,7 +574,7 @@ def build_locations_hub():
             "facility": "Flagship Surgical OT Center",
             "rating": "4.9",
             "reviews": "1,200+",
-            "tags": ["Sapphire FUE", "DHI Implantation", "PRP & GFC", "Triple Laser LHR", "HydraFacial"]
+            "tags": ["Sapphire FUE", "DHI Implantation", "PRP & GFC", "Triple Laser LHR", "Hydra Facial"]
         },
         "sikar": {
             "facility": "Regional Hair & Laser Center",
@@ -652,7 +667,7 @@ def build_locations_hub():
         ("Are Kezza clinics open on Sunday?",
          "Yes. All three clinics, in Jaipur, Sikar and Ajmer, are open from 9 AM to 8 PM, seven days a week."),
         ("Is there one phone number for all clinics?",
-         "+91 92845 17427 is the main helpline for Jaipur and Sikar. The Ajmer clinic has its own number, +91 92160 88257."),
+         "+91-9284517427 is the main helpline for Jaipur and Sikar. The Ajmer clinic has its own number, +91-9216088257."),
         ("Can I open a Kezza Clinic franchise in another city?",
          "Yes. We offer franchise partnerships with comprehensive doctor training, treatment protocols and clinic setup across Rajasthan. Learn more on our <a href=\"/branches.html\">franchise enquiry page</a>."),
     ]
@@ -781,7 +796,7 @@ def build_locations_hub():
                                 <td><span class="kz-matrix-check"><i class="fas fa-check-circle"></i> Chill-Tip Suite</span></td>
                             </tr>
                             <tr>
-                                <td><strong>Medical HydraFacials &amp; Glow Peels</strong></td>
+                                <td><strong>Medical Hydra Facials &amp; Glow Peels</strong></td>
                                 <td><span class="kz-matrix-check"><i class="fas fa-check-circle"></i> Available Daily</span></td>
                                 <td><span class="kz-matrix-check"><i class="fas fa-check-circle"></i> Available Daily</span></td>
                                 <td><span class="kz-matrix-check"><i class="fas fa-check-circle"></i> Available Daily</span></td>
@@ -849,6 +864,12 @@ def load_articles():
         words = len(re.sub(r"<[^>]+>", " ", meta["body"]).split())
         meta["minutes"] = max(3, round(words / 200))
         meta["words"] = words
+        meta.setdefault("status", "published")       # medical articles start in "review" until a doctor approves them
+        if meta["status"] not in pseo.STATUSES:
+            sys.exit(f"{fn}: status must be one of {', '.join(pseo.STATUSES)}")
+        meta["live"] = meta["status"] == "published"
+        if meta["status"] == "draft":
+            continue
         arts.append(meta)
     arts.sort(key=lambda a: a.get("order", 99))
     return arts
@@ -868,22 +889,28 @@ def build_article(a, arts):
     path = f"/blog/{a['slug']}/"
     url = f"{BASE}{path}"
     og = f"/images/og/{a['og']}.jpg"
-    related = [x for x in arts if x["slug"] in a.get("related", [])]
+    related = [x for x in arts if x["slug"] in a.get("related", []) and x["live"]]
+    reviewed = a["live"] and a.get("reviewer") in DATA["people"] and a.get("reviewed")
     rel_html = "".join(f"""
                     <a class="kz-blog-card" href="/blog/{r['slug']}/">
-                        <img src="/images/og/{r['og']}.jpg" alt="{E(r['h1'])}" width="1200" height="630" loading="lazy" decoding="async">
+                        <img src="{r.get('real_image') or f"/images/og/{r['og']}.jpg"}" alt="{E(r.get('real_alt') or r['h1'])}" width="{r.get('real_w', 1200)}" height="{r.get('real_h', 630)}" loading="lazy" decoding="async">
                         <div class="kz-card-body"><span class="kz-chip">{E(r['category'])}</span><h2>{E(r['h1'])}</h2></div>
                     </a>""" for r in related)
+    hero_src = a.get("real_image") or og
+    hero_alt = a.get("real_alt") or a["hero_alt"]
+    real_note = f'<p class="kz-real-photo-note"><i class="fas fa-camera"></i> {E(a["real_photo_note"])}</p>' if a.get("real_photo_note") else ''
     takeaways = "".join(f"<li>{t}</li>" for t in a["takeaways"])
     sources = "".join(f'<li><a href="{s[1]}" target="_blank" rel="noopener noreferrer">{E(s[0])}</a></li>' for s in a["sources"])
     services = " · ".join(f'<a href="{s[1]}">{E(s[0])}</a>' for s in a.get("services", []))
 
+    # The reviewer is shown only once the article is published with a review date ("reviewed": "YYYY-MM-DD"),
+    # so a name in "reviewer" alone never claims a review that has not happened.
     rev_id = a.get("reviewer")
-    rev_data = DATA.get("people", {}).get(rev_id) if rev_id else None
+    rev_data = DATA["people"].get(rev_id) if reviewed else None
+    byline_rev = '<span><i class="fas fa-hospital"></i>By the Kezza Hair &amp; Skin Clinic team</span>'
     if rev_data:
-        byline_rev = f'<span><i class="fas fa-user-md"></i>Medically reviewed by <a href="/about.html#{rev_id}">{E(rev_data["name"])}</a> ({E(rev_data["job_title"])})</span>'
-    else:
-        byline_rev = '<span><i class="fas fa-hospital"></i>By the Kezza Hair &amp; Skin Clinic team</span>'
+        label = "Medically reviewed by" if rev_data["name"].startswith("Dr") else "Reviewed by"
+        byline_rev += f'<span><i class="fas fa-user-md"></i>{label} <a href="/about.html#{rev_id}">{E(rev_data["name"])}</a> ({E(rev_data["job_title"])})</span>'
 
     svcs = a.get("services", [])
     first_svc = svcs[0] if svcs else None
@@ -914,7 +941,8 @@ def build_article(a, arts):
                     </div>
                 </div>
                 <div class="kz-article-hero">
-                    <img src="{og}" width="1200" height="630" fetchpriority="high" decoding="async" alt="{E(a['hero_alt'])}">
+                    <img src="{hero_src}" width="{a.get('real_w', 1200)}" height="{a.get('real_h', 630)}" fetchpriority="high" decoding="async" alt="{E(hero_alt)}">
+                    {real_note}
                 </div>
             </div>
         </header>
@@ -948,30 +976,35 @@ def build_article(a, arts):
             </div>
         </section>
 """ if related else "") + cta_band(a.get("cta_title", "Talk to a Kezza doctor"),
-                              "Get a personal assessment at our Jaipur, Sikar or Ajmer clinic. Open 9 AM – 8 PM, all 7 days.")
+                              a.get("cta_text", "Get a personal assessment at our Jaipur, Sikar or Ajmer clinic. Open 9 AM – 8 PM, all 7 days."),
+                              **({"wa_text": a["wa_text"]} if a.get("wa_text") else {}))
 
     posting = {"@type": "BlogPosting", "@id": f"{url}#article", "headline": a["h1"], "description": a["description"],
-               "image": {"@type": "ImageObject", "url": f"{BASE}{og}", "width": 1200, "height": 630},
+               "image": {"@type": "ImageObject", "url": f"{BASE}{hero_src}", "width": a.get("real_w", 1200) if a.get("real_image") else 1200, "height": a.get("real_h", 630) if a.get("real_image") else 630},
                "datePublished": a["published"], "dateModified": a["modified"],
                "author": {"@id": ORG_ID}, "publisher": {"@id": ORG_ID},
                "mainEntityOfPage": {"@id": f"{url}#webpage"}, "isPartOf": {"@id": f"{BASE}/blog/#blog"},
                "inLanguage": "en-IN", "wordCount": a["words"], "articleSection": a["category"],
                "keywords": a.get("keywords", []), "about": [{"@type": "Thing", "name": t} for t in a.get("about", [])],
                "citation": [{"@type": "CreativeWork", "name": s[0], "url": s[1]} for s in a["sources"]]}
-    if rev_data:
-        posting["reviewedBy"] = {"@type": "Person", "name": rev_data["name"], "jobTitle": rev_data["job_title"], "url": f"{BASE}/about.html#{rev_id}"}
+    extra = {"reviewedBy": {"@id": person_id(a["reviewer"])}, "lastReviewed": a["reviewed"]} if reviewed else None
     nodes = [org_node(), website_node(),
-             webpage(url, a["title"], a["description"], about=f"{url}#article", image=f"{BASE}{og}", modified=a["modified"]),
+             webpage(url, a["title"], a["description"], about=f"{url}#article", image=f"{BASE}{og}", extra=extra, modified=a["modified"]),
              breadcrumb(url, [("Home", "/"), ("Blog", "/blog/"), (a["h1"], path)]), posting,
              faq_node(url, a["faqs"])]
-    write(f"blog/{a['slug']}/index.html", page(path, a["title"], a["description"], og, a["hero_alt"], nodes, main, active_nav="/blog/"))
+    if reviewed:
+        nodes.append(person_node(a["reviewer"]))
+    write(f"blog/{a['slug']}/index.html",
+          page(path, a["title"], a["description"], og, a["hero_alt"], nodes, main, active_nav="/blog/",
+               robots=pseo.INDEX_ROBOTS if a["live"] else pseo.NOINDEX_ROBOTS),
+          live=a["live"])
 
 
 def build_blog_index(arts):
     path = "/blog/"
     url = f"{BASE}{path}"
     title = "Hair & Skin Blog: Guides From Kezza Clinic Doctors"
-    desc = "Doctor-reviewed clinical guides on hair transplants, PRP therapy, acne scars, laser hair removal, cryolipolysis, and permanent makeup from Kezza Clinic."
+    desc = "Doctor-led clinical guides on hair transplants, PRP therapy, acne scars, laser hair reduction, cryolipolysis, and permanent makeup from Kezza Clinic."
 
     def cat_key(c):
         c = c.lower()
@@ -979,7 +1012,7 @@ def build_blog_index(arts):
         if "hair loss" in c or "prp" in c: return "hair-loss"
         if "laser" in c or "white hair" in c: return "laser"
         if "skin" in c: return "skin"
-        if "weight" in c or "body" in c: return "weight"
+        if "weight" in c or "body" in c or "contouring" in c or "sculpting" in c: return "weight"
         if "makeup" in c or "pmu" in c: return "pmu"
         return "other"
 
@@ -988,13 +1021,13 @@ def build_blog_index(arts):
     featured_cards = "".join(f"""
                     <a class="kz-blog-card kz-blog-card-featured" href="/blog/{a['slug']}/" data-category="{cat_key(a['category'])}" data-search="{E((a['h1'] + ' ' + a['description'] + ' ' + a['category']).lower())}">
                         <span class="kz-featured-badge"><i class="fas fa-star"></i> Featured Guide</span>
-                        <img src="/images/og/{a['og']}.jpg" alt="{E(a['hero_alt'] or a['h1'])}" width="1200" height="630" loading="eager" decoding="async">
+                        <img src="{a.get('real_image') or f"/images/og/{a['og']}.jpg"}" alt="{E(a.get('real_alt') or a['hero_alt'] or a['h1'])}" width="{a.get("real_w", 1200)}" height="{a.get("real_h", 630)}" loading="eager" decoding="async">
                         <div class="kz-card-body">
                             <span class="kz-chip">{E(a['category'])}</span>
                             <h2>{E(a['h1'])}</h2>
                             <p class="kz-muted">{E(a['description'])}</p>
                             <div class="kz-card-meta">
-                                <span class="kz-card-meta-left"><i class="fas fa-user-md" style="color:var(--sp-primary)"></i> Doctor Reviewed</span>
+                                <span class="kz-card-meta-left">{'<i class="fas fa-user-md" style="color:var(--sp-primary)"></i> Doctor reviewed' if a.get("reviewed") and a.get("reviewer") else '<i class="fas fa-star" style="color:var(--sp-primary)"></i> Featured guide'}</span>
                                 <span>{a['minutes']} min read</span>
                             </div>
                         </div>
@@ -1002,7 +1035,7 @@ def build_blog_index(arts):
 
     cards = "".join(f"""
                     <a class="kz-blog-card" href="/blog/{a['slug']}/" data-category="{cat_key(a['category'])}" data-search="{E((a['h1'] + ' ' + a['description'] + ' ' + a['category'] + ' ' + ' '.join(a.get('keywords', []))).lower())}">
-                        <img src="/images/og/{a['og']}.jpg" alt="{E(a['hero_alt'] or a['h1'])}" width="1200" height="630" loading="lazy" decoding="async">
+                        <img src="{a.get('real_image') or f"/images/og/{a['og']}.jpg"}" alt="{E(a.get('real_alt') or a['hero_alt'] or a['h1'])}" width="{a.get("real_w", 1200)}" height="{a.get("real_h", 630)}" loading="lazy" decoding="async">
                         <div class="kz-card-body">
                             <span class="kz-chip">{E(a['category'])}</span>
                             <h2>{E(a['h1'])}</h2>
@@ -1025,8 +1058,8 @@ def build_blog_index(arts):
     }
 
     blog_faqs = [
-        ["Are Kezza's blog guides written and reviewed by real doctors?",
-         "Yes. Every educational article is authored and medically reviewed by registered aesthetic physicians, hair transplant surgeons, and certified clinical specialists at Kezza Hair & Skin Clinic, using peer-reviewed dermatologic and surgical literature."],
+        ["Who writes Kezza's blog guides?",
+         "Our guides are written by the Kezza Hair & Skin Clinic team from peer-reviewed medical sources, which are listed at the end of each article. When a Kezza doctor has checked an article, it shows 'Medically reviewed by' with the doctor's name and the review date."],
         ["How do I determine which treatment is right for my hair or skin?",
          "Our clinical guides explain the scientific mechanisms, candidate criteria, and recovery expectations. However, because individual hair caliber, donor reserves, and skin types vary, a personalized examination with diagnostic trichoscopy or dermoscopy is always recommended."],
         ["Can I book a consultation after reading a guide?",
@@ -1055,8 +1088,8 @@ def build_blog_index(arts):
                             <button type="button" class="kz-topic-pill" data-filter="hair-transplant"><i class="fas fa-user-md"></i> Hair Transplant <span class="count">{cats_count['hair-transplant']}</span></button>
                             <button type="button" class="kz-topic-pill" data-filter="hair-loss"><i class="fas fa-vial"></i> Hair Loss &amp; PRP <span class="count">{cats_count['hair-loss']}</span></button>
                             <button type="button" class="kz-topic-pill" data-filter="skin"><i class="fas fa-sparkles"></i> Skin &amp; Peels <span class="count">{cats_count['skin']}</span></button>
-                            <button type="button" class="kz-topic-pill" data-filter="laser"><i class="fas fa-bolt"></i> Laser Treatments <span class="count">{cats_count['laser']}</span></button>
-                            <button type="button" class="kz-topic-pill" data-filter="weight"><i class="fas fa-weight"></i> Weight &amp; Contouring <span class="count">{cats_count['weight']}</span></button>
+                            <button type="button" class="kz-topic-pill" data-filter="laser"><i class="fas fa-bolt"></i> Laser Hair Reduction <span class="count">{cats_count['laser']}</span></button>
+                            <button type="button" class="kz-topic-pill" data-filter="weight"><i class="fas fa-shapes"></i> Body Contouring &amp; Sculpting <span class="count">{cats_count['weight']}</span></button>
                             <button type="button" class="kz-topic-pill" data-filter="pmu"><i class="fas fa-paint-brush"></i> Permanent Makeup <span class="count">{cats_count['pmu']}</span></button>
                         </div>
                     </div>
@@ -1076,6 +1109,23 @@ def build_blog_index(arts):
                         {featured_cards}
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section class="sp-section-pad kz-blog-section sp-bg-white" id="realKezzaPhotos">
+            <div class="sp-container">
+                <div class="kz-center-head">
+                    <span class="sp-pill-badge"><i class="fas fa-camera"></i> Real Kezza Photography</span>
+                    <h2 class="sp-section-heading" style="font-size:clamp(1.5rem,2.5vw,2rem)">Hair Transplant Treatment Stages</h2>
+                    <p style="margin:4px 0 0;font-size:0.94rem;color:var(--sp-slate-muted)">Original Kezza Clinic photographs used to explain planning, recipient-area treatment and early postoperative stages. These images are educational and do not guarantee a particular outcome.</p>
+                </div>
+                <div class="kz-real-photo-grid kz-real-photo-grid-index">
+                    <figure class="kz-real-photo"><img src="/images/blog-real/hair-transplant-hairline-planning.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="Real Kezza Clinic hair transplant hairline planning photograph"><figcaption>Hairline planning before treatment</figcaption></figure>
+                    <figure class="kz-real-photo"><img src="/images/blog-real/hair-transplant-graft-area.webp" width="1200" height="1600" loading="lazy" decoding="async" alt="Real Kezza Clinic hair transplant recipient area photograph"><figcaption>Recipient-area treatment stage</figcaption></figure>
+                    <figure class="kz-real-photo"><img src="/images/blog-real/hair-transplant-recipient-area-early-healing.webp" width="1200" height="1600" loading="lazy" decoding="async" alt="Real Kezza Clinic early postoperative scalp photograph"><figcaption>Early postoperative stage</figcaption></figure>
+                    <figure class="kz-real-photo"><img src="/images/blog-real/hair-transplant-postoperative-scalp.webp" width="1200" height="1600" loading="lazy" decoding="async" alt="Real Kezza Clinic postoperative hair transplant scalp photograph"><figcaption>Postoperative scalp care stage</figcaption></figure>
+                </div>
+                <p class="kz-real-photo-note"><i class="fas fa-link"></i> Read the <a href="/blog/hair-transplant-hairline-design/">hair transplant hairline design guide</a> and <a href="/blog/hair-transplant-procedure-day/">step-by-step procedure guide</a> for clinical context.</p>
             </div>
         </section>
 
@@ -1260,6 +1310,8 @@ def svc_reviewer(p, ui):
 
 def svc_explainer(x, ui, bg):
     paras = "".join(f"\n                        <p>{t}</p>" for t in x["paras"])
+    if x.get("answer"):   # short direct answer first (answer engines and readers in a hurry), then the detail
+        paras = f"\n                        <p class=\"kz-direct-answer\"><strong>{x['answer']}</strong></p>" + paras
     lis = "".join(f'\n                                <li><i class="fas fa-check-circle"></i> <span><strong>{a}:</strong> {b}</span></li>' for a, b in x.get("in_short", []))
     box = (f'\n                        <div class="explainer-in-short">\n                            <h3>{x.get("in_short_title", ui["in_short"])}</h3>'
            f'\n                            <ul>{lis}\n                            </ul>\n                        </div>') if lis else ""
@@ -1391,8 +1443,32 @@ def svc_details(body, bg):
 """
 
 
+def svc_where_detailed(w):
+    cards = []
+    for k in w["clinics"]:
+        b = DATA["branches"][k]
+        ph = b["phones"][0]
+        cards.append(f"""
+                    <div class="kz-loc-card">
+                        <h3><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <a href="/locations/{k}/">Kezza {E(b['city'])}</a></h3>
+                        <address>{E(b['display_address'])}</address>
+                        <p><i class="fas fa-clock" aria-hidden="true"></i> 9 AM – 8 PM, all 7 days</p>
+                        <p><i class="fas fa-phone-alt" aria-hidden="true"></i> <a href="tel:{tel(ph)}">{pretty_phone(ph)}</a></p>
+                        <p><a href="{b['map']}" target="_blank" rel="noopener noreferrer"><i class="fas fa-location-arrow" aria-hidden="true"></i> Get directions</a></p>
+                    </div>""")
+    return '                <div class="kz-svc-grid">' + "".join(cards) + "\n                </div>\n"
+
+
 def svc_where(p, ui, bg):
     w = p["where"]
+    if w.get("detailed"):
+        return f"""
+        <section class="sp-section-pad {bg}" id="where">
+            <div class="sp-container">
+{head_block(ui['where_badge'], 'fa-map-marker-alt', w['h2'], w.get('sub'))}{svc_where_detailed(w)}                <p class="kz-note">{w['note']}</p>
+            </div>
+        </section>
+"""
     items = "".join(f'\n                    <li><a href="/locations/{k}/"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> '
                     f'{ui["clinic"]} {E(w.get("names", {}).get(k, DATA["branches"][k]["city"]))} · {E(w.get("labels", {}).get(k, DATA["branches"][k]["label"].split("·")[-1].strip()))}</a></li>'
                     for k in w["clinics"])
@@ -1402,6 +1478,27 @@ def svc_where(p, ui, bg):
 {head_block(ui['where_badge'], 'fa-map-marker-alt', w['h2'], w.get('sub'))}                <ul class="kz-treat-list">{items}
                 </ul>
                 <p class="kz-note">{w['note']}</p>
+            </div>
+        </section>
+"""
+
+
+def svc_mid_cta(p, ui, bg):
+    m = p["mid_cta"]
+    wa = quote(p["wa_text"])
+    link = f'<a href="{m["link"][1]}" class="btn-call-action"><i class="fas fa-arrow-right"></i> {m["link"][0]}</a>' if m.get("link") else ""
+    return f"""
+        <section class="sp-section-pad {bg}" id="book" style="padding-top:40px;padding-bottom:40px">
+            <div class="sp-container">
+                <div class="kz-treatment-bridge" style="max-width:860px;margin:0 auto">
+                    <span class="sp-pill-badge"><i class="fas fa-calendar-check"></i> {m.get('badge', 'Book a Visit')}</span>
+                    <h3>{m['title']}</h3>
+                    <p>{m['text']}</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:10px">
+                        <a href="https://wa.me/919284517427?text={wa}" target="_blank" rel="noopener noreferrer" class="btn-wa-action"><i class="fab fa-whatsapp"></i> {ui['cta_wa']}</a>
+                        {link}
+                    </div>
+                </div>
             </div>
         </section>
 """
@@ -1485,6 +1582,8 @@ def further_reading(p, resolver):
     """Links to the registry's supporting blog articles that the page does not already link to."""
     arts = []
     for slug in pseo.TREAT[p["id"]].get("articles", []):
+        if slug not in LIVE_SLUGS:      # an article still in review is not linked from live pages
+            continue
         href = f"/blog/{slug}/"
         if href in p["body"] or href in json.dumps(p.get("faqs", [])):
             continue
@@ -1544,6 +1643,8 @@ def build_service(p, resolver, eff):
             parts.append(faq_html(p["faqs"], heading=p.get("faq_h2", ui["faq_h2"]), bg=bg, badge=ui["faq_badge"]))
         elif sec == "related" and cards:
             parts.append(svc_related(cards, ui, bg, p.get("related_h2")))
+        elif sec == "mid_cta" and p.get("mid_cta"):
+            parts.append(svc_mid_cta(p, ui, bg))
         else:
             continue
         n += 1
@@ -1589,11 +1690,11 @@ def build_service(p, resolver, eff):
                robots=pseo.INDEX_ROBOTS if live else pseo.NOINDEX_ROBOTS)
     if p["lang"] != "en-IN":  # the shared header and footer stay in English
         out = out.replace('<nav class="navbar">', '<nav class="navbar" lang="en-IN">', 1)
-        out = out.replace('<footer class="footer">', '<footer class="footer" lang="en-IN">', 1)
+        out = re.sub(r'<footer class="(footer[^"]*)">', r'<footer class="\1" lang="en-IN">', out, count=1)
     write(rel, out, live=live)   # pages still in review keep their links to other review pages for previewing
 
 
-def write_gate_report(pages, gates, eff):
+def write_gate_report(pages, gates, eff, review_arts=()):
     """docs/pseo/quality-gates.md (+ .json): every generated page, its status and what still needs a human."""
     rows, js = [], []
     for p in pages:
@@ -1619,6 +1720,12 @@ def write_gate_report(pages, gates, eff):
         md += [f"- To confirm before approval: {m}" for m in x["needs_human_review"]]
         if not (x["critical"] or x["warnings"] or x["needs_human_review"]):
             md.append("- All checks passed.")
+    if review_arts:
+        md += ["", "## Blog articles in review (noindex, not listed on the blog page or in the sitemap)", ""]
+        for a in review_arts:
+            md += [f"### /blog/{a['slug']}/ — {a['status']}", ""]
+            md += [f"- To confirm before approval: {n}" for n in a.get("review_notes", [])] or ["- No notes."]
+            md.append("")
     os.makedirs(os.path.join(ROOT, "docs", "pseo"), exist_ok=True)
     open(os.path.join(ROOT, "docs", "pseo", "quality-gates.md"), "w", encoding="utf-8").write("\n".join(md) + "\n")
     json.dump(js, open(os.path.join(ROOT, "docs", "pseo", "quality-gates.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
@@ -1740,6 +1847,8 @@ def resolve_links_in_data(arts, resolver):
 
 if __name__ == "__main__":
     arts = load_articles()
+    live_arts = [a for a in arts if a["live"]]
+    LIVE_SLUGS = {a["slug"] for a in live_arts}
     pages = load_pages()
     built = [p for p in pages if p["status"] != "draft"]
     for p in pages:
@@ -1761,17 +1870,17 @@ if __name__ == "__main__":
         build_location(key)
     for art in arts:
         build_article(art, arts)
-    build_blog_index(arts)
+    build_blog_index(live_arts)
     for pg in built:
         build_service(pg, resolver, eff[pg["id"]])
     changed, unknown = pseo.sync_links(resolver)
     for u in unknown:
         print("WARNING unknown data-pseo / pseo:link id:", u)
-    build_sitemap(arts, built, eff)
-    build_llms(arts, resolver)
+    build_sitemap(live_arts, built, eff)
+    build_llms(live_arts, resolver)
     if pseo.update_htaccess(["locations", "blog"] + sorted(p["path"].strip("/") for p in built)):
         print("updated frontend/.htaccess (trailing-slash redirects)")
-    write_gate_report(built, gates, eff)
+    write_gate_report(built, gates, eff, [a for a in arts if not a["live"]])
     counts = {k: sum(1 for v in eff.values() if v == k) for k in ("published", "review", "approved", "noindex", "blocked")}
     print("pSEO pages: " + ", ".join(f"{v} {k}" for k, v in counts.items() if v)
           + " — details in docs/pseo/quality-gates.md")

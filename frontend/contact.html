@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/bundle-contact.min.css?v=64dda68d"><!-- built by tools/build-css.js from: contact-styles.css, quick-actions.css, services-navigation.css, kezza-ai.css, responsive.css, scroll-3d.css, mobile-pro.css -->
+    <link rel="stylesheet" href="css/bundle-contact.min.css?v=fb5039d8"><!-- built by tools/build-css.js from: contact-styles.css, quick-actions.css, services-navigation.css, kezza-ai.css, responsive.css, scroll-3d.css, mobile-pro.css, site-footer.css -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="icon" type="image/png" href="images/logo.png">
 
@@ -333,89 +333,81 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 
-                <!-- SERVICES DROPDOWN (WhatsApp Style with Expandable Sub-Branches) -->
+                <!-- SERVICES MEGA MENU -->
                 <li class="nav-item-services-dropdown">
                     <a href="javascript:void(0)" class="services-nav-toggle" id="servicesNavToggle" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="servicesDropdownMenu">
                         <span>SERVICES</span> <i class="fas fa-chevron-down nav-arrow"></i>
                     </a>
-                    <div class="services-dropdown-menu" id="servicesDropdownMenu" role="region" aria-label="Services Menu">
-                        <ul class="services-dropdown-list">
-                            <!-- Category 1: Hair Services -->
-                            <li class="services-cat-item" data-accordion="hair">
-                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subHair">
-                                    <span class="services-cat-title">Hair Services</span>
-                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
-                                </button>
-                                <div class="services-sub-menu" id="subHair">
-                                    <ul class="services-sub-list">
-                                        <li><a href="hair-transplant/" class="services-sub-link">Hair Transplant (HT)</a></li>
-                                        <li><a href="hair-transplant/fue/" data-pseo="fue-hair-transplant" data-pseo-fallback="hair-services.html#hair-transplant" class="services-sub-link">FUE Hair Transplant</a></li>
-                                        <li><a href="hair-transplant/dhi/" data-pseo="dhi-hair-transplant" data-pseo-fallback="hair-services.html#dhi-transplant" class="services-sub-link">DHI Hair Transplant</a></li>
-                                        <li><a href="hair-transplant/beard/" data-pseo="beard-transplant" data-pseo-fallback="hair-services.html#beard-transplant" class="services-sub-link">Beard Transplant</a></li>
-                                        <li><a href="hair-transplant/eyebrow/" data-pseo="eyebrow-transplant" data-pseo-fallback="hair-services.html#eyebrow-transplant" class="services-sub-link">Eyebrow Transplant</a></li>
-                                        <li><a href="prp-therapy.html" class="services-sub-link">PRP Therapy</a></li>
-                                        <li><a href="gfc-treatment/" data-pseo="gfc-treatment" data-pseo-fallback="prp-therapy.html#gfc-therapy" class="services-sub-link">GFC Therapy</a></li>
-                                        <li><a href="white-hair-removal.html" class="services-sub-link">White Hair Removal</a></li>
-                                        <li><a href="electrolysis.html" class="services-sub-link">Electrolysis</a></li>
-                                        <li><a href="hair-wig.html" class="services-sub-link">Hair Wig / Hair Replacement</a></li>
-                                        <li><a href="hair-loss-consultation.html" class="services-sub-link">Hair Loss Consultation</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                    <div class="services-dropdown-menu mega-menu-panel" id="servicesDropdownMenu" role="region" aria-label="Services Menu">
+                        <div class="mega-menu-grid">
 
-                            <!-- Category 2: Skin Services -->
-                            <li class="services-cat-item" data-accordion="skin">
-                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subSkin">
-                                    <span class="services-cat-title">Skin Services</span>
-                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
-                                </button>
-                                <div class="services-sub-menu" id="subSkin">
-                                    <ul class="services-sub-list">
-                                        <li><a href="skin-services.html#botox" data-pseo="botox" data-pseo-fallback="skin-services.html#botox" class="services-sub-link">Botox</a></li>
-                                        <li><a href="skin-services.html#acne" data-pseo="acne-treatment" data-pseo-fallback="skin-services.html#acne" class="services-sub-link">Acne &amp; Acne Scar</a></li>
-                                        <li><a href="skin-services.html#dark-circles" data-pseo="dark-circles-treatment" data-pseo-fallback="skin-services.html#dark-circles" class="services-sub-link">Dark Circle Treatment</a></li>
-                                        <li><a href="skin-services.html#laser" class="services-sub-link">Laser Treatments</a></li>
-                                        <li><a href="laser-hair-removal/" data-pseo="laser-hair-removal" data-pseo-fallback="skin-services.html#laser" class="services-sub-link">Laser Hair Removal</a></li>
-                                        <li><a href="skin-services.html#anti-aging" class="services-sub-link">Anti-Aging</a></li>
-                                        <li><a href="skin-services.html#glutathione" class="services-sub-link">Glutathione Therapy</a></li>
-                                        <li><a href="skin-services.html#hydra-facial" data-pseo="hydra-facial" data-pseo-fallback="skin-services.html#hydra-facial" class="services-sub-link">Medical Facial</a></li>
-                                        <li><a href="skin-services.html#consultation" class="services-sub-link">Skin Consultation</a></li>
-                                    </ul>
+                            <!-- Column 1: Hair Services -->
+                            <div class="mega-col">
+                                <div class="mega-col-header">
+                                    <i class="fas fa-user-md mega-col-icon"></i>
+                                    <a href="hair-services.html" class="mega-col-title">Hair Services</a>
                                 </div>
-                            </li>
+                                <ul class="mega-link-list">
+                                    <li><a href="hair-transplant/" class="mega-link">Hair Transplant (HT)</a></li>
+                                    <li><a href="hair-transplant/fue/" data-pseo="fue-hair-transplant" data-pseo-fallback="hair-services.html#hair-transplant" class="mega-link">FUE Hair Transplant</a></li>
+                                    <li><a href="hair-transplant/dhi/" data-pseo="dhi-hair-transplant" data-pseo-fallback="hair-services.html#dhi-transplant" class="mega-link">DHI Hair Transplant</a></li>
+                                    <li><a href="hair-transplant/beard/" data-pseo="beard-transplant" data-pseo-fallback="hair-services.html#beard-transplant" class="mega-link">Beard Transplant</a></li>
+                                    <li><a href="hair-transplant/eyebrow/" data-pseo="eyebrow-transplant" data-pseo-fallback="hair-services.html#eyebrow-transplant" class="mega-link">Eyebrow Transplant</a></li>
+                                    <li><a href="prp-therapy.html" class="mega-link">PRP Therapy</a></li>
+                                    <li><a href="gfc-treatment/" data-pseo="gfc-treatment" data-pseo-fallback="prp-therapy.html#gfc-therapy" class="mega-link">GFC Therapy</a></li>
+                                    <li><a href="white-hair-removal.html" class="mega-link">White Hair Removal</a></li>
+                                    <li><a href="electrolysis.html" class="mega-link">Electrolysis</a></li>
+                                    <li><a href="hair-wig.html" class="mega-link">Hair Wig / Hair Replacement</a></li>
+                                    <li><a href="hair-loss-consultation.html" class="mega-link">Hair Loss Consultation</a></li>
+                                </ul>
+                            </div>
 
-                            <!-- Category 3: Weight Loss -->
-                            <li class="services-cat-item" data-accordion="weight">
-                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subWeight">
-                                    <span class="services-cat-title">Weight Loss</span>
-                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
-                                </button>
-                                <div class="services-sub-menu" id="subWeight">
-                                    <ul class="services-sub-list">
-                                        <li><a href="weight-loss.html#treatments" class="services-sub-link">Non-Surgical Weight Loss</a></li>
-                                        <li><a href="weight-loss.html#treatments" data-pseo="cryolipolysis" data-pseo-fallback="weight-loss.html#treatments" class="services-sub-link">Body Sculpting (Cryolipolysis)</a></li>
-                                        <li><a href="weight-loss.html#treatments" class="services-sub-link">Clinical Fat Reduction</a></li>
-                                        <li><a href="weight-loss.html#consultation" data-pseo="weight-management" data-pseo-fallback="weight-loss.html#consultation" class="services-sub-link">Weight Management Consultation</a></li>
-                                    </ul>
+                            <!-- Column 2: Skin Services -->
+                            <div class="mega-col">
+                                <div class="mega-col-header">
+                                    <i class="fas fa-spa mega-col-icon"></i>
+                                    <a href="skin-services.html" class="mega-col-title">Skin Services</a>
                                 </div>
-                            </li>
+                                <ul class="mega-link-list">
+                                    <li><a href="skin-services.html#hydra-facial" data-pseo="hydra-facial" data-pseo-fallback="skin-services.html#hydra-facial" class="mega-link">Hydra Facial</a></li>
+                                    <li><a href="skin-services.html#acne" data-pseo="acne-treatment" data-pseo-fallback="skin-services.html#acne" class="mega-link">Acne &amp; Acne Scars</a></li>
+                                    <li><a href="skin-services.html#pigmentation" data-pseo="pigmentation-treatment" data-pseo-fallback="skin-services.html#pigmentation" class="mega-link">Pigmentation &amp; Melasma</a></li>
+                                    <li><a href="skin-services.html#botox" data-pseo="botox" data-pseo-fallback="skin-services.html#botox" class="mega-link">Botox &amp; Fillers</a></li>
+                                    <li><a href="skin-services.html#dark-circles" data-pseo="dark-circles-treatment" data-pseo-fallback="skin-services.html#dark-circles" class="mega-link">Dark Circle Treatment</a></li>
+                                    <li><a href="skin-services.html#stretch-marks" data-pseo="stretch-marks" data-pseo-fallback="skin-services.html#stretch-marks" class="mega-link">Stretch Marks</a></li>
+                                    <li><a href="skin-services.html#medical-derma" data-pseo="medical-dermatology" data-pseo-fallback="skin-services.html#medical-derma" class="mega-link">Medical Dermatology</a></li>
+                                    <li><a href="laser-hair-removal/" data-pseo="laser-hair-removal" data-pseo-fallback="skin-services.html#laser" class="mega-link">Laser Hair Removal</a></li>
+                                    <li><a href="skin-services.html#consultation" data-pseo="skin-consultation" data-pseo-fallback="skin-services.html#consultation" class="mega-link">Skin Consultation</a></li>
+                                </ul>
+                            </div>
 
-                            <!-- Category 4: Permanent Makeup (PMU) -->
-                            <li class="services-cat-item" data-accordion="pmu">
-                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subPmu">
-                                    <span class="services-cat-title">Permanent Makeup (PMU)</span>
-                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
-                                </button>
-                                <div class="services-sub-menu" id="subPmu">
-                                    <ul class="services-sub-list">
-                                        <li><a href="permanent-makeup.html#microblading" data-pseo="microblading" data-pseo-fallback="permanent-makeup.html#microblading" class="services-sub-link">Eyebrow PMU</a></li>
-                                        <li><a href="permanent-makeup.html#lip-blush" data-pseo="lip-blush" data-pseo-fallback="permanent-makeup.html#lip-blush" class="services-sub-link">Lip PMU</a></li>
-                                        <li><a href="permanent-makeup.html#eyeliner" data-pseo="permanent-eyeliner" data-pseo-fallback="permanent-makeup.html#eyeliner" class="services-sub-link">Permanent Eyeliner</a></li>
-                                        <li><a href="permanent-makeup.html#consultation" class="services-sub-link">PMU Consultation</a></li>
-                                    </ul>
+                            <!-- Column 3: Weight Loss -->
+                            <div class="mega-col">
+                                <div class="mega-col-header">
+                                    <i class="fas fa-weight-scale mega-col-icon"></i>
+                                    <a href="weight-loss.html" class="mega-col-title">Weight Loss</a>
                                 </div>
-                            </li>
-                        </ul>
+                                <ul class="mega-link-list">
+                                    <li><a href="weight-loss.html#treatments" class="mega-link">Non-Surgical Weight Loss</a></li>
+                                    <li><a href="weight-loss.html#treatments" data-pseo="cryolipolysis" data-pseo-fallback="weight-loss.html#treatments" class="mega-link">Body Sculpting (Cryolipolysis)</a></li>
+                                    <li><a href="weight-loss.html#treatments" data-pseo="hifu-body-sculpting" data-pseo-fallback="weight-loss.html#treatments" class="mega-link">HIFU Body Sculpting</a></li>
+                                    <li><a href="weight-loss.html#consultation" data-pseo="weight-management" data-pseo-fallback="weight-loss.html#consultation" class="mega-link">Weight Management Consultation</a></li>
+                                </ul>
+
+                                <!-- PMU tucked in same column below -->
+                                <div class="mega-col-header" style="margin-top:18px;">
+                                    <i class="fas fa-paint-brush mega-col-icon"></i>
+                                    <a href="permanent-makeup.html" class="mega-col-title">Permanent Makeup</a>
+                                </div>
+                                <ul class="mega-link-list">
+                                    <li><a href="permanent-makeup.html#microblading" data-pseo="microblading" data-pseo-fallback="permanent-makeup.html#microblading" class="mega-link">Eyebrow PMU / Microblading</a></li>
+                                    <li><a href="permanent-makeup.html#lip-blush" data-pseo="lip-blush" data-pseo-fallback="permanent-makeup.html#lip-blush" class="mega-link">Lip Blush PMU</a></li>
+                                    <li><a href="permanent-makeup.html#eyeliner" data-pseo="permanent-eyeliner" data-pseo-fallback="permanent-makeup.html#eyeliner" class="mega-link">Permanent Eyeliner</a></li>
+                                    <li><a href="permanent-makeup.html#consultation" class="mega-link">PMU Consultation</a></li>
+                                </ul>
+                            </div>
+
+                        </div><!-- /.mega-menu-grid -->
                     </div>
                 </li>
 
@@ -991,55 +983,76 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer kz-site-footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <p class="footer-nav-title">About</p>
-                    <p>Kezza Hair & Skin Clinic is dedicated to providing advanced, evidence-based hair restoration and skin treatments with a premium, patient-centered approach.</p>
+            <div class="footer-grid kz-footer-grid">
+                <div class="footer-column kz-footer-brand">
+                    <p class="footer-nav-title kz-footer-name">Kezza Hair &amp; Skin Clinic</p>
+                    <p>Doctor-led hair restoration, skin and laser care, permanent makeup and body contouring at our clinics in Jaipur, Sikar and Ajmer, Rajasthan.</p>
+                    <p class="kz-footer-hours"><i class="far fa-clock" aria-hidden="true"></i> Open 9 AM – 8 PM, all 7 days</p>
+                    <div class="kz-footer-social">
+                        <a href="https://www.instagram.com/kezza_clinic" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="https://www.facebook.com/kezzaclinic" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="https://www.youtube.com/@Kezza_Clinic_Jaipur" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                    </div>
                 </div>
                 <div class="footer-column">
                     <p class="footer-nav-title">Quick Links</p>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="hair-services.html">Hair Services</a></li>
-                        <li><a href="skin-services.html">Skin Services</a></li>
-                        <li><a href="permanent-makeup.html">Permanent Makeup</a></li>
+                        <li><a href="about.html">About Us</a></li>
                         <li><a href="locations/">Our Clinics</a></li>
                         <li><a href="blog/">Hair &amp; Skin Blog</a></li>
+                        <li><a href="face-scanner.html">AI Face Scanner</a></li>
+                        <li><a href="permanent-makeup.html">Permanent Makeup</a></li>
+                        <li><a href="weight-loss.html">Weight Loss</a></li>
                         <li><a href="branches.html">Franchise</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="terms.html">Privacy &amp; Terms</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <p class="footer-nav-title">Hair Services</p>
+                    <p class="footer-nav-title"><a href="hair-services.html">Hair Services</a></p>
                     <ul>
-                        <li><a href="hair-transplant/fue/" data-pseo="fue-hair-transplant" data-pseo-fallback="hair-transplant/">FUE Hair Transplant</a></li>
-                        <li><a href="hair-transplant/dhi/" data-pseo="dhi-hair-transplant" data-pseo-fallback="hair-transplant/">DHI Hair Transplant</a></li>
-                        <li><a href="hair-transplant/">Hairline Reconstruction</a></li>
+                        <li><a href="hair-transplant/">Hair Transplant</a></li>
                         <li><a href="prp-therapy.html">PRP Therapy</a></li>
-                        <li><a href="hair-transplant/beard/" data-pseo="beard-transplant" data-pseo-fallback="hair-services.html#beard-transplant">Beard Transplant</a></li>
-                        <li><a href="hair-transplant/eyebrow/" data-pseo="eyebrow-transplant" data-pseo-fallback="hair-services.html#eyebrow-transplant">Eyebrow Transplant</a></li>
+                        <li><a href="gfc-treatment/" data-pseo="gfc-treatment" data-pseo-fallback="prp-therapy.html#gfc-therapy">GFC Therapy</a></li>
                         <li><a href="white-hair-removal.html">White Hair Removal</a></li>
+                        <li><a href="electrolysis.html">Electrolysis</a></li>
+                        <li><a href="hair-wig.html">Hair Wig &amp; Replacement</a></li>
+                        <li><a href="hair-loss-consultation.html">Hair Loss Consultation</a></li>
                     </ul>
-                    <div class="footer-social-icons">
-                        <a  href="https://www.instagram.com/kezza_clinic?igsh=b2tkcWNkZnRoYnRh&utm_source=qr" target="_blank" title="Instagram" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-                        <a  href="https://www.facebook.com/kezzaclinic" target="_blank" title="Facebook" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
-                        <a  href="https://wa.me/919284517427" target="_blank" title="WhatsApp" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
-                        <a  href="https://www.youtube.com/@Kezza_Clinic_Jaipur" target="_blank" title="YouTube" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
-                    </div>
                 </div>
                 <div class="footer-column">
-                    <p class="footer-nav-title">Contact</p>
-                    <p>Phone: +91-9284517427</p>
-                    <p>Email: support@kezza.co.in</p>
-                    <p>WhatsApp: +91-9284517427</p>
+                    <p class="footer-nav-title"><a href="skin-services.html">Skin Services</a></p>
+                    <ul>
+                        <li><a href="skin-services.html#hydra-facial" data-pseo="hydra-facial" data-pseo-fallback="skin-services.html#hydra-facial">Hydra Facial</a></li>
+                        <li><a href="skin-services.html#acne" data-pseo="acne-treatment" data-pseo-fallback="skin-services.html#acne">Acne &amp; Acne Scars</a></li>
+                        <li><a href="skin-services.html#pigmentation" data-pseo="pigmentation-treatment" data-pseo-fallback="skin-services.html#pigmentation">Pigmentation &amp; Melasma</a></li>
+                        <li><a href="skin-services.html#botox" data-pseo="botox" data-pseo-fallback="skin-services.html#botox">Botox &amp; Fillers</a></li>
+                        <li><a href="skin-services.html#dark-circles" data-pseo="dark-circles-treatment" data-pseo-fallback="skin-services.html#dark-circles">Dark Circle Treatment</a></li>
+                        <li><a href="skin-services.html#stretch-marks" data-pseo="stretch-marks" data-pseo-fallback="skin-services.html#stretch-marks">Stretch Marks</a></li>
+                        <li><a href="skin-services.html#medical-derma" data-pseo="medical-dermatology" data-pseo-fallback="skin-services.html#medical-derma">Medical Dermatology</a></li>
+                        <li><a href="laser-hair-removal/" data-pseo="laser-hair-removal" data-pseo-fallback="skin-services.html#laser">Laser Hair Removal</a></li>
+                        <li><a href="skin-services.html#consultation" data-pseo="skin-consultation" data-pseo-fallback="skin-services.html#consultation">Skin Consultation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column kz-footer-contact">
+                    <p class="footer-nav-title">Contact &amp; Clinics</p>
+                    <ul>
+                        <li><i class="fas fa-phone-alt" aria-hidden="true"></i><span><a href="tel:+919284517427">+91-9284517427</a> <small>Jaipur &amp; Sikar</small></span></li>
+                        <li><i class="fas fa-phone-alt" aria-hidden="true"></i><span><a href="tel:+919216088257">+91-9216088257</a> <small>Ajmer</small></span></li>
+                        <li><i class="fab fa-whatsapp" aria-hidden="true"></i><span><a href="https://wa.me/919284517427" target="_blank" rel="noopener noreferrer">WhatsApp +91-9284517427</a></span></li>
+                        <li><i class="fas fa-envelope" aria-hidden="true"></i><span><a href="mailto:support@kezza.co.in">support@kezza.co.in</a></span></li>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span><a href="locations/jaipur/"><strong>Jaipur</strong></a>: A-7, 1st Floor, Hanuman Nagar, Sirsi Road, Khatipura</span></li>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span><a href="locations/sikar/"><strong>Sikar</strong></a>: 1st Floor, Shakambhari Heights, Opp. S.K. Hospital, Silver Jubilee Road</span></li>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span><a href="locations/ajmer/"><strong>Ajmer</strong></a>: 1st Floor, Oasis Complex &amp; Hotels, Shastri Nagar, Jawahar Nagar</span></li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; <span class="footer-year">2026</span> Kezza Clinics. All Rights Reserved.</p>
+            <div class="footer-bottom kz-footer-bottom">
+                <p>&copy; <span class="footer-year">2026</span> Kezza Hair &amp; Skin Clinic. All rights reserved.</p>
+                <p class="kz-footer-note">The information on this website is general and does not replace a consultation with a doctor. Results differ from person to person.</p>
             </div>
         </div>
         <script>document.querySelectorAll('.footer-year').forEach(el=>el.textContent=new Date().getFullYear());</script>
@@ -1117,7 +1130,7 @@
     </div>
 
     <script src="js/mobile-menu.js?v=9fcabe1c" defer></script>
-    <script src="js/services-navigation.js?v=18ea4020" defer></script>
+    <script src="js/services-navigation.js?v=469562fc" defer></script>
     <script src="js/whatsapp-form.js?v=f3ddbe88" defer></script>
     <script src="js/kezza-ai.js?v=a3cc0339" defer></script>
     <script src="js/quick-actions.js?v=8c0309cc" defer></script>

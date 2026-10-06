@@ -253,6 +253,59 @@
                 }
             });
 
+            // ── 3. Mobile Mega-Menu Category Accordion (<= 1024px) ────────
+            const megaColHeaders = dropdownItem.querySelectorAll('.mega-col-header');
+            megaColHeaders.forEach((header, index) => {
+                const nextList = header.nextElementSibling;
+                if (!nextList || !nextList.classList.contains('mega-link-list')) return;
+
+                // Add chevron icon if not present
+                if (!header.querySelector('.mega-col-arrow')) {
+                    const arrow = document.createElement('i');
+                    arrow.className = 'fas fa-chevron-down mega-col-arrow';
+                    arrow.setAttribute('aria-hidden', 'true');
+                    header.appendChild(arrow);
+                }
+
+                header.setAttribute('role', 'button');
+                header.setAttribute('tabindex', '0');
+
+                // Expand first category by default on mobile, others collapsed
+                if (index === 0) {
+                    header.classList.add('is-expanded');
+                    header.setAttribute('aria-expanded', 'true');
+                    nextList.classList.add('is-expanded');
+                } else {
+                    header.setAttribute('aria-expanded', 'false');
+                }
+
+                function toggleMegaCategory(e) {
+                    if (window.innerWidth <= 1024) {
+                        if (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                        }
+                        const isExp = header.classList.contains('is-expanded');
+                        if (isExp) {
+                            header.classList.remove('is-expanded');
+                            header.setAttribute('aria-expanded', 'false');
+                            nextList.classList.remove('is-expanded');
+                        } else {
+                            header.classList.add('is-expanded');
+                            header.setAttribute('aria-expanded', 'true');
+                            nextList.classList.add('is-expanded');
+                        }
+                    }
+                }
+
+                header.addEventListener('click', toggleMegaCategory);
+                header.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        toggleMegaCategory(e);
+                    }
+                });
+            });
+
             if (toggleBtn) {
                 toggleBtn.setAttribute('role', 'button');
                 toggleBtn.setAttribute('aria-haspopup', 'true');

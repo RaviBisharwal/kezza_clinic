@@ -7,9 +7,10 @@ service-page layout uses (hero 3:2, explainer 4:3, card thumbnail 4:3) and write
 JPEG + WebP pair for each one into frontend/images/treatments/. The originals are
 not changed. Needs Pillow:
 
-    python3 tools/content/make_treatment_images.py
+    python3 tools/content/make_treatment_images.py                      # all images
+    python3 tools/content/make_treatment_images.py skin-consultation    # one folder
 
-To change a crop, edit its line in JOBS: `focus` is where the crop window sits
+To change a crop, edit its line in JOBS (an optional fifth value zooms in first): `focus` is where the crop window sits
 inside the spare space (0 = top/left edge, 0.5 = centre, 1 = bottom/right edge).
 """
 import os
@@ -96,6 +97,26 @@ JOBS = [
     # PMU correction
     ("beauty-spot-correction.jpg", "pmu-correction/pmu-correction-hero", HERO, (0.5, 0.35)),
     ("beauty-spot-correction.jpg", "pmu-correction/pmu-correction-thumb", THUMB, (0.5, 0.35)),
+    # Botox & dermal fillers: filler injection in the cheek (illustrative)
+    ("mesotherepy-2.jpg", "botox/dermal-fillers-cheek", EXPLAINER, (0.5, 0.5)),
+    # Pigmentation & melasma
+    ("chemical-peel-pigmentation.jpg", "pigmentation-treatment/pigmentation-treatment-hero", HERO, (0.5, 0.3)),
+    ("facial-laser-2.jpg", "pigmentation-treatment/pigmentation-laser-toning", EXPLAINER, (0.5, 0.45)),
+    # Stretch marks
+    ("stretch-mark.jpg", "stretch-marks-treatment/stretch-marks-treatment-hero", HERO, (0.5, 0.45)),
+    ("stretch-mark.jpg", "stretch-marks-treatment/stretch-marks-treatment-thumb", THUMB, (0.5, 0.45)),
+    # Medical dermatology (mole, wart and skin tag removal)
+    ("electrolysis-hero-procedure.jpg", "medical-dermatology/medical-dermatology-hero", HERO, (0.5, 0.4)),
+    ("electrolysis-hero-procedure.jpg", "medical-dermatology/medical-dermatology-thumb", THUMB, (0.5, 0.4)),
+    # Skin consultation (hero: real Kezza reception, 900 px wide source, so the hero stays 900 x 600; exam photo is illustrative)
+    ("keeza-reception.jpg", "skin-consultation/skin-consultation-hero", (900, 600), (0.5, 0.55)),
+    ("hero4.jpg", "skin-consultation/skin-consultation-exam", EXPLAINER, (0.6, 0.5)),
+    ("hero4.jpg", "skin-consultation/skin-consultation-thumb", THUMB, (0.6, 0.5)),
+    # Explainer photos added 6 Oct 2026 (illustrative photos)
+    ("hydra-facial.jpg", "acne-treatment/acne-treatment-facial", EXPLAINER, (0.5, 0.35)),
+    ("anti-aging.jpg", "dark-circles-treatment/dark-circles-under-eye", EXPLAINER, (0.5, 0.4)),
+    ("stretch-mark.jpg", "stretch-marks-treatment/stretch-marks-closeup", EXPLAINER, (0.5, 0.5), (0.18, 0.42, 0.93, 0.985)),
+    ("hero3.webp", "medical-dermatology/medical-dermatology-treatment-room", EXPLAINER, (0.62, 0.5)),
     # Card thumbnails for sections of the hub pages
     ("anti-aging.jpg", "shared/anti-ageing-thumb", THUMB, (0.5, 0.45)),
     ("jawline-slimming.jpg", "shared/body-sculpting-thumb", THUMB, (0.5, 0.5)),
@@ -117,8 +138,16 @@ def crop_to(im, size, focus):
 
 
 def main():
-    for src, out, size, focus in JOBS:
+    only = sys.argv[1:]   # optional: folder or file prefixes to build, e.g. skin-consultation
+    for job in JOBS:
+        src, out, size, focus = job[:4]
+        if only and not any(out.startswith(o) for o in only):
+            continue
         im = Image.open(os.path.join(IMG, src)).convert("RGB")
+        if len(job) > 4:              # optional zoom: (left, top, right, bottom) as fractions of the photo
+            l, t, r, b = job[4]
+            w, h = im.size
+            im = im.crop((round(l * w), round(t * h), round(r * w), round(b * h)))
         res = crop_to(im, size, focus)
         base = os.path.join(IMG, "treatments", out)
         os.makedirs(os.path.dirname(base), exist_ok=True)

@@ -1,3 +1,84 @@
+# Update — 6 October 2026 (v3): your new services mega menu merged in
+
+- Your new **Services mega menu** (4 columns: Hair, Skin, Weight Loss, Permanent Makeup; accordion on mobile) is now on every page, together with the v2 work: one footer everywhere, the same phone numbers, the new skin-page photos and the updated Dark Circles page.
+  - Taken from your upload: `frontend/css/services-navigation.css`, `frontend/css/responsive.css`, `frontend/js/services-navigation.js`, `tools/update_mega_menu.py`, and the menu block of each page.
+  - All 2,048 menu links were checked: none are broken. Links to pages still in review point to the matching section of the service page until the page is published.
+- **Fixed:** your upload was built from part 1 only, so the photos in part 2 were missing. The build then treated the 7 doctor-approved pages (FUE, DHI, beard, eyebrow, GFC, laser hair removal, Hindi hair transplant) as broken, set them to noindex and removed them from the sitemap (40 URLs instead of 47). They are indexable again. **Always extract both parts into the same folder before running `npm run build`.**
+- `.env` and `node_modules` from your upload are not in this zip. Keep your own `.env` (it holds your keys) and never upload it to the website.
+
+# Update — 6 October 2026: one footer on every page, skin pages polished
+
+- **Same footer everywhere.** All 64 pages with a footer now share one footer: About Kezza (with opening hours and social links), Quick Links, Hair Services, Skin Services (the same 9 items, in the same order, as the Skin Services menu) and Contact & Clinics. Before, the static pages had about a dozen different footers (different columns, phone formats, an Ajmer address that did not match on the hair-loss consultation page, and only a copyright line on the weight-loss page).
+  - The footer is written by `tools/content/sync_footer.py`, which runs first in `npm run build`. The clinic name, phone numbers, email and addresses come from `tools/seo/site-data.json`, so change them there.
+  - Its styles are in `frontend/css/site-footer.css`, added to every CSS bundle. Rules are deliberately `!important` so older page-specific footer styles cannot change it.
+  - Skin and GFC links in the footer use `data-pseo`: they point to the service-page sections until a treatment page is published, then to the page.
+  - The footer no longer shows "15,000+ Happy Patients" or "4.9★ Rated". Add them back only with a source the clinic can show (for example the Google Business Profile rating).
+  - A one-line note in the footer says the information is general and does not replace a consultation with a doctor.
+- **Same name and numbers.** Phone numbers are written one way across the site: +91-9284517427 (Jaipur & Sikar), +91-9216088257 (Ajmer), +91-7073565197. The copyright line uses the full name, Kezza Hair & Skin Clinic. Two broken characters on the terms page were fixed.
+- **Skin pages (still in review):**
+  - Explainer photos added to acne, dark circles, stretch marks and medical dermatology (illustrative images, noted in each page's review notes).
+  - Dark circles now has the same layout as the other skin pages: short answer at the top, mid-page booking box, clinic cards with address, hours and directions, "Why patients choose Kezza" and three more FAQs (9 in total).
+  - The closing booking box on acne, acne scars, hydra facial and dark circles now names all three clinics.
+- Nothing was published: the 9 skin pages stay `review` (noindex, not in the sitemap) until a doctor approves each one.
+
+# Update — 6 October 2026: smaller website (photos and videos optimised)
+
+- **120 unused media files removed** (21 MB): duplicate copies with spaces in their names, unused @2x JPEGs, `Founder.png`, and
+  three videos no page uses (video1, video10, video11). Nothing on the site referred to them; a full copy is kept in
+  `kezza-removed-unused-media-2026-10-06.zip`, and the list is in `docs/pseo/REMOVED-UNUSED-MEDIA.txt`.
+- **71 photos recompressed** (JPEG quality 80, WebP 78, PNG optimised, colour profiles kept): 31.1 MB → 24.5 MB, with no visible
+  change at full size. Files were only replaced when they got at least 10% smaller, and pixel sizes did not change.
+- **Two testimonial videos re-encoded** (video3, video4) for phone-sized players; the others were already efficient.
+- No HTML, CSS or JavaScript behaviour changed. CSS was already bundled and minified; code is about 5% of the project size.
+- Checked: full build and tests pass, and every image, video, stylesheet and script referenced by any page exists.
+
+---
+
+# Update — 6 October 2026: skin services cluster (in review)
+
+Full report: `docs/pseo/SKIN-CLUSTER-REPORT.md`. `npm test`: 66 pages, 0 errors, 0 critical audit issues.
+
+- **Built on the project uploaded on 3 October** (with the other tool's blog and locations changes), plus the semaglutide guide.
+- **Skin pages, all in review** (`noindex` until a doctor approves): new `/pigmentation-treatment/`, `/stretch-marks-treatment/`,
+  `/medical-dermatology/` (mole, wart and skin tag removal) and `/skin-consultation/`; `/botox/` rewritten as Botox & dermal
+  fillers; `/hydra-facial/`, `/acne-treatment/`, `/acne-scar-treatment/` and `/dark-circles-treatment/` updated. All list Jaipur,
+  Sikar and Ajmer, with a short direct answer, a mid-page booking box and clinic cards (address, hours, phone, directions).
+- **Hydra facial wording**: the clinic uses a general hydra facial machine, so "HydraFacial MD" was replaced across the skin page,
+  home page, clinic pages, blog and data files (the brand is mentioned once, in an FAQ).
+- **Skin menu** updated on all 60 pages; links switch to each new page automatically when it is published.
+- **Blog**: reviewer names and "Doctor reviewed" labels now show only for articles with a real review date; the hydra facial
+  article was rewritten for a general machine.
+- **Please decide**: unverified ratings, review counts, "dermatologists", "US-FDA approved" and OT claims on the locations page,
+  and the doctor quote, testimonials and claim wording on the skin page (report section 10).
+
+---
+
+# Update — 2 October 2026: semaglutide weight-loss guide (in review)
+
+- **New article, in review:** `/blog/semaglutide-for-weight-loss/` (source `tools/content/blog/07-semaglutide-for-weight-loss.html`).
+  It is built for preview but `noindex`, and it is left out of the blog page, the sitemap, `llms.txt` and related links until a
+  doctor approves it. It answers the question first, then covers results (trial table), benefits beyond weight, who it suits and
+  who should not use it, dose steps (table), side effects and urgent warning signs, stopping, India's launches, generics and
+  prescribing rules, tablets and tirzepatide, with 9 FAQs and 15 sources. No prices, offers or patient results.
+- **Brand names:** semaglutide is the main name. The brands Ozempic and Wegovy are mentioned once, for identification only
+  (one line in "The short answer" and one FAQ), as the clinic chose. No other brand or company names are used.
+- **India's prescribing rule (March 2026):** these medicines are approved on condition of a specialist prescription, mainly by
+  endocrinologists or internal medicine specialists. The article and the weight-management FAQ say Kezza's weight-loss medicines
+  are prescribed only by its internal medicine specialist at the Jaipur clinic. The clinic must confirm this before publishing.
+- **Blog articles now have a status** like treatment pages (`draft`, `review`, `approved`, `published`, `noindex`). Existing
+  articles have no status field and stay published. To publish this one, set `"status": "published"`, `"reviewer"` and
+  `"reviewed"` in its file, run `npm run build && npm test`, upload, then request indexing in Google Search Console.
+- **Weight management page (still in review):** the FAQ "Do you prescribe weight-loss medicines?" now says yes, after a
+  consultation, by the internal medicine specialist in Jaipur, without naming a medicine.
+- **Before publishing, a legal check:** obesity is listed in the Schedule of the Drugs and Magic Remedies (Objectionable
+  Advertisements) Act, 1954, and in March 2026 the CDSCO and DGHS told GLP-1 makers to stop surrogate advertising, including
+  "awareness" and digital campaigns. Do not use this article in paid ads or promotional posts. All points to confirm are in
+  `docs/pseo/quality-gates.md`.
+- **Build:** rebuilding on a new day no longer rewrites pages whose only change would be the build date, so `dateModified` and
+  the sitemap's `lastmod` change only when a page's content changes.
+
+---
+
 # Update — 30 September 2026 (pSEO): treatment registry, quality gates and 12 pages in review
 
 Full report: `docs/pseo/PSEO-REPORT.md` (23 sections). `npm test`: 48 pages, 0 errors, 0 critical audit issues.

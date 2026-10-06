@@ -28,7 +28,7 @@
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap&display=swap"></noscript>
     <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
-    <link rel="stylesheet" href="css/bundle-skin-services.min.css?v=c57e40fb"><!-- built by tools/build-css.js from: skin-services-styles.css, quick-actions.css, services-navigation.css, responsive.css, scroll-3d.css, kezza-ai.css, mobile-pro.css -->
+    <link rel="stylesheet" href="css/bundle-skin-services.min.css?v=22d12be8"><!-- built by tools/build-css.js from: skin-services-styles.css, quick-actions.css, services-navigation.css, responsive.css, scroll-3d.css, kezza-ai.css, mobile-pro.css, site-footer.css -->
     <link rel="icon" type="image/png" href="images/logo.png">
 
     <!-- ═══ SEO: canonical URL ═══ -->
@@ -158,7 +158,7 @@
         },
         {
           "@type": "MedicalTherapy",
-          "name": "Medical facial (HydraFacial)",
+          "name": "Medical facial (hydra facial)",
           "url": "https://www.kezza.co.in/skin-services.html#hydra-facial"
         }
       ]
@@ -201,7 +201,7 @@
           "name": "How soon can I see results after a skin treatment?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Treatments like HydraFacial MD deliver instant pore clearance and radiant glow right after the 60-minute session. Laser toning and acne scar remodeling typically show progressive improvement over 2 to 4 weeks as new dermal collagen regenerates."
+            "text": "Treatments like a hydra facial deliver instant pore clearance and radiant glow right after the 60-minute session. Laser toning and acne scar remodeling typically show progressive improvement over 2 to 4 weeks as new dermal collagen regenerates."
           }
         },
         {
@@ -225,7 +225,7 @@
           "name": "Can I resume makeup and gym workouts immediately?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "For HydraFacial MD and mild facials, mineral makeup can be worn within 4 to 6 hours. For fractional laser or subcision, we advise waiting 24 to 48 hours and avoiding heavy sweating to protect the healing micro-channels."
+            "text": "For hydra facials and mild facials, mineral makeup can be worn within 4 to 6 hours. For fractional laser or subcision, we advise waiting 24 to 48 hours and avoiding heavy sweating to protect the healing micro-channels."
           }
         }
       ]
@@ -254,88 +254,80 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 
-                <!-- SERVICES DROPDOWN -->
+                <!-- SERVICES MEGA MENU -->
                 <li class="nav-item-services-dropdown">
-                    <a href="javascript:void(0)" class="services-nav-toggle active" id="servicesNavToggle" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="servicesDropdownMenu">
+                    <a href="javascript:void(0)" class="services-nav-toggle" id="servicesNavToggle" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="servicesDropdownMenu">
                         <span>SERVICES</span> <i class="fas fa-chevron-down nav-arrow"></i>
                     </a>
-                    <div class="services-dropdown-menu" id="servicesDropdownMenu" role="region" aria-label="Services Menu">
-                        <ul class="services-dropdown-list">
-                            <!-- Category 1: Hair Services -->
-                            <li class="services-cat-item" data-accordion="hair">
-                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subHair">
-                                    <span class="services-cat-title">Hair Services</span>
-                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
-                                </button>
-                                <div class="services-sub-menu" id="subHair">
-                                    <ul class="services-sub-list">
-                                        <li><a href="hair-transplant/" class="services-sub-link">Hair Transplant (HT)</a></li>
-                                        <li><a href="hair-transplant/fue/" data-pseo="fue-hair-transplant" data-pseo-fallback="hair-services.html#hair-transplant" class="services-sub-link">FUE Hair Transplant</a></li>
-                                        <li><a href="hair-transplant/dhi/" data-pseo="dhi-hair-transplant" data-pseo-fallback="hair-services.html#dhi-transplant" class="services-sub-link">DHI Hair Transplant</a></li>
-                                        <li><a href="hair-transplant/beard/" data-pseo="beard-transplant" data-pseo-fallback="hair-services.html#beard-transplant" class="services-sub-link">Beard Transplant</a></li>
-                                        <li><a href="hair-transplant/eyebrow/" data-pseo="eyebrow-transplant" data-pseo-fallback="hair-services.html#eyebrow-transplant" class="services-sub-link">Eyebrow Transplant</a></li>
-                                        <li><a href="prp-therapy.html" class="services-sub-link">PRP Therapy</a></li>
-                                        <li><a href="gfc-treatment/" data-pseo="gfc-treatment" data-pseo-fallback="prp-therapy.html#gfc-therapy" class="services-sub-link">GFC Therapy</a></li>
-                                        <li><a href="white-hair-removal.html" class="services-sub-link">White Hair Removal</a></li>
-                                        <li><a href="electrolysis.html" class="services-sub-link">Electrolysis</a></li>
-                                        <li><a href="hair-wig.html" class="services-sub-link">Hair Wig / Hair Replacement</a></li>
-                                        <li><a href="hair-loss-consultation.html" class="services-sub-link">Hair Loss Consultation</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                    <div class="services-dropdown-menu mega-menu-panel" id="servicesDropdownMenu" role="region" aria-label="Services Menu">
+                        <div class="mega-menu-grid">
 
-                            <!-- Category 2: Skin Services -->
-                            <li class="services-cat-item is-expanded" data-accordion="skin">
-                                <button type="button" class="services-cat-header" aria-expanded="true" aria-controls="subSkin">
-                                    <span class="services-cat-title">Skin Services</span>
-                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
-                                </button>
-                                <div class="services-sub-menu" id="subSkin">
-                                    <ul class="services-sub-list">
-                                        <li><a href="skin-services.html#hydra-facial" data-pseo="hydra-facial" data-pseo-fallback="skin-services.html#hydra-facial" class="services-sub-link">HydraFacial MD</a></li>
-                                        <li><a href="skin-services.html#acne" data-pseo="acne-treatment" data-pseo-fallback="skin-services.html#acne" class="services-sub-link">Acne &amp; Scar Revision</a></li>
-                                        <li><a href="laser-hair-removal/" data-pseo="laser-hair-removal" data-pseo-fallback="skin-services.html#laser" class="services-sub-link">Laser Hair Removal</a></li>
-                                        <li><a href="skin-services.html#pigmentation" class="services-sub-link">Pigmentation &amp; Melasma</a></li>
-                                        <li><a href="skin-services.html#anti-aging" class="services-sub-link">Botox &amp; Fillers</a></li>
-                                        <li><a href="skin-services.html#stretch-marks" class="services-sub-link">Stretch Mark Removal</a></li>
-                                        <li><a href="skin-services.html#medical-derma" class="services-sub-link">Medical Dermatology</a></li>
-                                        <li><a href="skin-services.html#consultation" class="services-sub-link">Skin Consultation</a></li>
-                                    </ul>
+                            <!-- Column 1: Hair Services -->
+                            <div class="mega-col">
+                                <div class="mega-col-header">
+                                    <i class="fas fa-user-md mega-col-icon"></i>
+                                    <a href="hair-services.html" class="mega-col-title">Hair Services</a>
                                 </div>
-                            </li>
+                                <ul class="mega-link-list">
+                                    <li><a href="hair-transplant/" class="mega-link">Hair Transplant (HT)</a></li>
+                                    <li><a href="hair-transplant/fue/" data-pseo="fue-hair-transplant" data-pseo-fallback="hair-services.html#hair-transplant" class="mega-link">FUE Hair Transplant</a></li>
+                                    <li><a href="hair-transplant/dhi/" data-pseo="dhi-hair-transplant" data-pseo-fallback="hair-services.html#dhi-transplant" class="mega-link">DHI Hair Transplant</a></li>
+                                    <li><a href="hair-transplant/beard/" data-pseo="beard-transplant" data-pseo-fallback="hair-services.html#beard-transplant" class="mega-link">Beard Transplant</a></li>
+                                    <li><a href="hair-transplant/eyebrow/" data-pseo="eyebrow-transplant" data-pseo-fallback="hair-services.html#eyebrow-transplant" class="mega-link">Eyebrow Transplant</a></li>
+                                    <li><a href="prp-therapy.html" class="mega-link">PRP Therapy</a></li>
+                                    <li><a href="gfc-treatment/" data-pseo="gfc-treatment" data-pseo-fallback="prp-therapy.html#gfc-therapy" class="mega-link">GFC Therapy</a></li>
+                                    <li><a href="white-hair-removal.html" class="mega-link">White Hair Removal</a></li>
+                                    <li><a href="electrolysis.html" class="mega-link">Electrolysis</a></li>
+                                    <li><a href="hair-wig.html" class="mega-link">Hair Wig / Hair Replacement</a></li>
+                                    <li><a href="hair-loss-consultation.html" class="mega-link">Hair Loss Consultation</a></li>
+                                </ul>
+                            </div>
 
-                            <!-- Category 3: Weight Loss -->
-                            <li class="services-cat-item" data-accordion="weight">
-                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subWeight">
-                                    <span class="services-cat-title">Weight Loss</span>
-                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
-                                </button>
-                                <div class="services-sub-menu" id="subWeight">
-                                    <ul class="services-sub-list">
-                                        <li><a href="weight-loss.html#treatments" class="services-sub-link">Non-Surgical Weight Loss</a></li>
-                                        <li><a href="weight-loss.html#treatments" data-pseo="cryolipolysis" data-pseo-fallback="weight-loss.html#treatments" class="services-sub-link">Body Sculpting (Cryolipolysis)</a></li>
-                                        <li><a href="weight-loss.html#treatments" class="services-sub-link">Clinical Fat Reduction</a></li>
-                                        <li><a href="weight-loss.html#consultation" data-pseo="weight-management" data-pseo-fallback="weight-loss.html#consultation" class="services-sub-link">Weight Management Consultation</a></li>
-                                    </ul>
+                            <!-- Column 2: Skin Services -->
+                            <div class="mega-col">
+                                <div class="mega-col-header">
+                                    <i class="fas fa-spa mega-col-icon"></i>
+                                    <a href="skin-services.html" class="mega-col-title">Skin Services</a>
                                 </div>
-                            </li>
+                                <ul class="mega-link-list">
+                                    <li><a href="skin-services.html#hydra-facial" data-pseo="hydra-facial" data-pseo-fallback="skin-services.html#hydra-facial" class="mega-link">Hydra Facial</a></li>
+                                    <li><a href="skin-services.html#acne" data-pseo="acne-treatment" data-pseo-fallback="skin-services.html#acne" class="mega-link">Acne &amp; Acne Scars</a></li>
+                                    <li><a href="skin-services.html#pigmentation" data-pseo="pigmentation-treatment" data-pseo-fallback="skin-services.html#pigmentation" class="mega-link">Pigmentation &amp; Melasma</a></li>
+                                    <li><a href="skin-services.html#botox" data-pseo="botox" data-pseo-fallback="skin-services.html#botox" class="mega-link">Botox &amp; Fillers</a></li>
+                                    <li><a href="skin-services.html#dark-circles" data-pseo="dark-circles-treatment" data-pseo-fallback="skin-services.html#dark-circles" class="mega-link">Dark Circle Treatment</a></li>
+                                    <li><a href="skin-services.html#stretch-marks" data-pseo="stretch-marks" data-pseo-fallback="skin-services.html#stretch-marks" class="mega-link">Stretch Marks</a></li>
+                                    <li><a href="skin-services.html#medical-derma" data-pseo="medical-dermatology" data-pseo-fallback="skin-services.html#medical-derma" class="mega-link">Medical Dermatology</a></li>
+                                    <li><a href="laser-hair-removal/" data-pseo="laser-hair-removal" data-pseo-fallback="skin-services.html#laser" class="mega-link">Laser Hair Removal</a></li>
+                                    <li><a href="skin-services.html#consultation" data-pseo="skin-consultation" data-pseo-fallback="skin-services.html#consultation" class="mega-link">Skin Consultation</a></li>
+                                </ul>
+                            </div>
 
-                            <!-- Category 4: Permanent Makeup (PMU) -->
-                            <li class="services-cat-item" data-accordion="pmu">
-                                <button type="button" class="services-cat-header" aria-expanded="false" aria-controls="subPmu">
-                                    <span class="services-cat-title">Permanent Makeup (PMU)</span>
-                                    <i class="fas fa-chevron-down services-cat-arrow"></i>
-                                </button>
-                                <div class="services-sub-menu" id="subPmu">
-                                    <ul class="services-sub-list">
-                                        <li><a href="permanent-makeup.html#microblading" data-pseo="microblading" data-pseo-fallback="permanent-makeup.html#microblading" class="services-sub-link">Eyebrow PMU</a></li>
-                                        <li><a href="permanent-makeup.html#lip-blush" data-pseo="lip-blush" data-pseo-fallback="permanent-makeup.html#lip-blush" class="services-sub-link">Lip PMU</a></li>
-                                        <li><a href="permanent-makeup.html#eyeliner" data-pseo="permanent-eyeliner" data-pseo-fallback="permanent-makeup.html#eyeliner" class="services-sub-link">Permanent Eyeliner</a></li>
-                                        <li><a href="permanent-makeup.html#consultation" class="services-sub-link">PMU Consultation</a></li>
-                                    </ul>
+                            <!-- Column 3: Weight Loss + PMU -->
+                            <div class="mega-col">
+                                <div class="mega-col-header">
+                                    <i class="fas fa-weight-scale mega-col-icon"></i>
+                                    <a href="weight-loss.html" class="mega-col-title">Weight Loss</a>
                                 </div>
-                            </li>
-                        </ul>
+                                <ul class="mega-link-list">
+                                    <li><a href="weight-loss.html#treatments" class="mega-link">Non-Surgical Weight Loss</a></li>
+                                    <li><a href="weight-loss.html#treatments" data-pseo="cryolipolysis" data-pseo-fallback="weight-loss.html#treatments" class="mega-link">Body Sculpting (Cryolipolysis)</a></li>
+                                    <li><a href="weight-loss.html#treatments" data-pseo="hifu-body-sculpting" data-pseo-fallback="weight-loss.html#treatments" class="mega-link">HIFU Body Sculpting</a></li>
+                                    <li><a href="weight-loss.html#consultation" data-pseo="weight-management" data-pseo-fallback="weight-loss.html#consultation" class="mega-link">Weight Management Consultation</a></li>
+                                </ul>
+
+                                <div class="mega-col-header" style="margin-top:18px;">
+                                    <i class="fas fa-paint-brush mega-col-icon"></i>
+                                    <a href="permanent-makeup.html" class="mega-col-title">Permanent Makeup</a>
+                                </div>
+                                <ul class="mega-link-list">
+                                    <li><a href="permanent-makeup.html#microblading" data-pseo="microblading" data-pseo-fallback="permanent-makeup.html#microblading" class="mega-link">Eyebrow PMU / Microblading</a></li>
+                                    <li><a href="permanent-makeup.html#lip-blush" data-pseo="lip-blush" data-pseo-fallback="permanent-makeup.html#lip-blush" class="mega-link">Lip Blush PMU</a></li>
+                                    <li><a href="permanent-makeup.html#eyeliner" data-pseo="permanent-eyeliner" data-pseo-fallback="permanent-makeup.html#eyeliner" class="mega-link">Permanent Eyeliner</a></li>
+                                    <li><a href="permanent-makeup.html#consultation" class="mega-link">PMU Consultation</a></li>
+                                </ul>
+                            </div>
+
+                        </div><!-- /.mega-menu-grid -->
                     </div>
                 </li>
 
@@ -392,7 +384,7 @@
     <nav class="skin-subnav-section" aria-label="Skin Services Quick Navigation">
         <div class="container">
             <div class="skin-subnav-pills">
-                <a href="#hydra-facial" class="subnav-pill active"><i class="fas fa-spa"></i> <span>HydraFacial MD</span></a>
+                <a href="#hydra-facial" class="subnav-pill active"><i class="fas fa-spa"></i> <span>Hydra Facial</span></a>
                 <a href="#acne" class="subnav-pill"><i class="fas fa-shield-virus"></i> <span>Acne &amp; Scars</span></a>
                 <a href="#laser" class="subnav-pill"><i class="fas fa-bolt"></i> <span>Laser Hair Removal</span></a>
                 <a href="#pigmentation" class="subnav-pill"><i class="fas fa-sun"></i> <span>Pigmentation &amp; Glow</span></a>
@@ -406,30 +398,30 @@
         </div>
     </nav>
 
-    <!-- Section 2: HydraFacial MD -->
+    <!-- Section 2: Hydra Facial -->
     <section class="service-section-wrap" id="hydra-facial">
         <div class="container">
             <div class="service-showcase-split">
                 <div class="service-media-frame">
-                    <img src="images/hydra-facial-2.jpg" alt="HydraFacial MD Treatment at Kezza Clinic" width="600" height="420" loading="lazy" decoding="async">
-                    <span class="media-badge-top"><i class="fas fa-wand-magic-sparkles"></i> Patented Vortex Technology</span>
+                    <img src="images/hydra-facial-2.jpg" alt="Hydra facial treatment at Kezza Clinic" width="600" height="420" loading="lazy" decoding="async">
+                    <span class="media-badge-top"><i class="fas fa-wand-magic-sparkles"></i> Multi-Step Medical Facial</span>
                     <div class="media-badge-bottom">
                         <i class="fas fa-check-circle"></i>
-                        <span>Deep Cleansing &middot; Dermal Hydration &middot; Zero Downtime</span>
+                        <span>Deep Cleansing &middot; Hydration &middot; Little or No Downtime</span>
                     </div>
                 </div>
                 <div class="service-content-col">
                     <span class="service-cat-pill"><i class="fas fa-spa"></i> Signature Radiance Protocol</span>
-                    <h2 class="service-heading">HydraFacial MD &mdash; Deep Pore Cleansing, Hydration &amp; Instant Glow</h2>
+                    <h2 class="service-heading">Hydra Facial &mdash; Deep Pore Cleansing, Hydration &amp; Instant Glow</h2>
                     <div class="gold-accent-line"></div>
                     <p class="service-desc">
-                        HydraFacial MD is the world’s gold standard in multi-step medical facial therapy. Utilizing patented Vortex-Fusion technology, it deeply unclogs congested pores, extracts blackheads and sebum gently, and simultaneously bathes your skin with concentrated hyaluronic acid, peptides, and antioxidant boosters. <a href="/blog/hydrafacial-benefits-process/" style="color:#008F9C;font-weight:600;text-decoration:underline;">Read our HydraFacial steps and benefits guide</a>.<!--pseo:link id="hydra-facial" text="Read the full Hydra Facial guide"--><!--/pseo:link-->
+                        A hydra facial is a multi-step medical facial. Using gentle suction and a spiral-tip handpiece, it unclogs congested pores, lifts out blackheads and excess oil, and then applies serums with ingredients such as hyaluronic acid, peptides and antioxidants. <a href="/blog/hydrafacial-benefits-process/" style="color:#008F9C;font-weight:600;text-decoration:underline;">Read our hydra facial steps and benefits guide</a>.<!--pseo:link id="hydra-facial" text="Read the full Hydra Facial guide"--><!--/pseo:link-->
                     </p>
 
                     <div class="clinical-stat-grid">
                         <div class="stat-box">
-                            <div class="stat-num">0 Min</div>
-                            <div class="stat-label">Downtime</div>
+                            <div class="stat-num">Same Day</div>
+                            <div class="stat-label">Back to Routine</div>
                         </div>
                         <div class="stat-box">
                             <div class="stat-num">60 Min</div>
@@ -437,7 +429,7 @@
                         </div>
                         <div class="stat-box">
                             <div class="stat-num">3-in-1</div>
-                            <div class="stat-label">Vortex System</div>
+                            <div class="stat-label">Cleanse, Extract, Hydrate</div>
                         </div>
                         <div class="stat-box">
                             <div class="stat-num">High</div>
@@ -489,7 +481,7 @@
                     </div>
 
                     <div class="service-cta-row">
-                        <a href="https://wa.me/919284517427?text=Hi%20Kezza%2C%20I%20want%20to%20consult%20about%20HydraFacial%20MD%20treatment." target="_blank" rel="noopener noreferrer" class="btn-service-wa">
+                        <a href="https://wa.me/919284517427?text=Hi%20Kezza%2C%20I%20want%20to%20consult%20about%20hydra%20facial%20treatment." target="_blank" rel="noopener noreferrer" class="btn-service-wa">
                             <i class="fab fa-whatsapp"></i> WhatsApp Consultation
                         </a>
                         <a href="contact.html" class="btn-service-book">
@@ -714,7 +706,7 @@
                 <span class="service-cat-pill" style="margin:0 auto 12px auto;"><i class="fas fa-sun"></i> Hyperpigmentation Management</span>
                 <h2>Pigmentation, Melasma &amp; Complexion Brightening</h2>
                 <div class="gold-accent-line centered"></div>
-                <p>Stubborn hormonal melasma, tanning, and sun spots require deep cellular targeting. Our multi-technology brightening protocols break down excess melanin and restore luminous, uniform clarity. <a href="/blog/chemical-peels-vs-laser-toning/" style="color:#008F9C;font-weight:600;text-decoration:underline;">Compare Chemical Peels vs Laser Toning</a>.</p>
+                <p>Stubborn hormonal melasma, tanning, and sun spots require deep cellular targeting. Our multi-technology brightening protocols break down excess melanin and restore luminous, uniform clarity. <a href="/blog/chemical-peels-vs-laser-toning/" style="color:#008F9C;font-weight:600;text-decoration:underline;">Explore our Chemical Peels Guide</a>.<!--pseo:link id="pigmentation-treatment" text="Read the full pigmentation and melasma guide"--><!--/pseo:link--></p>
             </div>
 
             <div class="pigmentation-cards">
@@ -772,7 +764,7 @@
                     <h2 class="service-heading">Botox, Dermal Fillers &amp; HIFU &mdash; Youthful Contours with Natural Expressions</h2>
                     <div class="gold-accent-line"></div>
                     <p class="service-desc">
-                        Reclaim your youthful firmness without looking "frozen" or overdone. Our experienced aesthetic doctors administer micro-calibrated botulinum neuromodulators and hyaluronic dermal fillers to soften expression lines, restore sunken cheeks, and lift sagging jawlines naturally.<!--pseo:link id="botox" text="Read the full Botox guide"--><!--/pseo:link--><!--pseo:link id="dark-circles-treatment" text="Read the dark circle treatment guide"--><!--/pseo:link-->
+                        Reclaim your youthful firmness without looking "frozen" or overdone. Our experienced aesthetic doctors administer micro-calibrated botulinum neuromodulators and hyaluronic dermal fillers to soften expression lines, restore sunken cheeks, and lift sagging jawlines naturally.<!--pseo:link id="botox" text="Read the Botox and dermal fillers guide"--><!--/pseo:link--><!--pseo:link id="dark-circles-treatment" text="Read the dark circle treatment guide"--><!--/pseo:link-->
                     </p>
 
                     <div class="clinical-stat-grid">
@@ -880,7 +872,7 @@
                     <h2 class="service-heading">Stretch Mark Reduction &amp; Structural Collagen Remodeling</h2>
                     <div class="gold-accent-line"></div>
                     <p class="service-desc">
-                        Post-pregnancy, weight shifts, and rapid adolescent growth spurts cause dermal elastin fibers to rupture, forming striae distensae (stretch marks). Our combination protocol of fractional resurfacing laser, microneedling RF, and skin bio-boosters stimulates dense new collagen synthesis, smoothing out texture and blending color.
+                        Post-pregnancy, weight shifts, and rapid adolescent growth spurts cause dermal elastin fibers to rupture, forming striae distensae (stretch marks). Our combination protocol of fractional resurfacing laser, microneedling RF, and skin bio-boosters stimulates dense new collagen synthesis, smoothing out texture and blending color.<!--pseo:link id="stretch-marks" text="Read the full stretch marks guide"--><!--/pseo:link-->
                     </p>
 
                     <div class="clinical-stat-grid">
@@ -946,7 +938,7 @@
                 <span class="service-cat-pill" style="margin:0 auto 12px auto;"><i class="fas fa-stethoscope"></i> Clinical Care</span>
                 <h2>Medical Dermatology &amp; Minor Surgical Procedures</h2>
                 <div class="gold-accent-line centered"></div>
-                <p>Evidence-based clinical treatments performed by senior dermatologists in sterile hospital operating conditions.</p>
+                <p>Evidence-based clinical treatments performed by senior dermatologists in sterile hospital operating conditions.<!--pseo:link id="medical-dermatology" text="Read about mole, wart and skin tag removal"--><!--/pseo:link--></p>
             </div>
 
             <div class="medical-services-grid">
@@ -1127,7 +1119,7 @@
                         <div class="patient-stars">★★★★★</div>
                         <span class="verified-tag"><i class="fas fa-shield-alt"></i> Verified Patient</span>
                     </div>
-                    <span class="patient-procedure-pill"><i class="fas fa-spa"></i> HydraFacial MD &middot; 3 Sessions</span>
+                    <span class="patient-procedure-pill"><i class="fas fa-spa"></i> Hydra Facial &middot; 3 Sessions</span>
                     <p class="patient-quote-text">
                         &ldquo;I booked HydraFacial MD at Kezza Clinic for pre-wedding prep in Jaipur. My clogged pores and dullness disappeared completely in one hour! My skin had an incredible glass glow that lasted throughout all wedding functions. Highly recommend!&rdquo;
                     </p>
@@ -1209,7 +1201,7 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Treatments like HydraFacial MD deliver instant pore clearance and radiant glow right after the 60-minute session. Laser toning and acne scar remodeling typically show progressive improvement over 2 to 4 weeks as new dermal collagen regenerates.</p>
+                        <p>Treatments like a hydra facial deliver instant pore clearance and radiant glow right after the 60-minute session. Laser toning and acne scar remodeling typically show progressive improvement over 2 to 4 weeks as new dermal collagen regenerates.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1236,7 +1228,7 @@
                         <span class="faq-icon">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>For HydraFacial MD and mild facials, mineral makeup can be worn within 4 to 6 hours. For fractional laser or subcision, we advise waiting 24 to 48 hours and avoiding heavy sweating to protect the healing micro-channels.</p>
+                        <p>For hydra facials and mild facials, mineral makeup can be worn within 4 to 6 hours. For fractional laser or subcision, we advise waiting 24 to 48 hours and avoiding heavy sweating to protect the healing micro-channels.</p>
                     </div>
                 </div>
             </div>
@@ -1247,54 +1239,82 @@
     <section class="final-cta-section" id="consultation">
         <div class="container">
             <h2>Transform Your Skin Health Today</h2>
-            <p>A professional dermatological consultation is your first step toward clear, glowing skin.</p>
+            <p>A professional dermatological consultation is your first step toward clear, glowing skin.<!--pseo:link id="skin-consultation" text="See what happens at a skin consultation"--><!--/pseo:link--></p>
             <a href="https://wa.me/919284517427" target="_blank" rel="noopener noreferrer" class="btn-consultation"><i class="fab fa-whatsapp"></i> Book Doctor Consultation Now</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer kz-site-footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <p class="footer-nav-title">About</p>
-                    <p>Kezza Hair & Skin Clinic is dedicated to providing advanced, evidence-based hair restoration and dermatology treatments with a premium, patient-centered approach.</p>
+            <div class="footer-grid kz-footer-grid">
+                <div class="footer-column kz-footer-brand">
+                    <p class="footer-nav-title kz-footer-name">Kezza Hair &amp; Skin Clinic</p>
+                    <p>Doctor-led hair restoration, skin and laser care, permanent makeup and body contouring at our clinics in Jaipur, Sikar and Ajmer, Rajasthan.</p>
+                    <p class="kz-footer-hours"><i class="far fa-clock" aria-hidden="true"></i> Open 9 AM – 8 PM, all 7 days</p>
+                    <div class="kz-footer-social">
+                        <a href="https://www.instagram.com/kezza_clinic" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="https://www.facebook.com/kezzaclinic" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="https://www.youtube.com/@Kezza_Clinic_Jaipur" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                    </div>
                 </div>
                 <div class="footer-column">
                     <p class="footer-nav-title">Quick Links</p>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="hair-services.html">Hair Services</a></li>
-                        <li><a href="skin-services.html">Skin Services</a></li>
-                        <li><a href="permanent-makeup.html">Permanent Makeup</a></li>
+                        <li><a href="about.html">About Us</a></li>
                         <li><a href="locations/">Our Clinics</a></li>
-                        <li><a href="/blog/">Hair &amp; Skin Blog</a></li>
+                        <li><a href="blog/">Hair &amp; Skin Blog</a></li>
+                        <li><a href="face-scanner.html">AI Face Scanner</a></li>
+                        <li><a href="permanent-makeup.html">Permanent Makeup</a></li>
+                        <li><a href="weight-loss.html">Weight Loss</a></li>
                         <li><a href="branches.html">Franchise</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="terms.html">Terms &amp; Conditions</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="terms.html">Privacy &amp; Terms</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <p class="footer-nav-title">Skin Services</p>
+                    <p class="footer-nav-title"><a href="hair-services.html">Hair Services</a></p>
                     <ul>
-                        <li><a href="skin-services.html#hydra-facial" data-pseo="hydra-facial" data-pseo-fallback="skin-services.html#hydra-facial">HydraFacial MD</a></li>
-                        <li><a href="laser-hair-removal/" data-pseo="laser-hair-removal" data-pseo-fallback="skin-services.html#laser">Laser Hair Removal</a></li>
-                        <li><a href="skin-services.html#anti-aging">Botox &amp; Fillers</a></li>
-                        <li><a href="skin-services.html#acne" data-pseo="acne-scar-treatment" data-pseo-fallback="skin-services.html#acne">Acne &amp; Scar Revision</a></li>
-                        <li><a href="skin-services.html#pigmentation">Melasma &amp; Pigmentation</a></li>
-                        <li><a href="skin-services.html#medical-derma">Medical Dermatology</a></li>
+                        <li><a href="hair-transplant/">Hair Transplant</a></li>
+                        <li><a href="prp-therapy.html">PRP Therapy</a></li>
+                        <li><a href="gfc-treatment/" data-pseo="gfc-treatment" data-pseo-fallback="prp-therapy.html#gfc-therapy">GFC Therapy</a></li>
+                        <li><a href="white-hair-removal.html">White Hair Removal</a></li>
+                        <li><a href="electrolysis.html">Electrolysis</a></li>
+                        <li><a href="hair-wig.html">Hair Wig &amp; Replacement</a></li>
+                        <li><a href="hair-loss-consultation.html">Hair Loss Consultation</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <p class="footer-nav-title">Contact</p>
-                    <p>Phone: +91-9284517427</p>
-                    <p>Email: support@kezza.co.in</p>
-                    <p>WhatsApp: +91-9284517427</p>
+                    <p class="footer-nav-title"><a href="skin-services.html">Skin Services</a></p>
+                    <ul>
+                        <li><a href="skin-services.html#hydra-facial" data-pseo="hydra-facial" data-pseo-fallback="skin-services.html#hydra-facial">Hydra Facial</a></li>
+                        <li><a href="skin-services.html#acne" data-pseo="acne-treatment" data-pseo-fallback="skin-services.html#acne">Acne &amp; Acne Scars</a></li>
+                        <li><a href="skin-services.html#pigmentation" data-pseo="pigmentation-treatment" data-pseo-fallback="skin-services.html#pigmentation">Pigmentation &amp; Melasma</a></li>
+                        <li><a href="skin-services.html#botox" data-pseo="botox" data-pseo-fallback="skin-services.html#botox">Botox &amp; Fillers</a></li>
+                        <li><a href="skin-services.html#dark-circles" data-pseo="dark-circles-treatment" data-pseo-fallback="skin-services.html#dark-circles">Dark Circle Treatment</a></li>
+                        <li><a href="skin-services.html#stretch-marks" data-pseo="stretch-marks" data-pseo-fallback="skin-services.html#stretch-marks">Stretch Marks</a></li>
+                        <li><a href="skin-services.html#medical-derma" data-pseo="medical-dermatology" data-pseo-fallback="skin-services.html#medical-derma">Medical Dermatology</a></li>
+                        <li><a href="laser-hair-removal/" data-pseo="laser-hair-removal" data-pseo-fallback="skin-services.html#laser">Laser Hair Removal</a></li>
+                        <li><a href="skin-services.html#consultation" data-pseo="skin-consultation" data-pseo-fallback="skin-services.html#consultation">Skin Consultation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column kz-footer-contact">
+                    <p class="footer-nav-title">Contact &amp; Clinics</p>
+                    <ul>
+                        <li><i class="fas fa-phone-alt" aria-hidden="true"></i><span><a href="tel:+919284517427">+91-9284517427</a> <small>Jaipur &amp; Sikar</small></span></li>
+                        <li><i class="fas fa-phone-alt" aria-hidden="true"></i><span><a href="tel:+919216088257">+91-9216088257</a> <small>Ajmer</small></span></li>
+                        <li><i class="fab fa-whatsapp" aria-hidden="true"></i><span><a href="https://wa.me/919284517427" target="_blank" rel="noopener noreferrer">WhatsApp +91-9284517427</a></span></li>
+                        <li><i class="fas fa-envelope" aria-hidden="true"></i><span><a href="mailto:support@kezza.co.in">support@kezza.co.in</a></span></li>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span><a href="locations/jaipur/"><strong>Jaipur</strong></a>: A-7, 1st Floor, Hanuman Nagar, Sirsi Road, Khatipura</span></li>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span><a href="locations/sikar/"><strong>Sikar</strong></a>: 1st Floor, Shakambhari Heights, Opp. S.K. Hospital, Silver Jubilee Road</span></li>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span><a href="locations/ajmer/"><strong>Ajmer</strong></a>: 1st Floor, Oasis Complex &amp; Hotels, Shastri Nagar, Jawahar Nagar</span></li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; <span class="footer-year">2026</span> Kezza Clinics. All Rights Reserved.</p>
+            <div class="footer-bottom kz-footer-bottom">
+                <p>&copy; <span class="footer-year">2026</span> Kezza Hair &amp; Skin Clinic. All rights reserved.</p>
+                <p class="kz-footer-note">The information on this website is general and does not replace a consultation with a doctor. Results differ from person to person.</p>
             </div>
         </div>
         <script>document.querySelectorAll('.footer-year').forEach(el=>el.textContent=new Date().getFullYear());</script>
@@ -1334,7 +1354,7 @@
 
     <script src="js/skin-services-script.js?v=2885bf0c"></script>
     <script src="js/mobile-menu.js?v=9fcabe1c"></script>
-    <script src="js/services-navigation.js?v=18ea4020" defer></script>
+    <script src="js/services-navigation.js?v=469562fc" defer></script>
     <script src="js/quick-actions.js?v=8c0309cc" defer></script>
     <script src="js/scanner-launch.js?v=2d80c5f7" defer></script>
     <script src="js/smooth-scroll.js?v=cccaae4b" defer></script>

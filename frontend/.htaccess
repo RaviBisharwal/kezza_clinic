@@ -28,7 +28,7 @@ ErrorDocument 404 /404.html
     RewriteRule ^LLMs\.txt$ /llms.txt [L,R=301]
 
     # Folder URLs for the new sections (serve without the trailing-slash 404)
-    RewriteRule ^(locations|blog|acne-scar-treatment|acne-treatment|botox|cryolipolysis|dark-circles-treatment|gfc-treatment|hair-transplant/beard|hair-transplant/dhi|hair-transplant/eyebrow|hair-transplant/fue|hi/hair-transplant|hifu-body-sculpting|hydra-facial|laser-hair-removal|lip-blush|microblading|permanent-eyeliner|pmu-correction|weight-management)$ /$1/ [L,R=301]
+    RewriteRule ^(locations|blog|acne-scar-treatment|acne-treatment|botox|cryolipolysis|dark-circles-treatment|gfc-treatment|hair-transplant/beard|hair-transplant/dhi|hair-transplant/eyebrow|hair-transplant/fue|hi/hair-transplant|hifu-body-sculpting|hydra-facial|laser-hair-removal|lip-blush|medical-dermatology|microblading|permanent-eyeliner|pigmentation-treatment|pmu-correction|skin-consultation|stretch-marks-treatment|weight-management)$ /$1/ [L,R=301]
 </IfModule>
 
 # ── 2. Compression (text assets) ─────────────────────────────────────
