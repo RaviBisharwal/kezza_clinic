@@ -1,67 +1,24 @@
 /**
- * Kezza Clinic — Upgraded Consultation Request Form Handler
- * Handles validation, dependent department->treatment dropdowns, specialist hint,
- * IST date restrictions, dual-dispatch (local server / direct Apps Script webhook),
- * thank-you card replacement, and Meta Pixel Lead event tracking.
+ * Kezza Clinic — Upgraded High-Converting Consultation Request Form Handler
+ * Professional Medical Booking Funnel with Dynamic Sub-Categories:
+ * 1. Full Name (Required)
+ * 2. WhatsApp Number (Required, validated 10-digit Indian mobile)
+ * 3. City / Location (Required dropdown: Jaipur, Sikar, Ajmer, Other)
+ * 4. Treatment Category (Required dropdown: Hair, Skin, Weight Loss, Permanent Makeup, Aesthetic Treatments, Other)
+ * 5. Specific Procedure / Sub-Category (Required dynamic dropdown + 1-tap quick pills)
+ * 6. Preferred Time Slot (Optional convenience selector: Morning, Afternoon, Evening, Weekend, Any Time)
+ * 
+ * Features:
+ * - Real-time dependent sub-category generation with clinical accuracy
+ * - Interactive 1-tap quick pills for high mobile conversion
+ * - Real-time phone normalization & validation
+ * - Instant inline error feedback with smooth focus
+ * - Dual dispatch: local/Express backend (/api/lead) with fallback to Google Sheets webhook
+ * - Meta Pixel Lead tracking with procedure context
+ * - Elegant Thank-You card with clinic-specific WhatsApp pre-filled chat link
  */
 (function() {
     'use strict';
-
-    // ── CONFIGURATION & MAPPINGS ───────────────────────────────────────
-    const DEPARTMENT_TREATMENTS = {
-        'Hair Transplant': [
-            'Hair Transplant',
-            'PRP Therapy',
-            'GFC Therapy',
-            'White Hair Removal',
-            'Electrolysis',
-            'Hair Wig',
-            'Hair Loss Treatment'
-        ],
-        'Skin': [
-            'Botox',
-            'Acne & Acne Scar',
-            'Dark Circle Treatment',
-            'Laser Treatments',
-            'Anti-Aging',
-            'Glutathione Therapy',
-            'Medical Facial',
-            'Skin Consultation'
-        ],
-        'Weight Loss': [
-            'Non-Surgical Weight Loss',
-            'Body Sculpting (Cryolipolysis)',
-            'Clinical Fat Reduction',
-            'Weight Management Consultation'
-        ],
-        'PMU': [
-            'Eyebrow PMU',
-            'Lip PMU',
-            'Permanent Eyeliner',
-            'PMU Consultation'
-        ]
-    };
-
-    const SPECIALIST_MAP = {
-        'Jaipur': {
-            'Hair Transplant': 'Dr. Ankit Bhalothia',
-            'Skin': 'Dr. Amrita Mukhija',
-            'Weight Loss': 'Dr. Amrita Mukhija',
-            'PMU': 'Krishna'
-        },
-        'Sikar': {
-            'Hair Transplant': 'Dr. Ankit Bhalothia',
-            'Skin': 'Dr. Amrita Mukhija',
-            'Weight Loss': 'Kezza Wellness & Slimming Team',
-            'PMU': 'Krishna'
-        },
-        'Ajmer': {
-            'Hair Transplant': 'Dr. Dhiral Vijayvargiya',
-            'Skin': 'Dr. Aliza Rizvi',
-            'Weight Loss': 'To be assigned',
-            'PMU': 'To be assigned'
-        }
-    };
 
     const CLINIC_WHATSAPP = {
         'Jaipur': '919284517427',
@@ -71,37 +28,89 @@
 
     const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwsWmFO6lLgh_UAAZkQpBstzRQ8335TQ_XP3jGnq3cBsfkFNE6eDewuQDRqho1o1CqiuA/exec';
 
-    // ── UTILITY HELPERS ────────────────────────────────────────────────
-    function getTodayIST() {
-        try {
-            const formatter = new Intl.DateTimeFormat('en-CA', {
-                timeZone: 'Asia/Kolkata',
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit'
-            });
-            return formatter.format(new Date()); // YYYY-MM-DD
-        } catch (e) {
-            const d = new Date();
-            const year = d.getFullYear();
-            const month = String(d.getMonth() + 1).padStart(2, '0');
-            const day = String(d.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
+    // ── SUB-CATEGORIES CLINICAL TAXONOMY ───────────────────────────────
+    const SUB_CATEGORIES = {
+        'Hair': {
+            badge: 'Hair Restoration',
+            doctor: 'Senior Hair Restoration Surgeon & Trichologist',
+            procedures: [
+                { id: 'FUE Hair Transplant', name: 'FUE Hair Transplant', icon: 'fa-user-md', popular: true },
+                { id: 'DHI Hair Transplant', name: 'DHI Hair Transplant', icon: 'fa-feather-alt', popular: true },
+                { id: 'GFC Hair Loss Therapy', name: 'GFC Therapy (Growth Factor)', icon: 'fa-vial', popular: true },
+                { id: 'PRP Hair Loss Therapy', name: 'PRP Hair Loss Therapy', icon: 'fa-syringe', popular: true },
+                { id: 'White Hair Removal (Electrolysis)', name: 'White Hair Removal (Electrolysis)', icon: 'fa-bolt', popular: true },
+                { id: 'Beard / Mustache Transplant', name: 'Beard & Mustache Transplant', icon: 'fa-user', popular: true },
+                { id: 'Eyebrow Hair Transplant', name: 'Eyebrow Restoration', icon: 'fa-eye', popular: false },
+                { id: 'Trichoscopy & Hair Assessment', name: 'Trichoscopy & Scalp Assessment', icon: 'fa-microscope', popular: false },
+                { id: 'Non-Surgical Hair Patch / Wig', name: 'Hair Patch / System', icon: 'fa-cut', popular: false },
+                { id: 'Other Hair Concern', name: 'Other Hair Concern', icon: 'fa-comment-medical', popular: false }
+            ]
+        },
+        'Skin': {
+            badge: 'Clinical Dermatology',
+            doctor: 'Senior Certified Dermatologist & Laser Specialist',
+            procedures: [
+                { id: 'Acne Scar Revision (Laser/Subcision)', name: 'Acne Scar Revision', icon: 'fa-magic', popular: true },
+                { id: 'Active Acne & Breakouts Treatment', name: 'Acne & Breakouts', icon: 'fa-shield-virus', popular: true },
+                { id: 'Pigmentation & Melasma (Laser Toning)', name: 'Pigmentation & Melasma', icon: 'fa-sun', popular: true },
+                { id: 'HydraFacial & Medical Glow Facial', name: 'HydraFacial & Medi-Facial', icon: 'fa-water', popular: true },
+                { id: 'Laser Hair Removal (Triple Wavelength)', name: 'Laser Hair Removal', icon: 'fa-bolt', popular: true },
+                { id: 'Dark Circles & Under-Eye Care', name: 'Dark Circles Care', icon: 'fa-eye', popular: true },
+                { id: 'Chemical Peels & Skin Brightening', name: 'Chemical Peels', icon: 'fa-sparkles', popular: false },
+                { id: 'Stretch Marks Revision', name: 'Stretch Marks Revision', icon: 'fa-band-aid', popular: false },
+                { id: 'Medical Dermatology (Eczema / Psoriasis)', name: 'Medical Dermatology', icon: 'fa-stethoscope', popular: false },
+                { id: 'Other Skin Concern', name: 'Other Skin Concern', icon: 'fa-comment-medical', popular: false }
+            ]
+        },
+        'Weight Loss': {
+            badge: 'Body Contouring',
+            doctor: 'Clinical Body Sculpting Specialist & Nutritionist',
+            procedures: [
+                { id: 'Cryolipolysis (360° Fat Freezing)', name: '360° Fat Freezing', icon: 'fa-snowflake', popular: true },
+                { id: 'HIFU Non-Surgical Body Sculpting', name: 'HIFU Body Sculpting', icon: 'fa-wave-square', popular: true },
+                { id: 'Inch Loss & Tummy Tightening', name: 'Inch Loss & Tummy Tightening', icon: 'fa-compress-arrows-alt', popular: true },
+                { id: 'Double Chin Reduction', name: 'Double Chin Reduction', icon: 'fa-smile', popular: true },
+                { id: 'Medical Weight Loss Protocol', name: 'Medical Weight Loss Protocol', icon: 'fa-weight', popular: false },
+                { id: 'Other Body Sculpting Concern', name: 'Other Body Concern', icon: 'fa-comment-medical', popular: false }
+            ]
+        },
+        'Permanent Makeup': {
+            badge: 'Micropigmentation',
+            doctor: 'Master PMU Artist & Certified Aesthetician',
+            procedures: [
+                { id: 'Microblading Eyebrows (Natural 3D)', name: 'Microblading Eyebrows', icon: 'fa-paint-brush', popular: true },
+                { id: 'Lip Blush & Micropigmentation', name: 'Lip Blush / Tinting', icon: 'fa-heart', popular: true },
+                { id: 'Ombre Powder Brows', name: 'Ombre Powder Brows', icon: 'fa-feather', popular: true },
+                { id: 'Scalp Micropigmentation (SMP)', name: 'Scalp SMP (Hair Density)', icon: 'fa-dot-circle', popular: true },
+                { id: 'Permanent Eyeliner', name: 'Permanent Eyeliner', icon: 'fa-eye', popular: false },
+                { id: 'PMU Laser Correction & Removal', name: 'PMU Correction / Removal', icon: 'fa-eraser', popular: false },
+                { id: 'Other PMU Treatment', name: 'Other PMU Treatment', icon: 'fa-comment-medical', popular: false }
+            ]
+        },
+        'Aesthetic Treatments': {
+            badge: 'Facial Aesthetics',
+            doctor: 'Senior Facial Aesthetic & Anti-Aging Doctor',
+            procedures: [
+                { id: 'Botox Anti-Wrinkle Injections', name: 'Botox Anti-Wrinkle', icon: 'fa-syringe', popular: true },
+                { id: 'Dermal Fillers (Lips / Cheeks / Jawline)', name: 'Dermal Fillers (Lips/Cheeks)', icon: 'fa-gem', popular: true },
+                { id: 'Skin Boosters & Profhilo', name: 'Skin Boosters (Profhilo)', icon: 'fa-tint', popular: true },
+                { id: 'Anti-Aging Rejuvenation', name: 'Anti-Aging Rejuvenation', icon: 'fa-history', popular: true },
+                { id: 'Facial Contouring & Profile Balancing', name: 'Facial Contouring', icon: 'fa-smile-beam', popular: false },
+                { id: 'Other Aesthetic Concern', name: 'Other Aesthetic Concern', icon: 'fa-comment-medical', popular: false }
+            ]
+        },
+        'Other': {
+            badge: 'General Consultation',
+            doctor: 'Senior Clinical Consultant Doctor',
+            procedures: [
+                { id: 'Doctor Consultation & Evaluation', name: 'Doctor Consultation', icon: 'fa-user-md', popular: true },
+                { id: 'Comprehensive Assessment / Second Opinion', name: 'Second Opinion Assessment', icon: 'fa-clipboard-check', popular: true },
+                { id: 'Not Sure - Need Expert Guidance', name: 'Not Sure — Need Guidance', icon: 'fa-question-circle', popular: true }
+            ]
         }
-    }
+    };
 
-    function formatSheetDate(isoDateStr) {
-        if (!isoDateStr) return '';
-        const parts = isoDateStr.split('-');
-        if (parts.length !== 3) return isoDateStr;
-        const y = parts[0];
-        const m = parseInt(parts[1], 10) - 1;
-        const d = parseInt(parts[2], 10);
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        const dayStr = d < 10 ? '0' + d : String(d);
-        return `${dayStr} ${months[m] || 'Sep'} ${y}`;
-    }
-
+    // ── UTILITY HELPERS ────────────────────────────────────────────────
     function normalizeWhatsApp(val) {
         if (!val) return '';
         let digits = String(val).replace(/[\s\-\+]/g, '').replace(/\D/g, '');
@@ -129,117 +138,50 @@
         if (!contactForm) return;
 
         // Elements
-        const nameInput      = document.getElementById('fullName');
-        const phoneInput     = document.getElementById('whatsapp');
-        const ageInput       = document.getElementById('age');
-        const locationInput  = document.getElementById('location');
-        const clinicSelect   = document.getElementById('clinic');
-        const deptSelect     = document.getElementById('department');
-        const treatSelect    = document.getElementById('treatment');
-        const dateInput      = document.getElementById('preferredDate');
-        const timeSelect     = document.getElementById('preferredTime');
-        const durationSelect = document.getElementById('duration');
-        const messageInput   = document.getElementById('message');
-        const honeypotInput  = document.getElementById('kz_hp');
-        const submitBtn      = document.getElementById('submitBtn');
+        const nameInput           = document.getElementById('fullName');
+        const phoneInput          = document.getElementById('whatsapp');
+        const locationSelect      = document.getElementById('location');
+        const concernSelect       = document.getElementById('concern');
+        const subConcernSelect    = document.getElementById('subConcern');
+        const preferredSlotSelect = document.getElementById('preferredSlot');
+        const subCategoryBadge    = document.getElementById('subCategoryBadge');
+        const quickPillsWrap      = document.getElementById('quickPillsWrap');
+        const subCategoryPills    = document.getElementById('subCategoryPills');
+        const specialistAssignedTag = document.getElementById('specialistAssignedTag');
+        const satDoctorName       = document.getElementById('satDoctorName');
+        const honeypotInput       = document.getElementById('kz_hp');
+        const submitBtn           = document.getElementById('submitBtn');
 
-        const specialistHint = document.getElementById('specialistHint');
-        const specialistName = document.getElementById('specialistName');
-
-        // Set min date in IST
-        const todayIST = getTodayIST();
-        if (dateInput) {
-            dateInput.min = todayIST;
-        }
-
-        // WhatsApp number real-time typing filter (digits only, max 10)
+        // WhatsApp number real-time typing filter: STRICT 10-DIGIT NUMERIC LIMIT
         if (phoneInput) {
-            phoneInput.setAttribute('maxlength', '15'); // allow pasting with +91 or spaces before cleanup
+            phoneInput.setAttribute('maxlength', '10');
+            phoneInput.setAttribute('pattern', '[6-9][0-9]{9}');
             phoneInput.addEventListener('input', function() {
-                // Remove non-digit characters
-                const cleaned = this.value.replace(/[^\d\+\s\-]/g, '');
-                if (cleaned !== this.value) {
+                // Remove all non-digit characters
+                let cleaned = this.value.replace(/\D/g, '');
+                // Handle pasting with country code e.g. +91 9876543210 or 09876543210
+                if (cleaned.length === 12 && cleaned.startsWith('91')) {
+                    cleaned = cleaned.slice(2);
+                } else if (cleaned.length === 11 && cleaned.startsWith('0')) {
+                    cleaned = cleaned.slice(1);
+                }
+                // Hard limit to exactly 10 digits maximum
+                if (cleaned.length > 10) {
+                    cleaned = cleaned.slice(0, 10);
+                }
+                if (this.value !== cleaned) {
                     this.value = cleaned;
+                }
+                // When user reaches 10 digits, validate immediately
+                if (cleaned.length === 10) {
+                    validateField('whatsapp');
+                } else if (cleaned.length === 0) {
+                    setFieldError('whatsapp', '');
                 }
             });
 
             phoneInput.addEventListener('blur', function() {
-                const norm = normalizeWhatsApp(this.value);
-                if (norm.length === 10) {
-                    this.value = norm;
-                }
                 validateField('whatsapp');
-            });
-        }
-
-        // ── DYNAMIC DEPARTMENT -> TREATMENT POPULATION ─────────────────
-        function updateTreatments() {
-            const selectedDept = deptSelect ? deptSelect.value : '';
-            if (!treatSelect) return;
-
-            treatSelect.innerHTML = '';
-
-            if (!selectedDept || !DEPARTMENT_TREATMENTS[selectedDept]) {
-                treatSelect.disabled = true;
-                const opt = document.createElement('option');
-                opt.value = '';
-                opt.textContent = 'Select department first';
-                treatSelect.appendChild(opt);
-            } else {
-                treatSelect.disabled = false;
-                const placeholder = document.createElement('option');
-                placeholder.value = '';
-                placeholder.textContent = 'Select treatment...';
-                treatSelect.appendChild(placeholder);
-
-                DEPARTMENT_TREATMENTS[selectedDept].forEach(treatment => {
-                    const opt = document.createElement('option');
-                    opt.value = treatment;
-                    opt.textContent = treatment;
-                    treatSelect.appendChild(opt);
-                });
-            }
-
-            updateSpecialistHint();
-        }
-
-        // ── DYNAMIC SPECIALIST HINT ────────────────────────────────────
-        function updateSpecialistHint() {
-            if (!specialistHint || !specialistName) return;
-
-            const clinic = clinicSelect ? clinicSelect.value : '';
-            const dept   = deptSelect   ? deptSelect.value   : '';
-
-            if (clinic && dept && SPECIALIST_MAP[clinic] && SPECIALIST_MAP[clinic][dept]) {
-                const doc = SPECIALIST_MAP[clinic][dept];
-                if (doc && doc !== 'To be assigned') {
-                    specialistName.textContent = doc;
-                    specialistHint.style.display = 'flex';
-                    return;
-                }
-            }
-            specialistHint.style.display = 'none';
-            specialistName.textContent = '';
-        }
-
-        if (deptSelect) {
-            deptSelect.addEventListener('change', function() {
-                updateTreatments();
-                validateField('department');
-                validateField('treatment');
-            });
-        }
-
-        if (clinicSelect) {
-            clinicSelect.addEventListener('change', function() {
-                updateSpecialistHint();
-                validateField('clinic');
-            });
-        }
-
-        if (treatSelect) {
-            treatSelect.addEventListener('change', function() {
-                validateField('treatment');
             });
         }
 
@@ -267,7 +209,6 @@
             switch (fieldId) {
                 case 'name': {
                     const val = (nameInput ? nameInput.value : '').trim();
-                    // 2–60 characters; letters (Hindi unicode allowed), spaces and dots; no digits
                     const nameRegex = /^[A-Za-z\u0900-\u097F\s.]{2,60}$/;
                     if (!val) {
                         errorMsg = 'Please enter your full name';
@@ -276,7 +217,7 @@
                         errorMsg = 'Name cannot contain numbers';
                         isValid = false;
                     } else if (!nameRegex.test(val)) {
-                        errorMsg = 'Please enter your full name (2–60 letters)';
+                        errorMsg = 'Please enter a valid name (2–60 letters)';
                         isValid = false;
                     }
                     break;
@@ -284,15 +225,15 @@
 
                 case 'whatsapp': {
                     const rawVal = phoneInput ? phoneInput.value : '';
-                    const clean = normalizeWhatsApp(rawVal);
+                    const clean = rawVal.replace(/\D/g, '');
                     if (!clean) {
-                        errorMsg = 'Please enter a valid 10-digit WhatsApp number';
+                        errorMsg = 'Please enter your 10-digit WhatsApp number';
                         isValid = false;
                     } else if (clean.length < 10) {
-                        errorMsg = 'Please enter a valid 10-digit WhatsApp number';
+                        errorMsg = `Please enter exactly 10 digits (${10 - clean.length} more needed)`;
                         isValid = false;
                     } else if (clean.length > 10) {
-                        errorMsg = 'Please enter a valid 10-digit WhatsApp number';
+                        errorMsg = 'WhatsApp number must be exactly 10 digits';
                         isValid = false;
                     } else if (!/^[6-9]\d{9}$/.test(clean)) {
                         errorMsg = 'Number must start with 6, 7, 8 or 9';
@@ -301,79 +242,30 @@
                     break;
                 }
 
-                case 'age': {
-                    const val = ageInput ? ageInput.value.trim() : '';
-                    const num = parseInt(val, 10);
-                    if (!val) {
-                        errorMsg = 'Please enter your age (10–90)';
-                        isValid = false;
-                    } else if (isNaN(num) || num < 10 || num > 90) {
-                        errorMsg = 'Please enter your age (10–90)';
-                        isValid = false;
-                    }
-                    break;
-                }
-
                 case 'location': {
-                    const val = (locationInput ? locationInput.value : '').trim();
-                    if (!val || val.length < 2 || val.length > 50) {
-                        errorMsg = 'Please enter your city (2–50 characters)';
-                        isValid = false;
-                    }
+                    // Optional field — no validation error
+                    isValid = true;
+                    errorMsg = '';
                     break;
                 }
 
-                case 'clinic': {
-                    const val = clinicSelect ? clinicSelect.value : '';
-                    if (!val || !['Jaipur', 'Sikar', 'Ajmer'].includes(val)) {
-                        errorMsg = 'Please choose a clinic';
-                        isValid = false;
-                    }
-                    break;
-                }
-
-                case 'department': {
-                    const val = deptSelect ? deptSelect.value : '';
-                    if (!val || !DEPARTMENT_TREATMENTS[val]) {
-                        errorMsg = 'Please select a department';
-                        isValid = false;
-                    }
-                    break;
-                }
-
-                case 'treatment': {
-                    const deptVal = deptSelect ? deptSelect.value : '';
-                    const treatVal = treatSelect ? treatSelect.value : '';
-                    if (!deptVal) {
-                        errorMsg = 'Please select department first';
-                        isValid = false;
-                    } else if (!treatVal || !DEPARTMENT_TREATMENTS[deptVal] || !DEPARTMENT_TREATMENTS[deptVal].includes(treatVal)) {
-                        errorMsg = 'Please select a treatment';
-                        isValid = false;
-                    }
-                    break;
-                }
-
-                case 'preferredDate': {
-                    const val = dateInput ? dateInput.value.trim() : '';
+                case 'concern': {
+                    const val = concernSelect ? concernSelect.value : '';
                     if (!val) {
-                        errorMsg = 'Please choose today or a later date';
+                        errorMsg = 'Please select your treatment category';
                         isValid = false;
-                    } else {
-                        // Compare YYYY-MM-DD strings directly (valid ISO 8601 comparison)
-                        const currentIST = getTodayIST();
-                        if (val < currentIST) {
-                            errorMsg = 'Please choose today or a later date';
-                            isValid = false;
-                        }
                     }
                     break;
                 }
 
-                case 'preferredTime': {
-                    const val = timeSelect ? timeSelect.value : '';
-                    if (!val) {
-                        errorMsg = 'Please choose a time slot';
+                case 'subconcern': {
+                    const parentCategory = concernSelect ? concernSelect.value : '';
+                    const subVal = subConcernSelect ? subConcernSelect.value : '';
+                    if (!parentCategory) {
+                        errorMsg = 'Please select treatment category first';
+                        isValid = false;
+                    } else if (!subVal) {
+                        errorMsg = 'Please select your specific procedure or concern';
                         isValid = false;
                     }
                     break;
@@ -384,25 +276,151 @@
             return isValid;
         }
 
-        // Attach blur listeners
-        const blurFields = [
-            { id: 'name', el: nameInput },
-            { id: 'age', el: ageInput },
-            { id: 'location', el: locationInput },
-            { id: 'clinic', el: clinicSelect },
-            { id: 'department', el: deptSelect },
-            { id: 'treatment', el: treatSelect },
-            { id: 'preferredDate', el: dateInput },
-            { id: 'preferredTime', el: timeSelect }
-        ];
+        // ── DYNAMIC SUB-CATEGORY POPULATION & PILLS ────────────────────
+        function renderSubCategories(categoryKey) {
+            if (!subConcernSelect) return;
 
-        blurFields.forEach(item => {
-            if (item.el) {
-                item.el.addEventListener('blur', function() {
-                    validateField(item.id);
+            const categoryData = SUB_CATEGORIES[categoryKey];
+
+            if (!categoryData) {
+                // Disabled empty state
+                subConcernSelect.disabled = true;
+                subConcernSelect.innerHTML = '<option value="">First select category above...</option>';
+                if (subCategoryBadge) subCategoryBadge.style.display = 'none';
+                if (quickPillsWrap) quickPillsWrap.style.display = 'none';
+                if (subCategoryPills) subCategoryPills.innerHTML = '';
+                if (specialistAssignedTag) specialistAssignedTag.style.display = 'none';
+                return;
+            }
+
+            // Enable sub-category selector
+            subConcernSelect.disabled = false;
+
+            // Build select options
+            let optionsHtml = '<option value="">Select specific procedure...</option>';
+            categoryData.procedures.forEach(proc => {
+                optionsHtml += `<option value="${escapeHtml(proc.id)}">${escapeHtml(proc.name)}</option>`;
+            });
+            subConcernSelect.innerHTML = optionsHtml;
+
+            // Show Category Badge
+            if (subCategoryBadge) {
+                subCategoryBadge.textContent = categoryData.badge;
+                subCategoryBadge.style.display = 'inline-block';
+            }
+
+            // Show Doctor Specialist Preview Card
+            if (specialistAssignedTag && satDoctorName) {
+                satDoctorName.textContent = categoryData.doctor;
+                specialistAssignedTag.style.display = 'flex';
+            }
+
+            // Render 1-Tap Quick Pills
+            if (subCategoryPills && quickPillsWrap) {
+                subCategoryPills.innerHTML = '';
+                categoryData.procedures.forEach(proc => {
+                    const pillBtn = document.createElement('button');
+                    pillBtn.type = 'button';
+                    pillBtn.className = 'sub-pill-btn';
+                    pillBtn.setAttribute('data-proc-id', proc.id);
+                    pillBtn.innerHTML = `<i class="fas ${proc.icon}"></i> <span>${escapeHtml(proc.name)}</span>`;
+
+                    pillBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        // Select inside dropdown
+                        subConcernSelect.value = proc.id;
+                        highlightActivePill(proc.id);
+                        validateField('subconcern');
+                        subConcernSelect.focus();
+                    });
+
+                    subCategoryPills.appendChild(pillBtn);
+                });
+                quickPillsWrap.style.display = 'block';
+            }
+        }
+
+        function highlightActivePill(selectedId) {
+            if (!subCategoryPills) return;
+            const allPills = subCategoryPills.querySelectorAll('.sub-pill-btn');
+            allPills.forEach(pill => {
+                const procId = pill.getAttribute('data-proc-id');
+                if (procId === selectedId) {
+                    pill.classList.add('is-active');
+                } else {
+                    pill.classList.remove('is-active');
+                }
+            });
+        }
+
+        // Attach listeners to selects & inputs
+        if (nameInput) {
+            nameInput.addEventListener('blur', function() { validateField('name'); });
+        }
+        if (locationSelect) {
+            locationSelect.addEventListener('change', function() { setFieldError('location', ''); });
+        }
+        if (concernSelect) {
+            concernSelect.addEventListener('change', function() {
+                const val = this.value;
+                renderSubCategories(val);
+                validateField('concern');
+                setFieldError('subconcern', '');
+            });
+            concernSelect.addEventListener('blur', function() { validateField('concern'); });
+        }
+        if (subConcernSelect) {
+            subConcernSelect.addEventListener('change', function() {
+                highlightActivePill(this.value);
+                validateField('subconcern');
+            });
+            subConcernSelect.addEventListener('blur', function() { validateField('subconcern'); });
+        }
+
+        // Check URL Query Parameters for pre-selection (e.g. ?category=Hair or ?concern=Skin or ?procedure=FUE)
+        try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const rawCat = urlParams.get('category') || urlParams.get('concern') || urlParams.get('treatment');
+            if (rawCat) {
+                const lowerCat = rawCat.toLowerCase().trim();
+                let matchedCategory = null;
+                Object.keys(SUB_CATEGORIES).forEach(k => {
+                    if (k.toLowerCase() === lowerCat || lowerCat.includes(k.toLowerCase()) || k.toLowerCase().includes(lowerCat)) {
+                        matchedCategory = k;
+                    }
+                });
+                if (matchedCategory && concernSelect) {
+                    concernSelect.value = matchedCategory;
+                    renderSubCategories(matchedCategory);
+
+                    // Optional procedure pre-selection
+                    const rawProc = urlParams.get('procedure') || urlParams.get('sub') || urlParams.get('service');
+                    if (rawProc && subConcernSelect) {
+                        const lowerProc = rawProc.toLowerCase().trim();
+                        const procMatch = SUB_CATEGORIES[matchedCategory].procedures.find(p => 
+                            p.id.toLowerCase() === lowerProc || p.name.toLowerCase() === lowerProc || lowerProc.includes(p.id.toLowerCase())
+                        );
+                        if (procMatch) {
+                            subConcernSelect.value = procMatch.id;
+                            highlightActivePill(procMatch.id);
+                        }
+                    }
+                }
+            }
+
+            // Optional city pre-selection
+            const rawCity = urlParams.get('city') || urlParams.get('location') || urlParams.get('clinic');
+            if (rawCity && locationSelect) {
+                const lowerCity = rawCity.toLowerCase().trim();
+                ['Jaipur', 'Sikar', 'Ajmer'].forEach(c => {
+                    if (lowerCity.includes(c.toLowerCase())) {
+                        locationSelect.value = c;
+                    }
                 });
             }
-        });
+        } catch (paramErr) {
+            console.warn('[URL Params Init Error]:', paramErr);
+        }
 
         // ── FORM SUBMISSION ────────────────────────────────────────────
         let isSubmitting = false;
@@ -417,17 +435,12 @@
             const existingGlobalErr = contactForm.querySelector('.cty-global-error');
             if (existingGlobalErr) existingGlobalErr.remove();
 
-            // Validate all fields
+            // Validate required fields (name, whatsapp, concern, subconcern)
             const fieldsToValidate = [
                 { id: 'name', el: nameInput },
                 { id: 'whatsapp', el: phoneInput },
-                { id: 'age', el: ageInput },
-                { id: 'location', el: locationInput },
-                { id: 'clinic', el: clinicSelect },
-                { id: 'department', el: deptSelect },
-                { id: 'treatment', el: treatSelect },
-                { id: 'preferredDate', el: dateInput },
-                { id: 'preferredTime', el: timeSelect }
+                { id: 'concern', el: concernSelect },
+                { id: 'subconcern', el: subConcernSelect }
             ];
 
             let firstInvalidEl = null;
@@ -457,44 +470,31 @@
             // Check honeypot
             const honeypotVal = honeypotInput ? honeypotInput.value.trim() : '';
             if (honeypotVal !== '') {
-                // Silently succeed for bots
                 showThankYouCard({
                     name: nameInput ? nameInput.value.trim() : 'Patient',
-                    clinic: clinicSelect ? clinicSelect.value : 'Jaipur',
-                    treatment: treatSelect ? treatSelect.value : 'Consultation',
+                    clinic: 'Jaipur',
+                    category: concernSelect ? concernSelect.value : 'Consultation',
+                    subCategory: subConcernSelect ? subConcernSelect.value : 'General',
+                    treatment: `${concernSelect ? concernSelect.value : 'Consultation'} - ${subConcernSelect ? subConcernSelect.value : 'General'}`,
+                    preferredSlot: preferredSlotSelect ? preferredSlotSelect.value : 'Any Time',
                     leadId: `KEZZA-${new Date().getFullYear()}-4102`
                 }, false);
                 return;
             }
 
             // Extract values
-            const nameVal      = nameInput.value.trim();
-            const cleanPhone   = normalizeWhatsApp(phoneInput.value);
-            const ageVal       = parseInt(ageInput.value.trim(), 10);
-            const locationVal  = locationInput.value.trim();
-            const clinicVal    = clinicSelect.value;
-            const deptVal      = deptSelect.value;
-            const treatmentVal = treatSelect.value;
-            const rawDateVal   = dateInput.value.trim();
-            const sheetDate    = formatSheetDate(rawDateVal);
-            const timeVal      = timeSelect.value;
-            const durationVal  = durationSelect ? durationSelect.value : '';
-            const messageVal   = messageInput ? messageInput.value.trim() : '';
+            const nameVal          = nameInput.value.trim();
+            const cleanPhone       = normalizeWhatsApp(phoneInput.value);
+            const locationVal      = (locationSelect && locationSelect.value) ? locationSelect.value : '';
+            const concernVal       = concernSelect.value;
+            const subConcernVal    = subConcernSelect ? subConcernSelect.value : 'General Consultation';
+            const preferredSlotVal = preferredSlotSelect ? preferredSlotSelect.value : 'Any Time (Clinic Hours 9 AM - 8 PM)';
+            const combinedTreatment = `${concernVal} — ${subConcernVal}`;
 
-            // Specialist resolution
-            let specialist = 'To be assigned';
-            if (SPECIALIST_MAP[clinicVal] && SPECIALIST_MAP[clinicVal][deptVal]) {
-                specialist = SPECIALIST_MAP[clinicVal][deptVal];
-            }
-
-            // Concern / Duration column formatting
-            let concernDuration = '';
-            if (durationVal && messageVal) {
-                concernDuration = `Duration: ${durationVal}. ${messageVal}`;
-            } else if (durationVal) {
-                concernDuration = `Duration: ${durationVal}`;
-            } else if (messageVal) {
-                concernDuration = messageVal;
+            // Determine resolved clinic: Jaipur / Sikar / Ajmer / default to Jaipur for Other or unselected
+            let clinicVal = 'Jaipur';
+            if (['Jaipur', 'Sikar', 'Ajmer'].includes(locationVal)) {
+                clinicVal = locationVal;
             }
 
             // Generate client-side Lead ID fallback
@@ -502,11 +502,10 @@
             const randomDigits = Math.floor(1000 + Math.random() * 9000);
             const clientLeadId = `KEZZA-${currentYear}-${randomDigits}`;
 
-            // Build payload matching exact specifications (Section 7 & 8)
+            // Build comprehensive payload for backend and Google Sheets CRM
             const payload = {
-                source: 'Contact Us Form',
-                Source: 'Contact Us Form',
-                'Source': 'Contact Us Form',
+                source: 'Contact Us Form (Website)',
+                Source: 'Contact Us Form (Website)',
                 leadId: clientLeadId,
                 consultationId: clientLeadId,
                 'Lead ID': clientLeadId,
@@ -517,38 +516,30 @@
                 whatsapp: cleanPhone,
                 phone: cleanPhone,
                 'WhatsApp': cleanPhone,
-                age: ageVal,
-                Age: ageVal,
-                'Age': ageVal,
-                location: locationVal,
-                patientLocation: locationVal,
-                'Patient Location': locationVal,
+                location: locationVal || 'Jaipur',
+                patientLocation: locationVal || 'Jaipur',
+                'Patient Location': locationVal || 'Jaipur',
+                city: locationVal || 'Jaipur',
                 clinic: clinicVal,
                 Clinic: clinicVal,
                 'Clinic': clinicVal,
-                department: deptVal,
-                Department: deptVal,
-                'Department': deptVal,
-                category: deptVal,
-                Category: deptVal,
-                'Category': deptVal,
-                treatment: treatmentVal,
-                Treatment: treatmentVal,
-                'Treatment': treatmentVal,
-                specialist: specialist,
-                Specialist: specialist,
-                'Specialist': specialist,
-                duration: durationVal,
-                message: messageVal,
-                concern: concernDuration,
-                Concern: concernDuration,
-                'Concern / Duration': concernDuration,
-                'concern / duration': concernDuration,
-                'Concern/Duration': concernDuration,
-                preferredDate: sheetDate,
-                'Preferred Date': sheetDate,
-                preferredTime: timeVal,
-                'Preferred Time': timeVal,
+                department: concernVal,
+                Department: concernVal,
+                'Department': concernVal,
+                category: concernVal,
+                Category: concernVal,
+                'Category': concernVal,
+                subCategory: subConcernVal,
+                'Sub-Category': subConcernVal,
+                subConcern: subConcernVal,
+                treatment: combinedTreatment,
+                Treatment: combinedTreatment,
+                'Treatment': combinedTreatment,
+                concern: combinedTreatment,
+                Concern: combinedTreatment,
+                'Concern / Duration': combinedTreatment,
+                preferredSlot: preferredSlotVal,
+                'Preferred Slot': preferredSlotVal,
                 status: 'New',
                 Status: 'New',
                 'Status': 'New',
@@ -559,7 +550,7 @@
             isSubmitting = true;
             submitBtn.disabled = true;
             const originalBtnHtml = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="btn-spinner"></span><span>Booking…</span>';
+            submitBtn.innerHTML = '<span class="btn-spinner"></span><span>Confirming Booking…</span>';
 
             // Timeout controller (20 seconds)
             const controller = new AbortController();
@@ -569,7 +560,6 @@
             let returnedLeadId = clientLeadId;
 
             try {
-                // Determine API endpoint
                 const isLocal = typeof window !== 'undefined' && window.location && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
                 const apiBase = isLocal && window.location.port !== '3001' ? 'http://localhost:3001' : '';
 
@@ -593,20 +583,18 @@
                         syncSuccess = true;
                     }
                 } catch (apiErr) {
-                    // Backend not reachable, fall through to direct Google Sheets webhook
                     serverHandled = false;
                 }
 
-                // 2. Direct Google Sheets Webhook fallback (cPanel static hosting)
+                // 2. Direct Google Sheets Webhook fallback
                 if (!serverHandled) {
-                    const sheetRes = await fetch(SHEET_WEBHOOK_URL, {
+                    await fetch(SHEET_WEBHOOK_URL, {
                         method: 'POST',
                         mode: 'no-cors',
                         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                         body: JSON.stringify(payload),
                         signal: controller.signal
                     });
-                    // In no-cors mode, sheetRes.ok is false, type is 'opaque', but write succeeds!
                     syncSuccess = true;
                 }
 
@@ -619,12 +607,14 @@
             }
 
             if (syncSuccess) {
-                // Track Meta Pixel Lead event
+                // Track Meta Pixel Lead event with specific procedure
                 try {
                     if (typeof fbq === 'function') {
                         fbq('track', 'Lead', {
-                            content_name: treatmentVal,
-                            content_category: deptVal
+                            content_name: combinedTreatment,
+                            content_category: concernVal,
+                            clinic_location: locationVal,
+                            slot: preferredSlotVal
                         });
                     }
                 } catch (pxErr) {
@@ -635,7 +625,10 @@
                 showThankYouCard({
                     name: nameVal,
                     clinic: clinicVal,
-                    treatment: treatmentVal,
+                    category: concernVal,
+                    subCategory: subConcernVal,
+                    treatment: combinedTreatment,
+                    preferredSlot: preferredSlotVal,
                     leadId: returnedLeadId
                 }, true);
 
@@ -646,7 +639,7 @@
                 submitBtn.innerHTML = originalBtnHtml;
 
                 const clinicWa = CLINIC_WHATSAPP[clinicVal] || '919284517427';
-                const waFailUrl = `https://wa.me/${clinicWa}?text=${encodeURIComponent('Hello Kezza Clinic ' + clinicVal + ', I attempted to book a consultation for ' + treatmentVal + ' on your website.')}`;
+                const waFailUrl = `https://wa.me/${clinicWa}?text=${encodeURIComponent('Hello Kezza Clinic ' + clinicVal + ', I attempted to book a free consultation for ' + combinedTreatment + ' on your website.')}`;
 
                 const errBanner = document.createElement('div');
                 errBanner.className = 'cty-global-error';
@@ -668,11 +661,8 @@
             if (!formCard) return;
 
             const clinicPhone = CLINIC_WHATSAPP[lead.clinic] || '919284517427';
-            const waChatMsg = `Hello Kezza Clinic ${lead.clinic}, I have booked a consultation for ${lead.treatment} on your website. My Reference ID is ${lead.leadId}.`;
+            const waChatMsg = `Hello Kezza Clinic ${lead.clinic}, I have booked a free consultation for ${lead.category} (${lead.subCategory}) on your website. Preferred Slot: ${lead.preferredSlot}. My Reference ID is ${lead.leadId}.`;
             const waChatUrl = `https://wa.me/${clinicPhone}?text=${encodeURIComponent(waChatMsg)}`;
-
-            // Save original form card HTML for "Book another consultation" link
-            const originalCardContent = formCard.innerHTML;
 
             formCard.innerHTML = `
                 <div class="consultation-thank-you-card" role="status" aria-live="polite">
@@ -681,8 +671,11 @@
                     </div>
                     <h3 class="cty-title">Thank you, ${escapeHtml(lead.name)}!</h3>
                     <p class="cty-message">
-                        Your consultation request has been received. Our <strong>${escapeHtml(lead.clinic)}</strong> team will review your inquiry and connect with you on WhatsApp shortly.
+                        Your free consultation request for <strong>${escapeHtml(lead.category)} &mdash; ${escapeHtml(lead.subCategory)}</strong> at our <strong>${escapeHtml(lead.clinic)}</strong> clinic has been confirmed.
                     </p>
+                    <div class="cty-slot-badge" style="display:inline-flex; align-items:center; gap:6px; background:rgba(0,175,192,0.08); border:1px solid rgba(0,175,192,0.22); color:#007D8A; padding:6px 14px; border-radius:20px; font-size:0.82rem; font-weight:600; margin-bottom:14px;">
+                        <i class="far fa-clock"></i> Preferred Slot: ${escapeHtml(lead.preferredSlot)}
+                    </div>
                     <div class="cty-ref-box">
                         <i class="fas fa-receipt"></i> Reference: <strong>${escapeHtml(lead.leadId)}</strong>
                     </div>
@@ -699,12 +692,9 @@
 
             formCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-            // Restore form upon clicking "Book another consultation"
             const resetBtn = document.getElementById('btnBookAnother');
             if (resetBtn) {
                 resetBtn.addEventListener('click', function() {
-                    formCard.innerHTML = originalCardContent;
-                    // Re-run initialization to re-bind form events
                     window.location.reload();
                 });
             }

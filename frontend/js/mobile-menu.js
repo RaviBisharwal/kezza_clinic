@@ -1,32 +1,28 @@
-// Mobile and Tablet Navigation Drawer Controller - Universal script for all pages
-(function() {
-    'use strict';
+(function () {
+    "use strict";
 
     function initMobileMenu() {
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-        if (!hamburger || !navMenu) return;
-
-        // Idempotency guard. If this script is included twice on a page, binding a
-        // second set of listeners makes one tap open AND close the drawer, so the
-        // menu appears completely dead. Bail out if we have already initialised.
-        if (hamburger.dataset.kezzaMenuBound === 'true') return;
-        hamburger.dataset.kezzaMenuBound = 'true';
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("navMenu");
+        if (!hamburger || !navMenu || hamburger.dataset.kezzaMenuBound === "true") {
+            return;
+        }
+        hamburger.dataset.kezzaMenuBound = "true";
 
         // 1. Ensure Backdrop exists
-        let backdrop = document.getElementById('navBackdrop');
+        let backdrop = document.getElementById("navBackdrop");
         if (!backdrop) {
-            backdrop = document.createElement('div');
-            backdrop.id = 'navBackdrop';
-            backdrop.className = 'nav-backdrop';
+            backdrop = document.createElement("div");
+            backdrop.id = "navBackdrop";
+            backdrop.className = "nav-backdrop";
             document.body.appendChild(backdrop);
         }
 
-        // 2. Ensure Panel Header exists inside navMenu
-        let drawerHeader = navMenu.querySelector('.nav-drawer-header');
+        // 2. Ensure Drawer Header exists inside navMenu (strictly mobile-only)
+        let drawerHeader = navMenu.querySelector(".nav-drawer-header");
         if (!drawerHeader) {
-            drawerHeader = document.createElement('li');
-            drawerHeader.className = 'nav-drawer-header';
+            drawerHeader = document.createElement("li");
+            drawerHeader.className = "nav-drawer-header";
             drawerHeader.innerHTML = `
                 <a href="/index.html" class="drawer-logo" aria-label="Kezza Clinic Home">
                     <img src="/images/logo.png" alt="Kezza Clinic" width="120" height="45">
@@ -41,11 +37,11 @@
             navMenu.insertBefore(drawerHeader, navMenu.firstChild);
         }
 
-        // 3. Ensure Drawer Footer Actions exist inside navMenu
-        let drawerCta = navMenu.querySelector('.nav-drawer-cta');
+        // 3. Ensure Drawer CTA exists inside navMenu (strictly mobile-only)
+        let drawerCta = navMenu.querySelector(".nav-drawer-cta");
         if (!drawerCta) {
-            drawerCta = document.createElement('li');
-            drawerCta.className = 'nav-drawer-cta';
+            drawerCta = document.createElement("li");
+            drawerCta.className = "nav-drawer-cta";
             drawerCta.innerHTML = `
                 <a href="tel:+919284517427" class="btn-drawer-call"><i class="fas fa-phone-alt"></i> Call 9284517427</a>
                 <a href="#chat-consultant" class="btn-drawer-book" data-open-chatbot-consultant><i class="fab fa-whatsapp"></i> Book Consultation</a>
@@ -53,149 +49,169 @@
             navMenu.appendChild(drawerCta);
         }
 
-        const drawerCloseBtn = document.getElementById('drawerCloseBtn');
-        let previouslyFocusedElement = null;
+        const closeBtn = document.getElementById("drawerCloseBtn");
+        let lastActiveEl = null;
 
-        function isDrawerOpen() {
-            return navMenu.classList.contains('active');
+        function isOpen() {
+            return navMenu.classList.contains("active");
         }
 
-        function openDrawer() {
-            previouslyFocusedElement = document.activeElement;
-            navMenu.classList.add('active');
-            hamburger.classList.add('active');
-            hamburger.setAttribute('aria-expanded', 'true');
-            if (backdrop) {
-                backdrop.classList.add('active');
-            }
-            document.body.classList.add('nav-drawer-open');
-            document.documentElement.classList.add('nav-drawer-open');
+        function openMenu() {
+            lastActiveEl = document.activeElement;
+            navMenu.classList.add("active");
+            hamburger.classList.add("active");
+            hamburger.setAttribute("aria-expanded", "true");
+            if (backdrop) backdrop.classList.add("active");
+            document.body.classList.add("nav-drawer-open");
+            document.documentElement.classList.add("nav-drawer-open");
 
-            // Move focus into the drawer panel
             setTimeout(() => {
-                if (drawerCloseBtn) {
-                    drawerCloseBtn.focus();
+                if (closeBtn) {
+                    closeBtn.focus();
                 } else {
-                    const firstLink = navMenu.querySelector('a');
+                    const firstLink = navMenu.querySelector("a");
                     if (firstLink) firstLink.focus();
                 }
             }, 60);
         }
 
-        function closeDrawer() {
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-            if (backdrop) {
-                backdrop.classList.remove('active');
-            }
-            document.body.classList.remove('nav-drawer-open');
-            document.documentElement.classList.remove('nav-drawer-open');
+        function closeMenu() {
+            navMenu.classList.remove("active");
+            hamburger.classList.remove("active");
+            hamburger.setAttribute("aria-expanded", "false");
+            if (backdrop) backdrop.classList.remove("active");
+            document.body.classList.remove("nav-drawer-open");
+            document.documentElement.classList.remove("nav-drawer-open");
 
-            // Return focus to hamburger or previous element
-            if (previouslyFocusedElement && typeof previouslyFocusedElement.focus === 'function') {
-                previouslyFocusedElement.focus();
+            if (lastActiveEl && typeof lastActiveEl.focus === "function") {
+                lastActiveEl.focus();
             } else if (hamburger) {
                 hamburger.focus();
             }
         }
 
-        hamburger.setAttribute('aria-haspopup', 'true');
-        hamburger.setAttribute('aria-expanded', 'false');
-        hamburger.setAttribute('aria-label', 'Open navigation menu');
+        hamburger.setAttribute("aria-haspopup", "true");
+        hamburger.setAttribute("aria-expanded", "false");
+        hamburger.setAttribute("aria-label", "Open navigation menu");
 
-        // Toggle from hamburger
-        hamburger.addEventListener('click', (e) => {
+        // Click to toggle
+        hamburger.addEventListener("click", function (e) {
             e.stopPropagation();
-            if (isDrawerOpen()) {
-                closeDrawer();
+            if (isOpen()) {
+                closeMenu();
             } else {
-                openDrawer();
+                openMenu();
             }
         });
 
-        // Close on X button
-        if (drawerCloseBtn) {
-            drawerCloseBtn.addEventListener('click', (e) => {
+        // Close button click
+        if (closeBtn) {
+            closeBtn.addEventListener("click", function (e) {
                 e.stopPropagation();
-                closeDrawer();
+                closeMenu();
             });
         }
 
-        // Close on Backdrop click
+        // Backdrop click
         if (backdrop) {
-            backdrop.addEventListener('click', (e) => {
+            backdrop.addEventListener("click", function (e) {
                 e.stopPropagation();
-                closeDrawer();
+                closeMenu();
             });
         }
 
-        // Close on real navigation link click only
-        navMenu.addEventListener('click', (e) => {
-            const link = e.target.closest('a');
+        // Close drawer on navigation link click (except dropdown toggles)
+        navMenu.addEventListener("click", function (e) {
+            const link = e.target.closest("a");
             if (!link || !navMenu.contains(link)) return;
 
-            const href = link.getAttribute('href');
-            // Skip non-navigating links, javascript links, and hash-only links
-            if (!href || href === 'javascript:void(0)' || href.startsWith('#')) {
+            // Handle Book Consultation CTA
+            if (link.hasAttribute("data-open-chatbot-consultant") || link.classList.contains("btn-drawer-book")) {
+                e.preventDefault();
+                closeMenu();
+                if (window.kezzaAi && typeof window.kezzaAi.openModal === "function") {
+                    window.kezzaAi.openModal();
+                } else {
+                    const modal = document.getElementById("kezzaAiModal");
+                    if (modal) modal.style.display = "flex";
+                }
                 return;
             }
 
-            // Skip accordion toggles and headers
-            if (link.classList.contains('services-nav-toggle') || link.closest('.services-nav-toggle') ||
-                link.classList.contains('services-cat-header') || link.closest('.services-cat-header') ||
-                link.classList.contains('services-mega-toggle') || link.closest('.services-mega-toggle')) {
+            const href = link.getAttribute("href");
+            if (!href || href === "javascript:void(0)" || href.startsWith("#")) {
+                if (link.classList.contains("services-nav-toggle") || link.closest(".services-nav-toggle")) {
+                    return; // keep drawer open for services dropdown
+                }
+            }
+
+            if (
+                link.classList.contains("services-nav-toggle") ||
+                link.closest(".services-nav-toggle") ||
+                link.classList.contains("services-cat-header") ||
+                link.closest(".services-cat-header") ||
+                link.classList.contains("services-mega-toggle") ||
+                link.closest(".services-mega-toggle")
+            ) {
                 return;
             }
 
-            // Genuinely navigating link clicked: close drawer
-            closeDrawer();
+            closeMenu();
         });
 
-        // Close on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && isDrawerOpen()) {
-                closeDrawer();
+        // Close on ESC key
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && isOpen()) {
+                closeMenu();
             }
         });
 
-        // Focus trap inside drawer while open
-        navMenu.addEventListener('keydown', (e) => {
-            if (e.key !== 'Tab' || !isDrawerOpen()) return;
+        // Trap focus inside drawer when open
+        navMenu.addEventListener("keydown", function (e) {
+            if (e.key !== "Tab" || !isOpen()) return;
 
-            const focusables = navMenu.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])');
-            const visibleFocusables = Array.from(focusables).filter(el => {
-                return el.offsetWidth > 0 || el.offsetHeight > 0 || el.getClientRects().length > 0;
-            });
+            const focusables = navMenu.querySelectorAll(
+                'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+            );
+            const visible = Array.from(focusables).filter(
+                (el) => el.offsetWidth > 0 || el.offsetHeight > 0 || el.getClientRects().length > 0
+            );
 
-            if (visibleFocusables.length === 0) return;
+            if (visible.length === 0) return;
 
-            const firstEl = visibleFocusables[0];
-            const lastEl = visibleFocusables[visibleFocusables.length - 1];
+            const first = visible[0];
+            const last = visible[visible.length - 1];
 
             if (e.shiftKey) {
-                if (document.activeElement === firstEl) {
+                if (document.activeElement === first) {
                     e.preventDefault();
-                    lastEl.focus();
+                    last.focus();
                 }
             } else {
-                if (document.activeElement === lastEl) {
+                if (document.activeElement === last) {
                     e.preventDefault();
-                    firstEl.focus();
+                    first.focus();
                 }
             }
         });
 
-        // Fallback document outside click
-        document.addEventListener('click', (e) => {
-            if (isDrawerOpen() && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-                closeDrawer();
+        // Close on click outside
+        document.addEventListener("click", function (e) {
+            if (isOpen() && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        // Automatically close drawer when window resizes to desktop
+        window.addEventListener("resize", function () {
+            if (window.innerWidth > 1024 && isOpen()) {
+                closeMenu();
             }
         });
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initMobileMenu);
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initMobileMenu);
     } else {
         initMobileMenu();
     }

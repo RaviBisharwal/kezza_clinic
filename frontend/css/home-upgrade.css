@@ -48,11 +48,21 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
 }
 
 .navbar {
-    background: rgba(255, 255, 255, 0.96) !important;
-    backdrop-filter: blur(14px) !important;
-    -webkit-backdrop-filter: blur(14px) !important;
-    border-bottom: 1px solid rgba(0, 175, 192, 0.12) !important;
-    box-shadow: 0 4px 20px rgba(12, 35, 56, 0.05) !important;
+    background: rgba(255, 255, 255, 0.68) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 4px 20px rgba(12, 35, 56, 0.04) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.navbar.is-scrolled,
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.85) !important;
+    box-shadow: 0 6px 24px rgba(12, 35, 56, 0.08) !important;
 }
 
 .nav-menu a {
@@ -115,6 +125,10 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
 /* ==========================================================================
    1. HERO WITH LUXURY STAGGERED ENTRANCE & POLISHED COPYS
    ========================================================================== */
+
+.hero-section {
+    padding-top: 0 !important;
+}
 
 .hero-stage {
     position: relative;
@@ -191,6 +205,8 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
     z-index: 3;
     display: flex;
     align-items: center;
+    padding-top: 72px !important;
+    box-sizing: border-box !important;
 }
 
 .hero-copy {
@@ -412,17 +428,20 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
 }
 
 .hero-btn-ghost {
-    background: rgba(255, 255, 255, 0.94);
-    color: #0f172a;
-    border: 1.5px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+    background: rgba(255, 255, 255, 0.68) !important;
+    backdrop-filter: blur(14px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
+    color: #0f172a !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
 }
 
 .hero-btn-ghost:hover {
-    transform: translateY(-3px) scale(1.02);
-    background: #ffffff;
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3);
-    color: #000000;
+    transform: translateY(-3px) scale(1.02) !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(37, 211, 102, 0.5) !important;
+    box-shadow: 0 14px 35px rgba(37, 211, 102, 0.25), inset 0 1px 0 #ffffff !important;
+    color: #000000 !important;
 }
 
 .hero-btn-ghost i {
@@ -1452,4 +1471,418 @@ p.section-subhead,
     font-family: var(--kz-font-heading) !important;
     letter-spacing: -0.022em;
 }
+
+/* ==========================================================================
+   13. PROFESSIONAL CLINICAL ANIMATIONS & MICRO-INTERACTIONS SUITE
+   Silky smooth, GPU-accelerated micro-interactions & scroll-driven physics.
+   ========================================================================== */
+
+/* ── A. Progressive Scroll-Driven Reveal Engine ── */
+.pro-anim-active .pro-reveal:not(.is-revealed) {
+    opacity: 0 !important;
+    transform: translateY(28px) !important;
+    pointer-events: none;
+    will-change: opacity, transform;
+}
+
+.pro-anim-active .pro-reveal {
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    will-change: opacity, transform;
+}
+
+.pro-anim-active .pro-reveal.is-revealed {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    pointer-events: auto;
+}
+
+.pro-anim-active .pro-reveal.stagger-1 { transition-delay: 0.06s !important; }
+.pro-anim-active .pro-reveal.stagger-2 { transition-delay: 0.12s !important; }
+.pro-anim-active .pro-reveal.stagger-3 { transition-delay: 0.18s !important; }
+.pro-anim-active .pro-reveal.stagger-4 { transition-delay: 0.24s !important; }
+.pro-anim-active .pro-reveal.stagger-5 { transition-delay: 0.30s !important; }
+.pro-anim-active .pro-reveal.stagger-6 { transition-delay: 0.36s !important; }
+
+/* ── B. Hero Section Staggered Entrance & Ambient Keyframes ── */
+@keyframes kzHeroEyebrow {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes kzHeroTextUp {
+    0% {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes kzPulseRing {
+    0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(0, 175, 192, 0.65);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 9px rgba(0, 175, 192, 0);
+    }
+    100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(0, 175, 192, 0);
+    }
+}
+
+@keyframes kzShimmerSweep {
+    0% {
+        transform: translateX(-120%) rotate(25deg);
+    }
+    100% {
+        transform: translateX(240%) rotate(25deg);
+    }
+}
+
+@keyframes kzPlayPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 175, 192, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 14px rgba(0, 175, 192, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 175, 192, 0);
+    }
+}
+
+@keyframes kzHandleBeacon {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(0, 175, 192, 0.6), 0 8px 24px rgba(0, 0, 0, 0.28);
+    }
+    50% {
+        box-shadow: 0 0 0 12px rgba(0, 175, 192, 0), 0 12px 28px rgba(0, 0, 0, 0.32);
+    }
+}
+
+@keyframes kzScanBreath {
+    0%, 100% {
+        box-shadow: 0 4px 14px rgba(0, 175, 192, 0.28);
+    }
+    50% {
+        box-shadow: 0 4px 22px rgba(0, 175, 192, 0.65);
+    }
+}
+
+/* Hero elements entry */
+.hero-copy .hero-eyebrow {
+    animation: kzHeroEyebrow 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-copy .hero-eyebrow .pulse-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--kz-teal);
+    vertical-align: middle;
+    margin-right: 6px;
+    animation: kzPulseRing 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.hero-copy .hero-h1 .hero-line-1 {
+    display: inline-block;
+    animation: kzHeroTextUp 0.85s 0.08s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-copy .hero-h1 .hero-line-2 {
+    display: inline-block;
+    animation: kzHeroTextUp 0.85s 0.16s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-copy .hero-h1 .hero-line-3 {
+    display: inline-block;
+    animation: kzHeroTextUp 0.85s 0.24s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-copy .hero-sub {
+    animation: kzHeroTextUp 0.85s 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-copy .hero-ctas {
+    animation: kzHeroTextUp 0.85s 0.40s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── C. High-End Button Micro-Physics ── */
+.hero-btn-primary,
+.nav-cta .btn-primary,
+.cta-banner-card .hero-btn-primary {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.3s ease !important;
+}
+
+.hero-btn-primary::after,
+.nav-cta .btn-primary::after {
+    content: '';
+    position: absolute;
+    top: -60%;
+    left: -80%;
+    width: 60%;
+    height: 220%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.28) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none;
+}
+
+.hero-btn-primary:hover::after,
+.nav-cta .btn-primary:hover::after {
+    animation: kzShimmerSweep 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-btn-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 12px 28px -4px rgba(0, 175, 192, 0.45) !important;
+}
+
+.hero-btn-primary:active,
+.nav-cta .btn-primary:active {
+    transform: translateY(1px) scale(0.985) !important;
+}
+
+.hero-btn-primary .cta-arrow {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-btn-primary:hover .cta-arrow {
+    transform: translateX(4px);
+}
+
+.hero-btn-ghost {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease,
+                background-color 0.3s ease,
+                box-shadow 0.3s ease !important;
+}
+
+.hero-btn-ghost:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 22px rgba(255, 255, 255, 0.12) !important;
+}
+
+.hero-btn-ghost:active {
+    transform: translateY(1px) scale(0.985) !important;
+}
+
+/* ── D. Trust Strip Micro-Interactions ── */
+.kz-trust-list li {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    cursor: default;
+}
+
+.kz-trust-list li:hover {
+    transform: translateY(-2px) scale(1.02);
+}
+
+.kz-trust-list li strong {
+    transition: color 0.25s ease;
+}
+
+.kz-trust-list li:hover strong {
+    color: var(--kz-teal-light);
+}
+
+/* ── E. Feature Cards Squircle & Gradient Glow ── */
+.feature-card-pro .icon-squircle {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.feature-card-pro:hover .icon-squircle {
+    transform: scale(1.08) rotate(-3deg) !important;
+}
+
+.feature-card-pro .card-footer-micro i {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.feature-card-pro:hover .card-footer-micro i {
+    transform: translateX(4px) !important;
+}
+
+/* ── F. Clinical Treatment & Services Cards ── */
+.treatment-item-card {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease !important;
+}
+
+.treatment-item-card:hover {
+    transform: translateY(-5px) !important;
+    border-color: rgba(0, 175, 192, 0.35) !important;
+    box-shadow: 0 16px 36px -10px rgba(0, 175, 192, 0.16) !important;
+}
+
+.treatment-item-card .treatment-thumb img {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    will-change: transform;
+}
+
+.treatment-item-card:hover .treatment-thumb img {
+    transform: scale(1.05) !important;
+}
+
+.treatment-item-card:hover .treatment-title-link {
+    color: var(--kz-teal) !important;
+}
+
+.service-category-card {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease !important;
+}
+
+.service-category-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 14px 30px -8px rgba(0, 175, 192, 0.14) !important;
+}
+
+/* ── G. Before/After Comparison Interactive Beacon ── */
+.ba-handle {
+    animation: kzHandleBeacon 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite !important;
+    transition: transform 0.2s ease !important;
+}
+
+.ba-handle:hover,
+.ba-slider-container:active .ba-handle {
+    transform: translate(-50%, -50%) scale(1.12) !important;
+    animation: none !important;
+    box-shadow: 0 0 0 6px rgba(0, 175, 192, 0.4), 0 14px 32px rgba(0, 0, 0, 0.35) !important;
+}
+
+.case-card-pro {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease !important;
+}
+
+.case-card-pro:hover {
+    transform: translateY(-5px) !important;
+    border-color: rgba(0, 175, 192, 0.35) !important;
+    box-shadow: 0 16px 36px -10px rgba(0, 175, 192, 0.16) !important;
+}
+
+.case-card-pro .case-img-wrap img {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.case-card-pro:hover .case-img-wrap img {
+    transform: scale(1.04) !important;
+}
+
+/* ── H. Patient Reviews & Video Testimonials ── */
+.testi-card-pro {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease !important;
+}
+
+.testi-card-pro:hover {
+    transform: translateY(-5px) !important;
+    border-color: rgba(0, 175, 192, 0.35) !important;
+    box-shadow: 0 16px 36px -10px rgba(0, 175, 192, 0.12) !important;
+}
+
+.testi-filter-btn {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.25s ease,
+                color 0.25s ease,
+                box-shadow 0.25s ease !important;
+}
+
+.testi-filter-btn:hover {
+    transform: translateY(-1px) !important;
+}
+
+.testi-filter-btn:active {
+    transform: translateY(1px) scale(0.98) !important;
+}
+
+.testi-video-card .video-play-btn {
+    animation: kzPlayPulse 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite !important;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.testi-video-card:hover .video-play-btn {
+    transform: translate(-50%, -50%) scale(1.12) !important;
+}
+
+/* ── I. Branch Clinic Cards & Quick Dock ── */
+.kz-branch-grid .kz-branch {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease !important;
+}
+
+.kz-branch-grid .kz-branch:hover {
+    transform: translateY(-5px) !important;
+    border-color: rgba(0, 175, 192, 0.4) !important;
+    box-shadow: 0 18px 40px -10px rgba(0, 175, 192, 0.18) !important;
+}
+
+.floating-quick-dock .dock-item {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.25s ease,
+                background 0.25s ease !important;
+}
+
+.floating-quick-dock .dock-item:hover {
+    transform: translateY(-2px) !important;
+}
+
+.floating-quick-dock .dock-scan {
+    animation: kzScanBreath 2.8s cubic-bezier(0.16, 1, 0.3, 1) infinite !important;
+}
+
+/* ── J. Reduced Motion Accessibility Override ── */
+@media (prefers-reduced-motion: reduce) {
+    .pro-anim-active .pro-reveal:not(.is-revealed),
+    .pro-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        pointer-events: auto !important;
+    }
+
+    .hero-copy .hero-eyebrow,
+    .hero-copy .hero-eyebrow .pulse-dot,
+    .hero-copy .hero-h1 .hero-line-1,
+    .hero-copy .hero-h1 .hero-line-2,
+    .hero-copy .hero-h1 .hero-line-3,
+    .hero-copy .hero-sub,
+    .hero-copy .hero-ctas,
+    .ba-handle,
+    .testi-video-card .video-play-btn,
+    .floating-quick-dock .dock-scan,
+    .hero-btn-primary::after,
+    .nav-cta .btn-primary::after {
+        animation: none !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
 

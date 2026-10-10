@@ -238,6 +238,11 @@ document.addEventListener('DOMContentLoaded', function() {
             pill.addEventListener('click', function() {
                 const filter = this.getAttribute('data-filter') || 'all';
 
+                // Pause all videos when category changes
+                document.querySelectorAll('.review-video-wrap video').forEach(v => {
+                    if (!v.paused) v.pause();
+                });
+
                 // Toggle active filter state
                 filterPills.forEach(p => p.classList.remove('active'));
                 this.classList.add('active');
@@ -286,7 +291,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Sync overlay visibility with video events
-        video.addEventListener('play', () => overlay.classList.add('is-playing'));
+        video.addEventListener('play', () => {
+            document.querySelectorAll('.review-video-wrap video').forEach(v => {
+                if (v !== video && !v.paused) v.pause();
+            });
+            overlay.classList.add('is-playing');
+        });
         video.addEventListener('pause', () => overlay.classList.remove('is-playing'));
         video.addEventListener('ended', () => overlay.classList.remove('is-playing'));
     });

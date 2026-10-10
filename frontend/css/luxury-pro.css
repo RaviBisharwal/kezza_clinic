@@ -1036,37 +1036,41 @@ body {
    STATS SECTION WITH LIVE COUNT-UP ANIMATION
    ═════════════════════════════════════════════════════════════════════ */
 .stats-section-pro {
-    padding: 75px 0 !important;
-    background: #ffffff !important;
+    padding: 80px 0 !important;
+    background: 
+        radial-gradient(circle at 12% 20%, rgba(0, 175, 192, 0.10) 0%, transparent 45%),
+        radial-gradient(circle at 88% 80%, rgba(212, 160, 23, 0.09) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.06) 0%, transparent 55%),
+        linear-gradient(180deg, #f8fcfe 0%, #edf7f9 50%, #f8fcfe 100%) !important;
     position: relative !important;
     overflow: hidden !important;
-    border-top: 1px solid #edf2f7 !important;
-    border-bottom: 1px solid #edf2f7 !important;
+    border-top: 1px solid rgba(0, 175, 192, 0.15) !important;
+    border-bottom: 1px solid rgba(0, 175, 192, 0.15) !important;
 }
 
 /* Atmospheric Ambient Lighting */
 .stats-section-pro::before {
     content: '' !important;
     position: absolute !important;
-    top: -60px !important;
-    left: 8% !important;
-    width: 420px !important;
-    height: 420px !important;
-    background: radial-gradient(circle, rgba(0, 175, 192, 0.06) 0%, transparent 70%) !important;
+    top: -70px !important;
+    left: 6% !important;
+    width: 480px !important;
+    height: 480px !important;
+    background: radial-gradient(circle, rgba(0, 175, 192, 0.12) 0%, transparent 70%) !important;
     pointer-events: none !important;
-    filter: blur(50px) !important;
+    filter: blur(60px) !important;
 }
 
 .stats-section-pro::after {
     content: '' !important;
     position: absolute !important;
-    bottom: -60px !important;
-    right: 8% !important;
-    width: 420px !important;
-    height: 420px !important;
-    background: radial-gradient(circle, rgba(201, 168, 76, 0.05) 0%, transparent 70%) !important;
+    bottom: -70px !important;
+    right: 6% !important;
+    width: 480px !important;
+    height: 480px !important;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.10) 0%, transparent 70%) !important;
     pointer-events: none !important;
-    filter: blur(50px) !important;
+    filter: blur(60px) !important;
 }
 
 .stats-grid-pro {
@@ -1084,10 +1088,10 @@ body {
     --icon-bg: rgba(0, 153, 168, 0.08);
     --icon-border: rgba(0, 153, 168, 0.22);
 
-    background: #ffffff !important;
-    border: 1.5px solid #edf2f7 !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.52) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.82) !important;
+    backdrop-filter: blur(18px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(190%) !important;
     border-radius: 22px !important;
     padding: 28px 16px 24px !important;
     text-align: center !important;
@@ -1096,7 +1100,11 @@ body {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    box-shadow: 0 10px 30px -8px rgba(15, 23, 42, 0.07), 0 2px 6px rgba(15, 23, 42, 0.03) !important;
+    box-shadow: 
+        0 14px 35px -8px rgba(15, 23, 42, 0.08), 
+        0 4px 14px rgba(0, 175, 192, 0.04),
+        inset 0 1px 1px rgba(255, 255, 255, 0.95),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.02) !important;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                 box-shadow 0.4s ease, 
                 border-color 0.4s ease, 
@@ -1220,10 +1228,12 @@ body {
 .stat-box-pro:hover {
     animation-play-state: paused !important;
     transform: translateY(-10px) scale(1.02) !important;
-    background: #ffffff !important;
+    background: rgba(255, 255, 255, 0.82) !important;
     border-color: var(--box-accent) !important;
-    box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.12), 
-                0 0 20px var(--box-glow) !important;
+    box-shadow: 
+        0 22px 45px -10px var(--box-glow), 
+        0 0 25px rgba(0, 175, 192, 0.18),
+        inset 0 1px 1px #ffffff !important;
     z-index: 10 !important;
 }
 
@@ -1238,25 +1248,28 @@ body {
 
 /* Squircle Icon */
 .stat-icon-wrap {
-    width: 50px !important;
-    height: 50px !important;
-    border-radius: 15px !important;
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 16px !important;
     margin: 0 auto 15px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    background: var(--icon-bg) !important;
-    border: 1px solid var(--icon-border) !important;
+    background: rgba(255, 255, 255, 0.65) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
     color: var(--box-accent) !important;
     font-size: 1.25rem !important;
-    box-shadow: 0 4px 12px var(--box-glow) !important;
+    box-shadow: 0 6px 18px var(--box-glow), inset 0 1px 1px rgba(255, 255, 255, 1) !important;
     transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
     flex-shrink: 0 !important;
 }
 
 .stat-box-pro:hover .stat-icon-wrap {
     transform: scale(1.12) rotate(5deg) !important;
-    box-shadow: 0 6px 18px var(--box-glow) !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    box-shadow: 0 8px 22px var(--box-glow), inset 0 1px 1px #ffffff !important;
 }
 
 /* Iridescent Metric Number */
@@ -1290,30 +1303,40 @@ body {
 .stat-badge-micro {
     display: inline-flex !important;
     align-items: center !important;
-    gap: 5px !important;
-    background: #f8fafc !important;
-    border: 1px solid #e2e8f0 !important;
-    padding: 4px 11px !important;
+    gap: 6px !important;
+    background: rgba(255, 255, 255, 0.52) !important;
+    backdrop-filter: blur(12px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+    border: 1px solid rgba(0, 175, 192, 0.28) !important;
+    padding: 5px 12px !important;
     border-radius: 20px !important;
     font-size: 0.72rem !important;
     font-weight: 600 !important;
-    color: #64748b !important;
+    color: #334155 !important;
     letter-spacing: 0.02em !important;
     white-space: nowrap !important;
     margin-top: auto !important;
-    transition: all 0.3s ease !important;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    cursor: default !important;
 }
 
 .stat-badge-micro i {
     font-size: 0.68rem !important;
     color: var(--box-accent) !important;
+    transition: transform 0.25s ease !important;
 }
 
 .stat-box-pro:hover .stat-badge-micro {
-    background: #ffffff !important;
+    background: rgba(255, 255, 255, 0.90) !important;
     border-color: var(--box-accent) !important;
-    color: #0f172a !important;
-    box-shadow: 0 2px 8px var(--box-glow) !important;
+    color: var(--box-accent) !important;
+    box-shadow: 0 4px 14px var(--box-glow), inset 0 1px 0 #ffffff !important;
+    transform: translateY(-1px) !important;
+}
+
+.stat-box-pro:hover .stat-badge-micro i {
+    transform: scale(1.15) !important;
 }
 
 /* Responsive Grid Breakpoints */
@@ -1386,14 +1409,17 @@ body {
 .ba-slider-container {
     position: relative;
     width: 100%;
-    height: 480px;
+    aspect-ratio: 3 / 2;
+    max-height: 560px;
+    height: auto;
     border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 20px 50px -10px rgba(0, 175, 192, 0.2), 0 8px 25px rgba(15, 23, 42, 0.08) !important;
+    box-shadow: 0 20px 50px -10px rgba(0, 175, 192, 0.22), 0 8px 25px rgba(15, 23, 42, 0.08) !important;
     border: 2.5px solid rgba(0, 175, 192, 0.28) !important;
     user-select: none;
     -webkit-user-select: none;
-    background: #ffffff;
+    touch-action: pan-y;
+    background: #0f172a;
 }
 
 .ba-slider-container img {
@@ -1403,6 +1429,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center center;
     pointer-events: none;
 }
 
@@ -1418,12 +1445,16 @@ body {
     height: 100%;
     overflow: hidden;
     z-index: 2;
+    will-change: width;
     transition: width 0.05s linear;
 }
 
 .ba-img-before-wrap img {
-    width: 960px;
+    width: 100%;
+    height: 100%;
     max-width: none;
+    object-fit: cover;
+    object-position: center center;
 }
 
 /* Floating Badges inside Slider */
@@ -2055,7 +2086,7 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
     .ba-slider-container {
-        height: 380px;
+        max-height: 480px;
     }
 }
 
@@ -2067,10 +2098,24 @@ body {
         grid-template-columns: 1fr;
     }
     .ba-slider-container {
-        height: 300px;
+        aspect-ratio: 4 / 3;
+        border-radius: 18px;
     }
-    .ba-img-before-wrap img {
-        width: 100vw;
+    .ba-badge {
+        padding: 5px 12px;
+        font-size: 0.74rem;
+        bottom: 12px;
+    }
+    .ba-badge-before {
+        left: 12px;
+    }
+    .ba-badge-after {
+        right: 12px;
+    }
+    .ba-handle {
+        width: 40px;
+        height: 40px;
+        font-size: 0.88rem;
     }
 }
 

@@ -787,10 +787,10 @@ html body .why-card::after {
 }
 
 html body .why-card:nth-child(1)::after { content: "✓ 5,000+ PMU Completed" !important; }
-html body .why-card:nth-child(2)::after { content: "✓ 100% Hospital Grade Hygiene" !important; }
+html body .why-card:nth-child(2)::after { content: "✓ Hospital-Grade Hygiene" !important; }
 html body .why-card:nth-child(3)::after { content: "✓ Client Pre-Approved Design" !important; }
 html body .why-card:nth-child(4)::after { content: "✓ Hypoallergenic & Safe" !important; }
-html body .why-card:nth-child(5)::after { content: "✓ Zero Discoloration Guarantee" !important; }
+html body .why-card:nth-child(5)::after { content: "✓ Zero Discoloration Protocol" !important; }
 html body .why-card:nth-child(6)::after { content: "✓ Mandatory Allergy Test First" !important; }
 
 html body .why-card:hover::after {
@@ -1138,7 +1138,7 @@ html body .aftercare-image:hover img {
 
 /* Floating Frosted Glass Badge on Aftercare Image */
 html body .aftercare-image::after {
-  content: "★ 100% Healed Results Guarantee • Doctor Approved" !important;
+  content: "★ Doctor-Supervised Care • Clinical Aftercare Protocol" !important;
   position: absolute !important;
   bottom: 22px !important;
   left: 22px !important;
