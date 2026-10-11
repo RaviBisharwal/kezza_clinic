@@ -82,6 +82,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 4. Floating Back to Top Button
   function ensureBackToTop() {
+    // smooth-scroll.js already provides the back-to-top button on pages that load it.
+    if (window.KezzaSmoothScroll) return;
     let topBtn = document.getElementById('kzBackToTop');
     if (!topBtn) {
       topBtn = document.createElement('button');
@@ -107,46 +109,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   ensureBackToTop();
 
-  // 5. Global Chatbot Trigger for "Book Consultation" Buttons
+  // 5. "Book Consultation" links that point at #chat-consultant open the AI chat.
+  //    (quick-actions.js handles the header/drawer buttons and [data-open-chatbot-consultant].)
   document.addEventListener('click', function (e) {
-    const btn = e.target.closest('[data-open-chatbot-consultant], a[href="#chat-consultant"], .btn-drawer-book');
-    if (btn) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      // Close mobile drawer if active
-      const navMenu = document.getElementById('navMenu');
-      const hamburger = document.getElementById('hamburger');
-      const navBackdrop = document.getElementById('navBackdrop');
-      if (navMenu && navMenu.classList.contains('active')) {
-        navMenu.classList.remove('active');
-        if (hamburger) hamburger.classList.remove('active');
-        if (navBackdrop) navBackdrop.classList.remove('active');
-        document.body.classList.remove('nav-drawer-open');
-        document.documentElement.classList.remove('nav-drawer-open');
-      }
-      
-      if (typeof window.openKezzaChat === 'function') {
-        window.openKezzaChat(true);
-        return;
-      }
-      const fab = document.getElementById('kezzaChatFab');
-      if (fab) {
-        fab.click();
-        return;
-      }
-      if (!document.querySelector('script[src*="kezza-ai.js"]')) {
-        const s = document.createElement('script');
-        s.src = '/js/kezza-ai.js?v=a3cc0339';
-        s.defer = true;
-        s.onload = function () {
-          setTimeout(function () {
-            const f = document.getElementById('kezzaChatFab');
-            if (f) f.click();
-          }, 150);
-        };
-        document.body.appendChild(s);
-      }
+    const btn = e.target.closest('a[href="#chat-consultant"]');
+    if (!btn) return;
+    e.preventDefault();
+    if (typeof window.kezzaOpenChatConsultant === 'function') {
+      window.kezzaOpenChatConsultant();
+    } else if (typeof window.openKezzaChat === 'function') {
+      window.openKezzaChat(true);
     }
   });
 });

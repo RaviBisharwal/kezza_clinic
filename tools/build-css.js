@@ -67,9 +67,19 @@ function minify(css) {
       continue;
     }
     if ((c === 'u' || c === 'U') && css.slice(i, i + 4).toLowerCase() === 'url(') {
-      const j = css.indexOf(')', i);                                // url(...) verbatim
-      emit(css.slice(i, j + 1));
-      i = j + 1;
+      // url(...) verbatim. A quoted url (e.g. an inline SVG data URI) can itself
+      // contain ")" characters, so skip the quoted part before looking for ")".
+      let j = i + 4;
+      while (j < n && /\s/.test(css[j])) j++;
+      if (css[j] === '"' || css[j] === "'") {
+        const q = css[j++];
+        while (j < n && css[j] !== q) { if (css[j] === '\\') j++; j++; }
+        j++;
+      }
+      const k = css.indexOf(')', j);
+      const end = k === -1 ? n : k + 1;
+      emit(css.slice(i, end));
+      i = end;
       continue;
     }
     if (c === ' ' || c === '\n' || c === '\r' || c === '\t' || c === '\f') {

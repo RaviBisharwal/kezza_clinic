@@ -1,1 +1,119 @@
-(function(){var d=document.currentScript&&document.currentScript.src||"",n=d?d.replace(/js\/scanner-launch\.js(\?.*)?$/,""):window.location.pathname.split("/").length>2?"/":"",f=".nav-scanner-link, .btn-scanner-hero, .dock-scan, [data-open-scanner-modal]",h=n+"css/scanner-modal.css?v=46427c85",m=n+"js/scanner-modal.js?v=bec4355e",a=null;function t(){return a||(a=new Promise(function(e,l){if(!document.querySelector('link[href*="scanner-modal.css"]')){var i=document.createElement("link");i.rel="stylesheet",i.href=h,document.head.appendChild(i)}if(window.KezzaScannerModal){e();return}var o=document.createElement("script");o.src=m,o.onload=function(){e()},o.onerror=function(){l(new Error("scanner assets failed"))},document.body.appendChild(o)}),a)}function r(e){if(e){if(e.metaKey||e.ctrlKey||e.shiftKey||e.button===1)return;e.preventDefault()}try{sessionStorage.setItem("kezza_scanner_auto_shown","true")}catch(l){}t().then(function(){window.KezzaScannerModal&&window.KezzaScannerModal.open?window.KezzaScannerModal.open():window.location.href=n+"face-scanner.html"}).catch(function(){window.location.href=n+"face-scanner.html"})}window.openKezzaScanner=r;function u(){document.querySelectorAll(f).forEach(function(e){e.dataset.ksBound||(e.dataset.ksBound="1",e.addEventListener("click",r),e.addEventListener("mouseenter",t,{once:!0,passive:!0}),e.addEventListener("touchstart",t,{once:!0,passive:!0}))})}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",u,{once:!0}):u(),window.location.hash==="#scanner"&&r();var c=(window.location.pathname||"").toLowerCase(),w=c.endsWith("face-scanner.html")||c.endsWith("face-scanner"),S=c.includes("admin"),s=!1;try{s=sessionStorage.getItem("kezza_scanner_auto_shown")==="true"}catch(e){s=!1}!w&&!S&&!s&&(t(),setTimeout(function(){try{if(sessionStorage.getItem("kezza_scanner_auto_shown")==="true")return;sessionStorage.setItem("kezza_scanner_auto_shown","true")}catch(e){}r()},6e3))})();
+/**
+ * Kezza AI Scanner launcher.
+ * Opens the scanner as a full-screen popup from any entry point
+ * (header nav link, hero CTA, floating dock) instead of navigating away,
+ * and shows it once per visit about 6 seconds after the page opens.
+ *
+ * The popup's files (about 70 KB) are fetched shortly before the automatic popup,
+ * or as soon as a visitor touches/hovers a scanner button, rather than while the
+ * page itself is still loading.
+ */
+(function () {
+  var SELECTORS = '.nav-scanner-link, .btn-scanner-hero, .dock-scan, [data-open-scanner-modal]';
+  var CSS_URL = '/css/bundle-scanner-modal.min.css?v=43d56733';
+  var JS_URL  = '/js/scanner-modal.min.js?v=8f2fa1a0';
+  var AUTO_KEY = 'kezza_scanner_auto_shown';
+  var loading = null;
+
+  function loadOnce() {
+    if (loading) return loading;
+    loading = new Promise(function (resolve, reject) {
+      if (!document.querySelector('link[href*="scanner-modal."]')) {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = CSS_URL;
+        document.head.appendChild(link);
+      }
+      if (window.KezzaScannerModal) { resolve(); return; }
+      var s = document.createElement('script');
+      s.src = JS_URL;
+      s.onload = function () { resolve(); };
+      s.onerror = function () { loading = null; reject(new Error('scanner assets failed')); };
+      document.body.appendChild(s);
+    });
+    return loading;
+  }
+
+  function markShown() {
+    try {
+      sessionStorage.setItem(AUTO_KEY, 'true');
+      sessionStorage.setItem('kz_scanner_shown', '1');
+    } catch (err) {}
+  }
+
+  function openScanner(e) {
+    if (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return; // let new-tab clicks work
+      e.preventDefault();
+    }
+    markShown();
+    loadOnce().then(function () {
+      if (window.KezzaScannerModal && window.KezzaScannerModal.open) {
+        window.KezzaScannerModal.open();
+      } else {
+        window.location.href = '/face-scanner.html';
+      }
+    }).catch(function () {
+      window.location.href = '/face-scanner.html'; // graceful fallback
+    });
+  }
+
+  // Expose so the chat widget (and anything else) can open the scanner too
+  window.openKezzaScanner = openScanner;
+
+  function bind() {
+    document.querySelectorAll(SELECTORS).forEach(function (el) {
+      if (el.dataset.ksBound) return;
+      el.dataset.ksBound = '1';
+      el.addEventListener('click', openScanner);
+      // Warm the assets on hover/touch so the popup feels instant
+      el.addEventListener('mouseenter', loadOnce, { once: true, passive: true });
+      el.addEventListener('touchstart', loadOnce, { once: true, passive: true });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bind, { once: true });
+  } else {
+    bind();
+  }
+
+  // Deep link: /face-scanner.html#scanner or any page with #scanner opens it
+  if (window.location.hash === '#scanner') openScanner();
+
+  // ── Automatic popup: once per visit, ~6 s after the page opens ──
+  var path = (window.location.pathname || '').toLowerCase();
+  var isScannerPage = path.endsWith('face-scanner.html') || path.endsWith('face-scanner');
+  var isAdminPage   = path.indexOf('admin') !== -1;
+  var alreadyShown = false;
+  try { alreadyShown = sessionStorage.getItem(AUTO_KEY) === 'true'; } catch (err) { alreadyShown = false; }
+  if (isScannerPage || isAdminPage || alreadyShown) return;
+
+  // Never pop up over something the visitor is busy with.
+  function visitorIsBusy() {
+    if (document.hidden) return true;
+    var a = document.activeElement;
+    if (a && (a.tagName === 'INPUT' || a.tagName === 'TEXTAREA' || a.tagName === 'SELECT' || a.isContentEditable)) return true;
+    if (document.body.classList.contains('nav-drawer-open')) return true;
+    var chat = document.getElementById('kezzaChatWindow');
+    if (chat && chat.classList.contains('open')) return true;
+    var promo = document.getElementById('kezzaScannerModalBackdrop');
+    if (promo && promo.classList.contains('is-visible')) return true;
+    return false;
+  }
+
+  var tries = 0;
+  function autoOpen() {
+    try { if (sessionStorage.getItem(AUTO_KEY) === 'true') return; } catch (err) {}
+    if (visitorIsBusy() && tries < 4) { tries++; setTimeout(autoOpen, 4000); return; }
+    if (visitorIsBusy()) return;
+    openScanner();
+  }
+
+  // Fetch the popup files ~1.5 s before showing it, while the browser is idle.
+  setTimeout(function () {
+    if ('requestIdleCallback' in window) requestIdleCallback(function () { loadOnce().catch(function () {}); }, { timeout: 1200 });
+    else loadOnce().catch(function () {});
+  }, 4500);
+  setTimeout(autoOpen, 6000);
+})();

@@ -1,0 +1,268 @@
+/* ==========================================================================
+   KEZZA CLINIC — MOBILE SPEED & LAYOUT LAYER (October 2026)
+   Loaded LAST in every CSS bundle (tools/css-bundles.json), so it wins over
+   the page stylesheets without changing them.
+
+   1. Hidden widgets (chat window, scanner popups) don't animate in the background
+   2. Phones & tablets: no background blur on bars that stay on screen
+   3. Phones & tablets: decorative looping effects off, attention pulses limited
+   4. Phones & tablets: lighter, quicker scroll-reveal animations
+   5. Doctor photos framed as portraits, so faces are never cut off
+   6. Small mobile layout fixes
+   7. "Reduce motion" setting respected everywhere
+
+   Why: on a mid-range phone the old pages kept the processor busy even when
+   nobody touched the screen (blurred see-through bars re-drawn on every scroll
+   frame, glowing/shimmering loops, a hidden popup's laser line), which is what
+   made scrolling feel laggy.
+   ========================================================================== */
+
+/* ── 1. Hidden widgets: keep their animations paused until they are opened ── */
+.kezza-scanner-modal-backdrop:not(.is-visible),
+.kezza-scanner-modal-backdrop:not(.is-visible) *,
+.kezza-scanner-modal-backdrop:not(.is-visible) *::before,
+.kezza-scanner-modal-backdrop:not(.is-visible) *::after,
+.kezza-chat-window:not(.open) *,
+.kezza-chat-window:not(.open) *::before,
+.kezza-chat-window:not(.open) *::after,
+.ks-modal-backdrop:not(.ks-active) *,
+.ks-modal-backdrop:not(.ks-active) *::before,
+.ks-modal-backdrop:not(.ks-active) *::after {
+    animation-play-state: paused !important;
+}
+.kezza-scanner-modal-backdrop:not(.is-visible),
+.ks-modal-backdrop:not(.ks-active) {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+/* Hero slideshow / trust ticker scrolled out of view (pro-animations.js adds .kz-offscreen) */
+.kz-offscreen,
+.kz-offscreen *,
+.kz-offscreen *::before,
+.kz-offscreen *::after {
+    animation-play-state: paused !important;
+}
+
+@media (max-width: 1024px), (hover: none) {
+
+    /* ── 2. Bars that stay on screen: solid backgrounds instead of live blur ── */
+    .navbar,
+    .navbar.is-scrolled,
+    .navbar.scrolled,
+    .navbar.navbar-scrolled {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        background: rgba(255, 255, 255, 0.985) !important;
+    }
+    .floating-quick-dock {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        background: rgba(255, 255, 255, 0.97) !important;
+    }
+    .hair-subnav-section,
+    .skin-subnav-section,
+    .prp-subnav-section,
+    .service-nav-strip,
+    .service-nav-strip.is-stuck {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        background: rgba(255, 255, 255, 0.985) !important;
+    }
+    .nav-backdrop,
+    #navMenu,
+    .nav-menu,
+    .nav-links,
+    #kzBackToTop,
+    .kezza-scanner-modal-backdrop,
+    .ks-modal-backdrop,
+    .scanner-toast,
+    .session-save-banner,
+    .social-sidebar {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+    }
+    .nav-backdrop {
+        background: rgba(11, 15, 27, 0.62) !important;
+    }
+
+    /* ── 3a. Decorative loops that repaint the screen every frame: off ── */
+    .dock-item.dock-wa::after,                      /* light sweep across the WhatsApp button */
+    .dc-pill-badge, .sm-pill-badge, .sp-pill-badge, .service-cat-pill,
+    .ba-handle,
+    .hero-h1 em, .hero-h1 em.hero-ajmer,            /* shimmering hero words */
+    .ac-ba-shimmer, .pg-ba-shimmer, .prp-ba-shimmer-sweep,
+    .pulse-emerald-dot, .scanner-live-pulse,
+    .btn-wa-action,
+    .kz-live-pulse-dot, .pulse-dot, .badge-pulse-dot, .pin-pulse,
+    .hero-beacon-pulse, .beacon-pulse, .vision-beacon,
+    .hero-shimmer-sweep,
+    .btn-gold::after, .btn-service-wa::after, .btn-hero-primary::after,
+    .section-tag::after,
+    .gold-divider-gem,
+    .wig-hero-badge,
+    .btn-primary.btn-sp-large, .btn-submit-booking,
+    .stage-node-circle, .stage-pulse-dot,
+    .photo-ambient-warmth,
+    .prp-ba-metric-badge,
+    .pmu-hero-section .hero-title span,
+    .final-cta-section h2,
+    .aftercare-section::before, .before-after-section::before,
+    .faq-section::before, .services-breakdown-section::before,
+    .whr-gold-line, .whr-why-fail-section::before, .badge-dot-whr,
+    /* gently floating badges, glows and orbs */
+    .dc-hero-floating-badge, .sm-hero-floating-badge, .media-badge-top,
+    .hero-float-badge,
+    .hero-ambient-aura,
+    .stat-box-pro, html body .stat-box-pro.is-revealed[class*="stagger-"],
+    .pmu-hero-section::before, .pmu-hero-section::after,
+    .final-cta-section::before,
+    .why-icon,
+    .service-hero-image-wrap,
+    .hero-image::before,
+    .hero-photo-frame img, .hero-photo-shimmer,
+    .doctor-verified-badge i {
+        animation: none !important;
+    }
+    /* the permanent-makeup page's dark theme sets its loops with "html body …" selectors */
+    html body section + section::before,
+    html body .pmu-section + .pmu-section::before,
+    html body .final-cta-section h2,
+    html body .cta-section h2,
+    html body .cta-heading,
+    html body .final-cta-section::before,
+    html body .final-cta-section::after,
+    html body .pmu-hero-section::before,
+    html body .hero-section::before,
+    html body .advantage-icon,
+    html body .why-icon,
+    html body .feature-icon,
+    html body .hero-content h1 em,
+    html body .pmu-hero-content h1 em,
+    html body .hero-title em,
+    html body .hero-title span {
+        animation: none !important;
+    }
+    /* moving scan lines over before/after photos: hide instead of freezing mid-photo */
+    .ac-ba-scan-line, .pg-ba-scan-line,
+    .prp-scanner-laser,
+    .whr-sim-diagram-stage::before {
+        animation: none !important;
+        opacity: 0 !important;
+    }
+
+    /* ── 3b. Attention pulses on the floating buttons: a few times, then rest ── */
+    .kezza-chat-fab,
+    #kezzaChatFab,
+    .dock-item.dock-scan,
+    .dock-item.dock-wa i,
+    .dock-item.dock-scan i {
+        animation-iteration-count: 3 !important;
+    }
+
+    /* ── 4. Scroll-reveal: shorter, quicker, no side-slides, no stagger wait ── */
+    html.pro-anim-active .pro-reveal,
+    html.pro-anim-active .pro-reveal-scale,
+    html.pro-anim-active .pro-reveal-left,
+    html.pro-anim-active .pro-reveal-right {
+        transition: opacity 0.5s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) !important;
+        transition-delay: 0s !important;
+        will-change: auto !important;
+    }
+    html.pro-anim-active .pro-reveal:not(.is-revealed),
+    html.pro-anim-active .pro-reveal-left:not(.is-revealed),
+    html.pro-anim-active .pro-reveal-right:not(.is-revealed) {
+        transform: translate3d(0, 14px, 0) !important;
+    }
+    html.pro-anim-active .pro-reveal-scale:not(.is-revealed) {
+        transform: scale(0.975) !important;
+    }
+    .scroll3d-bg,
+    .scroll3d-bg img {
+        will-change: auto !important;
+    }
+}
+
+/* ── 5. Doctor photos: portrait frames, faces never cut off ── */
+@media (max-width: 768px) {
+    .doctor-card .doctor-image-wrapper,
+    .doctor-card .doctor-image,
+    .doctors-section .doctor-image-wrapper,
+    .doctor-card-img {
+        aspect-ratio: 4 / 5 !important;
+        height: auto !important;
+        max-height: 470px !important;
+    }
+    .doctor-card .doctor-image-wrapper img,
+    .doctor-card .doctor-image img,
+    .doctor-card-img img {
+        object-position: 50% 12% !important;
+    }
+    /* the portrait already fades into the card below it */
+    .doctor-card .doctor-image-wrapper::before {
+        background: linear-gradient(to top, rgba(8, 22, 38, 0.45) 0%, transparent 32%) !important;
+    }
+}
+/* Clinic pages ("Doctors at our … clinic"): taller frame aimed at the face */
+.kz-doc-mini img {
+    height: 240px;
+    object-position: 50% 14%;
+}
+@media (max-width: 600px) {
+    .kz-doc-grid {
+        gap: 12px;
+    }
+    .kz-doc-mini {
+        flex-direction: row;
+        align-items: center;
+    }
+    .kz-doc-mini img {
+        flex: 0 0 96px;
+        width: 96px;
+        height: 120px;
+        object-position: 50% 14%;
+    }
+    .kz-doc-mini div {
+        padding: 12px 14px;
+    }
+}
+
+/* ── 6. Small mobile layout fixes ── */
+@media (max-width: 1024px) {
+    /* Open menu must sit ABOVE its dark backdrop. The drawer lives inside the fixed
+       navbar (z-index 1000) while the backdrop is z-index 9998, so the menu was shown
+       dimmed and blurred, and every tap on a menu link hit the backdrop and closed it. */
+    html.nav-drawer-open .navbar,
+    body.nav-drawer-open .navbar {
+        z-index: 10001 !important;
+    }
+}
+@media (max-width: 768px) {
+    /* "Ask Kezza!" bubble: shows for a few seconds, then gets out of the way of the page */
+    .kezza-chat-tooltip:not(.hidden) {
+        animation: kezza-tooltip-in 0.4s cubic-bezier(0.4, 0, 0.2, 1), kzTipAutoHide 0.4s ease 9s forwards !important;
+    }
+    /* nothing may push the page sideways */
+    .branches-hero-section .hero-buttons,
+    .branches-hero-section .hero-cta-group {
+        max-width: 100% !important;
+    }
+    .branches-hero-section .hero-buttons a,
+    .branches-hero-section .hero-cta-group a,
+    .final-cta-section .cta-buttons a {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+}
+@keyframes kzTipAutoHide {
+    to { opacity: 0; visibility: hidden; transform: translateY(6px); }
+}
+
+/* ── 7. Reduce motion (phone/OS accessibility setting) ── */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

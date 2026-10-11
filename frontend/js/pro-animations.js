@@ -22,6 +22,19 @@
         initInteractiveTilt();
         initBeforeAfterSlider();
         initTestimonialFilters();
+        initOffscreenPause();
+    }
+
+    /* ── 0. Pause looping animations (hero slideshow, trust ticker) while they
+            are scrolled out of view — they kept the phone busy for nothing. ── */
+    function initOffscreenPause() {
+        if (!('IntersectionObserver' in window)) return;
+        const targets = document.querySelectorAll('.hero-section, .hero-slideshow, .kz-trust-strip, [data-pause-offscreen]');
+        if (!targets.length) return;
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(entry => entry.target.classList.toggle('kz-offscreen', !entry.isIntersecting));
+        }, { rootMargin: '80px 0px' });
+        targets.forEach(t => io.observe(t));
     }
 
     if (document.readyState === 'loading') {
@@ -34,6 +47,8 @@
     function initScrollProgressBar() {
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         if (document.getElementById('kz-scroll-progress')) return;
+        // smooth-scroll.js already draws the reading-progress bar on pages that load it.
+        if (document.getElementById('kzScrollProgress') || window.KezzaSmoothScroll) return;
 
         const progressBar = document.createElement('div');
         progressBar.id = 'kz-scroll-progress';
@@ -46,7 +61,9 @@
             const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             if (docHeight > 0) {
                 const percent = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
-                progressBar.style.width = percent + '%';
+                progressBar.style.width = '100%';
+                progressBar.style.transformOrigin = '0 50%';
+                progressBar.style.transform = 'scaleX(' + (percent / 100).toFixed(4) + ')';
             }
             ticking = false;
         }

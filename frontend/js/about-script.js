@@ -39,8 +39,8 @@
 
 // Intersection Observer for scroll animations
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0,
+    rootMargin: '0px 0px -40px 0px'
 };
 
 const observer = new IntersectionObserver(function(entries) {
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.6s ease';
+        el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
         observer.observe(el);
     });
 });
@@ -129,16 +129,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Loading animation
-window.addEventListener('load', function() {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s ease';
-    
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 100);
-});
-
+// (Removed: the old 'load' handler faded the whole page out and back in after
+// every image had loaded, which made the page blink on slow mobile connections.)
 // Enhanced scroll effects handled in unified RAF loop above
 
 // Add CSS for ripple effect

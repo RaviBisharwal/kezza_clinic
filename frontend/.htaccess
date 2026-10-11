@@ -14,14 +14,18 @@ ErrorDocument 404 /404.html
     RewriteEngine On
 
     # kezza.co.in (http or https)  ->  https://www.kezza.co.in  (single 301 hop)
-    RewriteCond %{HTTP_HOST} ^kezza\.co\.in$ [NC]
+    # The optional ":port" covers servers that pass the host as "kezza.co.in:443".
+    # CHECK AFTER UPLOAD: https://kezza.co.in/hair-transplant/ must jump to
+    # https://www.kezza.co.in/hair-transplant/ (Semrush's hreflang error came from the
+    # non-www copy of that page, which the live server was still serving on 10 Oct 2026).
+    RewriteCond %{HTTP_HOST} ^kezza\.co\.in(:[0-9]+)?$ [NC]
     RewriteRule ^ https://www.kezza.co.in%{REQUEST_URI} [L,R=301]
 
     # http://www.kezza.co.in  ->  https://www.kezza.co.in
     # (X-Forwarded-Proto check prevents a loop if SSL is ever terminated upstream)
     RewriteCond %{HTTPS} !=on
     RewriteCond %{HTTP:X-Forwarded-Proto} !https
-    RewriteCond %{HTTP_HOST} ^www\.kezza\.co\.in$ [NC]
+    RewriteCond %{HTTP_HOST} ^www\.kezza\.co\.in(:[0-9]+)?$ [NC]
     RewriteRule ^ https://www.kezza.co.in%{REQUEST_URI} [L,R=301]
 
     # llms.txt spec path is lowercase; keep the old mixed-case URL working
@@ -53,7 +57,8 @@ ErrorDocument 404 /404.html
 
 # ── 3. Browser caching ───────────────────────────────────────────────
 # HTML is always revalidated so content/SEO changes show immediately.
-# CSS/JS: 1 week (CSS bundles and scripts carry content hashes; run `npm run build` after editing them).
+# CSS/JS: 1 year. Every page links them with a content hash (?v=…) that changes
+# whenever the file changes (run `npm run build` after editing them).
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresDefault                          "access plus 1 week"
@@ -61,9 +66,9 @@ ErrorDocument 404 /404.html
     ExpiresByType text/plain                "access plus 1 hour"
     ExpiresByType application/xml           "access plus 1 hour"
     ExpiresByType text/xml                  "access plus 1 hour"
-    ExpiresByType text/css                  "access plus 1 week"
-    ExpiresByType application/javascript    "access plus 1 week"
-    ExpiresByType text/javascript           "access plus 1 week"
+    ExpiresByType text/css                  "access plus 1 year"
+    ExpiresByType application/javascript    "access plus 1 year"
+    ExpiresByType text/javascript           "access plus 1 year"
     ExpiresByType image/jpeg                "access plus 6 months"
     ExpiresByType image/png                 "access plus 6 months"
     ExpiresByType image/webp                "access plus 6 months"
@@ -78,6 +83,9 @@ ErrorDocument 404 /404.html
     <FilesMatch "\.html?$">
         Header set Cache-Control "no-cache"
     </FilesMatch>
+    # HTTPS only (HSTS): browsers remember to use https for a year. They ignore this
+    # header on plain-http answers, so it is safe to send on every response.
+    Header always set Strict-Transport-Security "max-age=31536000"
     Header always set X-Content-Type-Options "nosniff"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
 

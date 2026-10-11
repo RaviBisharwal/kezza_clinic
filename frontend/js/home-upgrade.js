@@ -1,1 +1,179 @@
-(function(){"use strict";function u(){var a=document.getElementById("servicesViewer"),e=document.getElementById("servicesMoreBtn");!a||!e||(e.addEventListener("click",function(){var t=a.classList.toggle("kz-svc-collapsed");e.setAttribute("aria-expanded",t?"false":"true"),e.innerHTML=(t?"View All Treatments":"Show Fewer Treatments")+' <i class="fas fa-arrow-down" aria-hidden="true"></i>'}),document.querySelectorAll(".viewer-tabs-nav [data-category], .service-category-card").forEach(function(t){t.addEventListener("click",function(){a.classList.add("kz-svc-collapsed"),e.setAttribute("aria-expanded","false"),e.innerHTML='View All Treatments <i class="fas fa-arrow-down" aria-hidden="true"></i>'})}))}function d(){var a=document.querySelector(".ba-slider-container");if(!a)return;var e=a.querySelector(".ba-img-before-wrap"),t=a.querySelector(".ba-divider"),r=a.querySelector(".ba-handle");if(!e||!t||!r)return;r.setAttribute("role","slider"),r.setAttribute("tabindex","0"),r.setAttribute("aria-label","Before and after comparison. Use the left and right arrow keys to reveal more of each image."),r.setAttribute("aria-valuemin","5"),r.setAttribute("aria-valuemax","95"),r.setAttribute("aria-valuenow","50"),r.setAttribute("aria-orientation","horizontal");function n(){var i=parseFloat(e.style.width);return isNaN(i)?50:i}function s(i){i=Math.max(5,Math.min(95,i)),e.style.width=i+"%",t.style.left=i+"%",r.setAttribute("aria-valuenow",String(Math.round(i)))}r.addEventListener("keydown",function(i){var c=i.shiftKey?10:2,o=n();switch(i.key){case"ArrowLeft":case"ArrowDown":s(o-c);break;case"ArrowRight":case"ArrowUp":s(o+c);break;case"Home":s(5);break;case"End":s(95);break;case"PageDown":s(o-10);break;case"PageUp":s(o+10);break;default:return}i.preventDefault()})}function f(){var a=document.querySelectorAll(".kz-faq-item");a.length&&a.forEach(function(e){var t=e.querySelector(".kz-faq-q"),r=e.querySelector(".kz-faq-a");!t||!r||t.addEventListener("click",function(){var n=e.classList.contains("is-open");a.forEach(function(s){s.classList.remove("is-open");var i=s.querySelector(".kz-faq-q");i&&i.setAttribute("aria-expanded","false")}),n||(e.classList.add("is-open"),t.setAttribute("aria-expanded","true"))})})}function v(){var a=0,e=setInterval(function(){a++;var t=document.querySelector(".kezza-chat-tooltip");t&&(clearInterval(e),setTimeout(function(){t.style.transition="opacity .4s ease, transform .4s ease",t.style.opacity="0",t.style.transform="translateY(8px)",setTimeout(function(){t.parentNode&&(t.style.display="none")},420)},7e3)),a>40&&clearInterval(e)},500)}function y(){var a=document.querySelectorAll(".kz-visit-pill-btn"),e=document.querySelectorAll(".kz-branch-grid .kz-branch");!a.length||!e.length||a.forEach(function(t){t.addEventListener("click",function(){var r=this.getAttribute("data-city")||"all";a.forEach(function(n){n.classList.remove("active")}),this.classList.add("active"),e.forEach(function(n){var s=n.getAttribute("data-city");r==="all"||s===r?(n.style.display="flex",n.style.opacity="0",n.style.transform="translateY(12px)",setTimeout(function(){n.style.transition="all 0.35s cubic-bezier(0.16, 1, 0.3, 1)",n.style.opacity="1",n.style.transform="translateY(0)"},25)):n.style.display="none"})})})}function l(){u(),d(),f(),v(),y()}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",l):l()})();
+/**
+ * Kezza Clinic — Home Page Upgrade
+ * Progressive enhancements layered on top of the existing scripts. Every block
+ * bails out quietly if its markup is absent, so this file is safe to include on
+ * any page. Count-up stats and the before/after drag live in pro-animations.js;
+ * this file only ADDS keyboard access and ARIA to that slider.
+ */
+(function () {
+    'use strict';
+
+    /* ── 1. Services: reveal the remaining treatments (phones only) ────── */
+    function initServicesReveal() {
+        var viewer = document.getElementById('servicesViewer');
+        var btn = document.getElementById('servicesMoreBtn');
+        if (!viewer || !btn) return;
+
+        btn.addEventListener('click', function () {
+            var collapsed = viewer.classList.toggle('kz-svc-collapsed');
+            btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+            btn.innerHTML = (collapsed ? 'View All Treatments' : 'Show Fewer Treatments') +
+                ' <i class="fas fa-arrow-down" aria-hidden="true"></i>';
+        });
+
+        // Switching category tabs re-collapses so the button stays truthful
+        document.querySelectorAll('.viewer-tabs-nav [data-category], .service-category-card').forEach(function (t) {
+            t.addEventListener('click', function () {
+                viewer.classList.add('kz-svc-collapsed');
+                btn.setAttribute('aria-expanded', 'false');
+                btn.innerHTML = 'View All Treatments <i class="fas fa-arrow-down" aria-hidden="true"></i>';
+            });
+        });
+    }
+
+    /* ── 2. Before/After slider: keyboard + ARIA ───────────────────────────
+       pro-animations.js already handles mouse and touch. This adds the
+       accessible half without touching that logic.                          */
+    function initComparisonA11y() {
+        var container = document.querySelector('.ba-slider-container');
+        if (!container) return;
+
+        var beforeWrap = container.querySelector('.ba-img-before-wrap');
+        var divider = container.querySelector('.ba-divider');
+        var handle = container.querySelector('.ba-handle');
+        if (!beforeWrap || !divider || !handle) return;
+
+        handle.setAttribute('role', 'slider');
+        handle.setAttribute('tabindex', '0');
+        handle.setAttribute('aria-label', 'Before and after comparison. Use the left and right arrow keys to reveal more of each image.');
+        handle.setAttribute('aria-valuemin', '5');
+        handle.setAttribute('aria-valuemax', '95');
+        handle.setAttribute('aria-valuenow', '50');
+        handle.setAttribute('aria-orientation', 'horizontal');
+
+        function currentPct() {
+            var v = parseFloat(beforeWrap.style.width);
+            return isNaN(v) ? 50 : v;
+        }
+
+        function setPct(pct) {
+            pct = Math.max(5, Math.min(95, pct));
+            beforeWrap.style.width = pct + '%';
+            divider.style.left = pct + '%';
+            handle.setAttribute('aria-valuenow', String(Math.round(pct)));
+        }
+
+        handle.addEventListener('keydown', function (e) {
+            var step = e.shiftKey ? 10 : 2;
+            var pct = currentPct();
+
+            switch (e.key) {
+                case 'ArrowLeft':
+                case 'ArrowDown':  setPct(pct - step); break;
+                case 'ArrowRight':
+                case 'ArrowUp':    setPct(pct + step); break;
+                case 'Home':       setPct(5);  break;
+                case 'End':        setPct(95); break;
+                case 'PageDown':   setPct(pct - 10); break;
+                case 'PageUp':     setPct(pct + 10); break;
+                default: return;
+            }
+            e.preventDefault();
+        });
+    }
+
+    /* ── 3. FAQ accordion ──────────────────────────────────────────────── */
+    function initFaq() {
+        var items = document.querySelectorAll('.kz-faq-item');
+        if (!items.length) return;
+
+        items.forEach(function (item) {
+            var btn = item.querySelector('.kz-faq-q');
+            var panel = item.querySelector('.kz-faq-a');
+            if (!btn || !panel) return;
+
+            btn.addEventListener('click', function () {
+                var isOpen = item.classList.contains('is-open');
+
+                // Single-open accordion
+                items.forEach(function (other) {
+                    other.classList.remove('is-open');
+                    var ob = other.querySelector('.kz-faq-q');
+                    if (ob) ob.setAttribute('aria-expanded', 'false');
+                });
+
+                if (!isOpen) {
+                    item.classList.add('is-open');
+                    btn.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+    }
+
+    /* ── 4. Auto-dismiss the chat teaser so it stops covering content ──── */
+    function initTeaserAutoDismiss() {
+        var tries = 0;
+        var timer = setInterval(function () {
+            tries++;
+            var tip = document.querySelector('.kezza-chat-tooltip');
+            if (tip) {
+                clearInterval(timer);
+                setTimeout(function () {
+                    tip.style.transition = 'opacity .4s ease, transform .4s ease';
+                    tip.style.opacity = '0';
+                    tip.style.transform = 'translateY(8px)';
+                    setTimeout(function () {
+                        if (tip.parentNode) tip.style.display = 'none';
+                    }, 420);
+                }, 7000);
+            }
+            if (tries > 40) clearInterval(timer);
+        }, 500);
+    }
+
+    /* ── 5. Branch clinic locations filter tabs ──────────────────────── */
+    function initBranchFilters() {
+        var filterBtns = document.querySelectorAll('.kz-visit-pill-btn');
+        var branches = document.querySelectorAll('.kz-branch-grid .kz-branch');
+        if (!filterBtns.length || !branches.length) return;
+
+        filterBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var city = this.getAttribute('data-city') || 'all';
+
+                filterBtns.forEach(function (b) { b.classList.remove('active'); });
+                this.classList.add('active');
+
+                branches.forEach(function (branch) {
+                    var branchCity = branch.getAttribute('data-city');
+                    if (city === 'all' || branchCity === city) {
+                        branch.style.display = 'flex';
+                        branch.style.opacity = '0';
+                        branch.style.transform = 'translateY(12px)';
+                        setTimeout(function () {
+                            branch.style.transition = 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
+                            branch.style.opacity = '1';
+                            branch.style.transform = 'translateY(0)';
+                        }, 25);
+                    } else {
+                        branch.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+
+    function boot() {
+        initServicesReveal();
+        initComparisonA11y();
+        initFaq();
+        initTeaserAutoDismiss();
+        initBranchFilters();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+    } else {
+        boot();
+    }
+})();

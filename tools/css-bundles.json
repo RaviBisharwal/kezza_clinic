@@ -2,7 +2,9 @@
   "bundles": {
     "404": [
       "css/styles.css",
-      "css/scroll-3d.css"
+      "css/scroll-3d.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "about": [
       "css/about-styles.css",
@@ -13,7 +15,9 @@
       "css/responsive.css",
       "css/scroll-3d.css",
       "css/mobile-pro.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "branches": [
       "css/branches-styles.css",
@@ -23,7 +27,9 @@
       "css/responsive.css",
       "css/scroll-3d.css",
       "css/mobile-pro.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "contact": [
       "css/contact-styles.css",
@@ -33,7 +39,10 @@
       "css/responsive.css",
       "css/scroll-3d.css",
       "css/mobile-pro.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/contact-subcat.css",
+      "css/mobile-perf.css"
     ],
     "content": [
       "css/styles.css",
@@ -43,7 +52,9 @@
       "css/responsive.css",
       "css/kezza-ai.css",
       "css/content-pages.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "face-scanner": [
       "css/face-scanner-styles.css",
@@ -53,7 +64,9 @@
       "css/responsive.css",
       "css/scroll-3d.css",
       "css/mobile-pro.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "hair-loss-consultation": [
       "css/styles.css",
@@ -65,7 +78,9 @@
       "css/responsive.css",
       "css/kezza-ai.css",
       "css/mobile-pro.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "hair-services": [
       "css/hair-services-styles.css",
@@ -75,7 +90,9 @@
       "css/scroll-3d.css",
       "css/kezza-ai.css",
       "css/mobile-pro.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "hair-transplant": [
       "css/styles.css",
@@ -84,7 +101,9 @@
       "css/service-page.css",
       "css/responsive.css",
       "css/kezza-ai.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "home": [
       "css/styles.css",
@@ -96,7 +115,9 @@
       "css/luxury-pro.css",
       "css/home-upgrade.css",
       "css/mobile-pro.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "permanent-makeup": [
       "css/permanent-makeup-styles.css",
@@ -107,7 +128,9 @@
       "css/scroll-3d.css",
       "css/pmu-dark-override.css",
       "css/mobile-pro.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "prp-therapy": [
       "css/styles.css",
@@ -119,7 +142,9 @@
       "css/prp-therapy.css",
       "css/kezza-ai.css",
       "css/mobile-pro.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "skin-services": [
       "css/skin-services-styles.css",
@@ -129,7 +154,9 @@
       "css/scroll-3d.css",
       "css/kezza-ai.css",
       "css/mobile-pro.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "terms": [
       "css/terms-styles.css",
@@ -139,7 +166,9 @@
       "css/responsive.css",
       "css/scroll-3d.css",
       "css/mobile-pro.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "hair-wig": [
       "css/styles.css",
@@ -151,7 +180,9 @@
       "css/responsive.css",
       "css/kezza-ai.css",
       "css/mobile-pro.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "electrolysis": [
       "css/styles.css",
@@ -163,7 +194,9 @@
       "css/responsive.css",
       "css/kezza-ai.css",
       "css/mobile-pro.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "weight-loss": [
       "css/quick-actions.css",
@@ -172,7 +205,9 @@
       "css/scroll-3d.css",
       "css/responsive.css",
       "css/mobile-pro.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
     ],
     "white-hair-removal": [
       "css/styles.css",
@@ -184,7 +219,63 @@
       "css/white-hair-removal.css",
       "css/kezza-ai.css",
       "css/mobile-pro.css",
-      "css/site-footer.css"
+      "css/site-footer.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
+    ],
+    "dark-circles": [
+      "css/styles.css",
+      "css/services-navigation.css",
+      "css/quick-actions.css",
+      "css/service-page.css",
+      "css/responsive.css",
+      "css/content-pages.css",
+      "css/site-footer.css",
+      "css/dark-circles.css",
+      "css/kezza-ai.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
+    ],
+    "stretch-marks": [
+      "css/styles.css",
+      "css/services-navigation.css",
+      "css/quick-actions.css",
+      "css/service-page.css",
+      "css/responsive.css",
+      "css/content-pages.css",
+      "css/site-footer.css",
+      "css/stretch-marks.css",
+      "css/kezza-ai.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
+    ],
+    "medical-dermatology": [
+      "css/styles.css",
+      "css/services-navigation.css",
+      "css/quick-actions.css",
+      "css/service-page.css",
+      "css/responsive.css",
+      "css/content-pages.css",
+      "css/site-footer.css",
+      "css/medical-dermatology.css",
+      "css/kezza-ai.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
+    ],
+    "hi-hair-transplant": [
+      "css/styles.css",
+      "css/services-navigation.css",
+      "css/quick-actions.css",
+      "css/service-page.css",
+      "css/responsive.css",
+      "css/content-pages.css",
+      "css/site-footer.css",
+      "css/kezza-ai.css",
+      "css/header-pro.css",
+      "css/mobile-perf.css"
+    ],
+    "scanner-modal": [
+      "css/scanner-modal.css"
     ]
   },
   "pages": {
@@ -196,40 +287,47 @@
     "blog/cryolipolysis-fat-freezing-guide/index.html": "content",
     "blog/fue-vs-dhi-hair-transplant/index.html": "content",
     "blog/hair-transplant-cost-jaipur/index.html": "content",
+    "blog/hair-transplant-hairline-design/index.html": "content",
+    "blog/hair-transplant-procedure-day/index.html": "content",
     "blog/hair-transplant-recovery-timeline/index.html": "content",
     "blog/how-many-grafts-hair-transplant/index.html": "content",
     "blog/how-many-prp-sessions/index.html": "content",
     "blog/hydrafacial-benefits-process/index.html": "content",
     "blog/index.html": "content",
+    "blog/kamlesh-nagarkoti-prp-treatment-kezza-jaipur/index.html": "content",
     "blog/laser-hair-removal-how-it-works/index.html": "content",
     "blog/lip-blush-treatment-guide/index.html": "content",
     "blog/microblading-vs-powder-brows/index.html": "content",
     "blog/norwood-scale-explained/index.html": "content",
     "blog/prp-vs-gfc-therapy/index.html": "content",
+    "blog/semaglutide-for-weight-loss/index.html": "content",
     "blog/why-laser-cant-remove-white-hair/index.html": "content",
     "branches.html": "branches",
     "contact.html": "contact",
-    "face-scanner.html": "face-scanner",
+    "dark-circles-treatment/index.html": "dark-circles",
     "electrolysis.html": "electrolysis",
+    "face-scanner.html": "face-scanner",
+    "gfc-treatment/index.html": "content",
     "hair-loss-consultation.html": "hair-loss-consultation",
     "hair-services.html": "hair-services",
-    "hair-transplant/index.html": "hair-transplant",
-    "hair-transplant/fue/index.html": "content",
-    "hair-transplant/dhi/index.html": "content",
     "hair-transplant/beard/index.html": "content",
+    "hair-transplant/dhi/index.html": "content",
     "hair-transplant/eyebrow/index.html": "content",
-    "gfc-treatment/index.html": "content",
-    "laser-hair-removal/index.html": "content",
-    "hi/hair-transplant/index.html": "content",
+    "hair-transplant/fue/index.html": "content",
+    "hair-transplant/index.html": "hair-transplant",
     "hair-wig.html": "hair-wig",
+    "hi/hair-transplant/index.html": "hi-hair-transplant",
     "index.html": "home",
+    "laser-hair-removal/index.html": "content",
     "locations/ajmer/index.html": "content",
     "locations/index.html": "content",
     "locations/jaipur/index.html": "content",
     "locations/sikar/index.html": "content",
+    "medical-dermatology/index.html": "medical-dermatology",
     "permanent-makeup.html": "permanent-makeup",
     "prp-therapy.html": "prp-therapy",
     "skin-services.html": "skin-services",
+    "stretch-marks-treatment/index.html": "stretch-marks",
     "terms.html": "terms",
     "weight-loss.html": "weight-loss",
     "white-hair-removal.html": "white-hair-removal"

@@ -13,7 +13,6 @@
     pointer-events: none;
     opacity: 0.075;
     contain: layout paint style;
-    will-change: transform;
 }
 .scroll3d-bg img {
     display: block;
@@ -21,10 +20,29 @@
     height: 100%;
     object-fit: contain;
     transform-style: preserve-3d;
-    will-change: transform;
     backface-visibility: visible;
     filter: drop-shadow(0 12px 28px rgba(0, 175, 192, 0.08));
     transition: filter 0.3s ease;
+}
+/* Desktop only (js/scroll-3d.js adds .is-animated): GPU spin on the image,
+   scroll/mouse tilt on the wrapper. Phones keep a still logo. */
+.scroll3d-tilt {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+.scroll3d-bg.is-animated img {
+    will-change: transform;
+    animation: kzLogoSpin 18s linear infinite;
+}
+.scroll3d-bg.is-paused img {
+    animation-play-state: paused;
+}
+@keyframes kzLogoSpin {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
 }
 body.scanner-body .scroll3d-bg img,
 body:has(#cameraFeed) .scroll3d-bg img,
@@ -37,5 +55,6 @@ body.weight-loss-body .scroll3d-bg img,
 @media (prefers-reduced-motion: reduce) {
     .scroll3d-bg img {
         transform: none !important;
+        animation: none !important;
     }
 }

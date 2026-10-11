@@ -23,9 +23,9 @@
    "breadcrumb_schema": "",
    "links_in_contextual": 0,
    "links_in_nav_footer": 0,
-   "links_out_contextual": 4,
+   "links_out_contextual": 10,
    "links_out_nav_footer": 0,
-   "words_main": 32,
+   "words_main": 78,
    "in_sitemap": "no",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -49,13 +49,13 @@
    "canonical": "https://www.kezza.co.in/about.html",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "AboutPage, BreadcrumbList, MedicalClinic, MedicalOrganization, Person, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Back > Home > About Us",
    "breadcrumb_schema": "Home > About",
-   "links_in_contextual": 32,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 3,
-   "links_out_nav_footer": 26,
-   "words_main": 1668,
+   "links_in_contextual": 34,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 4,
+   "links_out_nav_footer": 41,
+   "words_main": 1652,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -79,13 +79,13 @@
    "canonical": "https://www.kezza.co.in/acne-scar-treatment/",
    "robots": "noindex, follow",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Skin Services > Acne Scar Treatment",
+   "breadcrumb_visible": "Back > Home > Skin Services > Acne Scar Treatment",
    "breadcrumb_schema": "Home > Skin Services > Acne Scar Treatment",
    "links_in_contextual": 0,
    "links_in_nav_footer": 0,
-   "links_out_contextual": 11,
-   "links_out_nav_footer": 27,
-   "words_main": 2401,
+   "links_out_contextual": 14,
+   "links_out_nav_footer": 42,
+   "words_main": 2435,
    "in_sitemap": "no",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -98,25 +98,25 @@
    "parent": "",
    "location": "jaipur, sikar, ajmer",
    "status": "review",
-   "indexable": "no",
+   "indexable": "yes",
    "primary_intent": "acne treatment in jaipur",
    "secondary_intents": "pimple treatment jaipur; hormonal acne treatment; chemical peel for acne; acne marks treatment",
-   "title": "Acne Treatment in Jaipur | Kezza Clinic",
-   "title_len": 39,
-   "h1": "Acne Treatment in Jaipur | Doctor-Led Care for Pimples",
-   "meta_description": "Acne treatment in Jaipur, Sikar and Ajmer: doctor-led care for pimples with creams, tablets and medical peels, how long it takes and how to prevent scars.",
-   "desc_len": 154,
+   "title": "Acne Control & Scar Revision in Jaipur | Kezza Clinic",
+   "title_len": 53,
+   "h1": "Acne Control & Scar Revision",
+   "meta_description": "Doctor-led acne control and scar revision at Kezza Clinic in Jaipur, Sikar & Ajmer. Subcision, MNRF, chemical peels and fractional CO2 laser for clear skin.",
+   "desc_len": 156,
    "canonical": "https://www.kezza.co.in/acne-treatment/",
-   "robots": "noindex, follow",
-   "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalTherapy, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Skin Services > Acne Treatment",
-   "breadcrumb_schema": "Home > Skin Services > Acne Treatment",
-   "links_in_contextual": 0,
-   "links_in_nav_footer": 0,
-   "links_out_contextual": 11,
-   "links_out_nav_footer": 27,
-   "words_main": 2105,
-   "in_sitemap": "no",
+   "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+   "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, WebSite",
+   "breadcrumb_visible": "Back > Home > Skin Services > Acne Control & Scar Revision",
+   "breadcrumb_schema": "Home > Skin Services > Acne Control & Scar Revision",
+   "links_in_contextual": 9,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 6,
+   "links_out_nav_footer": 41,
+   "words_main": 1327,
+   "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
   },
@@ -169,13 +169,13 @@
    "canonical": "https://www.kezza.co.in/blog/acne-scars-treatment-options/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > Acne Scar Treatment Options: Types, Lasers & Peels",
+   "breadcrumb_visible": "Back > Home > Blog > Acne Scar Treatment Options: Types, Lasers & Peels",
    "breadcrumb_schema": "Home > Blog > Acne Scar Treatment Options: Types, Lasers & Peels",
-   "links_in_contextual": 7,
+   "links_in_contextual": 9,
    "links_in_nav_footer": 0,
-   "links_out_contextual": 13,
-   "links_out_nav_footer": 27,
-   "words_main": 1290,
+   "links_out_contextual": 15,
+   "links_out_nav_footer": 42,
+   "words_main": 1294,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -199,13 +199,13 @@
    "canonical": "https://www.kezza.co.in/blog/body-sculpting-vs-weight-loss/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > Body Sculpting vs Fat Loss: Key Differences",
+   "breadcrumb_visible": "Back > Home > Blog > Body Sculpting vs Fat Loss: Key Differences",
    "breadcrumb_schema": "Home > Blog > Body Sculpting vs Fat Loss: Key Differences",
    "links_in_contextual": 3,
    "links_in_nav_footer": 0,
    "links_out_contextual": 12,
-   "links_out_nav_footer": 27,
-   "words_main": 1251,
+   "links_out_nav_footer": 42,
+   "words_main": 1252,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -229,13 +229,13 @@
    "canonical": "https://www.kezza.co.in/blog/chemical-peels-vs-laser-toning/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > Chemical Peels for Pigmentation: Types, Benefits & Results",
+   "breadcrumb_visible": "Back > Home > Blog > Chemical Peels for Pigmentation: Types, Benefits & Results",
    "breadcrumb_schema": "Home > Blog > Chemical Peels for Pigmentation: Types, Benefits & Results",
-   "links_in_contextual": 2,
+   "links_in_contextual": 5,
    "links_in_nav_footer": 0,
-   "links_out_contextual": 12,
-   "links_out_nav_footer": 27,
-   "words_main": 2257,
+   "links_out_contextual": 16,
+   "links_out_nav_footer": 42,
+   "words_main": 2274,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -259,13 +259,13 @@
    "canonical": "https://www.kezza.co.in/blog/cryolipolysis-fat-freezing-guide/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > Cryolipolysis Fat Freezing: How It Works, Results & Safety",
+   "breadcrumb_visible": "Back > Home > Blog > Cryolipolysis Fat Freezing: How It Works, Results & Safety",
    "breadcrumb_schema": "Home > Blog > Cryolipolysis Fat Freezing: How It Works, Results & Safety",
    "links_in_contextual": 3,
    "links_in_nav_footer": 0,
-   "links_out_contextual": 13,
-   "links_out_nav_footer": 27,
-   "words_main": 2376,
+   "links_out_contextual": 14,
+   "links_out_nav_footer": 42,
+   "words_main": 2377,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -289,13 +289,13 @@
    "canonical": "https://www.kezza.co.in/blog/fue-vs-dhi-hair-transplant/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > FUE vs DHI Hair Transplant: Which Is Right for You?",
+   "breadcrumb_visible": "Back > Home > Blog > FUE vs DHI Hair Transplant: Which Is Right for You?",
    "breadcrumb_schema": "Home > Blog > FUE vs DHI Hair Transplant: Which Is Right for You?",
    "links_in_contextual": 15,
    "links_in_nav_footer": 0,
-   "links_out_contextual": 16,
-   "links_out_nav_footer": 27,
-   "words_main": 1688,
+   "links_out_contextual": 17,
+   "links_out_nav_footer": 42,
+   "words_main": 1693,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -319,13 +319,13 @@
    "canonical": "https://www.kezza.co.in/blog/hair-transplant-cost-jaipur/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > Hair Transplant Cost in Jaipur: What Determines the Price",
+   "breadcrumb_visible": "Back > Home > Blog > Hair Transplant Cost in Jaipur: What Determines the Price",
    "breadcrumb_schema": "Home > Blog > Hair Transplant Cost in Jaipur: What Determines the Price",
-   "links_in_contextual": 11,
+   "links_in_contextual": 12,
    "links_in_nav_footer": 0,
-   "links_out_contextual": 16,
-   "links_out_nav_footer": 27,
-   "words_main": 1441,
+   "links_out_contextual": 17,
+   "links_out_nav_footer": 42,
+   "words_main": 1446,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -349,13 +349,13 @@
    "canonical": "https://www.kezza.co.in/blog/hair-transplant-hairline-design/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > Hair Transplant Hairline Design: How Doctors Plan the Front",
+   "breadcrumb_visible": "Back > Home > Blog > Hair Transplant Hairline Design: How Doctors Plan the Front",
    "breadcrumb_schema": "Home > Blog > Hair Transplant Hairline Design: How Doctors Plan the Front",
-   "links_in_contextual": 2,
+   "links_in_contextual": 3,
    "links_in_nav_footer": 0,
-   "links_out_contextual": 14,
-   "links_out_nav_footer": 27,
-   "words_main": 1124,
+   "links_out_contextual": 15,
+   "links_out_nav_footer": 42,
+   "words_main": 1128,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -379,13 +379,13 @@
    "canonical": "https://www.kezza.co.in/blog/hair-transplant-procedure-day/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > What Happens During a Hair Transplant? A Step-by-Step Guide",
+   "breadcrumb_visible": "Back > Home > Blog > What Happens During a Hair Transplant? A Step-by-Step Guide",
    "breadcrumb_schema": "Home > Blog > What Happens During a Hair Transplant? A Step-by-Step Guide",
-   "links_in_contextual": 1,
+   "links_in_contextual": 3,
    "links_in_nav_footer": 0,
    "links_out_contextual": 15,
-   "links_out_nav_footer": 27,
-   "words_main": 1046,
+   "links_out_nav_footer": 42,
+   "words_main": 1047,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -409,13 +409,13 @@
    "canonical": "https://www.kezza.co.in/blog/hair-transplant-recovery-timeline/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > Hair Transplant Recovery Timeline: Day 1 to Month 12",
+   "breadcrumb_visible": "Back > Home > Blog > Hair Transplant Recovery Timeline: Day 1 to Month 12",
    "breadcrumb_schema": "Home > Blog > Hair Transplant Recovery Timeline: Day 1 to Month 12",
-   "links_in_contextual": 3,
+   "links_in_contextual": 7,
    "links_in_nav_footer": 0,
-   "links_out_contextual": 15,
-   "links_out_nav_footer": 27,
-   "words_main": 1541,
+   "links_out_contextual": 17,
+   "links_out_nav_footer": 42,
+   "words_main": 1548,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -439,13 +439,13 @@
    "canonical": "https://www.kezza.co.in/blog/how-many-grafts-hair-transplant/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > How Many Grafts Do You Need for a Hair Transplant?",
+   "breadcrumb_visible": "Back > Home > Blog > How Many Grafts Do You Need for a Hair Transplant?",
    "breadcrumb_schema": "Home > Blog > How Many Grafts Do You Need for a Hair Transplant?",
-   "links_in_contextual": 5,
+   "links_in_contextual": 6,
    "links_in_nav_footer": 0,
    "links_out_contextual": 15,
-   "links_out_nav_footer": 27,
-   "words_main": 1407,
+   "links_out_nav_footer": 42,
+   "words_main": 1408,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -469,13 +469,13 @@
    "canonical": "https://www.kezza.co.in/blog/how-many-prp-sessions/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > How Many PRP Sessions Do You Need for Hair Loss?",
+   "breadcrumb_visible": "Back > Home > Blog > How Many PRP Sessions Do You Need for Hair Loss?",
    "breadcrumb_schema": "Home > Blog > How Many PRP Sessions Do You Need for Hair Loss?",
-   "links_in_contextual": 9,
+   "links_in_contextual": 10,
    "links_in_nav_footer": 0,
    "links_out_contextual": 14,
-   "links_out_nav_footer": 27,
-   "words_main": 1233,
+   "links_out_nav_footer": 42,
+   "words_main": 1234,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -499,13 +499,13 @@
    "canonical": "https://www.kezza.co.in/blog/hydrafacial-benefits-process/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > Hydra Facial Treatment: Steps, Benefits & Suitability",
+   "breadcrumb_visible": "Back > Home > Blog > Hydra Facial Treatment: Steps, Benefits & Suitability",
    "breadcrumb_schema": "Home > Blog > Hydra Facial Treatment: Steps, Benefits & Suitability",
-   "links_in_contextual": 8,
+   "links_in_contextual": 12,
    "links_in_nav_footer": 0,
-   "links_out_contextual": 12,
-   "links_out_nav_footer": 27,
-   "words_main": 1210,
+   "links_out_contextual": 16,
+   "links_out_nav_footer": 42,
+   "words_main": 1231,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -529,13 +529,13 @@
    "canonical": "https://www.kezza.co.in/blog/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "Blog, BreadcrumbList, CollectionPage, FAQPage, MedicalOrganization, WebSite",
-   "breadcrumb_visible": "Home > Blog",
+   "breadcrumb_visible": "Back > Home > Blog",
    "breadcrumb_schema": "Home > Blog",
    "links_in_contextual": 19,
-   "links_in_nav_footer": 46,
+   "links_in_nav_footer": 53,
    "links_out_contextual": 22,
-   "links_out_nav_footer": 26,
-   "words_main": 1230,
+   "links_out_nav_footer": 41,
+   "words_main": 1241,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -559,13 +559,13 @@
    "canonical": "https://www.kezza.co.in/blog/kamlesh-nagarkoti-prp-treatment-kezza-jaipur/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > IPL Cricketer Kamlesh Nagarkoti Chooses Kezza Clinic for PRP Hair Treatment",
+   "breadcrumb_visible": "Back > Home > Blog > IPL Cricketer Kamlesh Nagarkoti Chooses Kezza Clinic for PRP Hair Treatment",
    "breadcrumb_schema": "Home > Blog > IPL Cricketer Kamlesh Nagarkoti Chooses Kezza Clinic for PRP Hair Treatment",
-   "links_in_contextual": 1,
+   "links_in_contextual": 2,
    "links_in_nav_footer": 0,
    "links_out_contextual": 14,
-   "links_out_nav_footer": 27,
-   "words_main": 1137,
+   "links_out_nav_footer": 42,
+   "words_main": 1138,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -589,13 +589,13 @@
    "canonical": "https://www.kezza.co.in/blog/laser-hair-removal-how-it-works/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > Laser Hair Reduction: How It Works & Sessions Needed",
+   "breadcrumb_visible": "Back > Home > Blog > Laser Hair Reduction: How It Works & Sessions Needed",
    "breadcrumb_schema": "Home > Blog > Laser Hair Reduction: How It Works & Sessions Needed",
-   "links_in_contextual": 3,
+   "links_in_contextual": 6,
    "links_in_nav_footer": 0,
    "links_out_contextual": 15,
-   "links_out_nav_footer": 27,
-   "words_main": 1324,
+   "links_out_nav_footer": 42,
+   "words_main": 1325,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -619,13 +619,13 @@
    "canonical": "https://www.kezza.co.in/blog/lip-blush-treatment-guide/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > Lip Blush Treatment: Procedure, Healing & Results",
+   "breadcrumb_visible": "Back > Home > Blog > Lip Blush Treatment: Procedure, Healing & Results",
    "breadcrumb_schema": "Home > Blog > Lip Blush Treatment: Procedure, Healing & Results",
    "links_in_contextual": 2,
    "links_in_nav_footer": 0,
    "links_out_contextual": 14,
-   "links_out_nav_footer": 27,
-   "words_main": 1280,
+   "links_out_nav_footer": 42,
+   "words_main": 1281,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -649,13 +649,13 @@
    "canonical": "https://www.kezza.co.in/blog/microblading-vs-powder-brows/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > Microblading vs Powder Brows: Technique & Skin Type",
+   "breadcrumb_visible": "Back > Home > Blog > Microblading vs Powder Brows: Technique & Skin Type",
    "breadcrumb_schema": "Home > Blog > Microblading vs Powder Brows: Technique & Skin Type",
-   "links_in_contextual": 3,
+   "links_in_contextual": 4,
    "links_in_nav_footer": 0,
-   "links_out_contextual": 13,
-   "links_out_nav_footer": 27,
-   "words_main": 1340,
+   "links_out_contextual": 14,
+   "links_out_nav_footer": 42,
+   "words_main": 1344,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -679,13 +679,13 @@
    "canonical": "https://www.kezza.co.in/blog/norwood-scale-explained/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > The Norwood Scale Explained: 7 Stages of Male Pattern Hair Loss",
+   "breadcrumb_visible": "Back > Home > Blog > The Norwood Scale Explained: 7 Stages of Male Pattern Hair Loss",
    "breadcrumb_schema": "Home > Blog > The Norwood Scale Explained: 7 Stages of Male Pattern Hair Loss",
-   "links_in_contextual": 9,
+   "links_in_contextual": 11,
    "links_in_nav_footer": 0,
    "links_out_contextual": 18,
-   "links_out_nav_footer": 27,
-   "words_main": 1552,
+   "links_out_nav_footer": 42,
+   "words_main": 1553,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -709,13 +709,13 @@
    "canonical": "https://www.kezza.co.in/blog/prp-vs-gfc-therapy/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > PRP vs GFC Therapy for Hair Loss: A Clinical Comparison",
+   "breadcrumb_visible": "Back > Home > Blog > PRP vs GFC Therapy for Hair Loss: A Clinical Comparison",
    "breadcrumb_schema": "Home > Blog > PRP vs GFC Therapy for Hair Loss: A Clinical Comparison",
-   "links_in_contextual": 9,
+   "links_in_contextual": 10,
    "links_in_nav_footer": 0,
    "links_out_contextual": 14,
-   "links_out_nav_footer": 27,
-   "words_main": 1450,
+   "links_out_nav_footer": 42,
+   "words_main": 1451,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -739,13 +739,13 @@
    "canonical": "https://www.kezza.co.in/blog/semaglutide-for-weight-loss/",
    "robots": "noindex, follow",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > Semaglutide for Weight Loss: How It Works, Side Effects and Who It Suits",
+   "breadcrumb_visible": "Back > Home > Blog > Semaglutide for Weight Loss: How It Works, Side Effects and Who It Suits",
    "breadcrumb_schema": "Home > Blog > Semaglutide for Weight Loss: How It Works, Side Effects and Who It Suits",
    "links_in_contextual": 0,
    "links_in_nav_footer": 0,
    "links_out_contextual": 11,
-   "links_out_nav_footer": 27,
-   "words_main": 2932,
+   "links_out_nav_footer": 42,
+   "words_main": 2933,
    "in_sitemap": "no",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -769,13 +769,13 @@
    "canonical": "https://www.kezza.co.in/blog/why-laser-cant-remove-white-hair/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > Why Laser Can't Remove White Hair, and What Does",
+   "breadcrumb_visible": "Back > Home > Blog > Why Laser Can't Remove White Hair, and What Does",
    "breadcrumb_schema": "Home > Blog > Why Laser Can't Remove White Hair, and What Does",
-   "links_in_contextual": 9,
+   "links_in_contextual": 11,
    "links_in_nav_footer": 0,
-   "links_out_contextual": 15,
-   "links_out_nav_footer": 27,
-   "words_main": 1395,
+   "links_out_contextual": 16,
+   "links_out_nav_footer": 42,
+   "words_main": 1399,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -788,7 +788,7 @@
    "parent": "",
    "location": "jaipur, sikar, ajmer",
    "status": "review",
-   "indexable": "no",
+   "indexable": "yes",
    "primary_intent": "botox and fillers in jaipur",
    "secondary_intents": "botox treatment jaipur; dermal fillers jaipur; lip fillers jaipur; under eye filler; anti-wrinkle injections jaipur",
    "title": "Botox & Dermal Fillers in Jaipur | Kezza Clinic",
@@ -797,16 +797,16 @@
    "meta_description": "Botox and dermal fillers in Jaipur, Sikar and Ajmer: anti-wrinkle injections and hyaluronic acid fillers for lips, cheeks and under-eyes. Results and safety.",
    "desc_len": 157,
    "canonical": "https://www.kezza.co.in/botox/",
-   "robots": "noindex, follow",
-   "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Skin Services > Botox & Dermal Fillers",
+   "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+   "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, Person, WebSite",
+   "breadcrumb_visible": "Back > Home > Skin Services > Botox & Dermal Fillers",
    "breadcrumb_schema": "Home > Skin Services > Botox & Dermal Fillers",
-   "links_in_contextual": 0,
-   "links_in_nav_footer": 0,
-   "links_out_contextual": 11,
-   "links_out_nav_footer": 27,
-   "words_main": 2452,
-   "in_sitemap": "no",
+   "links_in_contextual": 5,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 16,
+   "links_out_nav_footer": 41,
+   "words_main": 2674,
+   "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
   },
@@ -829,13 +829,13 @@
    "canonical": "https://www.kezza.co.in/branches.html",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, MedicalClinic, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Back > Home > Clinic Franchise",
    "breadcrumb_schema": "Home > Franchise",
    "links_in_contextual": 2,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 6,
-   "links_out_nav_footer": 26,
-   "words_main": 788,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 7,
+   "links_out_nav_footer": 41,
+   "words_main": 773,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -853,19 +853,19 @@
    "secondary_intents": "book consultation kezza",
    "title": "Book a Consultation | Contact Kezza Clinic Jaipur",
    "title_len": 49,
-   "h1": "Book a Consultation or Ask a Question",
+   "h1": "Book a Free Consultation",
    "meta_description": "Book a consultation at Kezza Hair & Skin Clinic in Jaipur, Sikar or Ajmer by phone, WhatsApp or online form. Open 9 AM to 8 PM, all 7 days.",
    "desc_len": 139,
    "canonical": "https://www.kezza.co.in/contact.html",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, ContactPage, FAQPage, MedicalClinic, MedicalOrganization, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Back > Home > Contact Us",
    "breadcrumb_schema": "Home > Contact",
-   "links_in_contextual": 41,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 5,
-   "links_out_nav_footer": 26,
-   "words_main": 592,
+   "links_in_contextual": 45,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 6,
+   "links_out_nav_footer": 41,
+   "words_main": 576,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -889,13 +889,13 @@
    "canonical": "https://www.kezza.co.in/cryolipolysis/",
    "robots": "noindex, follow",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Weight Loss > Cryolipolysis (Fat Freezing)",
+   "breadcrumb_visible": "Back > Home > Weight Loss > Cryolipolysis (Fat Freezing)",
    "breadcrumb_schema": "Home > Weight Loss > Cryolipolysis (Fat Freezing)",
    "links_in_contextual": 0,
-   "links_in_nav_footer": 0,
-   "links_out_contextual": 7,
-   "links_out_nav_footer": 27,
-   "words_main": 1845,
+   "links_in_nav_footer": 54,
+   "links_out_contextual": 9,
+   "links_out_nav_footer": 41,
+   "words_main": 1869,
    "in_sitemap": "no",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -908,25 +908,25 @@
    "parent": "",
    "location": "jaipur, sikar, ajmer",
    "status": "review",
-   "indexable": "no",
+   "indexable": "yes",
    "primary_intent": "dark circles treatment in jaipur",
    "secondary_intents": "under eye dark circles; tear trough filler; under eye pigmentation",
    "title": "Dark Circles Treatment in Jaipur | Kezza Clinic",
    "title_len": 47,
-   "h1": "Dark Circles Treatment in Jaipur | Treating the Cause",
-   "meta_description": "Dark circles treatment in Jaipur, Sikar and Ajmer: finding the cause (pigment, hollows or thin skin), then peels, laser toning, fillers and simple home care.",
-   "desc_len": 157,
+   "h1": "Dark Circle Treatment in Jaipur",
+   "meta_description": "Customized dark circles treatment in Jaipur, Sikar & Ajmer: senior doctor diagnosis for pigment, tear trough hollows, chemical peels & laser toning.",
+   "desc_len": 148,
    "canonical": "https://www.kezza.co.in/dark-circles-treatment/",
-   "robots": "noindex, follow",
+   "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalTherapy, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Skin Services > Dark Circles Treatment",
+   "breadcrumb_visible": "Back > Home > Skin Services > Dark Circles Treatment",
    "breadcrumb_schema": "Home > Skin Services > Dark Circles Treatment",
-   "links_in_contextual": 0,
-   "links_in_nav_footer": 0,
-   "links_out_contextual": 10,
-   "links_out_nav_footer": 27,
-   "words_main": 2002,
-   "in_sitemap": "no",
+   "links_in_contextual": 3,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 4,
+   "links_out_nav_footer": 41,
+   "words_main": 1330,
+   "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
   },
@@ -949,13 +949,13 @@
    "canonical": "https://www.kezza.co.in/electrolysis.html",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Hair Services > Electrolysis",
+   "breadcrumb_visible": "Back > Home > Hair Services > Electrolysis",
    "breadcrumb_schema": "Home > Hair Services > Electrolysis",
    "links_in_contextual": 5,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 3,
-   "links_out_nav_footer": 26,
-   "words_main": 1681,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 5,
+   "links_out_nav_footer": 41,
+   "words_main": 1708,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -978,14 +978,14 @@
    "desc_len": 140,
    "canonical": "https://www.kezza.co.in/face-scanner.html",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
-   "schema": "BreadcrumbList, MedicalOrganization, WebApplication, WebPage, WebSite",
-   "breadcrumb_visible": "",
+   "schema": "BreadcrumbList, MedicalOrganization, Service, WebPage, WebSite",
+   "breadcrumb_visible": "Back > Home > AI Scanner",
    "breadcrumb_schema": "Home > AI Skin & Hair Scanner",
-   "links_in_contextual": 46,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 1,
-   "links_out_nav_footer": 26,
-   "words_main": 660,
+   "links_in_contextual": 52,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 2,
+   "links_out_nav_footer": 41,
+   "words_main": 644,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1009,13 +1009,13 @@
    "canonical": "https://www.kezza.co.in/gfc-treatment/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, Person, WebSite",
-   "breadcrumb_visible": "Home > Hair Services > GFC Hair Treatment",
+   "breadcrumb_visible": "Back > Home > Hair Services > GFC Hair Treatment",
    "breadcrumb_schema": "Home > Hair Services > GFC Hair Treatment",
    "links_in_contextual": 15,
-   "links_in_nav_footer": 46,
+   "links_in_nav_footer": 53,
    "links_out_contextual": 13,
-   "links_out_nav_footer": 26,
-   "words_main": 1761,
+   "links_out_nav_footer": 41,
+   "words_main": 1778,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1042,10 +1042,10 @@
    "breadcrumb_visible": "Home > Hair Services > Hair Loss Treatment & Restoration",
    "breadcrumb_schema": "Home > Hair Services > Hair Loss Treatment & Restoration",
    "links_in_contextual": 12,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 4,
-   "links_out_nav_footer": 26,
-   "words_main": 1103,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 7,
+   "links_out_nav_footer": 41,
+   "words_main": 1137,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1069,13 +1069,13 @@
    "canonical": "https://www.kezza.co.in/hair-services.html",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Back > Home > Hair Services",
    "breadcrumb_schema": "Home > Hair Services",
    "links_in_contextual": 17,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 10,
-   "links_out_nav_footer": 26,
-   "words_main": 1858,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 11,
+   "links_out_nav_footer": 41,
+   "words_main": 1844,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1099,13 +1099,13 @@
    "canonical": "https://www.kezza.co.in/hair-transplant/beard/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, Person, WebSite",
-   "breadcrumb_visible": "Home > Hair Services > Hair Transplant > Beard Transplant",
+   "breadcrumb_visible": "Back > Home > Hair Services > Hair Transplant > Beard Transplant",
    "breadcrumb_schema": "Home > Hair Services > Hair Transplant > Beard Transplant",
-   "links_in_contextual": 8,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 14,
-   "links_out_nav_footer": 26,
-   "words_main": 1884,
+   "links_in_contextual": 11,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 17,
+   "links_out_nav_footer": 41,
+   "words_main": 1916,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1129,13 +1129,13 @@
    "canonical": "https://www.kezza.co.in/hair-transplant/dhi/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, Person, WebSite",
-   "breadcrumb_visible": "Home > Hair Services > Hair Transplant > DHI Hair Transplant",
+   "breadcrumb_visible": "Back > Home > Hair Services > Hair Transplant > DHI Hair Transplant",
    "breadcrumb_schema": "Home > Hair Services > Hair Transplant > DHI Hair Transplant",
-   "links_in_contextual": 12,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 14,
-   "links_out_nav_footer": 26,
-   "words_main": 1768,
+   "links_in_contextual": 11,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 15,
+   "links_out_nav_footer": 41,
+   "words_main": 1802,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1159,13 +1159,13 @@
    "canonical": "https://www.kezza.co.in/hair-transplant/eyebrow/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, Person, WebSite",
-   "breadcrumb_visible": "Home > Hair Services > Hair Transplant > Eyebrow Transplant",
+   "breadcrumb_visible": "Back > Home > Hair Services > Hair Transplant > Eyebrow Transplant",
    "breadcrumb_schema": "Home > Hair Services > Hair Transplant > Eyebrow Transplant",
-   "links_in_contextual": 8,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 13,
-   "links_out_nav_footer": 26,
-   "words_main": 1693,
+   "links_in_contextual": 10,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 15,
+   "links_out_nav_footer": 41,
+   "words_main": 1715,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1189,13 +1189,13 @@
    "canonical": "https://www.kezza.co.in/hair-transplant/fue/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, Person, WebSite",
-   "breadcrumb_visible": "Home > Hair Services > Hair Transplant > FUE Hair Transplant",
+   "breadcrumb_visible": "Back > Home > Hair Services > Hair Transplant > FUE Hair Transplant",
    "breadcrumb_schema": "Home > Hair Services > Hair Transplant > FUE Hair Transplant",
-   "links_in_contextual": 16,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 18,
-   "links_out_nav_footer": 26,
-   "words_main": 2134,
+   "links_in_contextual": 15,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 20,
+   "links_out_nav_footer": 41,
+   "words_main": 2173,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1219,13 +1219,13 @@
    "canonical": "https://www.kezza.co.in/hair-transplant/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Hair Services > Hair Transplant",
+   "breadcrumb_visible": "Back > Home > Hair Services > Hair Transplant",
    "breadcrumb_schema": "Home > Hair Services > Hair Transplant",
-   "links_in_contextual": 19,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 20,
-   "links_out_nav_footer": 26,
-   "words_main": 1364,
+   "links_in_contextual": 20,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 21,
+   "links_out_nav_footer": 41,
+   "words_main": 1412,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1249,13 +1249,13 @@
    "canonical": "https://www.kezza.co.in/hair-wig.html",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization",
-   "breadcrumb_visible": "Home > Hair Services > Hair Wig & Replacement",
+   "breadcrumb_visible": "Back > Home > Hair Services > Hair Wig & Replacement",
    "breadcrumb_schema": "Home > Hair Services > Hair Wig & Replacement",
    "links_in_contextual": 2,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 3,
-   "links_out_nav_footer": 26,
-   "words_main": 1554,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 5,
+   "links_out_nav_footer": 41,
+   "words_main": 1581,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1279,14 +1279,44 @@
    "canonical": "https://www.kezza.co.in/hi/hair-transplant/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, Person, WebSite",
-   "breadcrumb_visible": "होम > हेयर सर्विसेज़ > हेयर ट्रांसप्लांट",
+   "breadcrumb_visible": "वापस > होम > हेयर सर्विसेज़ > हेयर ट्रांसप्लांट",
    "breadcrumb_schema": "होम > हेयर सर्विसेज़ > हेयर ट्रांसप्लांट",
-   "links_in_contextual": 1,
+   "links_in_contextual": 3,
    "links_in_nav_footer": 0,
-   "links_out_contextual": 18,
-   "links_out_nav_footer": 27,
-   "words_main": 1875,
+   "links_out_contextual": 19,
+   "links_out_nav_footer": 42,
+   "words_main": 1918,
    "in_sitemap": "yes",
+   "duplication_risk": "none found",
+   "orphan_status": "linked"
+  },
+  {
+   "url": "https://www.kezza.co.in/hi/",
+   "file": "hi/index.html",
+   "category": "",
+   "treatment": "",
+   "parent": "",
+   "location": "",
+   "status": "published",
+   "indexable": "no",
+   "primary_intent": "",
+   "secondary_intents": "",
+   "title": "केज़ा हेयर एंड स्किन क्लिनिक | Kezza Clinic Jaipur",
+   "title_len": 50,
+   "h1": "केज़ा हेयर एंड स्किन क्लिनिक",
+   "meta_description": "केज़ा हेयर एंड स्किन क्लिनिक — जयपुर, सीकर और अजमेर में हेयर ट्रांसप्लांट (FUE और DHI) और स्किन ट्रीटमेंट।",
+   "desc_len": 106,
+   "canonical": "",
+   "robots": "noindex, follow",
+   "schema": "",
+   "breadcrumb_visible": "",
+   "breadcrumb_schema": "",
+   "links_in_contextual": 0,
+   "links_in_nav_footer": 0,
+   "links_out_contextual": 2,
+   "links_out_nav_footer": 0,
+   "words_main": 51,
+   "in_sitemap": "no",
    "duplication_risk": "none found",
    "orphan_status": "linked"
   },
@@ -1309,13 +1339,13 @@
    "canonical": "https://www.kezza.co.in/hifu-body-sculpting/",
    "robots": "noindex, follow",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Weight Loss > HIFU Body Sculpting",
+   "breadcrumb_visible": "Back > Home > Weight Loss > HIFU Body Sculpting",
    "breadcrumb_schema": "Home > Weight Loss > HIFU Body Sculpting",
    "links_in_contextual": 0,
-   "links_in_nav_footer": 0,
-   "links_out_contextual": 9,
-   "links_out_nav_footer": 27,
-   "words_main": 1593,
+   "links_in_nav_footer": 54,
+   "links_out_contextual": 11,
+   "links_out_nav_footer": 41,
+   "words_main": 1617,
    "in_sitemap": "no",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1328,7 +1358,7 @@
    "parent": "",
    "location": "jaipur, sikar, ajmer",
    "status": "review",
-   "indexable": "no",
+   "indexable": "yes",
    "primary_intent": "hydra facial in jaipur",
    "secondary_intents": "hydra facial treatment jaipur; medical facial jaipur; hydradermabrasion; facial for oily skin and blackheads; facial before wedding",
    "title": "Hydra Facial in Jaipur | Kezza Clinic",
@@ -1337,16 +1367,16 @@
    "meta_description": "Hydra facial in Jaipur, Sikar and Ajmer: a deep-cleansing, hydrating medical facial for oily, dull or congested skin. Steps, sessions, aftercare and booking.",
    "desc_len": 157,
    "canonical": "https://www.kezza.co.in/hydra-facial/",
-   "robots": "noindex, follow",
-   "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Skin Services > Hydra Facial",
+   "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+   "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, Person, WebSite",
+   "breadcrumb_visible": "Back > Home > Skin Services > Hydra Facial",
    "breadcrumb_schema": "Home > Skin Services > Hydra Facial",
-   "links_in_contextual": 0,
-   "links_in_nav_footer": 0,
+   "links_in_contextual": 8,
+   "links_in_nav_footer": 53,
    "links_out_contextual": 13,
-   "links_out_nav_footer": 27,
-   "words_main": 1884,
-   "in_sitemap": "no",
+   "links_out_nav_footer": 41,
+   "words_main": 2564,
+   "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
   },
@@ -1371,11 +1401,11 @@
    "schema": "FAQPage, MedicalClinic, MedicalOrganization, WebPage, WebSite",
    "breadcrumb_visible": "",
    "breadcrumb_schema": "",
-   "links_in_contextual": 35,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 16,
-   "links_out_nav_footer": 26,
-   "words_main": 2159,
+   "links_in_contextual": 53,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 22,
+   "links_out_nav_footer": 41,
+   "words_main": 2161,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1399,13 +1429,13 @@
    "canonical": "https://www.kezza.co.in/laser-hair-removal/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, Person, WebSite",
-   "breadcrumb_visible": "Home > Skin Services > Laser Hair Removal",
+   "breadcrumb_visible": "Back > Home > Skin Services > Laser Hair Removal",
    "breadcrumb_schema": "Home > Skin Services > Laser Hair Removal",
-   "links_in_contextual": 6,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 10,
-   "links_out_nav_footer": 26,
-   "words_main": 1854,
+   "links_in_contextual": 9,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 11,
+   "links_out_nav_footer": 41,
+   "words_main": 1880,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1429,13 +1459,13 @@
    "canonical": "https://www.kezza.co.in/lip-blush/",
    "robots": "noindex, follow",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, Service, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Permanent Makeup > Lip Blush & Lip Neutralization",
+   "breadcrumb_visible": "Back > Home > Permanent Makeup > Lip Blush & Lip Neutralization",
    "breadcrumb_schema": "Home > Permanent Makeup > Lip Blush & Lip Neutralization",
-   "links_in_contextual": 0,
-   "links_in_nav_footer": 0,
-   "links_out_contextual": 8,
-   "links_out_nav_footer": 27,
-   "words_main": 1664,
+   "links_in_contextual": 1,
+   "links_in_nav_footer": 54,
+   "links_out_contextual": 10,
+   "links_out_nav_footer": 41,
+   "words_main": 1686,
    "in_sitemap": "no",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1459,13 +1489,13 @@
    "canonical": "https://www.kezza.co.in/locations/ajmer/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalClinic, MedicalOrganization, Person, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Our Clinics > Ajmer",
+   "breadcrumb_visible": "Back > Home > Our Clinics > Ajmer",
    "breadcrumb_schema": "Home > Our Clinics > Ajmer",
-   "links_in_contextual": 31,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 13,
-   "links_out_nav_footer": 26,
-   "words_main": 842,
+   "links_in_contextual": 33,
+   "links_in_nav_footer": 52,
+   "links_out_contextual": 14,
+   "links_out_nav_footer": 41,
+   "words_main": 843,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1489,13 +1519,13 @@
    "canonical": "https://www.kezza.co.in/locations/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, CollectionPage, FAQPage, MedicalClinic, MedicalOrganization, WebSite",
-   "breadcrumb_visible": "Home > Our Clinics",
+   "breadcrumb_visible": "Back > Home > Our Clinics",
    "breadcrumb_schema": "Home > Our Clinics",
    "links_in_contextual": 4,
-   "links_in_nav_footer": 46,
+   "links_in_nav_footer": 53,
    "links_out_contextual": 7,
-   "links_out_nav_footer": 26,
-   "words_main": 672,
+   "links_out_nav_footer": 41,
+   "words_main": 673,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1519,13 +1549,13 @@
    "canonical": "https://www.kezza.co.in/locations/jaipur/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalClinic, MedicalOrganization, Person, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Our Clinics > Jaipur",
+   "breadcrumb_visible": "Back > Home > Our Clinics > Jaipur",
    "breadcrumb_schema": "Home > Our Clinics > Jaipur",
-   "links_in_contextual": 33,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 21,
-   "links_out_nav_footer": 26,
-   "words_main": 1027,
+   "links_in_contextual": 35,
+   "links_in_nav_footer": 52,
+   "links_out_contextual": 23,
+   "links_out_nav_footer": 41,
+   "words_main": 1028,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1549,13 +1579,13 @@
    "canonical": "https://www.kezza.co.in/locations/sikar/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalClinic, MedicalOrganization, Person, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Our Clinics > Sikar",
+   "breadcrumb_visible": "Back > Home > Our Clinics > Sikar",
    "breadcrumb_schema": "Home > Our Clinics > Sikar",
-   "links_in_contextual": 33,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 18,
-   "links_out_nav_footer": 26,
-   "words_main": 897,
+   "links_in_contextual": 35,
+   "links_in_nav_footer": 52,
+   "links_out_contextual": 21,
+   "links_out_nav_footer": 41,
+   "words_main": 898,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1568,25 +1598,25 @@
    "parent": "",
    "location": "jaipur, sikar, ajmer",
    "status": "review",
-   "indexable": "no",
+   "indexable": "yes",
    "primary_intent": "mole wart and skin tag removal in jaipur",
    "secondary_intents": "skin tag removal jaipur; wart removal jaipur; mole removal jaipur; medical dermatology jaipur; skin problem treatment jaipur",
-   "title": "Mole, Wart & Skin Tag Removal in Jaipur | Kezza Clinic",
-   "title_len": 54,
-   "h1": "Medical Dermatology in Jaipur | Skin Tags, Warts, Moles & Skin Problems",
-   "meta_description": "Medical skin care in Jaipur, Sikar and Ajmer: doctor-checked removal of skin tags, warts and harmless moles, plus care for rashes, eczema and fungal infections.",
-   "desc_len": 160,
+   "title": "Medical Dermatology in Jaipur | Kezza Clinic",
+   "title_len": 44,
+   "h1": "Medical Dermatology & Clinical Skin Care in Jaipur | Expert Specialists",
+   "meta_description": "Consult senior dermatologists in Jaipur, Sikar & Ajmer for clinical skin care: cystic acne, psoriasis, eczema, melasma, mole & wart removal. Doctor-led care.",
+   "desc_len": 157,
    "canonical": "https://www.kezza.co.in/medical-dermatology/",
-   "robots": "noindex, follow",
-   "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Skin Services > Medical Dermatology",
+   "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+   "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalWebPage",
+   "breadcrumb_visible": "Back > Home > Skin Services > Medical Dermatology",
    "breadcrumb_schema": "Home > Skin Services > Medical Dermatology",
-   "links_in_contextual": 0,
-   "links_in_nav_footer": 0,
-   "links_out_contextual": 9,
-   "links_out_nav_footer": 27,
-   "words_main": 2436,
-   "in_sitemap": "no",
+   "links_in_contextual": 1,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 8,
+   "links_out_nav_footer": 42,
+   "words_main": 1606,
+   "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
   },
@@ -1609,13 +1639,13 @@
    "canonical": "https://www.kezza.co.in/microblading/",
    "robots": "noindex, follow",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, Service, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Permanent Makeup > Microblading & Eyebrow PMU",
+   "breadcrumb_visible": "Back > Home > Permanent Makeup > Microblading & Eyebrow PMU",
    "breadcrumb_schema": "Home > Permanent Makeup > Microblading & Eyebrow PMU",
-   "links_in_contextual": 0,
-   "links_in_nav_footer": 0,
-   "links_out_contextual": 8,
-   "links_out_nav_footer": 27,
-   "words_main": 1859,
+   "links_in_contextual": 2,
+   "links_in_nav_footer": 54,
+   "links_out_contextual": 10,
+   "links_out_nav_footer": 41,
+   "words_main": 1882,
    "in_sitemap": "no",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1639,13 +1669,13 @@
    "canonical": "https://www.kezza.co.in/permanent-eyeliner/",
    "robots": "noindex, follow",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, Service, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Permanent Makeup > Permanent Eyeliner",
+   "breadcrumb_visible": "Back > Home > Permanent Makeup > Permanent Eyeliner",
    "breadcrumb_schema": "Home > Permanent Makeup > Permanent Eyeliner",
-   "links_in_contextual": 0,
-   "links_in_nav_footer": 0,
-   "links_out_contextual": 7,
-   "links_out_nav_footer": 27,
-   "words_main": 1585,
+   "links_in_contextual": 1,
+   "links_in_nav_footer": 54,
+   "links_out_contextual": 9,
+   "links_out_nav_footer": 41,
+   "words_main": 1607,
    "in_sitemap": "no",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1669,13 +1699,13 @@
    "canonical": "https://www.kezza.co.in/permanent-makeup.html",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Back > Home > Permanent Makeup",
    "breadcrumb_schema": "Home > Permanent Makeup",
-   "links_in_contextual": 7,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 5,
-   "links_out_nav_footer": 26,
-   "words_main": 1815,
+   "links_in_contextual": 6,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 6,
+   "links_out_nav_footer": 41,
+   "words_main": 1801,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1688,25 +1718,25 @@
    "parent": "",
    "location": "jaipur, sikar, ajmer",
    "status": "review",
-   "indexable": "no",
+   "indexable": "yes",
    "primary_intent": "pigmentation treatment in jaipur",
    "secondary_intents": "melasma treatment jaipur; laser toning jaipur; chemical peel for pigmentation; dark spots treatment; hyperpigmentation treatment",
    "title": "Pigmentation & Melasma Treatment in Jaipur | Kezza Clinic",
    "title_len": 57,
-   "h1": "Pigmentation & Melasma Treatment in Jaipur | Fading Dark Patches Safely",
-   "meta_description": "Pigmentation and melasma treatment in Jaipur, Sikar and Ajmer: sun protection, prescription creams, chemical peels and laser toning. Book a skin consultation.",
-   "desc_len": 158,
+   "h1": "Pigmentation, Melasma & Skin Tone Brightening",
+   "meta_description": "Advanced pigmentation and melasma treatment at Kezza Clinic in Jaipur, Sikar & Ajmer. Q-switched laser toning, chemical peels and doctor-led care.",
+   "desc_len": 146,
    "canonical": "https://www.kezza.co.in/pigmentation-treatment/",
-   "robots": "noindex, follow",
-   "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalTherapy, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Skin Services > Pigmentation & Melasma Treatment",
+   "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+   "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, WebSite",
+   "breadcrumb_visible": "Back > Home > Skin Services > Pigmentation, Melasma & Skin Tone Brightening",
    "breadcrumb_schema": "Home > Skin Services > Pigmentation & Melasma Treatment",
-   "links_in_contextual": 0,
-   "links_in_nav_footer": 0,
-   "links_out_contextual": 11,
-   "links_out_nav_footer": 27,
-   "words_main": 2428,
-   "in_sitemap": "no",
+   "links_in_contextual": 6,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 6,
+   "links_out_nav_footer": 41,
+   "words_main": 1349,
+   "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
   },
@@ -1729,13 +1759,13 @@
    "canonical": "https://www.kezza.co.in/pmu-correction/",
    "robots": "noindex, follow",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, Service, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Permanent Makeup > PMU Correction",
+   "breadcrumb_visible": "Back > Home > Permanent Makeup > PMU Correction",
    "breadcrumb_schema": "Home > Permanent Makeup > PMU Correction",
    "links_in_contextual": 0,
-   "links_in_nav_footer": 0,
-   "links_out_contextual": 9,
-   "links_out_nav_footer": 27,
-   "words_main": 1667,
+   "links_in_nav_footer": 54,
+   "links_out_contextual": 11,
+   "links_out_nav_footer": 41,
+   "words_main": 1689,
    "in_sitemap": "no",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1759,13 +1789,13 @@
    "canonical": "https://www.kezza.co.in/prp-therapy.html",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Back > Home > Hair Services > PRP Hair Therapy",
    "breadcrumb_schema": "Home > Hair Services > PRP & GFC Therapy",
    "links_in_contextual": 18,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 5,
-   "links_out_nav_footer": 26,
-   "words_main": 1839,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 7,
+   "links_out_nav_footer": 41,
+   "words_main": 1884,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1789,13 +1819,13 @@
    "canonical": "https://www.kezza.co.in/skin-consultation/",
    "robots": "noindex, follow",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, Service, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Skin Services > Skin Consultation",
+   "breadcrumb_visible": "Back > Home > Skin Services > Skin Consultation",
    "breadcrumb_schema": "Home > Skin Services > Skin Consultation",
-   "links_in_contextual": 0,
-   "links_in_nav_footer": 0,
-   "links_out_contextual": 17,
-   "links_out_nav_footer": 27,
-   "words_main": 1919,
+   "links_in_contextual": 5,
+   "links_in_nav_footer": 54,
+   "links_out_contextual": 19,
+   "links_out_nav_footer": 41,
+   "words_main": 1959,
    "in_sitemap": "no",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1819,13 +1849,13 @@
    "canonical": "https://www.kezza.co.in/skin-services.html",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Back > Home > Skin Services",
    "breadcrumb_schema": "Home > Skin Services",
-   "links_in_contextual": 12,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 8,
-   "links_out_nav_footer": 26,
-   "words_main": 1707,
+   "links_in_contextual": 20,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 15,
+   "links_out_nav_footer": 41,
+   "words_main": 1897,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1838,25 +1868,25 @@
    "parent": "",
    "location": "jaipur, sikar, ajmer",
    "status": "review",
-   "indexable": "no",
+   "indexable": "yes",
    "primary_intent": "stretch marks treatment in jaipur",
    "secondary_intents": "stretch mark removal jaipur; laser treatment for stretch marks; mnrf for stretch marks; pregnancy stretch marks treatment; white stretch marks treatment",
    "title": "Stretch Marks Treatment in Jaipur | Kezza Clinic",
    "title_len": 48,
-   "h1": "Stretch Marks Treatment in Jaipur | Laser, MNRF & Microneedling",
-   "meta_description": "Stretch marks treatment in Jaipur, Sikar and Ajmer: fractional laser, microneedling RF (MNRF) and PRP for red or white marks. Sessions, downtime and results.",
-   "desc_len": 157,
+   "h1": "Stretch Marks Treatment in Jaipur",
+   "meta_description": "Customized stretch marks treatment in Jaipur, Sikar & Ajmer: Fractional CO2 laser, Microneedling RF (MNRF) & PRP for red or white marks. Doctor-led care.",
+   "desc_len": 153,
    "canonical": "https://www.kezza.co.in/stretch-marks-treatment/",
-   "robots": "noindex, follow",
+   "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Skin Services > Stretch Marks Treatment",
+   "breadcrumb_visible": "Back > Home > Skin Services > Stretch Marks Treatment",
    "breadcrumb_schema": "Home > Skin Services > Stretch Marks Treatment",
-   "links_in_contextual": 0,
-   "links_in_nav_footer": 0,
-   "links_out_contextual": 9,
-   "links_out_nav_footer": 27,
-   "words_main": 2177,
-   "in_sitemap": "no",
+   "links_in_contextual": 2,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 4,
+   "links_out_nav_footer": 38,
+   "words_main": 1511,
+   "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
   },
@@ -1879,13 +1909,13 @@
    "canonical": "https://www.kezza.co.in/terms.html",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Back > Home > Terms & Conditions",
    "breadcrumb_schema": "Home > Terms & Privacy",
    "links_in_contextual": 1,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 2,
-   "links_out_nav_footer": 26,
-   "words_main": 873,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 3,
+   "links_out_nav_footer": 41,
+   "words_main": 922,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1901,21 +1931,21 @@
    "indexable": "yes",
    "primary_intent": "non-surgical weight loss in jaipur",
    "secondary_intents": "body sculpting jaipur; inch loss treatment",
-   "title": "Non-Surgical Weight Loss & Body Sculpting in Jaipur | Kezza",
-   "title_len": 59,
-   "h1": "Non-Surgical Weight Loss & Body Sculpting",
-   "meta_description": "Cryolipolysis fat freezing, HIFU body sculpting and double-chin reduction under doctor supervision at Kezza Clinic in Jaipur and Sikar.",
-   "desc_len": 135,
+   "title": "Weight Management & Body Sculpting in Jaipur | Kezza",
+   "title_len": 52,
+   "h1": "Weight Management & Body Sculpting",
+   "meta_description": "Doctor-supervised weight management, Cryolipolysis fat freezing, HIFU body sculpting and double-chin reduction at Kezza Clinic in Jaipur and Sikar.",
+   "desc_len": 147,
    "canonical": "https://www.kezza.co.in/weight-loss.html",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "",
-   "breadcrumb_schema": "Home > Weight Loss & Body Sculpting",
+   "breadcrumb_visible": "Back > Home > Weight Management & Body Sculpting",
+   "breadcrumb_schema": "Home > Weight Management & Body Sculpting",
    "links_in_contextual": 5,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 7,
-   "links_out_nav_footer": 26,
-   "words_main": 986,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 8,
+   "links_out_nav_footer": 41,
+   "words_main": 975,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1939,13 +1969,13 @@
    "canonical": "https://www.kezza.co.in/weight-management/",
    "robots": "noindex, follow",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalTherapy, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Weight Loss > Medical Weight Management",
+   "breadcrumb_visible": "Back > Home > Weight Loss > Medical Weight Management",
    "breadcrumb_schema": "Home > Weight Loss > Medical Weight Management",
-   "links_in_contextual": 0,
-   "links_in_nav_footer": 0,
-   "links_out_contextual": 8,
-   "links_out_nav_footer": 27,
-   "words_main": 1559,
+   "links_in_contextual": 1,
+   "links_in_nav_footer": 54,
+   "links_out_contextual": 10,
+   "links_out_nav_footer": 41,
+   "words_main": 1583,
    "in_sitemap": "no",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1969,13 +1999,13 @@
    "canonical": "https://www.kezza.co.in/white-hair-removal.html",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Back > Home > Skin Services > White & Grey Hair Removal",
    "breadcrumb_schema": "Home > Hair Services > White Hair Removal",
    "links_in_contextual": 6,
-   "links_in_nav_footer": 46,
-   "links_out_contextual": 2,
-   "links_out_nav_footer": 26,
-   "words_main": 1698,
+   "links_in_nav_footer": 53,
+   "links_out_contextual": 5,
+   "links_out_nav_footer": 41,
+   "words_main": 1633,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1983,59 +2013,2749 @@
  ],
  "issues": [
   {
-   "severity": "info",
+   "severity": "warning",
    "page": "about.html",
-   "message": "breadcrumb in schema only (no visible trail)"
+   "message": "visible breadcrumb ['Back', 'Home', 'About Us'] differs from schema ['Home', 'About']"
   },
   {
-   "severity": "info",
+   "severity": "warning",
+   "page": "acne-treatment/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Skin Services', 'Acne Control & Scar Revision'] differs from schema ['Home', 'Skin Services', 'Acne Control & Scar Revision']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/acne-scars-treatment-options/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'Acne Scar Treatment Options: Types, Lasers & Peels'] differs from schema ['Home', 'Blog', 'Acne Scar Treatment Options: Types, Lasers & Peels']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/body-sculpting-vs-weight-loss/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'Body Sculpting vs Fat Loss: Key Differences'] differs from schema ['Home', 'Blog', 'Body Sculpting vs Fat Loss: Key Differences']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/chemical-peels-vs-laser-toning/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'Chemical Peels for Pigmentation: Types, Benefits & Results'] differs from schema ['Home', 'Blog', 'Chemical Peels for Pigmentation: Types, Benefits & Results']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/cryolipolysis-fat-freezing-guide/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'Cryolipolysis Fat Freezing: How It Works, Results & Safety'] differs from schema ['Home', 'Blog', 'Cryolipolysis Fat Freezing: How It Works, Results & Safety']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/fue-vs-dhi-hair-transplant/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'FUE vs DHI Hair Transplant: Which Is Right for You?'] differs from schema ['Home', 'Blog', 'FUE vs DHI Hair Transplant: Which Is Right for You?']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/hair-transplant-cost-jaipur/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'Hair Transplant Cost in Jaipur: What Determines the Price'] differs from schema ['Home', 'Blog', 'Hair Transplant Cost in Jaipur: What Determines the Price']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/hair-transplant-hairline-design/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'Hair Transplant Hairline Design: How Doctors Plan the Front'] differs from schema ['Home', 'Blog', 'Hair Transplant Hairline Design: How Doctors Plan the Front']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/hair-transplant-procedure-day/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'What Happens During a Hair Transplant? A Step-by-Step Guide'] differs from schema ['Home', 'Blog', 'What Happens During a Hair Transplant? A Step-by-Step Guide']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/hair-transplant-recovery-timeline/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'Hair Transplant Recovery Timeline: Day 1 to Month 12'] differs from schema ['Home', 'Blog', 'Hair Transplant Recovery Timeline: Day 1 to Month 12']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/how-many-grafts-hair-transplant/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'How Many Grafts Do You Need for a Hair Transplant?'] differs from schema ['Home', 'Blog', 'How Many Grafts Do You Need for a Hair Transplant?']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/how-many-prp-sessions/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'How Many PRP Sessions Do You Need for Hair Loss?'] differs from schema ['Home', 'Blog', 'How Many PRP Sessions Do You Need for Hair Loss?']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/hydrafacial-benefits-process/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'Hydra Facial Treatment: Steps, Benefits & Suitability'] differs from schema ['Home', 'Blog', 'Hydra Facial Treatment: Steps, Benefits & Suitability']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog'] differs from schema ['Home', 'Blog']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/kamlesh-nagarkoti-prp-treatment-kezza-jaipur/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'IPL Cricketer Kamlesh Nagarkoti Chooses Kezza Clinic for PRP Hair Treatment'] differs from schema ['Home', 'Blog', 'IPL Cricketer Kamlesh Nagarkoti Chooses Kezza Clinic for PRP Hair Treatment']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/laser-hair-removal-how-it-works/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'Laser Hair Reduction: How It Works & Sessions Needed'] differs from schema ['Home', 'Blog', 'Laser Hair Reduction: How It Works & Sessions Needed']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/lip-blush-treatment-guide/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'Lip Blush Treatment: Procedure, Healing & Results'] differs from schema ['Home', 'Blog', 'Lip Blush Treatment: Procedure, Healing & Results']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/microblading-vs-powder-brows/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'Microblading vs Powder Brows: Technique & Skin Type'] differs from schema ['Home', 'Blog', 'Microblading vs Powder Brows: Technique & Skin Type']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/norwood-scale-explained/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'The Norwood Scale Explained: 7 Stages of Male Pattern Hair Loss'] differs from schema ['Home', 'Blog', 'The Norwood Scale Explained: 7 Stages of Male Pattern Hair Loss']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/prp-vs-gfc-therapy/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', 'PRP vs GFC Therapy for Hair Loss: A Clinical Comparison'] differs from schema ['Home', 'Blog', 'PRP vs GFC Therapy for Hair Loss: A Clinical Comparison']"
+  },
+  {
+   "severity": "warning",
+   "page": "blog/why-laser-cant-remove-white-hair/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Blog', \"Why Laser Can't Remove White Hair, and What Does\"] differs from schema ['Home', 'Blog', \"Why Laser Can't Remove White Hair, and What Does\"]"
+  },
+  {
+   "severity": "warning",
+   "page": "botox/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Skin Services', 'Botox & Dermal Fillers'] differs from schema ['Home', 'Skin Services', 'Botox & Dermal Fillers']"
+  },
+  {
+   "severity": "warning",
    "page": "branches.html",
-   "message": "breadcrumb in schema only (no visible trail)"
+   "message": "visible breadcrumb ['Back', 'Home', 'Clinic Franchise'] differs from schema ['Home', 'Franchise']"
   },
   {
-   "severity": "info",
+   "severity": "warning",
    "page": "contact.html",
-   "message": "breadcrumb in schema only (no visible trail)"
+   "message": "visible breadcrumb ['Back', 'Home', 'Contact Us'] differs from schema ['Home', 'Contact']"
   },
   {
-   "severity": "info",
+   "severity": "warning",
+   "page": "dark-circles-treatment/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Skin Services', 'Dark Circles Treatment'] differs from schema ['Home', 'Skin Services', 'Dark Circles Treatment']"
+  },
+  {
+   "severity": "warning",
+   "page": "electrolysis.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Hair Services', 'Electrolysis'] differs from schema ['Home', 'Hair Services', 'Electrolysis']"
+  },
+  {
+   "severity": "warning",
    "page": "face-scanner.html",
-   "message": "breadcrumb in schema only (no visible trail)"
+   "message": "visible breadcrumb ['Back', 'Home', 'AI Scanner'] differs from schema ['Home', 'AI Skin & Hair Scanner']"
   },
   {
-   "severity": "info",
+   "severity": "warning",
+   "page": "gfc-treatment/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Hair Services', 'GFC Hair Treatment'] differs from schema ['Home', 'Hair Services', 'GFC Hair Treatment']"
+  },
+  {
+   "severity": "warning",
    "page": "hair-services.html",
-   "message": "breadcrumb in schema only (no visible trail)"
+   "message": "visible breadcrumb ['Back', 'Home', 'Hair Services'] differs from schema ['Home', 'Hair Services']"
   },
   {
-   "severity": "info",
+   "severity": "warning",
+   "page": "hair-transplant/beard/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Hair Services', 'Hair Transplant', 'Beard Transplant'] differs from schema ['Home', 'Hair Services', 'Hair Transplant', 'Beard Transplant']"
+  },
+  {
+   "severity": "warning",
+   "page": "hair-transplant/dhi/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Hair Services', 'Hair Transplant', 'DHI Hair Transplant'] differs from schema ['Home', 'Hair Services', 'Hair Transplant', 'DHI Hair Transplant']"
+  },
+  {
+   "severity": "warning",
+   "page": "hair-transplant/eyebrow/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Hair Services', 'Hair Transplant', 'Eyebrow Transplant'] differs from schema ['Home', 'Hair Services', 'Hair Transplant', 'Eyebrow Transplant']"
+  },
+  {
+   "severity": "warning",
+   "page": "hair-transplant/fue/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Hair Services', 'Hair Transplant', 'FUE Hair Transplant'] differs from schema ['Home', 'Hair Services', 'Hair Transplant', 'FUE Hair Transplant']"
+  },
+  {
+   "severity": "warning",
+   "page": "hair-transplant/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Hair Services', 'Hair Transplant'] differs from schema ['Home', 'Hair Services', 'Hair Transplant']"
+  },
+  {
+   "severity": "warning",
+   "page": "hair-wig.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Hair Services', 'Hair Wig & Replacement'] differs from schema ['Home', 'Hair Services', 'Hair Wig & Replacement']"
+  },
+  {
+   "severity": "warning",
+   "page": "hi/hair-transplant/index.html",
+   "message": "visible breadcrumb ['वापस', 'होम', 'हेयर सर्विसेज़', 'हेयर ट्रांसप्लांट'] differs from schema ['होम', 'हेयर सर्विसेज़', 'हेयर ट्रांसप्लांट']"
+  },
+  {
+   "severity": "warning",
+   "page": "hydra-facial/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Skin Services', 'Hydra Facial'] differs from schema ['Home', 'Skin Services', 'Hydra Facial']"
+  },
+  {
+   "severity": "warning",
+   "page": "laser-hair-removal/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Skin Services', 'Laser Hair Removal'] differs from schema ['Home', 'Skin Services', 'Laser Hair Removal']"
+  },
+  {
+   "severity": "warning",
+   "page": "locations/ajmer/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Our Clinics', 'Ajmer'] differs from schema ['Home', 'Our Clinics', 'Ajmer']"
+  },
+  {
+   "severity": "warning",
+   "page": "locations/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Our Clinics'] differs from schema ['Home', 'Our Clinics']"
+  },
+  {
+   "severity": "warning",
+   "page": "locations/jaipur/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Our Clinics', 'Jaipur'] differs from schema ['Home', 'Our Clinics', 'Jaipur']"
+  },
+  {
+   "severity": "warning",
+   "page": "locations/sikar/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Our Clinics', 'Sikar'] differs from schema ['Home', 'Our Clinics', 'Sikar']"
+  },
+  {
+   "severity": "warning",
+   "page": "medical-dermatology/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Skin Services', 'Medical Dermatology'] differs from schema ['Home', 'Skin Services', 'Medical Dermatology']"
+  },
+  {
+   "severity": "warning",
    "page": "permanent-makeup.html",
-   "message": "breadcrumb in schema only (no visible trail)"
+   "message": "visible breadcrumb ['Back', 'Home', 'Permanent Makeup'] differs from schema ['Home', 'Permanent Makeup']"
   },
   {
-   "severity": "info",
+   "severity": "warning",
+   "page": "pigmentation-treatment/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Skin Services', 'Pigmentation, Melasma & Skin Tone Brightening'] differs from schema ['Home', 'Skin Services', 'Pigmentation & Melasma Treatment']"
+  },
+  {
+   "severity": "warning",
    "page": "prp-therapy.html",
-   "message": "breadcrumb in schema only (no visible trail)"
+   "message": "visible breadcrumb ['Back', 'Home', 'Hair Services', 'PRP Hair Therapy'] differs from schema ['Home', 'Hair Services', 'PRP & GFC Therapy']"
   },
   {
-   "severity": "info",
+   "severity": "warning",
    "page": "skin-services.html",
-   "message": "breadcrumb in schema only (no visible trail)"
+   "message": "visible breadcrumb ['Back', 'Home', 'Skin Services'] differs from schema ['Home', 'Skin Services']"
   },
   {
-   "severity": "info",
+   "severity": "warning",
+   "page": "stretch-marks-treatment/index.html",
+   "message": "visible breadcrumb ['Back', 'Home', 'Skin Services', 'Stretch Marks Treatment'] differs from schema ['Home', 'Skin Services', 'Stretch Marks Treatment']"
+  },
+  {
+   "severity": "warning",
    "page": "terms.html",
-   "message": "breadcrumb in schema only (no visible trail)"
+   "message": "visible breadcrumb ['Back', 'Home', 'Terms & Conditions'] differs from schema ['Home', 'Terms & Privacy']"
   },
   {
-   "severity": "info",
+   "severity": "warning",
    "page": "weight-loss.html",
-   "message": "breadcrumb in schema only (no visible trail)"
+   "message": "visible breadcrumb ['Back', 'Home', 'Weight Management & Body Sculpting'] differs from schema ['Home', 'Weight Management & Body Sculpting']"
   },
   {
-   "severity": "info",
+   "severity": "warning",
    "page": "white-hair-removal.html",
-   "message": "breadcrumb in schema only (no visible trail)"
+   "message": "visible breadcrumb ['Back', 'Home', 'Skin Services', 'White & Grey Hair Removal'] differs from schema ['Home', 'Hair Services', 'White Hair Removal']"
+  },
+  {
+   "severity": "critical",
+   "page": "about.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "about.html",
+   "message": "links to a page that is not published (noindex): cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "about.html",
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "about.html",
+   "message": "links to a page that is not published (noindex): weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "about.html",
+   "message": "links to a page that is not published (noindex): microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "about.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "about.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "about.html",
+   "message": "links to a page that is not published (noindex): pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "about.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "acne-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "acne-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "acne-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "acne-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "acne-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "acne-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "acne-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "acne-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "acne-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/acne-scars-treatment-options/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/acne-scars-treatment-options/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/acne-scars-treatment-options/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/acne-scars-treatment-options/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/acne-scars-treatment-options/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/acne-scars-treatment-options/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/acne-scars-treatment-options/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/acne-scars-treatment-options/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/acne-scars-treatment-options/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/body-sculpting-vs-weight-loss/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/body-sculpting-vs-weight-loss/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/body-sculpting-vs-weight-loss/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/body-sculpting-vs-weight-loss/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/body-sculpting-vs-weight-loss/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/body-sculpting-vs-weight-loss/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/body-sculpting-vs-weight-loss/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/body-sculpting-vs-weight-loss/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/body-sculpting-vs-weight-loss/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/chemical-peels-vs-laser-toning/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/chemical-peels-vs-laser-toning/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/chemical-peels-vs-laser-toning/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/chemical-peels-vs-laser-toning/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/chemical-peels-vs-laser-toning/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/chemical-peels-vs-laser-toning/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/chemical-peels-vs-laser-toning/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/chemical-peels-vs-laser-toning/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/chemical-peels-vs-laser-toning/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/cryolipolysis-fat-freezing-guide/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/cryolipolysis-fat-freezing-guide/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/cryolipolysis-fat-freezing-guide/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/cryolipolysis-fat-freezing-guide/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/cryolipolysis-fat-freezing-guide/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/cryolipolysis-fat-freezing-guide/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/cryolipolysis-fat-freezing-guide/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/cryolipolysis-fat-freezing-guide/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/cryolipolysis-fat-freezing-guide/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (main)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/cryolipolysis-fat-freezing-guide/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/fue-vs-dhi-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/fue-vs-dhi-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/fue-vs-dhi-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/fue-vs-dhi-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/fue-vs-dhi-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/fue-vs-dhi-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/fue-vs-dhi-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/fue-vs-dhi-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/fue-vs-dhi-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-cost-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-cost-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-cost-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-cost-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-cost-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-cost-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-cost-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-cost-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-cost-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-hairline-design/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-hairline-design/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-hairline-design/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-hairline-design/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-hairline-design/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-hairline-design/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-hairline-design/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-hairline-design/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-hairline-design/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-procedure-day/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-procedure-day/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-procedure-day/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-procedure-day/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-procedure-day/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-procedure-day/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-procedure-day/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-procedure-day/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-procedure-day/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-recovery-timeline/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-recovery-timeline/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-recovery-timeline/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-recovery-timeline/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-recovery-timeline/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-recovery-timeline/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-recovery-timeline/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-recovery-timeline/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hair-transplant-recovery-timeline/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-grafts-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-grafts-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-grafts-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-grafts-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-grafts-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-grafts-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-grafts-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-grafts-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-grafts-hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-prp-sessions/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-prp-sessions/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-prp-sessions/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-prp-sessions/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-prp-sessions/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-prp-sessions/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-prp-sessions/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-prp-sessions/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/how-many-prp-sessions/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hydrafacial-benefits-process/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hydrafacial-benefits-process/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hydrafacial-benefits-process/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hydrafacial-benefits-process/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hydrafacial-benefits-process/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hydrafacial-benefits-process/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hydrafacial-benefits-process/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hydrafacial-benefits-process/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/hydrafacial-benefits-process/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/kamlesh-nagarkoti-prp-treatment-kezza-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/kamlesh-nagarkoti-prp-treatment-kezza-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/kamlesh-nagarkoti-prp-treatment-kezza-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/kamlesh-nagarkoti-prp-treatment-kezza-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/kamlesh-nagarkoti-prp-treatment-kezza-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/kamlesh-nagarkoti-prp-treatment-kezza-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/kamlesh-nagarkoti-prp-treatment-kezza-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/kamlesh-nagarkoti-prp-treatment-kezza-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/kamlesh-nagarkoti-prp-treatment-kezza-jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/laser-hair-removal-how-it-works/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/laser-hair-removal-how-it-works/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/laser-hair-removal-how-it-works/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/laser-hair-removal-how-it-works/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/laser-hair-removal-how-it-works/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/laser-hair-removal-how-it-works/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/laser-hair-removal-how-it-works/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/laser-hair-removal-how-it-works/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/laser-hair-removal-how-it-works/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/lip-blush-treatment-guide/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/lip-blush-treatment-guide/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/lip-blush-treatment-guide/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/lip-blush-treatment-guide/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/lip-blush-treatment-guide/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/lip-blush-treatment-guide/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/lip-blush-treatment-guide/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/lip-blush-treatment-guide/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/lip-blush-treatment-guide/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/microblading-vs-powder-brows/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/microblading-vs-powder-brows/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/microblading-vs-powder-brows/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/microblading-vs-powder-brows/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/microblading-vs-powder-brows/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/microblading-vs-powder-brows/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/microblading-vs-powder-brows/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/microblading-vs-powder-brows/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/microblading-vs-powder-brows/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/norwood-scale-explained/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/norwood-scale-explained/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/norwood-scale-explained/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/norwood-scale-explained/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/norwood-scale-explained/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/norwood-scale-explained/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/norwood-scale-explained/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/norwood-scale-explained/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/norwood-scale-explained/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/prp-vs-gfc-therapy/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/prp-vs-gfc-therapy/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/prp-vs-gfc-therapy/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/prp-vs-gfc-therapy/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/prp-vs-gfc-therapy/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/prp-vs-gfc-therapy/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/prp-vs-gfc-therapy/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/prp-vs-gfc-therapy/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/prp-vs-gfc-therapy/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/why-laser-cant-remove-white-hair/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/why-laser-cant-remove-white-hair/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/why-laser-cant-remove-white-hair/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/why-laser-cant-remove-white-hair/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/why-laser-cant-remove-white-hair/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/why-laser-cant-remove-white-hair/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/why-laser-cant-remove-white-hair/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/why-laser-cant-remove-white-hair/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "blog/why-laser-cant-remove-white-hair/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "botox/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "botox/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "botox/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "botox/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "botox/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "botox/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "botox/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "botox/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "botox/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (main)"
+  },
+  {
+   "severity": "critical",
+   "page": "botox/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "branches.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "branches.html",
+   "message": "links to a page that is not published (noindex): cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "branches.html",
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "branches.html",
+   "message": "links to a page that is not published (noindex): weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "branches.html",
+   "message": "links to a page that is not published (noindex): microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "branches.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "branches.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "branches.html",
+   "message": "links to a page that is not published (noindex): pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "branches.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "contact.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "contact.html",
+   "message": "links to a page that is not published (noindex): cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "contact.html",
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "contact.html",
+   "message": "links to a page that is not published (noindex): weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "contact.html",
+   "message": "links to a page that is not published (noindex): microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "contact.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "contact.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "contact.html",
+   "message": "links to a page that is not published (noindex): pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "contact.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "dark-circles-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "dark-circles-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "dark-circles-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "dark-circles-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "dark-circles-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "dark-circles-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "dark-circles-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "dark-circles-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "dark-circles-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "electrolysis.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "electrolysis.html",
+   "message": "links to a page that is not published (noindex): cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "electrolysis.html",
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "electrolysis.html",
+   "message": "links to a page that is not published (noindex): weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "electrolysis.html",
+   "message": "links to a page that is not published (noindex): microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "electrolysis.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "electrolysis.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "electrolysis.html",
+   "message": "links to a page that is not published (noindex): pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "electrolysis.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "face-scanner.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "face-scanner.html",
+   "message": "links to a page that is not published (noindex): cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "face-scanner.html",
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "face-scanner.html",
+   "message": "links to a page that is not published (noindex): weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "face-scanner.html",
+   "message": "links to a page that is not published (noindex): microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "face-scanner.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "face-scanner.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "face-scanner.html",
+   "message": "links to a page that is not published (noindex): pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "face-scanner.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "gfc-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "gfc-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "gfc-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "gfc-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "gfc-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "gfc-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "gfc-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "gfc-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "gfc-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-loss-consultation.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-loss-consultation.html",
+   "message": "links to a page that is not published (noindex): cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-loss-consultation.html",
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-loss-consultation.html",
+   "message": "links to a page that is not published (noindex): weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-loss-consultation.html",
+   "message": "links to a page that is not published (noindex): microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-loss-consultation.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-loss-consultation.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-loss-consultation.html",
+   "message": "links to a page that is not published (noindex): pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-loss-consultation.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-services.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-services.html",
+   "message": "links to a page that is not published (noindex): cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-services.html",
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-services.html",
+   "message": "links to a page that is not published (noindex): weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-services.html",
+   "message": "links to a page that is not published (noindex): microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-services.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-services.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-services.html",
+   "message": "links to a page that is not published (noindex): pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-services.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/beard/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/beard/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/beard/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/beard/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/beard/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/beard/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/beard/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/beard/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/beard/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/dhi/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/dhi/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/dhi/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/dhi/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/dhi/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/dhi/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/dhi/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/dhi/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/dhi/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/eyebrow/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/eyebrow/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/eyebrow/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/eyebrow/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/eyebrow/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/eyebrow/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/eyebrow/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/eyebrow/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/eyebrow/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (main)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/eyebrow/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (main)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/eyebrow/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (main)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/eyebrow/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/fue/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/fue/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/fue/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/fue/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/fue/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/fue/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/fue/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/fue/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/fue/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-wig.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-wig.html",
+   "message": "links to a page that is not published (noindex): cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-wig.html",
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-wig.html",
+   "message": "links to a page that is not published (noindex): weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-wig.html",
+   "message": "links to a page that is not published (noindex): microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-wig.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-wig.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-wig.html",
+   "message": "links to a page that is not published (noindex): pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hair-wig.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "hi/hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hi/hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hi/hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hi/hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hi/hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hi/hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hi/hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hi/hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hi/hair-transplant/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "hydra-facial/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hydra-facial/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hydra-facial/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hydra-facial/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hydra-facial/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hydra-facial/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hydra-facial/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hydra-facial/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "hydra-facial/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (main)"
+  },
+  {
+   "severity": "critical",
+   "page": "hydra-facial/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "index.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "index.html",
+   "message": "links to a page that is not published (noindex): cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "index.html",
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "index.html",
+   "message": "links to a page that is not published (noindex): weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "index.html",
+   "message": "links to a page that is not published (noindex): microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "index.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "index.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "index.html",
+   "message": "links to a page that is not published (noindex): pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "index.html",
+   "message": "links to a page that is not published (noindex): microblading/ (body)"
+  },
+  {
+   "severity": "critical",
+   "page": "index.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (body)"
+  },
+  {
+   "severity": "critical",
+   "page": "index.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (body)"
+  },
+  {
+   "severity": "critical",
+   "page": "index.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "laser-hair-removal/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "laser-hair-removal/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "laser-hair-removal/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "laser-hair-removal/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "laser-hair-removal/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "laser-hair-removal/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "laser-hair-removal/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "laser-hair-removal/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "laser-hair-removal/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/ajmer/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/ajmer/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/ajmer/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/ajmer/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/ajmer/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/ajmer/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/ajmer/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/ajmer/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/ajmer/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (main)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/ajmer/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (main)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/jaipur/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/sikar/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/sikar/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/sikar/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/sikar/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/sikar/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/sikar/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/sikar/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/sikar/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/sikar/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (main)"
+  },
+  {
+   "severity": "critical",
+   "page": "locations/sikar/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "medical-dermatology/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "medical-dermatology/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "medical-dermatology/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "medical-dermatology/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "medical-dermatology/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "medical-dermatology/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "medical-dermatology/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "medical-dermatology/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "permanent-makeup.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "permanent-makeup.html",
+   "message": "links to a page that is not published (noindex): cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "permanent-makeup.html",
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "permanent-makeup.html",
+   "message": "links to a page that is not published (noindex): weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "permanent-makeup.html",
+   "message": "links to a page that is not published (noindex): microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "permanent-makeup.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "permanent-makeup.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "permanent-makeup.html",
+   "message": "links to a page that is not published (noindex): pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "permanent-makeup.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "pigmentation-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "pigmentation-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "pigmentation-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "pigmentation-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "pigmentation-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "pigmentation-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "pigmentation-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "pigmentation-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "pigmentation-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "prp-therapy.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "prp-therapy.html",
+   "message": "links to a page that is not published (noindex): cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "prp-therapy.html",
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "prp-therapy.html",
+   "message": "links to a page that is not published (noindex): weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "prp-therapy.html",
+   "message": "links to a page that is not published (noindex): microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "prp-therapy.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "prp-therapy.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "prp-therapy.html",
+   "message": "links to a page that is not published (noindex): pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "prp-therapy.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "skin-services.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "skin-services.html",
+   "message": "links to a page that is not published (noindex): cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "skin-services.html",
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "skin-services.html",
+   "message": "links to a page that is not published (noindex): weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "skin-services.html",
+   "message": "links to a page that is not published (noindex): microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "skin-services.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "skin-services.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "skin-services.html",
+   "message": "links to a page that is not published (noindex): pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "skin-services.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "stretch-marks-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "stretch-marks-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "stretch-marks-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "stretch-marks-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "stretch-marks-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "stretch-marks-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "stretch-marks-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "stretch-marks-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "stretch-marks-treatment/index.html",
+   "message": "links to a page that is not published (noindex): /skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "terms.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "terms.html",
+   "message": "links to a page that is not published (noindex): cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "terms.html",
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "terms.html",
+   "message": "links to a page that is not published (noindex): weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "terms.html",
+   "message": "links to a page that is not published (noindex): microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "terms.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "terms.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "terms.html",
+   "message": "links to a page that is not published (noindex): pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "terms.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "weight-loss.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "weight-loss.html",
+   "message": "links to a page that is not published (noindex): cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "weight-loss.html",
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "weight-loss.html",
+   "message": "links to a page that is not published (noindex): weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "weight-loss.html",
+   "message": "links to a page that is not published (noindex): microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "weight-loss.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "weight-loss.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "weight-loss.html",
+   "message": "links to a page that is not published (noindex): pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "weight-loss.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (footer)"
+  },
+  {
+   "severity": "critical",
+   "page": "white-hair-removal.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "white-hair-removal.html",
+   "message": "links to a page that is not published (noindex): cryolipolysis/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "white-hair-removal.html",
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "white-hair-removal.html",
+   "message": "links to a page that is not published (noindex): weight-management/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "white-hair-removal.html",
+   "message": "links to a page that is not published (noindex): microblading/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "white-hair-removal.html",
+   "message": "links to a page that is not published (noindex): lip-blush/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "white-hair-removal.html",
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "white-hair-removal.html",
+   "message": "links to a page that is not published (noindex): pmu-correction/ (nav)"
+  },
+  {
+   "severity": "critical",
+   "page": "white-hair-removal.html",
+   "message": "links to a page that is not published (noindex): skin-consultation/ (footer)"
   },
   {
    "severity": "info",
@@ -2050,7 +4770,7 @@
  ],
  "near_duplicates": [
   [
-   0.21,
+   0.2,
    "locations/ajmer/index.html",
    "locations/sikar/index.html"
   ],

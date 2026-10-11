@@ -1,4 +1,254 @@
-(function(){let s=!1,e=!1,t=null;document.addEventListener("DOMContentLoaded",function(){t=document.querySelector(".navbar")});function n(){const o=(window.pageYOffset||document.documentElement.scrollTop||0)>50;o!==e&&t&&(e=o,e?(t.style.background="rgba(255, 255, 255, 0.98)",t.style.boxShadow="0 2px 20px rgba(0, 0, 0, 0.08)"):(t.style.background="rgba(255, 255, 255, 0.95)",t.style.boxShadow="none")),s=!1}window.addEventListener("scroll",function(){s||(requestAnimationFrame(n),s=!0)},{passive:!0})})(),document.addEventListener("DOMContentLoaded",function(){const s=document.querySelectorAll(".subnav-pill");if(!s.length)return;const e=Array.from(s).map(n=>{const a=n.getAttribute("href").replace("#","");return document.getElementById(a)}).filter(Boolean);function t(){const n=(window.pageYOffset||document.documentElement.scrollTop||0)+160;let a=null;for(let o=0;o<e.length;o++){const i=e[o],r=i.offsetTop,c=i.offsetHeight;if(n>=r&&n<r+c){a=i;break}}if(a){const o=a.id;s.forEach(i=>{i.getAttribute("href").replace("#","")===o?i.classList.add("active"):i.classList.remove("active")})}}window.addEventListener("scroll",t,{passive:!0}),t()});const observerOptions={threshold:.1,rootMargin:"0px 0px -50px 0px"},observer=new IntersectionObserver(function(s){s.forEach(e=>{e.isIntersecting&&(e.target.style.opacity="1",e.target.style.transform="translateY(0)",e.target.classList.contains("pigmentation-card")&&(e.target.style.animation="slideInSequential 0.8s ease forwards"),e.target.classList.contains("medical-card")&&(e.target.style.animation="fadeInUp 0.8s ease forwards"),e.target.classList.contains("faq-item")&&(e.target.style.animation="fadeInUp 0.8s ease forwards"),observer.unobserve(e.target))})},observerOptions);document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".pigmentation-card, .medical-card, .timeline-step, .faq-item").forEach(e=>{e.style.opacity="0",e.style.transform="translateY(30px)",e.style.transition="all 0.6s ease",observer.observe(e)})}),document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".pigmentation-card").forEach((e,t)=>{e.style.animationDelay=`${t*.2}s`})}),document.addEventListener("DOMContentLoaded",function(){const s=document.querySelector(".hero-image img"),e=document.querySelector(".skin-hero-section");s&&e&&(e.addEventListener("mousemove",function(t){const n=e.getBoundingClientRect(),a=(t.clientX-n.left)/n.width,o=(t.clientY-n.top)/n.height,i=(a-.5)*15,r=(o-.5)*15;s.style.transform=`translate(${i}px, ${r}px)`}),e.addEventListener("mouseleave",function(){s.style.transform="translate(0, 0)"}))}),document.addEventListener("DOMContentLoaded",function(){const s=document.querySelectorAll(".faq-item");s.forEach(e=>{const t=e.querySelector(".faq-question"),n=e.querySelector(".faq-answer");t.addEventListener("click",function(){const a=e.classList.contains("active");s.forEach(o=>{if(o!==e){o.classList.remove("active");const i=o.querySelector(".faq-answer");i.style.maxHeight="0"}}),a?(e.classList.remove("active"),n.style.maxHeight="0"):(e.classList.add("active"),n.style.maxHeight=n.scrollHeight+"px")})})}),document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".service-image img, .pigmentation-card img, .laser-hero-image img").forEach(e=>{e.addEventListener("mouseenter",function(){this.style.transform="scale(1.08)",this.style.filter="brightness(1.1)"}),e.addEventListener("mouseleave",function(){this.style.transform="scale(1)",this.style.filter="brightness(1)"})})}),document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".btn-gold, .btn-navy, .btn-primary, .btn-consultation").forEach(e=>{e.addEventListener("click",function(t){const n=document.createElement("span"),a=this.getBoundingClientRect(),o=Math.max(a.width,a.height),i=t.clientX-a.left-o/2,r=t.clientY-a.top-o/2;n.style.width=n.style.height=o+"px",n.style.left=i+"px",n.style.top=r+"px",n.classList.add("ripple"),this.appendChild(n),setTimeout(()=>{n.remove()},600)}),e.addEventListener("mouseenter",function(){this.style.transform="translateY(-3px) scale(1.02)",this.style.boxShadow="0 15px 35px rgba(0, 0, 0, 0.2)"}),e.addEventListener("mouseleave",function(){this.style.transform="translateY(0) scale(1)",this.style.boxShadow="none"})})}),document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".pigmentation-card, .medical-card").forEach(e=>{e.addEventListener("mouseenter",function(){this.style.transform="translateY(-15px) scale(1.02)",this.style.boxShadow="0 25px 50px rgba(212, 175, 55, 0.2)";const t=document.createElement("div");t.className="card-shimmer",t.style.cssText=`
+// In-page anchor scrolling (with the fixed-navbar offset) is handled by smooth-scroll.js.
+// Optimized Single RAF Scroll Handler
+(function() {
+    let ticking = false;
+    let isScrolled = false;
+    let navbar = null;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        navbar = document.querySelector('.navbar');
+    });
+
+    function onScrollTick() {
+        const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
+
+        // Navbar styling (only mutate when crossing 50px threshold)
+        const shouldBeScrolled = scrolled > 50;
+        if (shouldBeScrolled !== isScrolled && navbar) {
+            isScrolled = shouldBeScrolled;
+            if (isScrolled) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        }
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(onScrollTick);
+            ticking = true;
+        }
+    }, { passive: true });
+})();
+
+// Interactive Sub-Navigation ScrollSpy
+document.addEventListener('DOMContentLoaded', function() {
+    const subnavPills = document.querySelectorAll('.subnav-pill');
+    if (!subnavPills.length) return;
+
+    const sections = Array.from(subnavPills).map(pill => {
+        const id = pill.getAttribute('href').replace('#', '');
+        return document.getElementById(id);
+    }).filter(Boolean);
+
+    function updateActivePill() {
+        const scrollPos = (window.pageYOffset || document.documentElement.scrollTop || 0) + 160;
+        let currentSection = null;
+
+        for (let i = 0; i < sections.length; i++) {
+            const section = sections[i];
+            const top = section.offsetTop;
+            const height = section.offsetHeight;
+            if (scrollPos >= top && scrollPos < top + height) {
+                currentSection = section;
+                break;
+            }
+        }
+
+        if (currentSection) {
+            const targetId = currentSection.id;
+            subnavPills.forEach(pill => {
+                const href = pill.getAttribute('href').replace('#', '');
+                if (href === targetId) {
+                    pill.classList.add('active');
+                } else {
+                    pill.classList.remove('active');
+                }
+            });
+        }
+    }
+
+    window.addEventListener('scroll', updateActivePill, { passive: true });
+    updateActivePill();
+});
+
+// Intersection Observer for animations
+const observerOptions = {
+    threshold: 0,
+    rootMargin: '0px 0px -40px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            
+            // Special animations for different elements
+            if (entry.target.classList.contains('pigmentation-card')) {
+                entry.target.style.animation = 'slideInSequential 0.8s ease forwards';
+            }
+            if (entry.target.classList.contains('medical-card')) {
+                entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+            }
+            if (entry.target.classList.contains('faq-item')) {
+                entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+            }
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe elements for animation
+document.addEventListener('DOMContentLoaded', function() {
+    const animatedElements = document.querySelectorAll(
+        '.pigmentation-card, .medical-card, .timeline-step, .faq-item'
+    );
+    
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+        observer.observe(el);
+    });
+});
+
+// Staggered animation for pigmentation cards
+document.addEventListener('DOMContentLoaded', function() {
+    const pigmentationCards = document.querySelectorAll('.pigmentation-card');
+    pigmentationCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+    });
+});
+
+// Mouse move parallax for hero image
+document.addEventListener('DOMContentLoaded', function() {
+    const heroImage = document.querySelector('.hero-image img');
+    const heroSection = document.querySelector('.skin-hero-section');
+    
+    if (heroImage && heroSection) {
+        heroSection.addEventListener('mousemove', function(e) {
+            const rect = heroSection.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = (e.clientY - rect.top) / rect.height;
+            
+            const moveX = (x - 0.5) * 15;
+            const moveY = (y - 0.5) * 15;
+            
+            heroImage.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+        
+        heroSection.addEventListener('mouseleave', function() {
+            heroImage.style.transform = 'translate(0, 0)';
+        });
+    }
+});
+
+// FAQ Accordion functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        
+        question.addEventListener('click', function() {
+            const isActive = item.classList.contains('active');
+            
+            // Close all other FAQ items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    const otherAnswer = otherItem.querySelector('.faq-answer');
+                    otherAnswer.style.maxHeight = '0';
+                }
+            });
+            
+            // Toggle current item
+            if (isActive) {
+                item.classList.remove('active');
+                answer.style.maxHeight = '0';
+            } else {
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
+});
+
+// Enhanced hover effects for service images
+document.addEventListener('DOMContentLoaded', function() {
+    const serviceImages = document.querySelectorAll('.service-image img, .pigmentation-card img, .laser-hero-image img');
+    
+    serviceImages.forEach(img => {
+        img.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.08)';
+            this.style.filter = 'brightness(1.1)';
+        });
+        
+        img.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.filter = 'brightness(1)';
+        });
+    });
+});
+
+// Button hover effects with ripple
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.btn-gold, .btn-navy, .btn-primary, .btn-consultation');
+    
+    buttons.forEach(button => {
+        // Ripple effect
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+        
+        // Enhanced hover effects
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.02)';
+            this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.2)';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = 'none';
+        });
+    });
+});
+
+// Card hover effects with shimmer
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.pigmentation-card, .medical-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-15px) scale(1.02)';
+            this.style.boxShadow = '0 25px 50px rgba(212, 175, 55, 0.2)';
+            
+            // Add shimmer effect
+            const shimmer = document.createElement('div');
+            shimmer.className = 'card-shimmer';
+            shimmer.style.cssText = `
                 position: absolute;
                 top: 0;
                 left: -100%;
@@ -8,7 +258,54 @@
                 transition: left 0.6s ease;
                 pointer-events: none;
                 z-index: 1;
-            `,this.style.position="relative",this.style.overflow="hidden",this.appendChild(t),setTimeout(()=>{t.style.left="100%"},50),setTimeout(()=>{t.remove()},700)}),e.addEventListener("mouseleave",function(){this.style.transform="translateY(0) scale(1)",this.style.boxShadow="0 10px 30px rgba(0, 0, 0, 0.1)"})})}),window.addEventListener("load",function(){document.body.style.opacity="0",document.body.style.transition="opacity 0.5s ease",setTimeout(()=>{document.body.style.opacity="1"},100)}),document.addEventListener("DOMContentLoaded",function(){const s=document.querySelectorAll(".service-content, .section-header, .laser-content"),e=new IntersectionObserver(t=>{t.forEach(n=>{n.isIntersecting&&(n.target.style.opacity="1",n.target.style.transform="translateY(0)")})},{threshold:.2});s.forEach(t=>{t.style.opacity="0",t.style.transform="translateY(20px)",t.style.transition="all 0.8s ease",e.observe(t)})});const additionalCSS=`
+            `;
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(shimmer);
+            
+            setTimeout(() => {
+                shimmer.style.left = '100%';
+            }, 50);
+            
+            setTimeout(() => {
+                shimmer.remove();
+            }, 700);
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+        });
+    });
+});
+
+// (Removed: the old 'load' handler faded the whole page out and back in after
+// every image had loaded, which made the page blink on slow mobile connections.)
+// Video playback handled smoothly by IntersectionObserver in quick-actions.js
+
+// Smooth reveal animations for content sections
+document.addEventListener('DOMContentLoaded', function() {
+    const contentSections = document.querySelectorAll('.service-content, .section-header, .laser-content');
+    
+    const contentObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+    
+    contentSections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        contentObserver.observe(section);
+    });
+});
+
+// Add CSS for additional animations
+const additionalCSS = `
 .ripple {
     position: absolute;
     border-radius: 50%;
@@ -73,4 +370,15 @@
         transform: translateY(-10px) rotate(180deg);
     }
 }
-`,style=document.createElement("style");style.textContent=additionalCSS,document.head.appendChild(style),document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".medical-card").forEach((s,e)=>{s.style.animationDelay=`${e*.1}s`})});
+`;
+
+const style = document.createElement('style');
+style.textContent = additionalCSS;
+document.head.appendChild(style);
+
+// Staggered animation delay for medical cards
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.medical-card').forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+    });
+});

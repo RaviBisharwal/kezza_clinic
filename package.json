@@ -8,18 +8,22 @@
     "dev": "node server.js",
     "serve": "npx serve frontend -p 3001",
     "test": "python3 tools/validate_reference_page.py && node -c server.js && node tools/seo/check-seo.js && python3 tools/seo/pseo_audit.py --strict",
-    "build": "npm run build:footer && npm run build:content && npm run build:css && npm run build:js",
+    "build": "npm run build:css && npm run build:js",
     "build:footer": "python3 tools/content/sync_footer.py",
     "build:content": "python3 tools/content/build_content_pages.py",
     "build:css": "node tools/build-css.js",
-    "build:js": "node tools/stamp-js.js",
+    "build:js": "node tools/build-js.js",
     "og": "python3 tools/og/make_og_images.py",
     "seo:check": "node tools/seo/check-seo.js",
-    "seo:audit": "python3 tools/seo/pseo_audit.py"
+    "seo:audit": "python3 tools/seo/pseo_audit.py",
+    "build:all": "npm run build:footer && npm run build:content && npm run build:css && npm run build:js"
   },
   "dependencies": {
     "@google/genai": "^2.20.0",
     "dotenv": "^17.4.2",
     "express": "^4.22.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
   }
 }

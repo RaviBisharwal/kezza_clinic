@@ -22,7 +22,7 @@ kezza_clinic/                       ← Repository Root
 │   ├── build_hair_transplant_images.py # Resizes hair-transplant page photos (macOS `sips`)
 │   ├── optimize_for_90_plus.js     # One-off head/meta optimizer (already applied; review before re-running)
 │   ├── build-css.js                # CSS bundler (npm run build:css)
-│   ├── stamp-js.js                 # JS cache-busting ?v=<hash> stamps (npm run build:js)
+│   ├── build-js.js                 # Minifies js/*.js into js/*.min.js + ?v=<hash> stamps (npm run build:js; needs `npm install` once)
 │   ├── content/                    # Clinic, treatment and blog pages, sitemap, llms.txt builder (npm run build:content)
 │   │                               # pseo.py = programmatic-SEO engine (status model, quality gates, link rules)
 │   ├── og/                         # Social share image generator (npm run og)
@@ -241,17 +241,19 @@ The live site is **https://www.kezza.co.in** (GoDaddy, Apache). All SEO URLs, sc
 
 | Command | What it does |
 | --- | --- |
-| `npm run build` | Rebuilds `/locations/*`, `/blog/*`, the treatment pages, `sitemap.xml` and `llms.txt`, then the CSS bundles, then stamps JS versions |
+| `npm run build` | CSS bundles, then minified JS with version stamps. Run it after editing anything in `frontend/css` or `frontend/js` |
+| `npm run build:all` | ⚠ Also regenerates the footer, `/locations/*`, `/blog/*`, the treatment pages, `sitemap.xml` and `llms.txt` from `tools/content`. Since 6 Oct 2026 those pages were edited directly in HTML, so this would undo those edits — do not run it until the page sources are brought up to date |
 | `npm run build:content` | Only the generated pages (`python3 tools/content/build_content_pages.py`) |
 | `npm run build:css` | Re-bundles CSS after editing anything in `frontend/css/` (`node tools/build-css.js`) |
-| `npm run build:js` | Stamps every local `<script src>` (and the lazily-injected chatbot/scanner files) with a content hash so edited JS reaches returning visitors (`node tools/stamp-js.js`) |
+| `npm run build:js` | Minifies every `frontend/js/<name>.js` into `<name>.min.js` (esbuild) and points every page at it with a content hash, including the chatbot/scanner files that load on demand (`node tools/build-js.js`) |
 | `npm run seo:check` | Checks domain, NAP/hours, schema, FAQs, links, sitemap — run before every deploy |
 | `npm run seo:audit` | Page inventory and programmatic-SEO audit (`python3 tools/seo/pseo_audit.py`): duplicate titles/H1s, near-duplicate content, competing pages, orphans, links to unpublished pages, claim wording. Writes `docs/pseo/inventory.*` |
 | `npm test` | Reference-page check, server syntax, `seo:check` and the pSEO audit in strict mode (fails on any critical issue) |
 | `npm run og` | Regenerates 1200×630 social share images in `frontend/images/og/` (needs `pip install pillow`) |
 
 - **Clinic facts** (addresses, phones, hours, doctors, services per branch) live in `tools/seo/site-data.json`. Change them there, keep them identical to each Google Business Profile, then run `npm run build`.
-- **CSS:** keep editing the normal files in `frontend/css/`. Pages load `css/bundle-<page>.min.css`; `tools/css-bundles.json` lists which source files (in which order) make up each bundle.
+- **CSS:** keep editing the normal files in `frontend/css/`. Pages load `css/bundle-<page>.min.css`; `tools/css-bundles.json` lists which source files (in which order) make up each bundle. Every bundle ends with `header-pro.css` (the header) and `mobile-perf.css` (phone speed & layout fixes), so those two win over page styles. Never edit the `bundle-*.min.css` files or paste CSS into them — it is lost at the next build.
+- **JavaScript:** edit the readable `frontend/js/<name>.js`; pages load `js/<name>.min.js`. Run `npm run build` afterwards. The chatbot (`kezza-ai.js`, about 200 KB) is not in any page's `<script>` tags: `quick-actions.js` loads it when the browser is idle or on the first tap, so pages open faster.
 - **Blog:** each article is one file in `tools/content/blog/` (JSON header + HTML body). Copy one, edit it, add its share image in `tools/og/make_og_images.py`, then `npm run og && npm run build`. An article with `"status": "review"` is built as `noindex` and left out of the blog page, sitemap and `llms.txt`; set `"status": "published"` with `"reviewer"` and `"reviewed"` once a doctor has approved it.
 - **Treatment pages (programmatic SEO).** The registry `tools/seo/taxonomy.json` lists every category, treatment and page: URL, category and parent, clinics, search intent, related pages, card and fallback link. Each generated page's content is one file in `tools/content/pages/` (JSON header with hero, sections, FAQs, sources and `review_notes`; the HTML after it is the long guide section). The engine is `tools/content/pseo.py`; the full design is in `docs/pseo/PSEO-REPORT.md`.
   - **Status** (`"status"` in the page file): `draft` = not built · `review` / `approved` = built for preview but `noindex`, left out of the sitemap, llms.txt, menus and related links, no "reviewed by" line · `published` = indexable, but only when every critical quality gate passes and `"reviewer"` + `"reviewed"` are set (otherwise held back) · `noindex` = built, never indexed.

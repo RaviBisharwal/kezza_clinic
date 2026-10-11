@@ -1,3 +1,74 @@
+# Update — 10 October 2026: faster, fixed mobile view + Semrush fixes
+
+Built on your latest upload (GitHub commit `5dd9c3b`, 10 Oct 15:01). Your changes from that commit are kept: the EN / हिंदी switcher, the new header, the consultation form with procedure sub-categories, the new skin pages and the direct menu links.
+
+## A. Upload (do these in order)
+
+1. Upload everything inside `frontend/` to `public_html`, replacing what is there. **Include `.htaccess`.** It is a hidden file: in cPanel File Manager open *Settings → Show Hidden Files (dotfiles)*. The live server is not using it today (see C1).
+2. Check in a browser (or at httpstatus.io):
+   - `https://kezza.co.in/hair-transplant/` must jump to `https://www.kezza.co.in/hair-transplant/`
+   - `https://www.kezza.co.in/hi` must open `https://www.kezza.co.in/hi/hair-transplant/`
+   If they don't, the server ignores `.htaccess`: in cPanel add *Domains → Redirects*: permanent (301), `kezza.co.in` → `https://www.kezza.co.in/`, "Do not redirect www.", wild card on.
+3. On your computer, run `npm install` once (adds esbuild, used to minify the scripts). From now on, after editing anything in `frontend/css` or `frontend/js`, run `npm run build`.
+4. Re-run the Semrush Site Audit a day after uploading.
+
+## B. Mobile view: what was wrong and what changed
+
+**Bugs that stopped people using the site on phones**
+- **The open menu could not be used.** The menu sat under its own dark backdrop, so it looked dim and blurred and every tap on a link just closed it. It is now on top and every link works.
+- **Doctor photos were cut off.** A newer stylesheet forced a wide 16:9 frame on phones, so faces were cut at the forehead or chin (Dr. Dhiral's and Dr. Aliza's faces were out of the frame). Doctor cards now use portrait frames that show the whole photo. On the Jaipur, Sikar and Ajmer pages, the doctors are compact rows with a full face photo (those pages also got shorter).
+- **Franchise page:** the hero buttons ran off the right edge of the screen and the footer was unstyled; its stylesheet had been built without the shared mobile and footer styles. Fixed.
+- **Four newer blog posts** (hairline design, procedure day, Kamlesh Nagarkoti, semaglutide) had an unstyled footer. They now use the same styles as the other articles.
+- **The whole page blinked** (faded out and back in) once all images had loaded, on About, Franchise, Contact, Hair Services, Permanent Makeup, Skin Services and Terms. Removed.
+- **Hero text could fade away** on Hair Services, Franchise and Permanent Makeup (a scroll effect). That effect now runs on desktop only.
+
+**Lag**
+On a simulated mid-range phone, the old pages kept the processor busy even when nobody touched the screen: a 3D logo redrawn 60 times a second, glowing and shimmering loops, see-through blurred bars redrawn on every scroll frame, a hidden popup's moving laser line, and the photo gallery moving even when off screen. Processor time used while the page just sits there, per 5 seconds (simulated mid-range phone):
+
+| Page | Before | After |
+| --- | --- | --- |
+| About | 2.9 s | 0.06 s |
+| Hair transplant | 2.8 s | 0.05 s |
+| Permanent makeup | 2.9 s | 0.06 s |
+| Skin services | 3.8 s | 0.06 s |
+| Contact | 2.7 s | 0.09 s |
+| Home (scrolled past the top) | 3.7 s | 0.00 s |
+
+- Bars that stay on screen (header, bottom dock, sub-menus) use solid backgrounds on phones instead of live blur.
+- Decorative loops are off on phones; the chat and dock buttons pulse 3 times, then rest. The home slideshow and ticker pause when scrolled out of view.
+- The 3D logo stays still on phones; on desktop it still spins and tilts, using a fraction of the work.
+- Loading: the chatbot (about 200 KB) loads when the browser is idle or on the first tap, not with the page. Google Translate loads only for visitors who choose हिंदी. The AI-scanner popup's files load just before it opens. The contact page no longer downloads a map library for a map that is not on the page.
+- The AI-scanner popup opened twice (after 2.5 s and 6 s). It now opens once per visit, at about 6 s, and waits if the visitor is typing or has the menu or chat open.
+- A tap on a card no longer triggers the desktop hover effects that made cards jump or tilt.
+
+**Animations and look**
+- Scroll-in animations on phones are shorter (0.5 s), slide up gently, and no longer wait for each other. "Reduce motion" (phone accessibility setting) turns them off.
+- The "Ask Kezza!" bubble hides itself after 9 seconds on phones, so it no longer covers the page.
+
+All 66 pages were checked at 360 and 390 px wide: nothing is cut off at the sides, no hidden text, no script errors. Desktop pages look the same as before, apart from the fixes listed here.
+
+## C. Semrush issues
+
+1. **hreflang conflicts (error).** The flagged page is `https://kezza.co.in/hair-transplant/`, the copy without "www". The live server serves the whole site on both addresses because `.htaccess` is not active, so Semrush crawled the non-www copy, whose canonical and hreflang point to www. The page tags themselves are correct. Fix: upload `.htaccess` and check the redirect (A1–A2). The redirect rule now also works when the server passes the host with a port.
+2. **2 structured data items invalid (error).** Electrolysis and Pigmentation used values Google doesn't accept for the procedure type ("NonSurgicalProcedure", "Non-Surgical Medical Procedure"), and the electrolysis item had a property that type doesn't have. Both fixed. The face scanner was marked as a web app, which Google only accepts with star ratings; it is now marked as a free online service.
+3. **330 unminified JavaScript and CSS files.** Every page loads minified scripts (`js/*.min.js`) and fully minified CSS. The header CSS had been pasted unminified into every CSS bundle. Google Fonts' own stylesheet is not minified and may still be listed; that one is Google's file.
+4. **231 broken external links.** These are almost all the Facebook and Instagram links in every footer: both sites block crawlers, so Semrush sees an error while the links open normally for people. Six citation links were checked by hand and all work. Fixed: a wrong Instagram address on the weight-loss page (`kezzaclinic` → `kezza_clinic`) and the tracking code on 60 Instagram links. If Semrush's list shows other addresses, send the export.
+5. **2 pages with low text-HTML ratio.** Contact (8.7 % → 13 %; also 33 % smaller) and the `/hi/` redirect page (5 % → 21 %).
+6. **2 subdomains don't support HSTS.** `.htaccess` now sends the HSTS header on both `kezza.co.in` and `www.kezza.co.in` (once it is uploaded and active).
+7. **16 pages blocked from crawling (notice).** These are the 9 treatment pages still marked "in review" (noindex): acne scars, cryolipolysis, HIFU, weight management, microblading, lip blush, permanent eyeliner, PMU correction, skin consultation, plus the semaglutide article, the `/hi/` redirect page and the admin page. The menu now links to those 9 pages directly. Once the doctor has approved them, their `noindex` line must be removed and they must be added to `sitemap.xml`.
+
+## D. Project files repaired (important for future edits)
+
+- Commit `5dd9c3b` overwrote four stylesheets (`doctors-landscape.css`, `permanent-makeup-styles.css`, `skin-services-styles.css`, `mobile-pro.css`) with a copy of the header CSS, cut `branches-styles.css` short, and pasted the header CSS into every bundle and several other stylesheets. The live pages still looked right only because their bundles had been built earlier: the next `npm run build:css` would have broken the About, Skin, Permanent Makeup and Franchise pages.
+  - All four files and the missing parts were recovered (from the live bundles and the 6 October version). The header CSS now lives once, in `header-pro.css`, at the end of every bundle.
+  - Checked: every element on every page has the same computed styles as the live site at 390 px and 1366 px, except the fixes listed above.
+- `css/mobile-perf.css` (new) holds the phone fixes and loads last in every bundle. `css/contact-subcat.css` keeps the consultation form's sub-category styles last in the contact bundle, as they were.
+- Scripts and stylesheets that had been minified in place are readable again where nothing else changed. Edit the readable files; `npm run build` writes the minified copies.
+- `npm run build` now runs only the CSS and JavaScript build. The old full build is `npm run build:all`. **Don't run it for now**: since 6 October the treatment pages, blog and footer were edited directly in the HTML, so regenerating them from `tools/content` would undo those edits. It would also stop with an error, because the HTML comments it reads were removed.
+- `tools/stamp-js.js` is replaced by `tools/build-js.js`. `tools/build-css.js`: fixed a bug that left CSS unminified after an inline SVG image.
+
+---
+
 # Update — 6 October 2026 (v3): your new services mega menu merged in
 
 - Your new **Services mega menu** (4 columns: Hair, Skin, Weight Loss, Permanent Makeup; accordion on mobile) is now on every page, together with the v2 work: one footer everywhere, the same phone numbers, the new skin-page photos and the updated Dark Circles page.
