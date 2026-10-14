@@ -106,7 +106,7 @@ CLINIC INFORMATION:
      Phone/WhatsApp: +91-9284517427
      Timings: 9:00 AM to 8:00 PM (Monday to Sunday, All 7 Days).
   3. Ajmer Clinic (Kezza Clinic – Ajmer): First Floor, Shastri Nagar, Oasis Complex and Hotels, Jawahar Nagar, Ajmer, Rajasthan 305001.
-     Phone: +91-9216088257 | WhatsApp: +91-9216088257 | Email: kezzaclinic@gmail.com
+     Phone: +91-9216088257 | WhatsApp: +91-9216088257 | Email: support@kezza.co.in
      Google Maps: https://maps.app.goo.gl/zMajvKmT5N7coswJA?g_st=ic
      Timings: 9:00 AM to 8:00 PM (Monday to Sunday, All 7 Days).
 - Central WhatsApp / Consultation Helpline: +91 9284517427.

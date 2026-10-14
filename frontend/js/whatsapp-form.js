@@ -607,8 +607,25 @@
             }
 
             if (syncSuccess) {
-                // Track Meta Pixel Lead event with specific procedure
+                // Track GA4, GTM and Meta Pixel Lead event with specific procedure
                 try {
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        event: 'generate_lead',
+                        lead_id: leadId,
+                        treatment: combinedTreatment,
+                        category: concernVal,
+                        clinic: clinicVal,
+                        slot: preferredSlotVal
+                    });
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'generate_lead', {
+                            event_category: 'consultation',
+                            event_label: combinedTreatment,
+                            clinic: clinicVal,
+                            value: 1
+                        });
+                    }
                     if (typeof fbq === 'function') {
                         fbq('track', 'Lead', {
                             content_name: combinedTreatment,
@@ -618,7 +635,7 @@
                         });
                     }
                 } catch (pxErr) {
-                    console.warn('[Meta Pixel Warning]:', pxErr);
+                    console.warn('[Analytics Lead Warning]:', pxErr);
                 }
 
                 // Show Thank-You Card

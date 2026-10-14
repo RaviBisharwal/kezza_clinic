@@ -12,7 +12,7 @@
         });
     }
 
-    var CHATBOT_SRC = '/js/kezza-ai.min.js?v=1422b73b';
+    var CHATBOT_SRC = '/js/kezza-ai.min.js?v=28d7703d';
     var SCANNER_CSS = '/css/bundle-scanner-modal.min.css?v=43d56733';
     var SCANNER_JS = '/js/scanner-modal.min.js?v=8f2fa1a0';
 
@@ -175,6 +175,58 @@
                 openChatbotConsultant();
             }
         });
+
+        // ── 5. Universal Conversion Tracking (Phone & WhatsApp Clicks) ───────
+        document.addEventListener('click', function (e) {
+            var telLink = e.target.closest('a[href^="tel:"]');
+            if (telLink) {
+                var phoneNum = (telLink.getAttribute('href') || '').replace(/^tel:/i, '').trim();
+                try {
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        event: 'click_to_call',
+                        phone_number: phoneNum,
+                        link_text: (telLink.innerText || '').trim().slice(0, 50),
+                        page_path: window.location.pathname
+                    });
+                    if (typeof window.gtag === 'function') {
+                        window.gtag('event', 'click_to_call', {
+                            event_category: 'engagement',
+                            event_label: phoneNum,
+                            value: 1
+                        });
+                    }
+                    if (typeof window.fbq === 'function') {
+                        window.fbq('trackCustom', 'ClickToCall', { phone: phoneNum });
+                    }
+                } catch (err) {}
+                return;
+            }
+
+            var waLink = e.target.closest('a[href*="wa.me"], a[href*="whatsapp.com"], .btn-wa, .cty-btn-wa, .dock-wa');
+            if (waLink) {
+                var waHref = waLink.getAttribute('href') || '';
+                try {
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        event: 'click_whatsapp',
+                        target_url: waHref,
+                        link_text: (waLink.innerText || '').trim().slice(0, 50),
+                        page_path: window.location.pathname
+                    });
+                    if (typeof window.gtag === 'function') {
+                        window.gtag('event', 'click_whatsapp', {
+                            event_category: 'engagement',
+                            event_label: waHref,
+                            value: 1
+                        });
+                    }
+                    if (typeof window.fbq === 'function') {
+                        window.fbq('trackCustom', 'ClickWhatsApp', { url: waHref });
+                    }
+                } catch (err) {}
+            }
+        }, { capture: true, passive: true });
 
         scheduleChatbot();
     });

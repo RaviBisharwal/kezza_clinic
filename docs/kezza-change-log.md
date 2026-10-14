@@ -71,3 +71,16 @@
 * **Validation Performed:** Automated Python HTMLParser audit script across the entire project tree.
 * **Result:** Passed. 100% compliance across all 85 files.
 * **Remaining Limitation:** Real-world mobile rendering and field Core Web Vitals require post-deployment Google Search Console data.
+
+---
+
+### 7. Conversion Tracking, Web Fonts & Internal Link Resolution (14 October 2026)
+* **Modifications Made:**
+  - **TeleCRM Script Resolution:** Created root `/frontend/telecrm.min.js` and updated 49 HTML documents to point to canonical `/js/telecrm.min.js?v=20261014`, preventing any script loading failure.
+  - **Orphan Pages Linked:** Resolved pSEO critical errors by adding contextual in-body links and pricing grid cards in `skin-services.html` for `/acne-scar-treatment/` and in `weight-loss.html` for `/hifu-body-sculpting/` (critical pSEO errors dropped from 2 to 0).
+  - **Conversion Tracking Engine:** Added universal event delegation in `quick-actions.js` tracking all phone call clicks (`tel:`) and WhatsApp chat clicks (`wa.me`) to `dataLayer` (GTM event `click_to_call` / `click_whatsapp`), `gtag`, and Meta Pixel. Added `generate_lead` dispatch to `whatsapp-form.js`.
+  - **Web Fonts Streamlined:** Eliminated unused `Playfair Display` font requests across 67 HTML files and builder templates, saving 4 redundant HTTP requests per page and improving mobile LCP.
+  - **NAP Email Harmonization:** Standardized Ajmer clinic contact email to `support@kezza.co.in` across `locations/ajmer/index.html`, `server.js`, `site-data.json`, and client scripts.
+  - **SEO QA Validation:** Upgraded `tools/seo/check-seo.js` to handle flexible attribute order. Entire test suite (`npm test`) verified passing with 0 errors and 0 warnings.
+* **Validation Performed:** `npm test` (all 4 test suites passed), curl verification of local development server at `http://localhost:3001/`.
+* **Result:** Passed (0 errors, 0 warnings across all 87 HTML files).

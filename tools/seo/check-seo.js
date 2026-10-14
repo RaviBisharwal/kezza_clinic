@@ -72,7 +72,7 @@ const hreflang = new Map(); // page URL -> Set of alternate URLs it declares
 for (const file of pages) {
   const rel = path.relative(FE, file).replace(/\\/g, '/');
   const html = fs.readFileSync(file, 'utf8');
-  const noindex = /<meta\s+name="robots"\s+content="[^"]*noindex/i.test(html);
+  const noindex = /<meta\s+[^>]*name="robots"[^>]*content="[^"]*noindex/i.test(html) || /<meta\s+[^>]*content="[^"]*noindex[^"]*"[^>]*name="robots"/i.test(html);
 
   if (/kezzaclinic\.com/i.test(html)) err(rel, 'references the dead domain kezzaclinic.com');
   if (!/<html[^>]*\blang="(en-IN|hi-IN)"/.test(html)) err(rel, 'missing lang="en-IN" (or "hi-IN" on Hindi pages)');
@@ -98,23 +98,32 @@ for (const file of pages) {
     const t = decode(titles[0][1].trim());
     if (t.length > 60) warn(rel, `title is ${t.length} chars (Google shows ~60): "${t}"`);
   }
-  const descs = [...html.matchAll(/<meta\s+name="description"\s+content="([^"]*)"/g)];
+  const descs = [
+    ...[...html.matchAll(/<meta\s+[^>]*name="description"[^>]*content="([^"]*)"/gi)].map(m => m[1]),
+    ...[...html.matchAll(/<meta\s+[^>]*content="([^"]*)"[^>]*name="description"/gi)].map(m => m[1])
+  ];
   if (descs.length !== 1) err(rel, `expected 1 meta description, found ${descs.length}`);
   else {
-    const d = decode(descs[0][1]);
+    const d = decode(descs[0]);
     if (d.length > 160 || d.length < 70) warn(rel, `meta description is ${d.length} chars (aim for 110–160)`);
   }
-  const canon = [...html.matchAll(/<link\s+rel="canonical"\s+href="([^"]+)"/g)].map((m) => m[1]);
+  const canon = [
+    ...[...html.matchAll(/<link\s+[^>]*rel="canonical"[^>]*href="([^"]+)"/gi)].map((m) => m[1]),
+    ...[...html.matchAll(/<link\s+[^>]*href="([^"]+)"[^>]*rel="canonical"/gi)].map((m) => m[1])
+  ];
   if (canon.length !== 1) err(rel, `expected 1 canonical, found ${canon.length}`);
   else {
     if (!canon[0].startsWith(BASE + '/')) err(rel, `canonical not on ${BASE}: ${canon[0]}`);
     if (!fs.existsSync(urlToFile(canon[0]))) err(rel, `canonical points at a page that doesn't exist: ${canon[0]}`);
-    const og = (html.match(/property="og:url"\s+content="([^"]+)"/) || [])[1];
+    const og = (html.match(/property="og:url"[^>]*content="([^"]+)"/i) || html.match(/content="([^"]+)"[^>]*property="og:url"/i) || [])[1];
     if (og !== canon[0]) err(rel, `og:url (${og}) differs from canonical (${canon[0]})`);
-    const alts = [...html.matchAll(/<link\s+rel="alternate"\s+hreflang="[^"]+"\s+href="([^"]+)"/g)].map((m) => m[1]);
+    const alts = [
+      ...[...html.matchAll(/<link\s+[^>]*rel="alternate"[^>]*href="([^"]+)"/gi)].map((m) => m[1]),
+      ...[...html.matchAll(/<link\s+[^>]*href="([^"]+)"[^>]*rel="alternate"/gi)].map((m) => m[1])
+    ];
     if (alts.length) hreflang.set(canon[0], new Set(alts));
   }
-  const ogImg = (html.match(/property="og:image"\s+content="([^"]+)"/) || [])[1];
+  const ogImg = (html.match(/property="og:image"[^>]*content="([^"]+)"/i) || html.match(/content="([^"]+)"[^>]*property="og:image"/i) || [])[1];
   if (!ogImg) err(rel, 'missing og:image');
   else if (!fs.existsSync(urlToFile(ogImg))) err(rel, `og:image file missing: ${ogImg}`);
   const h1 = (html.match(/<h1[\s>]/g) || []).length;
