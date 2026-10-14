@@ -29,15 +29,16 @@
     }
     
     /* TRUE-CENTER 3-COLUMN BALANCED GRID:
-       - Col 1 (minmax(0, 1fr)): Logo aligned to far left
-       - Col 2 (auto): Navigation Menu situated in the EXACT horizontal center of the bar
-       - Col 3 (minmax(0, 1fr)): CTAs aligned to far right
-       Because Col 1 and Col 3 are both 1fr, the menu is 100% mathematically centered on the bar,
-       and CTAs can NEVER overlap or hide the Contact button.
+       - Col 1: Logo aligned to far left
+       - Col 2 (auto): Navigation Menu in the horizontal center of the bar
+       - Col 3: CTAs aligned to far right
+       Col 1 and Col 3 share the free space equally, so the menu is centered whenever it fits.
+       Their minimum is their own content (max-content), so on laptop widths (about 1340-1480px)
+       the CTA group can no longer slide over "Contact" — the menu moves a few pixels left instead.
     */
     .nav-container {
         display: grid !important;
-        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
+        grid-template-columns: minmax(max-content, 1fr) auto minmax(max-content, 1fr) !important;
         align-items: center !important;
         width: 100% !important;
         max-width: 1420px !important;
@@ -361,6 +362,14 @@
 
     .mega-col-title:hover {
         color: #008f9c !important;
+    }
+
+    /* a group heading without its own page (e.g. "Laser Treatments") looks like the linked headings */
+    span.mega-col-title,
+    span.mega-col-title:hover {
+        font-weight: 600 !important;
+        letter-spacing: -0.01em !important;
+        color: #334155 !important;
     }
 
     .mega-link-list {

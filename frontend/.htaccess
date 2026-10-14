@@ -33,7 +33,10 @@ ErrorDocument 404 /404.html
 
     # Folder URLs for sections (serve without the trailing-slash 404)
     RewriteRule ^hi/?$ /hi/hair-transplant/ [L,R=301]
-    RewriteRule ^(locations|locations/(jaipur|sikar|ajmer)|blog|blog/[a-zA-Z0-9-]+|hair-transplant|hair-transplant/(beard|dhi|eyebrow|fue)|hi/hair-transplant|acne-treatment|acne-scar-treatment|pigmentation-treatment|botox|cryolipolysis|dark-circles-treatment|gfc-treatment|hifu-body-sculpting|hydra-facial|laser-hair-removal|lip-blush|medical-dermatology|microblading|permanent-eyeliner|pmu-correction|skin-consultation|stretch-marks-treatment|weight-management)$ /$1/ [L,R=301]
+    RewriteRule ^(locations|locations/(jaipur|sikar|ajmer)|blog|blog/[a-zA-Z0-9-]+|hair-transplant|hair-transplant/(beard|dhi|eyebrow|fue)|hi/hair-transplant|acne-treatment|acne-scar-treatment|pigmentation-treatment|botox|cryolipolysis|dark-circles-treatment|gfc-treatment|hifu-body-sculpting|hydra-facial|laser-hair-removal|lip-blush|medical-dermatology|microblading|permanent-eyeliner|pmu-correction|skin-consultation|stretch-marks-treatment|weight-management|cosmetic-surgery|rhinoplasty|blepharoplasty|scar-revision|q-switch-laser|laser-hair-removal/full-body|chemical-peel|medical-peel|microneedling|glutathione-treatment|lip-neutralization|doctors/[a-z-]+)$ /$1/ [L,R=301]
+
+    # There is no doctors index page: the team is listed on the About page
+    RewriteRule ^doctors/?$ /about.html#doctors [NE,L,R=301]
 
     # Universal directory trailing-slash enforcement
     RewriteCond %{REQUEST_FILENAME} -d
