@@ -86,8 +86,8 @@
   var isScannerPage = path.endsWith('face-scanner.html') || path.endsWith('face-scanner');
   var isAdminPage   = path.indexOf('admin') !== -1;
   var alreadyShown = false;
-  try { alreadyShown = sessionStorage.getItem(AUTO_KEY) === 'true'; } catch (err) { alreadyShown = false; }
-  if (isScannerPage || isAdminPage || alreadyShown) return;
+  var isMobile = (window.innerWidth <= 768) || (window.matchMedia && window.matchMedia('(max-width: 768px)').matches);
+  if (isScannerPage || isAdminPage || alreadyShown || isMobile) return;
 
   // Never pop up over something the visitor is busy with.
   function visitorIsBusy() {

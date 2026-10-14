@@ -73,7 +73,7 @@
   }
   function g(e) {
     var n = e ? "kz-lang-switcher kz-lang-switcher-mobile notranslate" : "kz-lang-switcher notranslate", t = o !== "hi" ? " active" : "", a = o === "hi" ? " active" : "";
-    return '<div class="' + n + '" translate="no" role="group" aria-label="Select Language"><i class="fas fa-globe kz-globe-icon" aria-hidden="true"></i><button type="button" class="kz-lang-btn' + t + '" data-lang="en" aria-label="English" title="English">EN</button><span class="kz-lang-sep" aria-hidden="true">/</span><button type="button" class="kz-lang-btn' + a + '" data-lang="hi" aria-label="\u0939\u093F\u0902\u0926\u0940" title="\u0939\u093F\u0902\u0926\u0940">\u0939\u093F\u0902\u0926\u0940</button></div>';
+    return '<div class="' + n + '" translate="no" role="group" aria-label="Select Language"><i class="fas fa-globe kz-globe-icon" aria-hidden="true"></i><button type="button" class="kz-lang-btn' + t + '" data-lang="en" aria-label="EN - English" title="English">EN</button><span class="kz-lang-sep" aria-hidden="true">/</span><button type="button" class="kz-lang-btn' + a + '" data-lang="hi" aria-label="\u0939\u093F\u0902\u0926\u0940" title="\u0939\u093F\u0902\u0926\u0940">\u0939\u093F\u0902\u0926\u0940</button></div>';
   }
   function E() {
     var e = document.getElementById("kzFloatingLang");

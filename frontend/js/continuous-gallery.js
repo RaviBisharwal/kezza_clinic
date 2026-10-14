@@ -202,10 +202,9 @@
                     animationFrameId = null;
                 }
             }, { rootMargin: '150px 0px' }).observe(viewport);
+        } else {
+            animationFrameId = requestAnimationFrame(animate);
         }
-
-        // Start animation
-        animationFrameId = requestAnimationFrame(animate);
     }
 
     if (document.readyState === 'loading') {

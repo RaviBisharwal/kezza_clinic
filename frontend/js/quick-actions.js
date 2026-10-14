@@ -12,7 +12,7 @@
         });
     }
 
-    var CHATBOT_SRC = '/js/kezza-ai.min.js?v=c5abbdf6';
+    var CHATBOT_SRC = '/js/kezza-ai.min.js?v=24892922';
     var SCANNER_CSS = '/css/bundle-scanner-modal.min.css?v=43d56733';
     var SCANNER_JS = '/js/scanner-modal.min.js?v=ae7bdc75';
 
@@ -39,6 +39,8 @@
     function scheduleChatbot() {
         var path = (window.location.pathname || '').toLowerCase();
         if (path.indexOf('admin') !== -1) return;
+        var isMobile = (window.innerWidth <= 768) || (window.matchMedia && window.matchMedia('(max-width: 768px)').matches);
+        if (isMobile) return; // on mobile devices, load on demand when user clicks consultation or chat
         var started = false;
         function go() {
             if (started) return;
@@ -48,11 +50,11 @@
         }
         ['click', 'keydown', 'focusin'].forEach(function (ev) { window.addEventListener(ev, go, { capture: true, passive: true }); });
         function idle() {
-            if ('requestIdleCallback' in window) requestIdleCallback(go, { timeout: 3500 });
-            else setTimeout(go, 1500);
+            if ('requestIdleCallback' in window) requestIdleCallback(go, { timeout: 4000 });
+            else setTimeout(go, 3000);
         }
-        if (document.readyState === 'complete') setTimeout(idle, 1800);
-        else window.addEventListener('load', function () { setTimeout(idle, 1800); }, { once: true });
+        if (document.readyState === 'complete') setTimeout(idle, 4000);
+        else window.addEventListener('load', function () { setTimeout(idle, 4000); }, { once: true });
     }
 
     document.addEventListener('DOMContentLoaded', function () {

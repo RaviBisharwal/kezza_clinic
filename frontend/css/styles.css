@@ -1154,7 +1154,11 @@ video {
     display:none;
     flex-direction:column;
     cursor:pointer;
-    gap:5px
+    gap:5px;
+    background:transparent;
+    border:none;
+    padding:6px;
+    outline:none;
 }
 
 .hamburger span {

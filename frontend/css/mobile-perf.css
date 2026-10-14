@@ -254,7 +254,7 @@
     }
 }
 @keyframes kzTipAutoHide {
-    to { opacity: 0; visibility: hidden; transform: translateY(6px); }
+    to { opacity: 0; transform: translateY(6px); pointer-events: none; }
 }
 
 /* ── 7. Reduce motion (phone/OS accessibility setting) ── */

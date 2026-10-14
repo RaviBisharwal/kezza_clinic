@@ -90,9 +90,14 @@
             }
         }
 
-        hamburger.setAttribute("aria-haspopup", "true");
+        if (hamburger.tagName.toLowerCase() !== "button") {
+            hamburger.setAttribute("role", "button");
+            hamburger.setAttribute("tabindex", "0");
+        }
         hamburger.setAttribute("aria-expanded", "false");
         hamburger.setAttribute("aria-label", "Open navigation menu");
+        hamburger.setAttribute("aria-controls", "navMenu");
+        hamburger.removeAttribute("aria-haspopup");
 
         // Click to toggle
         hamburger.addEventListener("click", function (e) {
