@@ -190,7 +190,7 @@ Please select an option below:`,quickReplies:["📷 Take Photo","🖼️ Choose 
         <span>Photo Preview — Ready for AI Analysis</span>
     </div>
     <div class="kezza-photo-preview-image-wrap">
-        <img src="${n}" alt="Captured Photo Preview" />
+        <img src="${n}" alt="Captured Photo Preview" width="300" height="300" />
     </div>
     <p style="font-size:12.5px;color:#475569;margin:0 0 8px;">
         ${a==="hinglish"?"Photo capture ho gayi hai. Preliminary assessment ke liye <strong>🔎 Analyze Photo</strong> par click karein:":"Photo captured successfully. Click <strong>🔎 Analyze Photo</strong> to start preliminary guidance:"}
@@ -682,7 +682,7 @@ The team will review and resolve your concern directly.`,quickReplies:["Call Cli
         `;const a=document.createElement("div");a.className="kezza-chat-window",a.id="kezzaChatWindow",a.setAttribute("role","dialog"),a.setAttribute("aria-label","Kezza Chat Assistant Window"),a.setAttribute("aria-hidden","true"),a.innerHTML=`
             <div class="kezza-chat-header">
                 <div class="kezza-chat-avatar" title="Kezza Clinic AI Assistant">
-                    <img src="/images/logo.png" alt="Kezza Clinic" class="kezza-avatar-logo-main">
+                    <img src="/images/logo.png" alt="Kezza Clinic" class="kezza-avatar-logo-main" width="297" height="200">
                 </div>
                 <div class="kezza-chat-header-info">
                     <div class="kezza-chat-header-title">Kezza</div>
@@ -833,12 +833,12 @@ The team will review and resolve your concern directly.`,quickReplies:["Call Cli
             <div class="kezza-msg-bubble">${p(n)}</div>
         `,a.appendChild(e),me()}function S(n,a){const e=document.getElementById("kezzaMessages"),t=document.createElement("div");if(t.className="kezza-msg bot",t.innerHTML=`
             <div class="kezza-msg-avatar">
-                <img src="/images/logo.png" alt="Kezza Clinic" class="kezza-msg-logo-img">
+                <img src="/images/logo.png" alt="Kezza Clinic" class="kezza-msg-logo-img" width="297" height="200">
             </div>
             <div class="kezza-msg-bubble">${n.replace(/\n/g,"<br>")}</div>
         `,e.appendChild(t),a&&a.length>0){const r=document.createElement("div");r.className="kezza-quick-replies",a.forEach(i=>{const l=document.createElement("button");l.className="kezza-quick-btn",l.textContent=i,l.addEventListener("click",()=>{r.remove(),Xa(i)}),r.appendChild(l)}),e.appendChild(r)}me(),Ie()}function Ie(){if(typeof document=="undefined")return;const n=document.getElementById("kezzaChatInput");if(!n)return;u.consultationFlow&&(u.consultationFlow.state===h.WHATSAPP||u.consultationFlow.state===h.EDIT_WHATSAPP)?(n.placeholder="Enter 10-digit WhatsApp number",n.type="tel",n.inputMode="numeric",n.maxLength=10,n.setAttribute("pattern","[6-9][0-9]{9}")):(n.placeholder="Type in Hindi, Hinglish or English...",n.type="text",n.inputMode="text",n.removeAttribute("maxlength"),n.removeAttribute("pattern"))}function Qa(){const n=document.getElementById("kezzaMessages"),a=document.createElement("div");a.className="kezza-typing",a.id="kezzaTyping",a.innerHTML=`
             <div class="kezza-msg-avatar">
-                <img src="/images/logo.png" alt="Kezza Clinic" class="kezza-msg-logo-img">
+                <img src="/images/logo.png" alt="Kezza Clinic" class="kezza-msg-logo-img" width="297" height="200">
             </div>
             <div class="kezza-typing-dots">
                 <div class="kezza-typing-dot"></div>

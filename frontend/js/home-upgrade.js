@@ -141,8 +141,12 @@
             btn.addEventListener('click', function () {
                 var city = this.getAttribute('data-city') || 'all';
 
-                filterBtns.forEach(function (b) { b.classList.remove('active'); });
+                filterBtns.forEach(function (b) {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-pressed', 'false');
+                });
                 this.classList.add('active');
+                this.setAttribute('aria-pressed', 'true');
 
                 branches.forEach(function (branch) {
                     var branchCity = branch.getAttribute('data-city');

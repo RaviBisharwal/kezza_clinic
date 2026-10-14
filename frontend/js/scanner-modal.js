@@ -14,7 +14,7 @@
         <!-- Header -->
         <div class="ks-header">
           <div class="ks-brand">
-            <img src="/images/logo.png" alt="Kezza Clinic" class="ks-brand-logo" onerror="this.style.display='none'">
+            <img src="/images/logo.png" alt="Kezza Clinic" class="ks-brand-logo" width="297" height="200" onerror="this.style.display='none'">
             <span class="ks-brand-badge"><i class="fas fa-wand-sparkles"></i> AI Vision 2.0</span>
           </div>
           <button type="button" class="ks-close-btn" id="ksModalCloseBtn" aria-label="Close AI Scanner">✕</button>
@@ -66,7 +66,7 @@
 
               <!-- Captured Image Preview -->
               <div class="ks-image-preview-wrap" id="ksImagePreviewWrap">
-                <img id="ksImagePreviewImg" class="ks-image-preview-img" alt="Captured Assessment Photo">
+                <img id="ksImagePreviewImg" class="ks-image-preview-img" alt="Captured Assessment Photo" width="400" height="400">
                 <div class="ks-preview-badge"><i class="fas fa-check-circle"></i> Photo Ready</div>
                 <button type="button" class="ks-preview-retake-btn" id="ksBtnRetake"><i class="fas fa-redo"></i> Retake</button>
               </div>
@@ -353,7 +353,7 @@
 
                 <!-- Assigned Specialist Doctor -->
                 <div class="ks-doctor-pill-card" id="ksDoctorPillCard">
-                  <img src="/images/Doctor2.webp" id="ksDocAvatar" class="ks-doc-avatar" alt="Specialist Doctor">
+                  <img src="/images/Doctor2.webp" id="ksDocAvatar" class="ks-doc-avatar" alt="Specialist Doctor" width="60" height="60">
                   <div class="ks-doc-info">
                     <div class="ks-doc-name" id="ksDocName">Dr. Amrita Mukhija</div>
                     <div class="ks-doc-spec" id="ksDocSpec">Aesthetic Physician &amp; Skin Specialist</div>

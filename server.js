@@ -87,7 +87,7 @@ app.use(express.static(path.join(__dirname, 'frontend'), {
         } else if (/\.(jpg|jpeg|png|webp|gif|svg|mp4|webm|woff2?|ico)$/i.test(filePath)) {
             res.setHeader('Cache-Control', 'public, max-age=31536000, immutable'); // media 1yr
         } else if (process.env.NODE_ENV === 'production') {
-            res.setHeader('Cache-Control', 'public, max-age=86400'); // css/js 1d in production
+            res.setHeader('Cache-Control', 'public, max-age=31536000, immutable'); // css/js versioned 1yr in production
         } else {
             res.setHeader('Cache-Control', 'no-cache, must-revalidate'); // always fresh in dev
         }

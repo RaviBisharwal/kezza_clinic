@@ -25,7 +25,7 @@
             drawerHeader.className = "nav-drawer-header";
             drawerHeader.innerHTML = `
                 <a href="/index.html" class="drawer-logo" aria-label="Kezza Clinic Home">
-                    <img src="/images/logo.png" alt="Kezza Clinic" width="120" height="45">
+                    <img src="/images/logo.png" alt="Kezza Clinic" width="297" height="200">
                 </a>
                 <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close navigation menu">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

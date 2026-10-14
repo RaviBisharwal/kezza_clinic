@@ -1083,14 +1083,14 @@ def build_blog_index(arts):
                     </div>
 
                     <div class="kz-topic-pills-wrap">
-                        <div class="kz-topic-pills" role="tablist">
-                            <button type="button" class="kz-topic-pill active" data-filter="all"><i class="fas fa-th-large"></i> All Guides <span class="count">{cats_count['all']}</span></button>
-                            <button type="button" class="kz-topic-pill" data-filter="hair-transplant"><i class="fas fa-user-md"></i> Hair Transplant <span class="count">{cats_count['hair-transplant']}</span></button>
-                            <button type="button" class="kz-topic-pill" data-filter="hair-loss"><i class="fas fa-vial"></i> Hair Loss &amp; PRP <span class="count">{cats_count['hair-loss']}</span></button>
-                            <button type="button" class="kz-topic-pill" data-filter="skin"><i class="fas fa-sparkles"></i> Skin &amp; Peels <span class="count">{cats_count['skin']}</span></button>
-                            <button type="button" class="kz-topic-pill" data-filter="laser"><i class="fas fa-bolt"></i> Laser Hair Reduction <span class="count">{cats_count['laser']}</span></button>
-                            <button type="button" class="kz-topic-pill" data-filter="weight"><i class="fas fa-shapes"></i> Body Contouring &amp; Sculpting <span class="count">{cats_count['weight']}</span></button>
-                            <button type="button" class="kz-topic-pill" data-filter="pmu"><i class="fas fa-paint-brush"></i> Permanent Makeup <span class="count">{cats_count['pmu']}</span></button>
+                        <div class="kz-topic-pills" role="group" aria-label="Filter clinical guide topics">
+                            <button type="button" class="kz-topic-pill active" data-filter="all" aria-pressed="true"><i class="fas fa-th-large"></i> All Guides <span class="count">{cats_count['all']}</span></button>
+                            <button type="button" class="kz-topic-pill" data-filter="hair-transplant" aria-pressed="false"><i class="fas fa-user-md"></i> Hair Transplant <span class="count">{cats_count['hair-transplant']}</span></button>
+                            <button type="button" class="kz-topic-pill" data-filter="hair-loss" aria-pressed="false"><i class="fas fa-vial"></i> Hair Loss &amp; PRP <span class="count">{cats_count['hair-loss']}</span></button>
+                            <button type="button" class="kz-topic-pill" data-filter="skin" aria-pressed="false"><i class="fas fa-sparkles"></i> Skin &amp; Peels <span class="count">{cats_count['skin']}</span></button>
+                            <button type="button" class="kz-topic-pill" data-filter="laser" aria-pressed="false"><i class="fas fa-bolt"></i> Laser Hair Reduction <span class="count">{cats_count['laser']}</span></button>
+                            <button type="button" class="kz-topic-pill" data-filter="weight" aria-pressed="false"><i class="fas fa-shapes"></i> Body Contouring &amp; Sculpting <span class="count">{cats_count['weight']}</span></button>
+                            <button type="button" class="kz-topic-pill" data-filter="pmu" aria-pressed="false"><i class="fas fa-paint-brush"></i> Permanent Makeup <span class="count">{cats_count['pmu']}</span></button>
                         </div>
                     </div>
                 </div>

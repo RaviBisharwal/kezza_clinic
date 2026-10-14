@@ -84,7 +84,13 @@ ErrorDocument 404 /404.html
 
 <IfModule mod_headers.c>
     <FilesMatch "\.html?$">
-        Header set Cache-Control "no-cache"
+        Header set Cache-Control "no-cache, must-revalidate"
+    </FilesMatch>
+    <FilesMatch "\.(ico|pdf|jpg|jpeg|png|gif|webp|avif|mp4|webm|svg|woff|woff2|ttf|otf)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "max-age=31536000, public"
     </FilesMatch>
     # HTTPS only (HSTS): browsers remember to use https for a year. They ignore this
     # header on plain-http answers, so it is safe to send on every response.
