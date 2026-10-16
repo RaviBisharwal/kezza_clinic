@@ -20,11 +20,12 @@ const { GoogleGenAI } = require('@google/genai');
 const app  = express();
 const PORT = process.env.PORT || 3001;
 
-// ── CORS Middleware ─────────────────────────────────────────────────
+// ── Security & CORS Middleware ─────────────────────────────────────
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+    res.setHeader('Content-Security-Policy', "default-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://*.googletagmanager.com https://connect.facebook.net https://cdnjs.cloudflare.com https://translate.google.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://connect.facebook.net https://next-api.telecrm.in https://script.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https: blob:; frame-src 'self' https://www.googletagmanager.com https://www.youtube.com https://maps.app.goo.gl https://www.google.com;");
     if (req.method === 'OPTIONS') {
         return res.sendStatus(204);
     }

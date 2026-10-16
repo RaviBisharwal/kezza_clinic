@@ -60,6 +60,7 @@ fbq("track", "PageView");
 <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/></noscript>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'" rel="stylesheet"/>
 <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/></noscript>
+<link as="style" href="css/bundle-home.min.css?v=0066ae7f" rel="preload"/>
 <link href="css/bundle-home.min.css?v=0066ae7f" rel="stylesheet"/><!-- built by tools/build-css.js from: styles.css, quick-actions.css, services-navigation.css, kezza-ai.css, scroll-3d.css, responsive.css, luxury-pro.css, home-upgrade.css, mobile-pro.css, site-footer.css, header-pro.css, mobile-perf.css -->
 <link href="https://www.kezza.co.in/" rel="canonical"/>
 <meta content="website" property="og:type"/>
@@ -1677,5 +1678,18 @@ Three premier surgical facilities across Rajasthan equipped with sterile operati
 <script defer="" src="js/home-upgrade.min.js?v=39757b6b"></script>
 <script defer="" src="js/continuous-gallery.min.js?v=c8163219"></script>
 <script defer="" src="js/translate.min.js?v=ec151fef"></script>
+<script>
+// Neutralize GoDaddy Real User Metrics (RUM) tracking chain
+(function(){
+    var noop = function() {};
+    try {
+        Object.defineProperty(window, '_trfq', { value: { push: noop }, writable: false, configurable: false });
+        Object.defineProperty(window, '_trfd', { value: { push: noop }, writable: false, configurable: false });
+    } catch(e) {
+        window._trfq = { push: noop };
+        window._trfd = { push: noop };
+    }
+})();
+</script>
 </body>
 </html>
