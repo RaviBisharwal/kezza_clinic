@@ -10,8 +10,8 @@
  */
 (function () {
   var SELECTORS = '.nav-scanner-link, .btn-scanner-hero, .dock-scan, [data-open-scanner-modal]';
-  var CSS_URL = '/css/bundle-scanner-modal.min.css?v=43d56733';
-  var JS_URL  = '/js/scanner-modal.min.js?v=ae7bdc75';
+  var CSS_URL = '/css/bundle-scanner-modal.min.css?v=b1c1b442';
+  var JS_URL  = '/js/scanner-modal.min.js?v=978a3a40';
   var AUTO_KEY = 'kezza_scanner_auto_shown';
   var loading = null;
 

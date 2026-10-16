@@ -13,8 +13,8 @@
     }
 
     var CHATBOT_SRC = '/js/kezza-ai.min.js?v=24892922';
-    var SCANNER_CSS = '/css/bundle-scanner-modal.min.css?v=43d56733';
-    var SCANNER_JS = '/js/scanner-modal.min.js?v=ae7bdc75';
+    var SCANNER_CSS = '/css/bundle-scanner-modal.min.css?v=b1c1b442';
+    var SCANNER_JS = '/js/scanner-modal.min.js?v=978a3a40';
 
     // ── Chatbot: load the (large) chat script when the browser is idle or on the
     //    first tap/click/keypress, instead of while the page is still loading.
