@@ -170,16 +170,23 @@ function main() {
     if (!fs.existsSync(file)) { console.warn('missing page', rel); continue; }
     let html = fs.readFileSync(file, 'utf8');
     const srcs = new Set(cfg.bundles[name]);
-    const tagRe = /[ \t]*<link[^>]*rel="stylesheet"[^>]*href="(\/?)(css\/[^"?]+\.css)(?:\?[^"]*)?"[^>]*>(?:<!-- built by tools\/build-css\.js[^>]*?-->)?[ \t]*\r?\n?/g;
+    const tagRe = /[ \t]*<link\b[^>]*(?:rel=["'](?:stylesheet|preload)["'][^>]*href=["'](\/?)(css\/[^"'?]+(?:\.min)?\.css)(?:\?[^"']*)?["']|href=["'](\/?)(css\/[^"'?]+(?:\.min)?\.css)(?:\?[^"']*)?["'][^>]*rel=["'](?:stylesheet|preload)["'])[^>]*>(?:<!-- built by tools\/build-css\.js[^>]*?-->)?[ \t]*(?:\r?\n[ \t]*<noscript>[ \t]*<link\b[^>]*href=["'](?:\/?)(?:css\/[^"'?]+(?:\.min)?\.css)(?:\?[^"']*)?["'][^>]*>[ \t]*<\/noscript>[ \t]*)?\r?\n?/gi;
     let prefix = null;
     let first = -1;
-    html = html.replace(tagRe, (m, slash, href, offset) => {
+    html = html.replace(tagRe, (m, s1, h1, s2, h2, offset) => {
+      const slash = s1 || s2 || '';
+      const href = h1 || h2 || '';
       if (!srcs.has(href) && href !== `css/bundle-${name}.min.css`) return m;
       if (prefix === null) { prefix = slash; first = offset; return '\u0000BUNDLE\u0000'; }
       return '';
     });
     if (first === -1) { console.warn('no stylesheet links found in', rel); continue; }
-    const tag = `    <link rel="stylesheet" href="${prefix}css/bundle-${name}.min.css?v=${versions[name]}"><!-- built by tools/build-css.js from: ${cfg.bundles[name].map((f) => path.basename(f)).join(', ')} -->\n`;
+    let tag;
+    if (name === 'home') {
+      tag = `    <link rel="preload" href="${prefix}css/bundle-${name}.min.css?v=${versions[name]}" as="style" onload="this.onload=null;this.rel='stylesheet'"><!-- built by tools/build-css.js from: ${cfg.bundles[name].map((f) => path.basename(f)).join(', ')} -->\n    <noscript><link rel="stylesheet" href="${prefix}css/bundle-${name}.min.css?v=${versions[name]}"></noscript>\n`;
+    } else {
+      tag = `    <link rel="stylesheet" href="${prefix}css/bundle-${name}.min.css?v=${versions[name]}"><!-- built by tools/build-css.js from: ${cfg.bundles[name].map((f) => path.basename(f)).join(', ')} -->\n`;
+    }
     html = html.replace('\u0000BUNDLE\u0000', tag);
     fs.writeFileSync(file, html);
   }

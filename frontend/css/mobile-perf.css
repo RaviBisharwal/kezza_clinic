@@ -120,8 +120,27 @@
     .service-hero-image-wrap,
     .hero-image::before,
     .hero-photo-frame img, .hero-photo-shimmer,
-    .doctor-verified-badge i {
+    .doctor-verified-badge i,
+    .hero-copy .hero-h1 .hero-line-1,
+    .hero-copy .hero-h1 .hero-line-2,
+    .hero-copy .hero-h1 .hero-line-3,
+    .hero-copy .hero-sub,
+    .hero-copy .hero-ctas,
+    .hero-copy .hero-eyebrow,
+    .hero-section .slide:nth-child(1) {
         animation: none !important;
+    }
+    .hero-copy .hero-h1 .hero-line-1,
+    .hero-copy .hero-h1 .hero-line-2,
+    .hero-copy .hero-h1 .hero-line-3,
+    .hero-copy .hero-sub,
+    .hero-copy .hero-ctas,
+    .hero-copy .hero-eyebrow {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    .hero-section .slide {
+        will-change: auto !important;
     }
     /* the permanent-makeup page's dark theme sets its loops with "html body …" selectors */
     html body section + section::before,

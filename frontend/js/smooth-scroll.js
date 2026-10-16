@@ -17,7 +17,21 @@
     const NAV_OFFSET = 90; // Height of fixed navbar + breathing clearance
     const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // ── 1. Silky Smooth Anchor Navigation ────────────────────────────
+    // ── 1. Silky Smooth Anchor Navigation ──────────────────────────────────────────────
+    // Cache navbar height once on first anchor click or resize — never measure layout on page load
+    var _cachedNavH = NAV_OFFSET;
+    var _navHTimer = null;
+    function _refreshNavH() {
+        var nb = document.querySelector('.navbar');
+        var strip = document.querySelector('.service-nav-strip, .sticky-nav');
+        if (nb) {
+            _cachedNavH = nb.getBoundingClientRect().height || NAV_OFFSET;
+            if (strip && strip.offsetParent !== null) _cachedNavH += strip.getBoundingClientRect().height || 0;
+            _cachedNavH += 12;
+        }
+    }
+    window.addEventListener('resize', function() { clearTimeout(_navHTimer); _navHTimer = setTimeout(_refreshNavH, 150); }, { passive: true });
+
     function initAnchorGlide() {
         document.addEventListener('click', function (e) {
             const link = e.target.closest('a[href^="#"]');
@@ -33,16 +47,8 @@
                 const targetEl = document.querySelector(hash);
                 if (targetEl) {
                     e.preventDefault();
-                    let currentOffset = NAV_OFFSET;
-                    const navbarEl = document.querySelector('.navbar');
-                    const stickyStripEl = document.querySelector('.service-nav-strip, .sticky-nav');
-                    if (navbarEl) {
-                        currentOffset = navbarEl.offsetHeight;
-                        if (stickyStripEl) {
-                            currentOffset += stickyStripEl.offsetHeight;
-                        }
-                        currentOffset += 12;
-                    }
+                    if (_cachedNavH === NAV_OFFSET) _refreshNavH();
+                    let currentOffset = _cachedNavH;
                     const computedMargin = parseInt(window.getComputedStyle(targetEl).scrollMarginTop, 10);
                     if (!isNaN(computedMargin) && computedMargin > 0) {
                         currentOffset = computedMargin;
@@ -66,44 +72,48 @@
         }, { passive: false });
     }
 
-    // ── 2. Reading Progress Indicator ────────────────────────────────
+    // ── 2. Reading Progress Indicator & Back-to-Top Button (Lazy Created on 1st Scroll) ──
     let progressBar = null;
-    function initProgressBar() {
-        if (progressBar) return;
-        progressBar = document.getElementById('kzScrollProgress');
-        if (!progressBar && document.body) {
-            progressBar = document.createElement('div');
-            progressBar.id = 'kzScrollProgress';
-            progressBar.setAttribute('aria-hidden', 'true');
-            document.body.prepend(progressBar);
-        }
-    }
-
-    // ── 3. Back-to-Top Floating Button ───────────────────────────────
     let backToTopBtn = null;
-    function initBackToTop() {
-        if (backToTopBtn) return;
-        backToTopBtn = document.getElementById('kzBackToTop');
-        if (!backToTopBtn && document.body) {
-            backToTopBtn = document.createElement('button');
-            backToTopBtn.id = 'kzBackToTop';
-            backToTopBtn.type = 'button';
-            backToTopBtn.setAttribute('aria-label', 'Scroll back to top');
-            backToTopBtn.title = 'Back to top';
-            backToTopBtn.innerHTML = '<i class="fas fa-chevron-up" aria-hidden="true"></i>';
-            document.body.appendChild(backToTopBtn);
+    let widgetsInitialized = false;
 
-            backToTopBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: prefersReducedMotion ? 'auto' : 'smooth'
+    function lazyInitWidgets() {
+        if (widgetsInitialized) return;
+        widgetsInitialized = true;
+
+        if (!progressBar) {
+            progressBar = document.getElementById('kzScrollProgress');
+            if (!progressBar && document.body) {
+                progressBar = document.createElement('div');
+                progressBar.id = 'kzScrollProgress';
+                progressBar.setAttribute('aria-hidden', 'true');
+                document.body.prepend(progressBar);
+            }
+        }
+
+        if (!backToTopBtn) {
+            backToTopBtn = document.getElementById('kzBackToTop');
+            if (!backToTopBtn && document.body) {
+                backToTopBtn = document.createElement('button');
+                backToTopBtn.id = 'kzBackToTop';
+                backToTopBtn.type = 'button';
+                backToTopBtn.setAttribute('aria-label', 'Scroll back to top');
+                backToTopBtn.title = 'Back to top';
+                backToTopBtn.innerHTML = '<i class="fas fa-chevron-up" aria-hidden="true"></i>';
+                document.body.appendChild(backToTopBtn);
+
+                backToTopBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: prefersReducedMotion ? 'auto' : 'smooth'
+                    });
                 });
-            });
+            }
         }
     }
 
-    // ── 4. Unified Lightweight Scroll Listener ───────────────────────
+    // ── 3. Unified Lightweight Scroll Listener ───────────────────────
     let ticking = false;
     let cachedMaxScroll = 0;
     const navbar = document.querySelector('.navbar');
@@ -118,13 +128,6 @@
     }
 
     function updateScrollState() {
-        if (!progressBar) {
-            progressBar = document.getElementById('kzScrollProgress');
-        }
-        if (!backToTopBtn) {
-            backToTopBtn = document.getElementById('kzBackToTop');
-        }
-
         const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
 
         // If at the very top of the page, avoid querying scrollHeight/layout entirely
@@ -186,6 +189,7 @@
     }
 
     function onScroll() {
+        if (!widgetsInitialized) lazyInitWidgets();
         if (!ticking) {
             requestAnimationFrame(updateScrollState);
             ticking = true;
@@ -199,9 +203,9 @@
 
     function boot() {
         initAnchorGlide();
-        initProgressBar();
-        initBackToTop();
-        if ((window.pageYOffset || document.documentElement.scrollTop || 0) > 0) {
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+        if (scrollY > 0) {
+            lazyInitWidgets();
             requestAnimationFrame(updateScrollState);
         }
     }
