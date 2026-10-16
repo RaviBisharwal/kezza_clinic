@@ -49,7 +49,7 @@ function minify(name) {
   const src = fs.readFileSync(path.join(JS_DIR, name), 'utf8');
   let code;
   try {
-    code = esbuild.transformSync(src, { loader: 'js', minify: true, charset: 'utf8', legalComments: 'none' }).code;
+    code = esbuild.transformSync(src, { loader: 'js', minify: true, charset: 'utf8', legalComments: 'none', target: 'es2020' }).code;
   } catch (err) {
     console.error(`Could not minify js/${name}:\n${err.message}`);
     process.exit(1);

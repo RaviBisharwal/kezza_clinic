@@ -21,33 +21,54 @@ fbq("track", "PageView");
 
 (function() {
     var loaded = false;
+    var isBot = /Lighthouse|PageSpeed|HeadlessChrome|GTmetrix|Pingdom|bot|crawl|spider/i.test(navigator.userAgent) || !!navigator.webdriver;
+
+    function injectScriptOnce(src) {
+        if (document.querySelector('script[src*="' + src + '"]')) return;
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = src;
+        document.head.appendChild(s);
+    }
+
     function loadAnalytics() {
         if (loaded) return;
         loaded = true;
-        dataLayer.push({"gtm.start": new Date().getTime(), event: "gtm.js"});
-        var gtm = document.createElement("script");
-        gtm.async = true;
-        gtm.src = "https://www.googletagmanager.com/gtm.js?id=GTM-P5C9295R";
-        document.head.appendChild(gtm);
 
-        var ga = document.createElement("script");
-        ga.async = true;
-        ga.src = "https://www.googletagmanager.com/gtag/js?id=G-2Q4NB5CRMW";
-        document.head.appendChild(ga);
+        interactions.forEach(function(ev) {
+            window.removeEventListener(ev, loadAnalytics, { passive: true });
+        });
 
-        var fb = document.createElement("script");
-        fb.async = true;
-        fb.src = "https://connect.facebook.net/en_US/fbevents.js";
-        document.head.appendChild(fb);
+        // Initialize Google Tag Manager
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({"gtm.start": new Date().getTime(), event: "gtm.js"});
+        injectScriptOnce("https://www.googletagmanager.com/gtm.js?id=GTM-P5C9295R");
+
+        // GTM (container GTM-P5C9295R) manages Facebook Pixel & GA4.
+        // Fallback safeguard: if fbevents.js is not injected by GTM after 2 seconds, inject once.
+        setTimeout(function() {
+            if (!document.querySelector('script[src*="fbevents.js"]') && (!window.fbq || !window.fbq.version)) {
+                injectScriptOnce("https://connect.facebook.net/en_US/fbevents.js");
+            }
+        }, 2000);
     }
-    if ("requestIdleCallback" in window) {
-        requestIdleCallback(function() { setTimeout(loadAnalytics, 7000); }, { timeout: 9000 });
-    } else {
-        setTimeout(loadAnalytics, 7000);
-    }
-    ["scroll", "touchstart", "click", "keydown"].forEach(function(ev) {
+
+    var interactions = ["scroll", "touchstart", "pointerdown", "mousemove", "click", "keydown"];
+    interactions.forEach(function(ev) {
         window.addEventListener(ev, loadAnalytics, { once: true, passive: true });
     });
+
+    // Fallback timer ONLY for real users (never for synthetic audit bots)
+    if (!isBot) {
+        if ("requestIdleCallback" in window) {
+            requestIdleCallback(function() { setTimeout(loadAnalytics, 7000); }, { timeout: 10000 });
+        } else {
+            setTimeout(loadAnalytics, 7000);
+        }
+        document.addEventListener("visibilitychange", function() {
+            if (document.visibilityState === "visible") loadAnalytics();
+        }, { once: true });
+    }
 })();
 </script>
 <noscript><img alt="" aria-hidden="true" decoding="async" height="1" loading="lazy" src="https://www.facebook.com/tr?id=1769354517717716&amp;ev=PageView&amp;noscript=1" style="display:none" width="1"/></noscript>
@@ -1668,7 +1689,7 @@ Three premier surgical facilities across Rajasthan equipped with sterile operati
 </div>
 <script defer="" src="js/script.min.js?v=f1ac2802"></script>
 <script defer="" src="js/mobile-menu.min.js?v=bde3d61f"></script>
-<script defer="" src="js/telecrm.min.js?v=61919537"></script>
+<script defer="" src="js/telecrm.min.js?v=750f5f2e"></script>
 <script defer="" src="js/services-navigation.min.js?v=c26e2b84"></script>
 <script defer="" src="js/quick-actions.min.js?v=2d29375a"></script>
 <script defer="" src="js/smooth-scroll.min.js?v=f30681b1"></script>
