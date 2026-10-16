@@ -188,32 +188,47 @@
             }
         });
 
-        // Only run while the gallery is on screen: the loop used to keep running
-        // (and re-drawing the page) while visitors were reading other sections.
+        let hasStarted = false;
+        function maybeStartLoop() {
+            if (hasStarted && onScreen && !document.hidden && !animationFrameId) {
+                lastTimestamp = performance.now();
+                animationFrameId = requestAnimationFrame(animate);
+            }
+        }
+
+        // Only run while the gallery is on screen
         if ('IntersectionObserver' in window) {
             new IntersectionObserver((entries) => {
                 onScreen = entries.some((e) => e.isIntersecting);
-                if (onScreen) {
+                if (onScreen && hasStarted) {
                     if (halfWidth === 0) {
                         updateDimensions();
                     }
                     if (!track.classList.contains('js-controlled')) {
                         track.classList.add('js-controlled');
                     }
-                    if (!document.hidden && !animationFrameId) {
-                        lastTimestamp = performance.now();
-                        animationFrameId = requestAnimationFrame(animate);
-                    }
+                    maybeStartLoop();
                 } else if (!onScreen && animationFrameId) {
                     cancelAnimationFrame(animationFrameId);
                     animationFrameId = null;
                 }
-            }, { rootMargin: '150px 0px' }).observe(viewport);
-        } else {
-            updateDimensions();
-            track.classList.add('js-controlled');
-            animationFrameId = requestAnimationFrame(animate);
+            }, { rootMargin: '0px' }).observe(viewport);
         }
+
+        // Switch to JS-driven control only on user interaction or scroll,
+        // letting CSS GPU animation handle initial load without main-thread blocking.
+        function activateJsControl() {
+            if (hasStarted) return;
+            hasStarted = true;
+            if (halfWidth === 0) updateDimensions();
+            if (!track.classList.contains('js-controlled')) {
+                track.classList.add('js-controlled');
+            }
+            maybeStartLoop();
+        }
+
+        viewport.addEventListener('pointerdown', activateJsControl, { passive: true });
+        window.addEventListener('scroll', activateJsControl, { once: true, passive: true });
     }
 
     if (document.readyState === 'loading') {

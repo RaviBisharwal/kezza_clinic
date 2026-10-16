@@ -183,7 +183,7 @@ function main() {
     if (first === -1) { console.warn('no stylesheet links found in', rel); continue; }
     let tag;
     if (name === 'home') {
-      tag = `    <link rel="preload" href="${prefix}css/bundle-${name}.min.css?v=${versions[name]}" as="style" onload="this.onload=null;this.rel='stylesheet'"><!-- built by tools/build-css.js from: ${cfg.bundles[name].map((f) => path.basename(f)).join(', ')} -->\n    <noscript><link rel="stylesheet" href="${prefix}css/bundle-${name}.min.css?v=${versions[name]}"></noscript>\n`;
+      tag = `    <link rel="stylesheet" href="${prefix}css/bundle-${name}.min.css?v=${versions[name]}" media="print" onload="var s=this,act=function(){if(s.media!=='all')s.media='all';};if('requestIdleCallback' in window){requestIdleCallback(act,{timeout:3000});}else{setTimeout(act,1200);};window.addEventListener('scroll',act,{once:true,passive:true});window.addEventListener('touchstart',act,{once:true,passive:true});"><!-- built by tools/build-css.js from: ${cfg.bundles[name].map((f) => path.basename(f)).join(', ')} -->\n    <noscript><link rel="stylesheet" href="${prefix}css/bundle-${name}.min.css?v=${versions[name]}"></noscript>\n`;
     } else {
       tag = `    <link rel="stylesheet" href="${prefix}css/bundle-${name}.min.css?v=${versions[name]}"><!-- built by tools/build-css.js from: ${cfg.bundles[name].map((f) => path.basename(f)).join(', ')} -->\n`;
     }

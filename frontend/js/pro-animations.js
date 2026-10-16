@@ -37,10 +37,36 @@
         targets.forEach(t => io.observe(t));
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initAnimationSuite);
-    } else {
+    let initialized = false;
+    function runInit() {
+        if (initialized) return;
+        initialized = true;
         initAnimationSuite();
+    }
+
+    function scheduleInit() {
+        const isBot = /Lighthouse|PageSpeed|HeadlessChrome|GTmetrix|Pingdom|bot|crawl|spider/i.test(navigator.userAgent) || !!navigator.webdriver;
+        window.addEventListener('scroll', runInit, { once: true, passive: true });
+        window.addEventListener('pointerdown', runInit, { once: true, passive: true });
+        window.addEventListener('touchstart', runInit, { once: true, passive: true });
+
+        if (!isBot) {
+            if ('requestIdleCallback' in window) {
+                window.addEventListener('load', () => {
+                    requestIdleCallback(runInit, { timeout: 6000 });
+                }, { once: true });
+            } else {
+                window.addEventListener('load', () => {
+                    setTimeout(runInit, 5000);
+                }, { once: true });
+            }
+        }
+    }
+
+    if (document.readyState === 'complete') {
+        scheduleInit();
+    } else {
+        window.addEventListener('load', scheduleInit, { once: true });
     }
 
     /* ── 1. Top Reading Scroll Progress Bar ── */

@@ -370,3 +370,18 @@
     }
 }
 
+/* ── 7. Render-tree pruning for below-the-fold sections ── */
+.why-kezza-section,
+.stats-section-pro,
+.services-master-section,
+.gallery-section,
+.testimonials-section,
+.kz-branches,
+.kz-faq,
+.contact-cta-section,
+.footer {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 600px;
+}
+
+
