@@ -15,9 +15,6 @@
         const cards = track.querySelectorAll('.gallery-carousel-card');
         if (cards.length < 2) return;
 
-        // Switch track to JS-controlled RAF loop
-        track.classList.add('js-controlled');
-
         // State variables
         let currentX = 0;
         let halfWidth = 0;
@@ -29,7 +26,7 @@
         let dragVelocityX = 0;
         let lastTimestamp = performance.now();
         let animationFrameId = null;
-        let onScreen = true;
+        let onScreen = false;
 
         // Respect user's motion preference
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -50,14 +47,16 @@
             }
         }
 
-        // Wait for images to load if necessary to get perfect subpixel offsets
-        updateDimensions();
-        window.addEventListener('load', updateDimensions);
+        window.addEventListener('load', () => {
+            if (halfWidth > 0) updateDimensions();
+        });
 
         let resizeTimer = null;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(updateDimensions, 100);
+            resizeTimer = setTimeout(() => {
+                if (halfWidth > 0) updateDimensions();
+            }, 100);
         });
 
         // Apply hardware-accelerated transform
@@ -194,15 +193,25 @@
         if ('IntersectionObserver' in window) {
             new IntersectionObserver((entries) => {
                 onScreen = entries.some((e) => e.isIntersecting);
-                if (onScreen && !document.hidden && !animationFrameId) {
-                    lastTimestamp = performance.now();
-                    animationFrameId = requestAnimationFrame(animate);
+                if (onScreen) {
+                    if (halfWidth === 0) {
+                        updateDimensions();
+                    }
+                    if (!track.classList.contains('js-controlled')) {
+                        track.classList.add('js-controlled');
+                    }
+                    if (!document.hidden && !animationFrameId) {
+                        lastTimestamp = performance.now();
+                        animationFrameId = requestAnimationFrame(animate);
+                    }
                 } else if (!onScreen && animationFrameId) {
                     cancelAnimationFrame(animationFrameId);
                     animationFrameId = null;
                 }
             }, { rootMargin: '150px 0px' }).observe(viewport);
         } else {
+            updateDimensions();
+            track.classList.add('js-controlled');
             animationFrameId = requestAnimationFrame(animate);
         }
     }

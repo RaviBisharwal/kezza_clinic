@@ -57,7 +57,7 @@
 
         let ticking = false;
         function updateProgress() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
             const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             if (docHeight > 0) {
                 const percent = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
@@ -74,7 +74,9 @@
                 ticking = true;
             }
         }, { passive: true });
-        updateProgress();
+        if ((window.pageYOffset || document.documentElement.scrollTop || 0) > 0) {
+            window.requestAnimationFrame(updateProgress);
+        }
     }
 
     /* ── 2. Glassmorphic Navbar Dynamic Scroll State ── */
@@ -84,7 +86,7 @@
 
         let ticking = false;
         function checkNav() {
-            const top = window.pageYOffset || document.documentElement.scrollTop;
+            const top = window.pageYOffset || document.documentElement.scrollTop || 0;
             if (top > 30) {
                 navbar.classList.add('navbar-scrolled');
             } else {
@@ -99,7 +101,9 @@
                 ticking = true;
             }
         }, { passive: true });
-        checkNav();
+        if ((window.pageYOffset || document.documentElement.scrollTop || 0) > 30) {
+            navbar.classList.add('navbar-scrolled');
+        }
     }
 
     /* ── 3. Scroll-Driven Reveal Engine with Auto-Stagger ── */
@@ -185,15 +189,7 @@
 
         document.documentElement.classList.add('pro-anim-active');
 
-        // Immediately reveal elements that are already within or above the initial viewport
-        const vh = window.innerHeight || document.documentElement.clientHeight;
-        reveals.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            if (rect.top <= vh * 0.95) {
-                el.classList.add('is-revealed');
-            }
-        });
-
+        // Non-blocking IntersectionObserver for viewport reveal without forced synchronous reflow
         if ('IntersectionObserver' in window) {
             const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -299,19 +295,20 @@
 
         tiltElements.forEach(card => {
             let isHovered = false;
+            let cardRect = null;
 
             card.addEventListener('mouseenter', () => {
                 isHovered = true;
+                cardRect = card.getBoundingClientRect();
                 card.style.transition = 'transform 0.12s ease-out, box-shadow 0.25s ease, border-color 0.25s ease';
             });
 
             card.addEventListener('mousemove', e => {
-                if (!isHovered) return;
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
+                if (!isHovered || !cardRect) return;
+                const x = e.clientX - cardRect.left;
+                const y = e.clientY - cardRect.top;
+                const centerX = cardRect.width / 2;
+                const centerY = cardRect.height / 2;
 
                 // Subtle micro-tilt angle max ±5 degrees
                 const rotateX = ((y - centerY) / centerY) * -5;
@@ -322,6 +319,7 @@
 
             card.addEventListener('mouseleave', () => {
                 isHovered = false;
+                cardRect = null;
                 card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease';
                 card.style.transform = '';
             });
@@ -340,34 +338,34 @@
         if (!beforeWrap || !divider || !beforeImg) return;
 
         let isDragging = false;
+        let cachedRect = null;
 
-        function syncImageWidth() {
-            const rect = container.getBoundingClientRect();
-            if (beforeImg && rect.width > 0 && rect.height > 0) {
-                beforeImg.style.width = rect.width + 'px';
-                beforeImg.style.height = rect.height + 'px';
-            }
-        }
-
-        window.addEventListener('resize', syncImageWidth);
-        window.addEventListener('orientationchange', syncImageWidth);
-        beforeImg.addEventListener('load', syncImageWidth);
+        // Container queries style beforeImg naturally; ResizeObserver is non-blocking fallback
         if (window.ResizeObserver) {
-            new ResizeObserver(syncImageWidth).observe(container);
+            new ResizeObserver(entries => {
+                for (const entry of entries) {
+                    const cr = entry.contentRect;
+                    if (cr && cr.width > 0 && cr.height > 0) {
+                        beforeImg.style.width = cr.width + 'px';
+                        beforeImg.style.height = cr.height + 'px';
+                    }
+                }
+            }).observe(container);
         }
-        syncImageWidth();
-        setTimeout(syncImageWidth, 100);
-        setTimeout(syncImageWidth, 400);
 
         function setPosition(xPos) {
-            const rect = container.getBoundingClientRect();
-            let offsetX = xPos - rect.left;
+            if (!cachedRect) {
+                cachedRect = container.getBoundingClientRect();
+            }
+            const width = cachedRect.width;
+            if (width <= 0) return;
 
-            const minX = rect.width * 0.05;
-            const maxX = rect.width * 0.95;
+            let offsetX = xPos - cachedRect.left;
+            const minX = width * 0.05;
+            const maxX = width * 0.95;
             offsetX = Math.max(minX, Math.min(offsetX, maxX));
 
-            const percentage = (offsetX / rect.width) * 100;
+            const percentage = (offsetX / width) * 100;
             beforeWrap.style.width = percentage + '%';
             divider.style.left = percentage + '%';
             const handle = divider.querySelector('.ba-handle');
@@ -385,6 +383,7 @@
 
         function onPointerDown(e) {
             isDragging = true;
+            cachedRect = container.getBoundingClientRect();
             container.style.cursor = 'ew-resize';
             const clientX = getClientX(e);
             if (clientX !== null) setPosition(clientX);
@@ -398,6 +397,7 @@
 
         function onPointerUp() {
             isDragging = false;
+            cachedRect = null;
             container.style.cursor = 'default';
         }
 

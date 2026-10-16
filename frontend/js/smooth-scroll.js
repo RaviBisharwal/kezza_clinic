@@ -69,90 +69,6 @@
     // ── 2. Reading Progress Indicator ────────────────────────────────
     let progressBar = null;
     function initProgressBar() {
-        if (!document.getElementById('kzScrollProgressStyle')) {
-            const style = document.createElement('style');
-            style.id = 'kzScrollProgressStyle';
-            style.textContent = `
-                #kzScrollProgress {
-                    position: fixed !important;
-                    top: 0 !important;
-                    left: 0 !important;
-                    width: 100% !important;
-                    height: 3px !important;
-                    background: linear-gradient(90deg, #00abba 0%, #00c4d6 40%, #00AFC0 85%, #00AFC0 100%) !important;
-                    box-shadow: 0 1px 8px rgba(0, 171, 186, 0.45) !important;
-                    transform-origin: 0% 50% !important;
-                    transform: scaleX(0);
-                    z-index: 10002 !important;
-                    pointer-events: none !important;
-                    will-change: transform !important;
-                    transition: opacity 0.25s ease !important;
-                }
-                #kzBackToTop {
-                    position: fixed !important;
-                    bottom: 24px !important;
-                    left: 24px !important;
-                    width: 42px !important;
-                    height: 42px !important;
-                    border-radius: 50% !important;
-                    background: rgba(10, 18, 36, 0.94) !important;
-                    border: 1.5px solid rgba(0, 175, 192, 0.5) !important;
-                    backdrop-filter: blur(12px) !important;
-                    -webkit-backdrop-filter: blur(12px) !important;
-                    color: #00AFC0 !important;
-                    display: flex !important;
-                    align-items: center !important;
-                    justify-content: center !important;
-                    font-size: 14px !important;
-                    cursor: pointer !important;
-                    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 15px rgba(0, 171, 186, 0.15) !important;
-                    opacity: 0 !important;
-                    visibility: hidden !important;
-                    transform: translateY(12px) translateZ(0) !important;
-                    transition: all 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
-                    z-index: 995 !important;
-                    outline: none !important;
-                    -webkit-tap-highlight-color: transparent !important;
-                    padding: 0 !important;
-                    margin: 0 !important;
-                }
-                #kzBackToTop i {
-                    color: #00AFC0 !important;
-                    font-size: 14px !important;
-                    transition: transform 0.25s ease, color 0.25s ease !important;
-                    display: inline-block !important;
-                    line-height: 1 !important;
-                }
-                #kzBackToTop.is-visible {
-                    opacity: 1 !important;
-                    visibility: visible !important;
-                    transform: translateY(0) translateZ(0) !important;
-                }
-                #kzBackToTop:hover {
-                    background: linear-gradient(135deg, #00abba 0%, #008f9c 100%) !important;
-                    border-color: #00c4d6 !important;
-                    box-shadow: 0 10px 28px rgba(0, 171, 186, 0.5) !important;
-                    transform: translateY(-3px) scale(1.06) translateZ(0) !important;
-                }
-                #kzBackToTop:hover i {
-                    color: #ffffff !important;
-                    transform: translateY(-1px) !important;
-                }
-                @media (max-width: 768px) {
-                    #kzBackToTop {
-                        bottom: 84px !important;
-                        left: 16px !important;
-                        width: 38px !important;
-                        height: 38px !important;
-                    }
-                    #kzBackToTop i {
-                        font-size: 13px !important;
-                    }
-                }
-            `;
-            (document.head || document.documentElement).appendChild(style);
-        }
-
         if (progressBar) return;
         progressBar = document.getElementById('kzScrollProgress');
         if (!progressBar && document.body) {
@@ -189,7 +105,17 @@
 
     // ── 4. Unified Lightweight Scroll Listener ───────────────────────
     let ticking = false;
+    let cachedMaxScroll = 0;
     const navbar = document.querySelector('.navbar');
+
+    function getMaxScroll() {
+        if (cachedMaxScroll > 0) return cachedMaxScroll;
+        cachedMaxScroll = Math.max(
+            document.body ? document.body.scrollHeight : 0,
+            document.documentElement ? document.documentElement.scrollHeight : 0
+        ) - window.innerHeight;
+        return cachedMaxScroll;
+    }
 
     function updateScrollState() {
         if (!progressBar) {
@@ -200,10 +126,24 @@
         }
 
         const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-        const maxScroll = Math.max(
-            document.body ? document.body.scrollHeight : 0,
-            document.documentElement ? document.documentElement.scrollHeight : 0
-        ) - window.innerHeight;
+
+        // If at the very top of the page, avoid querying scrollHeight/layout entirely
+        if (scrollY <= 0) {
+            if (progressBar) {
+                progressBar.style.transform = 'scaleX(0)';
+                progressBar.style.opacity = '0';
+            }
+            if (navbar && navbar.classList.contains('is-scrolled')) {
+                navbar.classList.remove('is-scrolled');
+            }
+            if (backToTopBtn && backToTopBtn.classList.contains('is-visible')) {
+                backToTopBtn.classList.remove('is-visible');
+            }
+            ticking = false;
+            return;
+        }
+
+        const maxScroll = getMaxScroll();
 
         // Update Reading Progress Bar via GPU transform
         if (progressBar) {
@@ -252,23 +192,29 @@
         }
     }
 
-    // Initialise on DOM Ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function () {
-            initAnchorGlide();
-            initProgressBar();
-            initBackToTop();
-            updateScrollState();
-        });
-    } else {
+    function onResize() {
+        cachedMaxScroll = 0; // invalidate cached document height
+        onScroll();
+    }
+
+    function boot() {
         initAnchorGlide();
         initProgressBar();
         initBackToTop();
-        updateScrollState();
+        if ((window.pageYOffset || document.documentElement.scrollTop || 0) > 0) {
+            requestAnimationFrame(updateScrollState);
+        }
+    }
+
+    // Initialise on DOM Ready without synchronous layout measurement
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+    } else {
+        boot();
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
+    window.addEventListener('resize', onResize, { passive: true });
 
     // Public API
     window.KezzaSmoothScroll = {
