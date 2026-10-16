@@ -167,12 +167,41 @@
         });
     }
 
+    /* ── 6. Lazy load video posters below the fold ──────────────────── */
+    function initLazyVideoPosters() {
+        var videos = document.querySelectorAll('video[data-poster]');
+        if (!videos.length) return;
+        if ('IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function (entries, obs) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        var v = entry.target;
+                        if (v.dataset.poster) {
+                            v.poster = v.dataset.poster;
+                            delete v.dataset.poster;
+                        }
+                        obs.unobserve(v);
+                    }
+                });
+            }, { rootMargin: '400px 0px' });
+            videos.forEach(function (v) { observer.observe(v); });
+        } else {
+            videos.forEach(function (v) {
+                if (v.dataset.poster) {
+                    v.poster = v.dataset.poster;
+                    delete v.dataset.poster;
+                }
+            });
+        }
+    }
+
     function boot() {
         initServicesReveal();
         initComparisonA11y();
         initFaq();
         initTeaserAutoDismiss();
         initBranchFilters();
+        initLazyVideoPosters();
     }
 
     if (document.readyState === 'loading') {
