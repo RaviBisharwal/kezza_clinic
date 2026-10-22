@@ -80,10 +80,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroSection = document.querySelector('.contact-hero-section');
     
     if (heroImage && heroSection) {
+        let heroRect = null;
+        heroSection.addEventListener('mouseenter', function() {
+            heroRect = heroSection.getBoundingClientRect();
+        });
         heroSection.addEventListener('mousemove', function(e) {
-            const rect = heroSection.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width;
-            const y = (e.clientY - rect.top) / rect.height;
+            if (!heroRect) {
+                heroRect = heroSection.getBoundingClientRect();
+            }
+            const x = (e.clientX - heroRect.left) / heroRect.width;
+            const y = (e.clientY - heroRect.top) / heroRect.height;
             
             const moveX = (x - 0.5) * 15;
             const moveY = (y - 0.5) * 15;
@@ -92,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         heroSection.addEventListener('mouseleave', function() {
+            heroRect = null;
             heroImage.style.transform = 'translate(0, 0)';
         });
     }

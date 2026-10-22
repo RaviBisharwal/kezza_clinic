@@ -43,38 +43,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const sections = Array.from(subnavPills).map(pill => {
         const id = pill.getAttribute('href').replace('#', '');
-        return document.getElementById(id);
+        const el = document.getElementById(id);
+        return el ? { id, el, top: 0, height: 0 } : null;
     }).filter(Boolean);
 
-    function updateActivePill() {
+    function updateSectionDimensions() {
+        sections.forEach(s => {
+            s.top = s.el.offsetTop;
+            s.height = s.el.offsetHeight;
+        });
+    }
+    updateSectionDimensions();
+    window.addEventListener('resize', updateSectionDimensions, { passive: true });
+
+    let currentActiveId = '';
+    let ticking = false;
+
+    function checkActivePill() {
         const scrollPos = (window.pageYOffset || document.documentElement.scrollTop || 0) + 160;
-        let currentSection = null;
+        let activeSection = null;
 
         for (let i = 0; i < sections.length; i++) {
-            const section = sections[i];
-            const top = section.offsetTop;
-            const height = section.offsetHeight;
-            if (scrollPos >= top && scrollPos < top + height) {
-                currentSection = section;
+            const s = sections[i];
+            if (scrollPos >= s.top && scrollPos < s.top + s.height) {
+                activeSection = s;
                 break;
             }
         }
 
-        if (currentSection) {
-            const targetId = currentSection.id;
+        if (activeSection && activeSection.id !== currentActiveId) {
+            currentActiveId = activeSection.id;
             subnavPills.forEach(pill => {
                 const href = pill.getAttribute('href').replace('#', '');
-                if (href === targetId) {
-                    pill.classList.add('active');
-                } else {
-                    pill.classList.remove('active');
-                }
+                pill.classList.toggle('active', href === currentActiveId);
             });
+        }
+        ticking = false;
+    }
+
+    function onScroll() {
+        if (!ticking) {
+            requestAnimationFrame(checkActivePill);
+            ticking = true;
         }
     }
 
-    window.addEventListener('scroll', updateActivePill, { passive: true });
-    updateActivePill();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    checkActivePill();
 });
 
 // Intersection Observer for animations

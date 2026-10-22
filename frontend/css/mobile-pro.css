@@ -123,16 +123,18 @@ img,video,iframe,embed {
         max-width: 100% !important
     }
     .hero-ctas {
-        display: flex !important;
-        flex-direction: column !important;
-        width: 100% !important;
+        display: inline-flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        width: auto !important;
         gap: 10px !important;
         margin: 0 !important
     }
     .hero-btn {
-        width: 100% !important;
+        width: auto !important;
+        max-width: 100% !important;
         justify-content: center !important;
-        padding: 14px 20px !important;
+        padding: 14px 22px !important;
         font-size: 0.92rem !important
     }
     .hero-scrim {
@@ -147,6 +149,16 @@ img,video,iframe,embed {
     }
     .hero-h1 {
         font-size: clamp(1.45rem,7vw,1.9rem) !important
+    }
+    .hero-ctas {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 10px !important;
+    }
+    .hero-btn {
+        width: 100% !important;
+        max-width: 360px !important;
     }
     .hero-eyebrow {
         font-size: 9px !important
@@ -643,11 +655,6 @@ img,video,iframe,embed {
     }
 }
 
-@media (max-width: 992px) {
-    .social-sidebar {
-        display: none !important
-    }
-}
 
 @media (max-width: 768px) {
     .why-kezza-section,.services-master-section,.branches-section,.testimonials-section,.gallery-section,.doctors-section,.stats-section {
@@ -707,14 +714,16 @@ img,video,iframe,embed {
         margin-bottom: 8px !important
     }
     .hero-main-heading {
-        font-size: 1.65rem !important;
+        font-size: clamp(1.4rem, 5vw, 1.55rem) !important;
         line-height: 1.25 !important;
-        margin-bottom: 10px !important
+        min-height: 3.75em !important;
+        margin-bottom: 10px !important;
     }
     .hero-lead-narrative {
-        font-size: 0.88rem !important;
-        line-height: 1.55 !important;
-        margin-bottom: 14px !important
+        font-size: 0.86rem !important;
+        line-height: 1.5 !important;
+        min-height: 6em !important;
+        margin-bottom: 14px !important;
     }
     .hero-metrics-strip {
         gap: 10px !important;

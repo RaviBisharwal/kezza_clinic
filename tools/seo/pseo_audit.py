@@ -33,7 +33,7 @@ DATA = json.load(open(os.path.join(ROOT, "tools", "seo", "site-data.json"), enco
 BASE = DATA["base_url"]
 TAX_FILE = os.path.join(ROOT, "tools", "seo", "taxonomy.json")
 SKIP_DIRS = {"images", "video", "posters", "uploads", "css", "js", "fonts"}
-UTILITY = {"404.html", "admin.html"}
+UTILITY = {"404.html", "admin.html", "review.html"}
 
 # Wording a medical page should not use unless it is proven and approved (see SEO-CHANGES / pSEO report).
 CLAIMS = [
@@ -279,7 +279,7 @@ def main():
             "file": rel, "url": url_for(rel), "title": p.title, "h1": p.h1, "desc": p.desc, "robots": robots,
             "noindex": "noindex" in robots or rel in UTILITY, "canonical": p.canonical, "og_url": p.og_url,
             "lang": p.lang, "hreflang": p.hreflang, "schema": sorted({t for t in types if t}), "bad_json": bad_json,
-            "crumbs_visible": [c for c in p.crumbs if c and c not in ("›", ">", "/")],
+            "crumbs_visible": [c for c in p.crumbs if c and c.strip().lower() not in ("›", ">", "/", "back", "वापस")],
             "crumbs_schema": schema_crumbs, "links": p.links, "jsonld_raw": p.jsonld,
             "main_text": norm_space(" ".join(p.text_main) or " ".join(p.text_body)),
         }

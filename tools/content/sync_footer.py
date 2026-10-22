@@ -123,6 +123,19 @@ def footer(root):
                     </ul>
                 </div>
             </div>
+            <div class="kz-footer-map-container">
+                <div class="kz-footer-map-header">
+                    <span class="kz-footer-map-title">
+                        <i class="fas fa-map-marked-alt" style="color:#00afc0;"></i> Kezza Hair and Skin Clinic · Jaipur Google Maps Pin
+                    </span>
+                    <a class="kz-footer-map-link" href="https://maps.app.goo.gl/4eUGixic35V777yd8" target="_blank" rel="noopener noreferrer">
+                        Open in Google Maps <i class="fas fa-external-link-alt" style="font-size:0.72rem;"></i>
+                    </a>
+                </div>
+                <div class="kz-footer-map-frame">
+                    <iframe class="kz-footer-map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3556.985959966551!2d75.7450378!3d26.9224716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db3fb61d71aa7%3A0x856acc329503d375!2sKezza%20Hair%20and%20Skin%20Clinic!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" height="200" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Kezza Hair and Skin Clinic Jaipur Google Maps"></iframe>
+                </div>
+            </div>
             <div class="footer-bottom kz-footer-bottom">
                 <p>&copy; <span class="footer-year">2026</span> {name}. All rights reserved.</p>
                 <p class="kz-footer-note">The information on this website is general and does not replace a consultation with a doctor. Results differ from person to person.</p>

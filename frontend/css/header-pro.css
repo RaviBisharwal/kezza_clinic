@@ -2,29 +2,6 @@
    KEZZA CLINIC — PROFESSIONAL CENTERED HEADER, TRANSLATE & MOBILE MENU v5.0
    ========================================================================== */
 
-/* Font Awesome webfonts: ensure font-display: swap to prevent render blocking */
-@font-face {
-    font-family: 'Font Awesome 6 Free';
-    font-style: normal;
-    font-weight: 900;
-    font-display: swap;
-    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2') format('woff2');
-}
-@font-face {
-    font-family: 'Font Awesome 6 Brands';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2') format('woff2');
-}
-@font-face {
-    font-family: 'Font Awesome 6 Free';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-regular-400.woff2') format('woff2');
-}
-
 /* --------------------------------------------------------------------------
    1. DESKTOP CENTERED HEADER (1024px+)
    -------------------------------------------------------------------------- */
@@ -833,7 +810,6 @@
     .nav-drawer-header .drawer-logo img {
         height: 38px !important;
         width: auto !important;
-        aspect-ratio: 297 / 200 !important;
         display: block !important;
     }
     
@@ -971,6 +947,8 @@
     .services-dropdown-menu.mega-menu-panel:before {
         display: none !important;
     }
+
+
     
     .navbar .nav-menu > li.nav-drawer-cta {
         position: sticky !important;
@@ -1082,11 +1060,16 @@
 
 .service-breadcrumbs .sp-breadcrumb-wrap,
 .service-breadcrumbs .dc-breadcrumb-wrap,
-.service-breadcrumbs .sm-breadcrumb-wrap {
+.service-breadcrumbs .sm-breadcrumb-wrap,
+.pg-crumbs .sp-breadcrumb-wrap,
+.pg-crumbs .dc-breadcrumb-wrap,
+.pg-crumbs .sm-breadcrumb-wrap,
+nav[aria-label="Breadcrumb"] .sp-breadcrumb-wrap {
     margin-bottom: 0 !important;
 }
 
-.service-breadcrumbs {
+.service-breadcrumbs,
+.pg-crumbs {
     background: #f8fafc !important;
     border-bottom: 1px solid #e2e8f0 !important;
     padding: 10px 0 !important;
@@ -1102,7 +1085,9 @@
 .service-breadcrumbs .hero-container,
 .service-breadcrumbs .prp-container,
 .service-breadcrumbs .whr-container,
-.service-breadcrumbs .ac-container {
+.service-breadcrumbs .ac-container,
+.pg-crumbs .pg-container,
+.pg-crumbs .container {
     max-width: 1240px !important;
     margin: 0 auto !important;
     padding: 0 24px !important;
@@ -1110,7 +1095,10 @@
     box-sizing: border-box !important;
 }
 
-.service-breadcrumbs ol {
+.service-breadcrumbs ol,
+.pg-crumbs ol,
+.pg-crumbs nav ol,
+nav[aria-label="Breadcrumb"] ol {
     display: flex !important;
     flex-wrap: wrap !important;
     align-items: center !important;
@@ -1122,33 +1110,48 @@
     color: #64748b !important;
 }
 
-.service-breadcrumbs li {
+.service-breadcrumbs li,
+.pg-crumbs li,
+.pg-crumbs nav li,
+nav[aria-label="Breadcrumb"] li {
     display: flex !important;
     align-items: center !important;
     color: #64748b !important;
     font-weight: 400 !important;
 }
 
-.service-breadcrumbs li:not(:last-child):after {
+.service-breadcrumbs li:not(:last-child):after,
+.pg-crumbs li:not(:last-child):after,
+.pg-crumbs nav li:not(:last-child):after,
+nav[aria-label="Breadcrumb"] li:not(:last-child):after {
     content: "›" !important;
     margin-left: 8px !important;
     font-weight: 600 !important;
     color: #94a3b8 !important;
 }
 
-.service-breadcrumbs a {
+.service-breadcrumbs a,
+.pg-crumbs a,
+.pg-crumbs nav a,
+nav[aria-label="Breadcrumb"] a {
     color: #008f9c !important;
     text-decoration: none !important;
     font-weight: 500 !important;
     transition: color 0.2s ease !important;
 }
 
-.service-breadcrumbs a:hover {
+.service-breadcrumbs a:hover,
+.pg-crumbs a:hover,
+.pg-crumbs nav a:hover,
+nav[aria-label="Breadcrumb"] a:hover {
     color: #007480 !important;
     text-decoration: underline !important;
 }
 
-.service-breadcrumbs [aria-current="page"] {
+.service-breadcrumbs [aria-current="page"],
+.pg-crumbs [aria-current="page"],
+.pg-crumbs nav [aria-current="page"],
+nav[aria-label="Breadcrumb"] [aria-current="page"] {
     color: #0f2a38 !important;
     font-weight: 600 !important;
 }

@@ -15,6 +15,9 @@
         const cards = track.querySelectorAll('.gallery-carousel-card');
         if (cards.length < 2) return;
 
+        // Switch track to JS-controlled RAF loop
+        track.classList.add('js-controlled');
+
         // State variables
         let currentX = 0;
         let halfWidth = 0;
@@ -26,38 +29,32 @@
         let dragVelocityX = 0;
         let lastTimestamp = performance.now();
         let animationFrameId = null;
-        let onScreen = false;
+        let onScreen = true;
 
         // Respect user's motion preference
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Calculate the exact wrap distance based on layout
+        // Calculate the exact wrap distance based on layout without forced reflows
         function updateDimensions() {
-            if (cards.length >= 8) {
-                // Measure exact distance between item 0 and cloned item 7
-                const offset0 = cards[0].offsetLeft;
-                const offset7 = cards[7].offsetLeft;
-                if (offset7 > offset0) {
-                    halfWidth = offset7 - offset0;
-                } else {
-                    halfWidth = track.scrollWidth / 2;
-                }
-            } else {
-                halfWidth = track.scrollWidth / 2;
-            }
+            halfWidth = track.scrollWidth / 2;
         }
 
-        window.addEventListener('load', () => {
-            if (halfWidth > 0) updateDimensions();
-        });
-
-        let resizeTimer = null;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                if (halfWidth > 0) updateDimensions();
-            }, 100);
-        });
+        if (window.ResizeObserver) {
+            new ResizeObserver(entries => {
+                for (const entry of entries) {
+                    if (entry.contentRect && entry.contentRect.width > 0) {
+                        halfWidth = entry.contentRect.width / 2;
+                    }
+                }
+            }).observe(track);
+        } else {
+            window.addEventListener('load', updateDimensions);
+            let resizeTimer = null;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(updateDimensions, 100);
+            });
+        }
 
         // Apply hardware-accelerated transform
         function render() {
@@ -79,6 +76,7 @@
             lastTimestamp = now;
 
             if (!prefersReducedMotion && !isDragging) {
+                const isPageScrolling = document.body && document.body.classList.contains('is-scrolling');
                 if (isMomentum) {
                     // Decay momentum swipe smoothly
                     currentX += dragVelocityX * dt;
@@ -88,7 +86,7 @@
                         dragVelocityX = 0;
                     }
                     render();
-                } else if (!isHovered) {
+                } else if (!isHovered && !isPageScrolling) {
                     // Constant linear movement Right -> Left
                     currentX -= baseSpeed * dt;
                     render();
@@ -188,47 +186,23 @@
             }
         });
 
-        let hasStarted = false;
-        function maybeStartLoop() {
-            if (hasStarted && onScreen && !document.hidden && !animationFrameId) {
-                lastTimestamp = performance.now();
-                animationFrameId = requestAnimationFrame(animate);
-            }
-        }
-
-        // Only run while the gallery is on screen
+        // Only run while the gallery is on screen: the loop used to keep running
+        // (and re-drawing the page) while visitors were reading other sections.
         if ('IntersectionObserver' in window) {
             new IntersectionObserver((entries) => {
                 onScreen = entries.some((e) => e.isIntersecting);
-                if (onScreen && hasStarted) {
-                    if (halfWidth === 0) {
-                        updateDimensions();
-                    }
-                    if (!track.classList.contains('js-controlled')) {
-                        track.classList.add('js-controlled');
-                    }
-                    maybeStartLoop();
+                if (onScreen && !document.hidden && !animationFrameId) {
+                    lastTimestamp = performance.now();
+                    animationFrameId = requestAnimationFrame(animate);
                 } else if (!onScreen && animationFrameId) {
                     cancelAnimationFrame(animationFrameId);
                     animationFrameId = null;
                 }
-            }, { rootMargin: '0px' }).observe(viewport);
+            }, { rootMargin: '150px 0px' }).observe(viewport);
+        } else {
+            // Fallback for browsers without IntersectionObserver
+            animationFrameId = requestAnimationFrame(animate);
         }
-
-        // Switch to JS-driven control only on user interaction or scroll,
-        // letting CSS GPU animation handle initial load without main-thread blocking.
-        function activateJsControl() {
-            if (hasStarted) return;
-            hasStarted = true;
-            if (halfWidth === 0) updateDimensions();
-            if (!track.classList.contains('js-controlled')) {
-                track.classList.add('js-controlled');
-            }
-            maybeStartLoop();
-        }
-
-        viewport.addEventListener('pointerdown', activateJsControl, { passive: true });
-        window.addEventListener('scroll', activateJsControl, { once: true, passive: true });
     }
 
     if (document.readyState === 'loading') {

@@ -8,22 +8,24 @@
  *
  *     frontend/css/bundle-<name>.min.css
  *
+ * It also creates optimized critical and deferred bundles for high-traffic landing
+ * pages (e.g. index.html) to eliminate unused CSS rules and keep initial paint instant:
+ *
+ *     frontend/css/bundle-home-critical.min.css
+ *     frontend/css/bundle-home-deferred.min.css
+ *
  * It then rewrites every page's <link> tags to point at its bundle with a
  * content hash (?v=abc12345), so browsers re-download only when CSS changes.
  *
  * Keep editing the normal source files in frontend/css/ — then run:
  *
  *     npm run build:css      (or: node tools/build-css.js)
- *
- * Which files go into which bundle lives in tools/css-bundles.json. To add a
- * page, add it under "pages" with its bundle name (create the bundle list if
- * it needs a new combination of stylesheets). Treatment pages built from
- * tools/seo/taxonomy.json join the "content" bundle automatically.
  */
 'use strict';
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { buildFaSubset } = require('./build-fa-subset.js');
 
 const ROOT = path.resolve(__dirname, '..');
 const FE = path.join(ROOT, 'frontend');
@@ -67,8 +69,6 @@ function minify(css) {
       continue;
     }
     if ((c === 'u' || c === 'U') && css.slice(i, i + 4).toLowerCase() === 'url(') {
-      // url(...) verbatim. A quoted url (e.g. an inline SVG data URI) can itself
-      // contain ")" characters, so skip the quoted part before looking for ")".
       let j = i + 4;
       while (j < n && /\s/.test(css[j])) j++;
       if (css[j] === '"' || css[j] === "'") {
@@ -108,42 +108,123 @@ function bundleCss(files) {
 
 function hash(s) { return crypto.createHash('md5').update(s).digest('hex').slice(0, 8); }
 
-// Build the config from the pages' current <link> tags (first run only).
-function discover() {
-  const pages = {};
-  const bundles = {};
-  const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((d) => {
-    const p = path.join(dir, d.name);
-    if (d.isDirectory()) return ['images', 'video', 'uploads', 'posters', 'css', 'js'].includes(d.name) ? [] : walk(p);
-    return d.name.endsWith('.html') ? [p] : [];
-  });
-  for (const file of walk(FE)) {
-    const html = fs.readFileSync(file, 'utf8');
-    const list = [...html.matchAll(/<link[^>]*rel="stylesheet"[^>]*href="\/?(css\/[^"?]+\.css)(?:\?[^"]*)?"[^>]*>/g)].map((m) => m[1]);
-    if (!list.length) continue;
-    const key = list.join('|');
-    let name = Object.keys(bundles).find((b) => bundles[b].join('|') === key);
-    if (!name) {
-      const rel = path.relative(FE, file).replace(/\\/g, '/');
-      name = rel.replace(/(\/index)?\.html$/, '').replace(/\//g, '-') || 'home';
-      if (name === 'index') name = 'home';
-      bundles[name] = list;
+// Split CSS into top-level blocks for AST-free rule filtering
+function splitCssBlocks(css) {
+  const blocks = [];
+  let i = 0;
+  const n = css.length;
+  while (i < n) {
+    if (css.slice(i, i + 2) === '/*') {
+      const end = css.indexOf('*/', i + 2);
+      i = end === -1 ? n : end + 2;
+      continue;
     }
-    pages[path.relative(FE, file).replace(/\\/g, '/')] = name;
+    if (css[i] === '@') {
+      const brace = css.indexOf('{', i);
+      if (brace === -1) break;
+      const header = css.slice(i, brace).trim();
+      let depth = 1;
+      let j = brace + 1;
+      while (j < n && depth > 0) {
+        if (css[j] === '{') depth++;
+        else if (css[j] === '}') depth--;
+        j++;
+      }
+      blocks.push({ header, body: css.slice(brace + 1, j - 1), raw: css.slice(i, j) });
+      i = j;
+      continue;
+    }
+    const brace = css.indexOf('{', i);
+    if (brace === -1) break;
+    const selector = css.slice(i, brace).trim();
+    const closeBrace = css.indexOf('}', brace);
+    if (closeBrace === -1) break;
+    const body = css.slice(brace + 1, closeBrace);
+    blocks.push({ selector, body, raw: css.slice(i, closeBrace + 1) });
+    i = closeBrace + 1;
   }
-  return { bundles, pages };
+  return blocks;
+}
+
+const ABOVE_THE_FOLD_RE = /hero|navbar|kz-trust|nav-|gallery-carousel|\.slide|\.skip-to-content|kz-lang|pulse-dot/i;
+
+function filterBlocks(css) {
+  const blocks = splitCssBlocks(css);
+  const critical = [];
+  const deferred = [];
+  for (const b of blocks) {
+    if (b.header && b.header.startsWith('@keyframes')) {
+      if (ABOVE_THE_FOLD_RE.test(b.header) || /kenburns|pulse|fade/i.test(b.header)) critical.push(b.raw);
+      else deferred.push(b.raw);
+    } else if (b.header && (b.header.startsWith('@media') || b.header.startsWith('@supports'))) {
+      const innerBlocks = splitCssBlocks(b.body);
+      const innerCrit = [];
+      const innerDef = [];
+      for (const ib of innerBlocks) {
+        if (ib.selector && ABOVE_THE_FOLD_RE.test(ib.selector)) innerCrit.push(ib.raw);
+        else innerDef.push(ib.raw);
+      }
+      if (innerCrit.length) critical.push(`${b.header}{\n${innerCrit.join('\n')}\n}`);
+      if (innerDef.length) deferred.push(`${b.header}{\n${innerDef.join('\n')}\n}`);
+    } else if (b.selector) {
+      if (ABOVE_THE_FOLD_RE.test(b.selector)) critical.push(b.raw);
+      else deferred.push(b.raw);
+    } else {
+      deferred.push(b.raw);
+    }
+  }
+  return { critical: critical.join('\n'), deferred: deferred.join('\n') };
+}
+
+function buildHomeCriticalDeferred() {
+  const baseCritical = [
+    'css/styles.css',
+    'css/scroll-3d.css',
+    'css/services-navigation.css',
+    'css/responsive.css',
+    'css/header-pro.css',
+    'css/mobile-perf.css'
+  ];
+
+  const criticalCss = baseCritical.map(f => fs.readFileSync(path.join(FE, f), 'utf8')).join('\n');
+  const luxuryCss = fs.readFileSync(path.join(FE, 'css', 'luxury-pro.css'), 'utf8');
+  const homeUpgradeCss = fs.readFileSync(path.join(FE, 'css', 'home-upgrade.css'), 'utf8');
+  const mobileProCss = fs.readFileSync(path.join(FE, 'css', 'mobile-pro.css'), 'utf8');
+  const quickActionsCss = fs.readFileSync(path.join(FE, 'css', 'quick-actions.css'), 'utf8');
+  const footerCss = fs.readFileSync(path.join(FE, 'css', 'site-footer.css'), 'utf8');
+
+  const lux = filterBlocks(luxuryCss);
+  const hup = filterBlocks(homeUpgradeCss);
+  const mob = filterBlocks(mobileProCss);
+  const qck = filterBlocks(quickActionsCss);
+
+  const allCritical = criticalCss + '\n' + lux.critical + '\n' + hup.critical + '\n' + mob.critical + '\n' + qck.critical;
+  const allDeferred = lux.deferred + '\n' + hup.deferred + '\n' + mob.deferred + '\n' + qck.deferred + '\n' + footerCss;
+
+  const minCrit = minify(allCritical);
+  const minDef = minify(allDeferred);
+
+  fs.writeFileSync(path.join(FE, 'css', 'bundle-home-critical.min.css'), minCrit);
+  fs.writeFileSync(path.join(FE, 'css', 'bundle-home-deferred.min.css'), minDef);
+
+  return {
+    criticalHash: hash(minCrit),
+    deferredHash: hash(minDef)
+  };
 }
 
 function main() {
+  // 1. Build optimized FontAwesome subset
+  buildFaSubset(minify);
+
   let cfg;
   if (fs.existsSync(CONFIG)) cfg = JSON.parse(fs.readFileSync(CONFIG, 'utf8'));
   else {
-    cfg = discover();
-    fs.writeFileSync(CONFIG, JSON.stringify(cfg, null, 2) + '\n');
-    console.log('created', path.relative(ROOT, CONFIG));
+    console.error('Config missing:', CONFIG);
+    return;
   }
-  // Treatment pages generated from the pSEO registry use the "content" bundle automatically,
-  // so a new page does not have to be added here by hand.
+
+  // Treatment pages generated from the pSEO registry use the "content" bundle automatically
   const TAX = path.join(__dirname, 'seo', 'taxonomy.json');
   if (fs.existsSync(TAX) && cfg.bundles.content) {
     for (const t of JSON.parse(fs.readFileSync(TAX, 'utf8')).treatments || []) {
@@ -151,6 +232,7 @@ function main() {
       if (rel && !cfg.pages[rel] && fs.existsSync(path.join(FE, rel))) cfg.pages[rel] = 'content';
     }
   }
+
   const versions = {};
   let rawTotal = 0;
   let minTotal = 0;
@@ -164,29 +246,47 @@ function main() {
     console.log(`bundle-${name}.min.css  ${files.length} files  ${(raw / 1024).toFixed(1)} KB -> ${(Buffer.byteLength(css) / 1024).toFixed(1)} KB`);
   }
 
+
   // Point every page at its bundle
   for (const [rel, name] of Object.entries(cfg.pages)) {
     const file = path.join(FE, rel);
     if (!fs.existsSync(file)) { console.warn('missing page', rel); continue; }
     let html = fs.readFileSync(file, 'utf8');
+
+    // Upgrade FontAwesome CDN link to local fa-subset.min.css
+    html = html.replace(/https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/font-awesome\/6\.4\.0\/css\/all\.min\.css/g, '/css/fa-subset.min.css');
+
+    if (rel === 'index.html' || name === 'home') {
+      const homeReplacement = `    <link rel="stylesheet" href="css/bundle-home.min.css?v=${versions['home']}"><!-- built by tools/build-css.js -->\n`;
+      const homePattern = /[ \t]*<link\b[^>]*href=["'][^"']*bundle-home(?:-critical)?\.min\.css[^"']*["'][^>]*>(?:[ \t]*<!--[\s\S]*?-->)?[ \t]*(?:\r?\n[ \t]*<!--[\s\S]*?-->)*(?:\r?\n[ \t]*<noscript>[\s\S]*?<\/noscript>)*(?:\r?\n[ \t]*<script>[\s\S]*?<\/script>)*\r?\n?/i;
+      if (homePattern.test(html)) {
+        html = html.replace(homePattern, homeReplacement);
+      } else {
+        const basicLink = /[ \t]*<link\b[^>]*href=["'][^"']*bundle-home[^"']*["'][^>]*>(?:[ \t]*<!--[\s\S]*?-->)?[ \t]*\r?\n?/i;
+        if (basicLink.test(html)) {
+          html = html.replace(basicLink, homeReplacement);
+        }
+      }
+      fs.writeFileSync(file, html);
+      continue;
+    }
+
     const srcs = new Set(cfg.bundles[name]);
-    const tagRe = /[ \t]*<link\b[^>]*(?:rel=["'](?:stylesheet|preload)["'][^>]*href=["'](\/?)(css\/[^"'?]+(?:\.min)?\.css)(?:\?[^"']*)?["']|href=["'](\/?)(css\/[^"'?]+(?:\.min)?\.css)(?:\?[^"']*)?["'][^>]*rel=["'](?:stylesheet|preload)["'])[^>]*>(?:<!-- built by tools\/build-css\.js[^>]*?-->)?[ \t]*(?:\r?\n[ \t]*<noscript>[ \t]*<link\b[^>]*href=["'](?:\/?)(?:css\/[^"'?]+(?:\.min)?\.css)(?:\?[^"']*)?["'][^>]*>[ \t]*<\/noscript>[ \t]*)?\r?\n?/gi;
+    const tagRe = /[ \t]*<link\b[^>]*>(?:<!-- built by tools\/build-css\.js[^>]*?-->)?[ \t]*\r?\n?/gi;
     let prefix = null;
     let first = -1;
-    html = html.replace(tagRe, (m, s1, h1, s2, h2, offset) => {
-      const slash = s1 || s2 || '';
-      const href = h1 || h2 || '';
+    html = html.replace(tagRe, (m, offset) => {
+      if (!/rel=["']stylesheet["']/i.test(m)) return m;
+      const hrefMatch = m.match(/href=["'](\/?)(css\/[^"'?]+\.css)(?:\?[^"']*)?["']/i);
+      if (!hrefMatch) return m;
+      const slash = hrefMatch[1] || '';
+      const href = hrefMatch[2];
       if (!srcs.has(href) && href !== `css/bundle-${name}.min.css`) return m;
       if (prefix === null) { prefix = slash; first = offset; return '\u0000BUNDLE\u0000'; }
       return '';
     });
     if (first === -1) { console.warn('no stylesheet links found in', rel); continue; }
-    let tag;
-    if (name === 'home') {
-      tag = `    <link rel="stylesheet" href="${prefix}css/bundle-${name}.min.css?v=${versions[name]}" media="print" onload="var s=this,act=function(){if(s.media!=='all')s.media='all';};if('requestIdleCallback' in window){requestIdleCallback(act,{timeout:3000});}else{setTimeout(act,1200);};window.addEventListener('scroll',act,{once:true,passive:true});window.addEventListener('touchstart',act,{once:true,passive:true});"><!-- built by tools/build-css.js from: ${cfg.bundles[name].map((f) => path.basename(f)).join(', ')} -->\n    <noscript><link rel="stylesheet" href="${prefix}css/bundle-${name}.min.css?v=${versions[name]}"></noscript>\n`;
-    } else {
-      tag = `    <link rel="stylesheet" href="${prefix}css/bundle-${name}.min.css?v=${versions[name]}"><!-- built by tools/build-css.js from: ${cfg.bundles[name].map((f) => path.basename(f)).join(', ')} -->\n`;
-    }
+    const tag = `    <link rel="stylesheet" href="${prefix}css/bundle-${name}.min.css?v=${versions[name]}"><!-- built by tools/build-css.js from: ${cfg.bundles[name].map((f) => path.basename(f)).join(', ')} -->\n`;
     html = html.replace('\u0000BUNDLE\u0000', tag);
     fs.writeFileSync(file, html);
   }

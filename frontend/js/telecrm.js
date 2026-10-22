@@ -43,21 +43,21 @@
         debug: false
     };
 
-    function log(...args) {
+    function log() {
         if (CONFIG.debug && typeof console !== 'undefined' && console.log) {
-            console.log('[TeleCRM]', ...args);
+            console.log.apply(console, ['[TeleCRM]'].concat(Array.prototype.slice.call(arguments)));
         }
     }
 
-    function warn(...args) {
+    function warn() {
         if (typeof console !== 'undefined' && console.warn) {
-            console.warn('[TeleCRM]', ...args);
+            console.warn.apply(console, ['[TeleCRM]'].concat(Array.prototype.slice.call(arguments)));
         }
     }
 
-    function error(...args) {
+    function error() {
         if (typeof console !== 'undefined' && console.error) {
-            console.error('[TeleCRM]', ...args);
+            console.error.apply(console, ['[TeleCRM]'].concat(Array.prototype.slice.call(arguments)));
         }
     }
 

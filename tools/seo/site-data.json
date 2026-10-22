@@ -42,7 +42,10 @@
       "whatsapp": "919284517427",
       "email": "support@kezza.co.in",
       "map": "https://maps.app.goo.gl/4eUGixic35V777yd8",
-      "geo": null,
+      "geo": [
+        26.9124,
+        75.74
+      ],
       "image": "/images/kezza-jaipur-building.jpg",
       "og_image": "/images/og/location-jaipur.jpg",
       "doctors": [
@@ -132,11 +135,11 @@
       "city": "Sikar",
       "name": "Kezza Hair & Skin Clinic – Sikar",
       "label": "Sikar · Silver Jubilee Road",
-      "street": "1st Floor, Shakambhari Heights, Opp. S.K. Hospital, Silver Jubilee Road",
+      "street": "4th Floor, Shakambhari Heights, Opposite S.K. Hospital, Silver Jubilee Road",
       "postal": "332001",
       "region": "Rajasthan",
       "country": "IN",
-      "display_address": "1st Floor, Shakambhari Heights, Opp. S.K. Hospital, Silver Jubilee Road, Sikar, Rajasthan 332001",
+      "display_address": "4th Floor, Shakambhari Heights, Opposite S.K. Hospital, Silver Jubilee Road, Sakpura Mohlla, Samrathpura, Sikar, Rajasthan 332001",
       "phones": [
         "+91-9284517427",
         "+91-7073565197"
@@ -214,17 +217,17 @@
         ]
       ],
       "intro": "Our Sikar clinic serves patients from across the Shekhawati region. It offers hair transplant and hair-regrowth treatment, acne and pigmentation care, laser hair reduction, body sculpting and permanent makeup, with doctors who also practise at our Jaipur clinic.",
-      "reach": "The clinic is on the first floor of Shakambhari Heights on Silver Jubilee Road, directly opposite S.K. Hospital."
+      "reach": "The clinic is on the fourth floor of Shakambhari Heights on Silver Jubilee Road, directly opposite S.K. Hospital."
     },
     "ajmer": {
       "city": "Ajmer",
       "name": "Kezza Hair & Skin Clinic – Ajmer",
       "label": "Ajmer · Jawahar Nagar",
-      "street": "1st Floor, Oasis Complex & Hotels, Shastri Nagar, Jawahar Nagar",
+      "street": "1st Floor, Hotel Oasis Complex, Shastri Nagar, Jawahar Nagar",
       "postal": "305001",
       "region": "Rajasthan",
       "country": "IN",
-      "display_address": "1st Floor, Oasis Complex & Hotels, Shastri Nagar, Jawahar Nagar, Ajmer, Rajasthan 305001",
+      "display_address": "1st Floor, Hotel Oasis Complex, Shastri Nagar, Jawahar Nagar, Ajmer, Rajasthan 305001",
       "phones": [
         "+91-9216088257"
       ],
@@ -271,8 +274,8 @@
           "fa-stethoscope"
         ]
       ],
-      "intro": "Our Ajmer clinic, in the Oasis Complex at Shastri Nagar, is led by oral and maxillofacial surgeon Dr. Aliza Rizvi, together with Dr. Dhiral Vijayvargiya. It focuses on hair transplant, hair-loss diagnosis and facial aesthetics.",
-      "reach": "The clinic is on the first floor of the Oasis Complex (Hotel Oasis building) in Shastri Nagar, Jawahar Nagar, Ajmer."
+      "intro": "Our Ajmer clinic, in the Hotel Oasis Complex at Shastri Nagar, is led by oral and maxillofacial surgeon Dr. Aliza Rizvi, together with Dr. Dhiral Vijayvargiya. It focuses on hair transplant, hair-loss diagnosis and facial aesthetics.",
+      "reach": "The clinic is on the first floor of the Hotel Oasis Complex in Shastri Nagar, Jawahar Nagar, Ajmer."
     }
   },
   "people": {
@@ -285,7 +288,7 @@
     },
     "dr-ankit-bhalothia": {
       "name": "Dr. Ankit Bhalothia",
-      "job_title": "Aesthetic & Hair Transplant Surgeon",
+      "job_title": "Aesthetic & Hair Transplant Surgeon; Oral & Maxillofacial Surgeon",
       "image": "/images/Doctor1.jpeg",
       "branches": [
         "jaipur",
@@ -294,6 +297,7 @@
       "occupation": "Oral & Maxillofacial Surgeon",
       "knows_about": [
         "Hair transplant",
+        "Micro-follicular hair restoration",
         "Hairline design",
         "Facial aesthetics",
         "Oral and maxillofacial surgery"
@@ -316,7 +320,7 @@
     },
     "dr-mandhata-sharma": {
       "name": "Dr. Mandhata Sharma",
-      "job_title": "ENT, Rhinoplasty and Head & Neck Surgeon (Visiting Consultant)",
+      "job_title": "ENT & Rhinoplasty Surgeon (Visiting Consultant)",
       "image": "/images/Doctor6.jpeg",
       "branches": [
         "jaipur"
@@ -359,18 +363,19 @@
     },
     "dr-neelam-choudhary": {
       "name": "Dr. Neelam Choudhary",
-      "job_title": "Aesthetic Physician & Skin Specialist",
+      "job_title": "Dental Surgeon (BDS) · Facial Aesthetics & Clinical Cosmetology",
       "image": "/images/Doctor3.jpeg",
       "branches": [
         "jaipur",
         "sikar"
       ],
-      "occupation": "Aesthetic Physician",
+      "occupation": "Dental Surgeon",
       "knows_about": [
-        "Acne and pigmentation",
-        "Skin rejuvenation",
+        "Facial aesthetics",
+        "Clinical cosmetology",
         "Laser therapies",
-        "Anti-ageing treatments"
+        "Chemical and medical peels",
+        "Microneedling"
       ]
     },
     "dr-dhiral-vijayvargiya": {

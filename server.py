@@ -183,15 +183,7 @@ class KezzaHandler(http.server.SimpleHTTPRequestHandler):
 
     def end_headers(self):
         self.send_header('Access-Control-Allow-Origin', '*')
-        clean_path = self.path.split('?', 1)[0].split('#', 1)[0].lower()
-        if any(clean_path.endswith(ext) for ext in ('.ico', '.jpg', '.jpeg', '.png', '.gif', '.webp', '.avif', '.mp4', '.webm', '.svg', '.woff', '.woff2', '.ttf', '.otf')):
-            self.send_header('Cache-Control', 'max-age=31536000, public, immutable')
-        elif any(clean_path.endswith(ext) for ext in ('.css', '.js')):
-            self.send_header('Cache-Control', 'max-age=31536000, public')
-        elif clean_path.endswith('.webmanifest') or clean_path.endswith('.json'):
-            self.send_header('Cache-Control', 'max-age=86400, public')
-        else:
-            self.send_header('Cache-Control', 'no-cache, must-revalidate')
+        self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
         super().end_headers()
 
 if __name__ == '__main__':

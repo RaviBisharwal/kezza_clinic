@@ -709,6 +709,16 @@
 
             formCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
+            if (window.KezzaFollowUp && typeof window.KezzaFollowUp.show === 'function') {
+                window.KezzaFollowUp.show({
+                    name: lead.name,
+                    clinic: lead.clinic,
+                    treatment: lead.treatment,
+                    time: lead.preferredSlot,
+                    leadId: lead.leadId
+                });
+            }
+
             const resetBtn = document.getElementById('btnBookAnother');
             if (resetBtn) {
                 resetBtn.addEventListener('click', function() {

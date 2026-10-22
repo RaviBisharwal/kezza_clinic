@@ -37,36 +37,10 @@
         targets.forEach(t => io.observe(t));
     }
 
-    let initialized = false;
-    function runInit() {
-        if (initialized) return;
-        initialized = true;
-        initAnimationSuite();
-    }
-
-    function scheduleInit() {
-        const isBot = /Lighthouse|PageSpeed|HeadlessChrome|GTmetrix|Pingdom|bot|crawl|spider/i.test(navigator.userAgent) || !!navigator.webdriver;
-        window.addEventListener('scroll', runInit, { once: true, passive: true });
-        window.addEventListener('pointerdown', runInit, { once: true, passive: true });
-        window.addEventListener('touchstart', runInit, { once: true, passive: true });
-
-        if (!isBot) {
-            if ('requestIdleCallback' in window) {
-                window.addEventListener('load', () => {
-                    requestIdleCallback(runInit, { timeout: 6000 });
-                }, { once: true });
-            } else {
-                window.addEventListener('load', () => {
-                    setTimeout(runInit, 5000);
-                }, { once: true });
-            }
-        }
-    }
-
-    if (document.readyState === 'complete') {
-        scheduleInit();
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAnimationSuite);
     } else {
-        window.addEventListener('load', scheduleInit, { once: true });
+        initAnimationSuite();
     }
 
     /* ── 1. Top Reading Scroll Progress Bar ── */
@@ -82,16 +56,36 @@
         document.body.appendChild(progressBar);
 
         let ticking = false;
+        let cachedDocHeight = 0;
+        function measureDocHeight() {
+            cachedDocHeight = Math.max(0, document.documentElement.scrollHeight - document.documentElement.clientHeight);
+        }
+
         function updateProgress() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
-            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            if (docHeight > 0) {
-                const percent = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop === 0) {
+                ticking = false;
+                return;
+            }
+            if (cachedDocHeight <= 0) {
+                measureDocHeight();
+            }
+            if (cachedDocHeight > 0) {
+                const percent = Math.min(100, Math.max(0, (scrollTop / cachedDocHeight) * 100));
                 progressBar.style.width = '100%';
                 progressBar.style.transformOrigin = '0 50%';
                 progressBar.style.transform = 'scaleX(' + (percent / 100).toFixed(4) + ')';
             }
             ticking = false;
+        }
+
+        let resizeTimer = null;
+        function onResize() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                measureDocHeight();
+                updateProgress();
+            }, 120);
         }
 
         window.addEventListener('scroll', function () {
@@ -100,19 +94,20 @@
                 ticking = true;
             }
         }, { passive: true });
-        if ((window.pageYOffset || document.documentElement.scrollTop || 0) > 0) {
-            window.requestAnimationFrame(updateProgress);
-        }
+        window.addEventListener('resize', onResize, { passive: true });
+        window.addEventListener('orientationchange', onResize, { passive: true });
+        window.addEventListener('load', measureDocHeight, { passive: true });
     }
 
     /* ── 2. Glassmorphic Navbar Dynamic Scroll State ── */
     function initNavbarScrollEffect() {
+        if (window.KezzaSmoothScroll) return; // smooth-scroll.js already handles navbar scroll state cleanly
         const navbar = document.querySelector('.navbar');
         if (!navbar) return;
 
         let ticking = false;
         function checkNav() {
-            const top = window.pageYOffset || document.documentElement.scrollTop || 0;
+            const top = window.pageYOffset || document.documentElement.scrollTop;
             if (top > 30) {
                 navbar.classList.add('navbar-scrolled');
             } else {
@@ -127,9 +122,7 @@
                 ticking = true;
             }
         }, { passive: true });
-        if ((window.pageYOffset || document.documentElement.scrollTop || 0) > 30) {
-            navbar.classList.add('navbar-scrolled');
-        }
+        checkNav();
     }
 
     /* ── 3. Scroll-Driven Reveal Engine with Auto-Stagger ── */
@@ -213,9 +206,6 @@
         const reveals = document.querySelectorAll('.pro-reveal, .pro-reveal-scale, .pro-reveal-left, .pro-reveal-right');
         if (!reveals.length) return;
 
-        document.documentElement.classList.add('pro-anim-active');
-
-        // Non-blocking IntersectionObserver for viewport reveal without forced synchronous reflow
         if ('IntersectionObserver' in window) {
             const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -227,13 +217,11 @@
             }, {
                 root: null,
                 threshold: 0.05,
-                rootMargin: '0px 0px -25px 0px'
+                rootMargin: '120px 0px 40px 0px'
             });
 
             reveals.forEach(el => {
-                if (!el.classList.contains('is-revealed')) {
-                    revealObserver.observe(el);
-                }
+                revealObserver.observe(el);
             });
         } else {
             reveals.forEach(el => el.classList.add('is-revealed'));
@@ -330,7 +318,10 @@
             });
 
             card.addEventListener('mousemove', e => {
-                if (!isHovered || !cardRect) return;
+                if (!isHovered || (document.body && document.body.classList.contains('is-scrolling'))) return;
+                if (!cardRect) {
+                    cardRect = card.getBoundingClientRect();
+                }
                 const x = e.clientX - cardRect.left;
                 const y = e.clientY - cardRect.top;
                 const centerX = cardRect.width / 2;
@@ -364,34 +355,47 @@
         if (!beforeWrap || !divider || !beforeImg) return;
 
         let isDragging = false;
-        let cachedRect = null;
+        let cachedSliderRect = null;
 
-        // Container queries style beforeImg naturally; ResizeObserver is non-blocking fallback
+        function applyDimensions(w, h) {
+            if (beforeImg && w > 0 && h > 0) {
+                beforeImg.style.width = Math.round(w) + 'px';
+                beforeImg.style.height = Math.round(h) + 'px';
+            }
+        }
+
         if (window.ResizeObserver) {
-            new ResizeObserver(entries => {
+            const ro = new ResizeObserver(entries => {
                 for (const entry of entries) {
-                    const cr = entry.contentRect;
-                    if (cr && cr.width > 0 && cr.height > 0) {
-                        beforeImg.style.width = cr.width + 'px';
-                        beforeImg.style.height = cr.height + 'px';
+                    if (entry.contentRect && entry.contentRect.width > 0) {
+                        applyDimensions(entry.contentRect.width, entry.contentRect.height);
                     }
                 }
-            }).observe(container);
+            });
+            ro.observe(container);
+        } else {
+            function syncFallback() {
+                const rect = container.getBoundingClientRect();
+                applyDimensions(rect.width, rect.height);
+            }
+            window.addEventListener('resize', syncFallback);
+            window.addEventListener('orientationchange', syncFallback);
+            beforeImg.addEventListener('load', syncFallback);
+            requestAnimationFrame(syncFallback);
         }
 
         function setPosition(xPos) {
-            if (!cachedRect) {
-                cachedRect = container.getBoundingClientRect();
+            if (!cachedSliderRect) {
+                cachedSliderRect = container.getBoundingClientRect();
             }
-            const width = cachedRect.width;
-            if (width <= 0) return;
+            const rect = cachedSliderRect;
+            let offsetX = xPos - rect.left;
 
-            let offsetX = xPos - cachedRect.left;
-            const minX = width * 0.05;
-            const maxX = width * 0.95;
+            const minX = rect.width * 0.05;
+            const maxX = rect.width * 0.95;
             offsetX = Math.max(minX, Math.min(offsetX, maxX));
 
-            const percentage = (offsetX / width) * 100;
+            const percentage = (offsetX / rect.width) * 100;
             beforeWrap.style.width = percentage + '%';
             divider.style.left = percentage + '%';
             const handle = divider.querySelector('.ba-handle');
@@ -409,7 +413,7 @@
 
         function onPointerDown(e) {
             isDragging = true;
-            cachedRect = container.getBoundingClientRect();
+            cachedSliderRect = container.getBoundingClientRect();
             container.style.cursor = 'ew-resize';
             const clientX = getClientX(e);
             if (clientX !== null) setPosition(clientX);
@@ -423,7 +427,7 @@
 
         function onPointerUp() {
             isDragging = false;
-            cachedRect = null;
+            cachedSliderRect = null;
             container.style.cursor = 'default';
         }
 

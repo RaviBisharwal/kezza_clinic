@@ -10,7 +10,7 @@
 
 ## 1. Executive Summary
 
-This report documents the comprehensive, multi-phase audit, implementation, and quality assurance carried out on the Kezza Hair & Skin Clinic website codebase. Kezza operates three doctor-led clinics across Rajasthan: Jaipur (Flagship, Khatipura), Sikar (Silver Jubilee Road), and Ajmer (Oasis Complex).
+This report documents the comprehensive, multi-phase audit, implementation, and quality assurance carried out on the Kezza Hair & Skin Clinic website codebase. Kezza operates three doctor-led clinics across Rajasthan: Jaipur (Flagship, Khatipura), Sikar (Silver Jubilee Road), and Ajmer (Hotel Oasis Complex).
 
 Rather than acting solely as an advisory consultant, all technical, architectural, metadata, schema, and generative search improvements have been implemented directly in the production codebase. The updated project is completely validated, static regression-tested, and packaged as a production-ready deployable archive (`kezza-seo-aeo-geo-optimized.zip`).
 
@@ -87,8 +87,8 @@ An empirical competitor analysis was conducted targeting established aesthetic a
 1. **Branch Landings:** Dedicated landing pages for Jaipur (`/locations/jaipur/`), Sikar (`/locations/sikar/`), and Ajmer (`/locations/ajmer/`) provide exact physical addresses, landmark directions, Google Maps navigation links, phone numbers, and active consulting doctor rosters.
 2. **NAP Standardization:**
    - **Jaipur (Flagship):** A-7, 1st Floor, Hanuman Nagar, Sirsi Road, Khatipura, Jaipur 302012 | +91-9284517427, +91-7073565197
-   - **Sikar:** 1st Floor, Shakambhari Heights, Opp. S.K. Hospital, Silver Jubilee Road, Sikar 332001 | +91-9284517427, +91-7073565197
-   - **Ajmer:** 1st Floor, Oasis Complex & Hotels, Shastri Nagar, Jawahar Nagar, Ajmer 305001 | +91-9216088257
+   - **Sikar:** 4th Floor, Shakambhari Heights, Opposite S.K. Hospital, Silver Jubilee Road, Sakpura Mohlla, Samrathpura, Sikar 332001 | +91-9284517427, +91-7073565197
+   - **Ajmer:** 1st Floor, Hotel Oasis Complex, Shastri Nagar, Jawahar Nagar, Ajmer, Rajasthan 305001 | +91-9216088257
    - Email standardized across the organization: `support@kezza.co.in`.
 3. **Local Schema Markup:** Validated `MedicalClinic` entities linked to the parent `MedicalOrganization` for each individual city.
 

@@ -17,21 +17,7 @@
     const NAV_OFFSET = 90; // Height of fixed navbar + breathing clearance
     const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // ── 1. Silky Smooth Anchor Navigation ──────────────────────────────────────────────
-    // Cache navbar height once on first anchor click or resize — never measure layout on page load
-    var _cachedNavH = NAV_OFFSET;
-    var _navHTimer = null;
-    function _refreshNavH() {
-        var nb = document.querySelector('.navbar');
-        var strip = document.querySelector('.service-nav-strip, .sticky-nav');
-        if (nb) {
-            _cachedNavH = nb.getBoundingClientRect().height || NAV_OFFSET;
-            if (strip && strip.offsetParent !== null) _cachedNavH += strip.getBoundingClientRect().height || 0;
-            _cachedNavH += 12;
-        }
-    }
-    window.addEventListener('resize', function() { clearTimeout(_navHTimer); _navHTimer = setTimeout(_refreshNavH, 150); }, { passive: true });
-
+    // ── 1. Silky Smooth Anchor Navigation ────────────────────────────
     function initAnchorGlide() {
         document.addEventListener('click', function (e) {
             const link = e.target.closest('a[href^="#"]');
@@ -47,8 +33,16 @@
                 const targetEl = document.querySelector(hash);
                 if (targetEl) {
                     e.preventDefault();
-                    if (_cachedNavH === NAV_OFFSET) _refreshNavH();
-                    let currentOffset = _cachedNavH;
+                    let currentOffset = NAV_OFFSET;
+                    const navbarEl = document.querySelector('.navbar');
+                    const stickyStripEl = document.querySelector('.service-nav-strip, .sticky-nav');
+                    if (navbarEl) {
+                        currentOffset = navbarEl.offsetHeight;
+                        if (stickyStripEl) {
+                            currentOffset += stickyStripEl.offsetHeight;
+                        }
+                        currentOffset += 12;
+                    }
                     const computedMargin = parseInt(window.getComputedStyle(targetEl).scrollMarginTop, 10);
                     if (!isNaN(computedMargin) && computedMargin > 0) {
                         currentOffset = computedMargin;
@@ -72,86 +66,168 @@
         }, { passive: false });
     }
 
-    // ── 2. Reading Progress Indicator & Back-to-Top Button (Lazy Created on 1st Scroll) ──
+    // ── 2. Reading Progress Indicator ────────────────────────────────
     let progressBar = null;
-    let backToTopBtn = null;
-    let widgetsInitialized = false;
-
-    function lazyInitWidgets() {
-        if (widgetsInitialized) return;
-        widgetsInitialized = true;
-
-        if (!progressBar) {
-            progressBar = document.getElementById('kzScrollProgress');
-            if (!progressBar && document.body) {
-                progressBar = document.createElement('div');
-                progressBar.id = 'kzScrollProgress';
-                progressBar.setAttribute('aria-hidden', 'true');
-                document.body.prepend(progressBar);
-            }
+    function initProgressBar() {
+        if (!document.getElementById('kzScrollProgressStyle')) {
+            const style = document.createElement('style');
+            style.id = 'kzScrollProgressStyle';
+            style.textContent = `
+                #kzScrollProgress {
+                    position: fixed !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    width: 100% !important;
+                    height: 3px !important;
+                    background: linear-gradient(90deg, #00abba 0%, #00c4d6 40%, #00AFC0 85%, #00AFC0 100%) !important;
+                    box-shadow: 0 1px 8px rgba(0, 171, 186, 0.45) !important;
+                    transform-origin: 0% 50% !important;
+                    transform: scaleX(0);
+                    z-index: 10002 !important;
+                    pointer-events: none !important;
+                    will-change: transform !important;
+                    transition: opacity 0.25s ease !important;
+                }
+                #kzBackToTop {
+                    position: fixed !important;
+                    bottom: 24px !important;
+                    left: 24px !important;
+                    width: 42px !important;
+                    height: 42px !important;
+                    border-radius: 50% !important;
+                    background: rgba(10, 18, 36, 0.97) !important;
+                    border: 1.5px solid rgba(0, 175, 192, 0.5) !important;
+                    -webkit-backdrop-filter: none !important;
+                    backdrop-filter: none !important;
+                    color: #00AFC0 !important;
+                    display: flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    font-size: 14px !important;
+                    cursor: pointer !important;
+                    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 15px rgba(0, 171, 186, 0.15) !important;
+                    opacity: 0 !important;
+                    visibility: hidden !important;
+                    transform: translateY(12px) translateZ(0) !important;
+                    transition: all 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
+                    z-index: 995 !important;
+                    outline: none !important;
+                    -webkit-tap-highlight-color: transparent !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                }
+                #kzBackToTop i {
+                    color: #00AFC0 !important;
+                    font-size: 14px !important;
+                    transition: transform 0.25s ease, color 0.25s ease !important;
+                    display: inline-block !important;
+                    line-height: 1 !important;
+                }
+                #kzBackToTop.is-visible {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    transform: translateY(0) translateZ(0) !important;
+                }
+                #kzBackToTop:hover {
+                    background: linear-gradient(135deg, #00abba 0%, #008f9c 100%) !important;
+                    border-color: #00c4d6 !important;
+                    box-shadow: 0 10px 28px rgba(0, 171, 186, 0.5) !important;
+                    transform: translateY(-3px) scale(1.06) translateZ(0) !important;
+                }
+                #kzBackToTop:hover i {
+                    color: #ffffff !important;
+                    transform: translateY(-1px) !important;
+                }
+                @media (max-width: 768px) {
+                    #kzBackToTop {
+                        bottom: 84px !important;
+                        left: 16px !important;
+                        width: 38px !important;
+                        height: 38px !important;
+                    }
+                    #kzBackToTop i {
+                        font-size: 13px !important;
+                    }
+                }
+            `;
+            (document.head || document.documentElement).appendChild(style);
         }
 
-        if (!backToTopBtn) {
-            backToTopBtn = document.getElementById('kzBackToTop');
-            if (!backToTopBtn && document.body) {
-                backToTopBtn = document.createElement('button');
-                backToTopBtn.id = 'kzBackToTop';
-                backToTopBtn.type = 'button';
-                backToTopBtn.setAttribute('aria-label', 'Scroll back to top');
-                backToTopBtn.title = 'Back to top';
-                backToTopBtn.innerHTML = '<i class="fas fa-chevron-up" aria-hidden="true"></i>';
-                document.body.appendChild(backToTopBtn);
-
-                backToTopBtn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    window.scrollTo({
-                        top: 0,
-                        behavior: prefersReducedMotion ? 'auto' : 'smooth'
-                    });
-                });
-            }
+        if (progressBar) return;
+        progressBar = document.getElementById('kzScrollProgress');
+        if (!progressBar && document.body) {
+            progressBar = document.createElement('div');
+            progressBar.id = 'kzScrollProgress';
+            progressBar.setAttribute('aria-hidden', 'true');
+            document.body.prepend(progressBar);
         }
     }
 
-    // ── 3. Unified Lightweight Scroll Listener ───────────────────────
-    let ticking = false;
-    let cachedMaxScroll = 0;
-    const navbar = document.querySelector('.navbar');
+    // ── 3. Back-to-Top Floating Button ───────────────────────────────
+    let backToTopBtn = null;
+    function initBackToTop() {
+        if (backToTopBtn) return;
+        backToTopBtn = document.getElementById('kzBackToTop');
+        if (!backToTopBtn && document.body) {
+            backToTopBtn = document.createElement('button');
+            backToTopBtn.id = 'kzBackToTop';
+            backToTopBtn.type = 'button';
+            backToTopBtn.setAttribute('aria-label', 'Scroll back to top');
+            backToTopBtn.title = 'Back to top';
+            backToTopBtn.innerHTML = '<i class="fas fa-chevron-up" aria-hidden="true"></i>';
+            document.body.appendChild(backToTopBtn);
 
-    function getMaxScroll() {
-        if (cachedMaxScroll > 0) return cachedMaxScroll;
-        cachedMaxScroll = Math.max(
+            backToTopBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: prefersReducedMotion ? 'auto' : 'smooth'
+                });
+            });
+        }
+    }
+
+    // ── 4. Unified Lightweight Scroll Listener ───────────────────────
+    let ticking = false;
+    const navbar = document.querySelector('.navbar');
+    let cachedMaxScroll = 0;
+
+    function measureMaxScroll() {
+        const docH = Math.max(
             document.body ? document.body.scrollHeight : 0,
             document.documentElement ? document.documentElement.scrollHeight : 0
-        ) - window.innerHeight;
-        return cachedMaxScroll;
+        );
+        const winH = window.innerHeight || (document.documentElement ? document.documentElement.clientHeight : 0) || 0;
+        cachedMaxScroll = Math.max(0, docH - winH);
     }
 
     function updateScrollState() {
+        if (!progressBar) {
+            progressBar = document.getElementById('kzScrollProgress');
+        }
+        if (!backToTopBtn) {
+            backToTopBtn = document.getElementById('kzBackToTop');
+        }
+
         const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
 
-        // If at the very top of the page, avoid querying scrollHeight/layout entirely
-        if (scrollY <= 0) {
-            if (progressBar) {
-                progressBar.style.transform = 'scaleX(0)';
-                progressBar.style.opacity = '0';
-            }
-            if (navbar && navbar.classList.contains('is-scrolled')) {
-                navbar.classList.remove('is-scrolled');
-            }
-            if (backToTopBtn && backToTopBtn.classList.contains('is-visible')) {
-                backToTopBtn.classList.remove('is-visible');
-            }
+        // If at the very top of the page, initial state is clean with zero layout queries
+        if (scrollY === 0) {
+            if (progressBar) progressBar.style.opacity = '0';
+            if (navbar && navbar.classList.contains('is-scrolled')) navbar.classList.remove('is-scrolled');
+            if (backToTopBtn && backToTopBtn.classList.contains('is-visible')) backToTopBtn.classList.remove('is-visible');
             ticking = false;
             return;
         }
 
-        const maxScroll = getMaxScroll();
+        if (cachedMaxScroll <= 0) {
+            measureMaxScroll();
+        }
 
-        // Update Reading Progress Bar via GPU transform
+        // Update Reading Progress Bar via GPU transform (zero layout thrashing)
         if (progressBar) {
-            if (maxScroll > 10) {
-                const progress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+            if (cachedMaxScroll > 10) {
+                const progress = Math.min(Math.max(scrollY / cachedMaxScroll, 0), 1);
                 progressBar.style.transform = 'scaleX(' + progress.toFixed(4) + ')';
                 progressBar.style.opacity = '1';
             } else {
@@ -188,37 +264,50 @@
         ticking = false;
     }
 
+    let scrollEndTimer = null;
     function onScroll() {
-        if (!widgetsInitialized) lazyInitWidgets();
+        if (document.body && !document.body.classList.contains('is-scrolling')) {
+            document.body.classList.add('is-scrolling');
+        }
+        clearTimeout(scrollEndTimer);
+        scrollEndTimer = setTimeout(function () {
+            if (document.body) {
+                document.body.classList.remove('is-scrolling');
+            }
+        }, 120);
+
         if (!ticking) {
             requestAnimationFrame(updateScrollState);
             ticking = true;
         }
     }
 
+    let resizeTimer = null;
     function onResize() {
-        cachedMaxScroll = 0; // invalidate cached document height
-        onScroll();
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+            measureMaxScroll();
+            updateScrollState();
+        }, 120);
     }
 
-    function boot() {
+    // Initialise on DOM Ready
+    function initScrollSuite() {
         initAnchorGlide();
-        const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-        if (scrollY > 0) {
-            lazyInitWidgets();
-            requestAnimationFrame(updateScrollState);
-        }
+        initProgressBar();
+        initBackToTop();
     }
 
-    // Initialise on DOM Ready without synchronous layout measurement
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', boot);
+        document.addEventListener('DOMContentLoaded', initScrollSuite);
     } else {
-        boot();
+        initScrollSuite();
     }
 
+    window.addEventListener('load', measureMaxScroll, { passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize, { passive: true });
+    window.addEventListener('orientationchange', onResize, { passive: true });
 
     // Public API
     window.KezzaSmoothScroll = {

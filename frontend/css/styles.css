@@ -37,9 +37,9 @@ body {
     flex-direction:column;
     gap:12px;
     padding:16px 10px;
-    background:rgba(10,14,26,.94);
-    backdrop-filter:blur(16px);
-    -webkit-backdrop-filter:blur(16px);
+    background:rgba(10,14,26,.97);
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
     border-radius:40px;
     border:1.5px solid rgba(0,175,192,.55);
     box-shadow:0 12px 35px rgba(0,0,0,.45),0 0 20px rgba(0,175,192,.25);
@@ -109,18 +109,6 @@ body {
     box-shadow:0 5px 18px rgba(37,211,102,.6)
 }
 
-@media(max-width:768px) {
-    .social-sidebar {
-        left:8px;
-        gap:8px;
-        padding:12px 6px
-    }
-    .social-icon {
-        width:36px;
-        height:36px;
-        font-size:16px
-    }
-}
 
 img {
     max-width:100%;
@@ -1154,11 +1142,7 @@ video {
     display:none;
     flex-direction:column;
     cursor:pointer;
-    gap:5px;
-    background:transparent;
-    border:none;
-    padding:6px;
-    outline:none;
+    gap:5px
 }
 
 .hamburger span {
@@ -1195,8 +1179,9 @@ video {
         display:none
     }
     .hero-ctas {
-        flex-direction:column;
-        align-items:center
+        flex-direction:row;
+        flex-wrap:wrap;
+        justify-content:center
     }
 }
 

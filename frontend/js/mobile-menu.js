@@ -25,7 +25,7 @@
             drawerHeader.className = "nav-drawer-header";
             drawerHeader.innerHTML = `
                 <a href="/index.html" class="drawer-logo" aria-label="Kezza Clinic Home">
-                    <img src="/images/logo.png" alt="Kezza Clinic" width="297" height="200">
+                    <img src="/images/logo.png" alt="Kezza Clinic" width="120" height="45">
                 </a>
                 <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close navigation menu">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -44,7 +44,7 @@
             drawerCta.className = "nav-drawer-cta";
             drawerCta.innerHTML = `
                 <a href="tel:+919284517427" class="btn-drawer-call"><i class="fas fa-phone-alt"></i> Call 9284517427</a>
-                <a href="#chat-consultant" class="btn-drawer-book" data-open-chatbot-consultant><i class="fab fa-whatsapp"></i> Book Consultation</a>
+                <a href="contact.html" class="btn-drawer-book"><i class="fas fa-calendar-check"></i> Book Consultation</a>
             `;
             navMenu.appendChild(drawerCta);
         }
@@ -90,14 +90,9 @@
             }
         }
 
-        if (hamburger.tagName.toLowerCase() !== "button") {
-            hamburger.setAttribute("role", "button");
-            hamburger.setAttribute("tabindex", "0");
-        }
+        hamburger.setAttribute("aria-haspopup", "true");
         hamburger.setAttribute("aria-expanded", "false");
         hamburger.setAttribute("aria-label", "Open navigation menu");
-        hamburger.setAttribute("aria-controls", "navMenu");
-        hamburger.removeAttribute("aria-haspopup");
 
         // Click to toggle
         hamburger.addEventListener("click", function (e) {
@@ -131,7 +126,12 @@
             if (!link || !navMenu.contains(link)) return;
 
             // Handle Book Consultation CTA
-            if (link.hasAttribute("data-open-chatbot-consultant") || link.classList.contains("btn-drawer-book")) {
+            if (link.hasAttribute("data-open-chatbot-consultant")) {
+                const href = (link.getAttribute("href") || "").toLowerCase();
+                if (href.indexOf("contact.html") !== -1) {
+                    closeMenu();
+                    return; // allow normal navigation to contact page
+                }
                 e.preventDefault();
                 closeMenu();
                 if (window.kezzaAi && typeof window.kezzaAi.openModal === "function") {

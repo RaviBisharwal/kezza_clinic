@@ -63,3 +63,10 @@ html body footer.footer.kz-site-footer .footer-year{color:inherit !important;fon
   html body footer.footer.kz-site-footer .footer-column ul li a{display:inline-block !important;padding:3px 0 !important}
   html body footer.footer.kz-site-footer .kz-footer-bottom{flex-direction:column !important}
 }
+html body footer.footer.kz-site-footer .kz-footer-map-container{margin-top:28px !important;padding-top:22px !important;border-top:1px solid rgba(255,255,255,0.08) !important}
+html body footer.footer.kz-site-footer .kz-footer-map-header{display:flex !important;justify-content:space-between !important;align-items:center !important;flex-wrap:wrap !important;gap:10px !important;margin-bottom:12px !important}
+html body footer.footer.kz-site-footer .kz-footer-map-title{font-size:0.92rem !important;font-weight:700 !important;color:#ffffff !important;display:inline-flex !important;align-items:center !important;gap:8px !important}
+html body footer.footer.kz-site-footer .kz-footer-map-link{color:#00C4D6 !important;font-size:0.84rem !important;font-weight:600 !important;text-decoration:none !important}
+html body footer.footer.kz-site-footer .kz-footer-map-frame{width:100% !important;border-radius:12px !important;overflow:hidden !important;box-shadow:0 4px 16px rgba(0,0,0,0.25) !important;line-height:0 !important}
+html body footer.footer.kz-site-footer .kz-footer-map-iframe{border:0 !important;width:100% !important;height:200px !important;display:block !important}
+

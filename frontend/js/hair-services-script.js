@@ -411,21 +411,31 @@ document.addEventListener('DOMContentLoaded', function() {
             if (href && href.startsWith('#')) {
                 const sec = document.querySelector(href);
                 if (sec) {
-                    sections.push({ id: href, section: sec, pill: pill });
+                    sections.push({ id: href, section: sec, pill: pill, top: 0 });
                 }
             }
         });
 
         if (!sections.length) return;
 
+        function updateSectionOffsets() {
+            sections.forEach(s => {
+                s.top = s.section.offsetTop;
+            });
+        }
+        updateSectionOffsets();
+        window.addEventListener('resize', updateSectionOffsets, { passive: true });
+
         let activeId = '';
+        let ticking = false;
+
         function updateActivePill() {
             const scrollY = window.pageYOffset || document.documentElement.scrollTop;
             const triggerOffset = 220; // Trigger threshold below top
 
             let currentSec = null;
             for (let i = sections.length - 1; i >= 0; i--) {
-                const top = sections[i].section.offsetTop - triggerOffset;
+                const top = (sections[i].top || 0) - triggerOffset;
                 if (scrollY >= top) {
                     currentSec = sections[i];
                     break;
@@ -441,10 +451,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 navPills.forEach(p => p.classList.remove('active'));
                 currentSec.pill.classList.add('active');
             }
+            ticking = false;
         }
 
         window.addEventListener('scroll', function() {
-            requestAnimationFrame(updateActivePill);
+            if (!ticking) {
+                requestAnimationFrame(updateActivePill);
+                ticking = true;
+            }
         }, { passive: true });
 
         // Initial run

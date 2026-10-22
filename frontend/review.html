@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f766e">
+<meta name="robots" content="noindex, nofollow">
+<title>Share Your Experience | Kezza Hair &amp; Skin Clinic</title>
+<meta name="description" content="Share your genuine experience with Kezza Hair &amp; Skin Clinic. Select your branch and treatment to generate an authentic Google review draft.">
+<link rel="icon" href="/images/fallbacks/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#0d9488;
+  --teal-light:#f0fdfa;
+  --teal-border:#99f6e4;
+  --dark:#0f766e;
+  --navy:#0f172a;
+  --navy-light:#1e293b;
+  --text:#1e293b;
+  --muted:#64748b;
+  --white:#ffffff;
+  --card-bg:#f8fafc;
+  --border:#e2e8f0;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  padding:24px 14px;
+  background:var(--navy);
+  color:var(--text);
+  font-family:"Plus Jakarta Sans",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+button,textarea{font:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,textarea:focus-visible{outline:3px solid #5eead4;outline-offset:2px}
+.page{width:100%;max-width:720px;margin:0 auto}
+.clinic-card{
+  overflow:hidden;
+  background:var(--white);
+  border:1px solid rgba(226,232,240,.9);
+  border-radius:28px;
+  box-shadow:0 24px 65px rgba(0,0,0,.28);
+}
+.hero{
+  position:relative;
+  overflow:hidden;
+  padding:36px 20px 40px;
+  color:white;
+  text-align:center;
+  background:linear-gradient(135deg,#0d9488,#0f766e);
+}
+.hero:before,.hero:after{
+  position:absolute;
+  content:"";
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  background:rgba(255,255,255,.09);
+  filter:blur(24px);
+  pointer-events:none;
+}
+.hero:before{top:-80px;right:-40px}
+.hero:after{bottom:-100px;left:-40px}
+.hero-content{position:relative;z-index:1}
+.brand-link{
+  display:inline-block;
+  margin-bottom:12px;
+  color:#ccfbf1;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.5px;
+  transition:color .2s;
+}
+.brand-link:hover{color:#ffffff}
+.rating-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:8px;
+  max-width:100%;
+  padding:8px 16px;
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:100px;
+  background:rgba(255,255,255,.16);
+  color:#e6fffb;
+  font-size:12px;
+  font-weight:700;
+  backdrop-filter:blur(6px);
+}
+.hero h1{
+  margin:18px 0 8px;
+  color:white;
+  font-size:clamp(24px,5vw,34px);
+  line-height:1.2;
+  font-weight:800;
+  letter-spacing:-0.5px;
+}
+.hero-subtitle{
+  margin:0 auto;
+  max-width:520px;
+  color:#e6fffb;
+  font-size:14px;
+  line-height:1.6;
+}
+.stars{
+  margin-top:14px;
+  color:#fbbf24;
+  font-size:26px;
+  letter-spacing:4px;
+}
+.content{
+  position:relative;
+  margin-top:-14px;
+  padding:30px 24px 24px;
+  border-radius:28px 28px 0 0;
+  background:white;
+}
+.section{margin-bottom:26px}
+.section-label{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:0 0 12px;
+  color:#64748b;
+  font-size:12px;
+  font-weight:800;
+  line-height:1.5;
+  letter-spacing:.3px;
+  text-transform:uppercase;
+}
+.branch-selector{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:6px;
+  padding:6px;
+  border-radius:18px;
+  background:#f1f5f9;
+}
+.branch-btn{
+  min-height:50px;
+  padding:10px 6px;
+  border:0;
+  border-radius:14px;
+  background:transparent;
+  color:#475569;
+  font-size:13px;
+  font-weight:800;
+  transition:all .2s;
+}
+.branch-btn.active{
+  background:var(--dark);
+  color:white;
+  box-shadow:0 4px 12px rgba(15,118,110,.25);
+}
+.category-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.category-btn{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+  min-height:86px;
+  padding:14px;
+  border:2px solid #edf2f7;
+  border-radius:20px;
+  background:white;
+  text-align:left;
+  transition:all .2s ease;
+}
+.category-btn:hover{
+  border-color:#cbd5e1;
+  transform:translateY(-1px);
+}
+.category-btn.active{
+  border-color:var(--teal);
+  background:var(--teal-light);
+  box-shadow:0 6px 18px rgba(13,148,136,.12);
+}
+.category-icon{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 46px;
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  background:#f0fdfa;
+  font-size:22px;
+}
+.category-copy{min-width:0}
+.category-name{
+  display:block;
+  margin-bottom:3px;
+  color:var(--text);
+  font-size:14px;
+  font-weight:800;
+  line-height:1.35;
+}
+.category-description{
+  display:block;
+  color:#64748b;
+  font-size:11px;
+  line-height:1.45;
+}
+.filter-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+  padding-top:20px;
+  border-top:1px solid #edf2f7;
+}
+.lang-toggle{
+  display:inline-flex;
+  gap:4px;
+  background:#f1f5f9;
+  padding:4px;
+  border-radius:12px;
+}
+.lang-btn{
+  padding:6px 12px;
+  border:0;
+  border-radius:9px;
+  background:transparent;
+  color:#64748b;
+  font-size:11px;
+  font-weight:800;
+  transition:all .15s;
+}
+.lang-btn.active{
+  background:white;
+  color:var(--dark);
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+.review-heading{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:14px;
+}
+.review-help{margin:0;color:var(--muted);font-size:12px;line-height:1.6}
+.shuffle-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  flex-shrink:0;
+  padding:10px 14px;
+  border:1px solid var(--teal-border);
+  border-radius:13px;
+  background:var(--teal-light);
+  color:var(--dark);
+  font-size:12px;
+  font-weight:800;
+  transition:all .2s;
+}
+.shuffle-btn:hover{background:#ccfbf1}
+.reviews-container{display:grid;gap:18px}
+.review-card{
+  padding:18px;
+  border:1px solid #dbe4ef;
+  border-radius:22px;
+  background:var(--card-bg);
+  transition:border-color .2s;
+}
+.review-card:hover{border-color:#cbd5e1}
+.review-card-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:12px;
+}
+.option-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:6px 12px;
+  border-radius:100px;
+  background:#ccfbf1;
+  color:#115e59;
+  font-size:12px;
+  font-weight:800;
+}
+.option-lang-tag{
+  font-size:10px;
+  padding:2px 7px;
+  border-radius:100px;
+  background:rgba(15,118,110,.12);
+  color:var(--dark);
+  font-weight:700;
+}
+.edit-hint{color:#64748b;font-size:11px;text-align:right}
+.review-text{
+  display:block;
+  width:100%;
+  min-height:135px;
+  padding:14px;
+  border:1px solid #cbd5e1;
+  border-radius:16px;
+  background:white;
+  color:#1e293b;
+  font-size:14px;
+  line-height:1.75;
+  resize:vertical;
+  overflow-wrap:anywhere;
+  transition:border-color .2s;
+}
+.review-text:focus{border-color:var(--teal)}
+.copy-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:100%;
+  min-height:52px;
+  margin-top:14px;
+  padding:12px 16px;
+  border:0;
+  border-radius:14px;
+  background:linear-gradient(135deg,#0d9488,#0f766e);
+  color:white;
+  font-size:13px;
+  font-weight:800;
+  box-shadow:0 6px 16px rgba(15,118,110,.2);
+  transition:all .2s;
+}
+.copy-btn:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.copy-btn:active{transform:translateY(1px)}
+.card-actions{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  margin-top:14px;
+}
+.copy-only-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  min-height:52px;
+  padding:12px 18px;
+  border:1px solid #cbd5e1;
+  border-radius:14px;
+  background:#ffffff;
+  color:#334155;
+  font-size:13px;
+  font-weight:700;
+  transition:all .15s;
+  white-space:nowrap;
+}
+.copy-only-btn:hover{background:#f1f5f9;border-color:#94a3b8}
+.copy-only-btn.copied{background:#ecfdf5;color:#047857;border-color:#a7f3d0}
+.google-notice-box{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin:10px 0 16px;
+  padding:12px 14px;
+  border:1px solid #99f6e4;
+  border-radius:14px;
+  background:#f0fdfa;
+  color:#0f766e;
+  font-size:12px;
+  line-height:1.55;
+}
+.google-notice-box strong{color:#115e59}
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+  background:rgba(15,23,42,.75);
+  backdrop-filter:blur(6px);
+  opacity:1;
+  transition:opacity .2s;
+}
+.modal-overlay[hidden]{display:none}
+.modal-dialog{
+  position:relative;
+  width:100%;
+  max-width:520px;
+  max-height:92vh;
+  overflow-y:auto;
+  padding:26px 22px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:24px;
+  background:white;
+  box-shadow:0 25px 60px rgba(0,0,0,.4);
+  animation:modalPop .25s cubic-bezier(.16,1,.3,1);
+}
+@keyframes modalPop{
+  from{transform:scale(.95);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+.modal-close-btn{
+  position:absolute;
+  top:16px;
+  right:16px;
+  width:34px;
+  height:34px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:#f1f5f9;
+  color:#64748b;
+  font-size:20px;
+  line-height:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:background .2s;
+}
+.modal-close-btn:hover{background:#e2e8f0;color:#0f172a}
+.modal-header-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:4px 12px;
+  border-radius:100px;
+  background:#ccfbf1;
+  color:#0f766e;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+.modal-heading{
+  margin:0 0 6px;
+  color:#0f172a;
+  font-size:20px;
+  font-weight:800;
+  line-height:1.3;
+}
+.modal-sub{
+  margin:0 0 16px;
+  color:#64748b;
+  font-size:13px;
+}
+.modal-preview-card{
+  margin-bottom:18px;
+  padding:14px;
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  background:#f8fafc;
+}
+.modal-preview-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:6px;
+  color:#0f766e;
+  font-size:11px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.3px;
+}
+.modal-preview-text{
+  color:#1e293b;
+  font-size:13px;
+  line-height:1.6;
+  max-height:110px;
+  overflow-y:auto;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+.modal-steps-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:20px;
+}
+.modal-step-item{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:10px 12px;
+  border-radius:14px;
+  background:#f8fafc;
+  border:1px solid #eef2f6;
+}
+.modal-step-item.highlight{
+  background:#f0fdf4;
+  border-color:#bbf7d0;
+}
+.modal-step-num{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  background:#0d9488;
+  color:white;
+  font-size:11px;
+  font-weight:800;
+}
+.modal-step-text{
+  color:#334155;
+  font-size:12px;
+  line-height:1.55;
+}
+.modal-step-text strong{color:#0f172a}
+.paste-tag{
+  display:inline-block;
+  padding:1px 6px;
+  border-radius:6px;
+  background:#dcfce7;
+  color:#15803d;
+  font-weight:800;
+}
+.modal-btns{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.modal-primary-link{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:50px;
+  padding:12px 18px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#0d9488,#0f766e);
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:800;
+  box-shadow:0 6px 18px rgba(13,148,136,.25);
+  transition:all .15s;
+}
+.modal-primary-link:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.modal-secondary-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  min-height:44px;
+  padding:10px 16px;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  background:white;
+  color:#475569;
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+}
+.modal-secondary-btn:hover{background:#f8fafc}
+.footer-note{
+  margin:24px 0 4px;
+  color:#64748b;
+  font-size:11px;
+  line-height:1.8;
+  text-align:center;
+}
+.footer-note strong{color:#334155}
+.toast{
+  position:fixed;
+  z-index:1000;
+  right:16px;
+  bottom:20px;
+  left:16px;
+  width:fit-content;
+  max-width:460px;
+  margin:auto;
+  padding:14px 20px;
+  border:1px solid #5eead4;
+  border-radius:16px;
+  background:#0f172a;
+  color:white;
+  font-size:13px;
+  font-weight:700;
+  line-height:1.6;
+  text-align:center;
+  box-shadow:0 14px 40px rgba(0,0,0,.35);
+  animation:popIn .25s cubic-bezier(.16,1,.3,1);
+}
+.toast[hidden]{display:none}
+@keyframes popIn{
+  from{transform:translateY(12px);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
+@media(max-width:540px){
+  body{padding:12px 8px}
+  .clinic-card{border-radius:22px}
+  .hero{padding:28px 16px 32px}
+  .content{padding:22px 14px 18px}
+  .category-grid{gap:10px}
+  .category-btn{gap:10px;min-height:82px;padding:11px;border-radius:16px}
+  .category-icon{flex-basis:40px;width:40px;height:40px;font-size:20px}
+  .category-name{font-size:13px}
+  .category-description{font-size:10px}
+  .review-card{padding:14px}
+  .review-text{min-height:140px;font-size:13px}
+  .filter-row{flex-direction:column;align-items:flex-start}
+  .card-actions{grid-template-columns:1fr}
+}
+@media(max-width:360px){
+  .category-grid{grid-template-columns:1fr}
+  .branch-selector{grid-template-columns:1fr}
+  .branch-btn{min-height:42px}
+}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="clinic-card" aria-labelledby="page-title">
+<header class="hero">
+  <div class="hero-content">
+    <a href="/" class="brand-link">← Back to Kezza Clinic Official Site</a>
+    <div class="rating-badge">
+      <span>⭐ Kezza Hair &amp; Skin Clinic</span>
+      <span aria-hidden="true">•</span>
+      <span id="header-city-badge">Vaishali Nagar, Jaipur</span>
+    </div>
+    <h1 id="page-title">Share Your Experience</h1>
+    <p class="hero-subtitle">Select your branch &amp; treatment to get authentic, ready-to-post review drafts you can personalize.</p>
+    <div class="stars" aria-label="Five-star rating">★★★★★</div>
+  </div>
+</header>
+
+<div class="content">
+  <!-- 1. Branch Selector -->
+  <section class="section" aria-labelledby="branch-heading">
+    <h2 id="branch-heading" class="section-label">
+      <span>1. Select Your Clinic Branch</span>
+      <span style="font-weight:600;font-size:11px;color:#0d9488" id="active-branch-name">Jaipur</span>
+    </h2>
+    <div class="branch-selector">
+      <button type="button" class="branch-btn active" data-branch="jaipur" aria-pressed="true">📍 Jaipur</button>
+      <button type="button" class="branch-btn" data-branch="sikar" aria-pressed="false">📍 Sikar</button>
+      <button type="button" class="branch-btn" data-branch="ajmer" aria-pressed="false">📍 Ajmer</button>
+    </div>
+  </section>
+
+  <!-- 2. Treatment Category Selector -->
+  <section class="section" aria-labelledby="category-heading">
+    <h2 id="category-heading" class="section-label">2. Select Your Treatment</h2>
+    <div class="category-grid">
+      <button type="button" class="category-btn active" data-category="skin" aria-pressed="true">
+        <span class="category-icon" aria-hidden="true">✨</span>
+        <span class="category-copy">
+          <span class="category-name">Skin Care</span>
+          <span class="category-description">Acne, HydraFacial, Laser, Glow</span>
+        </span>
+      </button>
+      <button type="button" class="category-btn" data-category="hair" aria-pressed="false">
+        <span class="category-icon" aria-hidden="true">💇</span>
+        <span class="category-copy">
+          <span class="category-name">Hair Care</span>
+          <span class="category-description">PRP, GFC, Hair Fall, Transplant</span>
+        </span>
+      </button>
+      <button type="button" class="category-btn" data-category="weightloss" aria-pressed="false">
+        <span class="category-icon" aria-hidden="true">⚖️</span>
+        <span class="category-copy">
+          <span class="category-name">Weight Loss</span>
+          <span class="category-description">Non-Surgical Inch Loss, Contouring</span>
+        </span>
+      </button>
+      <button type="button" class="category-btn" data-category="pmu" aria-pressed="false">
+        <span class="category-icon" aria-hidden="true">💄</span>
+        <span class="category-copy">
+          <span class="category-name">PMU Studio</span>
+          <span class="category-description">Microblading, Lip Blush, Brows</span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- 3. Review Drafts Section -->
+  <section aria-labelledby="reviews-heading">
+    <div class="filter-row">
+      <div>
+        <h2 id="reviews-heading" class="section-label" style="margin-bottom:2px">3. Choose &amp; Edit Your Review Draft</h2>
+        <p class="review-help">Pick a draft, add your personal touch, and click Copy to open Google Reviews directly.</p>
+      </div>
+      <div class="lang-toggle" role="group" aria-label="Review language filter">
+        <button type="button" class="lang-btn active" data-lang="all">All</button>
+        <button type="button" class="lang-btn" data-lang="hinglish">Hinglish 💬</button>
+        <button type="button" class="lang-btn" data-lang="english">English 🌐</button>
+      </div>
+    </div>
+
+    <!-- Google Reviews Notice Box -->
+    <div class="google-notice-box">
+      <span style="font-size:16px;line-height:1;" aria-hidden="true">💡</span>
+      <div>
+        <strong>Google Review Step:</strong> Google Maps requires review drafts to be pasted manually. Clicking any draft below automatically copies it to your clipboard. When Google Reviews opens for your branch, simply <strong>Paste</strong> into the review box!
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;margin-bottom:12px">
+      <button type="button" id="shuffle-btn" class="shuffle-btn">🔄 Shuffle New Drafts</button>
+    </div>
+
+    <div id="reviews-container" class="reviews-container" aria-live="polite"></div>
+  </section>
+
+  <p class="footer-note">Please share only your <strong>own genuine experience</strong>. Edit or personalize any draft to reflect your exact treatment details before posting on Google Reviews.</p>
+</div>
+</section>
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+<!-- Instructional Guidance Modal -->
+<div id="review-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+  <div class="modal-dialog">
+    <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close dialog">&times;</button>
+    <div class="modal-header-badge">📋 Draft Copied to Clipboard</div>
+    <h3 id="modal-title" class="modal-heading">Ready for <span id="modal-branch-name">Sikar</span>!</h3>
+    <p class="modal-sub">Follow 3 quick steps to paste your review on Google Maps:</p>
+
+    <div class="modal-preview-card">
+      <div class="modal-preview-title">
+        <span>Copied Review Draft</span>
+        <span id="modal-copied-indicator">✅ Ready in clipboard</span>
+      </div>
+      <div id="modal-preview-content" class="modal-preview-text"></div>
+    </div>
+
+    <div class="modal-steps-list">
+      <div class="modal-step-item">
+        <span class="modal-step-num">1</span>
+        <div class="modal-step-text">
+          Google Review page for <strong><span id="modal-branch-label">Kezza Clinic (Sikar)</span></strong> is opening.
+        </div>
+      </div>
+      <div class="modal-step-item highlight">
+        <span class="modal-step-num">2</span>
+        <div class="modal-step-text">
+          In Google's review box, <strong>Long-Press / Right-Click</strong> and choose <span class="paste-tag">PASTE</span>.
+          <div style="font-size:11px;color:#64748b;margin-top:2px;">(Agar pehle se koi purana draft likha ho toh use select karke paste karein)</div>
+        </div>
+      </div>
+      <div class="modal-step-item">
+        <span class="modal-step-num">3</span>
+        <div class="modal-step-text">
+          Select <strong>⭐⭐⭐⭐⭐ (5 Stars)</strong> and tap <strong>Post</strong>!
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-btns">
+      <a id="modal-direct-link" href="#" target="_blank" rel="noopener noreferrer" class="modal-primary-link">
+        ⭐ Open Google Reviews (<span id="modal-branch-btn-city">Sikar</span>) →
+      </a>
+      <button type="button" id="modal-recopy-btn" class="modal-secondary-btn">
+        📋 Copy Text Again
+      </button>
+      <button type="button" id="modal-dismiss-btn" class="modal-secondary-btn" style="border:0;color:#64748b;">
+        Done / Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+// Branch configuration with verified Google Maps Direct Review URLs
+const branchConfig = {
+  jaipur: {
+    name: "Hanuman Nagar, Khatipura, Jaipur",
+    badge: "Hanuman Nagar, Sirsi Road, Jaipur",
+    city: "Jaipur",
+    location: "Vaishali Nagar & Khatipura, Jaipur",
+    doctor_hair: "Dr. Ankit Bhalothia",
+    doctor_skin: "Dr. Amrita Mukhija",
+    pmu_artist: "Krishna Choudhary",
+    googleLink: "https://www.google.com/maps/place//data=!4m3!3m2!1s0x396db3fb61d71aa7:0x856acc329503d375!12e1"
+  },
+  sikar: {
+    name: "Silver Jubilee Road, Sikar",
+    badge: "Opposite S.K. Hospital, Sikar",
+    city: "Sikar",
+    location: "Silver Jubilee Road, Sikar",
+    doctor_hair: "Dr. Ankit sir",
+    doctor_skin: "Dr. Neelam Choudhary",
+    pmu_artist: "Krishna Choudhary",
+    googleLink: "https://www.google.com/maps/place//data=!4m3!3m2!1s0x396cbb8cee08f913:0x2fb082dea5ff1e14!12e1"
+  },
+  ajmer: {
+    name: "Shastri Nagar, Ajmer",
+    badge: "Hotel Oasis Complex, Ajmer",
+    city: "Ajmer",
+    location: "Shastri Nagar, Ajmer",
+    doctor_hair: "Dr. Aliza Rizvi",
+    doctor_skin: "Dr. Aliza Rizvi",
+    pmu_artist: "Kezza clinical team",
+    googleLink: "https://www.google.com/maps/place//data=!4m3!3m2!1s0x396be7806203a789:0x7af3f96d17d02fda!12e1"
+  }
+};
+
+// Rich library of realistic patient reviews (Hinglish & English)
+const reviewLibrary = {
+  skin: [
+    {
+      lang: "hinglish",
+      text: "Maine Kezza clinic se skin treatment krwaya, mujhe kafi time se acne ki problems thi, maine phle bhi kafi treatment liye but koi bhi effective nhi tha, but yaha 6-7 session me bhot ache results mile. Best skin treatment in {location}!"
+    },
+    {
+      lang: "hinglish",
+      text: "Kezza Clinic se HydraFacial aur acne scar treatment karwaya tha. Result seriously amazing tha, first session ke baad se hi skin texture clean aur smooth ho gaya. Staff bohot cooperative hai aur hygiene top class hai. Highly recommended in {city}!"
+    },
+    {
+      lang: "hinglish",
+      text: "Mujhe stubborn pigmentation aur dark spots ki problem thi. {doctor_skin} aur team ne medical chemical peels aur laser sessions plan kiye. 4-5 sessions me spots fade ho gaye aur skin tone even ho gaya. Thank you Kezza Hair & Skin Clinic!"
+    },
+    {
+      lang: "hinglish",
+      text: "Maine full body laser hair reduction ke liye Kezza Clinic visit kiya tha. 4 sessions complete ho chuke hain aur hair growth drastically reduce ho chuki hai. Machines latest US-FDA approved hain aur treatment painless tha. Best skin clinic in {location}."
+    },
+    {
+      lang: "hinglish",
+      text: "Face par severe dullness aur tanning thi. Kezza clinic ke skin glow protocol aur carbon peel se instant glow mila. Doctor genuine advice dete hain aur koi unnecessary products push nahi karte. Very happy with the results!"
+    },
+    {
+      lang: "english",
+      text: "I had a wonderful experience with acne and scar treatment at Kezza Hair & Skin Clinic. Having struggled with breakouts for years, their customized peel and laser sessions delivered noticeable results in just a few visits. Highly recommended in {city}!"
+    },
+    {
+      lang: "english",
+      text: "Got my HydraFacial done at Kezza Clinic and the glow was instant! The clinical team explained every step and maintained complete hygiene. Definitely the best skin clinic in {location}."
+    },
+    {
+      lang: "english",
+      text: "Undergoing laser hair removal at Kezza Clinic. The technology used is top-notch, virtually painless, and results after 4 sessions have been outstanding. Thank you to the wonderful team in {city}!"
+    }
+  ],
+
+  hair: [
+    {
+      lang: "hinglish",
+      text: "Mujhe severe hair fall aur front hairline receding ki problem thi. Kezza clinic me GFC therapy ke 3 sessions liye, 2nd session ke baad se hi hair shedding 90% band ho gayi aur scalp par new baby hairs aane lage. Best hair care clinic in {location}!"
+    },
+    {
+      lang: "hinglish",
+      text: "Maine {doctor_hair} sir se Kezza clinic me FUE hair transplant karwaya. Front hairline naturally restore ho gayi aur density bohot acchi aayi hai. Procedure painless tha aur post-op recovery super smooth rahi. Thank you Kezza team!"
+    },
+    {
+      lang: "hinglish",
+      text: "Hair thinning ki wajah se scalp visible ho raha tha. Kezza clinic me proper scalp diagnosis ke baad customized PRP sessions liye. 4 sessions me volume aur hair density me clear improvement dikh raha hai. Genuine doctor guidance!"
+    },
+    {
+      lang: "hinglish",
+      text: "Kezza clinic se hair fall treatment karwaya. Pehle bohot medicines aur oils try kiye the but koi effect nahi hua. Yaha GFC treatment se 1 month me hi hair loss control ho gaya. Must visit for hair problems in {city}!"
+    },
+    {
+      lang: "hinglish",
+      text: "Crown area par balding shuru ho gayi thi aur hair roots weak the. Kezza clinic me {doctor_hair} ne trichoscopy analysis kiya aur proper care routine di. Now my hair fall is totally under control. Highly recommended!"
+    },
+    {
+      lang: "english",
+      text: "Had a great experience with GFC hair therapy at Kezza Hair & Skin Clinic. My persistent hair fall stopped within a month and there is visible improvement in thickness. The doctors and staff are extremely thorough and professional."
+    },
+    {
+      lang: "english",
+      text: "Got my FUE hair transplant done at Kezza Clinic with {doctor_hair}. The hairline design looks completely natural and the density after months of recovery is fantastic. Exceptional clinical care in {location}!"
+    },
+    {
+      lang: "english",
+      text: "Consulted Kezza Clinic for early hair thinning. Their doctors evaluated my scalp with trichoscopy and prescribed targeted PRP sessions. My hair is much thicker and healthier now. Best hair clinic in {city}!"
+    }
+  ],
+
+  weightloss: [
+    {
+      lang: "hinglish",
+      text: "Post-pregnancy stubborn belly fat aur inches reduce nahi ho rahe the. Kezza clinic me non-surgical inch loss sessions liye. Bina kisi crash diet ya weakness ke 5 sessions me 3.5 inches waist kam hua. Bohot relaxing aur effective treatment hai in {city}!"
+    },
+    {
+      lang: "hinglish",
+      text: "Maine Kezza clinic ka weight management aur body contouring program liya. Staff regular follow-up leta hai aur non-invasive sessions se stubborn fat bohot jaldi tone hua. Best clinic in {location}!"
+    },
+    {
+      lang: "hinglish",
+      text: "Double chin aur loose skin ke liye RF tightening sessions liye the. 4 sessions ke baad jawline clear aur sharp dikhne lagi hai. Safe, non-surgical aur genuine results!"
+    },
+    {
+      lang: "hinglish",
+      text: "Gym aur diet ke baad bhi love handles aur lower tummy ka fat nahi ja raha tha. Kezza Clinic ke targeted sculpting therapy se inches drop hue. Professional guidance aur supportive team!"
+    },
+    {
+      lang: "english",
+      text: "Exceptional results with non-surgical body contouring at Kezza Clinic. Lost over 3 inches around my waist in 5 sessions with no downtime or side effects. The clinical team provided great lifestyle guidance throughout."
+    },
+    {
+      lang: "english",
+      text: "Visited Kezza Hair & Skin Clinic for stubborn fat reduction. The inch-loss treatment was comfortable, safe, and visibly effective. Best clinic for non-invasive body sculpting in {location}!"
+    }
+  ],
+
+  pmu: [
+    {
+      lang: "hinglish",
+      text: "Meri eyebrows bohot patchy aur light thi, roj pencil lagane me time lagta tha. Krishna ma'am se Kezza clinic me microblading karwayi. Result itna natural aur realistic hair-strokes jaisa aaya hai ki sab tareef karte hain. Best PMU studio in {city}!"
+    },
+    {
+      lang: "hinglish",
+      text: "Dark lips ki problem thi toh Kezza studio me lip blush treatment karwaya. Ab lips natural baby pink aur hydrated lagte hain without any lipstick. Pain bilkul nahi tha because numbing cream achi lagayi thi. Super happy!"
+    },
+    {
+      lang: "hinglish",
+      text: "Kezza clinic me powder ombre brows karwayi thi. {pmu_artist} ka handwork bohot precise aur hygienic hai. Face features bohot enhance ho gaye hain. Highly recommended for semi-permanent makeup in {location}!"
+    },
+    {
+      lang: "hinglish",
+      text: "Eye liner aur eyebrow shaping karwaya Kezza PMU studio se. Sterile tools use kiye aur aftercare kit bhi provide kiya. Result 100% natural and long lasting hai!"
+    },
+    {
+      lang: "english",
+      text: "Got semi-permanent eyebrow microblading done by PMU artist Krishna Choudhary at Kezza Clinic. The micro-hair strokes look completely natural and frame my face beautifully. Extremely hygienic and painless process!"
+    },
+    {
+      lang: "english",
+      text: "Underwent lip blush neutralization at Kezza PMU Studio. My lips now have an even, healthy rose-tinted tone. The artist was meticulous and took care of every detail. Best PMU in {city}!"
+    }
+  ]
+};
+
+let currentBranch = "jaipur";
+let currentCategory = "skin";
+let currentLang = "all";
+let toastTimer = null;
+
+const container = document.getElementById("reviews-container");
+const toast = document.getElementById("toast");
+
+function shuffleArray(items) {
+  const result = [...items];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.hidden = true;
+  }, 3500);
+}
+
+function formatReview(template, branchKey) {
+  const config = branchConfig[branchKey] || branchConfig.jaipur;
+  return template
+    .replace(/\{city\}/g, config.city)
+    .replace(/\{location\}/g, config.location)
+    .replace(/\{doctor_hair\}/g, config.doctor_hair)
+    .replace(/\{doctor_skin\}/g, config.doctor_skin)
+    .replace(/\{pmu_artist\}/g, config.pmu_artist);
+}
+
+function selectBranch(branch) {
+  if (!Object.prototype.hasOwnProperty.call(branchConfig, branch)) return;
+  currentBranch = branch;
+  document.querySelectorAll(".branch-btn").forEach(button => {
+    const active = button.dataset.branch === branch;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  const config = branchConfig[branch];
+  document.getElementById("header-city-badge").textContent = config.name;
+  document.getElementById("active-branch-name").textContent = config.city;
+  generateDynamicReviews();
+}
+
+function selectCategory(category) {
+  if (!Object.prototype.hasOwnProperty.call(reviewLibrary, category)) return;
+  currentCategory = category;
+  document.querySelectorAll(".category-btn").forEach(button => {
+    const active = button.dataset.category === category;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  generateDynamicReviews();
+}
+
+function selectLanguage(lang) {
+  currentLang = lang;
+  document.querySelectorAll(".lang-btn").forEach(button => {
+    const active = button.dataset.lang === lang;
+    button.classList.toggle("active", active);
+  });
+  generateDynamicReviews();
+}
+
+function createReviewCard(item, index) {
+  const card = document.createElement("article");
+  card.className = "review-card";
+
+  const header = document.createElement("div");
+  header.className = "review-card-header";
+
+  const badgeWrap = document.createElement("div");
+  badgeWrap.style.display = "flex";
+  badgeWrap.style.alignItems = "center";
+  badgeWrap.style.gap = "6px";
+
+  const badge = document.createElement("span");
+  badge.className = "option-badge";
+  badge.textContent = `Draft ${index + 1}`;
+
+  const langTag = document.createElement("span");
+  langTag.className = "option-lang-tag";
+  langTag.textContent = item.lang === "hinglish" ? "Hinglish 💬" : "English 🌐";
+
+  badgeWrap.append(badge, langTag);
+
+  const hint = document.createElement("span");
+  hint.className = "edit-hint";
+  hint.textContent = "✏️ Click text to personalize";
+
+  header.append(badgeWrap, hint);
+
+  const textarea = document.createElement("textarea");
+  textarea.className = "review-text";
+  textarea.rows = 5;
+  textarea.value = formatReview(item.text, currentBranch);
+  textarea.setAttribute("aria-label", `Review draft ${index + 1}`);
+
+  const actions = document.createElement("div");
+  actions.className = "card-actions";
+
+  const branchName = branchConfig[currentBranch]?.city || "Google";
+
+  const primaryBtn = document.createElement("button");
+  primaryBtn.type = "button";
+  primaryBtn.className = "copy-btn";
+  primaryBtn.innerHTML = `🚀 Copy &amp; Open Google Reviews (${branchName}) →`;
+  primaryBtn.addEventListener("click", () => copyAndRedirect(textarea));
+
+  const copyBtn = document.createElement("button");
+  copyBtn.type = "button";
+  copyBtn.className = "copy-only-btn";
+  copyBtn.innerHTML = `📋 Copy Text`;
+  copyBtn.title = "Copy this review draft to clipboard without leaving this page";
+  copyBtn.addEventListener("click", () => copyOnly(textarea, copyBtn));
+
+  actions.append(primaryBtn, copyBtn);
+  card.append(header, textarea, actions);
+  return card;
+}
+
+function generateDynamicReviews() {
+  const allReviews = reviewLibrary[currentCategory] || [];
+  let filtered = allReviews;
+  if (currentLang !== "all") {
+    filtered = allReviews.filter(r => r.lang === currentLang);
+    if (!filtered.length) filtered = allReviews;
+  }
+
+  container.replaceChildren();
+
+  const selected = shuffleArray(filtered).slice(0, 3);
+  selected.forEach((item, index) => {
+    container.appendChild(createReviewCard(item, index));
+  });
+}
+
+function copyTextToClipboard(text, textareaElement) {
+  let copied = false;
+  if (navigator.clipboard && window.isSecureContext) {
+    try {
+      navigator.clipboard.writeText(text);
+      copied = true;
+    } catch (e) {
+      copied = false;
+    }
+  }
+  if (!copied) {
+    try {
+      if (textareaElement) {
+        textareaElement.focus();
+        textareaElement.select();
+        textareaElement.setSelectionRange(0, 99999);
+        copied = document.execCommand("copy");
+      }
+      if (!copied) {
+        const dummy = document.createElement("textarea");
+        dummy.value = text;
+        dummy.setAttribute("readonly", "");
+        dummy.style.position = "fixed";
+        dummy.style.left = "-9999px";
+        dummy.style.top = "0";
+        document.body.appendChild(dummy);
+        dummy.focus();
+        dummy.select();
+        dummy.setSelectionRange(0, 99999);
+        copied = document.execCommand("copy");
+        document.body.removeChild(dummy);
+      }
+    } catch (err) {
+      console.warn("Clipboard fallback error:", err);
+    }
+  }
+  return copied;
+}
+
+function copyOnly(textarea, button) {
+  const text = textarea.value.trim();
+  if (!text) {
+    showToast("Please enter or select a review draft first.");
+    textarea.focus();
+    return;
+  }
+  copyTextToClipboard(text, textarea);
+  const original = button.innerHTML;
+  button.innerHTML = `✅ Copied!`;
+  button.classList.add("copied");
+  showToast(`✅ Review draft copied! Ready to paste into Google Reviews.`);
+  setTimeout(() => {
+    button.innerHTML = original;
+    button.classList.remove("copied");
+  }, 2000);
+}
+
+let activeModalText = "";
+
+function openGuideModal(text, branchData, googleLink, openedTab) {
+  activeModalText = text;
+  document.getElementById("modal-branch-name").textContent = branchData.city;
+  document.getElementById("modal-branch-label").textContent = `Kezza Clinic (${branchData.city})`;
+  document.getElementById("modal-branch-btn-city").textContent = branchData.city;
+  document.getElementById("modal-preview-content").textContent = text;
+  
+  const directLink = document.getElementById("modal-direct-link");
+  directLink.href = googleLink;
+
+  const modal = document.getElementById("review-modal");
+  modal.hidden = false;
+  document.body.style.overflow = "hidden";
+}
+
+function closeGuideModal() {
+  const modal = document.getElementById("review-modal");
+  modal.hidden = true;
+  document.body.style.overflow = "";
+}
+
+function copyAndRedirect(textarea) {
+  const text = textarea.value.trim();
+  if (!text) {
+    showToast("Please enter or select a review draft first.");
+    textarea.focus();
+    return;
+  }
+
+  const branchData = branchConfig[currentBranch] || branchConfig.jaipur;
+  const googleLink = branchData.googleLink;
+
+  // 1. Copy to clipboard immediately
+  copyTextToClipboard(text, textarea);
+
+  // 2. Open Google review URL synchronously in the user click event to prevent popup blocking
+  const openedTab = window.open(googleLink, "_blank", "noopener,noreferrer");
+
+  // 3. Open guidance modal with paste instructions and direct link fallback
+  openGuideModal(text, branchData, googleLink, Boolean(openedTab));
+}
+
+// Modal Event Listeners
+document.getElementById("modal-close-btn").addEventListener("click", closeGuideModal);
+document.getElementById("modal-dismiss-btn").addEventListener("click", closeGuideModal);
+document.getElementById("review-modal").addEventListener("click", (e) => {
+  if (e.target === document.getElementById("review-modal")) {
+    closeGuideModal();
+  }
+});
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !document.getElementById("review-modal").hidden) {
+    closeGuideModal();
+  }
+});
+
+document.getElementById("modal-recopy-btn").addEventListener("click", () => {
+  if (activeModalText) {
+    copyTextToClipboard(activeModalText);
+    const ind = document.getElementById("modal-copied-indicator");
+    ind.textContent = "✅ Copied again!";
+    showToast("✅ Review draft copied to clipboard again!");
+    setTimeout(() => {
+      ind.textContent = "✅ Ready in clipboard";
+    }, 2000);
+  }
+});
+
+// Event Listeners
+document.querySelectorAll(".branch-btn").forEach(button => {
+  button.addEventListener("click", () => selectBranch(button.dataset.branch));
+});
+
+document.querySelectorAll(".category-btn").forEach(button => {
+  button.addEventListener("click", () => selectCategory(button.dataset.category));
+});
+
+document.querySelectorAll(".lang-btn").forEach(button => {
+  button.addEventListener("click", () => selectLanguage(button.dataset.lang));
+});
+
+document.getElementById("shuffle-btn").addEventListener("click", generateDynamicReviews);
+
+// Initialize from URL parameters if provided, e.g. ?branch=sikar&cat=hair
+const params = new URLSearchParams(window.location.search);
+const requestedBranch = (params.get("branch") || "jaipur").toLowerCase();
+const requestedCategory = (params.get("cat") || params.get("category") || "skin").toLowerCase();
+
+selectBranch(Object.prototype.hasOwnProperty.call(branchConfig, requestedBranch) ? requestedBranch : "jaipur");
+selectCategory(Object.prototype.hasOwnProperty.call(reviewLibrary, requestedCategory) ? requestedCategory : "skin");
+console.info("Kezza Review Assistant loaded.");
+</script>
+</body>
+</html>

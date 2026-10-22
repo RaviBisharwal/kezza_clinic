@@ -387,7 +387,7 @@ def build_location(k):
               "ajmer": "Hair Transplant & Skin Clinic in Ajmer | Kezza Clinic"}
     descs = {"jaipur": "Kezza Hair & Skin Clinic on Sirsi Road, Khatipura, Jaipur: hair transplant, PRP/GFC, skin and laser care and PMU. Open 9 AM–8 PM, all 7 days.",
              "sikar": "Kezza Hair & Skin Clinic, Silver Jubilee Road, Sikar (opp. S.K. Hospital): hair transplant, PRP/GFC, skin and laser care. Open 9 AM–8 PM daily.",
-             "ajmer": "Kezza Hair & Skin Clinic, Oasis Complex, Shastri Nagar, Ajmer: hair transplant and facial aesthetics with Dr. Aliza Rizvi. Open 9 AM–8 PM, all 7 days."}
+             "ajmer": "Kezza Hair & Skin Clinic, Hotel Oasis Complex, Shastri Nagar, Ajmer: hair transplant and facial aesthetics with Dr. Aliza Rizvi. Open 9 AM–8 PM, all 7 days."}
     title, desc = titles[k], descs[k]
     faqs = location_faqs(k)
     phones_html = "<br>".join(f'<a href="tel:{tel(p)}">{pretty_phone(p)}</a>' for p in b["phones"])
@@ -1065,7 +1065,7 @@ def build_blog_index(arts):
         ["Can I book a consultation after reading a guide?",
          "Yes. Every guide connects directly to our consultation coordinators via WhatsApp or phone (+91-9284517427), allowing you to schedule an evaluation at our Jaipur, Sikar, or Ajmer branches."],
         ["Where are Kezza clinic branches located in Rajasthan?",
-         "Kezza operates full-service medical centers in Jaipur (Khatipura), Sikar (Silver Jubilee Road), and Ajmer (Oasis Complex, Shastri Nagar). All branches are open from 9 AM to 8 PM, all 7 days a week."]
+         "Kezza operates full-service medical centers in Jaipur (Khatipura), Sikar (Silver Jubilee Road), and Ajmer (Hotel Oasis Complex, Shastri Nagar). All branches are open from 9 AM to 8 PM, all 7 days a week."]
     ]
 
     main = crumbs_html([("Home", "/index.html"), ("Blog", path)]) + f"""
@@ -1083,14 +1083,14 @@ def build_blog_index(arts):
                     </div>
 
                     <div class="kz-topic-pills-wrap">
-                        <div class="kz-topic-pills" role="group" aria-label="Filter clinical guide topics">
-                            <button type="button" class="kz-topic-pill active" data-filter="all" aria-pressed="true"><i class="fas fa-th-large"></i> All Guides <span class="count">{cats_count['all']}</span></button>
-                            <button type="button" class="kz-topic-pill" data-filter="hair-transplant" aria-pressed="false"><i class="fas fa-user-md"></i> Hair Transplant <span class="count">{cats_count['hair-transplant']}</span></button>
-                            <button type="button" class="kz-topic-pill" data-filter="hair-loss" aria-pressed="false"><i class="fas fa-vial"></i> Hair Loss &amp; PRP <span class="count">{cats_count['hair-loss']}</span></button>
-                            <button type="button" class="kz-topic-pill" data-filter="skin" aria-pressed="false"><i class="fas fa-sparkles"></i> Skin &amp; Peels <span class="count">{cats_count['skin']}</span></button>
-                            <button type="button" class="kz-topic-pill" data-filter="laser" aria-pressed="false"><i class="fas fa-bolt"></i> Laser Hair Reduction <span class="count">{cats_count['laser']}</span></button>
-                            <button type="button" class="kz-topic-pill" data-filter="weight" aria-pressed="false"><i class="fas fa-shapes"></i> Body Contouring &amp; Sculpting <span class="count">{cats_count['weight']}</span></button>
-                            <button type="button" class="kz-topic-pill" data-filter="pmu" aria-pressed="false"><i class="fas fa-paint-brush"></i> Permanent Makeup <span class="count">{cats_count['pmu']}</span></button>
+                        <div class="kz-topic-pills" role="tablist">
+                            <button type="button" class="kz-topic-pill active" data-filter="all"><i class="fas fa-th-large"></i> All Guides <span class="count">{cats_count['all']}</span></button>
+                            <button type="button" class="kz-topic-pill" data-filter="hair-transplant"><i class="fas fa-user-md"></i> Hair Transplant <span class="count">{cats_count['hair-transplant']}</span></button>
+                            <button type="button" class="kz-topic-pill" data-filter="hair-loss"><i class="fas fa-vial"></i> Hair Loss &amp; PRP <span class="count">{cats_count['hair-loss']}</span></button>
+                            <button type="button" class="kz-topic-pill" data-filter="skin"><i class="fas fa-sparkles"></i> Skin &amp; Peels <span class="count">{cats_count['skin']}</span></button>
+                            <button type="button" class="kz-topic-pill" data-filter="laser"><i class="fas fa-bolt"></i> Laser Hair Reduction <span class="count">{cats_count['laser']}</span></button>
+                            <button type="button" class="kz-topic-pill" data-filter="weight"><i class="fas fa-shapes"></i> Body Contouring &amp; Sculpting <span class="count">{cats_count['weight']}</span></button>
+                            <button type="button" class="kz-topic-pill" data-filter="pmu"><i class="fas fa-paint-brush"></i> Permanent Makeup <span class="count">{cats_count['pmu']}</span></button>
                         </div>
                     </div>
                 </div>

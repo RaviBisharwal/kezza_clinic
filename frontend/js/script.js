@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // 1. Navbar Scroll Glassmorphism
+  // 1. Navbar Scroll Glassmorphism (skipped if smooth-scroll.js is already running)
   const navbar = document.querySelector(".navbar");
-  if (navbar) {
+  if (navbar && !window.KezzaSmoothScroll) {
     let isScrolled = false, ticking = false;
     window.addEventListener("scroll", function () {
       if (!ticking) {

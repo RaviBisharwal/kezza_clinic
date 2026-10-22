@@ -84,21 +84,13 @@ ErrorDocument 404 /404.html
 
 <IfModule mod_headers.c>
     <FilesMatch "\.html?$">
-        Header set Cache-Control "no-cache, must-revalidate"
-    </FilesMatch>
-    <FilesMatch "\.(ico|pdf|jpg|jpeg|png|gif|webp|avif|mp4|webm|svg|woff|woff2|ttf|otf)$">
-        Header set Cache-Control "max-age=31536000, public, immutable"
-    </FilesMatch>
-    <FilesMatch "\.(css|js)$">
-        Header set Cache-Control "max-age=31536000, public"
+        Header set Cache-Control "no-cache"
     </FilesMatch>
     # HTTPS only (HSTS): browsers remember to use https for a year. They ignore this
     # header on plain-http answers, so it is safe to send on every response.
     Header always set Strict-Transport-Security "max-age=31536000"
     Header always set X-Content-Type-Options "nosniff"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
-    # Block unauthorized third-party tracking chains (GoDaddy RUM eventbus 1,522ms chain)
-    Header always set Content-Security-Policy "default-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://*.googletagmanager.com https://connect.facebook.net https://cdnjs.cloudflare.com https://translate.google.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://connect.facebook.net https://next-api.telecrm.in https://script.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https: blob:; frame-src 'self' https://www.googletagmanager.com https://www.youtube.com https://maps.app.goo.gl https://www.google.com;"
 
     # Internal pages must never be indexed, whatever a crawler does with robots.txt
     <FilesMatch "^(admin\.html)$">

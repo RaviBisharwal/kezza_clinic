@@ -9,9 +9,9 @@
     --ks-gold-dark: #006d77;
     --ks-gold-glow: rgba(0, 175, 192, .35);
     --ks-gold-border: rgba(201, 168, 76, .4);
-    --ks-text-main: #f8fafc;
-    --ks-text-muted: #cbd5e1;
-    --ks-text-dim: #94a3b8;
+    --ks-text-main: #f5f7fb;
+    --ks-text-muted: #94a3b8;
+    --ks-text-dim: #64748b;
     --ks-border-subtle: rgba(255, 255, 255, .1);
     --ks-success: #22c55e;
     --ks-danger: #ef4444;
@@ -254,7 +254,6 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    color:#f8fafc;
     box-shadow:inset 0 0 30px rgba(0,0,0,.8),0 8px 24px rgba(0,0,0,.5)
 }
 
@@ -342,7 +341,7 @@
     justify-content:center;
     text-align:center;
     padding:20px;
-    color:#f8fafc;
+    color:var(--ks-text-muted);
     cursor:pointer
 }
 
@@ -362,17 +361,15 @@
 }
 
 .ks-idle-title {
-    font-size:.95rem;
+    font-size:.88rem;
     font-weight:600;
-    color:#ffffff;
-    margin-bottom:6px
+    color:var(--ks-text-main);
+    margin-bottom:4px
 }
 
 .ks-idle-hint {
-    font-size:.84rem;
-    font-weight:500;
-    color:#e2e8f0;
-    line-height:1.45
+    font-size:.74rem;
+    color:var(--ks-text-dim)
 }
 
 .ks-viewfinder-wrap.ks-dragover {
@@ -540,7 +537,7 @@
 
 .ks-preview-retake-btn:hover {
     background:var(--ks-gold-primary);
-    color:#041419
+    color:#000
 }
 
 .ks-camera-actions-row {
@@ -575,8 +572,8 @@
 }
 
 .ks-btn-action.ks-btn-shutter {
-    background:linear-gradient(135deg,#00afc0,#00c4d8);
-    color:#041419;
+    background:linear-gradient(135deg,var(--ks-gold-dark),var(--ks-gold-light));
+    color:#000;
     font-weight:700;
     border-color:var(--ks-gold-light);
     box-shadow:0 4px 15px var(--ks-gold-glow)
@@ -615,8 +612,8 @@
     gap:8px;
     padding:13px 20px;
     border-radius:var(--ks-radius-md);
-    background:linear-gradient(135deg,#00afc0,#00c4d8);
-    color:#041419;
+    background:linear-gradient(135deg,#00afc0,#00afc0,#006d77);
+    color:#090c14;
     font-family:var(--ks-font-sans);
     font-size:.92rem;
     font-weight:700;
@@ -630,7 +627,7 @@
 .ks-btn-primary:hover:not(:disabled) {
     transform:translateY(-2px);
     box-shadow:0 8px 25px rgba(0,175,192,.5);
-    color:#041419
+    color:#000
 }
 
 .ks-btn-primary:disabled {
@@ -1106,7 +1103,7 @@
 .ks-btn-skip {
     background:transparent;
     border:none;
-    color:var(--ks-text-muted);
+    color:var(--ks-text-dim);
     font-size:.8rem;
     font-weight:600;
     cursor:pointer;

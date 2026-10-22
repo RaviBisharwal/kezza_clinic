@@ -52,13 +52,11 @@
 }
 
 @keyframes kezza-fab-pulse {
-    0%, to {
-        transform: scale(1);
-        opacity: 0.96;
+    0%,to {
+        box-shadow:0 6px 24px rgba(0,175,192,.45),0 0 rgba(0,175,192,.25)
     }
     50% {
-        transform: scale(1.05);
-        opacity: 1;
+        box-shadow:0 6px 24px rgba(0,175,192,.45),0 0 0 14px rgba(0,175,192,0)
     }
 }
 
@@ -76,15 +74,13 @@
     flex-direction:column;
     overflow:hidden;
     opacity:0;
-    visibility:hidden;
     transform:translateY(20px) scale(.95);
     pointer-events:none;
-    transition:opacity .3s cubic-bezier(.4,0,.2,1),transform .3s cubic-bezier(.4,0,.2,1),visibility .3s ease
+    transition:opacity .3s cubic-bezier(.4,0,.2,1),transform .3s cubic-bezier(.4,0,.2,1)
 }
 
 .kezza-chat-window.open {
     opacity:1;
-    visibility:visible;
     transform:translateY(0) scale(1);
     pointer-events:auto
 }

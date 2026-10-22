@@ -65,6 +65,7 @@
 
             function openDropdown() {
                 isDropdownOpen = true;
+                document.body.classList.add('services-menu-open');
                 dropdownItem.classList.add('services-dropdown-open', 'dropdown-active', 'services-mega-open', 'mega-active');
                 if (window.innerWidth <= 1024) {
                     dropdownItem.classList.add('mobile-dropdown-open', 'mobile-mega-open');
@@ -76,6 +77,7 @@
 
             function closeDropdown() {
                 isDropdownOpen = false;
+                document.body.classList.remove('services-menu-open');
                 clearTimeout(dropdownHoverTimer);
                 clearTimeout(categoryHoverTimer);
                 dropdownItem.classList.remove(

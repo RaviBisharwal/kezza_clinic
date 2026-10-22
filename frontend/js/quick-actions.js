@@ -12,12 +12,11 @@
         });
     }
 
-    var CHATBOT_SRC = '/js/kezza-ai.min.js?v=24892922';
-    var SCANNER_CSS = '/css/bundle-scanner-modal.min.css?v=b1c1b442';
-    var SCANNER_JS = '/js/scanner-modal.min.js?v=978a3a40';
+    var CHATBOT_SRC = '/js/kezza-ai.min.js?v=22f8879e';
+    var SCANNER_CSS = '/css/bundle-scanner-modal.min.css?v=43d56733';
+    var SCANNER_JS = '/js/scanner-modal.min.js?v=5517a74b';
 
-    // ── Chatbot: load the (large) chat script when the browser is idle or on the
-    //    first tap/click/keypress, instead of while the page is still loading.
+    // ── Chatbot: promptly load the chat script so the assistant FAB is always ready
     var chatbotRequested = false;
     function loadChatbot(onReady) {
         if (window.KezzaAI || document.querySelector('script[src*="kezza-ai."]')) {
@@ -32,32 +31,17 @@
         sc.src = CHATBOT_SRC;
         sc.defer = true;
         if (onReady) sc.onload = function () { onReady(); };
-        document.body.appendChild(sc);
+        (document.body || document.head || document.documentElement).appendChild(sc);
     }
     window.kezzaLoadChatbot = loadChatbot;
 
     function scheduleChatbot() {
         var path = (window.location.pathname || '').toLowerCase();
         if (path.indexOf('admin') !== -1) return;
-        var isMobile = (window.innerWidth <= 768) || (window.matchMedia && window.matchMedia('(max-width: 768px)').matches);
-        if (isMobile) return; // on mobile devices, load on demand when user clicks consultation or chat
-        var started = false;
-        function go() {
-            if (started) return;
-            started = true;
-            ['click', 'keydown', 'focusin'].forEach(function (ev) { window.removeEventListener(ev, go, true); });
-            loadChatbot();
-        }
-        ['click', 'keydown', 'focusin'].forEach(function (ev) { window.addEventListener(ev, go, { capture: true, passive: true }); });
-        function idle() {
-            if ('requestIdleCallback' in window) requestIdleCallback(go, { timeout: 4000 });
-            else setTimeout(go, 3000);
-        }
-        if (document.readyState === 'complete') setTimeout(idle, 4000);
-        else window.addEventListener('load', function () { setTimeout(idle, 4000); }, { once: true });
+        loadChatbot();
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
+    function initQuickActions() {
         // 1. Auto-Play / Pause Videos when Scrolled into View
         var allVideos = document.querySelectorAll('video');
         if (allVideos.length > 0 && 'IntersectionObserver' in window) {
@@ -83,24 +67,25 @@
             });
         }
 
-        // 2. Floating Quick Dock — hide while scrolling, reappear after scroll stops
-        (function initDockScroll() {
+        // 2. Floating Quick Dock — reliably visible; syncs cleanly with full modals & chat
+        (function initDock() {
             var dock = document.querySelector('.floating-quick-dock');
             if (!dock) return;
-            var ticking = false, hideTimer = null, isHidden = false;
-            window.addEventListener('scroll', function () {
-                clearTimeout(hideTimer);
-                if (!ticking) {
-                    requestAnimationFrame(function () {
-                        if (!isHidden) { dock.classList.add('dock-hidden'); isHidden = true; }
-                        ticking = false;
-                    });
-                    ticking = true;
+            dock.classList.remove('dock-initial-hidden', 'dock-hidden');
+
+            function syncDock() {
+                var chatOpen = document.body.classList.contains('kezza-chat-open') || !!document.querySelector('#kezzaChatWindow.open');
+                var menuOpen = document.body.classList.contains('services-menu-open') || !!document.querySelector('.services-dropdown-open');
+                var modalOpen = document.body.classList.contains('ks-modal-open') || !!document.querySelector('.ks-modal.ks-active');
+                if (chatOpen || menuOpen || modalOpen) {
+                    dock.classList.add('dock-hidden');
+                } else {
+                    dock.classList.remove('dock-hidden');
                 }
-                hideTimer = setTimeout(function () {
-                    if (isHidden) { dock.classList.remove('dock-hidden'); isHidden = false; }
-                }, 400);
-            }, { passive: true });
+            }
+
+            window.addEventListener('resize', syncDock, { passive: true });
+            document.addEventListener('kezzaChatStateChange', syncDock);
         })();
 
         // 3. AI Scanner entry points. scanner-launch.js binds the nav link, hero
@@ -172,6 +157,10 @@
         document.addEventListener('click', function (e) {
             var btn = e.target.closest('.nav-cta .btn-primary, .btn-drawer-book, [data-open-chatbot-consultant]');
             if (btn) {
+                var targetHref = (btn.getAttribute('href') || '').toLowerCase();
+                if (targetHref.indexOf('contact.html') !== -1) {
+                    return; // allow normal navigation to contact page consultation form
+                }
                 e.preventDefault();
                 e.stopPropagation();
                 openChatbotConsultant();
@@ -230,6 +219,84 @@
             }
         }, { capture: true, passive: true });
 
+        // ── 6. Professional Social Share & Link Copy Engine ───────────────────
+        function showShareToast(msg) {
+            var existing = document.getElementById('kzShareToast');
+            if (existing) existing.remove();
+            var toast = document.createElement('div');
+            toast.id = 'kzShareToast';
+            toast.className = 'kz-share-toast';
+            toast.innerHTML = '<i class="fas fa-check-circle" aria-hidden="true"></i> <span>' + (msg || 'Link copied to clipboard!') + '</span>';
+            document.body.appendChild(toast);
+            requestAnimationFrame(function () {
+                toast.classList.add('show');
+            });
+            setTimeout(function () {
+                toast.classList.remove('show');
+                setTimeout(function () { toast.remove(); }, 350);
+            }, 2600);
+        }
+        window.kzShowShareToast = showShareToast;
+
+        function fallbackCopy(text) {
+            var tempInput = document.createElement('input');
+            tempInput.value = text;
+            tempInput.style.position = 'fixed';
+            tempInput.style.opacity = '0';
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                showShareToast('Link copied to clipboard! Share on WhatsApp or social media.');
+            } catch (err) {}
+            document.body.removeChild(tempInput);
+        }
+
+        document.addEventListener('click', function (e) {
+            var copyBtn = e.target.closest('.kz-share-copy, .btn-copy-link');
+            if (copyBtn) {
+                e.preventDefault();
+                var url = copyBtn.getAttribute('data-url') || window.location.href;
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(url).then(function () {
+                        showShareToast('Link copied to clipboard! Share on WhatsApp or social media.');
+                    }).catch(function () {
+                        fallbackCopy(url);
+                    });
+                } else {
+                    fallbackCopy(url);
+                }
+                return;
+            }
+
+            var shareTrigger = e.target.closest('.social-icon.share-trigger');
+            if (shareTrigger) {
+                e.preventDefault();
+                var pageUrl = window.location.href;
+                var pageTitle = document.title || 'Kezza Hair & Skin Clinic';
+                if (navigator.share) {
+                    navigator.share({
+                        title: pageTitle,
+                        url: pageUrl
+                    }).catch(function () {});
+                } else {
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(pageUrl).then(function () {
+                            showShareToast('Page link copied to clipboard!');
+                        });
+                    } else {
+                        fallbackCopy(pageUrl);
+                    }
+                }
+            }
+        });
+
         scheduleChatbot();
-    });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initQuickActions);
+    } else {
+        initQuickActions();
+    }
 })();

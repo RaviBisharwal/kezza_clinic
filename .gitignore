@@ -6,8 +6,15 @@ package-lock.json.bak
 .env
 .env.*
 !.env.example
+*.key
+*.pem
+*.cert
+*.crt
+credentials.json
+token.json
+client_secret*.json
 
-# ── Patient data — NEVER COMMIT ───────────────────────────────
+# ── Patient data & Archives — NEVER COMMIT ─────────────────────
 # Uploaded patient photos and captured leads are personal health
 # information. They must not enter version control or a deploy.
 frontend/uploads/photos/*
@@ -17,6 +24,9 @@ data/
 *.db
 *.sqlite
 *.sqlite3
+*.zip
+*.tar
+*.gz
 
 # ── Build & editor noise ──────────────────────────────────────
 *.bak

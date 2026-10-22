@@ -53,9 +53,21 @@
     if (!running) { running = true; requestAnimationFrame(frame); }
   }
 
+  var scrollTimeout = null;
+
   window.addEventListener('scroll', function () {
     targetY = window.pageYOffset || document.documentElement.scrollTop || 0;
-    kick();
+    // Pause spinning animation while the user is actively scrolling
+    if (container && !container.classList.contains('is-paused')) {
+      container.classList.add('is-paused');
+    }
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function () {
+      if (container && !document.hidden) {
+        container.classList.remove('is-paused');
+      }
+      kick();
+    }, 120);
   }, { passive: true });
 
   window.addEventListener('mousemove', function (e) {

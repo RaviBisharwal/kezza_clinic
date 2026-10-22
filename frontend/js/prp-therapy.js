@@ -95,34 +95,56 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        window.addEventListener('scroll', () => {
+        let activeSectionId = null;
+        let ticking = false;
+        let subnavContainerWidth = 0;
+
+        function updateOffsets() {
+            sections.forEach(s => {
+                s.top = s.el.offsetTop;
+                if (s.pill) {
+                    s.pillLeft = s.pill.offsetLeft;
+                    s.pillWidth = s.pill.offsetWidth;
+                }
+            });
+            if (subnavContainer) {
+                subnavContainerWidth = subnavContainer.offsetWidth;
+            }
+        }
+        updateOffsets();
+        window.addEventListener('resize', updateOffsets, { passive: true });
+
+        function onScrollSpy() {
             const scrollY = window.pageYOffset || document.documentElement.scrollTop;
             const triggerOffset = 190;
 
             let currentSection = sections[0];
             for (let i = 0; i < sections.length; i++) {
-                const secTop = sections[i].el.getBoundingClientRect().top + scrollY - triggerOffset;
-                if (scrollY >= secTop) {
+                if (scrollY >= (sections[i].top || 0) - triggerOffset) {
                     currentSection = sections[i];
                 }
             }
 
-            if (currentSection) {
+            if (currentSection && currentSection.id !== activeSectionId) {
+                activeSectionId = currentSection.id;
                 subnavPills.forEach(p => p.classList.remove('active'));
                 currentSection.pill.classList.add('active');
 
-                // Auto-center active pill horizontally on mobile
-                if (subnavContainer) {
-                    const pillLeft = currentSection.pill.offsetLeft;
-                    const pillWidth = currentSection.pill.offsetWidth;
-                    const containerWidth = subnavContainer.offsetWidth;
-                    subnavContainer.scrollTo({
-                        left: pillLeft - (containerWidth / 2) + (pillWidth / 2),
-                        behavior: 'smooth'
-                    });
+                // Auto-center active pill horizontally on mobile only when active changes
+                if (subnavContainer && subnavContainerWidth > 0 && currentSection.pillWidth) {
+                    subnavContainer.scrollLeft = currentSection.pillLeft - (subnavContainerWidth / 2) + (currentSection.pillWidth / 2);
                 }
             }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(onScrollSpy);
+                ticking = true;
+            }
         }, { passive: true });
+        onScrollSpy();
     }
 
     // ── 4. Clinical PRP Stages & Before/After Showcase Interactive Controller ──

@@ -13,10 +13,10 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
-<noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/></noscript>
+<link as="style" href="/css/fa-subset.min.css" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
+<noscript><link href="/css/fa-subset.min.css" rel="stylesheet"/></noscript>
 <link href="/images/fallbacks/favicon.png" rel="icon" type="image/png"/>
-    <link rel="stylesheet" href="/css/bundle-hi-hair-transplant.min.css?v=e97f4029"><!-- built by tools/build-css.js from: styles.css, services-navigation.css, quick-actions.css, service-page.css, responsive.css, content-pages.css, site-footer.css, kezza-ai.css, header-pro.css, mobile-perf.css -->
+    <link rel="stylesheet" href="/css/bundle-hi-hair-transplant.min.css?v=b98b416b"><!-- built by tools/build-css.js from: styles.css, services-navigation.css, quick-actions.css, service-page.css, responsive.css, content-pages.css, site-footer.css, kezza-ai.css, header-pro.css, mobile-perf.css -->
 <link as="image" href="/images/hair-services/hair-transplant/hair-transplant-hero-clinical-procedure-kezza-jaipur.webp" rel="preload"/>
 <link href="https://www.kezza.co.in/hi/hair-transplant/" rel="canonical"/>
 <link href="https://www.kezza.co.in/hair-transplant/" hreflang="en-IN" rel="alternate"/>
@@ -148,24 +148,24 @@
 <div class="nav-cta">
 <div aria-label="Select Language" class="kz-lang-switcher notranslate" role="group" translate="no">
 <i aria-hidden="true" class="fas fa-globe kz-globe-icon"></i>
-<button aria-label="EN - English" class="kz-lang-btn" data-lang="en" title="English" type="button">EN</button>
+<button aria-label="English" class="kz-lang-btn" data-lang="en" title="English" type="button">EN</button>
 <span aria-hidden="true" class="kz-lang-sep">/</span>
 <button aria-label="हिंदी" class="kz-lang-btn active" data-lang="hi" title="हिंदी" type="button">हिंदी</button>
 </div>
 <a class="btn-nav-call notranslate" href="tel:+919284517427" title="Call Kezza Clinic" translate="no"><i class="fas fa-phone-alt"></i> <span>9284517427</span></a>
-<a class="btn-primary" data-open-chatbot-consultant="" href="#chat-consultant">Book Consultation</a>
+<a class="btn-primary" data-open-chatbot-consultant="" href="/book-appointment.html">Book Consultation</a>
 </div>
 <div aria-label="Select Language" class="kz-lang-switcher kz-lang-switcher-mobile notranslate" role="group" translate="no">
 <i aria-hidden="true" class="fas fa-globe kz-globe-icon"></i>
-<button aria-label="EN - English" class="kz-lang-btn" data-lang="en" title="English" type="button">EN</button>
+<button aria-label="English" class="kz-lang-btn" data-lang="en" title="English" type="button">EN</button>
 <span aria-hidden="true" class="kz-lang-sep">/</span>
 <button aria-label="हिंदी" class="kz-lang-btn active" data-lang="hi" title="हिंदी" type="button">हिंदी</button>
 </div>
-<button type="button" class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMenu">
+<div class="hamburger" id="hamburger">
 <span></span>
 <span></span>
 <span></span>
-</button>
+</div>
 </div>
 </nav>
 <main class="service-page-main" id="content-start">
@@ -744,8 +744,8 @@
 <li><i aria-hidden="true" class="fab fa-whatsapp"></i><span><a href="https://wa.me/919284517427" rel="noopener noreferrer" target="_blank">WhatsApp +91-9284517427</a></span></li>
 <li><i aria-hidden="true" class="fas fa-envelope"></i><span><a href="mailto:support@kezza.co.in">support@kezza.co.in</a></span></li>
 <li><i aria-hidden="true" class="fas fa-map-marker-alt"></i><span><a href="/locations/jaipur/"><strong>Jaipur</strong></a>: A-7, 1st Floor, Hanuman Nagar, Sirsi Road, Khatipura</span></li>
-<li><i aria-hidden="true" class="fas fa-map-marker-alt"></i><span><a href="/locations/sikar/"><strong>Sikar</strong></a>: 1st Floor, Shakambhari Heights, Opp. S.K. Hospital, Silver Jubilee Road</span></li>
-<li><i aria-hidden="true" class="fas fa-map-marker-alt"></i><span><a href="/locations/ajmer/"><strong>Ajmer</strong></a>: 1st Floor, Oasis Complex &amp; Hotels, Shastri Nagar, Jawahar Nagar</span></li>
+<li><i aria-hidden="true" class="fas fa-map-marker-alt"></i><span><a href="/locations/sikar/"><strong>Sikar</strong></a>: 4th Floor, Shakambhari Heights, Opposite S.K. Hospital, Silver Jubilee Road</span></li>
+<li><i aria-hidden="true" class="fas fa-map-marker-alt"></i><span><a href="/locations/ajmer/"><strong>Ajmer</strong></a>: 1st Floor, Hotel Oasis Complex, Shastri Nagar, Jawahar Nagar</span></li>
 </ul>
 </div>
 </div>
@@ -757,18 +757,21 @@
 <script>document.querySelectorAll(".footer-year").forEach(e=>e.textContent=new Date().getFullYear());</script>
 </footer>
 <div class="social-sidebar">
-<a class="social-icon instagram" href="https://www.instagram.com/kezza_clinic/" rel="noopener noreferrer" target="_blank" title="Instagram">
+<a aria-label="Instagram" class="social-icon instagram" data-tooltip="Instagram" href="https://www.instagram.com/kezza_clinic/" rel="noopener noreferrer" target="_blank" title="Instagram">
 <i class="fab fa-instagram"></i>
 </a>
-<a class="social-icon facebook" href="https://www.facebook.com/kezzaclinic" rel="noopener noreferrer" target="_blank" title="Facebook">
+<a aria-label="Facebook" class="social-icon facebook" data-tooltip="Facebook" href="https://www.facebook.com/kezzaclinic" rel="noopener noreferrer" target="_blank" title="Facebook">
 <i class="fab fa-facebook"></i>
 </a>
-<a class="social-icon whatsapp" href="https://wa.me/919284517427" rel="noopener noreferrer" target="_blank" title="WhatsApp">
+<a aria-label="WhatsApp" class="social-icon whatsapp" data-tooltip="WhatsApp" href="https://wa.me/919284517427" rel="noopener noreferrer" target="_blank" title="WhatsApp">
 <i class="fab fa-whatsapp"></i>
 </a>
-<a aria-label="Kezza Clinic YouTube" class="social-icon youtube" href="https://www.youtube.com/@Kezza_Clinic_Jaipur" rel="noopener noreferrer" target="_blank" title="Kezza Clinic YouTube">
+<a aria-label="Kezza Clinic YouTube" class="social-icon youtube" data-tooltip="YouTube" href="https://www.youtube.com/@Kezza_Clinic_Jaipur" rel="noopener noreferrer" target="_blank" title="Kezza Clinic YouTube">
 <i class="fab fa-youtube"></i>
 </a>
+<button aria-label="Share this page" class="social-icon share-trigger" data-tooltip="Share Page" title="Share Page" type="button">
+<i class="fas fa-share-alt"></i>
+</button>
 </div>
 <div class="floating-quick-dock" id="floatingQuickDock">
 <a class="dock-item dock-call" href="tel:+919284517427" title="Call Clinic">
@@ -787,14 +790,14 @@
 <button aria-label="ऊपर स्क्रॉल करें" id="kzBackToTop" title="वापस ऊपर जाएँ" type="button">
 <i class="fas fa-chevron-up"></i>
 </button>
-<script defer="" src="/js/script.min.js?v=f1ac2802"></script>
-<script defer="" src="/js/mobile-menu.min.js?v=bde3d61f"></script>
-<script defer="" src="/js/telecrm.min.js?v=750f5f2e"></script>
-<script defer="" src="/js/services-navigation.min.js?v=c26e2b84"></script>
-<script defer="" src="/js/quick-actions.min.js?v=1332e94e"></script>
-<script defer="" src="/js/scanner-launch.min.js?v=e1eb089b"></script>
-<script defer="" src="/js/smooth-scroll.min.js?v=2f4198bd"></script>
-<script defer="" src="/js/pro-animations.min.js?v=cbb0c4c8"></script>
-<script defer="" src="/js/translate.min.js?v=ec151fef"></script>
+<script defer="" src="/js/script.min.js?v=34062363"></script>
+<script defer="" src="/js/mobile-menu.min.js?v=a6f58f7a"></script>
+<script defer="" src="/js/telecrm.min.js?v=61919537"></script>
+<script defer="" src="/js/services-navigation.min.js?v=fc6976c7"></script>
+<script defer="" src="/js/quick-actions.min.js?v=7451e408"></script>
+<script defer="" src="/js/scanner-launch.min.js?v=ab347527"></script>
+<script defer="" src="/js/smooth-scroll.min.js?v=4eca7d25"></script>
+<script defer="" src="/js/pro-animations.min.js?v=80af9053"></script>
+<script defer="" src="/js/translate.min.js?v=70bbb3cd"></script>
 </body>
 </html>

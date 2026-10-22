@@ -31,6 +31,123 @@
         });
     }
 
+    /* ── 1b. Verticals Carousel: horizontal scroll tracks, arrows, drag, and sticky nav ── */
+    function initVerticalsCarousel() {
+        var tracks = document.querySelectorAll('.kz-cards-scroll-track');
+        if (!tracks.length) return;
+
+        tracks.forEach(function (track) {
+            var container = track.closest('.kz-cards-scroll-container') || track.parentElement;
+            var verticalBlock = track.closest('.kz-vertical-block');
+            var prevBtn = verticalBlock ? verticalBlock.querySelector('.kz-scroll-prev') : null;
+            var nextBtn = verticalBlock ? verticalBlock.querySelector('.kz-scroll-next') : null;
+            var progressBar = container ? container.querySelector('.kz-scroll-progress-fill') : null;
+
+            function getScrollAmount() {
+                var firstCard = track.querySelector('.treatment-item-card');
+                return firstCard ? (firstCard.offsetWidth + 22) : 340;
+            }
+
+            function updateControls() {
+                var maxScroll = track.scrollWidth - track.clientWidth;
+                if (prevBtn) {
+                    var atStart = track.scrollLeft <= 5;
+                    prevBtn.disabled = atStart;
+                    prevBtn.style.opacity = atStart ? '0.35' : '1';
+                    prevBtn.style.pointerEvents = atStart ? 'none' : 'auto';
+                }
+                if (nextBtn) {
+                    var atEnd = track.scrollLeft >= maxScroll - 5;
+                    nextBtn.disabled = atEnd;
+                    nextBtn.style.opacity = atEnd ? '0.35' : '1';
+                    nextBtn.style.pointerEvents = atEnd ? 'none' : 'auto';
+                }
+                if (progressBar && maxScroll > 0) {
+                    var pct = Math.min(100, Math.max(16, (track.scrollLeft / maxScroll) * 100));
+                    progressBar.style.width = pct + '%';
+                }
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function () {
+                    track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+                });
+            }
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function () {
+                    track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                });
+            }
+
+            track.addEventListener('scroll', function () {
+                requestAnimationFrame(updateControls);
+            }, { passive: true });
+
+            // Mouse Drag to Scroll
+            var isDown = false;
+            var startX = 0;
+            var scrollLeftStart = 0;
+
+            track.addEventListener('mousedown', function (e) {
+                if (e.target.closest('a, button')) return;
+                isDown = true;
+                track.classList.add('is-dragging');
+                startX = e.pageX - track.offsetLeft;
+                scrollLeftStart = track.scrollLeft;
+            });
+            window.addEventListener('mouseup', function () {
+                if (isDown) {
+                    isDown = false;
+                    track.classList.remove('is-dragging');
+                }
+            });
+            track.addEventListener('mousemove', function (e) {
+                if (!isDown) return;
+                e.preventDefault();
+                var x = e.pageX - track.offsetLeft;
+                var walk = (x - startX) * 1.4;
+                track.scrollLeft = scrollLeftStart - walk;
+            });
+
+            updateControls();
+        });
+
+        // Tab switching: Show ONLY the selected vertical
+        var navBtns = document.querySelectorAll('.kz-vnav-btn[data-tab]');
+        var verticalBlocks = document.querySelectorAll('.kz-vertical-block[data-vertical]');
+
+        function switchVerticalTab(tabName) {
+            navBtns.forEach(function (btn) {
+                var isActive = btn.getAttribute('data-tab') === tabName;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
+
+            verticalBlocks.forEach(function (block) {
+                var isActive = block.getAttribute('data-vertical') === tabName;
+                block.classList.toggle('active', isActive);
+                if (isActive) {
+                    var track = block.querySelector('.kz-cards-scroll-track');
+                    if (track) {
+                        setTimeout(function () {
+                            track.dispatchEvent(new Event('scroll'));
+                        }, 50);
+                    }
+                }
+            });
+        }
+
+        navBtns.forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                var tab = btn.getAttribute('data-tab');
+                if (tab) {
+                    switchVerticalTab(tab);
+                }
+            });
+        });
+    }
+
     /* ── 2. Before/After slider: keyboard + ARIA ───────────────────────────
        pro-animations.js already handles mouse and touch. This adds the
        accessible half without touching that logic.                          */
@@ -141,12 +258,8 @@
             btn.addEventListener('click', function () {
                 var city = this.getAttribute('data-city') || 'all';
 
-                filterBtns.forEach(function (b) {
-                    b.classList.remove('active');
-                    b.setAttribute('aria-pressed', 'false');
-                });
+                filterBtns.forEach(function (b) { b.classList.remove('active'); });
                 this.classList.add('active');
-                this.setAttribute('aria-pressed', 'true');
 
                 branches.forEach(function (branch) {
                     var branchCity = branch.getAttribute('data-city');
@@ -167,41 +280,13 @@
         });
     }
 
-    /* ── 6. Lazy load video posters below the fold ──────────────────── */
-    function initLazyVideoPosters() {
-        var videos = document.querySelectorAll('video[data-poster]');
-        if (!videos.length) return;
-        if ('IntersectionObserver' in window) {
-            var observer = new IntersectionObserver(function (entries, obs) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        var v = entry.target;
-                        if (v.dataset.poster) {
-                            v.poster = v.dataset.poster;
-                            delete v.dataset.poster;
-                        }
-                        obs.unobserve(v);
-                    }
-                });
-            }, { rootMargin: '400px 0px' });
-            videos.forEach(function (v) { observer.observe(v); });
-        } else {
-            videos.forEach(function (v) {
-                if (v.dataset.poster) {
-                    v.poster = v.dataset.poster;
-                    delete v.dataset.poster;
-                }
-            });
-        }
-    }
-
     function boot() {
         initServicesReveal();
+        initVerticalsCarousel();
         initComparisonA11y();
         initFaq();
         initTeaserAutoDismiss();
         initBranchFilters();
-        initLazyVideoPosters();
     }
 
     if (document.readyState === 'loading') {

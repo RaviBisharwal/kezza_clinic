@@ -121,26 +121,9 @@
     .hero-image::before,
     .hero-photo-frame img, .hero-photo-shimmer,
     .doctor-verified-badge i,
-    .hero-copy .hero-h1 .hero-line-1,
-    .hero-copy .hero-h1 .hero-line-2,
-    .hero-copy .hero-h1 .hero-line-3,
-    .hero-copy .hero-sub,
-    .hero-copy .hero-ctas,
-    .hero-copy .hero-eyebrow,
-    .hero-section .slide:nth-child(1) {
+    .hero-content, .hero-image, .hero-editorial-col, .hero-visual-col {
         animation: none !important;
-    }
-    .hero-copy .hero-h1 .hero-line-1,
-    .hero-copy .hero-h1 .hero-line-2,
-    .hero-copy .hero-h1 .hero-line-3,
-    .hero-copy .hero-sub,
-    .hero-copy .hero-ctas,
-    .hero-copy .hero-eyebrow {
-        opacity: 1 !important;
         transform: none !important;
-    }
-    .hero-section .slide {
-        will-change: auto !important;
     }
     /* the permanent-makeup page's dark theme sets its loops with "html body …" selectors */
     html body section + section::before,
@@ -152,6 +135,10 @@
     html body .final-cta-section::after,
     html body .pmu-hero-section::before,
     html body .hero-section::before,
+    html body .hero-content,
+    html body .hero-image,
+    html body .hero-editorial-col,
+    html body .hero-visual-col,
     html body .advantage-icon,
     html body .why-icon,
     html body .feature-icon,
@@ -273,7 +260,7 @@
     }
 }
 @keyframes kzTipAutoHide {
-    to { opacity: 0; transform: translateY(6px); pointer-events: none; }
+    to { opacity: 0; visibility: hidden; transform: translateY(6px); }
 }
 
 /* ── 7. Reduce motion (phone/OS accessibility setting) ── */
@@ -286,102 +273,122 @@
     }
 }
 
-/* ── 8. Reading Progress & Floating Back To Top (Global Zero-Reflow Static Styles) ── */
-#kzScrollProgress {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 3px !important;
-    background: linear-gradient(90deg, #00abba 0%, #00c4d6 40%, #00AFC0 85%, #00AFC0 100%) !important;
-    box-shadow: 0 1px 8px rgba(0, 171, 186, 0.45) !important;
-    transform-origin: 0% 50% !important;
-    transform: scaleX(0);
-    z-index: 10002 !important;
+/* ── 8. Universal 60fps/120fps Scroll Performance Engine ── */
+/* While actively scrolling, ignore pointer hover recalculations for maximum frame rate */
+body.is-scrolling * {
     pointer-events: none !important;
-    will-change: transform !important;
-    transition: opacity 0.25s ease !important;
+}
+body.is-scrolling .navbar,
+body.is-scrolling .floating-quick-dock,
+body.is-scrolling #kzBackToTop,
+body.is-scrolling #navMenu {
+    pointer-events: auto !important;
 }
 
-#kzBackToTop {
-    position: fixed !important;
-    bottom: 24px !important;
-    left: 24px !important;
-    width: 42px !important;
-    height: 42px !important;
-    border-radius: 50% !important;
-    background: rgba(10, 18, 36, 0.94) !important;
-    border: 1.5px solid rgba(0, 175, 192, 0.5) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    color: #00AFC0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-size: 14px !important;
-    cursor: pointer !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 15px rgba(0, 171, 186, 0.15) !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    transform: translateY(12px) translateZ(0) !important;
-    transition: all 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    z-index: 995 !important;
-    outline: none !important;
-    -webkit-tap-highlight-color: transparent !important;
-    padding: 0 !important;
-    margin: 0 !important;
+/* ── 9. Professional Cumulative Layout Shift (CLS) Elimination Engine ── */
+/* Bundled critical @font-face definitions with font-display: optional.
+   Ensures the browser evaluates font-display before rendering, guaranteeing 0 font-swap layout shifts */
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 400 800;
+    font-display: optional;
+    src: url(https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yygg_vb.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: optional;
+    src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-#kzBackToTop i {
-    color: #00AFC0 !important;
-    font-size: 14px !important;
-    transition: transform 0.25s ease, color 0.25s ease !important;
-    display: inline-block !important;
-    line-height: 1 !important;
+/* Metric overrides for local system fallbacks so text geometry matches Plus Jakarta Sans & Inter exactly */
+@font-face {
+    font-family: 'Plus Jakarta Sans Fallback';
+    src: local('Arial'), local('Helvetica');
+    ascent-override: 96%;
+    descent-override: 24%;
+    line-gap-override: 0%;
+    size-adjust: 102%;
+}
+@font-face {
+    font-family: 'Inter Fallback';
+    src: local('Arial'), local('Helvetica');
+    ascent-override: 92%;
+    descent-override: 24%;
+    line-gap-override: 0%;
+    size-adjust: 101%;
 }
 
-#kzBackToTop.is-visible {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) translateZ(0) !important;
+/* Universal FontAwesome icon bounding-box pre-reservation:
+   Prevents FOUT/icon-popping shifts while FontAwesome CSS loads asynchronously */
+i[class*="fa-"], .fas, .fab, .far, .fa {
+    display: inline-block;
+    width: 1.15em;
+    min-width: 1.15em;
+    height: 1.15em;
+    line-height: 1;
+    text-align: center;
+    vertical-align: -0.125em;
+    box-sizing: border-box;
+}
+.kz-globe-icon { width: 14px !important; min-width: 14px !important; height: 14px !important; }
+.nav-arrow { width: 10px !important; min-width: 10px !important; height: 10px !important; }
+.cta-arrow { width: 12px !important; min-width: 12px !important; height: 12px !important; }
+.kz-back-btn i { width: 14px !important; min-width: 14px !important; height: 14px !important; }
+.dock-item i { width: 18px !important; min-width: 18px !important; height: 18px !important; }
+
+
+/* Safe layout isolation WITHOUT synthetic intrinsic size placeholders:
+   (Eliminates the massive 0.82 layout shifts caused by content-visibility: auto + 800px placeholder) */
+.patient-reviews-section,
+.doctors-section,
+.faq-section,
+.case-studies-section,
+.transformation-cards-section,
+.site-footer,
+.footer,
+.footer-section {
+    content-visibility: visible !important;
+    contain: none !important;
 }
 
-#kzBackToTop:hover {
-    background: linear-gradient(135deg, #00abba 0%, #008f9c 100%) !important;
-    border-color: #00c4d6 !important;
-    box-shadow: 0 10px 28px rgba(0, 171, 186, 0.5) !important;
-    transform: translateY(-3px) scale(1.06) translateZ(0) !important;
+/* Structural bounding box stability */
+.navbar {
+    min-height: 56px !important;
+}
+.service-breadcrumbs {
+    min-height: 44px !important;
+}
+.service-breadcrumbs ol {
+    min-height: 22px !important;
+}
+.kz-trust-strip {
+    min-height: 52px !important;
+}
+.hero-metrics-strip {
+    min-height: 52px !important;
+}
+.hero-cta-actions {
+    min-height: 48px !important;
+}
+.branches-hero-section, .contact-hero-section, .service-hero-section {
+    contain: layout style;
+}
+h1, .hero-h1, .hero-main-heading, .dc-hero-title, .sm-hero-title, .pmu-hero-content h1 {
+    line-height: 1.2 !important;
+    text-rendering: optimizeLegibility;
 }
 
-#kzBackToTop:hover i {
-    color: #ffffff !important;
-    transform: translateY(-1px) !important;
-}
-
-@media (max-width: 768px) {
-    #kzBackToTop {
-        bottom: 84px !important;
-        left: 16px !important;
-        width: 38px !important;
-        height: 38px !important;
-    }
-    #kzBackToTop i {
-        font-size: 13px !important;
-    }
-}
-
-/* ── 7. Render-tree pruning for below-the-fold sections ── */
-.why-kezza-section,
-.stats-section-pro,
-.services-master-section,
-.gallery-section,
-.testimonials-section,
-.kz-branches,
-.kz-faq,
-.contact-cta-section,
-.footer {
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 600px;
+/* Isolate GPU compositing layers */
+.floating-quick-dock,
+#kzBackToTop,
+.navbar {
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 

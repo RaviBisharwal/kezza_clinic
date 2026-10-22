@@ -10,8 +10,8 @@
  */
 (function () {
   var SELECTORS = '.nav-scanner-link, .btn-scanner-hero, .dock-scan, [data-open-scanner-modal]';
-  var CSS_URL = '/css/bundle-scanner-modal.min.css?v=b1c1b442';
-  var JS_URL  = '/js/scanner-modal.min.js?v=978a3a40';
+  var CSS_URL = '/css/bundle-scanner-modal.min.css?v=43d56733';
+  var JS_URL  = '/js/scanner-modal.min.js?v=5517a74b';
   var AUTO_KEY = 'kezza_scanner_auto_shown';
   var loading = null;
 
@@ -86,8 +86,8 @@
   var isScannerPage = path.endsWith('face-scanner.html') || path.endsWith('face-scanner');
   var isAdminPage   = path.indexOf('admin') !== -1;
   var alreadyShown = false;
-  var isMobile = (window.innerWidth <= 768) || (window.matchMedia && window.matchMedia('(max-width: 768px)').matches);
-  if (isScannerPage || isAdminPage || alreadyShown || isMobile) return;
+  try { alreadyShown = sessionStorage.getItem(AUTO_KEY) === 'true'; } catch (err) { alreadyShown = false; }
+  if (isScannerPage || isAdminPage || alreadyShown) return;
 
   // Never pop up over something the visitor is busy with.
   function visitorIsBusy() {
