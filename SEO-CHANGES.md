@@ -210,9 +210,9 @@ pages, your navigation and footer changes, your edit to the Norwood article) is 
    and the 3 clinic pages.
 5. **Google Business Profiles:** set each profile's website link to its clinic page, with tracking so you can see
    these visits in Analytics:
-   - Jaipur: `https://www.kezza.co.in/locations/jaipur/?utm_source=google&utm_medium=organic&utm_campaign=gbp`
-   - Sikar: `https://www.kezza.co.in/locations/sikar/?utm_source=google&utm_medium=organic&utm_campaign=gbp`
-   - Ajmer: `https://www.kezza.co.in/locations/ajmer/?utm_source=google&utm_medium=organic&utm_campaign=gbp`
+   - Jaipur: `https://www.kezza.co.in/locations/jaipur/?utm_source=google&utm_medium=organic&utm_campaign=gbp-jaipur`
+   - Sikar: `https://www.kezza.co.in/locations/sikar/?utm_source=google&utm_medium=organic&utm_campaign=gbp-sikar`
+   - Ajmer: `https://www.kezza.co.in/locations/ajmer/?utm_source=google&utm_medium=organic&utm_campaign=gbp-ajmer`
 
 ## B. What changed
 
