@@ -169,16 +169,16 @@
    "canonical": "https://www.kezza.co.in/before-after.html",
    "robots": "index, follow (default)",
    "schema": "BreadcrumbList, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Home > Before & After",
    "breadcrumb_schema": "Home > Before & After",
-   "links_in_contextual": 0,
+   "links_in_contextual": 1,
    "links_in_nav_footer": 4,
-   "links_out_contextual": 6,
+   "links_out_contextual": 7,
    "links_out_nav_footer": 5,
    "words_main": 444,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
-   "orphan_status": "weak"
+   "orphan_status": "linked"
   },
   {
    "url": "https://www.kezza.co.in/blepharoplasty/",
@@ -889,11 +889,11 @@
    "canonical": "https://www.kezza.co.in/book-appointment.html",
    "robots": "index, follow (default)",
    "schema": "BreadcrumbList, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Home > Book Appointment",
    "breadcrumb_schema": "Home > Book Appointment",
    "links_in_contextual": 1,
    "links_in_nav_footer": 65,
-   "links_out_contextual": 6,
+   "links_out_contextual": 7,
    "links_out_nav_footer": 5,
    "words_main": 174,
    "in_sitemap": "yes",
@@ -1069,11 +1069,11 @@
    "canonical": "https://www.kezza.co.in/cost-estimator.html",
    "robots": "index, follow (default)",
    "schema": "BreadcrumbList, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Home > Cost Estimator",
    "breadcrumb_schema": "Home > Cost Estimator",
    "links_in_contextual": 1,
    "links_in_nav_footer": 8,
-   "links_out_contextual": 6,
+   "links_out_contextual": 7,
    "links_out_nav_footer": 5,
    "words_main": 276,
    "in_sitemap": "yes",
@@ -1159,16 +1159,16 @@
    "canonical": "https://www.kezza.co.in/doctor-videos.html",
    "robots": "index, follow (default)",
    "schema": "BreadcrumbList, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Home > Doctor Videos",
    "breadcrumb_schema": "Home > Doctor Videos",
-   "links_in_contextual": 0,
+   "links_in_contextual": 1,
    "links_in_nav_footer": 4,
-   "links_out_contextual": 6,
+   "links_out_contextual": 7,
    "links_out_nav_footer": 5,
    "words_main": 317,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
-   "orphan_status": "weak"
+   "orphan_status": "linked"
   },
   {
    "url": "https://www.kezza.co.in/doctors/dr-aliza-rizvi/",
@@ -2001,11 +2001,11 @@
    "schema": "FAQPage, MedicalClinic, MedicalOrganization, WebPage, WebSite",
    "breadcrumb_visible": "",
    "breadcrumb_schema": "",
-   "links_in_contextual": 90,
+   "links_in_contextual": 95,
    "links_in_nav_footer": 95,
-   "links_out_contextual": 24,
+   "links_out_contextual": 27,
    "links_out_nav_footer": 47,
-   "words_main": 2026,
+   "words_main": 2046,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -2389,13 +2389,13 @@
    "canonical": "https://www.kezza.co.in/offers/bridal-packages/",
    "robots": "index, follow (default)",
    "schema": "BreadcrumbList, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Home > Pre-Bridal Packages",
    "breadcrumb_schema": "Home > Pre-Bridal Packages",
    "links_in_contextual": 6,
    "links_in_nav_footer": 0,
    "links_out_contextual": 3,
    "links_out_nav_footer": 6,
-   "words_main": 335,
+   "words_main": 339,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -2419,13 +2419,13 @@
    "canonical": "https://www.kezza.co.in/offers/hair-transplant/",
    "robots": "index, follow (default)",
    "schema": "BreadcrumbList, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Home > Hair Transplant Offer",
    "breadcrumb_schema": "Home > Hair Transplant Offer",
    "links_in_contextual": 6,
    "links_in_nav_footer": 0,
    "links_out_contextual": 4,
    "links_out_nav_footer": 5,
-   "words_main": 310,
+   "words_main": 315,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -2449,13 +2449,13 @@
    "canonical": "https://www.kezza.co.in/offers/laser-hair-reduction/",
    "robots": "index, follow (default)",
    "schema": "BreadcrumbList, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Home > Laser Hair Reduction Offer",
    "breadcrumb_schema": "Home > Laser Hair Reduction Offer",
    "links_in_contextual": 6,
    "links_in_nav_footer": 0,
    "links_out_contextual": 3,
    "links_out_nav_footer": 5,
-   "words_main": 362,
+   "words_main": 368,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -2479,13 +2479,13 @@
    "canonical": "https://www.kezza.co.in/offers/rhinoplasty/",
    "robots": "index, follow (default)",
    "schema": "BreadcrumbList, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Home > Rhinoplasty Offer",
    "breadcrumb_schema": "Home > Rhinoplasty Offer",
    "links_in_contextual": 6,
    "links_in_nav_footer": 0,
    "links_out_contextual": 3,
    "links_out_nav_footer": 5,
-   "words_main": 314,
+   "words_main": 318,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -2719,16 +2719,16 @@
    "canonical": "https://www.kezza.co.in/reviews.html",
    "robots": "index, follow (default)",
    "schema": "BreadcrumbList, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "",
+   "breadcrumb_visible": "Home > Reviews",
    "breadcrumb_schema": "Home > Reviews",
-   "links_in_contextual": 0,
+   "links_in_contextual": 1,
    "links_in_nav_footer": 8,
-   "links_out_contextual": 7,
+   "links_out_contextual": 8,
    "links_out_nav_footer": 5,
    "words_main": 80,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
-   "orphan_status": "weak"
+   "orphan_status": "linked"
   },
   {
    "url": "https://www.kezza.co.in/rhinoplasty/",
@@ -3034,73 +3034,8 @@
  "issues": [
   {
    "severity": "info",
-   "page": "before-after.html",
-   "message": "breadcrumb in schema only (no visible trail)"
-  },
-  {
-   "severity": "info",
-   "page": "book-appointment.html",
-   "message": "breadcrumb in schema only (no visible trail)"
-  },
-  {
-   "severity": "info",
-   "page": "cost-estimator.html",
-   "message": "breadcrumb in schema only (no visible trail)"
-  },
-  {
-   "severity": "info",
-   "page": "doctor-videos.html",
-   "message": "breadcrumb in schema only (no visible trail)"
-  },
-  {
-   "severity": "claim",
-   "page": "index.html",
-   "message": "painless (needs qualifying): \"…ultipole RF RF Multipolar Body Tightening 40 Mins Painless 4.8 (610+) Controlled radiofrequency en…\""
-  },
-  {
-   "severity": "info",
-   "page": "offers/bridal-packages/index.html",
-   "message": "breadcrumb in schema only (no visible trail)"
-  },
-  {
-   "severity": "info",
-   "page": "offers/hair-transplant/index.html",
-   "message": "breadcrumb in schema only (no visible trail)"
-  },
-  {
-   "severity": "info",
-   "page": "offers/laser-hair-reduction/index.html",
-   "message": "breadcrumb in schema only (no visible trail)"
-  },
-  {
-   "severity": "info",
-   "page": "offers/rhinoplasty/index.html",
-   "message": "breadcrumb in schema only (no visible trail)"
-  },
-  {
-   "severity": "info",
-   "page": "reviews.html",
-   "message": "breadcrumb in schema only (no visible trail)"
-  },
-  {
-   "severity": "info",
    "page": "locations/jaipur/index.html",
    "message": "content 21% similar to locations/sikar/index.html"
-  },
-  {
-   "severity": "warning",
-   "page": "before-after.html",
-   "message": "weak: linked only from navigation/footer (4 pages)"
-  },
-  {
-   "severity": "warning",
-   "page": "doctor-videos.html",
-   "message": "weak: linked only from navigation/footer (4 pages)"
-  },
-  {
-   "severity": "warning",
-   "page": "reviews.html",
-   "message": "weak: linked only from navigation/footer (8 pages)"
   }
  ],
  "near_duplicates": [
