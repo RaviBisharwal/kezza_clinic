@@ -3,7 +3,7 @@
   "categories": {
     "hair": {"name": "Hair", "label": "Hair Services", "hub": "/hair-services.html", "consultation": "/hair-loss-consultation.html"},
     "skin": {"name": "Skin", "label": "Skin Services", "hub": "/skin-services.html", "consultation": "/skin-services.html#consultation"},
-    "weight-loss": {"name": "Weight Loss", "label": "Weight Loss", "hub": "/weight-loss.html", "consultation": "/weight-loss.html#consultation"},
+    "weight-loss": {"name": "Weight Management", "label": "Weight Management", "hub": "/weight-loss.html", "consultation": "/weight-loss.html#consultation"},
     "pmu": {"name": "Permanent Makeup", "label": "Permanent Makeup", "hub": "/permanent-makeup.html", "consultation": "/permanent-makeup.html#consultation"}
   },
   "treatments": [
@@ -295,7 +295,7 @@
      "intent": {"primary": "hair treatment in jaipur", "secondary": ["hair clinic jaipur", "hair loss treatments"], "audience": "People with any hair concern", "purpose": "commercial investigation", "conversion": "Choose a treatment → consultation"}},
     {"id": "hub-skin", "name": "Skin Services", "type": "hub", "category": "skin", "file": "skin-services.html", "url": "/skin-services.html", "og": "/images/og/skin-services.jpg", "llms": "acne and scars, pigmentation, dark circles, anti-ageing, Botox, fillers, facials, glutathione, laser",
      "intent": {"primary": "skin specialist in jaipur", "secondary": ["skin clinic jaipur", "skin treatments"], "audience": "People with any skin concern", "purpose": "commercial investigation", "conversion": "Choose a treatment → consultation"}},
-    {"id": "hub-weight", "name": "Weight Loss", "type": "hub", "category": "weight-loss", "file": "weight-loss.html", "url": "/weight-loss.html", "og": "/images/og/weight-loss.jpg", "llms": "non-surgical body sculpting: cryolipolysis, HIFU body sculpting, double-chin reduction (Jaipur and Sikar)",
+    {"id": "hub-weight", "name": "Weight Management", "type": "hub", "category": "weight-loss", "file": "weight-loss.html", "url": "/weight-loss.html", "og": "/images/og/weight-loss.jpg", "llms": "non-surgical body sculpting: cryolipolysis, HIFU body sculpting, double-chin reduction (Jaipur and Sikar)",
      "intent": {"primary": "non-surgical weight loss in jaipur", "secondary": ["body sculpting jaipur", "inch loss treatment"], "audience": "People wanting fat reduction without surgery", "purpose": "commercial investigation", "conversion": "Body-composition assessment"}},
     {"id": "hub-pmu", "name": "Permanent Makeup", "type": "hub", "category": "pmu", "file": "permanent-makeup.html", "url": "/permanent-makeup.html", "og": "/images/og/permanent-makeup.jpg", "llms": "microblading, powder brows, lip blush, permanent eyeliner and corrections (Jaipur and Sikar)",
      "intent": {"primary": "permanent makeup in jaipur", "secondary": ["pmu jaipur", "cosmetic tattoo jaipur"], "audience": "People wanting long-lasting brows, liner or lip colour", "purpose": "commercial investigation", "conversion": "PMU consultation"}},

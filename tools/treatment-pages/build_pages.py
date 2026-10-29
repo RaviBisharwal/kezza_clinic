@@ -120,7 +120,7 @@ def build_navbar():
 </ul>
 <div class="mega-col-header" style="margin-top:18px;">
 <i class="fas fa-weight-scale mega-col-icon"></i>
-<a class="mega-col-title" href="/weight-loss.html">Weight Loss</a>
+<a class="mega-col-title" href="/weight-loss.html">Weight Management</a>
 </div>
 <ul class="mega-link-list">
 <li><a class="mega-link" href="/weight-management/">Medical Weight Loss</a></li>
@@ -194,7 +194,7 @@ def build_footer():
 <li><a href="/blog/">Hair &amp; Skin Blog</a></li>
 <li><a href="/face-scanner.html">AI Face Scanner</a></li>
 <li><a href="/permanent-makeup.html">Permanent Makeup</a></li>
-<li><a href="/weight-loss.html">Weight Loss</a></li>
+<li><a href="/weight-loss.html">Weight Management</a></li>
 <li><a href="/branches.html">Franchise</a></li>
 <li><a href="/contact.html">Contact Us</a></li>
 <li><a href="/terms.html">Privacy &amp; Terms</a></li>

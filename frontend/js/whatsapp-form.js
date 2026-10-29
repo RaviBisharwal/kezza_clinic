@@ -62,6 +62,18 @@
                 { id: 'Other Skin Concern', name: 'Other Skin Concern', icon: 'fa-comment-medical', popular: false }
             ]
         },
+        'Weight Management': {
+            badge: 'Body Contouring',
+            doctor: 'Clinical Body Sculpting Specialist & Nutritionist',
+            procedures: [
+                { id: 'Cryolipolysis (360° Fat Freezing)', name: '360° Fat Freezing', icon: 'fa-snowflake', popular: true },
+                { id: 'HIFU Non-Surgical Body Sculpting', name: 'HIFU Body Sculpting', icon: 'fa-wave-square', popular: true },
+                { id: 'Inch Loss & Tummy Tightening', name: 'Inch Loss & Tummy Tightening', icon: 'fa-compress-arrows-alt', popular: true },
+                { id: 'Double Chin Reduction', name: 'Double Chin Reduction', icon: 'fa-smile', popular: true },
+                { id: 'Medical Weight Management Protocol', name: 'Medical Weight Management Protocol', icon: 'fa-weight', popular: false },
+                { id: 'Other Body Sculpting Concern', name: 'Other Body Concern', icon: 'fa-comment-medical', popular: false }
+            ]
+        },
         'Weight Loss': {
             badge: 'Body Contouring',
             doctor: 'Clinical Body Sculpting Specialist & Nutritionist',
@@ -70,7 +82,7 @@
                 { id: 'HIFU Non-Surgical Body Sculpting', name: 'HIFU Body Sculpting', icon: 'fa-wave-square', popular: true },
                 { id: 'Inch Loss & Tummy Tightening', name: 'Inch Loss & Tummy Tightening', icon: 'fa-compress-arrows-alt', popular: true },
                 { id: 'Double Chin Reduction', name: 'Double Chin Reduction', icon: 'fa-smile', popular: true },
-                { id: 'Medical Weight Loss Protocol', name: 'Medical Weight Loss Protocol', icon: 'fa-weight', popular: false },
+                { id: 'Medical Weight Management Protocol', name: 'Medical Weight Management Protocol', icon: 'fa-weight', popular: false },
                 { id: 'Other Body Sculpting Concern', name: 'Other Body Concern', icon: 'fa-comment-medical', popular: false }
             ]
         },
@@ -681,34 +693,48 @@
             const waChatMsg = `Hello Kezza Clinic ${lead.clinic}, I have booked a free consultation for ${lead.category} (${lead.subCategory}) on your website. Preferred Slot: ${lead.preferredSlot}. My Reference ID is ${lead.leadId}.`;
             const waChatUrl = `https://wa.me/${clinicPhone}?text=${encodeURIComponent(waChatMsg)}`;
 
+            // ── Redirect to the dedicated Consultation Confirmed page ──
+            // Store lead context in sessionStorage so the confirmation page
+            // can display the appointment summary without exposing data in the URL.
+            try {
+                sessionStorage.setItem('kz_booking_ref', lead.leadId || '');
+                sessionStorage.setItem('kz_name',    lead.name        || '');
+                sessionStorage.setItem('kz_phone',   lead.whatsapp    || lead.phone || '');
+                sessionStorage.setItem('kz_service', lead.treatment   || lead.category || '');
+                sessionStorage.setItem('kz_branch',  lead.clinic      || '');
+                sessionStorage.setItem('kz_time',    lead.preferredSlot || '');
+            } catch (e) { /* sessionStorage may be blocked in private mode */ }
+
+            // Build URL params as a lightweight fallback
+            const p = new URLSearchParams({
+                name:    lead.name        || '',
+                phone:   lead.whatsapp    || lead.phone || '',
+                service: lead.treatment   || lead.category || '',
+                branch:  lead.clinic      || '',
+                time:    lead.preferredSlot || '',
+                ref:     lead.leadId      || ''
+            });
+
+            // Determine confirmation page path (works on both /contact.html and sub-paths)
+            const confirmUrl = '/consultation-confirmed.html?' + p.toString();
+
+            // Show a brief in-card animation before navigating
             formCard.innerHTML = `
-                <div class="consultation-thank-you-card" role="status" aria-live="polite">
-                    <div class="cty-icon">
-                        <i class="fas fa-check"></i>
+                <div style="text-align:center;padding:48px 24px;">
+                    <div style="width:72px;height:72px;background:linear-gradient(135deg,#10b981,#059669);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 0 14px rgba(16,185,129,.12);">
+                        <i class="fas fa-check" style="font-size:30px;color:#fff;"></i>
                     </div>
-                    <h3 class="cty-title">Thank you, ${escapeHtml(lead.name)}!</h3>
-                    <p class="cty-message">
-                        Your free consultation request for <strong>${escapeHtml(lead.category)} &mdash; ${escapeHtml(lead.subCategory)}</strong> at our <strong>${escapeHtml(lead.clinic)}</strong> clinic has been confirmed.
-                    </p>
-                    <div class="cty-slot-badge" style="display:inline-flex; align-items:center; gap:6px; background:rgba(0,175,192,0.08); border:1px solid rgba(0,175,192,0.22); color:#007D8A; padding:6px 14px; border-radius:20px; font-size:0.82rem; font-weight:600; margin-bottom:14px;">
-                        <i class="far fa-clock"></i> Preferred Slot: ${escapeHtml(lead.preferredSlot)}
-                    </div>
-                    <div class="cty-ref-box">
-                        <i class="fas fa-receipt"></i> Reference: <strong>${escapeHtml(lead.leadId)}</strong>
-                    </div>
-                    <div class="cty-actions">
-                        <a href="${waChatUrl}" target="_blank" rel="noopener noreferrer" class="cty-btn-wa">
-                            <i class="fab fa-whatsapp"></i> Chat on WhatsApp (${escapeHtml(lead.clinic)})
-                        </a>
-                        <button type="button" class="cty-btn-reset" id="btnBookAnother">
-                            ← Book another consultation
-                        </button>
-                    </div>
+                    <p style="font-size:15px;font-weight:600;color:#0c1a2e;margin-bottom:6px;">Consultation Confirmed!</p>
+                    <p style="font-size:13px;color:#64748b;">Redirecting you to your booking summary…</p>
                 </div>
             `;
-
             formCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
+            setTimeout(function () {
+                window.location.href = confirmUrl;
+            }, 1200);
+
+            // Fire KezzaFollowUp CRM hook if present (before redirect)
             if (window.KezzaFollowUp && typeof window.KezzaFollowUp.show === 'function') {
                 window.KezzaFollowUp.show({
                     name: lead.name,
@@ -716,13 +742,6 @@
                     treatment: lead.treatment,
                     time: lead.preferredSlot,
                     leadId: lead.leadId
-                });
-            }
-
-            const resetBtn = document.getElementById('btnBookAnother');
-            if (resetBtn) {
-                resetBtn.addEventListener('click', function() {
-                    window.location.reload();
                 });
             }
         }

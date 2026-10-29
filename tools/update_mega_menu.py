@@ -70,7 +70,7 @@ NEW_BLOCK = '''\
                             <div class="mega-col">
                                 <div class="mega-col-header">
                                     <i class="fas fa-weight-scale mega-col-icon"></i>
-                                    <a href="weight-loss.html" class="mega-col-title">Weight Loss</a>
+                                    <a href="weight-loss.html" class="mega-col-title">Weight Management</a>
                                 </div>
                                 <ul class="mega-link-list">
                                     <li><a href="weight-loss.html#treatments" class="mega-link">Non-Surgical Weight Loss</a></li>

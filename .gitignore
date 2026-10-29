@@ -21,6 +21,7 @@ frontend/uploads/photos/*
 !frontend/uploads/photos/.gitkeep
 private_patient_photos_REVIEW/
 data/
+!frontend/data/
 *.db
 *.sqlite
 *.sqlite3

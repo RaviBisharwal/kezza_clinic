@@ -243,7 +243,7 @@
   {
    "url": "https://www.kezza.co.in/blog/body-sculpting-vs-weight-loss/",
    "file": "blog/body-sculpting-vs-weight-loss/index.html",
-   "category": "Weight Loss",
+   "category": "Weight Management",
    "treatment": "Body sculpting vs weight loss",
    "parent": "",
    "location": "",
@@ -303,7 +303,7 @@
   {
    "url": "https://www.kezza.co.in/blog/cryolipolysis-fat-freezing-guide/",
    "file": "blog/cryolipolysis-fat-freezing-guide/index.html",
-   "category": "Weight Loss",
+   "category": "Weight Management",
    "treatment": "Cryolipolysis fat freezing guide",
    "parent": "",
    "location": "",
@@ -813,7 +813,7 @@
   {
    "url": "https://www.kezza.co.in/blog/semaglutide-for-weight-loss/",
    "file": "blog/semaglutide-for-weight-loss/index.html",
-   "category": "Weight Loss",
+   "category": "Weight Management",
    "treatment": "Semaglutide for weight loss",
    "parent": "",
    "location": "",
@@ -821,16 +821,16 @@
    "indexable": "no",
    "primary_intent": "semaglutide for weight loss",
    "secondary_intents": "semaglutide injection; semaglutide side effects; weight loss injection",
-   "title": "Semaglutide for Weight Loss: Dose & Side Effects | Kezza",
-   "title_len": 56,
-   "h1": "Semaglutide for Weight Loss: How It Works, Side Effects and Who It Suits",
-   "meta_description": "Semaglutide for weight loss explained: how it works, dose steps, results, side effects, who should avoid it and India's prescription rules.",
-   "desc_len": 139,
+   "title": "Semaglutide for Weight Management: Dose & Side Effects | Kezza",
+   "title_len": 62,
+   "h1": "Semaglutide for Weight Management: How It Works, Side Effects and Who It Suits",
+   "meta_description": "Semaglutide for weight management explained: how it works, dose steps, results, side effects, who should avoid it and India's prescription rules.",
+   "desc_len": 145,
    "canonical": "https://www.kezza.co.in/blog/semaglutide-for-weight-loss/",
    "robots": "noindex, follow",
    "schema": "BlogPosting, BreadcrumbList, FAQPage, MedicalOrganization, WebPage, WebSite",
-   "breadcrumb_visible": "Home > Blog > Semaglutide for Weight Loss: How It Works, Side Effects and Who It Suits",
-   "breadcrumb_schema": "Home > Blog > Semaglutide for Weight Loss: How It Works, Side Effects and Who It Suits",
+   "breadcrumb_visible": "Home > Blog > Semaglutide for Weight Management: How It Works, Side Effects and Who It Suits",
+   "breadcrumb_schema": "Home > Blog > Semaglutide for Weight Management: How It Works, Side Effects and Who It Suits",
    "links_in_contextual": 0,
    "links_in_nav_footer": 0,
    "links_out_contextual": 11,
@@ -1083,7 +1083,7 @@
   {
    "url": "https://www.kezza.co.in/cryolipolysis/",
    "file": "cryolipolysis/index.html",
-   "category": "Weight Loss",
+   "category": "Weight Management",
    "treatment": "Cryolipolysis (Fat Freezing)",
    "parent": "",
    "location": "jaipur, sikar",
@@ -1099,8 +1099,8 @@
    "canonical": "https://www.kezza.co.in/cryolipolysis/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Weight Loss > Cryolipolysis (Fat Freezing)",
-   "breadcrumb_schema": "Home > Weight Loss > Cryolipolysis (Fat Freezing)",
+   "breadcrumb_visible": "Home > Weight Management > Cryolipolysis (Fat Freezing)",
+   "breadcrumb_schema": "Home > Weight Management > Cryolipolysis (Fat Freezing)",
    "links_in_contextual": 2,
    "links_in_nav_footer": 0,
    "links_out_contextual": 9,
@@ -1214,8 +1214,8 @@
    "title": "Dr. Amrita Mukhija – Skin Specialist in Jaipur | Kezza",
    "title_len": 54,
    "h1": "Dr. Amrita Mukhija",
-   "meta_description": "Dr. Amrita Mukhija, aesthetic physician & skin specialist at Kezza Clinic, Jaipur: laser hair removal, peels, microneedling, hydra facial and weight loss.",
-   "desc_len": 154,
+   "meta_description": "Dr. Amrita Mukhija, aesthetic physician & skin specialist at Kezza Clinic, Jaipur: laser hair removal, peels, microneedling, hydra facial and weight management.",
+   "desc_len": 160,
    "canonical": "https://www.kezza.co.in/doctors/dr-amrita-mukhija/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, Person, ProfilePage, WebSite",
@@ -1585,7 +1585,7 @@
    "links_in_nav_footer": 0,
    "links_out_contextual": 17,
    "links_out_nav_footer": 49,
-   "words_main": 1072,
+   "words_main": 1471,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1645,7 +1645,7 @@
    "links_in_nav_footer": 86,
    "links_out_contextual": 14,
    "links_out_nav_footer": 48,
-   "words_main": 1953,
+   "words_main": 2093,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1923,7 +1923,7 @@
   {
    "url": "https://www.kezza.co.in/hifu-body-sculpting/",
    "file": "hifu-body-sculpting/index.html",
-   "category": "Weight Loss",
+   "category": "Weight Management",
    "treatment": "HIFU Body Sculpting",
    "parent": "",
    "location": "jaipur, sikar",
@@ -1939,8 +1939,8 @@
    "canonical": "https://www.kezza.co.in/hifu-body-sculpting/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalProcedure, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Weight Loss > HIFU Body Sculpting",
-   "breadcrumb_schema": "Home > Weight Loss > HIFU Body Sculpting",
+   "breadcrumb_visible": "Home > Weight Management > HIFU Body Sculpting",
+   "breadcrumb_schema": "Home > Weight Management > HIFU Body Sculpting",
    "links_in_contextual": 2,
    "links_in_nav_footer": 0,
    "links_out_contextual": 11,
@@ -2005,7 +2005,7 @@
    "links_in_nav_footer": 95,
    "links_out_contextual": 27,
    "links_out_nav_footer": 47,
-   "words_main": 2046,
+   "words_main": 1723,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -2245,7 +2245,7 @@
    "links_in_nav_footer": 86,
    "links_out_contextual": 25,
    "links_out_nav_footer": 48,
-   "words_main": 914,
+   "words_main": 1313,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -2635,7 +2635,7 @@
    "links_in_nav_footer": 86,
    "links_out_contextual": 9,
    "links_out_nav_footer": 48,
-   "words_main": 2080,
+   "words_main": 2204,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -2725,7 +2725,7 @@
    "links_in_nav_footer": 8,
    "links_out_contextual": 8,
    "links_out_nav_footer": 5,
-   "words_main": 80,
+   "words_main": 88,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -2943,8 +2943,8 @@
   {
    "url": "https://www.kezza.co.in/weight-loss.html",
    "file": "weight-loss.html",
-   "category": "Weight Loss",
-   "treatment": "Weight Loss",
+   "category": "Weight Management",
+   "treatment": "Weight Management",
    "parent": "",
    "location": "",
    "status": "published",
@@ -2973,7 +2973,7 @@
   {
    "url": "https://www.kezza.co.in/weight-management/",
    "file": "weight-management/index.html",
-   "category": "Weight Loss",
+   "category": "Weight Management",
    "treatment": "Medical Weight Management",
    "parent": "",
    "location": "jaipur, sikar",
@@ -2989,8 +2989,8 @@
    "canonical": "https://www.kezza.co.in/weight-management/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "BreadcrumbList, FAQPage, MedicalOrganization, MedicalTherapy, MedicalWebPage, WebSite",
-   "breadcrumb_visible": "Home > Weight Loss > Medical Weight Management",
-   "breadcrumb_schema": "Home > Weight Loss > Medical Weight Management",
+   "breadcrumb_visible": "Home > Weight Management > Medical Weight Management",
+   "breadcrumb_schema": "Home > Weight Management > Medical Weight Management",
    "links_in_contextual": 6,
    "links_in_nav_footer": 85,
    "links_out_contextual": 10,
@@ -3033,17 +3033,11 @@
  ],
  "issues": [
   {
-   "severity": "info",
-   "page": "locations/jaipur/index.html",
-   "message": "content 21% similar to locations/sikar/index.html"
+   "severity": "claim",
+   "page": "prp-therapy.html",
+   "message": "painless (needs qualifying): \"…inic. The technology used is top-notch, virtually painless, and results after 4 sessions have been…\""
   }
  ],
- "near_duplicates": [
-  [
-   0.21,
-   "locations/jaipur/index.html",
-   "locations/sikar/index.html"
-  ]
- ],
+ "near_duplicates": [],
  "broken_links": []
 }

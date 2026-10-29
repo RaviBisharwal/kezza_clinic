@@ -120,7 +120,7 @@ KEY MEDICAL EXPERTS & DEPARTMENTS:
    - Treatments: Medical HydraFacial, Acne & Fractional Scar Repair, Botox & Dermal Fillers, Pigmentation / Melasma Reduction, Laser Hair Removal, Glutathione Glow Therapy.
 3. Permanent Makeup (PMU):
    - Microblading, Ombre Powder Brows, Lip Blush, Scalp Micropigmentation (SMP).
-4. Weight Loss & Body Contouring:
+4. Weight Management & Body Contouring:
    - 360° Cryolipolysis (Fat Freezing), HIFU Body Sculpting.
 5. Ajmer Clinic Specialists:
    - Dr. Dhiral Vijayvargiya: Oral & Maxillofacial, Aesthetic & Hair Transplant Surgeon. Available at Ajmer.
@@ -148,6 +148,77 @@ app.get('/api/health', (req, res) => {
         geminiConfigured: hasKey,
         port: PORT
     });
+});
+
+// ── 1b. Google Places Reviews API ──────────────────────────────────
+// Returns up to 5 reviews per clinic location from Google Places API (New).
+// Requires: GOOGLE_PLACES_API_KEY in .env, plus Place IDs for each clinic.
+// Place IDs can be found via: https://developers.google.com/maps/documentation/places/web-service/place-id
+const CLINIC_PLACES = {
+    jaipur: process.env.PLACES_ID_JAIPUR || '',   // e.g. ChIJ...
+    sikar:  process.env.PLACES_ID_SIKAR  || '',
+    ajmer:  process.env.PLACES_ID_AJMER  || '',
+};
+
+// Simple in-memory cache — refresh every 6 hours per clinic
+const reviewsCache = new Map(); // key: clinicKey → { data, fetchedAt }
+const REVIEWS_CACHE_TTL = 6 * 60 * 60 * 1000; // 6 hours
+
+async function fetchPlaceReviews(placeId, apiKey) {
+    const url = `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}` +
+        `?fields=rating,userRatingCount,reviews&languageCode=en&key=${apiKey}`;
+    const res = await fetch(url, {
+        headers: { 'X-Goog-FieldMask': 'rating,userRatingCount,reviews' }
+    });
+    if (!res.ok) throw new Error(`Places API error ${res.status}: ${await res.text()}`);
+    return res.json();
+}
+
+app.get('/api/reviews', async (req, res) => {
+    const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+    const clinic = (req.query.clinic || '').toLowerCase().trim(); // 'jaipur' | 'sikar' | 'ajmer'
+
+    if (!apiKey || !apiKey.trim()) {
+        return res.status(503).json({ status: 'NO_PLACES_KEY', message: 'Google Places API key not configured.' });
+    }
+    if (!clinic || !CLINIC_PLACES[clinic]) {
+        return res.status(400).json({ status: 'BAD_REQUEST', message: `Invalid or missing clinic param. Use: ${Object.keys(CLINIC_PLACES).join(', ')}` });
+    }
+    const placeId = CLINIC_PLACES[clinic];
+    if (!placeId) {
+        return res.status(503).json({ status: 'NO_PLACE_ID', message: `Place ID for '${clinic}' clinic not configured (set PLACES_ID_${clinic.toUpperCase()} in .env).` });
+    }
+
+    // Serve from cache if fresh
+    const cached = reviewsCache.get(clinic);
+    if (cached && (Date.now() - cached.fetchedAt) < REVIEWS_CACHE_TTL) {
+        return res.json({ status: 'OK', clinic, cached: true, ...cached.data });
+    }
+
+    try {
+        const data = await fetchPlaceReviews(placeId, apiKey);
+        const payload = {
+            rating: data.rating || null,
+            userRatingCount: data.userRatingCount || null,
+            reviews: (data.reviews || []).slice(0, 5).map(r => ({
+                authorName: r.authorAttribution?.displayName || 'Anonymous',
+                authorPhoto: r.authorAttribution?.photoUri || null,
+                rating: r.rating,
+                text: r.text?.text || '',
+                relativeTime: r.relativePublishTimeDescription || '',
+                publishTime: r.publishTime || null,
+            }))
+        };
+        reviewsCache.set(clinic, { data: payload, fetchedAt: Date.now() });
+        res.json({ status: 'OK', clinic, cached: false, ...payload });
+    } catch (err) {
+        console.error(`[Reviews API] Fetch failed for clinic=${clinic}:`, err.message);
+        // Return stale cache if available
+        if (cached) {
+            return res.json({ status: 'OK', clinic, cached: true, stale: true, ...cached.data });
+        }
+        res.status(502).json({ status: 'ERROR', message: err.message });
+    }
 });
 
 // Ask each Gemini model in turn; the first answer wins and the last model's error propagates.
@@ -289,7 +360,7 @@ CLINICAL DEPARTMENTS & KEY SPECIALISTS AT KEZZA:
 3. SKIN: Dr. Amrita Mukhija (Acne, Scars, HydraFacial, Melasma, Laser Toning) — Jaipur
 4. ANTI_AGING: Dr. Amrita Mukhija (Botox, Dermal Fillers, HIFU, Skin Tightening) — Jaipur
 5. PMU / SMP: Krishna (Eyebrow Microblading, Lip Blush, Scalp Micropigmentation) — Jaipur & Sikar
-6. WEIGHT_LOSS: Kezza Wellness Team (360° Cryolipolysis Fat Freezing, Body Sculpting) — Jaipur & Sikar
+6. WEIGHT_MANAGEMENT / WEIGHT_LOSS: Kezza Wellness Team (360° Cryolipolysis Fat Freezing, Body Sculpting) — Jaipur & Sikar
 7. ENT_RHINOPLASTY: Dr. Mandhata Sharma (Aesthetic Rhinoplasty, Facial Contour) — Jaipur
 8. AJMER_SPECIALIST: Dr. Dhiral Vijayvargiya & Dr. Aliza Rizvi (Oral & Maxillofacial, Aesthetic & Hair Transplant Surgeons) — Ajmer
 9. PLASTIC_SURGERY: Dr. Nakul Somani (Aesthetic & Reconstructive Plastic Surgery, Body Contouring, Liposuction) — Jaipur
@@ -550,7 +621,7 @@ app.post(['/api/lead', '/api/send-consultation'], async (req, res) => {
             } else if (catLower.includes('pmu') || treatLower.includes('pmu') || treatLower.includes('microblading') || treatLower.includes('eyeliner')) {
                 resolvedDepartment = 'PMU';
             } else if (catLower.includes('weight') || treatLower.includes('weight') || treatLower.includes('slimming') || treatLower.includes('fat reduction')) {
-                resolvedDepartment = 'Weight Loss';
+                resolvedDepartment = 'Weight Management';
             } else if (catLower.includes('rhino') || treatLower.includes('rhino') || treatLower.includes('ent') || treatLower.includes('nose')) {
                 resolvedDepartment = 'Rhinoplasty / ENT';
             } else if (catLower.includes('skin') || treatLower.includes('facial') || treatLower.includes('botox') || treatLower.includes('derma') || treatLower.includes('acne') || treatLower.includes('brightening')) {
@@ -716,125 +787,10 @@ app.post(['/api/lead', '/api/send-consultation'], async (req, res) => {
     }
 });
 
-// ── 4b. Live Google Reviews API (Jaipur, Sikar, Ajmer) ──────────────
-const GOOGLE_REVIEWS_STORE = {
-    summary: {
-        overallRating: 4.9,
-        totalReviews: 1270,
-        jaipur: { rating: 4.9, count: 850, mapUrl: 'https://maps.app.goo.gl/4eUGixic35V777yd8' },
-        sikar: { rating: 4.8, count: 240, mapUrl: 'https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6' },
-        ajmer: { rating: 4.9, count: 180, mapUrl: 'https://maps.app.goo.gl/zMajvKmT5N7coswJA' }
-    },
-    reviews: [
-        {
-            id: 'rev-1',
-            author: 'Vikramaditya Rathore',
-            clinic: 'Jaipur',
-            rating: 5,
-            dateText: '3 days ago',
-            procedure: 'FUE Hair Transplant',
-            doctor: 'Dr. Ankit Bhalothia',
-            content: 'Got 3200 grafts FUE hair transplant done at Kezza Jaipur. Dr. Ankit and his surgical team were very transparent about hairline design and density. Completely painless with local anesthesia and zero swelling. High quality OT hygiene.',
-            verified: true
-        },
-        {
-            id: 'rev-2',
-            author: 'Pooja Sharma',
-            clinic: 'Jaipur',
-            rating: 5,
-            dateText: '5 days ago',
-            procedure: 'Laser Hair Removal',
-            doctor: 'Dr. Amrita Mukhija',
-            content: 'Completed 5 sessions of full body laser hair reduction. The cooling tip laser used at Kezza is truly painless even on sensitive areas. Already 85%+ reduction. Best skin and aesthetic clinic in Vaishali Nagar!',
-            verified: true
-        },
-        {
-            id: 'rev-3',
-            author: 'Rajesh Choudhary',
-            clinic: 'Sikar',
-            rating: 5,
-            dateText: '1 week ago',
-            procedure: 'GFC Hair Loss Therapy',
-            doctor: 'Dr. Neelam Choudhary',
-            content: 'Suffering from severe crown hair thinning for 2 years. Dr. Neelam recommended 4 sessions of GFC therapy. Seeing prominent baby hairs and hair fall stopped in 40 days. Very professional clinic opposite SK Hospital Sikar.',
-            verified: true
-        },
-        {
-            id: 'rev-4',
-            author: 'Sunita Meena',
-            clinic: 'Ajmer',
-            rating: 5,
-            dateText: '1 week ago',
-            procedure: 'HydraFacial MD',
-            doctor: 'Dr. Aliza Rizvi',
-            content: 'Booked HydraFacial and chemical peel for pre-wedding glow at Kezza Ajmer Oasis Complex. Immediate visible glow and deep pore cleansing. Doctors explain every step. Truly 5 star experience.',
-            verified: true
-        },
-        {
-            id: 'rev-5',
-            author: 'Manish Verma',
-            clinic: 'Jaipur',
-            rating: 5,
-            dateText: '2 weeks ago',
-            procedure: 'Acne Scar Subcision & Laser',
-            doctor: 'Dr. Amrita Mukhija',
-            content: 'Had deep rolling acne scars from my college years. After combination treatment of subcision and fractional laser, texture improved by more than 70%. Best dermatology clinic in Rajasthan.',
-            verified: true
-        },
-        {
-            id: 'rev-6',
-            author: 'Deepika Shekhawat',
-            clinic: 'Sikar',
-            rating: 5,
-            dateText: '2 weeks ago',
-            procedure: 'Microblading & PMU',
-            doctor: 'Krishna Choudhary',
-            content: 'Had sparse eyebrows and got microblading done by Krishna maam. Very natural feather strokes that match my hair tone perfectly. No unnatural grey or red tint. Highly recommended!',
-            verified: true
-        },
-        {
-            id: 'rev-7',
-            author: 'Amit Joshi',
-            clinic: 'Ajmer',
-            rating: 5,
-            dateText: '3 weeks ago',
-            procedure: 'DHI Hair Transplant',
-            doctor: 'Dr. Ankit Bhalothia',
-            content: 'Consulted Dr. Ankit during his Ajmer visit for hairline recession. Did DHI hair transplant with natural zig-zag hairline design. Extremely courteous staff and continuous follow-up on WhatsApp.',
-            verified: true
-        },
-        {
-            id: 'rev-8',
-            author: 'Kavita Agarwal',
-            clinic: 'Jaipur',
-            rating: 5,
-            dateText: '1 month ago',
-            procedure: 'Melasma & Pigmentation',
-            doctor: 'Dr. Amrita Mukhija',
-            content: 'Treated stubborn post-pregnancy melasma with Q-switch laser toning and medical serums. Kezza does not push unnecessary products. Honest, evidence-based dermatology.',
-            verified: true
-        }
-    ]
-};
-
-app.get('/api/google-reviews', (req, res) => {
-    const { clinic, procedure } = req.query;
-    let reviews = [...GOOGLE_REVIEWS_STORE.reviews];
-
-    if (clinic && clinic.toLowerCase() !== 'all') {
-        reviews = reviews.filter(r => r.clinic.toLowerCase() === clinic.toLowerCase());
-    }
-    if (procedure && procedure.toLowerCase() !== 'all') {
-        reviews = reviews.filter(r => r.procedure.toLowerCase().includes(procedure.toLowerCase()));
-    }
-
-    res.json({
-        status: 'OK',
-        summary: GOOGLE_REVIEWS_STORE.summary,
-        total: reviews.length,
-        reviews
-    });
-});
+// ── Legacy fabricated review data completely removed ────────────────
+// All genuine reviews are now served statically from /data/genuine-reviews.json
+// on the frontend, or dynamically via /api/reviews (Google Places API) when
+// GOOGLE_PLACES_API_KEY + PLACES_ID_* env vars are configured.
 
 // ── 4c. Real Slots Booking Availability API ─────────────────────────
 app.get('/api/booking-slots', (req, res) => {
