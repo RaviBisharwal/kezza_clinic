@@ -1,0 +1,838 @@
+/* ==========================================================================
+   KEZZA CLINIC — MOBILE SPEED & LAYOUT LAYER (October 2026)
+   Loaded LAST in every CSS bundle (tools/css-bundles.json), so it wins over
+   the page stylesheets without changing them.
+
+   1. Hidden widgets (chat window, scanner popups) don't animate in the background
+   2. Phones & tablets: no background blur on bars that stay on screen
+   3. Phones & tablets: decorative looping effects off, attention pulses limited
+   4. Phones & tablets: lighter, quicker scroll-reveal animations
+   5. Doctor photos framed as portraits, so faces are never cut off
+   6. Small mobile layout fixes
+   7. "Reduce motion" setting respected everywhere
+
+   Why: on a mid-range phone the old pages kept the processor busy even when
+   nobody touched the screen (blurred see-through bars re-drawn on every scroll
+   frame, glowing/shimmering loops, a hidden popup's laser line), which is what
+   made scrolling feel laggy.
+   ========================================================================== */
+
+/* ── 1. Hidden widgets: keep their animations paused until they are opened ── */
+.kezza-scanner-modal-backdrop:not(.is-visible),
+.kezza-scanner-modal-backdrop:not(.is-visible) *,
+.kezza-scanner-modal-backdrop:not(.is-visible) *::before,
+.kezza-scanner-modal-backdrop:not(.is-visible) *::after,
+.kezza-chat-window:not(.open) *,
+.kezza-chat-window:not(.open) *::before,
+.kezza-chat-window:not(.open) *::after,
+.ks-modal-backdrop:not(.ks-active) *,
+.ks-modal-backdrop:not(.ks-active) *::before,
+.ks-modal-backdrop:not(.ks-active) *::after {
+    animation-play-state: paused !important;
+}
+
+
+.kezza-scanner-modal-backdrop:not(.is-visible),
+.ks-modal-backdrop:not(.ks-active) {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+/* Hero slideshow / trust ticker scrolled out of view (pro-animations.js adds .kz-offscreen) */
+.kz-offscreen,
+.kz-offscreen *,
+.kz-offscreen *::before,
+.kz-offscreen *::after {
+    animation-play-state: paused !important;
+}
+
+@media (max-width: 1024px), (hover: none) {
+
+    /* ── 2. Bars that stay on screen: solid backgrounds instead of live blur ── */
+    .navbar,
+    .navbar.is-scrolled,
+    .navbar.scrolled,
+    .navbar.navbar-scrolled {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        background: rgba(255, 255, 255, 0.985) !important;
+    }
+    .floating-quick-dock {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        background: rgba(255, 255, 255, 0.97) !important;
+    }
+    .hair-subnav-section,
+    .skin-subnav-section,
+    .prp-subnav-section,
+    .service-nav-strip,
+    .service-nav-strip.is-stuck {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+        background: rgba(255, 255, 255, 0.985) !important;
+    }
+    .nav-backdrop,
+    #navMenu,
+    .nav-menu,
+    .nav-links,
+    #kzBackToTop,
+    .kezza-scanner-modal-backdrop,
+    .ks-modal-backdrop,
+    .scanner-toast,
+    .session-save-banner,
+    .social-sidebar {
+        -webkit-backdrop-filter: none !important;
+        backdrop-filter: none !important;
+    }
+    .nav-backdrop {
+        background: rgba(11, 15, 27, 0.62) !important;
+    }
+
+    /* ── 3a. Decorative loops that repaint the screen every frame: off ── */
+    .dock-item.dock-wa::after,                      /* light sweep across the WhatsApp button */
+    .dc-pill-badge, .sm-pill-badge, .sp-pill-badge, .service-cat-pill,
+    .ba-handle,
+    .hero-h1 em, .hero-h1 em.hero-ajmer,            /* shimmering hero words */
+    .ac-ba-shimmer, .pg-ba-shimmer, .prp-ba-shimmer-sweep,
+    .pulse-emerald-dot, .scanner-live-pulse,
+    .btn-wa-action,
+    .kz-live-pulse-dot, .pulse-dot, .badge-pulse-dot, .pin-pulse,
+    .hero-beacon-pulse, .beacon-pulse, .vision-beacon,
+    .hero-shimmer-sweep,
+    .btn-gold::after, .btn-service-wa::after, .btn-hero-primary::after,
+    .section-tag::after,
+    .gold-divider-gem,
+    .wig-hero-badge,
+    .btn-primary.btn-sp-large, .btn-submit-booking,
+    .stage-node-circle, .stage-pulse-dot,
+    .photo-ambient-warmth,
+    .prp-ba-metric-badge,
+    .pmu-hero-section .hero-title span,
+    .final-cta-section h2,
+    .aftercare-section::before, .before-after-section::before,
+    .faq-section::before, .services-breakdown-section::before,
+    .whr-gold-line, .whr-why-fail-section::before, .badge-dot-whr,
+    /* gently floating badges, glows and orbs */
+    .dc-hero-floating-badge, .sm-hero-floating-badge, .media-badge-top,
+    .hero-float-badge,
+    .hero-ambient-aura,
+    .stat-box-pro, html body .stat-box-pro.is-revealed[class*="stagger-"],
+    .pmu-hero-section::before, .pmu-hero-section::after,
+    .final-cta-section::before,
+    .why-icon,
+    .service-hero-image-wrap,
+    .hero-image::before,
+    .hero-photo-frame img, .hero-photo-shimmer,
+    .doctor-verified-badge i,
+    .hero-content, .hero-image, .hero-editorial-col, .hero-visual-col {
+        animation: none !important;
+        transform: none !important;
+    }
+    /* the permanent-makeup page's dark theme sets its loops with "html body …" selectors */
+    html body section + section::before,
+    html body .pmu-section + .pmu-section::before,
+    html body .final-cta-section h2,
+    html body .cta-section h2,
+    html body .cta-heading,
+    html body .final-cta-section::before,
+    html body .final-cta-section::after,
+    html body .pmu-hero-section::before,
+    html body .hero-section::before,
+    html body .hero-content,
+    html body .hero-image,
+    html body .hero-editorial-col,
+    html body .hero-visual-col,
+    html body .advantage-icon,
+    html body .why-icon,
+    html body .feature-icon,
+    html body .hero-content h1 em,
+    html body .pmu-hero-content h1 em,
+    html body .hero-title em,
+    html body .hero-title span {
+        animation: none !important;
+    }
+    /* moving scan lines over before/after photos: hide instead of freezing mid-photo */
+    .ac-ba-scan-line, .pg-ba-scan-line,
+    .prp-scanner-laser,
+    .whr-sim-diagram-stage::before {
+        animation: none !important;
+        opacity: 0 !important;
+    }
+
+    /* ── 3b. Attention pulses on the floating buttons: a few times, then rest ── */
+    .kezza-chat-fab,
+    #kezzaChatFab,
+    .dock-item.dock-scan,
+    .dock-item.dock-wa i,
+    .dock-item.dock-scan i {
+        animation-iteration-count: 3 !important;
+    }
+
+    /* ── 4. Scroll-reveal: shorter, quicker, no side-slides, no stagger wait ── */
+    html.pro-anim-active .pro-reveal,
+    html.pro-anim-active .pro-reveal-scale,
+    html.pro-anim-active .pro-reveal-left,
+    html.pro-anim-active .pro-reveal-right {
+        transition: opacity 0.5s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) !important;
+        transition-delay: 0s !important;
+        will-change: auto !important;
+    }
+    html.pro-anim-active .pro-reveal:not(.is-revealed),
+    html.pro-anim-active .pro-reveal-left:not(.is-revealed),
+    html.pro-anim-active .pro-reveal-right:not(.is-revealed) {
+        transform: translate3d(0, 14px, 0) !important;
+    }
+    html.pro-anim-active .pro-reveal-scale:not(.is-revealed) {
+        transform: scale(0.975) !important;
+    }
+    .scroll3d-bg,
+    .scroll3d-bg img {
+        will-change: auto !important;
+    }
+}
+
+/* ── 5. Doctor photos: portrait frames, faces never cut off ── */
+@media (max-width: 768px) {
+    .doctor-card .doctor-image-wrapper,
+    .doctor-card .doctor-image,
+    .doctors-section .doctor-image-wrapper,
+    .doctor-card-img {
+        aspect-ratio: 4 / 5 !important;
+        height: auto !important;
+        max-height: 470px !important;
+    }
+    .doctor-card .doctor-image-wrapper img,
+    .doctor-card .doctor-image img,
+    .doctor-card-img img {
+        object-position: 50% 12% !important;
+    }
+    /* the portrait already fades into the card below it */
+    .doctor-card .doctor-image-wrapper::before {
+        background: linear-gradient(to top, rgba(8, 22, 38, 0.45) 0%, transparent 32%) !important;
+    }
+}
+/* Clinic pages ("Doctors at our … clinic"): taller frame aimed at the face */
+.kz-doc-mini img {
+    height: 240px;
+    object-position: 50% 14%;
+}
+@media (max-width: 600px) {
+    .kz-doc-grid {
+        gap: 12px;
+    }
+    .kz-doc-mini {
+        flex-direction: row;
+        align-items: center;
+    }
+    .kz-doc-mini img {
+        flex: 0 0 96px;
+        width: 96px;
+        height: 120px;
+        object-position: 50% 14%;
+    }
+    .kz-doc-mini div {
+        padding: 12px 14px;
+    }
+}
+
+/* ── 6. Small mobile layout fixes ── */
+@media (max-width: 1024px) {
+    /* Open menu must sit ABOVE its dark backdrop. The drawer lives inside the fixed
+       navbar (z-index 1000) while the backdrop is z-index 9998, so the menu was shown
+       dimmed and blurred, and every tap on a menu link hit the backdrop and closed it. */
+    html.nav-drawer-open .navbar,
+    body.nav-drawer-open .navbar {
+        z-index: 10001 !important;
+    }
+}
+
+/* Keep the floating back-to-top control from sitting on top of mobile card links. */
+@media (max-width: 1024px) {
+    #kzBackToTop {
+        display: none !important;
+        pointer-events: none !important;
+    }
+}
+@media (max-width: 768px) {
+    /* "Ask Kezza!" bubble: shows for a few seconds, then gets out of the way of the page */
+    .kezza-chat-tooltip:not(.hidden) {
+        animation: kezza-tooltip-in 0.4s cubic-bezier(0.4, 0, 0.2, 1), kzTipAutoHide 0.4s ease 9s forwards !important;
+    }
+    /* nothing may push the page sideways */
+    .branches-hero-section .hero-buttons,
+    .branches-hero-section .hero-cta-group {
+        max-width: 100% !important;
+    }
+    .branches-hero-section .hero-buttons a,
+    .branches-hero-section .hero-cta-group a,
+    .final-cta-section .cta-buttons a {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+}
+@keyframes kzTipAutoHide {
+    to { opacity: 0; visibility: hidden; transform: translateY(6px); }
+}
+
+/* ── 7. Reduce motion (phone/OS accessibility setting) ── */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ── 8. Universal 60fps/120fps Scroll Performance Engine ── */
+/* While actively scrolling, ignore pointer hover recalculations for maximum frame rate */
+body.is-scrolling * {
+    pointer-events: none !important;
+}
+body.is-scrolling .navbar,
+body.is-scrolling .floating-quick-dock,
+body.is-scrolling #kzBackToTop,
+body.is-scrolling #navMenu {
+    pointer-events: auto !important;
+}
+
+/* ── 9. Professional Cumulative Layout Shift (CLS) Elimination Engine ── */
+/* Bundled critical @font-face definitions with font-display: optional.
+   Ensures the browser evaluates font-display before rendering, guaranteeing 0 font-swap layout shifts */
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 400 800;
+    font-display: optional;
+    src: url(https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yygg_vb.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: optional;
+    src: url(https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Metric overrides for local system fallbacks so text geometry matches Plus Jakarta Sans & Inter exactly */
+@font-face {
+    font-family: 'Plus Jakarta Sans Fallback';
+    src: local('Arial'), local('Helvetica');
+    ascent-override: 96%;
+    descent-override: 24%;
+    line-gap-override: 0%;
+    size-adjust: 102%;
+}
+@font-face {
+    font-family: 'Inter Fallback';
+    src: local('Arial'), local('Helvetica');
+    ascent-override: 92%;
+    descent-override: 24%;
+    line-gap-override: 0%;
+    size-adjust: 101%;
+}
+
+/* Universal FontAwesome icon bounding-box pre-reservation:
+   Prevents FOUT/icon-popping shifts while FontAwesome CSS loads asynchronously */
+i[class*="fa-"], .fas, .fab, .far, .fa {
+    display: inline-block;
+    width: 1.15em;
+    min-width: 1.15em;
+    height: 1.15em;
+    line-height: 1;
+    text-align: center;
+    vertical-align: -0.125em;
+    box-sizing: border-box;
+}
+.kz-globe-icon { width: 14px !important; min-width: 14px !important; height: 14px !important; }
+.nav-arrow { width: 10px !important; min-width: 10px !important; height: 10px !important; }
+.cta-arrow { width: 12px !important; min-width: 12px !important; height: 12px !important; }
+.kz-back-btn i { width: 14px !important; min-width: 14px !important; height: 14px !important; }
+.dock-item i { width: 18px !important; min-width: 18px !important; height: 18px !important; }
+
+
+/* Safe layout isolation WITHOUT synthetic intrinsic size placeholders:
+   (Eliminates the massive 0.82 layout shifts caused by content-visibility: auto + 800px placeholder) */
+.patient-reviews-section,
+.doctors-section,
+.faq-section,
+.case-studies-section,
+.transformation-cards-section,
+.site-footer,
+.footer,
+.footer-section {
+    content-visibility: visible !important;
+    contain: none !important;
+}
+
+/* Structural bounding box stability */
+.navbar {
+    min-height: 56px !important;
+}
+.service-breadcrumbs {
+    min-height: 44px !important;
+}
+.service-breadcrumbs ol {
+    min-height: 22px !important;
+}
+.kz-trust-strip {
+    min-height: 52px !important;
+}
+.hero-metrics-strip {
+    min-height: 52px !important;
+}
+.hero-cta-actions {
+    min-height: 48px !important;
+}
+.branches-hero-section, .contact-hero-section, .service-hero-section {
+    contain: layout style;
+}
+h1, .hero-h1, .hero-main-heading, .dc-hero-title, .sm-hero-title, .pmu-hero-content h1 {
+    line-height: 1.2 !important;
+    text-rendering: optimizeLegibility;
+}
+
+/* Isolate GPU compositing layers */
+.floating-quick-dock,
+#kzBackToTop,
+.navbar {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Final mobile drawer surface: keep the navigation light, translucent and legible
+   even when the device uses a dark system appearance. This intentionally restores
+   blur after the low-power blanket backdrop-filter reset above. */
+@media (max-width: 1024px) {
+    html body .navbar #navMenu {
+        /* Keep the mobile drawer unmistakably light even above dark page content. */
+        background: radial-gradient(135% 115% at 12% 4%, rgba(255, 255, 255, 0.97) 0%, rgba(250, 254, 255, 0.95) 48%, rgba(235, 249, 251, 0.92) 100%) !important;
+        background-color: rgba(248, 253, 254, 0.96) !important;
+        border-color: rgba(0, 143, 156, 0.24) !important;
+        box-shadow: -18px 0 44px rgba(15, 42, 56, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.98) !important;
+        -webkit-backdrop-filter: blur(28px) saturate(180%) brightness(1.06) !important;
+        backdrop-filter: blur(28px) saturate(180%) brightness(1.06) !important;
+    }
+
+    html body .navbar #navMenu > li:not(.nav-drawer-header):not(.nav-drawer-cta) {
+        background: rgba(255, 255, 255, 0.58) !important;
+        border-bottom-color: rgba(15, 74, 86, 0.13) !important;
+    }
+
+    html body .navbar #navMenu > li.nav-drawer-header,
+    html body .navbar #navMenu > li.nav-drawer-cta {
+        background: rgba(255, 255, 255, 0.82) !important;
+        border-color: rgba(15, 74, 86, 0.13) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(170%) !important;
+        backdrop-filter: blur(20px) saturate(170%) !important;
+    }
+
+    html body .navbar #navMenu > li:not(.nav-drawer-header):not(.nav-drawer-cta) > a,
+    html body .navbar #navMenu .services-nav-toggle,
+    html body .navbar #navMenu .mega-col-title,
+    html body .navbar #navMenu .mega-link,
+    html body .navbar #navMenu .drawer-close-btn {
+        color: #10233b !important;
+    }
+
+    html body .navbar #navMenu .services-dropdown-menu.mega-menu-panel {
+        background: rgba(240, 251, 252, 0.94) !important;
+    }
+
+    html body .navbar #navMenu .mega-col-header {
+        background: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    html body .navbar #navMenu .mega-link-list {
+        background: rgba(255, 255, 255, 0.86) !important;
+    }
+
+    html body .navbar #navMenu .drawer-close-btn,
+    html body .navbar #navMenu .mega-col-toggle {
+        background: rgba(255, 255, 255, 0.9) !important;
+        border-color: rgba(0, 143, 156, 0.24) !important;
+    }
+
+    .nav-backdrop,
+    #navBackdrop {
+        background: rgba(9, 33, 43, 0.2) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+        backdrop-filter: blur(5px) !important;
+    }
+}
+
+/* ── Kezza assistant: compact controls, readable bubbles, smooth open/close ── */
+.kezza-chat-fab {
+    animation: none !important;
+    box-shadow: 0 8px 26px rgba(0, 143, 156, .28), 0 2px 8px rgba(15, 23, 42, .12) !important;
+}
+
+.kezza-chat-window,
+#kezzaChatWindow {
+    background: linear-gradient(160deg, #fbfeff 0%, #f3f9fb 100%) !important;
+    border: 1px solid rgba(15, 74, 86, .14) !important;
+    border-radius: 22px !important;
+    box-shadow: 0 26px 72px rgba(15, 35, 48, .24), 0 6px 20px rgba(0, 143, 156, .10) !important;
+    isolation: isolate;
+    transition: opacity .24s ease, transform .38s cubic-bezier(.22, 1, .36, 1) !important;
+}
+
+.kezza-chat-window.open,
+#kezzaChatWindow.open {
+    transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+.kezza-chat-header {
+    min-height: 72px !important;
+    padding: 12px 16px !important;
+    background: linear-gradient(118deg, #007f8d 0%, #00a7b5 58%, #08b8c1 100%) !important;
+    box-shadow: 0 8px 22px rgba(0, 143, 156, .18) !important;
+}
+
+.kezza-chat-header-avatar,
+.kezza-chat-avatar {
+    flex: 0 0 44px !important;
+    width: 44px !important;
+    height: 44px !important;
+}
+
+.kezza-chat-header-title {
+    font-size: 16px !important;
+    letter-spacing: -.01em;
+}
+
+.kezza-chat-header-status {
+    font-size: 12px !important;
+}
+
+.kezza-chat-header-actions {
+    gap: 6px !important;
+}
+
+.kezza-chat-header-actions .kezza-header-btn,
+.kezza-chat-header-actions .kezza-chat-minimize {
+    flex: 0 0 36px !important;
+    width: 36px !important;
+    min-width: 36px !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 1px solid rgba(255, 255, 255, .24) !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, .14) !important;
+    color: #fff !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18) !important;
+    transition: background .2s ease, transform .2s ease, box-shadow .2s ease !important;
+}
+
+.kezza-chat-header-actions .kezza-header-btn:hover,
+.kezza-chat-header-actions .kezza-chat-minimize:hover {
+    transform: translateY(-1px) scale(1.04) !important;
+    background: rgba(255, 255, 255, .25) !important;
+    box-shadow: 0 4px 12px rgba(0, 50, 65, .16) !important;
+}
+
+.kezza-chat-header-actions .kezza-chat-minimize:hover {
+    background: rgba(255, 255, 255, .22) !important;
+}
+
+.kezza-chat-control-icon {
+    display: block !important;
+    width: 19px !important;
+    height: 19px !important;
+    fill: none !important;
+    stroke: currentColor !important;
+    stroke-width: 2 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+}
+
+.kezza-chat-messages {
+    min-height: 0 !important;
+    padding: 18px 16px !important;
+    gap: 12px !important;
+    background: linear-gradient(180deg, rgba(241, 249, 251, .72), rgba(249, 252, 253, .94)) !important;
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+}
+
+.kezza-chat-3d-bg {
+    display: none !important;
+}
+
+.kezza-msg {
+    max-width: 100% !important;
+    gap: 10px !important;
+    animation-duration: .28s !important;
+    animation-timing-function: cubic-bezier(.22, 1, .36, 1) !important;
+}
+
+.kezza-msg-avatar {
+    flex: 0 0 34px !important;
+    width: 34px !important;
+    height: 34px !important;
+}
+
+.kezza-msg-bubble {
+    padding: 13px 15px !important;
+    border-radius: 17px !important;
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+}
+
+.kezza-msg.bot .kezza-msg-bubble {
+    background: rgba(255, 255, 255, .96) !important;
+    border: 1px solid rgba(15, 74, 86, .10) !important;
+    border-top-left-radius: 6px !important;
+    box-shadow: 0 5px 16px rgba(15, 35, 48, .055) !important;
+}
+
+.kezza-msg-bubble a {
+    color: #008b99 !important;
+    font-weight: 650 !important;
+    text-underline-offset: 3px;
+}
+
+.kezza-quick-replies {
+    gap: 8px !important;
+    padding: 6px 0 4px 44px !important;
+}
+
+.kezza-quick-btn {
+    min-height: 42px !important;
+    padding: 9px 14px !important;
+    border: 1px solid rgba(0, 143, 156, .30) !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, .9) !important;
+    color: #007b88 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 3px 10px rgba(15, 35, 48, .045) !important;
+    transition: transform .22s cubic-bezier(.22, 1, .36, 1), background .2s ease, box-shadow .2s ease !important;
+    animation: kz-chat-chip-in .34s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.kezza-quick-btn:hover,
+.kezza-quick-btn:focus-visible {
+    background: #eaf8fa !important;
+    color: #006d77 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 7px 16px rgba(0, 143, 156, .13) !important;
+}
+
+.kezza-quick-btn:focus-visible,
+.kezza-header-btn:focus-visible,
+.kezza-chat-minimize:focus-visible,
+.kezza-chat-send:focus-visible,
+.kezza-chat-mic:focus-visible,
+.kezza-chat-scanner-btn:focus-visible {
+    outline: 3px solid rgba(0, 143, 156, .42) !important;
+    outline-offset: 2px !important;
+}
+
+.kezza-chat-input-area {
+    gap: 8px !important;
+    padding: 12px 14px !important;
+    background: rgba(255, 255, 255, .96) !important;
+    border-top: 1px solid rgba(15, 74, 86, .10) !important;
+}
+
+.kezza-chat-scanner-btn,
+.kezza-chat-mic,
+.kezza-chat-send {
+    flex: 0 0 42px !important;
+    width: 42px !important;
+    min-width: 42px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+}
+
+.kezza-chat-input {
+    min-width: 0 !important;
+    height: 46px !important;
+    padding: 0 15px !important;
+    border: 1px solid #dce7eb !important;
+    border-radius: 999px !important;
+    background: #f9fcfd !important;
+    box-shadow: none !important;
+}
+
+.kezza-chat-input:focus {
+    border-color: #00a2b0 !important;
+    background: #fff !important;
+    box-shadow: 0 0 0 3px rgba(0, 162, 176, .14) !important;
+}
+
+.kezza-chat-footer-bar {
+    padding: 8px 16px max(8px, env(safe-area-inset-bottom)) !important;
+    background: rgba(255, 255, 255, .98) !important;
+    color: #8191a2 !important;
+    font-size: 12px !important;
+}
+
+.kezza-chat-window.open .kezza-chat-header {
+    animation: kz-chat-header-enter .34s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes kz-chat-header-enter {
+    from { opacity: .75; transform: translate3d(0, -6px, 0); }
+    to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes kz-chat-chip-in {
+    from { opacity: 0; transform: translate3d(0, 6px, 0) scale(.98); }
+    to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@media (max-width: 768px) {
+    .kezza-chat-fab {
+        right: 14px !important;
+        bottom: max(16px, env(safe-area-inset-bottom)) !important;
+    }
+
+    .kezza-chat-window,
+    #kezzaChatWindow {
+        right: 12px !important;
+        bottom: max(12px, env(safe-area-inset-bottom)) !important;
+        left: auto !important;
+        width: min(420px, calc(100vw - 24px)) !important;
+        height: min(720px, calc(100dvh - 24px)) !important;
+        max-width: calc(100vw - 24px) !important;
+        max-height: calc(100dvh - 24px) !important;
+        border-radius: 24px !important;
+        z-index: 10001 !important;
+    }
+
+    .kezza-chat-header {
+        padding: 12px 14px !important;
+        padding-top: max(12px, env(safe-area-inset-top)) !important;
+    }
+
+    .kezza-chat-messages {
+        padding: 16px 14px !important;
+    }
+
+    .kezza-quick-replies {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        padding-left: 44px !important;
+    }
+
+    .kezza-quick-btn {
+        width: 100% !important;
+        min-width: 0 !important;
+        white-space: normal !important;
+        line-height: 1.25 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .kezza-chat-window,
+    #kezzaChatWindow {
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        max-width: 100vw !important;
+        max-height: 100vh !important;
+        max-height: 100dvh !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        transform: translate3d(0, 18px, 0) !important;
+    }
+
+    .kezza-chat-window.open,
+    #kezzaChatWindow.open {
+        transform: translate3d(0, 0, 0) !important;
+    }
+
+    .kezza-chat-header-actions {
+        gap: 5px !important;
+    }
+
+    .kezza-chat-header-actions .kezza-header-btn,
+    .kezza-chat-header-actions .kezza-chat-minimize {
+        flex-basis: 34px !important;
+        width: 34px !important;
+        min-width: 34px !important;
+        height: 34px !important;
+        min-height: 34px !important;
+    }
+
+    .kezza-chat-input-area {
+        padding: 10px 12px max(10px, env(safe-area-inset-bottom)) !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .kezza-chat-fab,
+    .kezza-chat-window,
+    .kezza-chat-window *,
+    .kezza-quick-btn {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ── 10. Contact booking form: stable, full-width controls on phones and tablets ── */
+@media (max-width: 1024px) {
+    .contact-form-section > .container {
+        width: 100% !important;
+        max-width: 800px !important;
+        padding-right: 16px !important;
+        padding-left: 16px !important;
+        box-sizing: border-box !important;
+    }
+
+    .contact-form-section .form-container,
+    .contact-form-section .form-card,
+    .contact-form-section .contact-form {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .contact-form-section .form-row-2 {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 0 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    .contact-form-section .form-group,
+    .contact-form-section .input-with-icon {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .contact-form-section .input-with-icon > input,
+    .contact-form-section .input-with-icon > select,
+    .contact-form-section .input-with-icon > textarea {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        flex: 1 1 auto !important;
+        box-sizing: border-box !important;
+        font-size: 16px !important;
+    }
+
+    .contact-form-section .phone-input-box > input {
+        min-width: 0 !important;
+        flex: 1 1 0% !important;
+    }
+
+    .contact-form-section #submitBtn {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 52px !important;
+        margin-top: 12px !important;
+        box-sizing: border-box !important;
+    }
+}

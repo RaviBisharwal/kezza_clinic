@@ -1,0 +1,188 @@
+# ─────────────────────────────────────────────────────────────────────
+# Kezza Hair & Skin Clinic — Apache / LiteSpeed config (GoDaddy cPanel)
+# Upload to the web root (public_html) next to index.html.
+# Every block is wrapped in <IfModule> so a missing module can't 500 the site.
+# ─────────────────────────────────────────────────────────────────────
+
+Options -Indexes
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+ErrorDocument 404 /404.html
+
+# ── 1. One canonical host: https://www.kezza.co.in ───────────────────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 301: /weight-loss.html -> /weight-loss/ (clean URL)
+    RewriteRule ^weight-loss\.html$ /weight-loss/ [R=301,L]
+
+
+
+
+
+
+
+
+
+    # 301: /hair-loss-consultation.html -> /hair-loss-consultation/ (clean URL)
+    RewriteRule ^hair-loss-consultation\.html$ /hair-loss-consultation/ [R=301,L]
+
+    # 301: /hair-wig.html -> /hair-wig/ (clean URL)
+    RewriteRule ^hair-wig\.html$ /hair-wig/ [R=301,L]
+
+    # 301: /electrolysis.html -> /electrolysis/ (clean URL)
+    RewriteRule ^electrolysis\.html$ /electrolysis/ [R=301,L]
+
+    # 301: /white-hair-removal.html -> /white-hair-removal/ (clean URL)
+    RewriteRule ^white-hair-removal\.html$ /white-hair-removal/ [R=301,L]
+
+    # 301: /prp-therapy.html -> /prp-therapy/ (clean URL)
+    RewriteRule ^prp-therapy\.html$ /prp-therapy/ [R=301,L]
+
+    # 301: /about.html -> /about/ (clean URL)
+    RewriteRule ^about\.html$ /about/ [R=301,L]
+
+    # Retired specialist profile and portrait URLs
+    RewriteRule ^doctors/dr-ankit-bhalothia(?:/index\.html|/?)$ https://www.kezza.co.in/about/#doctors [R=301,L,NE,QSD,NC]
+    RewriteRule ^images/(?:doctors/dr-ankit-bhalothia(?:-sm\.webp|\.(?:jpg|webp))|og/doctor-dr-ankit-bhalothia\.jpg|Doctor1\.jpeg)$ - [G,L,NC]
+
+    # 301: /index.html -> / (clean URL)
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/ [NC]
+    RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
+
+    # 301: /contact.html -> /contact/ (clean URL)
+    RewriteRule ^contact\.html$ /contact/ [R=301,L]
+
+
+    # 301: /branches.html -> /branches/ (clean URL)
+    RewriteRule ^branches\.html$ /branches/ [R=301,L]
+
+
+    # 301: /stretch-marks-treatment/ -> /stretch-marks/ (permanent rename)
+    RewriteRule ^stretch-marks-treatment(/.*)?$ /stretch-marks/$1 [R=301,L]
+
+
+    # 301: /pigmentation-treatment/ -> /pigmentation/ (permanent rename)
+    RewriteRule ^pigmentation-treatment(/.*)?$ /pigmentation/$1 [R=301,L]
+
+
+    # 301: /acne-treatment/ -> /acne/ (permanent rename)
+    RewriteRule ^acne-treatment(/.*)?$ /acne/$1 [R=301,L]
+
+
+    # 301: /gfc-treatment/ -> /gfc/ (permanent rename)
+    RewriteRule ^gfc-treatment(/.*)?$ /gfc/$1 [R=301,L]
+    RewriteRule ^gfc-therapy(/.*)?$ /gfc/$1 [R=301,L]
+
+
+    # 301: /dark-circles-treatment/ -> /dark-circles/ (permanent rename)
+    RewriteRule ^dark-circles-treatment(/.*)?$ /dark-circles/$1 [R=301,L]
+
+
+    # 301: /acne-scar-treatment/ -> /acne-scar/ (permanent rename)
+    RewriteRule ^acne-scar-treatment(/.*)?$ /acne-scar/$1 [R=301,L]
+    RewriteRule ^acne-scars(/.*)?$ /acne-scar/$1 [R=301,L]
+
+
+    # 301: /botox/ -> /dermal-fillers/ (permanent rename)
+    RewriteRule ^botox(/.*)?$ /dermal-fillers/$1 [R=301,L]
+
+
+    # 301: /glutathione-treatment/ → /skin-brightening/ (permanent SEO rename)
+    RewriteRule ^glutathione-treatment(/.*)?$ /skin-brightening/$1 [R=301,L]
+
+
+    # kezza.co.in (http or https)  ->  https://www.kezza.co.in  (single 301 hop)
+    # The optional ":port" covers servers that pass the host as "kezza.co.in:443".
+    # CHECK AFTER UPLOAD: https://kezza.co.in/hair-transplant/ must jump to
+    # https://www.kezza.co.in/hair-transplant/ (Semrush's hreflang error came from the
+    # non-www copy of that page, which the live server was still serving on 10 Oct 2026).
+    RewriteCond %{HTTP_HOST} ^kezza\.co\.in(:[0-9]+)?$ [NC]
+    RewriteRule ^ https://www.kezza.co.in%{REQUEST_URI} [L,R=301]
+
+    # http://www.kezza.co.in  ->  https://www.kezza.co.in
+    # (X-Forwarded-Proto check prevents a loop if SSL is ever terminated upstream)
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{HTTP_HOST} ^www\.kezza\.co\.in(:[0-9]+)?$ [NC]
+    RewriteRule ^ https://www.kezza.co.in%{REQUEST_URI} [L,R=301]
+
+    # llms.txt spec path is lowercase; keep the old mixed-case URL working
+    RewriteRule ^LLMs\.txt$ /llms.txt [L,R=301]
+
+    # Folder URLs for sections (serve without the trailing-slash 404)
+    RewriteRule ^hi/?$ /hi/hair-transplant/ [L,R=301]
+    RewriteRule ^(weight-loss|branches|contact|locations|locations/(jaipur|sikar|ajmer)|blog|blog/[a-zA-Z0-9-]+|hair-transplant|hair-transplant/(beard|dhi|eyebrow|fue)|hi/hair-transplant|acne|acne-scar|pigmentation|dermal-fillers|cryolipolysis|dark-circles|gfc|hifu-body-sculpting|hydra-facial|laser-hair-removal|lip-blush|medical-dermatology|microblading|permanent-eyeliner|pmu-correction|skin-consultation|stretch-marks|weight-management|cosmetic-surgery|rhinoplasty|blepharoplasty|scar-revision|q-switch-laser|laser-hair-removal/full-body|chemical-peel|medical-peel|microneedling|skin-brightening|lip-neutralization|doctors/[a-z-]+)$ /$1/ [L,R=301]
+
+    # There is no doctors index page: the team is listed on the About page
+    RewriteRule ^doctors/?$ /about/#doctors [NE,L,R=301]
+
+    # Universal directory trailing-slash enforcement
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^(.*[^/])$ /$1/ [L,R=301]
+</IfModule>
+
+# ── 2. Compression (text assets) ─────────────────────────────────────
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+    AddOutputFilterByType DEFLATE application/javascript text/javascript application/json
+    AddOutputFilterByType DEFLATE application/xml application/rss+xml image/svg+xml
+    AddOutputFilterByType DEFLATE application/manifest+json font/ttf font/otf
+</IfModule>
+
+<IfModule mod_mime.c>
+    AddType image/webp .webp
+    AddType image/avif .avif
+    AddType font/woff2 .woff2
+    AddType application/manifest+json .webmanifest
+</IfModule>
+
+# ── 3. Browser caching ───────────────────────────────────────────────
+# HTML is always revalidated so content/SEO changes show immediately.
+# CSS/JS: 1 year. Every page links them with a content hash (?v=…) that changes
+# whenever the file changes (run `npm run build` after editing them).
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault                          "access plus 1 week"
+    ExpiresByType text/html                 "access plus 0 seconds"
+    ExpiresByType text/plain                "access plus 1 hour"
+    ExpiresByType application/xml           "access plus 1 hour"
+    ExpiresByType text/xml                  "access plus 1 hour"
+    ExpiresByType text/css                  "access plus 1 year"
+    ExpiresByType application/javascript    "access plus 1 year"
+    ExpiresByType text/javascript           "access plus 1 year"
+    ExpiresByType image/jpeg                "access plus 6 months"
+    ExpiresByType image/png                 "access plus 6 months"
+    ExpiresByType image/webp                "access plus 6 months"
+    ExpiresByType image/avif                "access plus 6 months"
+    ExpiresByType image/svg+xml             "access plus 6 months"
+    ExpiresByType image/x-icon              "access plus 1 year"
+    ExpiresByType video/mp4                 "access plus 6 months"
+    ExpiresByType font/woff2                "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.html?$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+    # HTTPS only (HSTS): browsers remember to use https for a year. They ignore this
+    # header on plain-http answers, so it is safe to send on every response.
+    Header always set Strict-Transport-Security "max-age=31536000"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self), fullscreen=(self)"
+
+    # Internal pages must never be indexed, whatever a crawler does with robots.txt
+    <FilesMatch "^(admin\.html)$">
+        Header set X-Robots-Tag "noindex, nofollow"
+    </FilesMatch>
+</IfModule>
+
+# ── 4. Keep private files off the public web ─────────────────────────
+<FilesMatch "^\.|\.(env|log|bak|sql|db|md|py|sh)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</FilesMatch>

@@ -1,0 +1,428 @@
+[
+ {
+  "id": "fue-hair-transplant",
+  "url": "/hair-transplant/fue/",
+  "status": "published",
+  "effective": "published",
+  "reviewer": "dr-harshit-sharma",
+  "reviewed": "2026-09-30",
+  "critical": [],
+  "warnings": [
+   "links to pages that are not published yet: /gfc-treatment/ (pointed at their fallback until they are)"
+  ],
+  "needs_human_review": []
+ },
+ {
+  "id": "dhi-hair-transplant",
+  "url": "/hair-transplant/dhi/",
+  "status": "published",
+  "effective": "published",
+  "reviewer": "dr-harshit-sharma",
+  "reviewed": "2026-09-30",
+  "critical": [],
+  "warnings": [
+   "links to pages that are not published yet: /gfc-treatment/ (pointed at their fallback until they are)"
+  ],
+  "needs_human_review": []
+ },
+ {
+  "id": "beard-transplant",
+  "url": "/hair-transplant/beard/",
+  "status": "published",
+  "effective": "published",
+  "reviewer": "dr-harshit-sharma",
+  "reviewed": "2026-09-30",
+  "critical": [],
+  "warnings": [],
+  "needs_human_review": []
+ },
+ {
+  "id": "eyebrow-transplant",
+  "url": "/hair-transplant/eyebrow/",
+  "status": "published",
+  "effective": "published",
+  "reviewer": "dr-harshit-sharma",
+  "reviewed": "2026-09-30",
+  "critical": [],
+  "warnings": [],
+  "needs_human_review": []
+ },
+ {
+  "id": "gfc-treatment",
+  "url": "/gfc-treatment/",
+  "status": "published",
+  "effective": "blocked",
+  "reviewer": "dr-harshit-sharma",
+  "reviewed": "2026-09-30",
+  "critical": [
+   "title is not unique: gfc/index.html",
+   "H1 is not unique: gfc/index.html"
+  ],
+  "warnings": [],
+  "needs_human_review": []
+ },
+ {
+  "id": "laser-hair-removal",
+  "url": "/laser-hair-removal/",
+  "status": "published",
+  "effective": "published",
+  "reviewer": "dr-nakul-somani",
+  "reviewed": "2026-09-30",
+  "critical": [],
+  "warnings": [],
+  "needs_human_review": []
+ },
+ {
+  "id": "hair-transplant-hindi",
+  "url": "/hi/hair-transplant/",
+  "status": "published",
+  "effective": "published",
+  "reviewer": "dr-harshit-sharma",
+  "reviewed": "2026-09-30",
+  "critical": [],
+  "warnings": [
+   "links to pages that are not published yet: /gfc-treatment/ (pointed at their fallback until they are)"
+  ],
+  "needs_human_review": []
+ },
+ {
+  "id": "acne-treatment",
+  "url": "/acne-treatment/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [],
+  "warnings": [
+   "links to pages that are not published yet: /acne-scar-treatment/, /pigmentation-treatment/"
+  ],
+  "needs_human_review": [
+   "Confirm the treatments offered: which medical peels, extraction, cyst injections and whether isotretinoin is prescribed at Kezza.",
+   "The clinic said on 3 Oct 2026 that skin treatments are available at all three clinics. Confirm which doctors treat acne in Sikar and Ajmer.",
+   "Confirm the review timing (the page says 6 to 8 weeks) matches clinic practice.",
+   "Choose the reviewing doctor (suggested: Dr. Neelam Choudhary), then set status, reviewer and reviewed date.",
+   "The hero photo is an illustrative stock-style image, not a Kezza patient.",
+   "No prices are shown. Add them only if the clinic wants to publish prices.",
+   "The explainer photo is an illustrative image, not a Kezza patient."
+  ]
+ },
+ {
+  "id": "acne-scar-treatment",
+  "url": "/acne-scar-treatment/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [
+   "title is not unique: acne-scar/index.html",
+   "H1 is not unique: acne-scar/index.html"
+  ],
+  "warnings": [
+   "links to pages that are not published yet: /pigmentation-treatment/"
+  ],
+  "needs_human_review": [
+   "Confirm which scar treatments each clinic offers (subcision, MNRF, fractional CO2 laser, chemical peels) and whether device names should be shown.",
+   "The clinic said on 3 Oct 2026 that skin treatments are available at all three clinics. Confirm which scar treatments each clinic offers and which doctors provide them.",
+   "Confirm the usual session spacing and course length (the page says several sessions, a few weeks apart).",
+   "Confirm the advice on raised scars (steroid injections, silicone, laser) and on deep ice pick scars (focused chemical application such as TCA CROSS, or punch techniques) matches what the clinic offers.",
+   "Choose the reviewing doctor (suggested: Dr. Neelam Choudhary), then set status, reviewer and reviewed date.",
+   "The hero photo is an illustrative stock-style image, not a Kezza patient. The explainer photo is a real Kezza treatment room.",
+   "No prices are shown. Add them only if the clinic wants to publish prices."
+  ]
+ },
+ {
+  "id": "hydra-facial",
+  "url": "/hydra-facial/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [],
+  "warnings": [
+   "links to pages that are not published yet: /acne-scar-treatment/, /acne-treatment/, /pigmentation-treatment/"
+  ],
+  "needs_human_review": [
+   "Confirm the steps, solutions and any add-ons offered, and who performs the facial.",
+   "Choose the reviewing doctor (suggested: Dr. Neelam Choudhary), then set status, reviewer and reviewed date.",
+   "The hero photo is an illustrative stock-style image. The explainer photo shows the real machine at Kezza.",
+   "No prices are shown. Add them only if the clinic wants to publish prices.",
+   "The clinic confirmed on 3 Oct 2026 that it uses a general hydra facial machine, not the branded HydraFacial system, and that skin treatments are available at all three clinics. The page and the hub now say 'hydra facial'; the brand is mentioned once, in the FAQ that explains the difference.",
+   "Confirm hygiene practice (single-use tips where needed) and who gives the facials at each clinic."
+  ]
+ },
+ {
+  "id": "botox",
+  "url": "/botox/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [
+   "title is not unique: dermal-fillers/index.html",
+   "H1 is not unique: dermal-fillers/index.html"
+  ],
+  "warnings": [
+   "links to pages that are not published yet: /dark-circles-treatment/, /pigmentation-treatment/"
+  ],
+  "needs_human_review": [
+   "The page now covers Botox and dermal fillers, as the clinic asked for one injectables page; the URL stays /botox/.",
+   "Confirm the brand(s) of botulinum toxin and hyaluronic acid filler used, and that each product is approved by CDSCO. Botox is a trademark of Allergan (AbbVie); if another brand is used, use the generic name 'botulinum toxin' in the title and text.",
+   "Confirm the filler areas offered (lips, cheeks, under-eyes, smile lines, jawline) and the clinic's policy for under-eye filler and for high-risk areas such as the nose and forehead.",
+   "The clinic said on 3 Oct 2026 that fillers are offered and that skin treatments are available at all three clinics. Confirm which doctors give injections at each clinic (the Ajmer doctors are listed as oral and maxillofacial, aesthetic and hair transplant surgeons) and that hyaluronidase is kept on site for emergencies.",
+   "The skin page shows 'FDA Allergan Brands', 'US FDA-Approved Neuromodulators', '6–9 Mo Lasting Results' and 'Zero Downtime'. Published sources give about 3 to 4 months for Botox (Mayo Clinic); please confirm or correct the skin page.",
+   "Botulinum toxin's schedule under Indian drug rules could not be verified, so the page only calls it a prescription medicine.",
+   "Choose the reviewing doctor (suggested: Dr. Nakul Somani), then set status, reviewer and reviewed date.",
+   "The hero and filler photos are illustrative stock-style images, not Kezza patients.",
+   "No prices are shown. Add them only if the clinic wants to publish prices."
+  ]
+ },
+ {
+  "id": "dark-circles-treatment",
+  "url": "/dark-circles-treatment/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [
+   "title is not unique: dark-circles/index.html"
+  ],
+  "warnings": [
+   "links to pages that are not published yet: /botox/"
+  ],
+  "needs_human_review": [
+   "Confirm the methods offered for dark circles at Kezza: prescription creams, chemical peels, laser toning, tear-trough filler and whether PRP is used.",
+   "Confirm the filler products used under the eyes and which doctors inject them.",
+   "The clinic said on 3 Oct 2026 that skin treatments are available at all three clinics. Confirm which doctors treat dark circles, and give under-eye fillers, in Sikar and Ajmer.",
+   "Choose the reviewing doctor (suggested: Dr. Nakul Somani), then set status, reviewer and reviewed date.",
+   "The hero photo is an illustrative stock-style image, not a Kezza patient.",
+   "No prices are shown. Add them only if the clinic wants to publish prices.",
+   "The explainer photo is an illustrative image, not a Kezza patient.",
+   "6 Oct 2026: page brought to the same layout as the other skin pages (short answer, mid-page booking box, clinic cards, 'Why patients choose Kezza' and three more FAQs). Please check the new FAQ answers on sessions, pain and who to see."
+  ]
+ },
+ {
+  "id": "cryolipolysis",
+  "url": "/cryolipolysis/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [],
+  "warnings": [
+   "links to pages that are not published yet: /weight-management/"
+  ],
+  "needs_human_review": [
+   "Confirm the cryolipolysis device used at each clinic, the areas it can treat and whether it is cleared or approved by a regulator; the page does not name a brand.",
+   "Confirm cryolipolysis is offered in Sikar as well as Jaipur.",
+   "Confirm the four-applicator full-body option is described correctly (taken from the weight-loss page), and the review timing (the page says about three to four months).",
+   "The FAQ quotes published averages (Cleveland Clinic: 15 to 28 percent; ASPS: about 20 percent). Confirm you are comfortable showing them.",
+   "Choose the reviewing doctor (suggested: Dr. Neelam Choudhary or Dr. Youvraj Singh), then set status, reviewer and reviewed date.",
+   "The hero photo is an illustrative stock-style image, not a Kezza patient or device.",
+   "No prices are shown. Add them only if the clinic wants to publish prices."
+  ]
+ },
+ {
+  "id": "hifu-body-sculpting",
+  "url": "/hifu-body-sculpting/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [],
+  "warnings": [
+   "links to pages that are not published yet: /cryolipolysis/, /weight-management/"
+  ],
+  "needs_human_review": [
+   "Confirm the HIFU device used for the body, the areas it is approved or cleared for, and that it is offered in Sikar as well as Jaipur.",
+   "The weight-loss page describes HIFU body sculpting with 'zero downtime, instant visible results'. Published reviews describe results building over 8 to 12 weeks; please confirm or correct the weight-loss page.",
+   "The FAQ quotes published averages (about 2 to 3 cm off the waist). Confirm you are comfortable showing them.",
+   "Choose the reviewing doctor (suggested: Dr. Neelam Choudhary or Dr. Youvraj Singh), then set status, reviewer and reviewed date.",
+   "The hero photo is an illustrative stock-style image, not a Kezza patient or device.",
+   "No prices are shown. Add them only if the clinic wants to publish prices."
+  ]
+ },
+ {
+  "id": "weight-management",
+  "url": "/weight-management/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [],
+  "warnings": [
+   "links to pages that are not published yet: /cryolipolysis/, /hifu-body-sculpting/"
+  ],
+  "needs_human_review": [
+   "Confirm what the programme actually includes at Kezza: who runs it (doctor, dietitian or both), which tests are offered, how often follow-ups happen and whether it is available in Sikar as well as Jaipur.",
+   "The clinic confirmed on 2 Oct 2026 that its doctors prescribe weight-loss injections after a consultation. The Indian government said in March 2026 that these medicines are approved on condition of a prescription by endocrinologists or internal medicine specialists (cardiologists for some uses), so the FAQ says they are prescribed only by Kezza's internal medicine specialist at the Jaipur clinic (Dr. Youvraj Singh is the only one listed). Confirm this and how Sikar patients are handled; no medicine is named. Obesity is listed in the Schedule of India's Drugs and Magic Remedies (Objectionable Advertisements) Act, 1954, so keep this page about the consultation rather than a medicine, and have the wording checked before publishing. The blog guide on semaglutide is linked here automatically once it is published.",
+   "Confirm you are comfortable quoting NHS guidance (0.5 to 1 kg a week; 5 to 10 percent improves health) and the India Obesity Commission 2025 definition.",
+   "Suggested reviewer: Dr. Youvraj Singh (Consultant Physician & Internal Medicine). Then set status, reviewer and reviewed date.",
+   "The hero photo is a real Kezza treatment room.",
+   "No prices are shown. Add them only if the clinic wants to publish prices."
+  ]
+ },
+ {
+  "id": "microblading",
+  "url": "/microblading/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [],
+  "warnings": [
+   "links to pages that are not published yet: /pmu-correction/"
+  ],
+  "needs_human_review": [
+   "Confirm that powder (shaded) brows are offered as a style of their own, alongside microblading and hybrid brows.",
+   "Confirm the 'wait or check first' list, including how long you ask people to wait after isotretinoin.",
+   "Confirm eyebrow PMU is available in Sikar as well as Jaipur (the PMU artist is listed at both clinics).",
+   "Confirm the healing advice matches the clinic's printed aftercare sheet, and when the patch test is done (the page says at a consultation before the treatment day).",
+   "Suggested reviewers: Krishna Choudhary (PMU artist) for technique and aftercare, and a clinic doctor for the risks and 'check first' list. The strip will read 'Reviewed by', not 'Medically reviewed by'.",
+   "The hero photo is an illustrative stock-style image, not a Kezza client.",
+   "No prices are shown. Add them only if the clinic wants to publish prices."
+  ]
+ },
+ {
+  "id": "lip-blush",
+  "url": "/lip-blush/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [],
+  "warnings": [
+   "links to pages that are not published yet: /microblading/, /pmu-correction/"
+  ],
+  "needs_human_review": [
+   "Confirm how lip neutralization is done at Kezza and how many sessions it usually needs.",
+   "Confirm the cold sore policy (for example, a doctor's antiviral prescription before treatment) and who prescribes it.",
+   "Confirm that lip line definition is offered, that lip PMU is available in Sikar as well as Jaipur, and when the patch test is done (the page says at a consultation before the treatment day).",
+   "Suggested reviewers: Krishna Choudhary (PMU artist) for technique and aftercare, and a clinic doctor for the cold sore and 'check first' advice. The strip will read 'Reviewed by'.",
+   "The hero photo is an illustrative stock-style image, not a Kezza client.",
+   "No prices are shown. Add them only if the clinic wants to publish prices."
+  ]
+ },
+ {
+  "id": "permanent-eyeliner",
+  "url": "/permanent-eyeliner/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [],
+  "warnings": [
+   "links to pages that are not published yet: /pmu-correction/"
+  ],
+  "needs_human_review": [
+   "Confirm the eyeliner styles offered (for example, whether lower lash line or winged liner is offered) and the numbing product used near the eyes.",
+   "Confirm the advice on contact lenses, lash extensions and eye makeup after treatment, how the eye is protected during treatment (for example eye shields), and when the patch test is done (the page says at a consultation before the treatment day).",
+   "Confirm permanent eyeliner is available in Sikar as well as Jaipur.",
+   "Suggested reviewers: Krishna Choudhary (PMU artist) for technique and aftercare, and a clinic doctor for the eye-safety advice. The strip will read 'Reviewed by'.",
+   "The hero and close-up photos are illustrative stock-style images, not a Kezza client.",
+   "No prices are shown. Add them only if the clinic wants to publish prices."
+  ]
+ },
+ {
+  "id": "pmu-correction",
+  "url": "/pmu-correction/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [],
+  "warnings": [
+   "links to pages that are not published yet: /lip-blush/, /microblading/, /permanent-eyeliner/"
+  ],
+  "needs_human_review": [
+   "Confirm the correction methods used at Kezza: colour correction, reshaping, non-laser lightening, and whether laser removal is offered in-house or by referral (and by whom).",
+   "Confirm the beauty spot service and the policy of not tattooing over an existing mole unless a doctor has checked it (the PMU page mentions enhancing natural beauty spots), and when the patch test is done.",
+   "Confirm corrections are available in Sikar as well as Jaipur.",
+   "Suggested reviewers: Krishna Choudhary (PMU artist) for technique, and a clinic doctor for the laser and medical advice. The strip will read 'Reviewed by'.",
+   "The hero photo is an illustrative stock-style image, not a Kezza client.",
+   "No prices are shown. Add them only if the clinic wants to publish prices."
+  ]
+ },
+ {
+  "id": "pigmentation-treatment",
+  "url": "/pigmentation-treatment/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [
+   "title is not unique: pigmentation/index.html"
+  ],
+  "warnings": [
+   "links to pages that are not published yet: /acne-scar-treatment/"
+  ],
+  "needs_human_review": [
+   "Confirm the treatments offered at each clinic: which chemical peels (glycolic, salicylic, lactic, mandelic), whether laser toning (Q-switched Nd:YAG) is available in Jaipur, Sikar and Ajmer, and which prescription creams are used. Confirm whether tranexamic acid tablets are prescribed, and by which doctor.",
+   "The clinic said on 3 Oct 2026 that skin treatments are available at all three clinics. Confirm which doctors provide pigmentation care in Sikar and Ajmer.",
+   "The skin page promotes intravenous glutathione that 'switches melanin synthesis toward lighter pheomelanin'. Published Indian guidance (IJDVL 2016) found no efficacy data for IV glutathione and reported serious harms, the US FDA (2015) has approved no injectable skin-lightening drug, and a CDSCO notice (May 2026) says injectables are not cosmetics. Please review that section; this page mentions glutathione only in an FAQ.",
+   "The page avoids fairness or whitening wording, in line with the ASCI guideline on skin colour in advertising.",
+   "Choose the reviewing doctor (suggested: Dr. Neelam Choudhary), then set status, reviewer and reviewed date.",
+   "The hero and explainer photos are illustrative stock-style images, not Kezza patients.",
+   "No prices are shown. Add them only if the clinic wants to publish prices."
+  ]
+ },
+ {
+  "id": "stretch-marks",
+  "url": "/stretch-marks-treatment/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [
+   "title is not unique: stretch-marks/index.html"
+  ],
+  "warnings": [],
+  "needs_human_review": [
+   "Confirm which stretch mark treatments are offered at each clinic (fractional CO2 laser, microneedling radiofrequency, microneedling, PRP, peels) and the devices used. The clinic said on 3 Oct 2026 that stretch mark treatment is offered and that skin treatments are available at all three clinics.",
+   "The skin page shows '70%+ Visible Fading'. No reliable source supports a fixed percentage (an Indian review in 2019 found variable success for every method); please remove or source it.",
+   "Confirm the usual spacing between sessions (the page says three to six weeks) and whether PRP is injected or applied.",
+   "Choose the reviewing doctor (suggested: Dr. Neelam Choudhary), then set status, reviewer and reviewed date.",
+   "The hero photo is an illustrative stock-style image, not a Kezza patient.",
+   "No prices are shown. Add them only if the clinic wants to publish prices.",
+   "The explainer photo is an illustrative image, not a Kezza patient."
+  ]
+ },
+ {
+  "id": "medical-dermatology",
+  "url": "/medical-dermatology/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [],
+  "warnings": [],
+  "needs_human_review": [
+   "The clinic could not yet confirm a doctor with a dermatology qualification (MD, DNB or DVD). This page does not use the word 'dermatologist' for Kezza staff and targets mole, wart and skin tag removal. If a qualified dermatologist is confirmed, add their name and qualification and the page can also target 'dermatologist in Jaipur'.",
+   "The skin page says treatments are 'performed by senior dermatologists in sterile hospital operating conditions', mentions 'biologic monitoring' for psoriasis, and quotes 'Dr. Ananya P., Consultant Dermatologist', who is not listed on the About page. Please confirm or correct these.",
+   "Confirm how unusual moles are handled: surgical excision with histopathology at Kezza, or referral (and to whom). The page says they are removed surgically for laboratory testing.",
+   "Confirm which doctors perform radiofrequency removals at each clinic, and which skin conditions (eczema, psoriasis, fungal infections) are treated at Kezza. The clinic said on 3 Oct 2026 that mole, wart and skin tag removal is offered and that skin treatments are available at all three clinics.",
+   "Choose the reviewing doctor (suggested: Dr. Neelam Choudhary), then set status, reviewer and reviewed date.",
+   "The hero photo is an illustrative image (the same photo is used on the electrolysis page), not a Kezza patient.",
+   "No prices are shown. Add them only if the clinic wants to publish prices.",
+   "The explainer photo is an illustrative image, not a Kezza patient."
+  ]
+ },
+ {
+  "id": "skin-consultation",
+  "url": "/skin-consultation/",
+  "status": "review",
+  "effective": "review",
+  "reviewer": "",
+  "reviewed": "",
+  "critical": [],
+  "warnings": [
+   "links to pages that are not published yet: /acne-scar-treatment/, /acne-treatment/, /botox/, /hydra-facial/, /medical-dermatology/, /pigmentation-treatment/, /stretch-marks-treatment/"
+  ],
+  "needs_human_review": [
+   "Confirm the consultation process at each clinic: who sees skin patients in Jaipur, Sikar and Ajmer, whether every consultation is with a doctor, and whether walk-ins are accepted. The page says booking ahead is best.",
+   "Confirm the tests available (skin scrapings for fungus, patch tests, blood tests) and whether magnification or dermoscopy is used. The page says tests are suggested only when needed.",
+   "Confirm that the plan, number of sessions and costs are explained before treatment (the page says so), and how the consultation fee is communicated. No fee is shown.",
+   "The hero photo is the real Kezza reception (please confirm which clinic). The examination photo is an illustrative stock-style image, not a Kezza patient.",
+   "Choose the reviewing doctor (suggested: Dr. Neelam Choudhary), then set status, reviewer and reviewed date."
+  ]
+ }
+]

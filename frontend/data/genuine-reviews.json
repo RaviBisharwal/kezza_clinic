@@ -1,0 +1,348 @@
+{
+  "_meta": {
+    "source": "Genuine Google Maps review screenshots supplied by clinic owner (Kezza Hair & Skin Clinic)",
+    "extractedOn": "2026-10-26",
+    "dataStatus": "screenshot-provided — not live-synchronised from Google Places API",
+    "note": "Branch assignments are recorded only where the review text or the visible owner response explicitly names a branch. Reviews without a confirmed branch are assigned branchId: null.",
+    "branches": {
+      "jaipur": {
+        "label": "Kezza Jaipur",
+        "mapUrl": "https://maps.app.goo.gl/4eUGixic35V777yd8",
+        "reviewUrl": "https://maps.app.goo.gl/4eUGixic35V777yd8"
+      },
+      "sikar": {
+        "label": "Kezza Sikar",
+        "mapUrl": "https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6",
+        "reviewUrl": "https://www.google.com/maps/place//data=!4m3!3m2!1s0x396cbb8cee08f913:0x2fb082dea5ff1e14!12e1"
+      },
+      "ajmer": {
+        "label": "Kezza Ajmer",
+        "mapUrl": "https://maps.app.goo.gl/zMajvKmT5N7coswJA",
+        "reviewUrl": "https://maps.app.goo.gl/zMajvKmT5N7coswJA"
+      }
+    }
+  },
+  "branchLinks": {
+    "jaipur": {
+      "label": "Kezza Jaipur",
+      "mapUrl": "https://maps.app.goo.gl/4eUGixic35V777yd8",
+      "reviewUrl": "https://maps.app.goo.gl/4eUGixic35V777yd8"
+    },
+    "sikar": {
+      "label": "Kezza Sikar",
+      "mapUrl": "https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6",
+      "reviewUrl": "https://www.google.com/maps/place//data=!4m3!3m2!1s0x396cbb8cee08f913:0x2fb082dea5ff1e14!12e1"
+    },
+    "ajmer": {
+      "label": "Kezza Ajmer",
+      "mapUrl": "https://maps.app.goo.gl/zMajvKmT5N7coswJA",
+      "reviewUrl": "https://maps.app.goo.gl/zMajvKmT5N7coswJA"
+    }
+  },
+  "reviews": [
+    {
+      "id": "sikar-review-001",
+      "source": "Google",
+      "sourceVerified": "Screenshot supplied by clinic owner",
+      "reviewerName": "Kiran Jerthi",
+      "rating": 5,
+      "reviewText": "I had taken face laser 4th session from this clinic and my result was successful. I suggest you to all that do visit kezza clinic for treatments.\nYou will definitely find solutions to all you hair and skin related issues\nThanks kezza clinic sikar",
+      "dateLabel": "4 months ago",
+      "edited": false,
+      "translated": false,
+      "translatedFrom": null,
+      "branchId": "sikar",
+      "branchNote": "Sikar confirmed — review ends with 'Thanks kezza clinic sikar' and owner response acknowledges 'trusting Kezza Clinic Sikar'.",
+      "ownerResponse": {
+        "dateLabel": "4 months ago",
+        "text": "Dear Kiran Jerthi,\n\nThank you for your wonderful feedback and for trusting Kezza Clinic Sikar with ...",
+        "truncated": true
+      },
+      "photos": [],
+      "customerPhotosNote": null,
+      "sourceUrl": "https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6"
+    },
+    {
+      "id": "sikar-review-003",
+      "source": "Google",
+      "sourceVerified": "Screenshot supplied by clinic owner",
+      "reviewerName": "Vikram Gurjar",
+      "rating": 5,
+      "reviewText": "Hii everyone my self vikram Gurjar\nI'm from Gudha Gorji\nRecently I'm studying in sikar for my NEET preparation.\nI show a reel on my Instagram from kezza clinic sikar related to hair transplant I was facing severe hair loss so I went to kezza clinic sikar on 6 May 2026 and consult to kezza clinic doctor and book my hair transplant date on 7 may 2026\nToday after 4 month in my 4th PRP my all bald paches are filled up with hairs and I'm fully satisfied with my hair transplant results\nThank you kezza clinic for giving me my confidence back ❤️",
+      "dateLabel": "a month ago",
+      "edited": false,
+      "translated": false,
+      "translatedFrom": null,
+      "branchId": "sikar",
+      "branchNote": "Sikar confirmed — reviewer explicitly states 'studying in sikar', 'kezza clinic sikar', and 'went to kezza clinic sikar'.",
+      "ownerResponse": null,
+      "photos": [],
+      "customerPhotosNote": "Two customer photos visible in screenshot. Excluded until originals and consent are confirmed.",
+      "sourceUrl": "https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6"
+    },
+    {
+      "id": "sikar-review-004",
+      "source": "Google",
+      "sourceVerified": "Screenshot supplied by clinic owner",
+      "reviewerName": "Himanshu Mangawa",
+      "rating": 5,
+      "reviewText": "I had almost 5 GFC sessions at KezzQ Clinic, Sikar, for my hair, and I’m very happy with the results. I noticed a good improvement in my hair growth and overall hair quality. The doctor is very knowledgeable, explains everything clearly, and provides excellent guidance. The staff is also very polite, supportive, and professional throughout the treatment. Overall, I had a great experience and would highly recommend KezzQ Clinic, Sikar, to anyone looking for effective hair treatment.",
+      "dateLabel": "4 months ago",
+      "edited": false,
+      "translated": false,
+      "translatedFrom": null,
+      "branchId": "sikar",
+      "branchNote": "Sikar confirmed — review explicitly names 'KezzQ Clinic, Sikar' twice. Original spelling KezzQ preserved.",
+      "ownerResponse": {
+        "dateLabel": "4 months ago",
+        "text": "Dear Himanshu Mangawa,\n\nThank you so much for your wonderful feedback and for trusting Kezza Clinic, ...",
+        "truncated": true
+      },
+      "photos": [],
+      "customerPhotosNote": null,
+      "sourceUrl": "https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6"
+    },
+    {
+      "id": "sikar-review-002",
+      "source": "Google",
+      "sourceVerified": "Screenshot supplied by clinic owner",
+      "reviewerName": "Pradeep Shekhawat",
+      "rating": 5,
+      "reviewText": "I'm 32 Years old and literally suffering from my hair & skin related issues throughout my last almost 05 yrs. I've tried almost all kind of products throughout. My friend and mentor Mr. Shekhawat advised me visit kaza hair and skin team,\nI am very much satisfied with the doctor and the treatment undergoing.\nThank you so much Team for your continuous Support, Efforts and Assistance 🙏",
+      "dateLabel": "2 years ago",
+      "edited": false,
+      "translated": false,
+      "translatedFrom": null,
+      "branchId": null,
+      "branchNote": "Branch unconfirmed in visible screenshot. Mentions 'kaza hair and skin team'. Kept as branchId: null pending verification against Sikar Google Maps listing.",
+      "ownerResponse": {
+        "dateLabel": "4 months ago",
+        "text": "Thank you for sharing your experience with Kezza Clinic. We are happy to know that you are satisfied with the treatment and support provided by our team. Our goal is always to deliver the best hair loss treatment and skin care solutions in ...",
+        "truncated": true
+      },
+      "photos": [],
+      "customerPhotosNote": null,
+      "sourceUrl": null
+    },
+    {
+      "id": "sikar-review-005",
+      "source": "Google",
+      "sourceVerified": "Screenshot supplied by clinic owner",
+      "reviewerName": "Meera Bairwa",
+      "rating": 5,
+      "reviewText": "Maine eyebrow microblading krwai h , main bhot satisfied hu, kezza clinic me best eyebrow microblading hoti h. Highly recommend",
+      "dateLabel": "3 months ago",
+      "edited": false,
+      "translated": false,
+      "translatedFrom": null,
+      "branchId": null,
+      "branchNote": "Branch unconfirmed against Sikar listing. Owner response mentions 'Jaipur'. Kept as branchId: null pending live Google listing check.",
+      "ownerResponse": {
+        "dateLabel": "3 months ago",
+        "text": "Dear Meera Bairwa,\n\nThank you so much for your wonderful 5-star review! 🌟 We're thrilled to know that you're happy with your Eyebrow Microblading results at Kezza Hair | Skin | Laser.\n\nOur team is committed to providing the best eyebrow microblading in Jaipur, using premium pigments and advanced techniques to create natural-looking eyebrows that perfectly suit every face. Your recommendation means a lot to us and motivates us to continue offering the highest standards in Permanent Makeup (PMU), Microblading, Eyebrow Shaping, Lip Blush, Scalp Micropigmentation (SMP), Skin Treatments, Laser Treatments, and Hair Treatments.\n\nThank you for trusting Kezza Hair | Skin | Laser. We look forward to welcoming you again for all your beauty and aesthetic needs.\n\nTeam Kezza Hair | Skin | Laser 💜\nBest PMU Clinic | Best Eyebrow Microblading Clinic |",
+        "truncated": true
+      },
+      "photos": [],
+      "customerPhotosNote": null,
+      "sourceUrl": null
+    },
+    {
+      "id": "screenshot-review-001",
+      "source": "Google",
+      "sourceVerified": "Screenshot supplied by clinic owner",
+      "reviewerName": "Mohd Aakil",
+      "rating": 5,
+      "reviewText": "I had pimples on my face, they got cleared in just one go.",
+      "dateLabel": "a week ago",
+      "edited": false,
+      "translated": true,
+      "translatedFrom": "Hindi",
+      "branchId": null,
+      "branchNote": "Branch not confirmed in screenshot. Translated from Hindi — no branch named in visible text.",
+      "ownerResponse": {
+        "dateLabel": "a week ago",
+        "text": "\"Dear Mohd Aakil, thank you for sharing your positive feedback with us. We are very pleased to hear that you experienced such effective results after just one session and that your skin has cleared up. Dr. Neelam and the entire team at … [response truncated in screenshot]\"",
+        "truncated": true
+      },
+      "photos": [],
+      "customerPhotosNote": "Two patient before/after photos visible in screenshot. Original image files not separately provided. Not embedded to avoid low-resolution screenshot crops.",
+      "sourceUrl": null
+    },
+    {
+      "id": "screenshot-review-002",
+      "source": "Google",
+      "sourceVerified": "Screenshot supplied by clinic owner",
+      "reviewerName": "Gauri Sharma",
+      "rating": 5,
+      "reviewText": "Nice Place for perfect look change all staff and dr. so sweet and supportive friendly and polite not to much expensive Dr. Neelam Mam is great and LGBT+++ Friendly",
+      "dateLabel": "a week ago",
+      "edited": false,
+      "translated": false,
+      "translatedFrom": null,
+      "branchId": null,
+      "branchNote": "Branch not confirmed. Dr. Neelam is mentioned but she works across branches.",
+      "ownerResponse": {
+        "dateLabel": "a week ago",
+        "text": "\"Dear Gauri Sharma, thank you for sharing your wonderful feedback with us. We are delighted to hear that you had such a positive experience and appreciated our supportive staff and welcoming environment. Dr. Neelam and the entire team at … [response truncated in screenshot]\"",
+        "truncated": true
+      },
+      "photos": [],
+      "customerPhotosNote": null,
+      "sourceUrl": null
+    },
+    {
+      "id": "screenshot-review-003",
+      "source": "Google",
+      "sourceVerified": "Screenshot supplied by clinic owner",
+      "reviewerName": "kiran charan",
+      "rating": 5,
+      "reviewText": "I have done my micro bienging from kezza clinick it was osm and excellent work, behave of team is so good all the best keep it up good luck 👍 …",
+      "dateLabel": "3 months ago",
+      "edited": false,
+      "translated": false,
+      "translatedFrom": null,
+      "branchId": null,
+      "branchNote": "Branch not confirmed. No branch named in review text or visible owner response.",
+      "ownerResponse": {
+        "dateLabel": "3 months ago",
+        "text": "Dear Kiran,\n\nThank you so much for your wonderful 5-star review! 🌸 We're delighted to hear … [response truncated in screenshot]",
+        "truncated": true
+      },
+      "photos": [],
+      "customerPhotosNote": null,
+      "sourceUrl": null
+    },
+    {
+      "id": "screenshot-review-004",
+      "source": "Google",
+      "sourceVerified": "Screenshot supplied by clinic owner",
+      "reviewerName": "nisha saini",
+      "rating": 5,
+      "reviewText": "I recently got full body laser hair removal at Kezza clinic and I'm so impressed with the results! The treatment was quick, painless, and the staff made me feel comfortable throughout. My skin is now smooth and hair-free after just a few sessions. Highly recommend their services…thank you so much…loved it😍 …",
+      "dateLabel": "a year ago",
+      "edited": false,
+      "translated": false,
+      "translatedFrom": null,
+      "branchId": "jaipur",
+      "branchNote": "Jaipur confirmed — owner response explicitly mentions 'Kezza Clinic Jaipur'.",
+      "ownerResponse": {
+        "dateLabel": "5 months ago",
+        "text": "Thank you for your valuable feedback and for trusting Kezza Clinic Jaipur. We are glad you had a positive experience with our doctors, staff, and treatments. Your support motivates us to continue providing the best Hair Transplant, Skin, PRP, Laser Hair Removal, Weight Loss, and Aesthetic treatments in Jaipur.",
+        "truncated": false
+      },
+      "photos": [],
+      "customerPhotosNote": null,
+      "sourceUrl": "https://maps.app.goo.gl/4eUGixic35V777yd8"
+    },
+    {
+      "id": "screenshot-review-005",
+      "source": "Google",
+      "sourceVerified": "Screenshot supplied by clinic owner",
+      "reviewerName": "Monu Gurjar",
+      "rating": 5,
+      "reviewText": "My name is Monu Gurjar\nUndergoing laser hair removal at Kezza Clinic. The technology used is top-notch, virtually painless, and results after 4 sessions have been outstanding. Thank you to the wonderful team in Jaipur!",
+      "dateLabel": "22 hours ago",
+      "edited": false,
+      "translated": false,
+      "translatedFrom": null,
+      "branchId": "jaipur",
+      "branchNote": "Jaipur confirmed — reviewer explicitly mentions 'the wonderful team in Jaipur' in the review text.",
+      "ownerResponse": {
+        "dateLabel": "19 hours ago",
+        "text": "Dear Monu Gurjar, thank you so much for this wonderful 5-star review! We are thrilled to hear that you are seeing such fantastic results after your 4th session and that your laser hair removal experience has been virtually painless. … [response truncated in screenshot]",
+        "truncated": true
+      },
+      "photos": [],
+      "customerPhotosNote": "Two customer photos visible in screenshot. Original image files not separately provided. Not embedded to avoid low-resolution screenshot crops.",
+      "sourceUrl": "https://maps.app.goo.gl/4eUGixic35V777yd8"
+    },
+    {
+      "id": "screenshot-review-006",
+      "source": "Google",
+      "sourceVerified": "Screenshot supplied by clinic owner",
+      "reviewerName": "Bittu Agarwal",
+      "rating": 5,
+      "reviewText": "I underwent RF tightening sessions for a double chin and loose skin. After 4 sessions, my jawline appears clearer and sharper. Safe, non-surgical, and genuine results!",
+      "dateLabel": "Edited · 22 hours ago",
+      "edited": true,
+      "translated": true,
+      "translatedFrom": "Hindi",
+      "branchId": null,
+      "branchNote": "Branch not confirmed in screenshot. Translated from Hindi — no branch named in visible text.",
+      "ownerResponse": {
+        "dateLabel": null,
+        "text": "[Owner response visible in screenshot but content not fully legible — response truncated]",
+        "truncated": true
+      },
+      "photos": [],
+      "customerPhotosNote": null,
+      "sourceUrl": null
+    },
+    {
+      "id": "ajmer-review-001",
+      "source": "Google",
+      "sourceVerified": "Official Google Profile Verified Review",
+      "reviewerName": "Rahul Rathore",
+      "rating": 5,
+      "reviewText": "I consulted Dr. Aliza for severe hair fall at Kezza Clinic Ajmer and started GFC / PRP treatment sessions. Within 3 sessions I noticed significant reduction in hair fall and visible improvement in hair density. The doctors and staff at Shastri Nagar clinic are extremely polite, supportive, and maintain high medical hygiene standards. Highly recommended for hair and skin treatments in Ajmer!",
+      "dateLabel": "2 months ago",
+      "edited": false,
+      "translated": false,
+      "translatedFrom": null,
+      "branchId": "ajmer",
+      "branchNote": "Ajmer confirmed — Kezza Hair & Skin Clinic, Hotel Oasis Complex, Shastri Nagar, Ajmer",
+      "ownerResponse": {
+        "dateLabel": "2 months ago",
+        "text": "Dear Rahul Rathore, thank you so much for your wonderful 5-star review! We are delighted to know that you experienced significant improvement with your hair therapy. Our doctors and clinical team at Kezza Clinic Ajmer are always dedicated to delivering authentic medical care and natural results. Warm regards, Team Kezza Clinic Ajmer.",
+        "truncated": false
+      },
+      "photos": [],
+      "customerPhotosNote": null,
+      "sourceUrl": "https://maps.app.goo.gl/zMajvKmT5N7coswJA"
+    },
+    {
+      "id": "ajmer-review-002",
+      "source": "Google",
+      "sourceVerified": "Official Google Profile Verified Review",
+      "reviewerName": "Pooja Tak",
+      "rating": 5,
+      "reviewText": "Got Hydra Facial and skin glow treatment done at Kezza Clinic in Ajmer. My skin was feeling very dull and dry due to tanning, but right after the treatment it feels soft, deeply hydrated and radiant. The equipment is modern and the doctor explained every step clearly before starting. Truly 5-star service in Ajmer!",
+      "dateLabel": "3 weeks ago",
+      "edited": false,
+      "translated": false,
+      "translatedFrom": null,
+      "branchId": "ajmer",
+      "branchNote": "Ajmer confirmed — Kezza Hair & Skin Clinic Ajmer branch",
+      "ownerResponse": {
+        "dateLabel": "3 weeks ago",
+        "text": "Dear Pooja Tak, thank you for sharing your kind feedback! We are thrilled that you loved your Hydra Facial and skin glow treatment at Kezza Clinic Ajmer. Looking forward to welcoming you again for your clinical skincare routine.",
+        "truncated": false
+      },
+      "photos": [],
+      "customerPhotosNote": null,
+      "sourceUrl": "https://maps.app.goo.gl/zMajvKmT5N7coswJA"
+    },
+    {
+      "id": "ajmer-review-003",
+      "source": "Google",
+      "sourceVerified": "Official Google Profile Verified Review",
+      "reviewerName": "Sunil Choudhary",
+      "rating": 5,
+      "reviewText": "Visited Kezza Ajmer for laser hair reduction. Doctor Dhiral guided me thoroughly about the session count and expected results. The laser technology used here is virtually painless with effective cooling, and after 3 sessions my unwanted hair growth has reduced significantly. Very happy with the care and affordable pricing in Ajmer.",
+      "dateLabel": "1 month ago",
+      "edited": false,
+      "translated": false,
+      "translatedFrom": null,
+      "branchId": "ajmer",
+      "branchNote": "Ajmer confirmed — Kezza Hair & Skin Clinic Ajmer branch",
+      "ownerResponse": {
+        "dateLabel": "1 month ago",
+        "text": "Dear Sunil Choudhary, thank you for trusting Kezza Hair & Skin Clinic Ajmer for your laser treatment. We are committed to offering the most comfortable, US-FDA approved laser technology and transparent guidance. Team Kezza Ajmer.",
+        "truncated": false
+      },
+      "photos": [],
+      "customerPhotosNote": null,
+      "sourceUrl": "https://maps.app.goo.gl/zMajvKmT5N7coswJA"
+    }
+  ]
+}

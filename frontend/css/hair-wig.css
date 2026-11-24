@@ -1,0 +1,1956 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Kezza Hair & Skin Clinic — Custom Hair Wig & Hair System Stylesheet
+   Specific styling for /hair-wig.html
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Hero Customizations ── */
+.wig-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 175, 192, 0.12);
+  color: #008f9c;
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 18px;
+  border: 1px solid rgba(0, 175, 192, 0.25);
+}
+
+.wig-hero-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 18px;
+  margin: 22px 0 28px;
+  list-style: none;
+  padding: 0;
+}
+
+.wig-hero-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.wig-hero-feature-item i {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(0, 175, 192, 0.15);
+  color: #008f9c;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.wig-hero-trust-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.wig-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.wig-trust-item i {
+  color: #00AFC0;
+  font-size: 1rem;
+}
+
+/* ── 3. Sticky Quick Navigation Strip ── */
+.service-nav-strip {
+  position: sticky;
+  top: 72px;
+  z-index: 95;
+  background: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(0, 175, 192, 0.16);
+  border-bottom: 1px solid rgba(0, 175, 192, 0.18);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px rgba(0, 175, 192, 0.04);
+  padding: 10px 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-nav-strip.is-stuck {
+  background: rgba(255, 255, 255, 0.98) !important;
+  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.08), 0 2px 10px rgba(0, 175, 192, 0.08);
+}
+
+.service-nav-strip .sp-container,
+.nav-strip-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.nav-strip-scroll-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.nav-strip-list {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 4px 6px !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch !important;
+  max-width: 100%;
+}
+
+.nav-strip-list::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.nav-strip-list li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.nav-strip-list li a,
+.nav-strip-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 16px !important;
+  border-radius: 9999px !important;
+  background: #f8fafc !important;
+  border: 1.5px solid #e2e8f0 !important;
+  color: #334155 !important;
+  font-size: 0.84rem !important;
+  font-weight: 600 !important;
+  font-family: 'Inter', -apple-system, sans-serif !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 2px 5px rgba(15, 23, 42, 0.02) !important;
+  user-select: none !important;
+}
+
+.nav-strip-list li a i,
+.nav-strip-link i {
+  color: #00AFC0 !important;
+  font-size: 0.86rem !important;
+  transition: transform 0.25s ease, color 0.25s ease !important;
+}
+
+.nav-strip-list li a:hover,
+.nav-strip-link:hover {
+  background: #f0fbfc !important;
+  color: #008f9c !important;
+  border-color: #00AFC0 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(0, 175, 192, 0.16) !important;
+}
+
+.nav-strip-list li a:hover i,
+.nav-strip-link:hover i {
+  transform: scale(1.15) !important;
+  color: #008f9c !important;
+}
+
+.nav-strip-list li a.active,
+.nav-strip-link.active {
+  background: linear-gradient(135deg, #00AFC0 0%, #008f9c 100%) !important;
+  color: #ffffff !important;
+  border-color: #008f9c !important;
+  box-shadow: 0 6px 18px rgba(0, 175, 192, 0.32) !important;
+  transform: translateY(-1px) !important;
+}
+
+.nav-strip-list li a.active i,
+.nav-strip-link.active i {
+  color: #ffffff !important;
+}
+
+/* Offset in-page anchors so headings never tuck under sticky strip */
+.service-page-main [id] {
+  scroll-margin-top: 135px !important;
+}
+
+@media (max-width: 1024px) {
+  .service-nav-strip {
+    top: 60px !important;
+    padding: 8px 0 !important;
+  }
+  .nav-strip-scroll-wrap {
+    justify-content: flex-start !important;
+  }
+  .nav-strip-list {
+    justify-content: flex-start !important;
+    padding: 4px 12px !important;
+    gap: 8px !important;
+  }
+  .nav-strip-list li a,
+  .nav-strip-link {
+    padding: 7px 13px !important;
+    font-size: 0.8rem !important;
+    gap: 6px !important;
+  }
+  .service-page-main [id] {
+    scroll-margin-top: 115px !important;
+  }
+}
+
+/* ── Interactive 5-Step Stages Pipeline & Graph Visualizer ── */
+.wig-workflow-wrapper {
+  background: #ffffff;
+  border: 1px solid rgba(0, 175, 192, 0.2);
+  border-radius: 28px;
+  padding: 40px 36px;
+  box-shadow: 0 16px 45px -10px rgba(15, 23, 42, 0.06), 0 0 20px rgba(0, 175, 192, 0.04);
+  margin-top: 10px;
+  position: relative;
+}
+
+.workflow-graph-container {
+  position: relative;
+  margin-bottom: 36px;
+}
+
+/* Horizontal Connecting Timeline Track */
+.workflow-pipeline-track {
+  position: absolute;
+  top: 36px;
+  left: 10%;
+  right: 10%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.workflow-pipeline-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00AFC0 0%, #00d4e7 60%, #008f9c 100%);
+  box-shadow: 0 0 14px rgba(0, 175, 192, 0.7);
+  border-radius: 999px;
+  transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: width;
+}
+
+/* 5 Stage Nodes Grid */
+.workflow-nav-bar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.workflow-nav-btn {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 14px 10px 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+  position: relative;
+}
+
+.workflow-nav-btn:hover {
+  border-color: #00AFC0;
+  background: #f0fbfc;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 175, 192, 0.15);
+}
+
+.stage-node-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #f8fafc;
+  border: 2.5px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #475569;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.stage-node-circle .node-check {
+  display: none;
+  font-size: 0.95rem;
+}
+
+.stage-node-circle .node-num {
+  display: block;
+  line-height: 1;
+}
+
+/* Active State */
+.workflow-nav-btn.active {
+  background: linear-gradient(180deg, #ffffff 0%, #f0fbfc 100%);
+  border-color: #00AFC0;
+  box-shadow: 0 12px 30px -6px rgba(0, 175, 192, 0.32), 0 4px 12px rgba(15, 23, 42, 0.05);
+  transform: translateY(-4px);
+}
+
+.workflow-nav-btn.active .stage-node-circle {
+  background: linear-gradient(135deg, #00AFC0 0%, #008f9c 100%);
+  border-color: #00AFC0;
+  color: #ffffff;
+  transform: scale(1.12);
+  box-shadow: 0 0 0 6px rgba(0, 175, 192, 0.22), 0 8px 20px rgba(0, 175, 192, 0.4);
+  animation: stageAuraPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes stageAuraPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 5px rgba(0, 175, 192, 0.25), 0 6px 16px rgba(0, 175, 192, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 11px rgba(0, 175, 192, 0.05), 0 8px 24px rgba(0, 175, 192, 0.55);
+  }
+}
+
+/* Completed State */
+.workflow-nav-btn.is-completed {
+  border-color: rgba(0, 175, 192, 0.35);
+  background: #fbfdfd;
+}
+
+.workflow-nav-btn.is-completed .stage-node-circle {
+  background: #e6f8fa;
+  border-color: #00AFC0;
+  color: #008f9c;
+}
+
+.workflow-nav-btn.is-completed .node-check {
+  display: block;
+}
+
+.workflow-nav-btn.is-completed .node-num {
+  display: none;
+}
+
+.workflow-step-title {
+  font-size: 0.90rem;
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1.25;
+  transition: color 0.2s ease;
+}
+
+.workflow-nav-btn.active .workflow-step-title {
+  color: #008f9c;
+}
+
+.workflow-step-sub {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #64748b;
+  line-height: 1.2;
+}
+
+.workflow-nav-btn.active .workflow-step-sub {
+  color: #00AFC0;
+}
+
+/* ── Upgraded Stage Panel Layout & Graph Card ── */
+.workflow-panels-container {
+  position: relative;
+  min-height: 380px;
+}
+
+.workflow-panel {
+  display: none;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.workflow-panel.active {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 36px;
+  align-items: stretch;
+  opacity: 1;
+  transform: translateY(0);
+  animation: wigPanelIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes wigPanelIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.99); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.workflow-panel-content h3 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.workflow-step-badge {
+  font-size: 0.75rem;
+  background: #e6f8fa;
+  color: #007a87;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 800;
+}
+
+.workflow-panel-content p {
+  font-size: 0.96rem;
+  color: #475569;
+  line-height: 1.68;
+  margin-bottom: 20px;
+}
+
+.workflow-panel-specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.workflow-panel-specs li {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.workflow-panel-specs li i {
+  color: #00AFC0;
+  font-size: 0.9rem;
+}
+
+/* Right Card: Clinical Metrics & Transformation Graph Card */
+.workflow-panel-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f4fbfb 100%);
+  border: 1.5px solid rgba(0, 175, 192, 0.28);
+  border-radius: 22px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 14px 35px -8px rgba(0, 175, 192, 0.12), 0 4px 16px rgba(15, 23, 42, 0.04);
+  position: relative;
+}
+
+.stage-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 175, 192, 0.15);
+}
+
+.stage-journey-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 175, 192, 0.1);
+  color: #007a87;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stage-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00AFC0;
+  box-shadow: 0 0 0 3px rgba(0, 175, 192, 0.3);
+  animation: dotPulse 2s infinite ease-in-out;
+}
+
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+.stage-progress-pct {
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #008f9c;
+}
+
+/* Stage Overall Completion Track */
+.stage-meter-track {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: -6px;
+}
+
+.stage-meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00AFC0, #00c4d6);
+  border-radius: 999px;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Graph Performance Bars */
+.stage-graph-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 6px 0;
+}
+
+.stage-graph-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.graph-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+}
+
+.graph-label {
+  color: #334155;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.graph-label i {
+  color: #00AFC0;
+  font-size: 0.85rem;
+}
+
+.graph-val {
+  font-weight: 800;
+  color: #008f9c;
+  font-variant-numeric: tabular-nums;
+}
+
+.graph-bar-rail {
+  width: 100%;
+  height: 7px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.graph-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00AFC0 0%, #00c4d6 100%);
+  border-radius: 999px;
+  transition: width 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 8px rgba(0, 175, 192, 0.4);
+}
+
+/* Quick Clinical Mini Specs */
+.stage-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 175, 192, 0.16);
+  border-radius: 14px;
+  padding: 10px;
+}
+
+.stage-mini-spec {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+}
+
+.mini-spec-label {
+  font-size: 0.70rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+}
+
+.mini-spec-val {
+  font-size: 0.80rem;
+  font-weight: 800;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+/* Interactive Stepper Navigation Footer */
+.stage-stepper-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 175, 192, 0.15);
+}
+
+.btn-stage-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 25px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: none;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.btn-stage-prev {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.btn-stage-prev:hover:not(:disabled) {
+  background: #e2e8f0;
+  color: #0f172a;
+  transform: translateX(-2px);
+}
+
+.btn-stage-prev:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-stage-next {
+  background: linear-gradient(135deg, #00AFC0 0%, #008f9c 100%);
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(0, 175, 192, 0.35);
+  margin-left: auto;
+}
+
+.btn-stage-next:hover {
+  background: linear-gradient(135deg, #008f9c 0%, #007a87 100%);
+  transform: translateX(3px);
+  box-shadow: 0 6px 18px rgba(0, 175, 192, 0.5);
+  color: #ffffff !important;
+}
+
+.btn-stage-next i {
+  transition: transform 0.25s ease;
+}
+
+.btn-stage-next:hover i {
+  transform: translateX(3px);
+}
+
+@media (max-width: 1024px) {
+  .workflow-panel.active {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .workflow-nav-bar {
+    gap: 8px;
+  }
+  .workflow-nav-btn {
+    padding: 12px 6px;
+  }
+  .stage-node-circle {
+    width: 38px;
+    height: 38px;
+    font-size: 0.82rem;
+  }
+  .workflow-step-title {
+    font-size: 0.80rem;
+  }
+  .workflow-step-sub {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .wig-workflow-wrapper {
+    padding: 24px 16px;
+    border-radius: 20px;
+  }
+  .workflow-graph-container {
+    overflow-x: auto;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .workflow-pipeline-track {
+    top: 30px;
+    min-width: 500px;
+  }
+  .workflow-nav-bar {
+    min-width: 500px;
+    gap: 8px;
+  }
+  .stage-specs-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+/* ── Custom Hair Systems & Patch Types (6 Cards) ── */
+.patch-types-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.patch-type-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  position: relative;
+}
+
+.patch-type-card:hover {
+  transform: translateY(-5px);
+  border-color: #00AFC0;
+  box-shadow: 0 16px 32px rgba(0, 175, 192, 0.12);
+}
+
+.patch-type-card.featured-patch {
+  border-color: #00AFC0;
+  background: linear-gradient(180deg, #f0fbfc 0%, #ffffff 35%);
+  box-shadow: 0 8px 24px rgba(0, 175, 192, 0.1);
+}
+
+.patch-card-badge {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: #00AFC0;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.patch-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #e6f8fa;
+  color: #008f9c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  margin-bottom: 18px;
+}
+
+.patch-type-card h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+
+.patch-type-card p {
+  font-size: 0.90rem;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+
+.patch-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 16px;
+}
+
+.patch-feature-list li {
+  font-size: 0.84rem;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.patch-feature-list li i {
+  color: #00AFC0;
+  font-size: 0.75rem;
+}
+
+/* ── Base Materials Comparison Cards (4 Col) ── */
+.base-materials-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.base-material-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px 20px;
+  text-align: center;
+  transition: all 0.28s ease;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+.base-material-card:hover {
+  transform: translateY(-4px);
+  border-color: #00AFC0;
+  box-shadow: 0 12px 26px rgba(0, 175, 192, 0.12);
+}
+
+.base-icon-pill {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #e6f8fa;
+  color: #008f9c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin: 0 auto 16px;
+}
+
+.base-material-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.base-material-card p {
+  font-size: 0.86rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.base-ratings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 14px;
+}
+
+.rating-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.rating-label {
+  color: #64748b;
+}
+
+.rating-score {
+  color: #008f9c;
+  font-weight: 800;
+}
+
+/* ── Clinical Comparison Table ── */
+.wig-comparison-table-wrap {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  overflow-x: auto;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+}
+
+.wig-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+  font-size: 0.92rem;
+}
+
+.wig-comparison-table th,
+.wig-comparison-table td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.wig-comparison-table th {
+  background: #f8fafc;
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 0.94rem;
+}
+
+.wig-comparison-table th.highlight-col,
+.wig-comparison-table td.highlight-col {
+  background: #e6f8fa;
+  color: #007a87;
+  font-weight: 600;
+  border-left: 1.5px solid rgba(0, 175, 192, 0.3);
+  border-right: 1.5px solid rgba(0, 175, 192, 0.3);
+}
+
+.wig-comparison-table th.highlight-col {
+  background: #cffafe;
+  color: #005a63;
+  font-weight: 800;
+}
+
+.wig-comparison-table tbody tr:hover td {
+  background-color: #f8fafc;
+}
+
+.wig-comparison-table tbody tr:hover td.highlight-col {
+  background-color: #d6f6f9;
+}
+
+/* ── Real Patient Transformations (Before & After Showcase) ── */
+.transformations-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.transformation-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.transformation-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 175, 192, 0.12);
+}
+
+.transformation-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #0f172a;
+  overflow: hidden;
+}
+
+.transformation-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.transformation-card:hover .transformation-img-wrap img {
+  transform: scale(1.02);
+}
+
+.transformation-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.transformation-body {
+  padding: 24px;
+}
+
+.transformation-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.trans-pill {
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.trans-pill.teal {
+  background: #e6f8fa;
+  color: #007a87;
+}
+
+.transformation-body h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.transformation-body p {
+  font-size: 0.90rem;
+  color: #64748b;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ── Attachment Methods Grid (4 Col) ── */
+.attachment-methods-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.attachment-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px 20px;
+  transition: all 0.28s ease;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+.attachment-card:hover {
+  transform: translateY(-4px);
+  border-color: #00AFC0;
+  box-shadow: 0 12px 26px rgba(0, 175, 192, 0.12);
+}
+
+.attachment-icon-pill {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #e6f8fa;
+  color: #008f9c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+}
+
+.attachment-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.attachment-card p {
+  font-size: 0.86rem;
+  color: #64748b;
+  line-height: 1.52;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.attachment-meta {
+  border-top: 1px solid #f1f5f9;
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #008f9c;
+}
+
+/* ── Care & Maintenance Guide (2 Column Dos & Don'ts) ── */
+.care-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
+}
+
+.care-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 30px 26px;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.care-card.dos {
+  border-color: rgba(0, 175, 192, 0.35);
+  background: linear-gradient(180deg, #f0fbfc 0%, #ffffff 30%);
+}
+
+.care-card.donts {
+  border-color: rgba(239, 68, 68, 0.25);
+  background: linear-gradient(180deg, #fff5f5 0%, #ffffff 30%);
+}
+
+.care-card h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.care-card.dos h3 {
+  color: #007a87;
+}
+
+.care-card.donts h3 {
+  color: #dc2626;
+}
+
+.care-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.care-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.90rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.care-card.dos .care-list li i {
+  color: #00AFC0;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.care-card.donts .care-list li i {
+  color: #ef4444;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* ── CTA Consultation Booking Form ── */
+.sp-cta-section {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  padding: 80px 0 !important;
+  color: #ffffff !important;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.sp-cta-section::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -100px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(0, 175, 192, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.sp-cta-section::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: -80px;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(0, 143, 156, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-booking-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+}
+
+.cta-info-side {
+  text-align: left;
+}
+
+.cta-info-side .sp-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 18px;
+}
+
+.cta-info-side h2 {
+  font-size: clamp(2rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+.cta-info-side p {
+  font-size: 1.05rem;
+  color: #cbd5e1;
+  line-height: 1.68;
+  margin-bottom: 24px;
+}
+
+.cta-branches-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.cta-branch-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 7px 15px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  color: #f1f5f9;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.cta-branch-pill i {
+  color: #00AFC0;
+}
+
+.cta-quick-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn-cta-phone,
+.btn-cta-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.btn-cta-phone {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.btn-cta-phone:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
+.btn-cta-wa {
+  background: #25d366;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+}
+
+.btn-cta-wa:hover {
+  background: #20bd5a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.45);
+  color: #ffffff !important;
+}
+
+/* Elevated White Form Card */
+.cta-booking-form-box {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 34px 30px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  color: #0f172a;
+  position: relative;
+  z-index: 3;
+}
+
+.cta-booking-form-box h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 5px;
+}
+
+.cta-booking-form-box p.form-subtitle {
+  font-size: 0.86rem;
+  color: #64748b;
+  margin-bottom: 22px;
+}
+
+.booking-input-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.booking-input-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 6px;
+}
+
+.booking-input-group input,
+.booking-input-group select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  color: #0f172a;
+  background: #f8fafc;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.booking-input-group input:focus,
+.booking-input-group select:focus {
+  outline: none;
+  border-color: #00AFC0;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(0, 175, 192, 0.15);
+}
+
+.btn-submit-booking {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #00AFC0 0%, #008f9c 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 18px rgba(0, 143, 156, 0.3);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-submit-booking:hover {
+  background: linear-gradient(135deg, #008f9c 0%, #007682 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 143, 156, 0.4);
+}
+
+.form-privacy-note {
+  font-size: 0.76rem;
+  color: #94a3b8;
+  margin-top: 12px;
+  text-align: center;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ── Mobile Responsive Overrides ── */
+@media (max-width: 1024px) {
+  .workflow-nav-bar {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .workflow-panel.active {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .patch-types-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .base-materials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .attachment-methods-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .transformations-grid {
+    grid-template-columns: 1fr;
+  }
+  .cta-booking-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wig-hero-features {
+    grid-template-columns: 1fr;
+  }
+  .wig-workflow-wrapper {
+    padding: 22px 16px;
+  }
+  .workflow-nav-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .workflow-panel-specs {
+    grid-template-columns: 1fr;
+  }
+  .patch-types-grid {
+    grid-template-columns: 1fr;
+  }
+  .base-materials-grid {
+    grid-template-columns: 1fr;
+  }
+  .attachment-methods-grid {
+    grid-template-columns: 1fr;
+  }
+  .care-guide-grid {
+    grid-template-columns: 1fr;
+  }
+  .cta-booking-form-box {
+    padding: 26px 20px;
+  }
+}
+
+/* ── Luxury Master Footer Styles ── */
+.footer {
+  background: linear-gradient(180deg, #090d16 0%, #050810 100%) !important;
+  color: #f1f5f9 !important;
+  padding: 72px 0 28px !important;
+  border-top: 1px solid rgba(0, 175, 192, 0.28) !important;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.35);
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, 1200px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 175, 192, 0.7), transparent);
+}
+
+.footer .container,
+.footer .footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap: 38px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+.footer-column,
+.footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-logo {
+  margin-bottom: 14px;
+}
+
+.footer-logo img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+.footer-tagline,
+.footer-column p,
+.footer-col p {
+  color: #94a3b8 !important;
+  font-size: 0.88rem !important;
+  line-height: 1.65 !important;
+  margin-bottom: 12px;
+}
+
+.footer-column h3,
+.footer-column .footer-nav-title,
+.footer-col .footer-nav-title,
+.footer-col-title,
+h4.footer-col-title {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 1.08rem !important;
+  font-weight: 700 !important;
+  color: #00AFC0 !important;
+  margin-bottom: 16px !important;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-column ul,
+.footer-col ul,
+ul.footer-links {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-column ul li,
+.footer-col ul li,
+ul.footer-links li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.footer-column ul li a,
+.footer-col ul li a,
+ul.footer-links li a,
+.footer a:not(.btn-primary):not(.social-link):not(.social-icon):not(.dock-item) {
+  color: #cbd5e1 !important;
+  text-decoration: none !important;
+  font-size: 0.88rem !important;
+  transition: all 0.25s ease !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-column ul li a:hover,
+.footer-col ul li a:hover,
+ul.footer-links li a:hover,
+.footer a:not(.btn-primary):not(.social-link):not(.social-icon):not(.dock-item):hover {
+  color: #00AFC0 !important;
+  transform: translateX(3px);
+}
+
+.footer-social-icons,
+.footer-social {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.footer-social-icons a,
+.footer-social a,
+.social-link {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff !important;
+  font-size: 1rem;
+  transition: all 0.25s ease;
+  text-decoration: none !important;
+}
+
+.footer-social-icons a:hover,
+.footer-social a:hover,
+.social-link:hover {
+  background: #00AFC0;
+  border-color: #00AFC0;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 175, 192, 0.4);
+}
+
+.footer-bottom {
+  margin-top: 3rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: #64748b !important;
+  font-size: 0.82rem !important;
+  margin: 0 !important;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   KEZZA HAIR WIG & SYSTEM — LUXURY ANIMATIONS & MICRO-INTERACTIONS
+   ═════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Scroll-Driven Reveal Engine ── */
+.pro-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.pro-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger utilities for smooth cascaded reveals */
+.stagger-1 { transition-delay: 0.06s; }
+.stagger-2 { transition-delay: 0.12s; }
+.stagger-3 { transition-delay: 0.18s; }
+.stagger-4 { transition-delay: 0.24s; }
+.stagger-5 { transition-delay: 0.30s; }
+.stagger-6 { transition-delay: 0.36s; }
+
+/* ── 2. Hero Interactive Animations ── */
+@keyframes wigBadgeShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes wigFloatGentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(0.4deg); }
+}
+
+@keyframes wigGlowPulse {
+  0%, 100% {
+    box-shadow: 0 10px 30px rgba(0, 175, 192, 0.4), 0 0 0 0 rgba(0, 175, 192, 0.35);
+  }
+  50% {
+    box-shadow: 0 14px 40px rgba(0, 175, 192, 0.6), 0 0 0 10px rgba(0, 175, 192, 0);
+  }
+}
+
+.wig-hero-badge {
+  background: linear-gradient(90deg, rgba(0, 175, 192, 0.1) 0%, rgba(0, 175, 192, 0.25) 50%, rgba(0, 175, 192, 0.1) 100%);
+  background-size: 200% 100%;
+  animation: wigBadgeShimmer 5s linear infinite;
+}
+
+.service-hero-media .service-hero-image-wrap {
+  animation: wigFloatGentle 6s ease-in-out infinite;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  will-change: transform;
+}
+
+.service-hero-media .service-hero-image-wrap:hover {
+  animation-play-state: paused;
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 25px 60px -10px rgba(0, 175, 192, 0.35), 0 12px 28px rgba(15, 23, 42, 0.15);
+}
+
+/* ── 3. Number Counter & Trust Metric Glow ── */
+.stat-number-pro {
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  font-weight: 800;
+  color: #00AFC0;
+}
+
+.wig-trust-item {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.wig-trust-item:hover {
+  transform: translateY(-2px);
+  color: #0f172a;
+}
+
+.wig-trust-item i {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.wig-trust-item:hover i {
+  transform: scale(1.25);
+}
+
+/* ── 4. Workflow Stepper Interactive Transitions ── */
+.workflow-nav-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.workflow-nav-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00AFC0, #008f9c);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-50%);
+  border-radius: 3px 3px 0 0;
+}
+
+.workflow-nav-btn:hover {
+  transform: translateY(-2px);
+}
+
+.workflow-nav-btn.active {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 175, 192, 0.16);
+}
+
+.workflow-nav-btn.active::after {
+  width: 80%;
+}
+
+.workflow-card-stat {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.workflow-card-stat:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 175, 192, 0.4);
+  box-shadow: 0 4px 14px rgba(0, 175, 192, 0.1);
+}
+
+/* ── 5. System Types & Base Material Cards Micro-Interactions ── */
+.patch-type-card,
+.base-material-card,
+.attachment-card,
+.care-card,
+.transformation-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  will-change: transform, box-shadow;
+}
+
+.patch-type-card:hover,
+.base-material-card:hover,
+.attachment-card:hover,
+.care-card:hover,
+.transformation-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 20px 45px -10px rgba(0, 175, 192, 0.18), 0 8px 20px -4px rgba(15, 23, 42, 0.08);
+  border-color: rgba(0, 175, 192, 0.45);
+}
+
+.patch-card-icon,
+.base-icon-pill,
+.attachment-icon-pill {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease;
+}
+
+.patch-type-card:hover .patch-card-icon,
+.base-material-card:hover .base-icon-pill,
+.attachment-card:hover .attachment-icon-pill {
+  transform: scale(1.15) rotate(4deg);
+}
+
+.transformation-img-wrap img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.transformation-card:hover .transformation-img-wrap img {
+  transform: scale(1.05);
+}
+
+/* ── 6. Comparison Table Row Highlight ── */
+.wig-comparison-table tbody tr {
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.wig-comparison-table tbody tr:hover {
+  background-color: rgba(0, 175, 192, 0.04);
+}
+
+/* ── 7. Luxury Shimmer Action Buttons ── */
+.sp-hero-actions .btn-primary,
+.sp-cta-actions .btn-primary,
+.btn-submit-booking {
+  position: relative;
+  overflow: hidden;
+  animation: wigGlowPulse 4s infinite ease-in-out;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.sp-hero-actions .btn-primary::after,
+.sp-cta-actions .btn-primary::after,
+.btn-submit-booking::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(60deg, transparent 20%, rgba(255, 255, 255, 0.35) 50%, transparent 80%);
+  transform: rotate(25deg);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+}
+
+.sp-hero-actions .btn-primary:hover::after,
+.sp-cta-actions .btn-primary:hover::after,
+.btn-submit-booking:hover::after {
+  transform: translateX(350%) rotate(25deg);
+}
+
+.sp-hero-actions .btn-primary:hover,
+.btn-submit-booking:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* ── 8. Navigation Pill Micro-Animations ── */
+.nav-strip-link {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.nav-strip-link:hover {
+  transform: translateY(-2px);
+  border-color: #00AFC0 !important;
+  color: #008f9c !important;
+  box-shadow: 0 4px 12px rgba(0, 175, 192, 0.15) !important;
+}
+
+.nav-strip-link.active {
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 6px 16px rgba(0, 175, 192, 0.35) !important;
+}
+
+/* ── 9. FAQ Chevron Smooth Rotation ── */
+.sp-faq-item {
+  transition: all 0.3s ease;
+}
+
+.sp-faq-item:hover {
+  border-color: rgba(0, 175, 192, 0.35);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+.faq-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 175, 192, 0.08);
+  color: #00AFC0;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease;
+}
+
+details.sp-faq-item[open] .faq-chevron {
+  transform: rotate(180deg);
+  background: #00AFC0;
+  color: #ffffff;
+}
+
+/* ── 10. Respect Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .pro-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .service-hero-media .service-hero-image-wrap,
+  .wig-hero-badge,
+  .sp-hero-actions .btn-primary,
+  .btn-submit-booking {
+    animation: none !important;
+  }
+}

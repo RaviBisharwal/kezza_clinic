@@ -1,0 +1,137 @@
+{
+  "_meta": {
+    "clinic": "Kezza Hair & Skin Clinic — Sikar Branch",
+    "source": "Screenshots of genuine Google Maps reviews supplied by clinic owner",
+    "extractedOn": "2026-10-26",
+    "verificationStatus": "screenshot-provided",
+    "totalScreenshots": 5,
+    "verifiedSikarCount": 3,
+    "unverifiedBranchCount": 2,
+    "officialGoogleListing": {
+      "name": "Kezza Hair and Skin Clinic - Best Hair Transplant, Skin Doctor, Dermatologist Sikar",
+      "address": "4th Floor, Shakambhari Heights, Opposite S.K. Hospital, Silver Jubilee Road, Sikar, Rajasthan 332001",
+      "mapUrl": "https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6",
+      "writeReviewUrl": "https://www.google.com/maps/place//data=!4m3!3m2!1s0x396cbb8cee08f913:0x2fb082dea5ff1e14!12e1",
+      "cid": "0x396cbb8cee08f913:0x2fb082dea5ff1e14"
+    },
+    "dataIntegrityRules": [
+      "Original review text preserved verbatim — no spelling, grammar, or punctuation changes",
+      "No SEO keyword stuffing or paraphrasing",
+      "No invented reviewer names, dates, or ratings",
+      "Owner responses preserved only to the extent legible in screenshot; truncated responses explicitly flagged",
+      "Customer photos omitted until original high-res files and patient consent are confirmed",
+      "Reviews without explicit Sikar confirmation remain branchId: null until verified against live Google listing"
+    ]
+  },
+  "reviews": [
+    {
+      "id": "sikar-review-001",
+      "source": "Google",
+      "reviewerName": "Kiran Jerthi",
+      "reviewerInitial": "K",
+      "rating": 5,
+      "dateLabel": "4 months ago",
+      "branchId": "sikar",
+      "branchVerified": true,
+      "branchVerificationReason": "Review text concludes with 'Thanks kezza clinic sikar' and owner response explicitly acknowledges 'trusting Kezza Clinic Sikar'.",
+      "reviewText": "I had taken face laser 4th session from this clinic and my result was successful. I suggest you to all that do visit kezza clinic for treatments.\nYou will definitely find solutions to all you hair and skin related issues\nThanks kezza clinic sikar",
+      "ownerResponse": {
+        "dateLabel": "4 months ago",
+        "text": "Dear Kiran Jerthi,\n\nThank you for your wonderful feedback and for trusting Kezza Clinic Sikar with ...",
+        "truncated": true,
+        "note": "Response truncated at '... More' in source screenshot. Preserved verbatim up to truncation point."
+      },
+      "photos": [],
+      "customerPhotosNote": null,
+      "sourceUrl": "https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6",
+      "verificationStatus": "screenshot-provided"
+    },
+    {
+      "id": "sikar-review-002",
+      "source": "Google",
+      "reviewerName": "Pradeep Shekhawat",
+      "reviewerBadge": "Local Guide · 10 reviews",
+      "reviewerInitial": "P",
+      "rating": 5,
+      "dateLabel": "2 years ago",
+      "branchId": null,
+      "branchVerified": false,
+      "branchVerificationReason": "Branch not confirmed in visible text. Reviewer refers to 'kaza hair and skin team' and owner response is truncated after 'solutions in ...'. Kept as branchId: null pending verification against the Sikar Google Maps listing.",
+      "reviewText": "I'm 32 Years old and literally suffering from my hair & skin related issues throughout my last almost 05 yrs. I've tried almost all kind of products throughout. My friend and mentor Mr. Shekhawat advised me visit kaza hair and skin team,\nI am very much satisfied with the doctor and the treatment undergoing.\nThank you so much Team for your continuous Support, Efforts and Assistance 🙏",
+      "ownerResponse": {
+        "dateLabel": "4 months ago",
+        "text": "Thank you for sharing your experience with Kezza Clinic. We are happy to know that you are satisfied with the treatment and support provided by our team. Our goal is always to deliver the best hair loss treatment and skin care solutions in ...",
+        "truncated": true,
+        "note": "Response truncated at '... More' in source screenshot. Preserved verbatim up to truncation point."
+      },
+      "photos": [],
+      "customerPhotosNote": null,
+      "sourceUrl": null,
+      "verificationStatus": "screenshot-provided"
+    },
+    {
+      "id": "sikar-review-003",
+      "source": "Google",
+      "reviewerName": "Vikram Gurjar",
+      "reviewerBadge": "1 review · 2 photos",
+      "reviewerInitial": "V",
+      "rating": 5,
+      "dateLabel": "a month ago",
+      "branchId": "sikar",
+      "branchVerified": true,
+      "branchVerificationReason": "Explicitly mentions 'studying in sikar for my NEET preparation', 'reel on my Instagram from kezza clinic sikar', and 'went to kezza clinic sikar on 6 May 2026'.",
+      "reviewText": "Hii everyone my self vikram Gurjar\nI'm from Gudha Gorji\nRecently I'm studying in sikar for my NEET preparation.\nI show a reel on my Instagram from kezza clinic sikar related to hair transplant I was facing severe hair loss so I went to kezza clinic sikar on 6 May 2026 and consult to kezza clinic doctor and book my hair transplant date on 7 may 2026\nToday after 4 month in my 4th PRP my all bald paches are filled up with hairs and I'm fully satisfied with my hair transplant results\nThank you kezza clinic for giving me my confidence back ❤️",
+      "ownerResponse": null,
+      "photos": [],
+      "customerPhotosNote": "Two customer result photos visible in screenshot. Omitted per instructions until original image files are available and patient consent is verified.",
+      "sourceUrl": "https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6",
+      "verificationStatus": "screenshot-provided"
+    },
+    {
+      "id": "sikar-review-004",
+      "source": "Google",
+      "reviewerName": "Himanshu Mangawa",
+      "reviewerBadge": "2 reviews · 2 photos",
+      "reviewerInitial": "H",
+      "rating": 5,
+      "dateLabel": "4 months ago",
+      "branchId": "sikar",
+      "branchVerified": true,
+      "branchVerificationReason": "Explicitly names 'KezzQ Clinic, Sikar' twice in the review text.",
+      "reviewText": "I had almost 5 GFC sessions at KezzQ Clinic, Sikar, for my hair, and I’m very happy with the results. I noticed a good improvement in my hair growth and overall hair quality. The doctor is very knowledgeable, explains everything clearly, and provides excellent guidance. The staff is also very polite, supportive, and professional throughout the treatment. Overall, I had a great experience and would highly recommend KezzQ Clinic, Sikar, to anyone looking for effective hair treatment.",
+      "ownerResponse": {
+        "dateLabel": "4 months ago",
+        "text": "Dear Himanshu Mangawa,\n\nThank you so much for your wonderful feedback and for trusting Kezza Clinic, ...",
+        "truncated": true,
+        "note": "Response truncated at '... More' in source screenshot. Preserved verbatim up to truncation point."
+      },
+      "photos": [],
+      "customerPhotosNote": "Screenshot indicates 2 photos on user profile. Excluded pending verified patient authorization.",
+      "sourceUrl": "https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6",
+      "verificationStatus": "screenshot-provided"
+    },
+    {
+      "id": "sikar-review-005",
+      "source": "Google",
+      "reviewerName": "Meera Bairwa",
+      "reviewerBadge": "1 review",
+      "reviewerInitial": "M",
+      "rating": 5,
+      "dateLabel": "3 months ago",
+      "branchId": null,
+      "branchVerified": false,
+      "branchVerificationReason": "Branch not confirmed against official Sikar listing. Although uploaded among Sikar screenshots, the owner response explicitly refers to 'best eyebrow microblading in Jaipur'. Kept as branchId: null pending verification against the live Sikar Google Maps listing.",
+      "reviewText": "Maine eyebrow microblading krwai h , main bhot satisfied hu, kezza clinic me best eyebrow microblading hoti h. Highly recommend",
+      "ownerResponse": {
+        "dateLabel": "3 months ago",
+        "text": "Dear Meera Bairwa,\n\nThank you so much for your wonderful 5-star review! 🌟 We're thrilled to know that you're happy with your Eyebrow Microblading results at Kezza Hair | Skin | Laser.\n\nOur team is committed to providing the best eyebrow microblading in Jaipur, using premium pigments and advanced techniques to create natural-looking eyebrows that perfectly suit every face. Your recommendation means a lot to us and motivates us to continue offering the highest standards in Permanent Makeup (PMU), Microblading, Eyebrow Shaping, Lip Blush, Scalp Micropigmentation (SMP), Skin Treatments, Laser Treatments, and Hair Treatments.\n\nThank you for trusting Kezza Hair | Skin | Laser. We look forward to welcoming you again for all your beauty and aesthetic needs.\n\nTeam Kezza Hair | Skin | Laser 💜\nBest PMU Clinic | Best Eyebrow Microblading Clinic |",
+        "truncated": true,
+        "note": "Bottom-most sign-off line clipped at edge of screenshot. Full visible portion preserved verbatim."
+      },
+      "photos": [],
+      "customerPhotosNote": null,
+      "sourceUrl": null,
+      "verificationStatus": "screenshot-provided"
+    }
+  ]
+}

@@ -1,0 +1,416 @@
+{
+  "_readme": "Single source of truth for Kezza clinic facts used by tools/content/build_content_pages.py (location pages, blog, sitemap, llms.txt) and tools/seo/check-seo.js. Edit here, re-run the build, then run `npm run seo:check`. Keep it identical to your Google Business Profiles.",
+  "base_url": "https://www.kezza.co.in",
+  "site_name": "Kezza Clinic",
+  "organization": {
+    "name": "Kezza Hair & Skin Clinic",
+    "alternate_names": [
+      "Kezza Clinic",
+      "Kezza Hair and Skin Clinic"
+    ],
+    "legal_name": "Kezza Hair and Skin Clinic Private Limited",
+    "description": "Doctor-led hair restoration, skin and laser care, permanent makeup and non-surgical body contouring clinic with branches in Jaipur, Sikar and Ajmer, Rajasthan.",
+    "telephone": "+91-9284517427",
+    "email": "support@kezza.co.in",
+    "logo": "/images/logo.png",
+    "same_as": [
+      "https://www.facebook.com/kezzaclinic",
+      "https://www.instagram.com/kezza_clinic",
+      "https://www.youtube.com/@Kezza_Clinic_Jaipur"
+    ],
+    "founder": "pawan-bhalothia"
+  },
+  "hours": {
+    "days": "Mo-Su",
+    "opens": "09:00",
+    "closes": "20:00",
+    "label": "9 AM – 8 PM, all 7 days"
+  },
+  "branches": {
+    "jaipur": {
+      "city": "Jaipur",
+      "name": "Kezza Hair & Skin Clinic – Jaipur",
+      "label": "Jaipur · Khatipura",
+      "street": "A-7, 1st Floor, Hanuman Nagar, Sirsi Road, Khatipura",
+      "postal": "302012",
+      "region": "Rajasthan",
+      "country": "IN",
+      "display_address": "A-7, 1st Floor, Hanuman Nagar, Sirsi Road, Khatipura, Jaipur, Rajasthan 302012",
+      "phones": [
+        "+91-9284517427",
+        "+91-7073565197"
+      ],
+      "whatsapp": "919284517427",
+      "email": "support@kezza.co.in",
+      "map": "https://maps.app.goo.gl/4eUGixic35V777yd8",
+      "geo": [
+        26.9124,
+        75.74
+      ],
+      "image": "/images/kezza-jaipur-building.jpg",
+      "og_image": "/images/og/location-jaipur.jpg",
+      "doctors": [
+        "dr-harshit-sharma",
+        "dr-neelam-choudhary",
+        "dr-nakul-somani",
+        "dr-mandhata-sharma",
+        "dr-youvraj-singh",
+        "krishna"
+      ],
+      "services": [
+        [
+          "Hair transplant (FUE & DHI)",
+          "/hair-transplant/",
+          "fa-user-md"
+        ],
+        [
+          "Hair loss consultation",
+          "/hair-loss-consultation/",
+          "fa-search"
+        ],
+        [
+          "PRP hair therapy",
+          "/prp-therapy/",
+          "fa-vial"
+        ],
+        [
+          "GFC hair treatment",
+          "/prp-therapy/#gfc-therapy",
+          "fa-flask",
+          "gfc-treatment"
+        ],
+        [
+          "White & grey hair removal",
+          "/white-hair-removal/",
+          "fa-bolt"
+        ],
+        [
+          "Skin consultation",
+          "/skin-services.html#consultation",
+          "fa-user-md",
+          "skin-consultation"
+        ],
+        [
+          "Laser hair removal",
+          "/skin-services.html#laser",
+          "fa-sun",
+          "laser-hair-removal"
+        ],
+        [
+          "Skin & laser treatments",
+          "/skin-services.html",
+          "fa-spa"
+        ],
+        [
+          "Botox & dermal fillers",
+          "/skin-services.html#anti-aging",
+          "fa-magic",
+          "botox"
+        ],
+        [
+          "Permanent makeup",
+          "/permanent-makeup.html",
+          "fa-paint-brush"
+        ],
+        [
+          "Non-surgical body sculpting",
+          "/weight-loss/",
+          "fa-weight"
+        ],
+        [
+          "Rhinoplasty & ENT consultations",
+          "/about/#dr-mandhata-sharma",
+          "fa-head-side-mask"
+        ],
+        [
+          "Plastic & aesthetic surgery consultations",
+          "/about/#dr-nakul-somani",
+          "fa-stethoscope"
+        ]
+      ],
+      "intro": "Our flagship clinic is on the main Sirsi Road in Khatipura, West Jaipur. It is the largest Kezza centre, with an operation theatre for hair transplant surgery and our widest team: hair transplant surgeons, skin specialists, a visiting plastic surgeon, an ENT and rhinoplasty surgeon, an internal medicine physician and our PMU artist.",
+      "reach": "The clinic is on the first floor of A-7, Hanuman Nagar, on the main Sirsi Road in Khatipura, convenient from Vaishali Nagar, Jhotwara and the rest of West Jaipur."
+    },
+    "sikar": {
+      "city": "Sikar",
+      "name": "Kezza Hair & Skin Clinic – Sikar",
+      "label": "Sikar · Silver Jubilee Road",
+      "street": "4th Floor, Shakambhari Heights, Opposite S.K. Hospital, Silver Jubilee Road",
+      "postal": "332001",
+      "region": "Rajasthan",
+      "country": "IN",
+      "display_address": "4th Floor, Shakambhari Heights, Opposite S.K. Hospital, Silver Jubilee Road, Sakpura Mohlla, Samrathpura, Sikar, Rajasthan 332001",
+      "phones": [
+        "+91-9284517427",
+        "+91-7073565197"
+      ],
+      "whatsapp": "919284517427",
+      "email": "support@kezza.co.in",
+      "map": "https://maps.app.goo.gl/kFkEyXNvTP6DSGKq6",
+      "geo": [
+        27.6133424,
+        75.1518958
+      ],
+      "image": "/images/kezza-sikar-building.jpg",
+      "og_image": "/images/og/location-sikar.jpg",
+      "doctors": [
+        "dr-harshit-sharma",
+        "dr-neelam-choudhary",
+        "krishna"
+      ],
+      "services": [
+        [
+          "Hair transplant (FUE)",
+          "/hair-transplant/",
+          "fa-user-md",
+          "fue-hair-transplant"
+        ],
+        [
+          "Hair loss consultation",
+          "/hair-loss-consultation/",
+          "fa-search"
+        ],
+        [
+          "PRP hair therapy",
+          "/prp-therapy/",
+          "fa-vial"
+        ],
+        [
+          "GFC hair treatment",
+          "/prp-therapy/#gfc-therapy",
+          "fa-flask",
+          "gfc-treatment"
+        ],
+        [
+          "Skin consultation",
+          "/skin-services.html#consultation",
+          "fa-user-md",
+          "skin-consultation"
+        ],
+        [
+          "Laser hair removal",
+          "/skin-services.html#laser",
+          "fa-sun",
+          "laser-hair-removal"
+        ],
+        [
+          "Acne, scars & pigmentation",
+          "/skin-services.html#acne",
+          "fa-spa",
+          "acne-treatment"
+        ],
+        [
+          "Hydra facial & medical facials",
+          "/skin-services.html#hydra-facial",
+          "fa-tint",
+          "hydra-facial"
+        ],
+        [
+          "Non-surgical body sculpting",
+          "/weight-loss/",
+          "fa-weight"
+        ],
+        [
+          "Permanent makeup",
+          "/permanent-makeup.html",
+          "fa-paint-brush"
+        ]
+      ],
+      "intro": "Our Sikar clinic serves patients from across the Shekhawati region. It offers hair transplant and hair-regrowth treatment, acne and pigmentation care, laser hair reduction, body sculpting and permanent makeup, with doctors who also practise at our Jaipur clinic.",
+      "reach": "The clinic is on the fourth floor of Shakambhari Heights on Silver Jubilee Road, directly opposite S.K. Hospital."
+    },
+    "ajmer": {
+      "city": "Ajmer",
+      "name": "Kezza Hair & Skin Clinic – Ajmer",
+      "label": "Ajmer · Jawahar Nagar",
+      "street": "1st Floor, Hotel Oasis Complex, Shastri Nagar, Jawahar Nagar",
+      "postal": "305001",
+      "region": "Rajasthan",
+      "country": "IN",
+      "display_address": "1st Floor, Hotel Oasis Complex, Shastri Nagar, Jawahar Nagar, Ajmer, Rajasthan 305001",
+      "phones": [
+        "+91-9216088257"
+      ],
+      "whatsapp": "919216088257",
+      "email": "support@kezza.co.in",
+      "map": "https://maps.app.goo.gl/zMajvKmT5N7coswJA",
+      "geo": null,
+      "image": "/images/kezza-ajmer-building.jpg",
+      "og_image": "/images/og/location-ajmer.jpg",
+      "doctors": [
+        "dr-aliza-rizvi",
+        "dr-dhiral-vijayvargiya"
+      ],
+      "services": [
+        [
+          "Hair transplant",
+          "/hair-transplant/",
+          "fa-user-md"
+        ],
+        [
+          "Hair-loss diagnosis & consultation",
+          "/hair-loss-consultation/",
+          "fa-search"
+        ],
+        [
+          "Skin consultation",
+          "/skin-services.html#consultation",
+          "fa-user-md",
+          "skin-consultation"
+        ],
+        [
+          "Facial aesthetics",
+          "/skin-services.html#anti-aging",
+          "fa-magic"
+        ],
+        [
+          "Skin glow treatments & chemical peels",
+          "/skin-services.html",
+          "fa-spa"
+        ],
+        [
+          "Oral & maxillofacial surgery consultations",
+          "/about/#dr-aliza-rizvi",
+          "fa-stethoscope"
+        ]
+      ],
+      "intro": "Our Ajmer clinic, in the Hotel Oasis Complex at Shastri Nagar, is led by oral and maxillofacial surgeon Dr. Aliza Rizvi, together with Dr. Dhiral Vijayvargiya. It focuses on hair transplant, hair-loss diagnosis and facial aesthetics.",
+      "reach": "The clinic is on the first floor of the Hotel Oasis Complex in Shastri Nagar, Jawahar Nagar, Ajmer."
+    }
+  },
+  "people": {
+    "pawan-bhalothia": {
+      "name": "Pawan Bhalothia",
+      "job_title": "Founder & Managing Director",
+      "image": "/images/pawan-sir.jpg",
+      "branches": [],
+      "founder": true
+    },
+    "dr-nakul-somani": {
+      "name": "Dr. Nakul Somani",
+      "job_title": "Aesthetic & Reconstructive Plastic Surgeon (Visiting Consultant)",
+      "image": "/images/dr-nakul-somani.jpg",
+      "branches": [
+        "jaipur"
+      ],
+      "occupation": "Plastic Surgeon",
+      "knows_about": [
+        "Plastic surgery",
+        "Body contouring",
+        "Liposuction",
+        "Facial aesthetic surgery"
+      ]
+    },
+    "dr-mandhata-sharma": {
+      "name": "Dr. Mandhata Sharma",
+      "job_title": "ENT & Rhinoplasty Surgeon (Visiting Consultant)",
+      "image": "/images/Doctor6.jpeg",
+      "branches": [
+        "jaipur"
+      ],
+      "occupation": "ENT Surgeon",
+      "knows_about": [
+        "Rhinoplasty",
+        "Endoscopic ENT surgery",
+        "Head and neck surgery"
+      ],
+      "alumni_of": "Maulana Azad Medical College, Delhi"
+    },
+    "dr-youvraj-singh": {
+      "name": "Dr. Youvraj Singh",
+      "job_title": "Consultant Physician & Internal Medicine Specialist (Visiting Consultant)",
+      "image": "/images/dr-youvraj-singh.jpg",
+      "branches": [
+        "jaipur"
+      ],
+      "occupation": "Physician (Internal Medicine)",
+      "knows_about": [
+        "Internal medicine",
+        "Chronic disease management"
+      ]
+    },
+    "dr-neelam-choudhary": {
+      "name": "Dr. Neelam Choudhary",
+      "job_title": "Dental Surgeon (BDS) · Facial Aesthetics & Clinical Cosmetology",
+      "image": "/images/Doctor3.jpeg",
+      "branches": [
+        "jaipur",
+        "sikar"
+      ],
+      "occupation": "Dental Surgeon",
+      "knows_about": [
+        "Facial aesthetics",
+        "Clinical cosmetology",
+        "Laser therapies",
+        "Chemical and medical peels",
+        "Microneedling"
+      ]
+    },
+    "dr-dhiral-vijayvargiya": {
+      "name": "Dr. Dhiral Vijayvargiya",
+      "job_title": "Oral & Maxillofacial, Aesthetic & Hair Transplant Surgeon",
+      "image": "/images/Doctor4.jpeg",
+      "branches": [
+        "ajmer"
+      ],
+      "occupation": "Oral & Maxillofacial Surgeon",
+      "knows_about": [
+        "Hair transplant",
+        "Facial aesthetics",
+        "Oral and maxillofacial surgery"
+      ]
+    },
+    "dr-aliza-rizvi": {
+      "name": "Dr. Aliza Rizvi",
+      "job_title": "Oral & Maxillofacial, Aesthetic & Hair Transplant Surgeon",
+      "image": "/images/dr-aliza-rizvi.jpg",
+      "branches": [
+        "ajmer"
+      ],
+      "occupation": "Oral & Maxillofacial Surgeon",
+      "knows_about": [
+        "Hair transplant",
+        "Facial aesthetics",
+        "Oral and maxillofacial surgery"
+      ]
+    },
+    "krishna": {
+      "name": "Krishna Choudhary",
+      "job_title": "Permanent Makeup (PMU) Artist",
+      "image": "/images/Doctor5.jpeg",
+      "branches": [
+        "jaipur",
+        "sikar"
+      ],
+      "occupation": "Permanent Makeup Artist",
+      "knows_about": [
+        "Microblading",
+        "Lip blush",
+        "Permanent eyeliner"
+      ]
+    },
+    "dr-harshit-sharma": {
+      "name": "Dr. Harshit Sharma",
+      "job_title": "Oral & Maxillofacial Surgeon; Aesthetic & Hair Transplant Surgeon",
+      "image": "/images/Doctor1.webp?v=3c3dc180",
+      "branches": [
+        "jaipur",
+        "sikar"
+      ],
+      "occupation": "Oral & Maxillofacial Surgeon",
+      "credentials": "BDS (2021), MDS 2026 (Oral & Maxillofacial Surgery), ATLS-ACS (2025)",
+      "knows_about": [
+        "Consultation about hair transplant",
+        "Hair transplant",
+        "Lobuloplasty (earlobe repair/reshaping)",
+        "Blepharoplasty (eyelid surgery)",
+        "Botox & dermal fillers",
+        "Facial scar revision",
+        "Facial trauma & reconstruction",
+        "Thread lift",
+        "Pathology & biopsies",
+        "Micro-follicular hair restoration"
+      ]
+    }
+  }
+}

@@ -1,0 +1,1238 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Kezza Hair & Skin Clinic — Advanced Hair Loss Treatment & Consultation
+   Design System & Component Styles
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Global Layout & Typography ───────────────────────────────────────── */
+.hlc-page-wrapper {
+  padding-top: 74px; /* Clearance for fixed top navbar */
+  overflow-x: hidden;
+  background-color: #ffffff;
+}
+
+.hlc-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.hlc-breadcrumb-bar {
+  background: #f8fafc;
+  border-bottom: 1px solid #edf2f7;
+  padding: 14px 0;
+}
+
+.hlc-breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: #64748b;
+}
+
+.hlc-breadcrumb-nav a {
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.hlc-breadcrumb-nav a:hover {
+  color: #00AFC0;
+}
+
+.hlc-breadcrumb-nav i {
+  font-size: 0.70rem;
+  color: #94a3b8;
+}
+
+.hlc-breadcrumb-nav span[aria-current="page"] {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.hlc-section-header {
+  margin-bottom: 40px;
+}
+
+.hlc-section-header.text-center {
+  text-align: center;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hlc-section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e0f2fe;
+  color: #0284c7;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+.hlc-section-title {
+  font-size: 2.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.25;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+}
+
+.hlc-section-subtitle {
+  font-size: 1.02rem;
+  color: #64748b;
+  line-height: 1.65;
+  margin: 0 auto;
+}
+
+/* ── Hero Section ────────────────────────────────────────────────────────── */
+.hlc-hero-section {
+  padding: 50px 0 70px;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hlc-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hlc-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e0f2fe;
+  color: #0284c7;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+.hlc-hero-heading {
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.18;
+  margin-bottom: 20px;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.hlc-hero-heading span {
+  color: #0f172a;
+}
+
+.hlc-hero-lead {
+  font-size: 1.05rem;
+  color: #475569;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.hlc-trust-chips {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 20px;
+  margin-bottom: 32px;
+}
+
+.hlc-chip-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.90rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.hlc-chip-item i {
+  color: #10b981;
+  font-size: 1.15rem;
+}
+
+.hlc-hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-hlc-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #005953;
+  color: #ffffff !important;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 13px 26px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px -4px rgba(0, 89, 83, 0.35);
+  transition: all 0.25s ease;
+}
+
+.btn-hlc-primary:hover {
+  background: #004540;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px -4px rgba(0, 89, 83, 0.45);
+  color: #ffffff !important;
+}
+
+.btn-hlc-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  color: #0f172a !important;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: 1.5px solid #cbd5e1;
+  transition: all 0.25s ease;
+}
+
+.btn-hlc-outline:hover {
+  border-color: #005953;
+  color: #005953 !important;
+  background: #f0fdf4;
+  transform: translateY(-2px);
+}
+
+/* Hero Media Card */
+.hlc-hero-media-wrap {
+  position: relative;
+}
+
+.hlc-media-frame {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px -10px rgba(15, 23, 42, 0.15), 0 0 25px rgba(0, 175, 192, 0.08);
+  border: 1px solid rgba(0, 175, 192, 0.2);
+  background: #0f172a;
+}
+
+.hlc-media-frame img {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  display: block;
+}
+
+.hlc-floating-card {
+  position: absolute;
+  bottom: -20px;
+  left: 20px;
+  right: 20px;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 175, 192, 0.35);
+  border-radius: 18px;
+  padding: 16px 20px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+}
+
+.hlc-floating-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.hlc-floating-head i {
+  color: #00d4e7;
+  font-size: 1.15rem;
+}
+
+.hlc-floating-head h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+}
+
+.hlc-floating-card p {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Section 2: Stages Progression ───────────────────────────────────────── */
+.hlc-stages-section {
+  padding: 85px 0 80px;
+  background: #ffffff;
+}
+
+.hlc-filter-pills {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.hlc-filter-btn {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+}
+
+.hlc-filter-btn:hover {
+  transform: translateY(-1px);
+}
+
+.hlc-filter-btn[data-filter="all"] {
+  background: #1e293b;
+  border-color: #1e293b;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+}
+
+.hlc-filter-btn[data-filter="medical"] {
+  background: #059669;
+  border-color: #059669;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.25);
+}
+
+.hlc-filter-btn[data-filter="prp"] {
+  background: #334155;
+  border-color: #334155;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(51, 65, 85, 0.25);
+}
+
+.hlc-filter-btn[data-filter="surgical"] {
+  background: #0f766e;
+  border-color: #0f766e;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.25);
+}
+
+.hlc-filter-btn.active {
+  outline: 2.5px solid #00AFC0;
+  outline-offset: 2px;
+}
+
+/* Timeline progress bar */
+.hlc-timeline-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 0 auto 36px;
+  max-width: 520px;
+}
+
+.hlc-timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  border: 2px solid #94a3b8;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+
+.hlc-timeline-dot--active {
+  background: #008f9c;
+  border-color: #008f9c;
+  box-shadow: 0 0 0 4px rgba(0, 175, 192, 0.18);
+}
+
+.hlc-timeline-dot--gold {
+  background: #d97706;
+  border-color: #d97706;
+  box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.18);
+}
+
+.hlc-timeline-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, #00AFC0 0%, #cbd5e1 100%);
+  display: block;
+}
+
+.hlc-stages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.hlc-stages-grid--two {
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 0;
+}
+
+.hlc-stage-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px -5px rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hlc-stage-card:hover {
+  border-color: #00AFC0;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 35px -8px rgba(0, 175, 192, 0.18);
+}
+
+/* Gold outcome card */
+.hlc-stage-card--outcome {
+  border-color: #fde68a;
+}
+.hlc-stage-card--outcome:hover {
+  border-color: #d97706;
+  box-shadow: 0 16px 35px -8px rgba(217, 119, 6, 0.2);
+}
+
+.hlc-stage-img-wrap {
+  width: 100%;
+  height: 220px;
+  background: #f1f5f9;
+  position: relative;
+  overflow: hidden;
+}
+
+.hlc-stage-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.hlc-stage-card:hover .hlc-stage-img-wrap img {
+  transform: scale(1.04);
+}
+
+/* Step number badge */
+.hlc-stage-step-num {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(0, 175, 192, 0.92);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  z-index: 2;
+}
+
+.hlc-stage-step-num--gold {
+  background: rgba(217, 119, 6, 0.92);
+}
+
+.hlc-stage-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.hlc-stage-tag--gold {
+  background: rgba(217, 119, 6, 0.9);
+}
+
+.hlc-stage-body {
+  padding: 20px 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hlc-stage-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.70rem;
+  font-weight: 800;
+  color: #008f9c;
+  background: rgba(0, 175, 192, 0.1);
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.hlc-stage-category--gold {
+  color: #92400e;
+  background: rgba(217, 119, 6, 0.1);
+}
+
+.hlc-stage-body h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+.hlc-stage-body p {
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.hlc-stage-footer {
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #008f9c;
+}
+
+.hlc-stage-footer span {
+  color: #64748b;
+}
+
+.hlc-stage-footer a {
+  color: #008f9c;
+  text-decoration: none;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hlc-stage-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responded badge */
+.hlc-badge-responded {
+  background: rgba(5, 150, 105, 0.1);
+  color: #059669 !important;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+
+.hlc-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 14px 0 18px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+.hlc-metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hlc-metric-val {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #008f9c;
+}
+
+.hlc-metric-label {
+  font-size: 0.70rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* ── Section 3: Hair Loss Manifestations ──────────────────────────────────── */
+.hlc-manifestations-section {
+  padding: 85px 0;
+  background: #f8fafc;
+}
+
+.hlc-manifest-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.hlc-manifest-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 26px 22px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.03);
+  transition: all 0.3s ease;
+}
+
+.hlc-manifest-card:hover {
+  border-color: #00AFC0;
+  transform: translateY(-4px);
+  box-shadow: 0 14px 35px -8px rgba(0, 175, 192, 0.15);
+}
+
+.hlc-manifest-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  margin-bottom: 18px;
+}
+
+.hlc-manifest-icon.icon-blue {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.hlc-manifest-icon.icon-purple {
+  background: #faf5ff;
+  color: #7c3aed;
+}
+
+.hlc-manifest-icon.icon-sky {
+  background: #f0f9ff;
+  color: #0284c7;
+}
+
+.hlc-manifest-icon.icon-violet {
+  background: #f5f3ff;
+  color: #9333ea;
+}
+
+.hlc-manifest-card h3 {
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.hlc-manifest-card p {
+  font-size: 0.86rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.hlc-protocol-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid #00AFC0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: #334155;
+  margin-bottom: 16px;
+}
+
+.hlc-protocol-box strong {
+  color: #007a87;
+  display: block;
+  font-size: 0.70rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 3px;
+}
+
+.hlc-manifest-link {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #00AFC0;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.hlc-manifest-link:hover {
+  color: #007a87;
+  text-decoration: underline;
+}
+
+/* ── Section 4: Advanced Modality Comparison ──────────────────────────────── */
+.hlc-comparison-section {
+  padding: 85px 0;
+  background: #ffffff;
+}
+
+.hlc-modality-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.hlc-modality-tabs .hlc-filter-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+}
+
+.hlc-modality-tabs .hlc-filter-btn.active {
+  background: #1e293b;
+  border-color: #1e293b;
+  color: #ffffff;
+}
+
+.hlc-modality-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.hlc-modality-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 22px;
+  padding: 32px 26px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s ease;
+}
+
+.hlc-modality-card.featured {
+  border-color: #00AFC0;
+  box-shadow: 0 16px 40px -10px rgba(0, 175, 192, 0.22);
+}
+
+.hlc-modality-card:hover {
+  transform: translateY(-4px);
+}
+
+.hlc-modality-badge {
+  display: inline-block;
+  background: #e0f2fe;
+  color: #0284c7;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  width: fit-content;
+}
+
+.hlc-modality-card.featured .hlc-modality-badge {
+  background: #e6f8fa;
+  color: #007a87;
+}
+
+.hlc-featured-ribbon {
+  position: absolute;
+  top: -12px;
+  right: 24px;
+  background: #10b981;
+  color: #ffffff;
+  font-size: 0.70rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 12px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
+}
+
+.hlc-modality-card h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+.hlc-modality-card p {
+  font-size: 0.90rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.hlc-specs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.hlc-specs-list li {
+  font-size: 0.85rem;
+  color: #334155;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.hlc-specs-list li i {
+  color: #00AFC0;
+  font-size: 0.95rem;
+  margin-top: 3px;
+}
+
+.hlc-specs-list li strong {
+  color: #0f172a;
+}
+
+.btn-modality-action {
+  display: block;
+  text-align: center;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  background: #f0f9ff;
+  color: #0284c7;
+  border: 1.5px solid #bae6fd;
+  transition: all 0.25s ease;
+  margin-top: auto;
+}
+
+.btn-modality-action:hover {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.btn-modality-action.btn-modality-primary {
+  background: #005953;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 6px 16px rgba(0, 89, 83, 0.35);
+}
+
+.btn-modality-action.btn-modality-primary:hover {
+  background: #004540;
+  box-shadow: 0 8px 22px rgba(0, 89, 83, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ── Section 5: What to Expect Stepper Timeline ───────────────────────────── */
+.hlc-journey-section {
+  padding: 85px 0;
+  background: #f8fafc;
+}
+
+.hlc-journey-stepper {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+}
+
+.hlc-journey-step {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 24px 28px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.03);
+  align-items: center;
+  transition: all 0.25s ease;
+}
+
+.hlc-journey-step:hover {
+  border-color: #00AFC0;
+  box-shadow: 0 10px 30px -6px rgba(0, 175, 192, 0.15);
+  transform: translateX(4px);
+}
+
+.hlc-step-num-box {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hlc-journey-step:nth-child(1) .hlc-step-num-box,
+.hlc-journey-step:nth-child(5) .hlc-step-num-box {
+  background: #10b981;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+
+.hlc-journey-step:nth-child(2) .hlc-step-num-box,
+.hlc-journey-step:nth-child(3) .hlc-step-num-box,
+.hlc-journey-step:nth-child(4) .hlc-step-num-box {
+  background: #475569;
+  box-shadow: 0 4px 14px rgba(71, 85, 105, 0.3);
+}
+
+.hlc-step-content-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hlc-step-meta {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #008f9c;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.hlc-step-content-box h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.hlc-step-content-box p {
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Section 6: FAQs ──────────────────────────────────────────────────────── */
+.hlc-faq-section {
+  padding: 85px 0;
+  background: #ffffff;
+}
+
+.hlc-faq-accordion {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hlc-faq-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.hlc-faq-item:hover {
+  border-color: #00AFC0;
+}
+
+.hlc-faq-item summary {
+  padding: 20px 24px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hlc-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.hlc-faq-item summary::after {
+  content: '\f078';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  font-size: 0.85rem;
+  color: #00AFC0;
+  transition: transform 0.3s ease;
+}
+
+.hlc-faq-item[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.hlc-faq-answer {
+  padding: 0 24px 22px;
+  font-size: 0.92rem;
+  color: #475569;
+  line-height: 1.68;
+}
+
+/* ── Section 7: Bottom CTA Consultation Band ─────────────────────────────── */
+.hlc-cta-band-section {
+  padding: 60px 0 80px;
+  background: #ffffff;
+}
+
+.hlc-cta-band {
+  background: #004d47;
+  border-radius: 24px;
+  padding: 48px 44px;
+  box-shadow: 0 20px 50px -10px rgba(0, 77, 71, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.hlc-cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #a7f3d0;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.hlc-cta-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hlc-cta-left {
+  color: #ffffff;
+}
+
+.hlc-cta-left h2 {
+  font-size: 2.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+.hlc-cta-left p {
+  font-size: 0.98rem;
+  color: #e2e8f0;
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+.hlc-cta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.90rem;
+  color: #cbd5e1;
+}
+
+.hlc-cta-info span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hlc-cta-info i {
+  color: #34d399;
+}
+
+/* Right Elevated Booking Card */
+.hlc-booking-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 32px 28px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hlc-booking-card h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.hlc-booking-card p {
+  font-size: 0.84rem;
+  color: #64748b;
+  margin: -8px 0 6px;
+}
+
+.hlc-input-phone {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  color: #0f172a;
+  background: #f8fafc;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.hlc-input-phone:focus {
+  border-color: #00AFC0;
+  background: #ffffff;
+}
+
+.btn-book-wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #25D366;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+  transition: all 0.25s ease;
+}
+
+.btn-book-wa:hover {
+  background: #1eb956;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.45);
+}
+
+.btn-book-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #005953;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-book-submit:hover {
+  background: #004540;
+  transform: translateY(-2px);
+}
+
+/* ── Responsive Styling ──────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hlc-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .hlc-stages-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hlc-stages-featured-row {
+    grid-template-columns: 1fr;
+  }
+  .hlc-featured-card {
+    grid-template-columns: 1fr;
+  }
+  .hlc-manifest-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hlc-modality-grid {
+    grid-template-columns: 1fr;
+  }
+  .hlc-cta-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hlc-hero-heading {
+    font-size: 2.15rem;
+  }
+  .hlc-stages-grid {
+    grid-template-columns: 1fr;
+  }
+  .hlc-manifest-grid {
+    grid-template-columns: 1fr;
+  }
+  .hlc-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  .hlc-trust-chips {
+    grid-template-columns: 1fr;
+  }
+  .hlc-journey-step {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .hlc-floating-card {
+    position: static;
+    margin-top: 14px;
+  }
+  .hlc-cta-band {
+    padding: 32px 20px;
+  }
+}

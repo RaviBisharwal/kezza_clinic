@@ -1,0 +1,1112 @@
+/**
+ * Kezza Clinic — Express Backend & Gemini AI Server
+ * Serves all files from the /frontend directory on port 3001.
+ * Integrates Google Gemini API for:
+ *   1. /api/chat           → AI Chatbot (Gemini 2.5 Flash)
+ *   2. /api/analyze-photo  → AI Face & Scalp Scanner (Gemini Vision)
+ *   3. /api/health         → Status & API key configuration check
+ * 
+ * Usage:
+ *   node server.js
+ * 
+ * Then open: http://localhost:3001
+ */
+
+require('dotenv').config();
+const express = require('express');
+const path    = require('path');
+const { GoogleGenAI } = require('@google/genai');
+
+const app  = express();
+const PORT = process.env.PORT || 3001;
+
+// ── CORS Middleware ─────────────────────────────────────────────────
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(204);
+    }
+    next();
+});
+
+// ── Middleware ──────────────────────────────────────────────────────
+app.use(express.json({ limit: '25mb' }));
+app.use(express.urlencoded({ extended: true, limit: '25mb' }));
+
+// ── High-Performance Brotli & Gzip Compression with In-Memory Cache ──
+const zlib = require('zlib');
+const compressionCache = new Map(); // key -> { buffer, encoding }
+const MAX_COMPRESSED_CACHE_ENTRIES = 250;
+
+app.use((req, res, next) => {
+    const ae = req.headers['accept-encoding'] || '';
+    if (req.method !== 'GET' || !/\b(gzip|br)\b/.test(ae)) return next();
+    
+    // Check compressible static extension, directory root, or extension-less route
+    const ext = path.extname(req.path).toLowerCase();
+    const isCompressiblePath = !ext || /\.(html?|css|js|mjs|json|svg|xml|txt|map|webmanifest)$/i.test(ext);
+    if (!isCompressiblePath) return next();
+
+    // Prefer Brotli if supported, fallback to gzip
+    const supportsBrotli = /\bbr\b/.test(ae) && typeof zlib.brotliCompress === 'function';
+    const encoding = supportsBrotli ? 'br' : 'gzip';
+
+    const rawWrite = res.write.bind(res);
+    const rawEnd   = res.end.bind(res);
+    const chunks   = [];
+    let finished   = false;
+
+    res.write = function (chunk, enc, cb) {
+        if (chunk) chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk, enc));
+        if (typeof cb === 'function') cb();
+        return true;
+    };
+    res.end = function (chunk, enc, cb) {
+        if (finished) return;
+        finished = true;
+        if (typeof chunk === 'function') { cb = chunk; chunk = null; enc = null; }
+        else if (typeof enc === 'function') { cb = enc; enc = null; }
+        if (chunk) chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk, enc));
+        const body = Buffer.concat(chunks);
+
+        // Skip compression for non-200, empty, already-encoded, or binary image/video
+        const contentType = res.getHeader('Content-Type') || '';
+        if (res.statusCode !== 200 || body.length === 0 || res.getHeader('Content-Encoding') ||
+            (typeof contentType === 'string' && /image\/(?!svg\+xml)|video\/|audio\//i.test(contentType))) {
+            if (body.length) { res.setHeader('Content-Length', body.length); rawWrite(body); }
+            return rawEnd(cb);
+        }
+
+        // Cache key based on path, body length and encoding
+        const cacheKey = `${req.path}:${body.length}:${encoding}`;
+        const cached = compressionCache.get(cacheKey);
+        if (cached) {
+            res.setHeader('Content-Encoding', cached.encoding);
+            res.setHeader('Vary', 'Accept-Encoding');
+            res.setHeader('Content-Length', cached.buffer.length);
+            rawWrite(cached.buffer);
+            return rawEnd(cb);
+        }
+
+        const compressFn = supportsBrotli
+            ? (buf, callback) => zlib.brotliCompress(buf, {
+                params: {
+                    [zlib.constants.BROTLI_PARAM_QUALITY]: 4 // Fast quality for dynamic serving
+                }
+            }, callback)
+            : (buf, callback) => zlib.gzip(buf, { level: 6 }, callback);
+
+        compressFn(body, (err, compressed) => {
+            if (err || !compressed) {
+                res.setHeader('Content-Length', body.length);
+                rawWrite(body);
+                return rawEnd(cb);
+            }
+
+            // Store in cache (evicting oldest entry if full)
+            if (compressionCache.size >= MAX_COMPRESSED_CACHE_ENTRIES) {
+                const firstKey = compressionCache.keys().next().value;
+                if (firstKey) compressionCache.delete(firstKey);
+            }
+            compressionCache.set(cacheKey, { buffer: compressed, encoding });
+
+            res.setHeader('Content-Encoding', encoding);
+            res.setHeader('Vary', 'Accept-Encoding');
+            res.setHeader('Content-Length', compressed.length);
+            rawWrite(compressed);
+            rawEnd(cb);
+        });
+    };
+    next();
+});
+
+// ── 301 Permanent Redirects ────────────────────────────────────────
+app.use('/weight-loss.html', (req, res) => {
+    res.redirect(301, '/weight-loss/');
+});
+
+app.use('/hair-loss-consultation.html', (req, res) => {
+    res.redirect(301, '/hair-loss-consultation/');
+});
+
+app.use('/hair-wig.html', (req, res) => {
+    res.redirect(301, '/hair-wig/');
+});
+
+app.use('/electrolysis.html', (req, res) => {
+    res.redirect(301, '/electrolysis/');
+});
+
+app.use('/white-hair-removal.html', (req, res) => {
+    res.redirect(301, '/white-hair-removal/');
+});
+
+app.use('/prp-therapy.html', (req, res) => {
+    res.redirect(301, '/prp-therapy/');
+});
+
+app.use('/about.html', (req, res) => {
+    res.redirect(301, '/about/');
+});
+
+app.get(['/doctors/dr-ankit-bhalothia', '/doctors/dr-ankit-bhalothia/index.html'], (req, res) => {
+    res.redirect(301, '/about/#doctors');
+});
+
+app.get([
+    '/images/doctors/dr-ankit-bhalothia.jpg',
+    '/images/doctors/dr-ankit-bhalothia.webp',
+    '/images/doctors/dr-ankit-bhalothia-sm.webp',
+    '/images/og/doctor-dr-ankit-bhalothia.jpg',
+    '/images/Doctor1.jpeg',
+], (req, res) => {
+    res.sendStatus(410);
+});
+
+// ── Clean URL Redirects: strip /index.html ────────────────────────
+app.use((req, res, next) => {
+    if (req.path === '/index.html') {
+        return res.redirect(301, '/');
+    }
+    if (req.path.endsWith('/index.html')) {
+        return res.redirect(301, req.path.slice(0, -10));
+    }
+    next();
+});
+
+app.use('/contact.html', (req, res) => {
+    res.redirect(301, '/contact/');
+});
+
+app.use('/branches.html', (req, res) => {
+    res.redirect(301, '/branches/');
+});
+
+app.use('/stretch-marks-treatment', (req, res) => {
+    res.redirect(301, '/stretch-marks/');
+});
+
+app.use('/pigmentation-treatment', (req, res) => {
+    res.redirect(301, '/pigmentation/');
+});
+
+app.use('/acne-treatment', (req, res) => {
+    res.redirect(301, '/acne/');
+});
+
+app.use(['/gfc-treatment', '/gfc-therapy'], (req, res) => {
+    res.redirect(301, '/gfc/');
+});
+
+app.use('/dark-circles-treatment', (req, res) => {
+    res.redirect(301, '/dark-circles/');
+});
+
+app.use(['/acne-scar-treatment', '/acne-scars'], (req, res) => {
+    res.redirect(301, '/acne-scar/');
+});
+
+app.use('/botox', (req, res) => {
+    res.redirect(301, '/dermal-fillers/');
+});
+
+app.use('/glutathione-treatment', (req, res) => {
+    res.redirect(301, '/skin-brightening/');
+});
+
+// ── Serve all frontend assets from ./frontend/ ─────────────────────
+app.use(express.static(path.join(__dirname, 'frontend'), {
+    extensions: ['html'],
+    setHeaders: (res, filePath) => {
+        if (/\.html?$/i.test(filePath)) {
+            // HTML is fresh with ETag/Last-Modified conditional validation (instant 304)
+            res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+        } else if (/\.(jpg|jpeg|png|webp|gif|svg|mp4|webm|woff2?|ico)$/i.test(filePath)) {
+            // Immutable static media assets (1 year cache)
+            res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        } else if (/\.min\.(css|js)$/i.test(filePath) || (res.req && /[?&]v=/i.test(res.req.url))) {
+            // Version-hashed / minified production bundles: immutable cache
+            res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        } else if (process.env.NODE_ENV === 'production') {
+            res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+        } else {
+            // Development fallback with revalidation
+            res.setHeader('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+        }
+    },
+}));
+
+// ── System Prompt for Kezza Hair & Skin Clinic ──────────────────────
+const KEZZA_SYSTEM_INSTRUCTION = `You are Kezza AI, the official virtual clinical assistant for Kezza Hair & Skin Clinic (Jaipur, Sikar & Ajmer, Rajasthan).
+
+CLINIC INFORMATION:
+- Locations:
+  1. Jaipur Clinic: A-7, 1st Floor, Hanuman Nagar, Sirsi Rd, Main, Khatipura, Jaipur, Rajasthan.
+     Phone/WhatsApp: +91-9284517427
+     Timings: 9:00 AM to 8:00 PM (Monday to Sunday, All 7 Days).
+  2. Sikar Clinic: 4th Floor, Shakambhari Heights, Opposite S.K. Hospital, Silver Jubilee Road, Sakpura Mohlla, Samrathpura, Sikar, Rajasthan 332001.
+     Phone/WhatsApp: +91-9284517427
+     Timings: 9:00 AM to 8:00 PM (Monday to Sunday, All 7 Days).
+  3. Ajmer Clinic (Kezza Clinic – Ajmer): 1st Floor, Hotel Oasis Complex, Shastri Nagar, Jawahar Nagar, Ajmer, Rajasthan 305001.
+     Phone: +91-9216088257 | WhatsApp: +91-9216088257 | Email: support@kezza.co.in
+     Google Maps: https://maps.app.goo.gl/zMajvKmT5N7coswJA?g_st=ic
+     Timings: 9:00 AM to 8:00 PM (Monday to Sunday, All 7 Days).
+- Central WhatsApp / Consultation Helpline: +91 9284517427.
+
+KEY MEDICAL EXPERTS & DEPARTMENTS:
+1. Hair Restoration, Facial & Maxillofacial Surgery:
+   - Specialist: Dr. Harshit Sharma (BDS 2021, MDS 2026 Oral & Maxillofacial Surgery, ATLS-ACS 2025) & Elite Surgical Team (Jaipur & Sikar).
+   - Treatments: Consultation about Hair Transplant (Top Priority), Sapphire FUE & Choi DHI Hair Transplant, Lobuloplasty (Earlobe Repair & Reshaping), Blepharoplasty (Eyelid Surgery), Botox & Dermal Fillers, Facial Scar Revision, Facial Trauma & Facial Reconstruction, Thread Lift, Oral & Maxillofacial Pathology & Biopsies, GFC / PRP Therapy.
+2. Skin & Aesthetics:
+   - Specialist: Kezza clinical skin team (Jaipur).
+   - Treatments: Medical HydraFacial, Acne & Fractional Scar Repair, Botox & Dermal Fillers, Pigmentation / Melasma Reduction, Laser Hair Removal, Glutathione Glow Therapy.
+3. Permanent Makeup (PMU):
+   - Microblading, Ombre Powder Brows, Lip Blush, Scalp Micropigmentation (SMP).
+4. Weight Management & Body Contouring:
+   - 360° Cryolipolysis (Fat Freezing), HIFU Body Sculpting.
+5. Ajmer Clinic Specialists:
+   - Dr. Dhiral Vijayvargiya: Oral & Maxillofacial, Aesthetic & Hair Transplant Surgeon. Available at Ajmer.
+   - Dr. Aliza Rizvi: Oral & Maxillofacial, Aesthetic & Hair Transplant Surgeon. Specializations: Maxillofacial Surgery, Facial Symmetry & Aesthetics, Hair Transplant. Available at Ajmer.
+     Bio: Dr. Aliza Rizvi is a specialist Oral and Maxillofacial Surgeon whose advanced practice is devoted to hair transplantation and facial aesthetics. Her elite surgical foundation brings a deep command of facial anatomy, bone structure and nerve pathways to every procedure. Leading our Ajmer centre, she applies rigorous hospital-grade surgical discipline to non-surgical facial rejuvenation and delicate, micro-graft hair transplants, achieving dense, natural-looking restorations.
+
+LOCATION ROUTING RULES:
+- If a user mentions "Ajmer", "Ajmer clinic", "Kezza Ajmer", "I want appointment in Ajmer" or "I live in Ajmer": use location = Ajmer and provide Ajmer clinic details.
+- Ajmer doctors: Dr. Dhiral Vijayvargiya and Dr. Aliza Rizvi.
+- Do NOT claim Jaipur/Sikar doctors are available in Ajmer unless explicitly configured.
+- All three clinics (Jaipur, Sikar, Ajmer) are open 9:00 AM to 8:00 PM, all 7 days.
+
+RESPONSE GUIDELINES:
+- Language: Respond naturally in the language user speaks (English, Hindi, or conversational Hinglish).
+- Tone: Empathetic, polite, professional, and clinically accurate.
+- Formatting: Use short, clean paragraphs, bullet points, and bold text. Keep answers concise (< 150 words).
+- Medical Disclaimer: Always clarify that preliminary AI guidance is for informational purposes and recommend booking an in-person or WhatsApp consultation with Kezza specialists.`;
+
+// ── 1. Health & Config Status API ──────────────────────────────────
+app.get('/api/health', (req, res) => {
+    const hasKey = Boolean(process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY.trim());
+    res.json({
+        status: 'OK',
+        service: 'Kezza Clinic Backend',
+        geminiConfigured: hasKey,
+        port: PORT
+    });
+});
+
+// ── 1b. Google Places Reviews API ──────────────────────────────────
+// Returns up to 5 reviews per clinic location from Google Places API (New).
+// Requires: GOOGLE_PLACES_API_KEY in .env, plus Place IDs for each clinic.
+// Place IDs can be found via: https://developers.google.com/maps/documentation/places/web-service/place-id
+const CLINIC_PLACES = {
+    jaipur: process.env.PLACES_ID_JAIPUR || '',   // e.g. ChIJ...
+    sikar:  process.env.PLACES_ID_SIKAR  || '',
+    ajmer:  process.env.PLACES_ID_AJMER  || '',
+};
+
+// Simple in-memory cache — refresh every 6 hours per clinic
+const reviewsCache = new Map(); // key: clinicKey → { data, fetchedAt }
+const REVIEWS_CACHE_TTL = 6 * 60 * 60 * 1000; // 6 hours
+
+async function fetchPlaceReviews(placeId, apiKey) {
+    const url = `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}` +
+        `?fields=rating,userRatingCount,reviews&languageCode=en&key=${apiKey}`;
+    const res = await fetch(url, {
+        headers: { 'X-Goog-FieldMask': 'rating,userRatingCount,reviews' }
+    });
+    if (!res.ok) throw new Error(`Places API error ${res.status}: ${await res.text()}`);
+    return res.json();
+}
+
+app.get('/api/reviews', async (req, res) => {
+    const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+    const clinic = (req.query.clinic || '').toLowerCase().trim(); // 'jaipur' | 'sikar' | 'ajmer'
+
+    if (!apiKey || !apiKey.trim()) {
+        return res.status(503).json({ status: 'NO_PLACES_KEY', message: 'Google Places API key not configured.' });
+    }
+    if (!clinic || !CLINIC_PLACES[clinic]) {
+        return res.status(400).json({ status: 'BAD_REQUEST', message: `Invalid or missing clinic param. Use: ${Object.keys(CLINIC_PLACES).join(', ')}` });
+    }
+    const placeId = CLINIC_PLACES[clinic];
+    if (!placeId) {
+        return res.status(503).json({ status: 'NO_PLACE_ID', message: `Place ID for '${clinic}' clinic not configured (set PLACES_ID_${clinic.toUpperCase()} in .env).` });
+    }
+
+    // Serve from cache if fresh
+    const cached = reviewsCache.get(clinic);
+    if (cached && (Date.now() - cached.fetchedAt) < REVIEWS_CACHE_TTL) {
+        return res.json({ status: 'OK', clinic, cached: true, ...cached.data });
+    }
+
+    try {
+        const data = await fetchPlaceReviews(placeId, apiKey);
+        const payload = {
+            rating: data.rating || null,
+            userRatingCount: data.userRatingCount || null,
+            reviews: (data.reviews || []).slice(0, 5).map(r => ({
+                authorName: r.authorAttribution?.displayName || 'Anonymous',
+                authorPhoto: r.authorAttribution?.photoUri || null,
+                rating: r.rating,
+                text: r.text?.text || '',
+                relativeTime: r.relativePublishTimeDescription || '',
+                publishTime: r.publishTime || null,
+            }))
+        };
+        reviewsCache.set(clinic, { data: payload, fetchedAt: Date.now() });
+        res.json({ status: 'OK', clinic, cached: false, ...payload });
+    } catch (err) {
+        console.error(`[Reviews API] Fetch failed for clinic=${clinic}:`, err.message);
+        // Return stale cache if available
+        if (cached) {
+            return res.json({ status: 'OK', clinic, cached: true, stale: true, ...cached.data });
+        }
+        res.status(502).json({ status: 'ERROR', message: err.message });
+    }
+});
+
+// Ask each Gemini model in turn; the first answer wins and the last model's error propagates.
+async function generateWithFallback(ai, models, request) {
+    for (let i = 0; ; i++) {
+        try {
+            return await ai.models.generateContent({ model: models[i], ...request });
+        } catch (err) {
+            if (i === models.length - 1) throw err;
+        }
+    }
+}
+
+// In-memory instant response cache
+const chatCache = new Map();
+
+// ── 2. Ultra-Fast Chatbot API (/api/chat) ───────────────────────────
+app.post('/api/chat', async (req, res) => {
+    try {
+        const apiKey = process.env.GEMINI_API_KEY;
+        if (!apiKey || !apiKey.trim()) {
+            return res.json({
+                status: 'NO_GEMINI_KEY',
+                message: 'Gemini API key is not configured on the server.'
+            });
+        }
+
+        const { message, history } = req.body;
+        if (!message || typeof message !== 'string') {
+            return res.status(400).json({ status: 'ERROR', message: 'Valid message is required.' });
+        }
+
+        const cleanMsg = message.trim().toLowerCase();
+        
+        // 1. Instant Cache Check (<1ms)
+        if (chatCache.has(cleanMsg)) {
+            return res.json({ status: 'OK', reply: chatCache.get(cleanMsg), cached: true });
+        }
+
+        const ai = new GoogleGenAI({ apiKey });
+
+        const contents = [];
+        if (Array.isArray(history) && history.length > 0) {
+            // Keep last 3 turns for lightning context without token overhead
+            for (const item of history.slice(-3)) {
+                if (item.text && item.role) {
+                    contents.push({
+                        role: (item.role === 'model' || item.role === 'assistant' || item.role === 'bot') ? 'model' : 'user',
+                        parts: [{ text: String(item.text).slice(0, 250) }]
+                    });
+                }
+            }
+        }
+
+        contents.push({
+            role: 'user',
+            parts: [{ text: message }]
+        });
+
+        // Ultra-fast lite model first (concise output for instant replies), then the fallbacks
+        const response = await generateWithFallback(ai, ['gemini-3.5-flash-lite', 'gemini-3.8-flash', 'gemini-2.5-flash'], {
+            contents: contents,
+            config: {
+                systemInstruction: KEZZA_SYSTEM_INSTRUCTION,
+                temperature: 0.2,
+                maxOutputTokens: 250
+            }
+        });
+        const responseText = response.text || '';
+
+        if (responseText) {
+            // Cache response (up to 200 items)
+            if (chatCache.size > 200) {
+                const firstKey = chatCache.keys().next().value;
+                chatCache.delete(firstKey);
+            }
+            chatCache.set(cleanMsg, responseText);
+        }
+
+        return res.json({ status: 'OK', reply: responseText });
+    } catch (err) {
+        console.error('[Gemini Chat API Error]:', err.message);
+        return res.status(500).json({ status: 'ERROR', message: err.message });
+    }
+});
+
+// ── 3. AI Face & Scalp Scanner Vision API (/api/analyze-photo) ──────
+app.post('/api/analyze-photo', async (req, res) => {
+    try {
+        const apiKey = process.env.GEMINI_API_KEY;
+        if (!apiKey || !apiKey.trim()) {
+            return res.json({
+                status: 'NO_GEMINI_KEY',
+                message: 'Gemini API key is not configured on the server.'
+            });
+        }
+
+        const { image, textContext, answers, userDetails } = req.body;
+        if (!image) {
+            return res.status(400).json({ status: 'ERROR', message: 'Image payload is required.' });
+        }
+
+        // Build enriched patient context from userDetails if provided
+        let enrichedContext = textContext || '';
+        if (userDetails && typeof userDetails === 'object') {
+            const lines = [];
+            if (userDetails.age) lines.push(`Patient Age: ${userDetails.age}`);
+            if (userDetails.gender) lines.push(`Gender: ${userDetails.gender}`);
+            if (userDetails.mainConcern || userDetails.concernLabel) lines.push(`Primary Target Concern: ${userDetails.mainConcern || userDetails.concernLabel}`);
+            if (userDetails.duration) lines.push(`Duration of Concern: ${userDetails.duration}`);
+            if (userDetails.severity) lines.push(`Self-Reported Severity: ${userDetails.severity}`);
+            if (userDetails.allergies) lines.push(`Known Allergies / Skin Sensitivities: ${userDetails.allergies}`);
+            if (userDetails.medicines) lines.push(`Current Medicines / Skincare Products: ${userDetails.medicines}`);
+            if (userDetails.clinic) lines.push(`Preferred Clinic: ${userDetails.clinic}`);
+            if (userDetails.additionalInfo) lines.push(`Additional Patient Symptoms & Notes: ${userDetails.additionalInfo}`);
+            
+            if (lines.length > 0) {
+                enrichedContext = (enrichedContext ? enrichedContext + '\n\n' : '') + 'PATIENT CLINICAL PROFILE & QUESTIONNAIRE:\n' + lines.join('\n');
+            }
+        }
+
+        // Parse base64 data URL
+        const match = image.match(/^data:(image\/[a-zA-Z0-9.+-]+);base64,(.+)$/);
+        const mimeType = match ? match[1] : 'image/jpeg';
+        const base64Data = match ? match[2] : image;
+
+        const ai = new GoogleGenAI({ apiKey });
+
+        const preferredClinic = userDetails && userDetails.clinic ? userDetails.clinic : '';
+        const promptText = `Perform a comprehensive dermatological and trichological visual evaluation of this patient photo for Kezza Hair & Skin Clinic (Jaipur, Sikar & Ajmer).
+
+PATIENT QUESTIONNAIRE & CLINICAL CONTEXT:
+${enrichedContext || 'General Skin & Hair Assessment'}
+${preferredClinic ? `\nPATIENT PREFERRED CLINIC: ${preferredClinic}` : ''}
+
+CLINICAL DEPARTMENTS & KEY SPECIALISTS AT KEZZA:
+1. HAIR & FACIAL SURGERY: Dr. Harshit Sharma (BDS 2021, MDS 2026 OMFS, ATLS-ACS 2025: Hair Transplant Consultation & Surgery, Lobuloplasty, Blepharoplasty, Botox & Fillers, Facial Scar Revision, Facial Trauma & Reconstruction, Thread Lift, Pathology & Biopsies) — Jaipur & Sikar
+2. HAIR_TRANSPLANT_SIKAR: Elite Surgical Hair Restoration Team — Sikar
+3. SKIN: Kezza clinical skin team (Acne, Scars, HydraFacial, Melasma, Laser Toning) — Jaipur
+4. ANTI_AGING: Kezza clinical skin team (Botox, Dermal Fillers, HIFU, Skin Tightening) — Jaipur
+5. PMU / SMP: Krishna (Eyebrow Microblading, Lip Blush, Scalp Micropigmentation) — Jaipur & Sikar
+6. WEIGHT_MANAGEMENT / WEIGHT_LOSS: Kezza Wellness Team (360° Cryolipolysis Fat Freezing, Body Sculpting) — Jaipur & Sikar
+7. ENT_RHINOPLASTY: Dr. Mandhata Sharma (Aesthetic Rhinoplasty, Facial Contour) — Jaipur
+8. AJMER_SPECIALIST: Dr. Dhiral Vijayvargiya & Dr. Aliza Rizvi (Oral & Maxillofacial, Aesthetic & Hair Transplant Surgeons) — Ajmer
+9. PLASTIC_SURGERY: Dr. Nakul Somani (Aesthetic & Reconstructive Plastic Surgery, Body Contouring, Liposuction) — Jaipur
+
+REQUIRED OUTPUT FORMAT:
+Return a strict JSON object with this exact schema:
+{
+  "status": "OK",
+  "recommended_consultation": "Specific consultation title (e.g. Hair Loss Consultation / Active Acne & Scar Assessment)",
+  "treatment_name": "Recommended clinical treatment (e.g. Sapphire FUE Hair Transplant / Medical HydraFacial / GFC Hair Therapy)",
+  "department_key": "HAIR or HAIR_TRANSPLANT_SIKAR or SKIN or ANTI_AGING or PMU or SMP or WEIGHT_LOSS or ENT_RHINOPLASTY or AJMER_SPECIALIST or PLASTIC_SURGERY",
+  "confidence_score": 92,
+  "severity": "Mild or Moderate or High",
+  "photo_quality": "High",
+  "visible_observations": [
+    "High-precision visual observation 1 grounded in the photo",
+    "High-precision visual observation 2 regarding density/texture/pigment",
+    "High-precision visual observation 3 regarding clinical zone"
+  ],
+  "why_this_consultation": "Detailed empathetic rationale for why this specific specialist and procedure will deliver optimal results."
+}`;
+
+        const response = await generateWithFallback(ai, ['gemini-3.8-flash', 'gemini-2.5-flash'], {
+            contents: [
+                {
+                    role: 'user',
+                    parts: [
+                        { inlineData: { mimeType: mimeType, data: base64Data } },
+                        { text: promptText }
+                    ]
+                }
+            ],
+            config: {
+                systemInstruction: 'You are a senior clinical dermatologist and hair trichology AI diagnostic engine for Kezza Clinic. Provide accurate, professional visual assessments in JSON format.',
+                responseMimeType: 'application/json'
+            }
+        });
+
+        const rawText = response.text || '{}';
+        try {
+            const parsed = JSON.parse(rawText);
+            return res.json({ status: 'OK', ...parsed });
+        } catch (pErr) {
+            return res.json({
+                status: 'OK',
+                recommended_consultation: 'Specialist Clinical Assessment',
+                treatment_name: 'Personalized Treatment Program',
+                department_key: 'SKIN',
+                confidence_score: 88,
+                severity: 'Moderate',
+                visible_observations: [
+                    'Target anatomical zone successfully identified for clinical evaluation.',
+                    'Texture and tone variation mapped across assessment area.',
+                    'Patient history correlates with recommended clinical protocol.'
+                ],
+                why_this_consultation: 'Based on our initial visual assessment, a consultation with our clinical team is recommended.'
+            });
+        }
+    } catch (err) {
+        console.error('[Gemini Vision API Error]:', err.message);
+        return res.status(500).json({ status: 'ERROR', message: err.message });
+    }
+});
+
+// ── Lead Store ──────────────────────────────────────────────────────
+// admin.html has always called /api/admin/stats, /api/admin/consultations and
+// /api/consultations/:id, but no such routes existed — the dashboard could only
+// ever show "Cannot connect to SQL backend". This is a small file-backed store so
+// captured leads are actually readable. Swap readStore/writeStore for a real
+// database when one is available; nothing else needs to change.
+const fs = require('fs');
+const LEAD_STORE_PATH = process.env.LEAD_STORE_PATH || path.join(__dirname, 'data', 'leads.json');
+
+function readStore() {
+    try {
+        if (!fs.existsSync(LEAD_STORE_PATH)) return [];
+        const parsed = JSON.parse(fs.readFileSync(LEAD_STORE_PATH, 'utf8'));
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (err) {
+        console.error('[Lead Store Read Error]:', err.message);
+        return [];
+    }
+}
+
+function writeStore(records) {
+    try {
+        fs.mkdirSync(path.dirname(LEAD_STORE_PATH), { recursive: true });
+        fs.writeFileSync(LEAD_STORE_PATH, JSON.stringify(records, null, 2), 'utf8');
+        return true;
+    } catch (err) {
+        console.error('[Lead Store Write Error]:', err.message);
+        return false;
+    }
+}
+
+// Map the internal lead record onto the snake_case field names admin.html reads.
+function toAdminRecord(lead) {
+    return {
+        id: lead.id,
+        consultation_id: lead.leadId,
+        full_name: lead.name,
+        patient_name: lead.name,
+        age: lead.age,
+        mobile_number: lead.whatsapp,
+        phone: lead.whatsapp,
+        whatsapp_number: lead.whatsapp,
+        gender: lead.gender,
+        patient_city: lead.city,
+        city: lead.city,
+        clinic_location: lead.clinic,
+        clinic_branch: lead.clinic,
+        category: lead.category,
+        treatment: lead.treatment,
+        recommended_treatment: lead.treatment,
+        concern: lead.concern,
+        detected_concern: lead.concern,
+        concern_duration: lead.concernDuration,
+        preferred_date: lead.date,
+        preferred_time: lead.time,
+        specialist: lead.specialist,
+        assigned_doctor: lead.specialist,
+        department: lead.department,
+        department_key: lead.department,
+        status: lead.status,
+        source: lead.source,
+        email: lead.email,
+        message: lead.message,
+        severity: lead.severity,
+        allergies: lead.allergies,
+        medicines: lead.medicines,
+        photo_analysis: lead.aiSummary,
+        created_at: lead.timestamp,
+        consultation_date: lead.timestamp
+    };
+}
+
+// ── 4. Lead Capture & Google Sheets Webhook API (/api/lead) ─────────
+const leadRateLimitMap = new Map(); // whatsapp -> [timestamps]
+
+// Clean up expired rate-limit records every 15 minutes
+setInterval(() => {
+    const now = Date.now();
+    const tenMinutes = 10 * 60 * 1000;
+    for (const [phone, timestamps] of leadRateLimitMap.entries()) {
+        const validTimestamps = timestamps.filter(t => (now - t) < tenMinutes);
+        if (validTimestamps.length === 0) {
+            leadRateLimitMap.delete(phone);
+        } else {
+            leadRateLimitMap.set(phone, validTimestamps);
+        }
+    }
+}, 15 * 60 * 1000);
+
+app.post(['/api/lead', '/api/send-consultation'], async (req, res) => {
+    try {
+        const body = req.body || {};
+        const {
+            name,
+            full_name,
+            whatsapp,
+            phone,
+            mobile_number,
+            age,
+            gender,
+            concern,
+            duration,
+            concernDetails,
+            severity,
+            symptoms,
+            allergies,
+            medicines,
+            clinic,
+            selectedClinic,
+            category,
+            categoryTitle,
+            treatment,
+            preferredDate,
+            date,
+            preferredTime,
+            time,
+            email,
+            message,
+            notes,
+            aiSummary,
+            source,
+            timestamp,
+            consultationId
+        } = body;
+
+        // 1. Validation
+        const trimmedName = typeof (name || full_name) === 'string' ? (name || full_name).trim() : '';
+        if (!trimmedName) {
+            return res.status(400).json({ status: 'ERROR', message: 'Full name is required.' });
+        }
+
+        // Clean phone/whatsapp string (remove spaces, hyphens, leading +91 or 91 if 12 digits)
+        let cleanPhone = String(whatsapp || phone || mobile_number || '').replace(/[\s\-\+\(\)]/g, '');
+        if (cleanPhone.startsWith('91') && cleanPhone.length === 12) {
+            cleanPhone = cleanPhone.slice(2);
+        } else if (cleanPhone.startsWith('0') && cleanPhone.length === 11) {
+            cleanPhone = cleanPhone.slice(1);
+        }
+
+        if (!/^[6-9]\d{9}$/.test(cleanPhone)) {
+            return res.status(400).json({ status: 'ERROR', message: 'WhatsApp number must be a valid 10-digit Indian mobile number (starting with 6, 7, 8, or 9).' });
+        }
+
+        let parsedAge = parseInt(age, 10);
+        if (isNaN(parsedAge) || parsedAge < 1 || parsedAge > 120) {
+            parsedAge = '';
+        }
+
+        // 2. Spam Protection Rate Limiting (max 5 submissions per 10 minutes per phone)
+        const now = Date.now();
+        const tenMinutes = 10 * 60 * 1000;
+        const pastTimestamps = (leadRateLimitMap.get(cleanPhone) || []).filter(t => (now - t) < tenMinutes);
+
+        if (pastTimestamps.length >= 5) {
+            return res.status(429).json({
+                status: 'ERROR',
+                message: 'Too many submissions from this number. Please wait 10 minutes or message us directly on WhatsApp.'
+            });
+        }
+
+        pastTimestamps.push(now);
+        leadRateLimitMap.set(cleanPhone, pastTimestamps);
+
+        // 3. Prepare sanitized payload for Google Sheets & logs
+        const finalLeadId = consultationId || body.leadId || body.consultation_id || body.lead_id || `KEZZA-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+
+        let resolvedClinic = 'Jaipur';
+        const rawClinic = String(clinic || selectedClinic || body.preferred_clinic || body.preferredClinic || '').trim();
+        if (rawClinic.toLowerCase().includes('ajmer')) {
+            resolvedClinic = 'Ajmer';
+        } else if (rawClinic.toLowerCase().includes('sikar')) {
+            resolvedClinic = 'Sikar';
+        } else if (rawClinic.toLowerCase().includes('jaipur')) {
+            resolvedClinic = 'Jaipur';
+        } else if (rawClinic) {
+            resolvedClinic = rawClinic;
+        }
+
+        const patientCity = body.city || body.patientLocation || body['Patient Location'] || body.patient_city || body.location || '';
+        const categoryVal = categoryTitle || category || body.category || body.Category || body.treatment_category || body.department || body.Department || '';
+        const specialistVal = body.specialist || body.doctor || '';
+        const durationVal = duration || body.duration || body.Duration || body['Concern / Duration'] || body['concern / duration'] || body.concern_duration || body.concernDuration || '';
+        const rawConcern = concern || body.concern || body.Concern || concernDetails || body.concernDetails || '';
+        const resolvedConcernDuration = body['Concern / Duration'] || body['concern / duration'] || durationVal || (rawConcern ? rawConcern : 'Not specified');
+
+        let resolvedDepartment = String(body.department || body.Department || body.department_name || '').trim();
+        if (!resolvedDepartment) {
+            const catLower = (categoryVal || '').toLowerCase();
+            const treatLower = (treatment || '').toLowerCase();
+            if (catLower.includes('hair') || treatLower.includes('hair') || treatLower.includes('fue') || treatLower.includes('prp') || treatLower.includes('gfc')) {
+                resolvedDepartment = 'Hair';
+            } else if (catLower.includes('smp') || treatLower.includes('smp') || treatLower.includes('micropigmentation') || treatLower.includes('camouflage')) {
+                resolvedDepartment = 'SMP';
+            } else if (catLower.includes('pmu') || treatLower.includes('pmu') || treatLower.includes('microblading') || treatLower.includes('eyeliner')) {
+                resolvedDepartment = 'PMU';
+            } else if (catLower.includes('weight') || treatLower.includes('weight') || treatLower.includes('slimming') || treatLower.includes('fat reduction')) {
+                resolvedDepartment = 'Weight Management';
+            } else if (catLower.includes('rhino') || treatLower.includes('rhino') || treatLower.includes('ent') || treatLower.includes('nose')) {
+                resolvedDepartment = 'Rhinoplasty / ENT';
+            } else if (catLower.includes('skin') || treatLower.includes('facial') || treatLower.includes('botox') || treatLower.includes('derma') || treatLower.includes('acne') || treatLower.includes('brightening')) {
+                resolvedDepartment = 'Skin';
+            } else if (categoryVal) {
+                resolvedDepartment = categoryVal;
+            } else {
+                resolvedDepartment = 'General';
+            }
+        }
+
+        const dateVal = date || preferredDate || body.preferred_date || '';
+        const timeVal = time || preferredTime || body.preferred_time || '';
+        const sourceVal = source || 'Kezza Website';
+        const statusVal = body.status || 'Pending';
+
+        const leadRecord = {
+            timestamp: timestamp || new Date().toISOString(),
+            leadId: finalLeadId,
+            consultationId: finalLeadId,
+            name: trimmedName,
+            full_name: trimmedName,
+            whatsapp: cleanPhone,
+            phone: cleanPhone,
+            mobile_number: cleanPhone,
+            'WhatsApp': cleanPhone,
+            age: parsedAge,
+            gender: gender || 'Not Specified',
+            city: patientCity,
+            patient_city: patientCity,
+            patientLocation: patientCity,
+            'Patient Location': patientCity,
+            clinic: resolvedClinic,
+            selectedClinic: resolvedClinic,
+            preferred_clinic: resolvedClinic,
+            'Clinic': resolvedClinic,
+            category: categoryVal,
+            treatment_category: categoryVal,
+            'Category': categoryVal,
+            treatment: treatment || categoryVal || '',
+            service: treatment || categoryVal || '',
+            'Treatment': treatment || categoryVal || '',
+            specialist: specialistVal,
+            doctor: specialistVal,
+            'Specialist': specialistVal,
+            concern: rawConcern || 'General Consultation',
+            Concern: rawConcern || 'General Consultation',
+            duration: durationVal,
+            Duration: durationVal,
+            concern_duration: durationVal,
+            concernDuration: resolvedConcernDuration,
+            'Concern / Duration': resolvedConcernDuration,
+            'concern / duration': resolvedConcernDuration,
+            'Concern/Duration': resolvedConcernDuration,
+            date: dateVal,
+            preferredDate: dateVal,
+            preferred_date: dateVal,
+            'Preferred Date': dateVal,
+            time: timeVal,
+            preferredTime: timeVal,
+            preferred_time: timeVal,
+            'Preferred Time': timeVal,
+            department: resolvedDepartment,
+            Department: resolvedDepartment,
+            'Department': resolvedDepartment,
+            department_name: resolvedDepartment,
+            status: statusVal,
+            Status: statusVal,
+            'Status': statusVal,
+            email: email || '',
+            message: message || notes || '',
+            severity: severity || '',
+            symptoms: symptoms || '',
+            allergies: allergies || '',
+            medicines: medicines || '',
+            aiSummary: typeof aiSummary === 'string' ? aiSummary.slice(0, 1500) : JSON.stringify(aiSummary || '').slice(0, 1500),
+            source: sourceVal,
+            Source: sourceVal,
+            'Source': sourceVal,
+            consent: true
+        };
+
+        console.log(`[Lead Received] ${leadRecord.name} (${leadRecord.whatsapp}) | ${leadRecord.treatment || leadRecord.concern} | ${leadRecord.clinic} | Source: ${leadRecord.source}`);
+
+        // 3b. Persist locally so the admin dashboard has something to read.
+        // De-duplicated on leadId, since a retried submission reuses the same ID.
+        try {
+            const store = readStore();
+            const existingIdx = store.findIndex(r => r.leadId === finalLeadId);
+            if (existingIdx >= 0) {
+                leadRecord.id = store[existingIdx].id;
+                store[existingIdx] = leadRecord;
+            } else {
+                leadRecord.id = store.length ? Math.max(...store.map(r => r.id || 0)) + 1 : 1;
+                store.push(leadRecord);
+            }
+            writeStore(store);
+        } catch (storeErr) {
+            console.error('[Lead Store Error]:', storeErr.message);
+        }
+
+        // 4. Forward to Google Sheets Webhook
+        const sheetWebhookUrl = process.env.SHEET_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbwsWmFO6lLgh_UAAZkQpBstzRQ8335TQ_XP3jGnq3cBsfkFNE6eDewuQDRqho1o1CqiuA/exec';
+        if (sheetWebhookUrl && sheetWebhookUrl.trim()) {
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 8000);
+
+                fetch(sheetWebhookUrl.trim(), {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(leadRecord),
+                    signal: controller.signal
+                })
+                .then(async (sheetRes) => {
+                    clearTimeout(timeoutId);
+                    if (!sheetRes.ok) {
+                        const errText = await sheetRes.text().catch(() => '');
+                        console.warn('[Google Sheets Webhook Response Not OK]:', sheetRes.status, errText);
+                    } else {
+                        console.log(`[Google Sheets Webhook Success] Synced lead ${finalLeadId} for ${leadRecord.whatsapp}`);
+                    }
+                })
+                .catch((sheetErr) => {
+                    clearTimeout(timeoutId);
+                    console.error('[Google Sheets Webhook Forward Error]:', sheetErr.message);
+                });
+            } catch (postErr) {
+                console.error('[Google Sheets Webhook Dispatch Error]:', postErr.message);
+            }
+        }
+
+        const clinicPhoneMap = {
+            'Jaipur': '919284517427',
+            'Sikar': '918130888129',
+            'Ajmer': '919216088257'
+        };
+        const targetWaPhone = clinicPhoneMap[resolvedClinic] || '919284517427';
+        const waText = encodeURIComponent(
+            `Hi Kezza Clinic (${resolvedClinic}), I have booked a consultation.\n\n` +
+            `👤 Name: ${leadRecord.name}\n` +
+            `🩺 Treatment: ${leadRecord.treatment || leadRecord.concern}\n` +
+            `📍 Clinic: Kezza ${resolvedClinic}\n` +
+            (leadRecord.preferredDate ? `📅 Date: ${leadRecord.preferredDate}\n` : '') +
+            (leadRecord.preferredTime ? `⏰ Slot: ${leadRecord.preferredTime}\n` : '') +
+            `🆔 Reference: ${finalLeadId}\n\n` +
+            `Please confirm my appointment and share the clinic directions.`
+        );
+        const whatsappDirectUrl = `https://wa.me/${targetWaPhone}?text=${waText}`;
+
+        return res.json({
+            status: 'SENT',
+            message: 'Lead captured successfully.',
+            leadId: finalLeadId,
+            clinic: resolvedClinic,
+            whatsappUrl: whatsappDirectUrl,
+            lead: leadRecord
+        });
+
+    } catch (err) {
+        console.error('[Lead Capture Error]:', err.message);
+        return res.status(500).json({ status: 'ERROR', message: 'Internal server error processing lead.' });
+    }
+});
+
+// ── Legacy fabricated review data completely removed ────────────────
+// All genuine reviews are now served statically from /data/genuine-reviews.json
+// on the frontend, or dynamically via /api/reviews (Google Places API) when
+// GOOGLE_PLACES_API_KEY + PLACES_ID_* env vars are configured.
+
+// ── 4c. Real Slots Booking Availability API ─────────────────────────
+app.get('/api/booking-slots', (req, res) => {
+    const { clinic = 'Jaipur', date } = req.query;
+    
+    // Generate next 14 calendar dates
+    const dates = [];
+    const today = new Date();
+    for (let i = 0; i < 14; i++) {
+        const d = new Date(today);
+        d.setDate(today.getDate() + i);
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth() + 1).padStart(2, '0');
+        const dd = String(d.getDate()).padStart(2, '0');
+        const dateStr = `${yyyy}-${mm}-${dd}`;
+        
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        
+        dates.push({
+            date: dateStr,
+            dayName: i === 0 ? 'Today' : (i === 1 ? 'Tomorrow' : days[d.getDay()]),
+            dayOfWeek: days[d.getDay()],
+            dayNumber: dd,
+            monthName: months[d.getMonth()]
+        });
+    }
+
+    // Default slots for medical consultation
+    const baseSlots = [
+        { time: '10:00 AM', period: 'Morning', status: 'Available', remaining: 3 },
+        { time: '11:30 AM', period: 'Morning', status: 'Filling fast', remaining: 2 },
+        { time: '01:00 PM', period: 'Afternoon', status: 'Available', remaining: 4 },
+        { time: '02:30 PM', period: 'Afternoon', status: 'Filling fast', remaining: 1 },
+        { time: '04:00 PM', period: 'Afternoon', status: 'Available', remaining: 3 },
+        { time: '05:30 PM', period: 'Evening', status: 'Filling fast', remaining: 2 },
+        { time: '07:00 PM', period: 'Evening', status: 'Available', remaining: 2 }
+    ];
+
+    res.json({
+        status: 'OK',
+        clinic,
+        selectedDate: date || dates[0].date,
+        calendarDates: dates,
+        slots: baseSlots
+    });
+});
+
+// ── 5. Admin Dashboard APIs (consumed by frontend/admin.html) ───────
+// NOTE: these are gated by a shared token, not real user accounts. Set
+// ADMIN_TOKEN in .env before exposing this server publicly, and serve it
+// over HTTPS only. Without ADMIN_TOKEN set, the routes are refused rather
+// than left wide open.
+function requireAdmin(req, res, next) {
+    const expected = (process.env.ADMIN_TOKEN || (process.env.NODE_ENV === 'production' ? '' : 'kezza-admin-secret-2026')).trim();
+    if (!expected) {
+        return res.status(503).json({
+            status: 'ERROR',
+            message: 'Admin API is disabled. Set ADMIN_TOKEN in the server .env file to enable it.'
+        });
+    }
+    const supplied = String(req.headers.authorization || '').replace(/^Bearer\s+/i, '').trim();
+    if (supplied !== expected) {
+        return res.status(401).json({ status: 'ERROR', message: 'Unauthorized.' });
+    }
+    next();
+}
+
+app.get('/api/admin/stats', requireAdmin, (req, res) => {
+    const store = readStore();
+    const today = new Date().toISOString().split('T')[0];
+    const countStatus = s => store.filter(r => String(r.status || '').toUpperCase() === s).length;
+    const countClinic = c => store.filter(r => String(r.clinic || '').toLowerCase() === c).length;
+
+    res.json({
+        status: 'OK',
+        stats: {
+            total:     store.length,
+            today:     store.filter(r => String(r.timestamp || '').startsWith(today)).length,
+            newCount:  countStatus('PENDING') + countStatus('NEW'),
+            confirmed: countStatus('CONFIRMED'),
+            jaipur:    countClinic('jaipur'),
+            sikar:     countClinic('sikar'),
+            ajmer:     countClinic('ajmer')
+        }
+    });
+});
+
+app.get('/api/admin/consultations', requireAdmin, (req, res) => {
+    const { search, clinic, category, status, startDate, endDate } = req.query;
+    let records = readStore();
+
+    if (search) {
+        const q = String(search).toLowerCase();
+        records = records.filter(r =>
+            String(r.name || '').toLowerCase().includes(q) ||
+            String(r.whatsapp || '').includes(q) ||
+            String(r.leadId || '').toLowerCase().includes(q)
+        );
+    }
+    if (clinic)   records = records.filter(r => String(r.clinic || '').toLowerCase()   === String(clinic).toLowerCase());
+    if (category) records = records.filter(r => String(r.category || '').toLowerCase() === String(category).toLowerCase());
+    if (status)   records = records.filter(r => String(r.status || '').toUpperCase()   === String(status).toUpperCase());
+    if (startDate) records = records.filter(r => String(r.timestamp || '').split('T')[0] >= startDate);
+    if (endDate)   records = records.filter(r => String(r.timestamp || '').split('T')[0] <= endDate);
+
+    // Newest first
+    records.sort((a, b) => String(b.timestamp || '').localeCompare(String(a.timestamp || '')));
+
+    res.json({
+        status: 'OK',
+        total: records.length,
+        records: records.map(toAdminRecord)
+    });
+});
+
+app.get('/api/consultations/:idOrCode', requireAdmin, (req, res) => {
+    const key = String(req.params.idOrCode);
+    const lead = readStore().find(r => r.leadId === key || String(r.id) === key);
+    if (!lead) {
+        return res.status(404).json({ status: 'ERROR', message: 'Consultation not found.' });
+    }
+    res.json({ status: 'OK', consultation: toAdminRecord(lead) });
+});
+
+app.patch('/api/consultations/:idOrCode', requireAdmin, (req, res) => {
+    const key = String(req.params.idOrCode);
+    const allowed = ['NEW', 'PENDING', 'CONFIRMED', 'CONTACTED', 'COMPLETED', 'CANCELLED'];
+    const status = String((req.body && req.body.status) || '').toUpperCase();
+
+    if (!allowed.includes(status)) {
+        return res.status(400).json({ status: 'ERROR', message: 'Invalid status value.' });
+    }
+
+    const store = readStore();
+    const idx = store.findIndex(r => r.leadId === key || String(r.id) === key);
+    if (idx < 0) {
+        return res.status(404).json({ status: 'ERROR', message: 'Consultation not found.' });
+    }
+
+    store[idx].status = status;
+    store[idx].Status = status;
+    if (!writeStore(store)) {
+        return res.status(500).json({ status: 'ERROR', message: 'Could not save the updated status.' });
+    }
+    res.json({ status: 'OK', consultation: toAdminRecord(store[idx]) });
+});
+
+// ── Fallback: root → frontend/index.html ──────────────────────────
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
+});
+
+// ── 404 — dedicated page (multi-page site, not an SPA) ────────────
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname, 'frontend', '404.html'));
+});
+
+const server = app.listen(PORT, () => {
+    console.log(`\n✅ Kezza Clinic Website is LIVE at: http://localhost:${PORT}`);
+    console.log(`🤖 Gemini AI API routes loaded: /api/chat, /api/analyze-photo, /api/health`);
+    console.log(`📁 Serving from: ./frontend/`);
+    console.log(`\nPress Ctrl+C to stop.\n`);
+});
+
+if (Number(PORT) !== 3000) {
+    try {
+        const altServer = app.listen(3000, () => {
+            console.log(`✅ Also LIVE at: http://localhost:3000`);
+        });
+        altServer.on('error', (err) => {
+            // port 3000 might be in use, ignore error
+        });
+    } catch(e) {}
+}

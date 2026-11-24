@@ -1,0 +1,295 @@
+// In-page anchor scrolling (with the fixed-navbar offset) is handled by smooth-scroll.js.
+
+// Navbar background/shadow once the page is scrolled (single RAF-throttled handler)
+(function() {
+    let ticking = false;
+    let isScrolled = false;
+    let navbar = null;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        navbar = document.querySelector('.navbar');
+    });
+
+    function onScrollTick() {
+        const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
+
+        // Navbar styling (only mutate when crossing 50px threshold)
+        const shouldBeScrolled = scrolled > 50;
+        if (shouldBeScrolled !== isScrolled && navbar) {
+            isScrolled = shouldBeScrolled;
+            if (isScrolled) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        }
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(onScrollTick);
+            ticking = true;
+        }
+    }, { passive: true });
+})();
+
+// Intersection Observer for scroll animations
+const observerOptions = {
+    threshold: 0,
+    rootMargin: '0px 0px -40px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            
+            // Special handling for different animation types
+            if (entry.target.classList.contains('tech-card')) {
+                entry.target.style.animation = 'slideUp 0.8s ease forwards';
+            }
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe elements for animation
+document.addEventListener('DOMContentLoaded', function() {
+    const animatedElements = document.querySelectorAll(
+        '.value-card, .doctor-card, .tech-card, .branch-card, .testimonial-card'
+    );
+    
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+        observer.observe(el);
+    });
+});
+
+// Video playback handled smoothly by IntersectionObserver in quick-actions.js
+
+// Enhanced hover effects for cards
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.value-card, .doctor-card, .tech-card, .branch-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-15px) scale(1.02)';
+            this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.2)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+        });
+    });
+});
+
+// Enhanced button interactions
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.btn-primary, .btn-consultation, .whatsapp-btn');
+    
+    buttons.forEach(button => {
+        // Ripple effect
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+        
+        // Hover effects
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+            this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.2)';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+        });
+    });
+});
+
+// (Removed: the old 'load' handler faded the whole page out and back in after
+// every image had loaded, which made the page blink on slow mobile connections.)
+// Enhanced scroll effects handled in unified RAF loop above
+
+// Add CSS for ripple effect
+const rippleCSS = `
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.value-icon {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+`;
+
+const style = document.createElement('style');
+style.textContent = rippleCSS;
+document.head.appendChild(style);
+
+// Enhanced micro-interactions
+document.addEventListener('DOMContentLoaded', function() {
+    // Add shine effect to doctor cards
+    const doctorCards = document.querySelectorAll('.doctor-card');
+    doctorCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            const shine = document.createElement('div');
+            shine.className = 'shine-effect';
+            shine.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+                transition: left 0.5s ease;
+                pointer-events: none;
+            `;
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(shine);
+            
+            setTimeout(() => {
+                shine.style.left = '100%';
+            }, 50);
+            
+            setTimeout(() => {
+                shine.remove();
+            }, 600);
+        });
+    });
+
+    // ── Expandable Doctor Story / Bio Details ─────────────────────
+    document.querySelectorAll('.doctor-card').forEach(card => {
+        const readMoreBtn = card.querySelector('.doctor-read-more-btn');
+        if (readMoreBtn) {
+            readMoreBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const isExpanded = card.classList.toggle('is-expanded');
+                const label = this.querySelector('.read-more-text');
+                if (label) {
+                    label.textContent = isExpanded ? 'Show Less' : '... More Info';
+                }
+                this.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+            });
+        }
+    });
+
+    // ── Interactive Patient Review Filters ────────────────────────
+    const filterPills = document.querySelectorAll('.reviews-filter-pill');
+    const reviewCards = document.querySelectorAll('.reviews-grid .review-card');
+
+    if (filterPills.length > 0 && reviewCards.length > 0) {
+        filterPills.forEach(pill => {
+            pill.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter') || 'all';
+
+                // Pause all videos when category changes
+                document.querySelectorAll('.review-video-wrap video').forEach(v => {
+                    if (!v.paused) v.pause();
+                });
+
+                // Toggle active filter state
+                filterPills.forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+
+                // Filter cards with smooth transition
+                reviewCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'flex';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(12px)';
+                        setTimeout(() => {
+                            card.style.transition = 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 20);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+
+    // ── Video Interactive Play Overlay Triggers ───────────────────
+    const videoWraps = document.querySelectorAll('.review-video-wrap');
+    videoWraps.forEach(wrap => {
+        const video = wrap.querySelector('video');
+        const overlay = wrap.querySelector('.video-interactive-overlay');
+        if (!video || !overlay) return;
+
+        // Click overlay to play/pause
+        overlay.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (video.paused) {
+                // Pause other playing videos to avoid noise overlap
+                document.querySelectorAll('.review-video-wrap video').forEach(v => {
+                    if (v !== video && !v.paused) {
+                        v.pause();
+                    }
+                });
+                video.play().catch(() => {});
+            } else {
+                video.pause();
+            }
+        });
+
+        // Sync overlay visibility with video events
+        video.addEventListener('play', () => {
+            document.querySelectorAll('.review-video-wrap video').forEach(v => {
+                if (v !== video && !v.paused) v.pause();
+            });
+            overlay.classList.add('is-playing');
+        });
+        video.addEventListener('pause', () => overlay.classList.remove('is-playing'));
+        video.addEventListener('ended', () => overlay.classList.remove('is-playing'));
+    });
+});

@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+Disallow: /server.py
+Disallow: /admin.html
+Disallow: /review.html
+Disallow: /data/
+Disallow: /google3190ebd4fd81712c.html
+
+# Search Engine & Generative AI Discovery
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+Sitemap: https://www.kezza.co.in/sitemap.xml
+

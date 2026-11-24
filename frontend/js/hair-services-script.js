@@ -1,0 +1,500 @@
+// In-page anchor scrolling (with the fixed-navbar offset) is handled by smooth-scroll.js.
+// Optimized Single RAF Scroll Handler
+(function() {
+    // Hero parallax/fade only on desktop: on phones it fought the scroll and could leave
+    // the hero text faded out (and costs a style change on every scroll frame).
+    const HERO_PARALLAX = !!(window.matchMedia && window.matchMedia('(min-width: 1025px) and (hover: hover) and (prefers-reduced-motion: no-preference)').matches);
+    let ticking = false;
+    let isScrolled = false;
+    let navbar = null;
+    let heroImage = null;
+    let particles = null;
+    let heroContent = null;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        navbar = document.querySelector('.navbar');
+        heroImage = document.querySelector('.hero-image img');
+        particles = document.querySelectorAll('.hair-particles');
+        heroContent = document.querySelector('.hero-content');
+    });
+
+    function onScrollTick() {
+        const scrolled = window.pageYOffset || document.documentElement.scrollTop || 0;
+
+        // Navbar styling (only mutate when crossing 50px threshold)
+        const shouldBeScrolled = scrolled > 50;
+        if (shouldBeScrolled !== isScrolled && navbar) {
+            isScrolled = shouldBeScrolled;
+            if (isScrolled) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        }
+
+        // Hero parallax (only active while hero is near viewport)
+        if (HERO_PARALLAX && scrolled < window.innerHeight) {
+            if (heroImage) {
+                heroImage.style.transform = `translate3d(0, ${scrolled * -0.25}px, 0)`;
+            }
+            if (particles && particles.length > 0) {
+                const rate = scrolled * -0.15;
+                particles.forEach(p => {
+                    p.style.transform = `translate3d(0, ${rate}px, 0)`;
+                });
+            }
+            if (heroContent) {
+                heroContent.style.opacity = Math.max(0, 1 - scrolled / 600);
+            }
+        }
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(onScrollTick);
+            ticking = true;
+        }
+    }, { passive: true });
+})();
+
+// Mouse move parallax for hero image
+document.addEventListener('DOMContentLoaded', function() {
+    const heroImage = document.querySelector('.hero-image img');
+    const heroSection = document.querySelector('.hair-hero-section');
+    
+    if (heroImage && heroSection) {
+        heroSection.addEventListener('mousemove', function(e) {
+            const rect = heroSection.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = (e.clientY - rect.top) / rect.height;
+            
+            const moveX = (x - 0.5) * 15;
+            const moveY = (y - 0.5) * 15;
+            
+            heroImage.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+        
+        heroSection.addEventListener('mouseleave', function() {
+            heroImage.style.transform = 'translate(0, 0)';
+        });
+    }
+});
+
+// FAQ Accordion functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        
+        question.addEventListener('click', function() {
+            const isActive = item.classList.contains('active');
+            
+            // Close all other FAQ items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    const otherAnswer = otherItem.querySelector('.faq-answer');
+                    otherAnswer.style.maxHeight = '0';
+                }
+            });
+            
+            // Toggle current item
+            if (isActive) {
+                item.classList.remove('active');
+                answer.style.maxHeight = '0';
+            } else {
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
+});
+
+// Enhanced hover effects for service images
+document.addEventListener('DOMContentLoaded', function() {
+    const serviceImages = document.querySelectorAll('.service-image img, .treatment-card img');
+    
+    serviceImages.forEach(img => {
+        img.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.08)';
+            this.style.filter = 'brightness(1.1)';
+        });
+        
+        img.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.filter = 'brightness(1)';
+        });
+    });
+});
+
+// Button hover effects with ripple
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.btn-gold, .btn-navy, .btn-primary, .btn-consultation');
+    
+    buttons.forEach(button => {
+        // Ripple effect
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+        
+        // Enhanced hover effects
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.02)';
+            this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.2)';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = 'none';
+        });
+    });
+});
+
+// Scroll-triggered animations for dividers
+const scrollAnimations = {
+    '.gold-underline': {
+        animation: 'expandWidth 1s ease forwards',
+        delay: 400
+    }
+};
+
+Object.keys(scrollAnimations).forEach(selector => {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(element => {
+        const elementObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.animation = scrollAnimations[selector].animation;
+                    }, scrollAnimations[selector].delay);
+                    elementObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        elementObserver.observe(element);
+    });
+});
+
+
+
+// (Removed: the old 'load' handler faded the whole page out and back in after
+// every image had loaded, which made the page blink on slow mobile connections.)
+// Service card interactions
+document.addEventListener('DOMContentLoaded', function() {
+    const serviceCards = document.querySelectorAll('.treatment-card, .hairline-card');
+    
+    serviceCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-15px) scale(1.02)';
+            this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.2)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+        });
+    });
+});
+
+// Add CSS for additional animations
+const additionalCSS = `
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+`;
+
+const style = document.createElement('style');
+style.textContent = additionalCSS;
+document.head.appendChild(style);
+
+// Video playback handled smoothly by IntersectionObserver in quick-actions.js
+
+// Smooth reveal animations for content sections
+document.addEventListener('DOMContentLoaded', function() {
+    const contentSections = document.querySelectorAll('.service-content, .section-header');
+    
+    const contentObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+    
+    contentSections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        contentObserver.observe(section);
+    });
+});
+
+/* ══════════════════════════════════════════════════════════════
+   HAIR LOSS SCALE SECTION — Scroll-Triggered Animations
+══════════════════════════════════════════════════════════════ */
+(function initHairLossScale() {
+    let animated = false;
+
+    // IntersectionObserver for cards and stat cards
+    const cardObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                cardObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    // Observe Norwood cards with staggered delay
+    document.querySelectorAll('.norwood-card').forEach((card, i) => {
+        card.style.transitionDelay = `${i * 0.08}s`;
+        cardObserver.observe(card);
+    });
+
+    // Observe stat cards with staggered delay
+    document.querySelectorAll('.hls-stat-card').forEach((card, i) => {
+        card.style.transitionDelay = `${i * 0.1}s`;
+        cardObserver.observe(card);
+    });
+
+    // Animate cause bars + damage meters + SVG rings on scroll into view
+    const causesSection = document.querySelector('.hls-causes');
+    if (causesSection) {
+        const causesObserver = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && !animated) {
+                animated = true;
+
+                // Animate cause bar fills
+                document.querySelectorAll('.cause-bar-fill').forEach((bar, i) => {
+                    const w = parseInt(bar.dataset.width || 0, 10);
+                    setTimeout(() => {
+                        bar.style.width = w + '%';
+                    }, i * 120);
+                });
+
+                causesObserver.disconnect();
+            }
+        }, { threshold: 0.25 });
+        causesObserver.observe(causesSection);
+    }
+
+    // Animate damage meter bars when each card comes into view
+    const meterObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const fill = entry.target.querySelector('.meter-fill');
+                if (fill) {
+                    // Already has inline width set, just trigger transition
+                    const w = fill.style.width;
+                    fill.style.width = '0';
+                    setTimeout(() => { fill.style.width = w; }, 80);
+                }
+                meterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.norwood-card').forEach(card => {
+        meterObserver.observe(card);
+    });
+
+    // Animate SVG ring circles (stat cards)
+    const ringObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Animate the circle stroke-dashoffset
+                const circles = entry.target.querySelectorAll('.hls-radial circle:last-child');
+                circles.forEach(circle => {
+                    const targetOffset = circle.getAttribute('stroke-dashoffset');
+                    circle.setAttribute('stroke-dashoffset', '226'); // start at 0
+                    setTimeout(() => {
+                        circle.style.strokeDashoffset = targetOffset;
+                    }, 100);
+                });
+                ringObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.hls-stat-card').forEach(card => {
+        ringObserver.observe(card);
+    });
+
+})();
+
+// ── Premium "Website Wali Feel" Interactive Animation System ──
+(function() {
+    // 1. Scroll-Driven Reveal Engine
+    function initScrollReveal() {
+        const revealElements = document.querySelectorAll(
+            '.reveal-on-scroll, .service-showcase-split, .hairline-card-v2, .process-card-step, .norwood-card, .mini-service-card, .treatment-card, .faq-item, .timeline-step, .patient-comment-card, .surgeon-comment-box'
+        );
+
+        if (!('IntersectionObserver' in window)) {
+            revealElements.forEach(el => el.classList.add('is-revealed'));
+            return;
+        }
+
+        const revealObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-revealed');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => {
+            el.classList.add('reveal-on-scroll');
+            revealObserver.observe(el);
+        });
+    }
+
+    // 2. Smart Sub-Navigation Scroll-Spy
+    function initSubnavScrollSpy() {
+        const navPills = document.querySelectorAll('.hair-subnav-pills .subnav-pill');
+        if (!navPills.length) return;
+
+        const sections = [];
+        navPills.forEach(pill => {
+            const href = pill.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                const sec = document.querySelector(href);
+                if (sec) {
+                    sections.push({ id: href, section: sec, pill: pill, top: 0 });
+                }
+            }
+        });
+
+        if (!sections.length) return;
+
+        function updateSectionOffsets() {
+            sections.forEach(s => {
+                s.top = s.section.offsetTop;
+            });
+        }
+        updateSectionOffsets();
+        window.addEventListener('resize', updateSectionOffsets, { passive: true });
+
+        let activeId = '';
+        let ticking = false;
+
+        function updateActivePill() {
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+            const triggerOffset = 220; // Trigger threshold below top
+
+            let currentSec = null;
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const top = (sections[i].top || 0) - triggerOffset;
+                if (scrollY >= top) {
+                    currentSec = sections[i];
+                    break;
+                }
+            }
+
+            if (!currentSec && sections.length) {
+                currentSec = sections[0];
+            }
+
+            if (currentSec && currentSec.id !== activeId) {
+                activeId = currentSec.id;
+                navPills.forEach(p => p.classList.remove('active'));
+                currentSec.pill.classList.add('active');
+            }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateActivePill);
+                ticking = true;
+            }
+        }, { passive: true });
+
+        // Initial run
+        setTimeout(updateActivePill, 200);
+    }
+
+    // 3. Subtle 3D Card Hover Micro-Interactions
+    function initCardMicroInteractions() {
+        const cards = document.querySelectorAll('.service-showcase-split, .hairline-card-v2, .stat-box');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -3;
+                const rotateY = ((x - centerX) / centerX) * 3;
+                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+    }
+
+    function initAll() {
+        initScrollReveal();
+        initSubnavScrollSpy();
+        initCardMicroInteractions();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+        initAll();
+    }
+})();
