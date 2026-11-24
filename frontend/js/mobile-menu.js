@@ -65,14 +65,17 @@
             document.body.classList.add("nav-drawer-open");
             document.documentElement.classList.add("nav-drawer-open");
 
+            // Focus close button gracefully after smooth slide-in finishes, without scrolling the page
             setTimeout(() => {
-                if (closeBtn) {
-                    closeBtn.focus();
-                } else {
-                    const firstLink = navMenu.querySelector("a");
-                    if (firstLink) firstLink.focus();
+                if (isOpen()) {
+                    if (closeBtn) {
+                        closeBtn.focus({ preventScroll: true });
+                    } else {
+                        const firstLink = navMenu.querySelector("a");
+                        if (firstLink) firstLink.focus({ preventScroll: true });
+                    }
                 }
-            }, 60);
+            }, 320);
         }
 
         function closeMenu() {

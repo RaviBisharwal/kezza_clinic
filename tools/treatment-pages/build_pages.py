@@ -54,7 +54,7 @@ def build_navbar():
     return """<nav class="navbar">
 <div class="nav-container">
 <div class="nav-logo">
-<a aria-label="Kezza Clinic Home" href="/"><img alt="Kezza Clinic" decoding="async" height="60" loading="eager" src="/images/logo.webp" width="160"/></a>
+<a aria-label="Kezza Clinic Home" href="/"><img alt="Kezza Clinic" decoding="async" height="42" loading="eager" src="/images/logo.webp" style="height:42px;width:auto;max-height:42px;max-width:160px;object-fit:contain;" width="160"/></a>
 </div>
 <ul class="nav-menu" id="navMenu">
 <li><a href="/">Home</a></li>
@@ -103,11 +103,12 @@ def build_navbar():
 <li><a class="mega-link" href="/chemical-peel/">Chemical Peel</a></li>
 <li><a class="mega-link" href="/medical-peel/">Medical Peel</a></li>
 <li><a class="mega-link" href="/microneedling/">Microneedling</a></li>
-<li><a class="mega-link" href="/skin-brightening/">Glutathione Treatment</a></li>
+<li><a class="mega-link" href="/skin-brightening/">Skin Brightening</a></li>
 <li><a class="mega-link" href="/acne/">Acne &amp; Acne Scars</a></li>
+<li><a class="mega-link" href="/acne-scar/">Acne Scars</a></li>
 <li><a class="mega-link" href="/pigmentation/">Pigmentation &amp; Melasma</a></li>
-<li><a class="mega-link" href="/dermal-fillers/">Botox &amp; Fillers</a></li>
-<li><a class="mega-link" href="/dark-circles/">Dark Circle Treatment</a></li>
+<li><a class="mega-link" href="/dermal-fillers/">Dermal Fillers</a></li>
+<li><a class="mega-link" href="/dark-circles/">Dark Circles</a></li>
 <li><a class="mega-link" href="/stretch-marks/">Stretch Marks</a></li>
 <li><a class="mega-link" href="/medical-dermatology/">Medical Dermatology</a></li>
 <li><a class="mega-link" href="/skin-consultation/">Skin Consultation</a></li>

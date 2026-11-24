@@ -613,10 +613,6 @@ def build_locations_hub():
                         <div class="kz-clinic-card-thumb">
                             <img src="{b['image']}" alt="Kezza Hair &amp; Skin Clinic, {b['city']}" width="768" height="1024" loading="lazy" decoding="async">
                             <div class="kz-thumb-overlay"></div>
-                            <div class="kz-thumb-top-row">
-                                <span class="kz-rating-pill"><i class="fas fa-star"></i> {meta['rating']} ({meta['reviews']})</span>
-                                <span class="kz-facility-badge">{meta['facility']}</span>
-                            </div>
                             <div class="kz-thumb-title-wrap">
                                 <h2 class="kz-thumb-city-title"><a href="/locations/{k}/">Kezza {b['city']}</a></h2>
                                 <div class="kz-thumb-loc-label"><i class="fas fa-map-pin" style="color:#00AFC0"></i> {E(b['label'])}</div>

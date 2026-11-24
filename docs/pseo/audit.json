@@ -70,18 +70,18 @@
    "status": "published",
    "indexable": "yes",
    "primary_intent": "kezza clinic doctors",
-   "secondary_intents": "dr harshit sharma; dr ankit bhalothia; kezza clinic founder",
+   "secondary_intents": "kezza clinic medical team; dr harshit sharma; kezza clinic founder",
    "title": "About Kezza Clinic | Our Doctors in Jaipur, Sikar & Ajmer",
    "title_len": 57,
    "h1": "A Legacy of Excellence in Hair & Skin Restoration",
-   "meta_description": "Meet the surgeons, skin specialists and PMU artist at Kezza Hair & Skin Clinic, founded by Pawan Bhalothia, with clinics in Jaipur, Sikar and Ajmer.",
-   "desc_len": 148,
+   "meta_description": "Meet the doctors, skin specialists and permanent makeup artist at Kezza Clinic in Jaipur, Sikar and Ajmer. View profiles and book a consultation.",
+   "desc_len": 145,
    "canonical": "https://www.kezza.co.in/about/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "AboutPage, BreadcrumbList, MedicalClinic, MedicalOrganization, Person, WebSite",
    "breadcrumb_visible": "Home > About Us",
    "breadcrumb_schema": "Home > About Us",
-   "links_in_contextual": 42,
+   "links_in_contextual": 43,
    "links_in_nav_footer": 75,
    "links_out_contextual": 12,
    "links_out_nav_footer": 50,
@@ -505,7 +505,7 @@
    "links_in_nav_footer": 0,
    "links_out_contextual": 14,
    "links_out_nav_footer": 44,
-   "words_main": 1124,
+   "words_main": 1125,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -535,7 +535,7 @@
    "links_in_nav_footer": 0,
    "links_out_contextual": 15,
    "links_out_nav_footer": 44,
-   "words_main": 1046,
+   "words_main": 1045,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -685,7 +685,7 @@
    "links_in_nav_footer": 75,
    "links_out_contextual": 22,
    "links_out_nav_footer": 43,
-   "words_main": 1231,
+   "words_main": 1227,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1191,7 +1191,7 @@
    "schema": "BreadcrumbList, ContactPage, FAQPage, MedicalClinic, MedicalOrganization, WebSite",
    "breadcrumb_visible": "Home > Contact Us",
    "breadcrumb_schema": "Home > Contact Us",
-   "links_in_contextual": 54,
+   "links_in_contextual": 62,
    "links_in_nav_footer": 79,
    "links_out_contextual": 9,
    "links_out_nav_footer": 50,
@@ -1435,7 +1435,7 @@
    "links_in_nav_footer": 0,
    "links_out_contextual": 8,
    "links_out_nav_footer": 50,
-   "words_main": 489,
+   "words_main": 350,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1481,12 +1481,12 @@
    "indexable": "no",
    "primary_intent": "",
    "secondary_intents": "",
-   "title": "Dr. Harshit Sharma | Kezza Clinic",
-   "title_len": 33,
+   "title": "Meet the Kezza Clinic care team",
+   "title_len": 31,
    "h1": "",
    "meta_description": "",
    "desc_len": 0,
-   "canonical": "https://www.kezza.co.in/doctors/dr-harshit-sharma/",
+   "canonical": "https://www.kezza.co.in/about/",
    "robots": "noindex,follow",
    "schema": "",
    "breadcrumb_visible": "",
@@ -1495,7 +1495,7 @@
    "links_in_nav_footer": 0,
    "links_out_contextual": 1,
    "links_out_nav_footer": 0,
-   "words_main": 16,
+   "words_main": 19,
    "in_sitemap": "no",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1525,7 +1525,7 @@
    "links_in_nav_footer": 0,
    "links_out_contextual": 8,
    "links_out_nav_footer": 50,
-   "words_main": 551,
+   "words_main": 411,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1555,7 +1555,7 @@
    "links_in_nav_footer": 0,
    "links_out_contextual": 15,
    "links_out_nav_footer": 50,
-   "words_main": 946,
+   "words_main": 751,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1585,7 +1585,7 @@
    "links_in_nav_footer": 0,
    "links_out_contextual": 7,
    "links_out_nav_footer": 50,
-   "words_main": 638,
+   "words_main": 484,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1615,7 +1615,7 @@
    "links_in_nav_footer": 0,
    "links_out_contextual": 7,
    "links_out_nav_footer": 50,
-   "words_main": 596,
+   "words_main": 448,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1645,7 +1645,7 @@
    "links_in_nav_footer": 0,
    "links_out_contextual": 14,
    "links_out_nav_footer": 50,
-   "words_main": 783,
+   "words_main": 615,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1675,7 +1675,7 @@
    "links_in_nav_footer": 0,
    "links_out_contextual": 5,
    "links_out_nav_footer": 50,
-   "words_main": 539,
+   "words_main": 398,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -1705,7 +1705,7 @@
    "links_in_nav_footer": 0,
    "links_out_contextual": 9,
    "links_out_nav_footer": 50,
-   "words_main": 624,
+   "words_main": 464,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -2379,13 +2379,13 @@
    "location": "",
    "status": "published",
    "indexable": "yes",
-   "primary_intent": "hair transplant & skin clinic in jaipur",
-   "secondary_intents": "kezza clinic; hair and skin clinic jaipur",
-   "title": "Hair Transplant & Skin Clinic in Jaipur | Kezza Clinic",
-   "title_len": 54,
+   "primary_intent": "kezza clinic",
+   "secondary_intents": "hair transplant & skin clinic in jaipur; hair and skin clinic jaipur",
+   "title": "Kezza Clinic | Hair Transplant & Skin Care in Jaipur",
+   "title_len": 52,
    "h1": "Advanced Hair & Skin Clinic in Jaipur, Sikar & Ajmer",
-   "meta_description": "Doctor-led FUE & DHI hair transplant, PRP/GFC, skin and laser care, permanent makeup and body contouring at Kezza clinics in Jaipur, Sikar and Ajmer.",
-   "desc_len": 149,
+   "meta_description": "Kezza Clinic offers FUE and DHI hair transplants, PRP, GFC, and skin and laser care in Jaipur, Sikar and Ajmer. Book a consultation.",
+   "desc_len": 132,
    "canonical": "https://www.kezza.co.in/",
    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "schema": "FAQPage, MedicalClinic, MedicalOrganization, WebPage, WebSite",
@@ -2393,9 +2393,9 @@
    "breadcrumb_schema": "",
    "links_in_contextual": 84,
    "links_in_nav_footer": 84,
-   "links_out_contextual": 27,
+   "links_out_contextual": 29,
    "links_out_nav_footer": 50,
-   "words_main": 1723,
+   "words_main": 1704,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -2571,11 +2571,11 @@
    "schema": "BreadcrumbList, CollectionPage, FAQPage, MedicalClinic, MedicalOrganization, WebSite",
    "breadcrumb_visible": "Home > Our Clinics",
    "breadcrumb_schema": "Home > Our Clinics",
-   "links_in_contextual": 6,
+   "links_in_contextual": 7,
    "links_in_nav_footer": 75,
    "links_out_contextual": 7,
    "links_out_nav_footer": 43,
-   "words_main": 671,
+   "words_main": 652,
    "in_sitemap": "yes",
    "duplication_risk": "none found",
    "orphan_status": "linked"
@@ -3441,7 +3441,7 @@
    "schema": "BreadcrumbList, MedicalOrganization, WebPage, WebSite",
    "breadcrumb_visible": "Home > Terms & Conditions",
    "breadcrumb_schema": "Home > Terms & Conditions",
-   "links_in_contextual": 23,
+   "links_in_contextual": 15,
    "links_in_nav_footer": 75,
    "links_out_contextual": 3,
    "links_out_nav_footer": 50,
@@ -4850,27 +4850,27 @@
   {
    "severity": "critical",
    "page": "index.html",
-   "message": "links to a page that is not published (noindex): hydra-facial/ (body)"
+   "message": "links to a page that is not published (noindex): hydra-facial/ (main)"
   },
   {
    "severity": "critical",
    "page": "index.html",
-   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (body)"
+   "message": "links to a page that is not published (noindex): hifu-body-sculpting/ (main)"
   },
   {
    "severity": "critical",
    "page": "index.html",
-   "message": "links to a page that is not published (noindex): microblading/ (body)"
+   "message": "links to a page that is not published (noindex): microblading/ (main)"
   },
   {
    "severity": "critical",
    "page": "index.html",
-   "message": "links to a page that is not published (noindex): lip-blush/ (body)"
+   "message": "links to a page that is not published (noindex): lip-blush/ (main)"
   },
   {
    "severity": "critical",
    "page": "index.html",
-   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (body)"
+   "message": "links to a page that is not published (noindex): permanent-eyeliner/ (main)"
   },
   {
    "severity": "critical",

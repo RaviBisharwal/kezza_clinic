@@ -279,10 +279,22 @@
     padding-left:14px
 }
 
-/* Category chevrons are mobile accordion controls; desktop columns are already open. */
+/* Category chevrons are mobile accordion controls; strictly hidden on desktop */
+.mega-col-toggle,
+.navbar #navMenu .mega-col-toggle {
+    display:none!important;
+}
+
 @media(min-width:1025px) {
+    .mega-col-toggle,
     .navbar #navMenu .mega-col-toggle {
         display:none!important;
+        visibility:hidden!important;
+        pointer-events:none!important;
+        width:0!important;
+        height:0!important;
+        padding:0!important;
+        border:none!important;
     }
 }
 

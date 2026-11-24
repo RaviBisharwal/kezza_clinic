@@ -1424,20 +1424,7 @@ p.footer-nav-title {
 
 /* ─── Responsive Media Queries ──────────────────────────────────── */
 @media (max-width: 1024px) {
-  .nav-menu {
-    position: fixed;
-    left: -100%;
-    top: 68px;
-    flex-direction: column;
-    background: #ffffff;
-    width: 100%;
-    text-align: center;
-    transition: left 0.3s ease;
-    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1);
-    padding: 24px 0;
-    z-index: 999;
-  }
-  .nav-menu.active { left: 0; }
+  /* nav-menu managed by header-pro.css */
   .hero-container {
     grid-template-columns: 1fr;
     text-align: center;

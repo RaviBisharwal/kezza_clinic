@@ -40,7 +40,13 @@
     var fallback=chooseFallback(p,alt);
     img.setAttribute('src',fallback);img.removeAttribute('srcset');img.removeAttribute('sizes');
     if(/doctor|dr[-_ ]?[a-z]|\bdoctor\d/.test(p))img.alt='Kezza clinical team image placeholder';
-    else if(/logo/.test(p))img.alt='Kezza Hair & Skin Clinic';
+    else if(/logo/.test(p)){
+      img.alt='Kezza Hair & Skin Clinic';
+      img.style.height='42px';
+      img.style.maxHeight='42px';
+      img.style.maxWidth='160px';
+      img.style.objectFit='contain';
+    }
     else img.alt='Illustrative Kezza Hair & Skin Clinic information card; original image unavailable';
   }
   function mediaError(event){

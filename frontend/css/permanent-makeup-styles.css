@@ -1096,24 +1096,7 @@ p.footer-nav-title {
 /* ── RESPONSIVE ─────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
 
-  .nav-menu {
-    position: fixed;
-    left: -100%;
-    top: 68px;
-    flex-direction: column;
-    background: rgba(255,255,255,0.98);
-    backdrop-filter: blur(20px);
-    width: 100%;
-    text-align: center;
-    transition: left 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    padding: 24px 0;
-    z-index: 999;
-    gap: 0;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-  }
-
-  .nav-menu.active { left: 0; }
+  /* nav-menu managed by header-pro.css */
   .nav-menu li { margin: 10px 0; }
 
   .hero-container,

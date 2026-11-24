@@ -296,6 +296,7 @@
                 const isMobile = window.innerWidth <= 1024;
                 megaCategories.forEach(category => {
                     const expanded = category.header.classList.contains('is-expanded');
+                    category.toggle.style.display = isMobile ? '' : 'none';
                     category.list.setAttribute('aria-hidden', String(!isMobile ? false : !expanded));
                     setMegaListTabOrder(category.list, !isMobile || expanded);
                 });
@@ -313,6 +314,7 @@
                 const toggle = document.createElement('button');
                 toggle.type = 'button';
                 toggle.className = 'mega-col-toggle';
+                if (window.innerWidth > 1024) toggle.style.display = 'none';
                 toggle.setAttribute('aria-controls', listId);
                 toggle.setAttribute('aria-label', `Show ${categoryTitle} services`);
                 toggle.innerHTML = '<i class="fas fa-chevron-down" aria-hidden="true"></i>';
@@ -322,14 +324,27 @@
                 megaCategories.push(category);
                 setMegaCategory(category, index === 0);
 
-                toggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
+                function handleCategoryToggle(e) {
                     if (window.innerWidth > 1024) return;
-
+                    // If user clicked the title link on an ALREADY expanded section, allow navigation
+                    if (e && e.target && e.target.closest('a.mega-col-title') && header.classList.contains('is-expanded')) {
+                        return;
+                    }
+                    if (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
                     const shouldExpand = !header.classList.contains('is-expanded');
                     megaCategories.forEach(other => setMegaCategory(other, other === category && shouldExpand));
                     if (shouldExpand) scrollCategoryIntoView(header, document.getElementById('navMenu'));
+                }
+
+                toggle.addEventListener('click', handleCategoryToggle);
+                header.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 1024) {
+                        if (e.target.closest('.mega-col-toggle')) return; // handled by toggle button
+                        handleCategoryToggle(e);
+                    }
                 });
             });
 
