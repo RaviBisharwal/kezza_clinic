@@ -27,15 +27,15 @@ const path = require('path');
 const crypto = require('crypto');
 const { buildFaSubset } = require('./build-fa-subset.js');
 
+let esbuild = null;
+try { esbuild = require('esbuild'); } catch (_e) {}
+
 const ROOT = path.resolve(__dirname, '..');
 const FE = path.join(ROOT, 'frontend');
 const CONFIG = path.join(__dirname, 'css-bundles.json');
 
-// ── Conservative minifier ────────────────────────────────────────────
-// Strips comments and collapses whitespace; removes spaces only next to
-// { } ; , and inside ( ). Strings and url(...) are copied verbatim.
-// Deliberately does NOT touch ":" "+" ">" "~" so selectors and calc() are safe.
-function minify(css) {
+// ── CSS Minifier (uses esbuild when installed; conservative regex fallback) ──
+function conservativeMinify(css) {
   let out = '';
   let i = 0;
   const n = css.length;
@@ -91,6 +91,20 @@ function minify(css) {
     i++;
   }
   return out.trim() + '\n';
+}
+
+function minify(css) {
+  if (esbuild) {
+    try {
+      return esbuild.transformSync(css, {
+        loader: 'css',
+        minify: true,
+        charset: 'utf8',
+        legalComments: 'none',
+      }).code;
+    } catch (_e) { /* fall back to conservative minifier */ }
+  }
+  return conservativeMinify(css);
 }
 
 function bundleCss(files) {
@@ -247,6 +261,16 @@ function main() {
   }
 
 
+  // Minify standalone shared stylesheets (e.g. upgrades-pro.css)
+  let upgradesHash = null;
+  const upgradesSrcPath = path.join(FE, 'css', 'upgrades-pro.css');
+  if (fs.existsSync(upgradesSrcPath)) {
+    const upgradesMin = minify(fs.readFileSync(upgradesSrcPath, 'utf8'));
+    fs.writeFileSync(path.join(FE, 'css', 'upgrades-pro.min.css'), upgradesMin);
+    upgradesHash = hash(upgradesMin);
+    console.log(`upgrades-pro.min.css  ${(fs.statSync(upgradesSrcPath).size / 1024).toFixed(1)} KB -> ${(Buffer.byteLength(upgradesMin) / 1024).toFixed(1)} KB`);
+  }
+
   // Point every page at its bundle
   for (const [rel, name] of Object.entries(cfg.pages)) {
     const file = path.join(FE, rel);
@@ -289,6 +313,20 @@ function main() {
     const tag = `    <link rel="stylesheet" href="${prefix}css/bundle-${name}.min.css?v=${versions[name]}"><!-- built by tools/build-css.js from: ${cfg.bundles[name].map((f) => path.basename(f)).join(', ')} -->\n`;
     html = html.replace('\u0000BUNDLE\u0000', tag);
     fs.writeFileSync(file, html);
+  }
+  if (upgradesHash) {
+    (function updateUpgrades(dir) {
+      for (const d of fs.readdirSync(dir, { withFileTypes: true })) {
+        const p = path.join(dir, d.name);
+        if (d.isDirectory()) {
+          if (!['images', 'video', 'posters', 'uploads', 'css', 'js'].includes(d.name)) updateUpgrades(p);
+        } else if (d.name.endsWith('.html')) {
+          const h = fs.readFileSync(p, 'utf8');
+          const next = h.replace(/href=(["'])(\/?)css\/upgrades-pro(?:\.min)?\.css(?:\?v=[^"']*)?\1/g, `href=$1$2css/upgrades-pro.min.css?v=${upgradesHash}$1`);
+          if (next !== h) fs.writeFileSync(p, next);
+        }
+      }
+    })(FE);
   }
   console.log(`total ${(rawTotal / 1024).toFixed(0)} KB of source CSS -> ${(minTotal / 1024).toFixed(0)} KB in ${Object.keys(cfg.bundles).length} bundles; ${Object.keys(cfg.pages).length} pages updated`);
 }

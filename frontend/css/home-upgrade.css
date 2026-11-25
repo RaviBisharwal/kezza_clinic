@@ -141,6 +141,8 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
 .hero-section .hero-slideshow {
     position: absolute !important;
     inset: 0 !important;
+    z-index: 1 !important;
+    isolation: isolate !important;
     width: 100% !important;
     height: 100% !important;
     background: #071422 !important;
@@ -207,6 +209,10 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
 
 .hero-section .slide img.hero-img-skin {
     object-position: center 22% !important;
+}
+
+.hero-section .slide img.hero-img-skin-top {
+    object-position: center 10% !important;
 }
 
 @keyframes kzHeroFirstSlide {
@@ -2767,6 +2773,10 @@ p.section-subhead,
 @media (max-width: 860px) {
     html body .hero-section .slide img.hero-img-doctor {
         object-position: 38% 12% !important;
+    }
+
+    html body .hero-section .slide img.hero-img-skin-top {
+        object-position: 62% 8% !important;
     }
 
     html body .hero-section .hero-stage {

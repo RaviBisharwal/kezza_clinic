@@ -10,7 +10,7 @@
  */
 (function () {
   var SELECTORS = '.nav-scanner-link, .btn-scanner-hero, .dock-scan, [data-open-scanner-modal]';
-  var CSS_URL = '/css/bundle-scanner-modal.min.css?v=43d56733';
+  var CSS_URL = '/css/bundle-scanner-modal.min.css?v=d9a3dc0c';
   var JS_URL  = '/js/scanner-modal.min.js?v=e7fbbc22';
   var AUTO_KEY = 'kezza_scanner_auto_shown';
   var loading = null;

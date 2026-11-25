@@ -13,7 +13,7 @@
     }
 
     var CHATBOT_SRC = '/js/kezza-ai.min.js?v=123f2287';
-    var SCANNER_CSS = '/css/bundle-scanner-modal.min.css?v=43d56733';
+    var SCANNER_CSS = '/css/bundle-scanner-modal.min.css?v=d9a3dc0c';
     var SCANNER_JS = '/js/scanner-modal.min.js?v=e7fbbc22';
 
     // ── Chatbot: promptly load the chat script so the assistant FAB is always ready
