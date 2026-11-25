@@ -25,7 +25,7 @@
             drawerHeader.className = "nav-drawer-header";
             drawerHeader.innerHTML = `
                 <a href="/" class="drawer-logo" aria-label="Kezza Clinic Home">
-                    <img src="/images/logo.webp" alt="Kezza Clinic" width="120" height="45">
+                    <img src="/images/logo.webp" alt="Kezza Clinic" width="120" height="45" decoding="async">
                 </a>
                 <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close navigation menu">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -51,22 +51,42 @@
 
         const closeBtn = document.getElementById("drawerCloseBtn");
         let lastActiveEl = null;
+        let closeTimer = 0;
+        let focusTimer = 0;
+
+        function cancelPendingTimers() {
+            if (closeTimer) {
+                clearTimeout(closeTimer);
+                closeTimer = 0;
+            }
+            if (focusTimer) {
+                clearTimeout(focusTimer);
+                focusTimer = 0;
+            }
+        }
 
         function isOpen() {
             return navMenu.classList.contains("active");
         }
 
         function openMenu() {
+            cancelPendingTimers();
             lastActiveEl = hamburger;
-            navMenu.classList.add("active");
+
+            // Elevate navbar and commit offscreen drawer geometry on frame 0 so the
+            // slide begins immediately without waiting for extra animation frames.
             hamburger.classList.add("active");
             hamburger.setAttribute("aria-expanded", "true");
-            if (backdrop) backdrop.classList.add("active");
             document.body.classList.add("nav-drawer-open");
             document.documentElement.classList.add("nav-drawer-open");
+            navMenu.classList.add("drawer-ready");
+            void navMenu.offsetWidth;
 
-            // Focus close button gracefully after smooth slide-in finishes, without scrolling the page
-            setTimeout(() => {
+            navMenu.classList.add("active");
+            if (backdrop) backdrop.classList.add("active");
+
+            focusTimer = setTimeout(function () {
+                focusTimer = 0;
                 if (isOpen()) {
                     if (closeBtn) {
                         closeBtn.focus({ preventScroll: true });
@@ -75,21 +95,40 @@
                         if (firstLink) firstLink.focus({ preventScroll: true });
                     }
                 }
-            }, 320);
+            }, 350);
         }
 
         function closeMenu() {
+            const wasActive = navMenu.classList.contains("active");
+            cancelPendingTimers();
+
             navMenu.classList.remove("active");
             hamburger.classList.remove("active");
             hamburger.setAttribute("aria-expanded", "false");
             if (backdrop) backdrop.classList.remove("active");
-            document.body.classList.remove("nav-drawer-open");
-            document.documentElement.classList.remove("nav-drawer-open");
 
-            if (lastActiveEl && typeof lastActiveEl.focus === "function") {
-                lastActiveEl.focus();
-            } else if (hamburger) {
-                hamburger.focus();
+            const cleanupClosedState = function () {
+                closeTimer = 0;
+                if (!isOpen()) {
+                    navMenu.classList.remove("drawer-ready");
+                    document.body.classList.remove("nav-drawer-open");
+                    document.documentElement.classList.remove("nav-drawer-open");
+                }
+            };
+
+            if (wasActive) {
+                closeTimer = setTimeout(cleanupClosedState, 230);
+            } else {
+                cleanupClosedState();
+            }
+
+            const focusTarget = (lastActiveEl && typeof lastActiveEl.focus === "function") ? lastActiveEl : hamburger;
+            if (focusTarget && typeof focusTarget.focus === "function") {
+                try {
+                    focusTarget.focus({ preventScroll: true });
+                } catch (_err) {
+                    focusTarget.focus();
+                }
             }
         }
 

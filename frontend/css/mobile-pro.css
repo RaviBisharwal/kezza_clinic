@@ -25,7 +25,7 @@ img,video,iframe,embed {
         border-bottom: 1px solid rgba(255,255,255,0.35) !important;
         box-shadow: 0 4px 20px rgba(12,35,56,0.04) !important;
         padding: 10px 0 !important;
-        transition: all 0.3s cubic-bezier(0.16,1,0.3,1) !important
+        transition: background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important
     }
     .navbar.is-scrolled,.navbar.scrolled {
         background: rgba(255,255,255,0.92) !important;
@@ -265,7 +265,7 @@ img,video,iframe,embed {
         padding: 36px 0 24px !important
     }
     .services-section-header {
-        padding: 0 16px !important
+        padding: 0 !important
     }
     .services-section-header h2 {
         font-size: clamp(1.5rem,5vw,2rem) !important
@@ -898,5 +898,5 @@ img,video,iframe,embed {
 
 section,.hero-section,.image-gallery-section,.why-kezza-section,.stats-section-pro,.services-master-section,.testimonials-section,.kz-branches,.kz-trust-strip,.kz-faq,.contact-cta-section,.footer {
     max-width: 100vw !important;
-    overflow-x: hidden !important
+    overflow-x: clip !important
 }

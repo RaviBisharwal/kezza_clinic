@@ -787,7 +787,7 @@
 
 /* Tight & Seamless Final CTA Section */
 .final-cta-section {
-  background: linear-gradient(135deg, rgba(0, 175, 192, 0.94) 0%, rgba(0, 143, 156, 0.94) 100%), url('../images/hero4.jpg') center/cover !important;
+  background: linear-gradient(135deg, rgba(0, 175, 192, 0.94) 0%, rgba(0, 143, 156, 0.94) 100%), url('../images/hero1.webp') center/cover !important;
   margin-top: 0 !important;
 }
 

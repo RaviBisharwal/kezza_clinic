@@ -426,7 +426,8 @@ body {
     padding: 42px 0 20px !important;
     background: radial-gradient(120% 70% at 50% 0%, #f0fdfa 0%, #ffffff 50%, #f8fafc 100%) !important;
     position: relative !important;
-    overflow: hidden !important;
+    overflow-x: clip !important;
+    overflow-y: visible !important;
 }
 
 /* Background subtle luxury accents */

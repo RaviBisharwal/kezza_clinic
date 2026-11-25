@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.35) !important;
     box-shadow: 0 4px 20px rgba(12, 35, 56, 0.04) !important;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
 }
 
 .navbar.is-scrolled,
@@ -143,6 +143,7 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
+    background: #071422 !important;
     overflow: hidden !important;
 }
 
@@ -163,24 +164,71 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
     width: 100% !important;
     height: 100% !important;
     flex-shrink: 1 !important;
+    background: transparent !important;
     opacity: 0;
     will-change: opacity, transform;
     animation: kzHeroKenBurns 24s infinite;
 }
 
-.hero-section .slide:nth-child(1) { animation-delay:  0s; }
-.hero-section .slide:nth-child(2) { animation-delay:  6s; }
-.hero-section .slide:nth-child(3) { animation-delay: 12s; }
-.hero-section .slide:nth-child(4) { animation-delay: 18s; }
+.hero-section .slide:nth-child(1) {
+    z-index: 1;
+    opacity: 1;
+    animation: kzHeroFirstSlide 24s infinite;
+    animation-delay: 0s;
+}
+
+.hero-section .slide:nth-child(2) {
+    z-index: 2;
+    animation-delay: 6s;
+}
+
+.hero-section .slide:nth-child(3) {
+    z-index: 3;
+    animation-delay: 12s;
+}
+
+.hero-section .slide:nth-child(4) {
+    z-index: 4;
+    animation: kzHeroLastSlide 24s infinite;
+    animation-delay: 18s;
+}
 
 .hero-section .slide img {
     width: 100% !important;
     height: 100% !important;
+    max-height: none !important;
     object-fit: cover !important;
     object-position: center 35% !important;
 }
 
+.hero-section .slide img.hero-img-doctor {
+    object-position: center 18% !important;
+}
+
+.hero-section .slide img.hero-img-skin {
+    object-position: center 22% !important;
+}
+
+@keyframes kzHeroFirstSlide {
+    0%   { opacity: 1; transform: scale(1.00); }
+    25%  { opacity: 1; transform: scale(1.07); }
+    29%  { opacity: 1; transform: scale(1.07); }
+    30%  { opacity: 0; transform: scale(1.07); }
+    96%  { opacity: 0; transform: scale(1.00); }
+    99%  { opacity: 1; transform: scale(1.00); }
+    100% { opacity: 1; transform: scale(1.00); }
+}
+
 @keyframes kzHeroKenBurns {
+    0%   { opacity: 0; transform: scale(1.00); }
+    3%   { opacity: 1; }
+    25%  { opacity: 1; transform: scale(1.07); }
+    29%  { opacity: 1; transform: scale(1.07); }
+    30%  { opacity: 0; transform: scale(1.07); }
+    100% { opacity: 0; transform: scale(1.00); }
+}
+
+@keyframes kzHeroLastSlide {
     0%   { opacity: 0; transform: scale(1.00); }
     3%   { opacity: 1; }
     25%  { opacity: 1; transform: scale(1.07); }
@@ -474,8 +522,14 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
 }
 
 @keyframes kzHeroProgress {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(300%); }
+
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(300%);
+    }
 }
 
 @media (max-width: 992px) {
@@ -1462,7 +1516,8 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
     padding: 85px 0 75px;
     background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 50%, #f0f6fa 100%);
     position: relative;
-    overflow: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
 }
 
 .kz-verticals-nav-sticky {
@@ -1935,25 +1990,182 @@ h1, h2, h3, h4, h5, h6, .hero-h1 {
 }
 
 @media (max-width: 768px) {
-    .kz-verticals-nav-sticky {
-        top: 64px;
-        margin-bottom: 30px;
-        border-radius: 16px;
-        padding: 5px 6px;
+    .services-master-section {
+        padding: 36px 0 28px !important;
+        overflow-x: clip !important;
+        overflow-y: visible !important;
     }
-    .kz-cards-scroll-track .treatment-item-card {
-        flex: 0 0 280px;
-        width: 280px;
-        max-width: 82vw;
+    .services-master-section .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 16px !important;
+    }
+    .services-master-section .services-section-header {
+        padding: 0 !important;
+        margin-bottom: 20px !important;
+    }
+    .services-master-section .services-section-header h2 {
+        font-size: clamp(1.38rem, 5.4vw, 1.85rem) !important;
+        line-height: 1.24 !important;
+        margin-bottom: 8px !important;
+    }
+    .services-master-section .services-section-header p {
+        font-size: 0.88rem !important;
+        line-height: 1.5 !important;
+    }
+    .kz-verticals-nav-sticky {
+        position: static;
+        top: auto;
+        max-width: 100%;
+        margin: 0 auto 20px;
+        border-radius: 16px;
+        padding: 6px;
+        background: #f8fbfd;
+        border: 1px solid #dce7f0;
+        box-shadow: 0 4px 16px rgba(12, 35, 56, 0.04);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+    }
+    .kz-verticals-nav-inner {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+        overflow: visible;
+        padding: 0;
+    }
+    .kz-vnav-btn {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        min-width: 0;
+        min-height: 46px;
+        padding: 8px 10px;
+        gap: 7px;
+        border-radius: 11px;
+        background: #ffffff;
+        border: 1px solid #e6eef5;
+        color: #334155;
+        font-size: 0.76rem;
+        font-weight: 600;
+        line-height: 1.22;
+        text-align: left;
+        white-space: normal;
+        box-shadow: 0 1px 3px rgba(12, 35, 56, 0.03);
+    }
+    .kz-vnav-btn i {
+        flex-shrink: 0;
+        font-size: 0.85rem;
+        color: #008f9c;
+    }
+    .kz-vnav-btn .kz-vnav-count {
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+    .kz-vnav-btn.active {
+        background: linear-gradient(135deg, #009aa8 0%, #007f8c 100%);
+        color: #ffffff;
+        border-color: #008f9c;
+        box-shadow: 0 4px 12px rgba(0, 143, 156, 0.25);
+    }
+    .kz-vnav-btn.active i {
+        color: #ffffff;
     }
     .kz-vertical-header {
         flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+    }
+    /* Reset desktop flex-basis so column layout stays content-sized */
+    .kz-vertical-title-wrap {
+        flex: 0 0 auto;
+        width: 100%;
         align-items: flex-start;
         gap: 12px;
     }
+    .kz-vertical-icon-badge {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        font-size: 1.05rem;
+        margin-top: 2px;
+    }
+    .kz-vertical-title {
+        font-size: 1.15rem;
+        line-height: 1.25;
+        margin-bottom: 4px;
+    }
+    .kz-vertical-subtitle {
+        font-size: 0.82rem;
+        line-height: 1.45;
+    }
     .kz-vertical-controls {
         width: 100%;
-        justify-content: space-between;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 8px;
+    }
+    .kz-scroll-btn {
+        width: 44px;
+        height: 44px;
+        flex: 0 0 44px;
+    }
+    .kz-vertical-all-btn {
+        margin-left: auto;
+        min-height: 44px;
+        padding: 8px 16px;
+        display: inline-flex;
+        align-items: center;
+    }
+    .kz-cards-scroll-track {
+        gap: 14px;
+        padding: 6px 2px 14px;
+        scroll-padding-left: 2px;
+    }
+    .kz-cards-scroll-track .treatment-item-card {
+        flex: 0 0 min(290px, 80vw);
+        width: min(290px, 80vw);
+        max-width: none;
+        border-radius: 16px !important;
+    }
+    .kz-cards-scroll-track .treatment-body {
+        padding: 15px 16px 16px !important;
+    }
+    .kz-cards-scroll-track .item-heading {
+        font-size: 1.05rem !important;
+        margin-bottom: 8px !important;
+    }
+    .kz-cards-scroll-track .treatment-body p:not(.item-heading) {
+        font-size: 0.83rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 14px !important;
+    }
+    .kz-cards-scroll-track .treatment-action-row {
+        padding-top: 12px !important;
+        gap: 8px !important;
+    }
+    .kz-cards-scroll-track .btn-book-quick {
+        min-height: 44px;
+        padding: 10px 12px !important;
+        font-size: 0.82rem !important;
+    }
+    .kz-cards-scroll-track .btn-details-link {
+        width: 44px !important;
+        height: 44px !important;
+    }
+}
+
+@media (max-width: 375px) {
+    .kz-vnav-btn {
+        padding: 7px 8px;
+        gap: 5px;
+        font-size: 0.72rem;
+    }
+    .kz-vnav-count {
+        font-size: 10px;
+        padding: 2px 6px;
     }
 }
 
@@ -2553,6 +2765,10 @@ p.section-subhead,
 
 /* ── Responsive home hero and complete trust strip ─────────────────── */
 @media (max-width: 860px) {
+    html body .hero-section .slide img.hero-img-doctor {
+        object-position: 38% 12% !important;
+    }
+
     html body .hero-section .hero-stage {
         height: auto !important;
         min-height: clamp(590px, 72svh, 700px) !important;

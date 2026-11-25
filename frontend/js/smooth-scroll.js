@@ -317,15 +317,13 @@
                     color: #ffffff !important;
                     transform: translateY(-1px) !important;
                 }
-                @media (max-width: 768px) {
-                    #kzBackToTop {
-                        bottom: 84px !important;
-                        left: 16px !important;
-                        width: 38px !important;
-                        height: 38px !important;
-                    }
-                    #kzBackToTop i {
-                        font-size: 13px !important;
+                @media (max-width: 1024px) {
+                    #kzBackToTop,
+                    #kzBackToTop.is-visible {
+                        display: none !important;
+                        opacity: 0 !important;
+                        visibility: hidden !important;
+                        pointer-events: none !important;
                     }
                 }
             `;

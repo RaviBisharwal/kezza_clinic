@@ -1333,7 +1333,7 @@ h1, h2, h3, h4, h5, h6 {
    FINAL CTA BANNER
    ═══════════════════════════════════════════════════════════════ */
 .final-cta-section {
-  background: linear-gradient(135deg, rgba(0, 175, 192, 0.94) 0%, rgba(0, 143, 156, 0.94) 100%), url('../images/hero4.jpg') center/cover;
+  background: linear-gradient(135deg, rgba(0, 175, 192, 0.94) 0%, rgba(0, 143, 156, 0.94) 100%), url('../images/hero1.webp') center/cover;
   color: #ffffff;
 }
 

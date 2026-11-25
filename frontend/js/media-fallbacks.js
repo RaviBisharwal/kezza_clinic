@@ -33,6 +33,7 @@
     var img=event.target;
     if(!img||img.tagName!=='IMG'||img.dataset.kzFallbackApplied==='1')return;
     var p=pathOf(img), alt=img.getAttribute('alt')||'';
+    if(img.closest('.hero-slideshow')){img.dataset.kzFallbackApplied='1';img.setAttribute('src','/images/hero1.webp');return;}
     if(isCaseImage(p,alt)){addCaseNote(img);img.dataset.kzFallbackApplied='1';return;}
     img.dataset.kzFallbackApplied='1';
     var picture=img.closest('picture');
